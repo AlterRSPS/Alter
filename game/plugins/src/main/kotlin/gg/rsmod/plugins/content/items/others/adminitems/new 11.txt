@@ -1,0 +1,589 @@
+
+Abyssal dagger
+Stance: 3296
+special attack Anim: 3300 gfx: 1283
+stab/lunge/block anim: 3297
+slash anim: 3294
+defence anim: 3295
+
+abyssal tentacle
+special attack Anim: 1658 gfx: 1283
+slash anim: 1658
+defence anim: 1659
+
+abyssal whip
+walk anim: 1660
+run anim: 1661
+special attack Anim: 1658 gfx: 341
+slash anim: 1658
+defence anim: 1659
+
+Dragon 2h sword
+stance anim: 2561
+slash anim: 407
+crush anim: 406
+defence anim: 410
+special attack anim: 3157 gfx: 559 stance anim: 2562
+
+dragon hasta
+stab anim: 428
+slash anim: 440
+crush anim: 429
+defence anim: 430
+stance anim: 813
+special attack anim: 7515 gfx: 1369 stance anim 1210
+
+Dragon claws
+stab anim: 1067
+slash anim: 393
+defence anim: 424
+special attack anim: 7514 gfx: 1171
+
+Crystal halberd
+the stance anims are same as dragon hunter lance below
+stab anim: 428
+slash anim: 440
+defence anim: 430
+special attack anim: 1203 stance anim: 1209 enemy tile gfx: 1235
+
+Abyssal bludgeon
+crush anim: 3298
+defence anim: 1666
+stance anim: 1652
+special attack anim: 3299 enemy entity gfx: 1284
+
+Dragon axe
+special attack anim: 2876 gfx: 479
+
+Crystal axe
+special attack anim: 2876 gfx: 1689
+
+Dragon pickaxe
+special attack anim: 7138
+stab anim: 401
+crush anim: 400
+defence anim: 397
+
+Crystal pickaxe
+special attack anim: 8329
+
+Sara's blessed sword
+stance anim: 7053
+slash anim: 7045
+crush anim: 7054
+defence anim: 7056
+special attack anim: 1133 gfx: 1213 enemy entity gfx: 1196
+
+Dragon longsword
+stance anim: 809
+slash anim: 390
+stab anim: 386
+defence anim: 4177
+special attack anim: 1058 gfx: 248
+
+Dragon scimitar
+stance anim: 808
+slash anim: 390
+stab anim: 386
+defence anim: 4177
+special attack anim: 1872 gfx: 347
+
+Blade of saeldor
+stance anim: 809
+slash anim: 390
+stab anim: 386
+defence anim: 4177
+
+dragon dagger
+stab anim: 376
+slash anim: 377
+defence anim: 4177
+special attack anim: 1062 gfx: 252
+
+dragon warhammer
+crush anim: 401
+defence anim: 403
+special attack anim: 1378 gfx: 1292
+
+Dragon mace
+stab anim: 400
+crush anim: 401
+defence anim: 403
+special attack anim: 1060 gfx: 251
+
+Dragon spear
+stance anim: 813
+stab anim: 381
+slash anim: 380
+crush anim: 382
+defence anim: 383
+special attack anim: 1064 gfx: 253 stance anim: 1209 enemy entity gfx: 254
+
+Barrelchest anchor
+stance anim: 5869
+walk anim: 5867
+run anim: 5868
+stab anim: 5865
+crush anim: 5865
+special attack anim: 5870 gfx: 1027
+
+Dinh's bulwark
+stance anim: 7508
+walk anim: 7510
+run anim: 7509
+crush anim: 7511
+defence anim: 7512
+special attack anim: 7511 gfx: 1336
+
+Dark bow
+attack anim: 426
+special attack anim: 426 gfx: 1111
+
+dragon knife / dragon knives
+attack anim: 8194
+projectile id: 28
+special attack anim: 8291 projectile id 699
+
+dragon darts
+attack anim: 7554
+projectile id: 1122
+
+dragon thrownaxe
+attack anim: 7617
+projectile id: 1319
+special attack anim: 7521 gfx: 1317 projectile id: 1318
+
+Ghrazi rapier
+stance anim: 809
+stab anim: 8145
+slash anim: 390
+defence anim: 4177
+
+Dragon sword
+stab anim: 386
+slash anim: 390
+defence anim: 4177
+special attack anim: 7515 gfx: 1369
+
+toxic blowpipe
+attack anim: 5061
+defence anim: 430
+special attack anim: 5061 gfx: 1043
+
+Elysian spirit shield
+defence anim: 1156
+gfx: 321
+
+elder maul
+stance anim: 7518
+walk anim: 7520
+run anim: 7519
+crush anim: 7516
+defence anim: 7517
+
+bone dagger
+special attack anim: 4198 gfx: 704
+
+dragon hunter lance
+stance anim: 813
+walk anim: 1205
+run anim: 2563
+turn left/right: 1209
+Walk Back: 1206
+Walk Left: 1207
+Walk Right: 1208
+stab anim: 8288
+slash anim: 8289
+crush anim: 8290
+defence anim: 420
+
+Granite hammer
+special attack anim: 1378 gfx 1450
+
+Granite maul (ornate) same as reg granite maul
+stance anim: 1662
+walk anim: 1663
+run anim: 1664
+crush anim: 1665
+defence anim: 1666
+special attack anim: 1667 gfx: 340
+
+Leaf-bladed battleaxe
+slash anim: 7004
+crush anim: 3852
+defence anim: 397
+
+Ivandis flail
+stance anim: 8009
+walk anim: 8011
+run anim: 8016
+turn left/right: 8015
+walk back: 8012
+walk left: 8013
+walk right: 8014
+crush anim: 8010
+
+Scythe of vitur
+stance anim: 8057
+slash/crush anim: 8056
+defence anim: 435
+gfx on entity tile: one of these (it varies): 435, 506, 1231, 478, 1172
+
+staff of the dead / toxic staff of the dead
+stance: same as dragon hunter lance
+stab anim: 428
+slash anim: 440
+crush anim: 419
+defence anim: 420
+special attack anim: 7083 gfx: 1228 green game chat msg: Spirits of deceased evildoers offer you their protection.
+when special fades green game msg: Your protection fades away.
+
+Kodai wand / 3rd age wand
+stance: same as dragon hunter lance
+crush anim: 414
+defence anim: 415
+
+Inquisitor's mace
+crush anim: 4503
+stab anim: 400
+defence anim: 403
+
+Sanguinesti staff
+stance: same as dragon hunter lance
+attack anim: 1167
+defence anim: 420
+projectile id: 1539
+enemy entity gfx normal: 1541 gfx heal: 1542
+
+Staff of light
+stance: same as dragon hunter lance
+stab anim: 428
+slash anim: 440
+crush anim: 419
+defence anim: 420
+special attack anim: 7967 gfx: 1516 green game chat msg: Spirits of deceased evildoers offer you their protection.
+when special fades green game msg: Your protection fades away.
+
+Heavy ballista / Light ballista
+stance anim: 7220
+walk anim: 7223
+run anim: 7221
+attack anim: 7555
+defence anim: 7219
+special attack anim: 7556
+
+Javelin projectile ids
+dragon: 1301
+amethyst: 1386
+rune: 205
+adamant: 204
+
+Craw's bow projectile id: 1574
+
+Trident of the swamp
+stance: same as dragon hunter lance
+attack anim: 1167
+defence anim: 420
+projectile id: 1040
+
+godsword
+stance anim: 7053
+walk anim: 7052
+run anim: 7043
+turn left/right: 7044
+walk left: 7048
+walk back: 7052
+walk right: 7047
+slash anim: 7045
+crush anim: 7054
+defence anim: 7056
+
+ags special attack anim: 7644 gfx: 1211
+bgs special attack anim: 7642 gfx: 1212
+sgs special attack anim: 7640 gfx: 1209
+zgs special attack anim: 7638 gfx: 1210 enemy entity gfx: 369
+
+Viggora's chainmace
+stance anim: 244
+walk anim: 247
+run anim: 248
+crush/stab anim: 245
+defence anim: 7200
+
+Thammaron's sceptre
+stance: same as dragon hunter lance
+crush anim: 1058
+defence anim: 420
+
+blach chinchompa
+stance anim: 3175
+walk anim: 3177
+run anim: 3178
+attack anim: 7618
+defence anim: 3176
+projectile id: 1272
+exploding gfx: 157
+
+ancient wyvern shield on equip anim: 3996 gfx: 1395
+special attack anim: 7700 gfx: 1402 enemy entity gfx: 367
+
+dragonfire ward special attack anim: 6696 gfx: 1165 enemy entity gfx: 1167
+
+dragonfire shield special attack anim: 6696 gfx: 1165 enemy entity gfx: 1167
+
+crossbow
+stance anim: 4591
+walk anim: 4226
+run anim: 4228
+attack anim: 7552
+defence anim: 424
+
+dragon hunter crossbow special attack anim: 4230 enemy entity gfx: 157
+
+Karil's crossbow
+stance anim: 2074
+walk anim: 2076
+run anim: 2077
+attack anim: 2075
+defence anim: 424
+
+Torag's hammers
+crush anim: 2068
+defence anim: 424
+
+verac's flail
+stance anim: 2061
+walk anim: 2060
+crush/stab anim: 2062
+defence anim: 2063
+
+Guthan's spear
+stance: same as dragon hunter lance
+stab anim: 2080
+slash anim: 2081
+crush anim: 2082
+defence anim: 430
+
+Dharok's greataxe
+stance anim: 2065
+walk anim: 2064
+slash anim: 2067
+crush anim: 2066
+defence anim: 424
+
+Ahrim's staff
+stance: same as dragon hunter lance
+crush anim: 2078
+defence anim: 2079
+
+nightmare staff
+stance anim: 4504
+walk anim 1205:
+run anim: 1210
+turn left/right: 1209
+walk back: 1206
+walk left: 1207
+walk right: 1208
+crush anim: 4505
+defence anim: 420
+
+volatile nightmare staff special attack anim: 8532 gfx: 1760 enemy entity gfx: 1759
+eldritch nightmare staff special attack anim: 8532 gfx: 1762 enemy entity gfx: 1761
+
+arrow projectile ids
+rune: 15
+amethyst: 1384
+
+dragon bolts projectile ids: 1468 same for all tipped variants
+
+Other
+Max cape emote anim: 7121 gfx: 1286
+barehanded impling catching anim: 7171
+Ornate pool of rejuvenation drink anim: 7305
+
+
+
+Smooth dance anim:
+
+Animation, GFX
+7533, 5597
+
+
+Zombie hand
+Anim: 4513 (Couldn't find the right one quickly, but looks like it)
+GFX: 320
+
+Air guitar
+Anim: 4751
+GFX: 1239
+
+Uri transform
+Uri transform is a more complicated emote, it consists of 2x transform to NPC, 4x GFX, and 3x animations that all need to be timed correctly.
+
+Tick 1: GFX 86 (high GFX) and transform to NPC 7311.
+
+Tick 2: GFX 1306, anim 7278, and transform to NPC 7313
+
+Tick 12: Anim 4069
+
+Tick 13: GFX 678 and anim 4071
+
+Tick 15: GFX 86 (high), reset animation (65535), transform back to player
+
+While running an event for this, keep checking for if the player does an interrupting action like walking, and if so cancel the rest of the event, play GFX -1, reset animation, and transform back to player.
+
+
+https://www.rune-server.ee/runescape-development/rs2-server/configuration/698658-osrs-animation-dump.html
+
+
+
+
+
+
+
+
+
+public enum SpecialAttackBars {
+		SARAS_BLESSED_SWORD_FULL(12808, "Saradomin's Lightning: Call upon Saradomin's power to perform an attack with 25% higher max hit.", 65.0),
+		DRAGON_WARHAMMER(13576, "Smash: Deal an attack that inflicts 50% more damage and lowers your target's Defence level by 30%.", 50.0),
+		SARADOMINS_BLESSED_SWORD(12809, "Saradomin's Lightning: Call upon Saradomin's power to perform an attack with 25% higher max hit.", 65.0),
+		ARMADYL_CROSSBOW(11785, "Armadyl Eye: Deal an attack with double accuracy.", 40.0),
+		STAFF_OF_THE_DEAD(11791, "Power of Death: Reduce all melee damage you receive by 50% for the next minute while the staff remains equipped. Stacks with Protect from Melee.", 100.0),
+		DRAGON_SWORD(21009, "Wild Stab: Deal an attack which hits through Protect from Melee with 25% increased accuracy and damage.", 40.0),
+		LIGHT_BALLISTA(19478, "Concentrated Shot: Deal an attack with 25% increased accuracy and damage, but takes an additional 2.4 seconds to fire.", 65.0),
+		DINHS_BULWARK(21015, "Shield Bash: Hit surrounding targets within a 10x10 area with 20% increased accuracy.", 50.0),
+		STAFF_OF_LIGHT(22296, "Power of Death: Reduce all melee damage you receive by 50% for the next minute while the staff remains equipped. Stacks with Protect from Melee.", 100.0),
+		NEW_CRYSTAL_HALBERD_FULL_I(13080, "Sweep: If your target is small, adjacent targets may be hit too. Otherwise,  your target may be hit a second time,  with 25% decreased accuracy. Damage in all cases is increased by 10% of your max hit.", 30.0), 
+		DRAGON_LONGSWORD(1305, "Cleave: Deal a powerful attack that inflicts 15% more damage.", 25.0),
+		HEAVY_BALLISTA(19481, "Concentrated Shot: Deal an attack with 25% increased accuracy and damage, but takes an additional 2.4 seconds to fire.", 65.0),
+		ARMADYL_GODSWORD(11802, "The Judgement: Deal an attack that inflicts 37.5% more damage with double accuracy.", 50.0),
+		BANDOS_GODSWORD(11804, "Warstrike: Deal an attack, with double accuracy,  that inflicts 21% more damage and drains one of your target's combat stats by the damage dealt.", 50.0),
+		BRINE_SABRE(11037, "Liquify: Deal an attack with double the chance of hitting that boosts your Strength, Attack and Defence levels by 25% of the damage dealt. Can only be used underwater.", 75.0),
+		RUNE_CLAWS(3101, "Impale: Deal an attack with 10% increased Attack and Strength, but with a slower speed.", 25.0),
+		SARADOMIN_GODSWORD(11806, "Healing Blade: Deal an attack that inflicts 10% more damage with double accuracy, while restoring your Hitpoints and Prayer by 50% and 25% of the damage dealt respectively.", 50.0),
+		DRAGON_SCIMITAR_OR(20000, "Sever: Deal a slash with increased accuracy that prevents your target from using protection prayers for 5 seconds if it successfully hits.", 55.0),
+		ZAMORAK_GODSWORD(11808, "Ice Cleave: Deal an attack that inflicts 10% more damage with double accuracy and freezes your target for 20 seconds if it successfully hits.", 50.0),
+		EXCALIBUR(35, "Sanctuary: Temporarily increase your Defence level by 8.", 100.0),
+		NEW_CRYSTAL_HALBERD_FULL(13091, "Sweep: If your target is small, adjacent targets may be hit too. Otherwise,  your target may be hit a second time,  with 25% decreased accuracy. Damage in all cases is increased by 10% of your max hit.", 30.0),
+		DRAGON_HARPOON(21028, "Fishstabber: Increase your Fishing level by 3.", 100.0),
+		RUNE_THROWNAXE(805, "Chainhit: Throw an axe which hits your target and than chains to hit further nearby targets, costing 10% additional special attack per extra target.", 10.0),
+		INFERNAL_HARPOON(21031, "Fishstabber: Increase your Fishing level by 3.", 100.0),
+		INFERNAL_HARPOON_UNCHARGED(21033, "Fishstabber: Increase your Fishing level by 3.", 100.0),
+		THIRD_AGE_AXE(20011, "Lumber Up: Increase your Woodcutting level by 3.", 100.0),
+		MAGIC_COMP_BOW(10284, "Powershot: Deal an attack that is guaranteed to hit your target.", 35.0),
+		THIRD_AGE_PICKAXE( 20014, "Rock Knocker: Increase your Mining level by 3.", 100.0),
+		DRAGON_DAGGER_P1(5680, "Puncture: Deal two quick slashes with 25% increased accuracy and 15% increased damage.", 25.0),
+		GRANITE_MAUL_OR(12848, "Quick Smash: Deal an extra attack instantly.", 50.0),
+		ZAMORAKIAN_SPEAR(11824, "Shove: Push your target back and stun them for 3 seconds. This attack deals no damage.", 25.0),
+		DRAGON_CLAWS_1(20784, "Slice and Dice: Hit 4 times in quick succession, with great accuracy.", 50.0),
+		DRAGON_WARHAMMER_1(20785, "Smash: Deal an attack that inflicts 50% more damage and lowers your target's Defence level by 30%.", 50.0),
+		ANCIENT_MACE(11061, "Favour of the War God: Deal an attack which hits through Protect from Melee and siphons Prayer points equal to the damage dealt.", 100.0),
+		ABYSSAL_WHIP(4151, "Energy Drain: Deal an attack with 25% increased accuracy that siphons 10% of your target's run energy.", 50.0),
+		GRANITE_MAUL(4153, "Quick Smash: Deal an extra attack instantly.", 50.0),
+		SARADOMIN_SWORD(11838, "Saradomin's Lightning: Call upon Saradomin's power to perform an attack that inflicts 10% more melee damage and 1-16 extra magic damage.", 100.0),
+		DRAGON_DAGGERP(5698, "Puncture: Deal two quick slashes with 25% increased accuracy and 15% increased damage.", 25.0),
+		SEERCULL(6724, "Soulshot: Deal an attack that is guaranteed to hit your target and lowers your target's Magic level by the damage dealt.", 100.0),
+		GRANITE_MAUL_OR1(20557, "Quick Smash: Deal an extra attack instantly.", 50.0),
+		MAGIC_SHORTBOW_I2(20558, "Snapshot: Fire two arrows within quick succession, but with reduced accuracy.", 55.0),
+		DRAGON_AXE(6739, "Lumber Up: Increase your Woodcutting level by 3.", 100.0),
+		DRAGON_SPEARP(5716, "Shove: Push your target back and stun them for 3 seconds. This attack deals no damage.", 25.0),
+		DRAGON_CLAWS(13652, "Slice and Dice: Hit 4 times in quick succession, with great accuracy.", 50.0),
+		DARKLIGHT(6746, "Weaken: Temporarily drain your target's Attack, Strength and Defence by 5%. Is twice as effective against demons.", 50.0),
+		MAGIC_LONGBOW(859, "Powershot: Deal an attack that is guaranteed to hit your target.", 35.0),
+		MAGIC_SHORTBOW(861, "Snapshot: Fire two arrows within quick succession, but with reduced accuracy.", 55.0),
+		DRAGON_BATTLEAXE(1377, "Rampage: Drain your Attack, Defence,  Ranged & Magic levels by 10%,  while increasing your Strength by 10 levels,  plus 25% of the drained levels.", 100.0),
+		DRAGON_SPEAR_P1(5730, "Shove: Push your target back and stun them for 3 seconds. This attack deals no damage.", 25.0),
+		TOXIC_STAFF_UNCHARGED(12902, "Power of Death: Reduce all melee damage you receive by 50% for the next minute while the staff remains equipped. Stacks with Protect from Melee.", 100.0),
+		TOXIC_STAFF_OF_THE_DEAD(12904, "Power of Death: Reduce all melee damage you receive by 50% for the next minute while the staff remains equipped. Stacks with Protect from Melee.", 100.0),
+		DRAGON_SPEARKP(3176, "Shove: Push your target back and stun them for 3 seconds. This attack deals no damage.", 25.0),
+		ZAMORAKIAN_HASTA(11889,"Shove: Push your target back and stun them for 3 seconds. This attack deals no damage.", 25.0),
+		DRAGON_THROWNAXE(20849, "Momentum Throw: Deal a fast attack with 25% improved accuracy.", 25.0),
+		ARMADYL_GODSWORD_OR1(20593, "The Judgement: Deal an attack that inflicts 37.5% more damage with double accuracy.", 50.0),
+		IVANDIS_FLAIL(22398, "Retainer: Traps a vampyre juvenile or juvinate provided they have 50% or less hitpoints remaining.", 10.0),
+		TOXIC_BLOWPIPE(12926, "Toxic Siphon: Deal an attack that inflicts 50% more damage and heals you for 50% of the damage dealt.", 50.0),
+		DRAGON_HALBERD(3204, "Sweep: If your target is small, adjacent targets may be hit too. Otherwise,  your target may be hit a second time,  with 25% decreased accuracy. Damage in all cases is increased by 10% of your max hit.", 30.0),
+		BARRELCHEST_ANCHOR(10887, "Sunder: Deal an attack with double accuracy and 10% higher max hit. Lowers your target's Attack, Defence,  Ranged or Magic level by 10% of the damage dealt.", 50.0),
+		DRAGON_CROSSBOW(21902,  "Annihilate: Hit your target with 20% extra damage and in multicombat zones, hit all adjacent targets by 20% less damage.", 60.0),
+		DRAGON_PICKAXE(11920, "Rock Knocker: Increase your Mining level by 3.", 100.0),
+		ARMADYL_GODSWORD_OR(20368, "The Judgement: Deal an attack that inflicts 37.5% more damage with double accuracy.", 50.0),
+		BANDOS_GODSWORD_OR(20370, "Warstrike: Deal an attack, with double accuracy,  that inflicts 21% more damage and drains one of your target's combat stats by the damage dealt.", 50.0),
+		SARADOMIN_GODSWORD_OR(20372, "Healing Blade: Deal an attack that inflicts 10% more damage with double accuracy, while restoring your Hitpoints and Prayer by 50% and 25% of the damage dealt respectively.", 50.0),
+		ZAMORAK_GODSWORD_OR(20374, "Ice Cleave: Deal an attack that inflicts 10% more damage with double accuracy and freezes your target for 20 seconds if it successfully hits.", 50.0),
+		DRAGON_MACE(1434, "Shatter: Increase damage by 50% and accuracy by 25% for one hit.", 25.0),
+		BONE_DAGGER(8872, "Backstab: Deal an attack with greatly increased accuracy on unsuspecting targets and that lowers your target's Defence level by the damage dealt.", 75.0),
+		BONE_DAGGER_P1(8874, "Backstab: Deal an attack with greatly increased accuracy on unsuspecting targets and that lowers your target's Defence level by the damage dealt.", 75.0),
+		BONE_DAGGER_P2(8876, "Backstab: Deal an attack with greatly increased accuracy on unsuspecting targets and that lowers your target's Defence level by the damage dealt.", 75.0),
+		BONE_DAGGER_P3(8878, "Backstab: Deal an attack with greatly increased accuracy on unsuspecting targets and that lowers your target's Defence level by the damage dealt.", 75.0),
+		DORGESHUUN_CROSSBOW(8880, "Snipe: Deal an attack with greatly increased accuracy on unsuspecting targets and that lowers your target's Defence level by the damage dealt.", 75.0),
+		ABYSSAL_WHIP_1(20405, "Energy Drain: Deal an attack with 25% increased accuracy that siphons 10% of your target's run energy.", 50.0),
+		DRAGON_SCIMITAR_OR1(20406, "Sever: Deal a slash with increased accuracy that can prevent your target from using protection prayers for 5 seconds.", 55.0),
+		DRAGON_DAGGER_OR(20407, "Puncture: Deal two quick slashes with 25% increased accuracy and 15% increased damage.", 25.0),
+		DARK_BOW(20408, "Descent of Darkness: Deal a double attack that inflicts up to 30% more damage (minimum damage of 5 per hit).", 55.0),
+		INFERNAL_AXE(13241, "Lumber Up: Increase your Woodcutting level by 3.", 100.0),
+		INFERNAL_AXE_UNCHARGED(13242, "Lumber Up: Increase your Woodcutting level by 3.", 100.0),
+		INFERNAL_PICKAXE(13243, "Rock Knocker: Increase your Mining level by 3.", 100.0),
+		INFERNAL_PICKAXE_UNCHARGED(13244, "Rock Knocker: Increase your Mining level by 3.", 100.0),
+		DRAGON_DAGGER(1215, "Puncture: Deal two quick slashes with 25% increased accuracy and 15% increased damage.", 25.0),
+		DRAGON_DAGGER_P(1231, "Puncture: Deal two quick slashes with 25% increased accuracy and 15% increased damage.", 25.0),
+		ABYSSAL_BLUDGEON(13263, "Penance: Deal an attack that inflicts 0.5% more damage per prayer point that you have used.", 50.0),
+		ABYSSAL_DAGGER(13265, "Abyssal Puncture: Deal an attack that hits twice with 25% increased accuracy, but inflicts 15% less damage per hit. The second hit is guaranteed if the first deals damage.", 50.0),
+		ABYSSAL_DAGGER_P1(13267, "Abyssal Puncture: Deal an attack that hits twice with 25% increased accuracy, but inflicts 15% less damage per hit. The second hit is guaranteed if the first deals damage.", 50.0),
+		ABYSSAL_DAGGER_P2(13269, "Abyssal Puncture: Deal an attack that hits twice with 25% increased accuracy, but inflicts 15% less damage per hit. The second hit is guaranteed if the first deals damage.", 50.0),
+		DRAGON_SWORD_OR(21206, "Wild Stab: Deal an attack which hits through Protect from Melee with 25% increased accuracy and damage.", 40.0),
+		ROD_OF_IVANDIS_10(7639, "Retainer: Traps a vampyre juvenile or juvinate provided they have 50% or less hitpoints remaining.", 10.0),
+		ABYSSAL_DAGGER_P3(13271, "Abyssal Puncture: Deal an attack that hits twice with 25% increased accuracy, but inflicts 15% less damage per hit. The second hit is guaranteed if the first deals damage.", 50.0),
+		DRAGON_THROWNAXE_1(21207, "Momentum Throw: Deal a fast attack with 25% improved accuracy.", 25.0),
+		ROD_OF_IVANDIS_9(7640, "Retainer: Traps a vampyre juvenile or juvinate provided they have 50% or less hitpoints remaining.", 10.0),
+		ROD_OF_IVANDIS_8(7641, "Retainer: Traps a vampyre juvenile or juvinate provided they have 50% or less hitpoints remaining.", 10.0),
+		ROD_OF_IVANDIS_7(7642, "Retainer: Traps a vampyre juvenile or juvinate provided they have 50% or less hitpoints remaining.", 10.0),
+		ROD_OF_IVANDIS_6(7643, "Retainer: Traps a vampyre juvenile or juvinate provided they have 50% or less hitpoints remaining.", 10.0),
+		ARCLIGHT(19675, "Weaken: Temporarily drain your target's Attack, Strength and Defence by 5%. Is twice as effective against demons.", 50.0),
+		ROD_OF_IVANDIS_5(7644, "Retainer: Traps a vampyre juvenile or juvinate provided they have 50% or less hitpoints remaining.", 10.0),
+		ROD_OF_IVANDIS_4(7645, "Retainer: Traps a vampyre juvenile or juvinate provided they have 50% or less hitpoints remaining.", 10.0),
+		DARK_BOW_5(12765, "Descent of Darkness: Deal a double attack that inflicts up to 30% more damage (minimum damage of 5 per hit).", 55.0),
+		ROD_OF_IVANDIS_3(7646, "Retainer: Traps a vampyre juvenile or juvinate provided they have 50% or less hitpoints remaining.", 10.0),
+		DARK_BOW_4(12766, "Descent of Darkness: Deal a double attack that inflicts up to 30% more damage (minimum damage of 5 per hit).", 55.01),
+		ROD_OF_IVANDIS_2(7647, "Retainer: Traps a vampyre juvenile or juvinate provided they have 50% or less hitpoints remaining.", 10.0),
+		DARK_BOW_3(12767, "Descent of Darkness: Deal a double attack that inflicts up to 30% more damage (minimum damage of 5 per hit).", 55.0),
+		ROD_OF_IVANDIS_1(7648, "Retainer: Traps a vampyre juvenile or juvinate provided they have 50% or less hitpoints remaining.", 10.0),
+		DARK_BOW_2(12768, "Descent of Darkness: Deal a double attack that inflicts up to 30% more damage (minimum damage of 5 per hit).", 55.0),
+		DRAGON_SPEAR(1249, "Shove: Push your target back and stun them for 3 seconds. This attack deals no damage.", 25.0),
+		DARK_BOW_1(11235, "Descent of Darkness: Deal a double attack that inflicts up to 30% more damage (minimum damage of 5 per hit).", 55.0),
+		VOLCANIC_ABYSSAL_WHIP(12773, "Energy Drain: Deal an attack with 25% increased accuracy that siphons 10% of your target's run energy.", 50.0),
+		FROZEN_ABYSSAL_WHIP(12774, "Energy Drain: Deal an attack with 25% increased accuracy that siphons 10% of your target's run energy.", 50.0),
+		ABYSSAL_TENTACLE(12006, "Binding Tentacle: Bind your target for 5 seconds and increase the chance of them being poisoned.", 50.0),
+		DRAGON_SCIMITAR(4587, "Sever: Deal a slash with increased accuracy that prevents your target from using protection prayers for 5 seconds if it successfully hits.", 55.0),
+		GRANITE_HAMMER(21742, "Hammer Blow: Deal an attack with 50% more accuracy and a guaranteed +5 damage.", 60.0),
+		DRAGON_SPEAR_P(1263, "Shove: Push your target back and stun them for 3 seconds. This attack deals no damage.", 25.0),
+		MAGIC_SHORTBOW_I(12788, "Snapshot: Fire two arrows within quick succession, but with reduced accuracy.", 50.0),
+		DAWNBRINGER(22516, "Pulsate: Fire an incredibly powerful burst of energy.", 35.0),
+		DRAGON_PICKAXE_OR(12797, "Rock Knocker: Increase your Mining level by 3.", 100.0);
+
+		public int itemId;
+		public double specialAmount;
+		public String tooltip;
+
+		SpecialAttackBars(int itemId, String tooltip, double specialAmount) {
+			this.itemId = itemId;
+			this.specialAmount = specialAmount;
+			this.tooltip = tooltip;
+		}
+
+	}
+	Anim - 828 - Climb ladders
+	Interface 77 - For quick prayers interface
+	
+	https://oldschool.runescape.wiki/w/RuneScape:Varbit/VAR_BIT_ID
+	
+	https://www.rune-server.ee/runescape-development/rs2-server/configuration/683432-177-mapped-graphics-lists.html
+	```
+	https://www.rune-server.ee/runescape-development/rs2-server/tutorials/652258-how-find-any-osrs-animation-gfx-id.html
+	
+Do you have this gfx?
+
+https://www.rune-server.ee/runescape...otion-gfx.html
+
+Abberant spectre projectile = 336
+```
+	
+	

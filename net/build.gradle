@@ -1,0 +1,5 @@
+description = 'RSMod Net'
+
+dependencies {
+    compile project(':util')
+}
