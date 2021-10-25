@@ -31,15 +31,13 @@ class ItemMetadataService : Service {
 
     override fun terminate(server: Server, world: World) {
     }
-    private fun dump() {
-        //nohair
-    }
+
     override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
         val path = Paths.get(serviceProperties.getOrDefault("path", "./data/cfg/items/"))
         val mapper = ObjectMapper(YAMLFactory())
         val itemCount = world.definitions.getCount(ItemDef::class.java)
         val range = 0..itemCount
-        val chunk = range.chunked(250)
+        val chunk = range.chunked(2500)
         chunk.parallelStream().forEach { range ->
             for (fileId in range) {
                 val file = File("$path/$fileId.yml")

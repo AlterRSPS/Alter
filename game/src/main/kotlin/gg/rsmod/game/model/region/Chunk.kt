@@ -181,7 +181,6 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
      */
     private fun sendUpdate(world: World, update: EntityUpdate<*>) {
         val surrounding = coords.getSurroundingCoords()
-
         for (coords in surrounding) {
             val chunk = world.chunks.get(coords, createIfNeeded = false) ?: continue
             val clients = chunk.getEntities<Client>(EntityType.CLIENT)

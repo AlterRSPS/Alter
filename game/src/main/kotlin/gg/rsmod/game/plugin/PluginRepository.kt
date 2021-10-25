@@ -840,7 +840,6 @@ class PluginRepository(val world: World) {
 
     fun bindCommands(plugin: Plugin.() -> Unit, powerRequired: String? = null, vararg commands: String) {
         //val powerRequired = Privilege.ADMIN_POWER
-
         for (command in commands) {
             val cmd = command.toLowerCase()
             if (commandPlugins.containsKey(cmd)) {

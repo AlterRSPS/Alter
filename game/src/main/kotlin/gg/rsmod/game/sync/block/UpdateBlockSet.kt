@@ -51,7 +51,7 @@ class UpdateBlockSet {
 
         val updateOpcode = properties.get<Int>("updating-opcode")!!
         val largeSceneUpdateOpcode = properties.getOrDefault("large-updating-opcode", -1)
-        val excessMask = if (properties.has("excess-mask")) Integer.decode(properties.get<String>("excess-mask")) else -1
+        val excessMask = if (properties.has("excess-mask")) Integer.decode(properties.get<Int>("excess-mask").toString()) else -1
         this.updateOpcode = updateOpcode
         this.updateBlockExcessMask = excessMask
         this.largeSceneUpdateOpcode = largeSceneUpdateOpcode
@@ -66,7 +66,7 @@ class UpdateBlockSet {
         blocks.forEach { packet ->
             val values = packet as LinkedHashMap<*, *>
             val blockType = (values["block"] as String).toUpperCase()
-            val bit = if (values.containsKey("bit")) Integer.decode(values["bit"] as String) else -1
+            val bit = if (values.containsKey("bit")) Integer.decode(values["bit"].toString()) else -1
             val structureValues = mutableListOf<MessageValue>()
 
             if (values.containsKey("structure")) {

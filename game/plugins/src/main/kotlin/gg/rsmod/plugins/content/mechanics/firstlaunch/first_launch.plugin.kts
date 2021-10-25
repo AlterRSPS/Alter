@@ -17,10 +17,6 @@ on_login {
     }
 }
 
-on_command("emotes") {
-    EmotesTab.unlockAll(player)
-}
-
 suspend fun dialog(it: QueueTask) {
     val api = server.getApiName()
     val site = server.getApiSite()

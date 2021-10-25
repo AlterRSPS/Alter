@@ -163,9 +163,7 @@ on_button(interfaceId = BONDS_INTERFACE_ID, component = 124) {
     }
 }
 
-on_command("lastbond") {
-    player.message("last bond claimed: ${Date(player.attr[FREE_BOND_CLAIMED_ATTR]!!.toLong())}")
-}
+
 
 //// cs2278[ package#, displayText, numberOfBonds, iconId, iconWidth, iconHeight, awardText, debugText ]
 ////   Note| if debugText is set then the package button is DISABLED and logs in the chat debugText

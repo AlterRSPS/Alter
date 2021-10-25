@@ -25,7 +25,6 @@ class MessagePublicHandler : MessageHandler<MessagePublicMessage> {
         client.blockBuffer.publicChat = ChatMessage(unpacked, client.privilege.icon, type, effect, color)
         client.addBlock(UpdateBlockType.PUBLIC_CHAT)
 
-        println("Type: $type , Color: $color , Effect: $effect unpacked: $unpacked")
         world.getService(LoggerService::class.java, searchSubclasses = true)?.logPublicChat(client, unpacked)
     }
 }
