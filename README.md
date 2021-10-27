@@ -13,7 +13,8 @@ Due to the plugin capabilities, even owners without programming experience can j
 #### Installation
 * This will be rewriten! but for now you can use this as your guide https://github.com/Tomm0017/rsmod/#installation
 * Cache: https://archive.runestats.com/osrs/2021-09-22-rev199.tar.gz
-* Client: Soon.
+* Client: https://github.com/AlterRSPS/AlterClient
+* Or OpenOSRS: https://github.com/CloudS3c/OpenOSRS_RSPS
 
 ## Acknowledgments
 
