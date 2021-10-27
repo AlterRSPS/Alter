@@ -38,6 +38,8 @@ Due to the plugin capabilities, even owners without programming experience can j
   - Advice on improving RS Mod's infrastructure
 * ##### Kris & Corey
   - Always willing to lend a hand and share some code
+* ##### Cjay0091
+  - Sharing alot of useful data
 * ##### Bart and Scu11
   - Helped solve an issue with setting up KotlinScript
 * ##### Bart (from original OSS team)
