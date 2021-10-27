@@ -1,0 +1,6 @@
+id: 8200
+name: "Picket fence"
+examine: "Marks the boundary of the garden."
+tradeable: false
+weight: 0.0
+equipment: null

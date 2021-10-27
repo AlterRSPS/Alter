@@ -1,0 +1,6 @@
+id: 24418
+name: "Gravestone"
+examine: "A simple marker for the dead."
+tradeable: false
+weight: 0.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 3733
+name: "Frozen jug"
+examine: "This jug of water is frozen solid."
+tradeable: false
+weight: 0.453
+equipment: null

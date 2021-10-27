@@ -1,0 +1,6 @@
+id: 18918
+name: "Bread dough"
+examine: "Some uncooked dough."
+tradeable: true
+weight: 0.6
+equipment: null

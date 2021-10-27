@@ -1,0 +1,6 @@
+id: 17322
+name: "Storeroom key"
+examine: "The key to the Troll storeroom."
+tradeable: false
+weight: 0.055
+equipment: null

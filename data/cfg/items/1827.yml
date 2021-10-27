@@ -1,0 +1,6 @@
+id: 1827
+name: "Waterskin(2)"
+examine: "A half empty waterskin with two portions of water."
+tradeable: true
+weight: 0.6
+equipment: null

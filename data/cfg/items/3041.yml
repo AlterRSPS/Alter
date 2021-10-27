@@ -1,0 +1,6 @@
+id: 3041
+name: "Magic potion(4)"
+examine: "4 doses of Magic potion."
+tradeable: true
+weight: 0.035
+equipment: null

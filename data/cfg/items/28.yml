@@ -1,0 +1,6 @@
+id: 28
+name: "Insect repellent"
+examine: "Drives away all known 6 legged creatures."
+tradeable: true
+weight: 0.028
+equipment: null

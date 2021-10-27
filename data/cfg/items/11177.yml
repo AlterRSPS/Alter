@@ -1,0 +1,6 @@
+id: 11177
+name: "Jewellery"
+examine: "Jewellery that looks dusty."
+tradeable: false
+weight: 0.001
+equipment: null

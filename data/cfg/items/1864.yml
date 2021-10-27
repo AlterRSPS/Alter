@@ -1,0 +1,6 @@
+id: 1864
+name: "Pitta dough"
+examine: "I need to cook this."
+tradeable: true
+weight: 0.12
+equipment: null

@@ -1,0 +1,6 @@
+id: 10978
+name: "Swamp weed"
+examine: "Swamp weed found in the caves near Dorgesh-Kaan."
+tradeable: true
+weight: 0.2
+equipment: null

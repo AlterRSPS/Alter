@@ -1,0 +1,6 @@
+id: 4490
+name: "Mud"
+examine: "Yuck, it's sticky, dirty mud."
+tradeable: true
+weight: 0.03
+equipment: null

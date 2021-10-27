@@ -1,0 +1,6 @@
+id: 24729
+name: "Dark dye"
+examine: "A dye which can be used to recolour a piece of graceful clothing."
+tradeable: false
+weight: 0.02
+equipment: null

@@ -1,0 +1,6 @@
+id: 8017
+name: "Enchant emerald or jade"
+examine: "A tablet containing a magic spell."
+tradeable: true
+weight: 0.0
+equipment: null

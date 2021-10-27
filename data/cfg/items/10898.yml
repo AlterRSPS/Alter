@@ -1,0 +1,6 @@
+id: 10898
+name: "Keg"
+examine: "A small keg of gunpowder."
+tradeable: false
+weight: 12.0
+equipment: null

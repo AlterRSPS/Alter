@@ -1,0 +1,6 @@
+id: 1843
+name: "Wrought iron key"
+examine: "This key unlocks a very sturdy gate of some sort. Ana gave me this key."
+tradeable: false
+weight: 0.01
+equipment: null

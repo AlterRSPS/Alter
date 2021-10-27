@@ -1,0 +1,6 @@
+id: 4615
+name: "Letter"
+examine: "An old faded letter."
+tradeable: false
+weight: 0.005
+equipment: null

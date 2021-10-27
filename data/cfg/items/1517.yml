@@ -1,0 +1,6 @@
+id: 1517
+name: "Maple logs"
+examine: "Logs cut from a maple tree."
+tradeable: true
+weight: 2.0
+equipment: null

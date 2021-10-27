@@ -1,0 +1,6 @@
+id: 5009
+name: "Goblin symbol book"
+examine: "A book about the ancient goblin tribes."
+tradeable: false
+weight: 1.0
+equipment: null

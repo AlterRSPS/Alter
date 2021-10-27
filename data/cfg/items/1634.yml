@@ -1,0 +1,6 @@
+id: 1634
+name: "Crushed gem"
+examine: "This gem is crushed and broken."
+tradeable: true
+weight: 0.003
+equipment: null

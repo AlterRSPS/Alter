@@ -1,0 +1,6 @@
+id: 671
+name: "Animal skull"
+examine: "A carefully-kept-safe skull sample."
+tradeable: false
+weight: 0.085
+equipment: null

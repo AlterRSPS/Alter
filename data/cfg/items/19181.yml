@@ -1,0 +1,6 @@
+id: 19181
+name: "Raw fish pie"
+examine: "Raw fish is risky, better cook it."
+tradeable: true
+weight: 0.001
+equipment: null

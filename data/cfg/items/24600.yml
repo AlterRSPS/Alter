@@ -1,0 +1,7 @@
+id: 24600
+name: "Blighted super restore(4)"
+examine: "4 doses of super restore potion, blighted so it can be used only in the\
+  \ Wilderness."
+tradeable: true
+weight: 0.035
+equipment: null

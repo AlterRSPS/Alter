@@ -1,0 +1,6 @@
+id: 24482
+name: "Open seed box"
+examine: "A handy box for carrying some seeds."
+tradeable: false
+weight: 1.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 308
+name: "Fishing rod"
+examine: "Useful for catching sardine or herring."
+tradeable: true
+weight: 1.36
+equipment: null

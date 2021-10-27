@@ -1,0 +1,6 @@
+id: 9987
+name: "Raw beast meat"
+examine: "A slab of raw beast meat."
+tradeable: true
+weight: 2.0
+equipment: null

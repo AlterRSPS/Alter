@@ -1,0 +1,6 @@
+id: 16381
+name: "Shipping order"
+examine: "A shipping order list."
+tradeable: false
+weight: 0.001
+equipment: null

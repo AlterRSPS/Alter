@@ -1,0 +1,6 @@
+id: 19657
+name: "Uncooked botanical pie"
+examine: "This would be much tastier cooked."
+tradeable: true
+weight: 0.5
+equipment: null

@@ -1,0 +1,6 @@
+id: 4605
+name: "Snake charm"
+examine: "Makes a hissing sound."
+tradeable: false
+weight: 0.1
+equipment: null

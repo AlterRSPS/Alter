@@ -1,0 +1,6 @@
+id: 22407
+name: "Blood potion"
+examine: "A strange potion made using blood."
+tradeable: false
+weight: 0.0
+equipment: null

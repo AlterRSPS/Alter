@@ -1,0 +1,6 @@
+id: 17825
+name: "Magic beans"
+examine: "A bag of magic beans."
+tradeable: false
+weight: 0.01
+equipment: null

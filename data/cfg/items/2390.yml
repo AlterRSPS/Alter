@@ -1,0 +1,6 @@
+id: 2390
+name: "Vial"
+examine: "An empty glass vial."
+tradeable: true
+weight: 0.015
+equipment: null

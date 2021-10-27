@@ -1,0 +1,6 @@
+id: 4607
+name: "Snake basket full"
+examine: "This basket contains a snake."
+tradeable: false
+weight: 1.0
+equipment: null

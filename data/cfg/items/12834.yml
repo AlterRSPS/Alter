@@ -1,0 +1,6 @@
+id: 12834
+name: "Holy elixir"
+examine: "A bottle of holy elixir."
+tradeable: true
+weight: 2.0
+equipment: null

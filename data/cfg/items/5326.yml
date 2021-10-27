@@ -1,0 +1,6 @@
+id: 5326
+name: "Gardening trowel"
+examine: "Not suitable for archaeological digs."
+tradeable: true
+weight: 0.056
+equipment: null

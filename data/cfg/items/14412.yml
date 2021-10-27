@@ -1,0 +1,6 @@
+id: 14412
+name: "Damaged book"
+examine: "An incomplete book of Armadyl."
+tradeable: false
+weight: 1.0
+equipment: null

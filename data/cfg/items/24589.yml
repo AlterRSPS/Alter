@@ -1,0 +1,6 @@
+id: 24589
+name: "Blighted manta ray"
+examine: "A rare catch, now blighted so it can be eaten only in the Wilderness."
+tradeable: true
+weight: 0.4
+equipment: null

@@ -1,0 +1,6 @@
+id: 10999
+name: "Goblin book"
+examine: "A tattered goblin holy book."
+tradeable: true
+weight: 0.1
+equipment: null

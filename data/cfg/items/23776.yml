@@ -1,0 +1,6 @@
+id: 23776
+name: "Red crystal"
+examine: "A red crystal. It gives out a slight glow."
+tradeable: false
+weight: 0.001
+equipment: null

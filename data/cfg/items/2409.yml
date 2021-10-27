@@ -1,0 +1,6 @@
+id: 2409
+name: "Door key"
+examine: "A key to the Witch's house's front door."
+tradeable: false
+weight: 0.01
+equipment: null

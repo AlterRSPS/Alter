@@ -1,0 +1,6 @@
+id: 2112
+name: "Orange slices"
+examine: "Fresh orange slices."
+tradeable: true
+weight: 0.09
+equipment: null

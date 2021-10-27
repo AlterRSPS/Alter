@@ -1,0 +1,6 @@
+id: 434
+name: "Clay"
+examine: "Some hard dry clay."
+tradeable: true
+weight: 1.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 18009
+name: "Silverware"
+examine: "You found the Lumbridge silverware in the HAM cave."
+tradeable: false
+weight: 0.05
+equipment: null

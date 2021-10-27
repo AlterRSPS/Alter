@@ -1,0 +1,6 @@
+id: 2287
+name: "Uncooked pizza"
+examine: "This needs cooking."
+tradeable: true
+weight: 0.8
+equipment: null

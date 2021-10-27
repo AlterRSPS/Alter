@@ -1,0 +1,6 @@
+id: 272
+name: "Fish food"
+examine: "Keeps your pet fish strong and healthy."
+tradeable: true
+weight: 0.028
+equipment: null

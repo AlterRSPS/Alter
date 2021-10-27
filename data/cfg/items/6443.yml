@@ -1,0 +1,6 @@
+id: 6443
+name: "Arrow shaft"
+examine: "A wooden arrow shaft."
+tradeable: true
+weight: 0.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 3732
+name: "Empty jug"
+examine: "This jug is completely empty. It has a 3 painted on its side."
+tradeable: false
+weight: 0.001
+equipment: null

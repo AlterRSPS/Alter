@@ -1,0 +1,6 @@
+id: 24337
+name: "Target teleport"
+examine: "A teleport to your target."
+tradeable: true
+weight: 0.0
+equipment: null

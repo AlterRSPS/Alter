@@ -1,0 +1,6 @@
+id: 15448
+name: "Trout"
+examine: "Some nicely cooked trout."
+tradeable: true
+weight: 0.4
+equipment: null

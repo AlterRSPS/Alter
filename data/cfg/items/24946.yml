@@ -1,0 +1,6 @@
+id: 24946
+name: "Hallowed sack"
+examine: "Contains a bounty of treasures found within the Hallowed Sepulchre."
+tradeable: false
+weight: 1.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 1971
+name: "Kebab"
+examine: "A meaty kebab."
+tradeable: true
+weight: 0.25
+equipment: null

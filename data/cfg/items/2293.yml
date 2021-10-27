@@ -1,0 +1,6 @@
+id: 2293
+name: "Meat pizza"
+examine: "A pizza with bits of meat on it."
+tradeable: true
+weight: 0.9
+equipment: null

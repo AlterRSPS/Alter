@@ -1,0 +1,6 @@
+id: 8325
+name: "Clay fireplace"
+examine: "You can build a fire here."
+tradeable: false
+weight: 0.0
+equipment: null

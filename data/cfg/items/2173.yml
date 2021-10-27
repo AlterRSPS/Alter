@@ -1,0 +1,6 @@
+id: 2173
+name: "Odd gnomebowl"
+examine: "A ball used in Gnomeball."
+tradeable: true
+weight: 0.5
+equipment: null

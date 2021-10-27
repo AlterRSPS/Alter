@@ -1,0 +1,6 @@
+id: 17828
+name: "Display cabinet key"
+examine: "The museum curator's key."
+tradeable: false
+weight: 0.01
+equipment: null

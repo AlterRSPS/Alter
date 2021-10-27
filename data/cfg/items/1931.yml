@@ -1,0 +1,6 @@
+id: 1931
+name: "Pot"
+examine: "This pot is empty."
+tradeable: true
+weight: 0.453
+equipment: null

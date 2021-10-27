@@ -1,0 +1,6 @@
+id: 13982
+name: "Magic logs"
+examine: "Logs cut from a magic tree."
+tradeable: true
+weight: 2.0
+equipment: null

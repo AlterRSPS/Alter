@@ -1,0 +1,6 @@
+id: 19669
+name: "Redwood logs"
+examine: "Logs cut from a redwood tree."
+tradeable: true
+weight: 2.0
+equipment: null

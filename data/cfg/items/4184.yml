@@ -1,0 +1,6 @@
+id: 4184
+name: "Cavern key"
+examine: "Upon close examination, this seems to be a key."
+tradeable: false
+weight: 0.005
+equipment: null

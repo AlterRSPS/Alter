@@ -1,0 +1,6 @@
+id: 16949
+name: "Climbing boots"
+examine: "Boots made for climbing."
+tradeable: true
+weight: 0.34
+equipment: null

@@ -1,0 +1,6 @@
+id: 25315
+name: "Giant boulder"
+examine: "That's one ginormous boulder."
+tradeable: false
+weight: 15.0
+equipment: null

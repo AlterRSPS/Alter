@@ -1,0 +1,6 @@
+id: 16736
+name: "Weather forecast"
+examine: "An estimate of expected local weather patterns."
+tradeable: false
+weight: 0.0
+equipment: null

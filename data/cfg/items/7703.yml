@@ -1,0 +1,6 @@
+id: 7703
+name: "Teapot"
+examine: "This teapot is empty."
+tradeable: false
+weight: 0.453
+equipment: null

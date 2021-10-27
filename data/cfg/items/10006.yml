@@ -1,0 +1,6 @@
+id: 10006
+name: "Bird snare"
+examine: "A simple bird catcher."
+tradeable: true
+weight: 0.453
+equipment: null

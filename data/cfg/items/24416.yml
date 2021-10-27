@@ -1,0 +1,6 @@
+id: 24416
+name: "Rune pouch (l)"
+examine: "You can store runes in here."
+tradeable: false
+weight: 1.0
+equipment: null

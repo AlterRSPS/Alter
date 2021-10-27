@@ -1,0 +1,6 @@
+id: 5514
+name: "Giant pouch"
+examine: "A giant-sized pouch used for storing essence."
+tradeable: false
+weight: 1.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 13985
+name: "Willow logs"
+examine: "Logs cut from a willow tree."
+tradeable: true
+weight: 2.0
+equipment: null

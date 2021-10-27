@@ -1,0 +1,6 @@
+id: 17185
+name: "Square stone"
+examine: "There is a strange yellow marking on this stone."
+tradeable: false
+weight: 1.0
+equipment: null

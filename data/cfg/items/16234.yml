@@ -1,0 +1,6 @@
+id: 16234
+name: "Tin ore"
+examine: "This needs refining."
+tradeable: true
+weight: 2.267
+equipment: null

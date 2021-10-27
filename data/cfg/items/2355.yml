@@ -1,0 +1,6 @@
+id: 2355
+name: "Silver bar"
+examine: "It's a bar of silver."
+tradeable: true
+weight: 1.814
+equipment: null

@@ -1,0 +1,6 @@
+id: 16266
+name: "Combat bracelet"
+examine: "You will need to recharge the bracelet at the Legends Guild."
+tradeable: true
+weight: 0.25
+equipment: null

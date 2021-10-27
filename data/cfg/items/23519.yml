@@ -1,0 +1,6 @@
+id: 23519
+name: "Giant egg sac(full)"
+examine: "A giant sac of red spider eggs, hopefully none of them hatch."
+tradeable: true
+weight: 5.0
+equipment: null

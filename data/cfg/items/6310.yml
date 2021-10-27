@@ -1,0 +1,6 @@
+id: 6310
+name: "Trading sticks"
+examine: "Karamja currency."
+tradeable: true
+weight: 0.0
+equipment: null

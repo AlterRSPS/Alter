@@ -1,0 +1,6 @@
+id: 1920
+name: "Beer glass"
+examine: "I need to fill this with beer."
+tradeable: true
+weight: 0.05
+equipment: null

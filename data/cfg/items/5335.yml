@@ -1,0 +1,6 @@
+id: 5335
+name: "Watering can(3)"
+examine: "This watering can is just under half-full."
+tradeable: false
+weight: 0.4
+equipment: null

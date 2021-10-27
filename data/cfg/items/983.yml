@@ -1,0 +1,6 @@
+id: 983
+name: "Brass key"
+examine: "Opens a door that leads into a dungeon."
+tradeable: true
+weight: 0.01
+equipment: null

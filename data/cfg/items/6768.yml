@@ -1,0 +1,6 @@
+id: 6768
+name: "Poisoned cheese"
+examine: "A little more smelly than usual."
+tradeable: false
+weight: 0.2
+equipment: null

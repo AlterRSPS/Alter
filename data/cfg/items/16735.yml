@@ -1,0 +1,6 @@
+id: 16735
+name: "Sea fishing map"
+examine: "Map showing the best fishing spots out at sea."
+tradeable: false
+weight: 0.51
+equipment: null

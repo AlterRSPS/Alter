@@ -1,0 +1,6 @@
+id: 7145
+name: "Cannon barrel"
+examine: "A working cannon barrel."
+tradeable: false
+weight: 32.0
+equipment: null

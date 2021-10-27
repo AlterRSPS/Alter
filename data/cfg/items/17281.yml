@@ -1,0 +1,6 @@
+id: 17281
+name: "Pigeon cage"
+examine: "It's full of pigeons."
+tradeable: false
+weight: 2.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 5351
+name: "Empty plant pot"
+examine: "An empty plant pot."
+tradeable: true
+weight: 0.907
+equipment: null

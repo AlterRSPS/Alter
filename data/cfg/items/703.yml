@@ -1,0 +1,6 @@
+id: 703
+name: "Nitroglycerin"
+examine: "A strong chemical."
+tradeable: false
+weight: 0.025
+equipment: null

@@ -1,0 +1,6 @@
+id: 21213
+name: "Servant's moneybag"
+examine: "Leave money here so the servant needn't bother asking you for it."
+tradeable: false
+weight: 0.0
+equipment: null

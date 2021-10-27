@@ -1,0 +1,6 @@
+id: 1987
+name: "Grapes"
+examine: "Good grapes for wine making."
+tradeable: true
+weight: 0.25
+equipment: null

@@ -1,0 +1,6 @@
+id: 15258
+name: "Defence potion(4)"
+examine: "4 doses of Defence potion."
+tradeable: true
+weight: 0.035
+equipment: null

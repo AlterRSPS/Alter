@@ -1,0 +1,6 @@
+id: 10873
+name: "Metal sheet"
+examine: "A sheet of metal."
+tradeable: false
+weight: 0.6
+equipment: null

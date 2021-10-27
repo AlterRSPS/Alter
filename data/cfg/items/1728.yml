@@ -1,0 +1,6 @@
+id: 1728
+name: "Amulet of magic"
+examine: "An enchanted sapphire amulet of magic."
+tradeable: true
+weight: 0.01
+equipment: null

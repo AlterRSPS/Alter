@@ -1,0 +1,6 @@
+id: 5926
+name: "Cider(m2)"
+examine: "This keg contains 2 pints of mature Cider."
+tradeable: true
+weight: 0.028
+equipment: null

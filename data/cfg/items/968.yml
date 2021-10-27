@@ -1,0 +1,6 @@
+id: 968
+name: "Rock"
+examine: "A rock"
+tradeable: true
+weight: 1.0
+equipment: null

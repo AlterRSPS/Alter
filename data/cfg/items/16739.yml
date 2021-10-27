@@ -1,0 +1,6 @@
+id: 16739
+name: "Fiscal statement"
+examine: "A signed statement promising a reduction on sales tax."
+tradeable: false
+weight: 0.005
+equipment: null

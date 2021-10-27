@@ -1,0 +1,6 @@
+id: 24732
+name: "Hallowed ring"
+examine: "A ring which prevents damage from traps in the Hallowed Sepulchre."
+tradeable: false
+weight: 0.004
+equipment: null

@@ -1,0 +1,6 @@
+id: 6702
+name: "Baked potato"
+examine: "It'd taste even better with some toppings."
+tradeable: true
+weight: 0.5
+equipment: null

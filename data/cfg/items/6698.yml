@@ -1,0 +1,6 @@
+id: 6698
+name: "Pat of butter"
+examine: "A pat of freshly churned butter."
+tradeable: true
+weight: 0.2
+equipment: null

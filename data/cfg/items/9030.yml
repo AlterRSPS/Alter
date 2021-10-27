@@ -1,0 +1,6 @@
+id: 9030
+name: "Stone scarab"
+examine: "Little ornament in the shape of a scarab."
+tradeable: true
+weight: 0.01
+equipment: null

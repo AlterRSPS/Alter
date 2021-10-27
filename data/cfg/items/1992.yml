@@ -1,0 +1,6 @@
+id: 1992
+name: "Jug of bad wine"
+examine: "Oh dear, this wine is terrible!"
+tradeable: false
+weight: 1.5
+equipment: null

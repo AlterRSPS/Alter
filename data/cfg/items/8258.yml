@@ -1,0 +1,6 @@
+id: 8258
+name: "Spiral staircase"
+examine: "I can climb up or go down these stairs."
+tradeable: false
+weight: 0.0
+equipment: null

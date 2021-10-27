@@ -1,0 +1,6 @@
+id: 408
+name: "Oyster"
+examine: "Maybe there are pearls inside?"
+tradeable: true
+weight: 0.1
+equipment: null

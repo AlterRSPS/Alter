@@ -1,0 +1,6 @@
+id: 6476
+name: "Compost potion(1)"
+examine: "Pour this on compost to turn it into super-compost."
+tradeable: true
+weight: 0.0
+equipment: null

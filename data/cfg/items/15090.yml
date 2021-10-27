@@ -1,0 +1,6 @@
+id: 15090
+name: "Magic shortbow scroll"
+examine: "Use on a Magic shortbow to imbue the bow."
+tradeable: true
+weight: 0.0
+equipment: null

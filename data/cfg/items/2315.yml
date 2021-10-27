@@ -1,0 +1,6 @@
+id: 2315
+name: "Pie shell"
+examine: "I need to find a filling for this pie."
+tradeable: true
+weight: 0.25
+equipment: null

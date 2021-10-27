@@ -1,0 +1,6 @@
+id: 8390
+name: "Whetstone"
+examine: "You can sharpen rusty swords here."
+tradeable: false
+weight: 0.0
+equipment: null

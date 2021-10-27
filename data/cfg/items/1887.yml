@@ -1,0 +1,6 @@
+id: 1887
+name: "Cake tin"
+examine: "Useful for baking cakes."
+tradeable: true
+weight: 0.1
+equipment: null

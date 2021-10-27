@@ -1,0 +1,6 @@
+id: 7728
+name: "Empty cup"
+examine: "An empty cup."
+tradeable: true
+weight: 0.05
+equipment: null

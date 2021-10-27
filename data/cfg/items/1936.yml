@@ -1,0 +1,6 @@
+id: 1936
+name: "Jug"
+examine: "This jug is empty."
+tradeable: true
+weight: 0.453
+equipment: null

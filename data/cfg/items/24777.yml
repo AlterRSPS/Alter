@@ -1,0 +1,6 @@
+id: 24777
+name: "Blood shard"
+examine: "A magical shard filled with a dark power."
+tradeable: true
+weight: 0.01
+equipment: null

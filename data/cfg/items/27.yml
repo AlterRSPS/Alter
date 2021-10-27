@@ -1,0 +1,6 @@
+id: 27
+name: "Fishing pass"
+examine: "Pass to the Hemenster fishing contest."
+tradeable: false
+weight: 0.006
+equipment: null

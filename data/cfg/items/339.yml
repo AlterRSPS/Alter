@@ -1,0 +1,6 @@
+id: 339
+name: "Cod"
+examine: "Some nicely cooked cod."
+tradeable: true
+weight: 0.33
+equipment: null

@@ -1,0 +1,6 @@
+id: 683
+name: "Sealed letter"
+examine: "A sealed letter of recommendation."
+tradeable: false
+weight: 0.02
+equipment: null

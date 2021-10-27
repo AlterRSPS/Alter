@@ -1,0 +1,6 @@
+id: 9038
+name: "Stone statuette"
+examine: "A small statuette."
+tradeable: true
+weight: 0.1
+equipment: null

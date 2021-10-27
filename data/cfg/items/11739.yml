@@ -1,0 +1,6 @@
+id: 11739
+name: "Opened herb box"
+examine: "This herb box has been opened."
+tradeable: false
+weight: 0.0
+equipment: null

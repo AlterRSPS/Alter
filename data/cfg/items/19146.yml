@@ -1,0 +1,6 @@
+id: 19146
+name: "Unfermented wine"
+examine: "This wine needs to ferment before it can be drunk."
+tradeable: false
+weight: 1.5
+equipment: null

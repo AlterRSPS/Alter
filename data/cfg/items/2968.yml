@@ -1,0 +1,6 @@
+id: 2968
+name: "Druidic spell"
+examine: "A druidic spell given to you freely by the spirit of Filliman Tarlock."
+tradeable: false
+weight: 0.02
+equipment: null

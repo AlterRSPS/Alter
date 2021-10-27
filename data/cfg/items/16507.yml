@@ -1,0 +1,6 @@
+id: 16507
+name: "Letter"
+examine: "A sealed letter to the king."
+tradeable: false
+weight: 0.005
+equipment: null

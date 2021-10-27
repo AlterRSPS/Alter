@@ -1,0 +1,6 @@
+id: 24613
+name: "Blighted entangle sack"
+examine: "Enough power for an Entangle, blighted so it can be used only in the Wilderness."
+tradeable: true
+weight: 0.0
+equipment: null

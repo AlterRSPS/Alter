@@ -1,0 +1,6 @@
+id: 5898
+name: "Moonlight mead(m4)"
+examine: "This keg contains 4 pints of mature Moonlight Mead."
+tradeable: true
+weight: 0.028
+equipment: null

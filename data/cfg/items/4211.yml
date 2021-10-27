@@ -1,0 +1,6 @@
+id: 4211
+name: "Elf crystal"
+examine: "A tiny Elf crystal, I need to have this re-enchanted."
+tradeable: false
+weight: 0.001
+equipment: null

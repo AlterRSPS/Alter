@@ -1,0 +1,6 @@
+id: 4837
+name: "Necromancy book"
+examine: "A book of necromantic spells."
+tradeable: false
+weight: 1.0
+equipment: null

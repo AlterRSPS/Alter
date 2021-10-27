@@ -1,0 +1,6 @@
+id: 8220
+name: "Large oven"
+examine: "You can cook pizza here."
+tradeable: false
+weight: 0.0
+equipment: null

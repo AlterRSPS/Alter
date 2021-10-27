@@ -1,0 +1,6 @@
+id: 1800
+name: "Silver bottle"
+examine: "Carol's shiny silver coated bottle."
+tradeable: false
+weight: 0.09
+equipment: null

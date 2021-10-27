@@ -1,0 +1,6 @@
+id: 9701
+name: "Torch"
+examine: "An unlit home-made torch."
+tradeable: true
+weight: 0.5
+equipment: null

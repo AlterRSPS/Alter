@@ -1,0 +1,6 @@
+id: 401
+name: "Seaweed"
+examine: "Slightly damp seaweed."
+tradeable: true
+weight: 0.2
+equipment: null

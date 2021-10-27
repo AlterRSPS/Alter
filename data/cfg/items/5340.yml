@@ -1,0 +1,6 @@
+id: 5340
+name: "Watering can(8)"
+examine: "This watering can is completely full."
+tradeable: false
+weight: 0.9
+equipment: null

@@ -1,0 +1,6 @@
+id: 5509
+name: "Small pouch"
+examine: "A small pouch used for storing essence."
+tradeable: false
+weight: 1.0
+equipment: null

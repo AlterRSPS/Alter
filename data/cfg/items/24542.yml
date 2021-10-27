@@ -1,0 +1,6 @@
+id: 24542
+name: "Unpainted fake magic egg"
+examine: "You'll need to slap some paint on this."
+tradeable: false
+weight: 0.085
+equipment: null

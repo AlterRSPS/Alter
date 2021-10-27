@@ -1,0 +1,6 @@
+id: 25651
+name: "Ornate lockbox"
+examine: "A heavy, well decorated box that could contain something valuable."
+tradeable: false
+weight: 20.0
+equipment: null

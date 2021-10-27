@@ -1,0 +1,6 @@
+id: 23802
+name: "Crystal"
+examine: "An old elven crystal. I can grind it up to get crystal dust."
+tradeable: false
+weight: 0.014
+equipment: null

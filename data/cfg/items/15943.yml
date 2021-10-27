@@ -1,0 +1,6 @@
+id: 15943
+name: "Mort'ton teleport"
+examine: "Teleports you to Mort'ton."
+tradeable: true
+weight: 0.0
+equipment: null

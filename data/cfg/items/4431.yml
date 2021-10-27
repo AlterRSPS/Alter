@@ -1,0 +1,6 @@
+id: 4431
+name: "Broken vane part"
+examine: "This weathervane ornament is damaged."
+tradeable: false
+weight: 0.001
+equipment: null

@@ -1,0 +1,6 @@
+id: 17189
+name: "Cat antipoison"
+examine: "Antipoison for Pox."
+tradeable: false
+weight: 0.035
+equipment: null

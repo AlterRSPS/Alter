@@ -1,0 +1,6 @@
+id: 9721
+name: "Scroll"
+examine: "A scroll with some writing on it."
+tradeable: false
+weight: 0.02
+equipment: null

@@ -1,0 +1,6 @@
+id: 10134
+name: "Rabbit foot"
+examine: "This could be put on a string and worn for luck."
+tradeable: true
+weight: 0.03
+equipment: null

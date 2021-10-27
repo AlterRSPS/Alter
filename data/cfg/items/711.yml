@@ -1,0 +1,6 @@
+id: 711
+name: "Book on chemicals"
+examine: "It's about chemicals, judging from its cover."
+tradeable: false
+weight: 0.51
+equipment: null

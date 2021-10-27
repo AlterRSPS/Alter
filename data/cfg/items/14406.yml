@@ -1,0 +1,6 @@
+id: 14406
+name: "Damaged book"
+examine: "An incomplete book of Zamorak."
+tradeable: false
+weight: 1.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 11035
+name: "Windswept logs"
+examine: "Logs taken from the exotic-looking windswept tree."
+tradeable: false
+weight: 0.05
+equipment: null

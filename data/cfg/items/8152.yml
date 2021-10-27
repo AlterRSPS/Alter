@@ -1,0 +1,6 @@
+id: 8152
+name: "Magic chest"
+examine: "Could the magic be guarding some treasure?"
+tradeable: false
+weight: 0.0
+equipment: null

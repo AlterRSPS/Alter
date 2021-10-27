@@ -1,0 +1,6 @@
+id: 8239
+name: "Beer barrel"
+examine: "It's got beer in it."
+tradeable: false
+weight: 0.0
+equipment: null

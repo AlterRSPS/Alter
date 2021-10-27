@@ -1,0 +1,6 @@
+id: 6090
+name: "Red toad"
+examine: "A red dye filled toad."
+tradeable: false
+weight: 0.75
+equipment: null

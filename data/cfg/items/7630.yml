@@ -1,0 +1,6 @@
+id: 7630
+name: "Crate"
+examine: "An old and musty looking crate."
+tradeable: true
+weight: 10.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 20743
+name: "Empty jug pack"
+examine: "A pack containing 100 empty jugs."
+tradeable: false
+weight: 0.0
+equipment: null

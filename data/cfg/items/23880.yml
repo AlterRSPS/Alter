@@ -1,0 +1,6 @@
+id: 23880
+name: "Water-filled vial"
+examine: "A vial shaped by crystal deep within the Gauntlet, filled with water."
+tradeable: false
+weight: 0.02
+equipment: null

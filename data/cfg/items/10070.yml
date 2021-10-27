@@ -1,0 +1,6 @@
+id: 10070
+name: "Spotted cape"
+examine: "A surprisingly aerodynamic cape."
+tradeable: true
+weight: 0.4
+equipment: null

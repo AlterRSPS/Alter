@@ -1,0 +1,6 @@
+id: 3728
+name: "Frozen bucket"
+examine: "This bucket of water is frozen solid."
+tradeable: false
+weight: 0.001
+equipment: null

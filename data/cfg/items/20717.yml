@@ -1,0 +1,6 @@
+id: 20717
+name: "Tome of fire (empty)"
+examine: "An ancient tome containing the secrets of fire magic."
+tradeable: true
+weight: 1.0
+equipment: null

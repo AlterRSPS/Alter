@@ -1,0 +1,6 @@
+id: 19099
+name: "Cake"
+examine: "A plain sponge cake."
+tradeable: true
+weight: 0.3
+equipment: null

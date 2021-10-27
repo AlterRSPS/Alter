@@ -1,0 +1,6 @@
+id: 17881
+name: "Lumber order"
+examine: "An order from the Karamja shipyard."
+tradeable: false
+weight: 0.02
+equipment: null

@@ -1,0 +1,6 @@
+id: 741
+name: "Chunk of crystal"
+examine: "It looks like it's been snapped off of something."
+tradeable: false
+weight: 0.05
+equipment: null

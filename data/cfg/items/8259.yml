@@ -1,0 +1,6 @@
+id: 8259
+name: "Marble spiral"
+examine: "I can climb up or go down these stairs."
+tradeable: false
+weight: 0.0
+equipment: null

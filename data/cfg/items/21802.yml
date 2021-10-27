@@ -1,0 +1,6 @@
+id: 21802
+name: "Revenant cave teleport"
+examine: "Teleports you to the Revenant cave in the Wilderness."
+tradeable: true
+weight: 0.0
+equipment: null

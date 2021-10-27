@@ -1,0 +1,6 @@
+id: 10893
+name: "Cranial clamp"
+examine: "A cranial clamp."
+tradeable: false
+weight: 0.01
+equipment: null

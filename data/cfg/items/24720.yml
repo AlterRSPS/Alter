@@ -1,0 +1,6 @@
+id: 24720
+name: "Hallowed token"
+examine: "A token which can grant an extra minute within the Hallowed Sepulchre."
+tradeable: false
+weight: 0.005
+equipment: null

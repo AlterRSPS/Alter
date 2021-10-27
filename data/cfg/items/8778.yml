@@ -1,0 +1,6 @@
+id: 8778
+name: "Oak plank"
+examine: "A plank of sturdy oak."
+tradeable: true
+weight: 0.8
+equipment: null

@@ -1,0 +1,6 @@
+id: 8790
+name: "Bolt of cloth"
+examine: "A bolt of ordinary cloth."
+tradeable: true
+weight: 1.0
+equipment: null

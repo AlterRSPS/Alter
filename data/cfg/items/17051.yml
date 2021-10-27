@@ -1,0 +1,6 @@
+id: 17051
+name: "Gas mask"
+examine: "Stops me from breathing nasty stuff!"
+tradeable: false
+weight: 0.255
+equipment: null

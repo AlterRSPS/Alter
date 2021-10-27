@@ -1,0 +1,6 @@
+id: 16713
+name: "Vial of water"
+examine: "A glass vial containing water."
+tradeable: true
+weight: 0.02
+equipment: null

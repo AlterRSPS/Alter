@@ -1,0 +1,6 @@
+id: 5519
+name: "Scrying orb"
+examine: "This orb apparently contains a cypher spell."
+tradeable: false
+weight: 0.05
+equipment: null

@@ -1,0 +1,6 @@
+id: 5993
+name: "Apple mush"
+examine: "A bucket of apple mush."
+tradeable: true
+weight: 1.1
+equipment: null

@@ -1,0 +1,6 @@
+id: 13249
+name: "Key master teleport"
+examine: "Teleports you to the Key Master."
+tradeable: false
+weight: 0.0
+equipment: null

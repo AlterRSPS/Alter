@@ -1,0 +1,6 @@
+id: 17157
+name: "Damp cloth"
+examine: "A damp, wet cloth."
+tradeable: false
+weight: 0.012
+equipment: null

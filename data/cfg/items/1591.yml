@@ -1,0 +1,6 @@
+id: 1591
+name: "Jail key"
+examine: "Key to a cell."
+tradeable: false
+weight: 0.01
+equipment: null

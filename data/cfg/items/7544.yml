@@ -1,0 +1,6 @@
+id: 7544
+name: "Enchanted egg"
+examine: "Egg containing knowledge."
+tradeable: false
+weight: 0.02
+equipment: null

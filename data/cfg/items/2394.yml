@@ -1,0 +1,6 @@
+id: 2394
+name: "Potion"
+examine: "This is meant to be good for spots."
+tradeable: true
+weight: 0.025
+equipment: null

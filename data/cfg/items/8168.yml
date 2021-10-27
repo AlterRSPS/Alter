@@ -1,0 +1,6 @@
+id: 8168
+name: "Exit portal"
+examine: "Use this to leave the house."
+tradeable: false
+weight: 0.0
+equipment: null

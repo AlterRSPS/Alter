@@ -1,0 +1,6 @@
+id: 24545
+name: "Dummy portal"
+examine: "Shouldn't have this."
+tradeable: false
+weight: 0.0
+equipment: null

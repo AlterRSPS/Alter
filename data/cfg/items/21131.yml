@@ -1,0 +1,6 @@
+id: 21131
+name: "Ring of returning(5)"
+examine: "This ring returns you to your spawn point."
+tradeable: true
+weight: 0.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 7920
+name: "Bottle of wine"
+examine: "A very good vintage."
+tradeable: true
+weight: 1.0
+equipment: null

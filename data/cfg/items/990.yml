@@ -1,0 +1,6 @@
+id: 990
+name: "Crystal key"
+examine: "A mysterious key for a mysterious chest."
+tradeable: true
+weight: 0.01
+equipment: null

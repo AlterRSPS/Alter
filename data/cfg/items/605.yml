@@ -1,0 +1,6 @@
+id: 605
+name: "Bone key"
+examine: "A bone key fashioned from a shard of bone."
+tradeable: false
+weight: 0.01
+equipment: null

@@ -1,0 +1,6 @@
+id: 24442
+name: "Bakery storage key"
+examine: "Used to open the storage room."
+tradeable: false
+weight: 0.0
+equipment: null

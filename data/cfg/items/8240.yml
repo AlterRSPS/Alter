@@ -1,0 +1,6 @@
+id: 8240
+name: "Cider barrel"
+examine: "A ready-to-assemble cider barrel. It's got cider in it."
+tradeable: false
+weight: 0.0
+equipment: null

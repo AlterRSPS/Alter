@@ -1,0 +1,6 @@
+id: 21745
+name: "Jar of stone"
+examine: "Stones aren't very useful in this capacity."
+tradeable: true
+weight: 1.0
+equipment: null

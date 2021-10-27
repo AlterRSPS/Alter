@@ -1,0 +1,6 @@
+id: 20019
+name: "Ring of coins"
+examine: "A valuable ring."
+tradeable: true
+weight: 0.0
+equipment: null

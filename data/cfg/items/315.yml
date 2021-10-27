@@ -1,0 +1,6 @@
+id: 315
+name: "Shrimps"
+examine: "Some nicely cooked shrimp."
+tradeable: true
+weight: 0.1
+equipment: null

@@ -1,0 +1,6 @@
+id: 8082
+name: "Small statues"
+examine: "A small statue of Bob as a kitten."
+tradeable: false
+weight: 0.0
+equipment: null

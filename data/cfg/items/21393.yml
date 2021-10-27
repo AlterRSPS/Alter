@@ -1,0 +1,7 @@
+id: 21393
+name: "Expert mining gloves"
+examine: "These will help me mine Silver, Coal, Gold, Mithril, Adamantite, Runite\
+  \ and Amethyst."
+tradeable: false
+weight: 0.2
+equipment: null

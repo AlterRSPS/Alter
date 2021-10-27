@@ -1,0 +1,6 @@
+id: 17704
+name: "Steel key ring"
+examine: "I can store my keys here."
+tradeable: false
+weight: 0.001
+equipment: null

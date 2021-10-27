@@ -1,0 +1,6 @@
+id: 2008
+name: "Spice"
+examine: "This could liven up an otherwise bland stew."
+tradeable: true
+weight: 0.2
+equipment: null

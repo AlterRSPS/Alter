@@ -1,0 +1,6 @@
+id: 17278
+name: "Bird feed"
+examine: "Birds love this stuff!"
+tradeable: false
+weight: 0.05
+equipment: null

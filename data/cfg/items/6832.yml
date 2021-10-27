@@ -1,0 +1,6 @@
+id: 6832
+name: "Box bauble"
+examine: "An unpainted bauble shaped like a gift."
+tradeable: false
+weight: 0.2
+equipment: null

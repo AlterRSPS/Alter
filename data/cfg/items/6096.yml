@@ -1,0 +1,6 @@
+id: 6096
+name: "Toxic naphtha"
+examine: "A barrel full of toxic naphtha."
+tradeable: false
+weight: 32.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 21806
+name: "Ancient crystal"
+examine: "An ancient crystal containing magical energy."
+tradeable: true
+weight: 13.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 24883
+name: "Plank sack"
+examine: "Lets you carry some extra planks."
+tradeable: false
+weight: 5.25
+equipment: null

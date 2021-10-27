@@ -1,0 +1,6 @@
+id: 2428
+name: "Attack potion(4)"
+examine: "4 doses of Attack potion."
+tradeable: true
+weight: 0.035
+equipment: null

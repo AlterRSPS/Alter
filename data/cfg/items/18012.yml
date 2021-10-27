@@ -1,0 +1,6 @@
+id: 18012
+name: "Mining helmet"
+examine: "A helmet with an unlit lamp on it."
+tradeable: true
+weight: 0.9
+equipment: null

@@ -1,0 +1,6 @@
+id: 6855
+name: "Bauble box"
+examine: "A box for storing painted baubles."
+tradeable: false
+weight: 1.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 19200
+name: "Potato with cheese"
+examine: "A baked potato with butter and cheese."
+tradeable: true
+weight: 0.5
+equipment: null

@@ -1,0 +1,6 @@
+id: 1468
+name: "Dry sticks"
+examine: "Some dry wooden sticks."
+tradeable: false
+weight: 0.056
+equipment: null

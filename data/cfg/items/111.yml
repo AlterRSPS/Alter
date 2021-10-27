@@ -1,0 +1,6 @@
+id: 111
+name: "Torstol potion (unf)"
+examine: "I need another ingredient to finish this Torstol potion."
+tradeable: true
+weight: 0.056
+equipment: null

@@ -1,0 +1,6 @@
+id: 18948
+name: "Chocolate bar"
+examine: "Mmmmmmm chocolate."
+tradeable: true
+weight: 0.15
+equipment: null

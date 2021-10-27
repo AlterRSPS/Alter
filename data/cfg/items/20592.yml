@@ -1,0 +1,6 @@
+id: 20592
+name: "Stale baguette"
+examine: "Baguette ready for pain."
+tradeable: true
+weight: 2.0
+equipment: null

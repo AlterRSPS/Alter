@@ -1,0 +1,6 @@
+id: 38
+name: "Black candle"
+examine: "A spooky candle."
+tradeable: false
+weight: 0.028
+equipment: null

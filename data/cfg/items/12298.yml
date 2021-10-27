@@ -1,0 +1,6 @@
+id: 12298
+name: "Black pickaxe"
+examine: "Used for mining."
+tradeable: true
+weight: 0.0
+equipment: null

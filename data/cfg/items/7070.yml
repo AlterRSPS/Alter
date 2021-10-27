@@ -1,0 +1,6 @@
+id: 7070
+name: "Minced meat"
+examine: "A bowl of finely minced meat."
+tradeable: true
+weight: 0.5
+equipment: null

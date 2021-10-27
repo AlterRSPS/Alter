@@ -1,0 +1,6 @@
+id: 23818
+name: "Explosive potion"
+examine: "A mix of chemicals that will violently explode when disturbed."
+tradeable: false
+weight: 0.0
+equipment: null

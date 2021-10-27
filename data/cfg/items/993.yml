@@ -1,0 +1,6 @@
+id: 993
+name: "Sinister key"
+examine: "You get a sense of dread from this key."
+tradeable: true
+weight: 0.01
+equipment: null

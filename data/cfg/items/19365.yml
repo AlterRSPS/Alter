@@ -1,0 +1,6 @@
+id: 19365
+name: "Energy potion(3)"
+examine: "3 doses of energy potion."
+tradeable: true
+weight: 0.03
+equipment: null

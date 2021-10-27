@@ -1,0 +1,6 @@
+id: 19223
+name: "Cooked chicken"
+examine: "Mmm this looks tasty."
+tradeable: true
+weight: 0.141
+equipment: null

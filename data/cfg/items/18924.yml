@@ -1,0 +1,6 @@
+id: 18924
+name: "Uncooked berry pie"
+examine: "This would be much more appetising cooked."
+tradeable: true
+weight: 0.5
+equipment: null

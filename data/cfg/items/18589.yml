@@ -1,0 +1,6 @@
+id: 18589
+name: "Dynamite"
+examine: "A pot of dynamite for blast mining, with a fuse ready to light."
+tradeable: true
+weight: 1.3
+equipment: null

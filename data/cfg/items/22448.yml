@@ -1,0 +1,6 @@
+id: 22448
+name: "Vial of blood"
+examine: "A glass vial containing blood."
+tradeable: true
+weight: 0.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 8333
+name: "Scrying pool"
+examine: "It harnesses the power of something or other!"
+tradeable: false
+weight: 0.0
+equipment: null

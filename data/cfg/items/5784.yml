@@ -1,0 +1,6 @@
+id: 5784
+name: "Asgarnian ale(3)"
+examine: "This keg contains 3 pints of Asgarnian Ale."
+tradeable: true
+weight: 0.028
+equipment: null

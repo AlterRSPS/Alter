@@ -1,0 +1,6 @@
+id: 19940
+name: "Strange device"
+examine: "You can sense strange powers emanating from it."
+tradeable: false
+weight: 1.0
+equipment: null

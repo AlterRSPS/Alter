@@ -1,0 +1,6 @@
+id: 151
+name: "Fishing potion(3)"
+examine: "3 doses of Fishing potion."
+tradeable: true
+weight: 0.03
+equipment: null

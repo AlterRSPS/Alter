@@ -1,0 +1,6 @@
+id: 10544
+name: "Healing vial(2)"
+examine: "A half-full healing vial."
+tradeable: false
+weight: 0.001
+equipment: null

@@ -1,0 +1,6 @@
+id: 23780
+name: "Blue crystal"
+examine: "A blue crystal. It gives out a slight glow."
+tradeable: false
+weight: 0.001
+equipment: null

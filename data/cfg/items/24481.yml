@@ -1,0 +1,6 @@
+id: 24481
+name: "Open gem bag"
+examine: "You can carry uncut gems in here."
+tradeable: false
+weight: 1.0
+equipment: null

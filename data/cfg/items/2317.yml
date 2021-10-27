@@ -1,0 +1,6 @@
+id: 2317
+name: "Uncooked apple pie"
+examine: "This would be much tastier cooked."
+tradeable: true
+weight: 0.5
+equipment: null

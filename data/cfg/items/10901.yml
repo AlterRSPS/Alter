@@ -1,0 +1,6 @@
+id: 10901
+name: "Crate part"
+examine: "Part of a crate."
+tradeable: false
+weight: 0.0
+equipment: null

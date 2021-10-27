@@ -1,0 +1,6 @@
+id: 21307
+name: "Rogue's equipment crate"
+examine: "It has a piece of Rogue equipment inside!"
+tradeable: false
+weight: 0.1
+equipment: null

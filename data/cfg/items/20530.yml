@@ -1,0 +1,6 @@
+id: 20530
+name: "Survival token"
+examine: "This can be used to claim items from vending shrines."
+tradeable: true
+weight: 0.0
+equipment: null

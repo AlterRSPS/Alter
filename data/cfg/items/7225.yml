@@ -1,0 +1,6 @@
+id: 7225
+name: "Iron spit"
+examine: "An iron spit."
+tradeable: true
+weight: 1.5
+equipment: null

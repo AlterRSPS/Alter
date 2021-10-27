@@ -1,0 +1,6 @@
+id: 2310
+name: "Bread"
+examine: "Nice crispy bread."
+tradeable: true
+weight: 0.5
+equipment: null

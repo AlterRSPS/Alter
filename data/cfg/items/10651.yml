@@ -1,0 +1,6 @@
+id: 10651
+name: "Crafting cape"
+examine: "The cape worn by master craftworkers."
+tradeable: false
+weight: 0.453
+equipment: null

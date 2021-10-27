@@ -1,0 +1,6 @@
+id: 16222
+name: "Bucket"
+examine: "It's a wooden bucket."
+tradeable: true
+weight: 1.0
+equipment: null

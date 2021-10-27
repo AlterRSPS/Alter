@@ -1,0 +1,6 @@
+id: 219
+name: "Grimy torstol"
+examine: "It needs cleaning."
+tradeable: true
+weight: 0.007
+equipment: null

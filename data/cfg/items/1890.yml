@@ -1,0 +1,6 @@
+id: 1890
+name: "Uncooked cake"
+examine: "Now all I need to do is cook it."
+tradeable: true
+weight: 0.5
+equipment: null

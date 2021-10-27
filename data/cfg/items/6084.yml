@@ -1,0 +1,6 @@
+id: 6084
+name: "Worn key"
+examine: "This key has seen a lot of use."
+tradeable: false
+weight: 0.01
+equipment: null

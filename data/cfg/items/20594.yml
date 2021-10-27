@@ -1,0 +1,6 @@
+id: 20594
+name: "Bank filler"
+examine: "Fills your bank."
+tradeable: false
+weight: 0.0
+equipment: null

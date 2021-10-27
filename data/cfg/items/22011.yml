@@ -1,0 +1,6 @@
+id: 22011
+name: "Map piece"
+examine: "A piece of the Fossil Island Map."
+tradeable: false
+weight: 0.0
+equipment: null

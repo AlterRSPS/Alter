@@ -1,0 +1,6 @@
+id: 19135
+name: "1/2 plain pizza"
+examine: "Half of this plain pizza has been eaten."
+tradeable: true
+weight: 0.4
+equipment: null

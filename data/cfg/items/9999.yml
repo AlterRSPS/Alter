@@ -1,0 +1,6 @@
+id: 9999
+name: "Hunter potion(4)"
+examine: "4 doses of Hunter potion."
+tradeable: true
+weight: 0.035
+equipment: null

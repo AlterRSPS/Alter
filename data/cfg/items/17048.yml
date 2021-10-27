@@ -1,0 +1,6 @@
+id: 17048
+name: "Warrant"
+examine: "A search warrant for a house in Ardougne."
+tradeable: false
+weight: 0.01
+equipment: null

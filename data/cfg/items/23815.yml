@@ -1,0 +1,6 @@
+id: 23815
+name: "Clue scroll"
+examine: "A scroll that Baxtorian gave to me. It should lead me to Lady Meilyr."
+tradeable: false
+weight: 0.02
+equipment: null

@@ -1,0 +1,6 @@
+id: 16071
+name: "Bob's blue shirt"
+examine: "'Bob says: Always check the second trade screen.'"
+tradeable: true
+weight: 2.0
+equipment: null

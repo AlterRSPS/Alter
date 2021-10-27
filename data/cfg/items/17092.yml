@@ -1,0 +1,6 @@
+id: 17092
+name: "Magic ogre potion"
+examine: "A dangerous magical liquid."
+tradeable: false
+weight: 0.025
+equipment: null

@@ -1,0 +1,6 @@
+id: 15027
+name: "Oak treasure chest"
+examine: "Stores your precious belongings."
+tradeable: false
+weight: 0.0
+equipment: null

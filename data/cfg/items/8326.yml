@@ -1,0 +1,6 @@
+id: 8326
+name: "Stone fireplace"
+examine: "You can light a fire here."
+tradeable: false
+weight: 0.0
+equipment: null

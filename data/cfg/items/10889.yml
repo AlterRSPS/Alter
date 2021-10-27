@@ -1,0 +1,6 @@
+id: 10889
+name: "Blessed lamp"
+examine: "This will answer my prayers."
+tradeable: false
+weight: 0.1
+equipment: null

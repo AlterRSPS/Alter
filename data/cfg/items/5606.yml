@@ -1,0 +1,6 @@
+id: 5606
+name: "Makeover voucher"
+examine: "I can exchange this for one free makeover with the makeover mage."
+tradeable: false
+weight: 0.005
+equipment: null

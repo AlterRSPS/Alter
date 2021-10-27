@@ -1,0 +1,6 @@
+id: 2458
+name: "Antifire potion(1)"
+examine: "1 dose of anti-firebreath potion."
+tradeable: true
+weight: 0.02
+equipment: null

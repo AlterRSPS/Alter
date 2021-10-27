@@ -1,0 +1,6 @@
+id: 273
+name: "Poison"
+examine: "This stuff looks nasty."
+tradeable: true
+weight: 0.02
+equipment: null

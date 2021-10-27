@@ -1,0 +1,6 @@
+id: 24955
+name: "Barbarian teleport"
+examine: "A teleport to Barbarian Outpost."
+tradeable: true
+weight: 0.0
+equipment: null

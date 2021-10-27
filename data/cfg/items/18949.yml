@@ -1,0 +1,6 @@
+id: 18949
+name: "Chocolate dust"
+examine: "It's ground up chocolate."
+tradeable: true
+weight: 0.15
+equipment: null

@@ -1,0 +1,6 @@
+id: 17000
+name: "Mort myre pear"
+examine: "A pear picked from a dying bush in Mort Myre."
+tradeable: true
+weight: 0.1
+equipment: null

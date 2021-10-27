@@ -1,0 +1,6 @@
+id: 16603
+name: "Rat poison"
+examine: "Doesn't look very tasty."
+tradeable: false
+weight: 0.141
+equipment: null

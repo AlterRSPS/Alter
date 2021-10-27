@@ -1,0 +1,6 @@
+id: 3747
+name: "Sticky red goop"
+examine: "Yup, it's sticky, it's red and it's goop."
+tradeable: false
+weight: 0.001
+equipment: null

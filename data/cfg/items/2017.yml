@@ -1,0 +1,6 @@
+id: 2017
+name: "Whisky"
+examine: "A bottle of Draynor Malt."
+tradeable: true
+weight: 1.0
+equipment: null

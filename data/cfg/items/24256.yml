@@ -1,0 +1,6 @@
+id: 24256
+name: "Unsealed letter"
+examine: "A letter which has had its seal opened."
+tradeable: false
+weight: 0.005
+equipment: null

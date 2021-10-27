@@ -1,0 +1,6 @@
+id: 104
+name: "Avantoe potion (unf)"
+examine: "I need another ingredient to finish this Avantoe potion."
+tradeable: true
+weight: 0.056
+equipment: null

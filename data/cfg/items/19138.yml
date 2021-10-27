@@ -1,0 +1,6 @@
+id: 19138
+name: "Anchovy pizza"
+examine: "A pizza with anchovies."
+tradeable: true
+weight: 0.9
+equipment: null

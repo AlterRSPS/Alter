@@ -1,0 +1,6 @@
+id: 329
+name: "Salmon"
+examine: "Some nicely cooked salmon."
+tradeable: true
+weight: 0.5
+equipment: null

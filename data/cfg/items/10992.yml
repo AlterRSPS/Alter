@@ -1,0 +1,6 @@
+id: 10992
+name: "Lever"
+examine: "A lever."
+tradeable: false
+weight: 3.0
+equipment: null

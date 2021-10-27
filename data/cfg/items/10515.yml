@@ -1,0 +1,6 @@
+id: 10515
+name: "Worms"
+examine: "Some meaty worms."
+tradeable: false
+weight: 0.001
+equipment: null

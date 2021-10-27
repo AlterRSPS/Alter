@@ -1,0 +1,6 @@
+id: 7691
+name: "Hot kettle"
+examine: "It's full of boiling water."
+tradeable: false
+weight: 0.001
+equipment: null

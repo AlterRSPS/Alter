@@ -1,0 +1,6 @@
+id: 5771
+name: "Dwarven stout(1)"
+examine: "This keg contains 1 pint of Dwarven Stout."
+tradeable: true
+weight: 0.028
+equipment: null

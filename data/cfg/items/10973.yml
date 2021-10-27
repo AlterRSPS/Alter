@@ -1,0 +1,6 @@
+id: 10973
+name: "Light orb"
+examine: "A component of cave goblin Magic."
+tradeable: true
+weight: 0.001
+equipment: null

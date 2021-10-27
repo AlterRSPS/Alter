@@ -1,0 +1,6 @@
+id: 7624
+name: "Bucket of rubble"
+examine: "A bucket partially filled with rubble."
+tradeable: true
+weight: 2.5
+equipment: null

@@ -1,0 +1,6 @@
+id: 9468
+name: "Sawdust"
+examine: "What is left over when a log is made into a plank."
+tradeable: false
+weight: 0.5
+equipment: null

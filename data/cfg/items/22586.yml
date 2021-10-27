@@ -1,0 +1,6 @@
+id: 22586
+name: "Looting bag"
+examine: "You can store stuff in the bag when you're in the Wilderness."
+tradeable: false
+weight: 0.0
+equipment: null

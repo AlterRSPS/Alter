@@ -1,0 +1,6 @@
+id: 19239
+name: "Medium pouch"
+examine: "A medium-sized pouch used for storing essence."
+tradeable: false
+weight: 1.0
+equipment: null

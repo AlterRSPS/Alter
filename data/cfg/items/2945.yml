@@ -1,0 +1,6 @@
+id: 2945
+name: "Iron key"
+examine: "A key made of solid Iron."
+tradeable: false
+weight: 0.01
+equipment: null

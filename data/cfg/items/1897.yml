@@ -1,0 +1,6 @@
+id: 1897
+name: "Chocolate cake"
+examine: "This looks very tasty."
+tradeable: true
+weight: 0.3
+equipment: null

@@ -1,0 +1,6 @@
+id: 19386
+name: "Combat potion(3)"
+examine: "3 doses of combat potion."
+tradeable: true
+weight: 0.03
+equipment: null

@@ -1,0 +1,6 @@
+id: 10871
+name: "Pipe"
+examine: "A section of pipe."
+tradeable: false
+weight: 2.5
+equipment: null

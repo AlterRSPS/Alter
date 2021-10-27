@@ -1,0 +1,6 @@
+id: 16506
+name: "Journal"
+examine: "Somebody's private journal."
+tradeable: false
+weight: 0.02
+equipment: null

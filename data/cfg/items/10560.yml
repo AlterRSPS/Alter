@@ -1,0 +1,6 @@
+id: 10560
+name: "Collector horn"
+examine: "A horn for communicating with your team members."
+tradeable: false
+weight: 0.001
+equipment: null

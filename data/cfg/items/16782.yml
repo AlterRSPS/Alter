@@ -1,0 +1,6 @@
+id: 16782
+name: "Beer tankard"
+examine: "Frothy and alcoholic."
+tradeable: true
+weight: 0.55
+equipment: null

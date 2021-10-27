@@ -1,0 +1,6 @@
+id: 4200
+name: "Conductor mould"
+examine: "A mould for making silver lightning conductors."
+tradeable: false
+weight: 0.05
+equipment: null

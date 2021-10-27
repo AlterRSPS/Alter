@@ -1,0 +1,6 @@
+id: 19323
+name: "Restore potion(3)"
+examine: "3 doses of restore potion."
+tradeable: true
+weight: 0.03
+equipment: null

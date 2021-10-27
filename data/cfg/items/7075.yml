@@ -1,0 +1,6 @@
+id: 7075
+name: "Chopped garlic"
+examine: "A bowl of chopped garlic."
+tradeable: true
+weight: 0.5
+equipment: null

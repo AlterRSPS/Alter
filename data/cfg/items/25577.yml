@@ -1,0 +1,6 @@
+id: 25577
+name: "Tome of water (empty)"
+examine: "An ancient tome containing the secrets of water magic."
+tradeable: true
+weight: 1.0
+equipment: null

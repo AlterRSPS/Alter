@@ -1,0 +1,6 @@
+id: 12515
+name: "Explorer backpack"
+examine: "I'm the Backpack loaded up with things and knick knacks too."
+tradeable: true
+weight: 2.0
+equipment: null

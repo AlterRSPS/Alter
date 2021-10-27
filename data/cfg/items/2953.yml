@@ -1,0 +1,6 @@
+id: 2953
+name: "Murky water"
+examine: "It's a bucket of murky water."
+tradeable: false
+weight: 3.0
+equipment: null

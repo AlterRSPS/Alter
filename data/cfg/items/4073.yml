@@ -1,0 +1,6 @@
+id: 4073
+name: "Damp tinderbox"
+examine: "Not so useful for lighting a fire."
+tradeable: true
+weight: 0.035
+equipment: null

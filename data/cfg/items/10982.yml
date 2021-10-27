@@ -1,0 +1,6 @@
+id: 10982
+name: "Cave goblin wire"
+examine: "Wire found in Dorgesh-Kaan."
+tradeable: true
+weight: 1.0
+equipment: null

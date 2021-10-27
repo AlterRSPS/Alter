@@ -1,0 +1,6 @@
+id: 8010
+name: "Camelot teleport"
+examine: "A teleport to Camelot."
+tradeable: true
+weight: 0.0
+equipment: null

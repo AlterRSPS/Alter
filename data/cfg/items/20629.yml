@@ -1,0 +1,6 @@
+id: 20629
+name: "Boss lair display"
+examine: "The lairs of defeated bosses can be generated here from their jars."
+tradeable: false
+weight: 0.0
+equipment: null

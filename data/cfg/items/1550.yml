@@ -1,0 +1,6 @@
+id: 1550
+name: "Garlic"
+examine: "A clove of garlic."
+tradeable: true
+weight: 0.028
+equipment: null

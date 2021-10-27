@@ -1,0 +1,6 @@
+id: 710
+name: "Vase"
+examine: "An unusually shaped vase. You can see something glinting inside."
+tradeable: false
+weight: 0.001
+equipment: null

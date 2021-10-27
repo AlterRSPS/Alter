@@ -1,0 +1,6 @@
+id: 21344
+name: "Mining gloves"
+examine: "These will help me mine Silver, Coal and Gold."
+tradeable: false
+weight: 0.2
+equipment: null

@@ -1,0 +1,6 @@
+id: 47
+name: "Barb bolttips"
+examine: "I can make bolts with these."
+tradeable: true
+weight: 0.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 11655
+name: "Astronomy book"
+examine: "A book on the history of astronomy."
+tradeable: true
+weight: 0.003
+equipment: null

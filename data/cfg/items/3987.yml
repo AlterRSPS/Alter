@@ -1,0 +1,6 @@
+id: 3987
+name: "Platinum token"
+examine: "Use it on a banker or bankbooth to exchange it for 1,000 coins per token."
+tradeable: true
+weight: 0.0
+equipment: null

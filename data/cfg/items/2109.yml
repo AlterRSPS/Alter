@@ -1,0 +1,6 @@
+id: 2109
+name: "Orange"
+examine: "A fresh orange."
+tradeable: true
+weight: 0.11
+equipment: null

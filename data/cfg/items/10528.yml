@@ -1,0 +1,6 @@
+id: 10528
+name: "Healer horn"
+examine: "A horn for communicating with your team members."
+tradeable: false
+weight: 0.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 745
+name: "Heart crystal"
+examine: "A heart shaped crystal."
+tradeable: false
+weight: 0.15
+equipment: null

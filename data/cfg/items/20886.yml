@@ -1,0 +1,6 @@
+id: 20886
+name: "Creature keeper's journal"
+examine: "Journal of a deceased creature keeper."
+tradeable: false
+weight: 0.0
+equipment: null

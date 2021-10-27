@@ -1,0 +1,6 @@
+id: 18607
+name: "Minecart ticket"
+examine: "A ticket to take you from Keldagrim to the dwarven mines under Ice Mountain."
+tradeable: false
+weight: 0.001
+equipment: null

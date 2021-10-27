@@ -1,0 +1,6 @@
+id: 18478
+name: "Bucket of sandworms"
+examine: "There are sandworms buried in the bucket."
+tradeable: false
+weight: 2.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 3744
+name: "Wooden disk"
+examine: "A simple looking disk made of wood."
+tradeable: false
+weight: 0.002
+equipment: null

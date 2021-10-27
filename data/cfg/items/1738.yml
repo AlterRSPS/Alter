@@ -1,0 +1,6 @@
+id: 1738
+name: "Wool"
+examine: "I think this came from a sheep."
+tradeable: true
+weight: 0.003
+equipment: null

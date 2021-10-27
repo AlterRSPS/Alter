@@ -1,0 +1,6 @@
+id: 9014
+name: "Security book"
+examine: "WARNING: Contains information which could make your account secure!"
+tradeable: true
+weight: 0.01
+equipment: null

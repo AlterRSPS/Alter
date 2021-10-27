@@ -1,0 +1,6 @@
+id: 24544
+name: "Broken egg"
+examine: "Something has emerged from this egg already."
+tradeable: false
+weight: 0.1
+equipment: null

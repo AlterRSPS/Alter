@@ -1,0 +1,6 @@
+id: 355
+name: "Mackerel"
+examine: "Some nicely cooked mackerel."
+tradeable: true
+weight: 0.3
+equipment: null

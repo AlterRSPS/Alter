@@ -1,0 +1,6 @@
+id: 10594
+name: "Clockwork book"
+examine: "A book about clockwork mechanisms."
+tradeable: false
+weight: 1.0
+equipment: null

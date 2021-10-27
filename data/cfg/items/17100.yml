@@ -1,0 +1,6 @@
+id: 17100
+name: "Bar magnet"
+examine: "A magnet designed for undead chicken use."
+tradeable: false
+weight: 0.25
+equipment: null

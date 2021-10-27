@@ -1,0 +1,6 @@
+id: 8255
+name: "Marble staircase"
+examine: "Up: I can climb these stairs. Down: They go down."
+tradeable: false
+weight: 0.0
+equipment: null

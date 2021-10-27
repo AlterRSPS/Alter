@@ -1,0 +1,6 @@
+id: 11996
+name: "Holiday tool"
+examine: "Spawns an allowance of holiday gifts each day."
+tradeable: false
+weight: 0.0
+equipment: null

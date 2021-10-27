@@ -1,0 +1,6 @@
+id: 2300
+name: "1/2 anchovy pizza"
+examine: "Half of this anchovy pizza has been eaten."
+tradeable: true
+weight: 0.45
+equipment: null

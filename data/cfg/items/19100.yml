@@ -1,0 +1,6 @@
+id: 19100
+name: "2/3 cake"
+examine: "Someone has eaten a big chunk of this cake."
+tradeable: true
+weight: 0.2
+equipment: null

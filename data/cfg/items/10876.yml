@@ -1,0 +1,6 @@
+id: 10876
+name: "Metal bar"
+examine: "Some unknown metal substance."
+tradeable: false
+weight: 0.92
+equipment: null

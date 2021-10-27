@@ -1,0 +1,6 @@
+id: 10317
+name: "Bob's red shirt"
+examine: "'Bob says: Never give your password out to anyone.'"
+tradeable: true
+weight: 1.0
+equipment: null

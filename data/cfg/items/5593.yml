@@ -1,0 +1,6 @@
+id: 5593
+name: "Tin"
+examine: "There is an impression of a key, filled with tin ore."
+tradeable: false
+weight: 0.101
+equipment: null

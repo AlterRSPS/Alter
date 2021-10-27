@@ -1,0 +1,6 @@
+id: 18939
+name: "Grain"
+examine: "Some wheat heads."
+tradeable: true
+weight: 0.6
+equipment: null

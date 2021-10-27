@@ -1,0 +1,6 @@
+id: 8375
+name: "Wooden workbench"
+examine: "You can make furniture here."
+tradeable: false
+weight: 0.0
+equipment: null

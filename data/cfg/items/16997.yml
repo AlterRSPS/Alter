@@ -1,0 +1,6 @@
+id: 16997
+name: "A used spell"
+examine: "A used druidic spell given to you freely by the spirit of Filliman Tarlock."
+tradeable: false
+weight: 0.02
+equipment: null

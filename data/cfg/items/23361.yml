@@ -1,0 +1,6 @@
+id: 23361
+name: "Ham joint"
+examine: "A delicious joint of ham."
+tradeable: true
+weight: 2.0
+equipment: null

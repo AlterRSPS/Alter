@@ -1,0 +1,6 @@
+id: 178
+name: "Antipoison(2)"
+examine: "2 doses of antipoison potion."
+tradeable: true
+weight: 0.025
+equipment: null

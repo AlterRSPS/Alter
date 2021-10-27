@@ -1,0 +1,6 @@
+id: 11080
+name: "Castle wars bracelet(3)"
+examine: "Must be worn as you enter the game to receive the bonus for that game."
+tradeable: true
+weight: 0.25
+equipment: null

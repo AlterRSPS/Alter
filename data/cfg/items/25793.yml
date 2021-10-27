@@ -1,0 +1,6 @@
+id: 25793
+name: "Receipt"
+examine: "A receipt found at the home of Councillor Hughes."
+tradeable: false
+weight: 0.003
+equipment: null

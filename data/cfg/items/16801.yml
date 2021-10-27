@@ -1,0 +1,6 @@
+id: 16801
+name: "Holy water"
+examine: "A vial of holy water, good against certain demons."
+tradeable: false
+weight: 0.0
+equipment: null

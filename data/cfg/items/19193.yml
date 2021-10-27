@@ -1,0 +1,6 @@
+id: 19193
+name: "Uncooked stew"
+examine: "I need to cook this."
+tradeable: false
+weight: 1.5
+equipment: null

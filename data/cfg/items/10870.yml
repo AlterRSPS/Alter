@@ -1,0 +1,6 @@
+id: 10870
+name: "Binding fluid"
+examine: "Some magical fluid to bind surfaces."
+tradeable: false
+weight: 0.01
+equipment: null

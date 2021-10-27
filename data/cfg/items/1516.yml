@@ -1,0 +1,6 @@
+id: 1516
+name: "Yew logs"
+examine: "Logs cut from a yew tree."
+tradeable: true
+weight: 2.0
+equipment: null

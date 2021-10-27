@@ -1,0 +1,6 @@
+id: 769
+name: "Certificate"
+examine: "I can use this to claim a reward from the King."
+tradeable: false
+weight: 0.02
+equipment: null

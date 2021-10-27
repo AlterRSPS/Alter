@@ -1,0 +1,6 @@
+id: 2289
+name: "Plain pizza"
+examine: "A cheese and tomato pizza."
+tradeable: true
+weight: 0.8
+equipment: null

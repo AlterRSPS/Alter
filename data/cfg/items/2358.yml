@@ -1,0 +1,6 @@
+id: 2358
+name: "Gold bar"
+examine: "It's a bar of gold."
+tradeable: true
+weight: 1.814
+equipment: null

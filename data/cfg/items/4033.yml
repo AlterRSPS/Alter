@@ -1,0 +1,6 @@
+id: 4033
+name: "Monkey"
+examine: "It's a monkey in your backpack. As you look it pokes you."
+tradeable: false
+weight: 15.0
+equipment: null

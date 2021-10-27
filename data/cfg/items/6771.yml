@@ -1,0 +1,6 @@
+id: 6771
+name: "Pot of weeds"
+examine: "Contains garden weeds."
+tradeable: false
+weight: 0.6
+equipment: null

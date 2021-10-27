@@ -1,0 +1,6 @@
+id: 15455
+name: "Herring"
+examine: "Some nicely cooked herring."
+tradeable: true
+weight: 0.5
+equipment: null

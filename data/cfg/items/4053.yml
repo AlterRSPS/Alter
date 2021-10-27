@@ -1,0 +1,6 @@
+id: 4053
+name: "Barricade"
+examine: "Use these to block enemy team movement."
+tradeable: true
+weight: 5.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 16269
+name: "Regen bracelet"
+examine: "Helps to restore Hitpoints."
+tradeable: true
+weight: 0.25
+equipment: null

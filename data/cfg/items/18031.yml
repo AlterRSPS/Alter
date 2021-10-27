@@ -1,0 +1,6 @@
+id: 18031
+name: "Ship ticket"
+examine: "Allows you passage on the 'Lady of the waves' ship."
+tradeable: true
+weight: 0.004
+equipment: null

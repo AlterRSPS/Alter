@@ -1,0 +1,6 @@
+id: 14001
+name: "Nest box (ring)"
+examine: "A box of nests containing rings."
+tradeable: false
+weight: 1.0
+equipment: null

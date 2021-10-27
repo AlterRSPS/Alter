@@ -1,0 +1,6 @@
+id: 3003
+name: "Toadflax potion (unf)"
+examine: "I need another ingredient to finish this Toadflax potion."
+tradeable: true
+weight: 0.056
+equipment: null

@@ -1,0 +1,6 @@
+id: 17191
+name: "Book"
+examine: "The book of Rats."
+tradeable: false
+weight: 0.04
+equipment: null

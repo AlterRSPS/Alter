@@ -1,0 +1,6 @@
+id: 11179
+name: "Old coin"
+examine: "An old looking coin."
+tradeable: false
+weight: 0.001
+equipment: null

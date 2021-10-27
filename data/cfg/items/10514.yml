@@ -1,0 +1,6 @@
+id: 10514
+name: "Tofu"
+examine: "A block of tofu."
+tradeable: false
+weight: 0.001
+equipment: null

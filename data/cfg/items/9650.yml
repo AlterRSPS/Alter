@@ -1,0 +1,6 @@
+id: 9650
+name: "Blood tithe pouch"
+examine: "A pouch filled with blood."
+tradeable: false
+weight: 0.001
+equipment: null

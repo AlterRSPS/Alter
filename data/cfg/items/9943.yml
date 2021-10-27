@@ -1,0 +1,6 @@
+id: 9943
+name: "Sandbag"
+examine: "A bag full of sand."
+tradeable: false
+weight: 1.5
+equipment: null

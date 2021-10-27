@@ -1,0 +1,6 @@
+id: 10980
+name: "Empty light orb"
+examine: "Add a wire to complete it."
+tradeable: false
+weight: 0.001
+equipment: null

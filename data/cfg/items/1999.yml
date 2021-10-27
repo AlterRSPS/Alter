@@ -1,0 +1,6 @@
+id: 1999
+name: "Incomplete stew"
+examine: "I need to add some meat too."
+tradeable: false
+weight: 1.0
+equipment: null

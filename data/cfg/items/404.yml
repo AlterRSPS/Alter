@@ -1,0 +1,6 @@
+id: 404
+name: "Edible seaweed"
+examine: "Slightly damp seaweed."
+tradeable: true
+weight: 0.25
+equipment: null

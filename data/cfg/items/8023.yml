@@ -1,0 +1,6 @@
+id: 8023
+name: "Boxing ring"
+examine: "A place to train unarmed combat with your friends."
+tradeable: false
+weight: 0.0
+equipment: null

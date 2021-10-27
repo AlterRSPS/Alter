@@ -1,0 +1,6 @@
+id: 8148
+name: "Wooden crate"
+examine: "Is there treasure inside?"
+tradeable: false
+weight: 0.0
+equipment: null

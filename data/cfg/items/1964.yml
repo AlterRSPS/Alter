@@ -1,0 +1,6 @@
+id: 1964
+name: "Banana"
+examine: "Mmm this looks tasty."
+tradeable: true
+weight: 0.028
+equipment: null

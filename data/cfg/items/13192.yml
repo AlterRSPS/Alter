@@ -1,0 +1,7 @@
+id: 13192
+name: "Old school bond (untradeable)"
+examine: "This bond can be redeemed for membership. It can be made tradeable again\
+  \ through the membership bonds interface."
+tradeable: false
+weight: 0.0
+equipment: null

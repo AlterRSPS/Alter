@@ -1,0 +1,6 @@
+id: 25959
+name: "Corrupted escape crystal"
+examine: "A corrupted crystal enchanted to allow the user to escape the Gauntlet."
+tradeable: false
+weight: 0.001
+equipment: null

@@ -1,0 +1,6 @@
+id: 15161
+name: "Wooden stock"
+examine: "A wooden crossbow stock."
+tradeable: true
+weight: 3.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 13183
+name: "Empty blaster"
+examine: "Needs ammunition."
+tradeable: false
+weight: 0.0
+equipment: null

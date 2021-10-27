@@ -1,0 +1,6 @@
+id: 2434
+name: "Prayer potion(4)"
+examine: "4 doses of Prayer restore potion."
+tradeable: true
+weight: 0.035
+equipment: null

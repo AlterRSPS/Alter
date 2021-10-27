@@ -1,0 +1,6 @@
+id: 21185
+name: "Bracelet of slaughter"
+examine: "Occasionally prevents slayer kill count being decremented."
+tradeable: true
+weight: 0.0
+equipment: null

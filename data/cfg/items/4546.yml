@@ -1,0 +1,6 @@
+id: 4546
+name: "Bullseye lantern (empty)"
+examine: "You need to add lamp oil before you can use it."
+tradeable: true
+weight: 1.36
+equipment: null

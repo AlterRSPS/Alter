@@ -1,0 +1,6 @@
+id: 8012
+name: "Watchtower teleport"
+examine: "A teleport to the Yanille Watchtower."
+tradeable: true
+weight: 0.0
+equipment: null

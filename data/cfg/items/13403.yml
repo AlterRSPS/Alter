@@ -1,0 +1,6 @@
+id: 13403
+name: "Servery meat pie"
+examine: "Put it on the servery table to feed the troops."
+tradeable: false
+weight: 0.45
+equipment: null

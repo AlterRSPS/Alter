@@ -1,0 +1,6 @@
+id: 14410
+name: "Damaged book"
+examine: "An incomplete book of Bandos."
+tradeable: false
+weight: 1.0
+equipment: null

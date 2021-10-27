@@ -1,0 +1,6 @@
+id: 4539
+name: "Oil lantern"
+examine: "An unlit oil lantern."
+tradeable: true
+weight: 0.907
+equipment: null

@@ -1,0 +1,6 @@
+id: 20633
+name: "Quest list"
+examine: "A long list of quest progress."
+tradeable: false
+weight: 0.0
+equipment: null

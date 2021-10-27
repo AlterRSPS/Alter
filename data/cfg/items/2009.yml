@@ -1,0 +1,6 @@
+id: 2009
+name: "Uncooked curry"
+examine: "I need to cook this."
+tradeable: true
+weight: 1.5
+equipment: null

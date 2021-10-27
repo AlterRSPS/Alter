@@ -1,0 +1,6 @@
+id: 1505
+name: "A magic scroll"
+examine: "Maybe I should read it..."
+tradeable: false
+weight: 0.02
+equipment: null

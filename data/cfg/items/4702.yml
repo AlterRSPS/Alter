@@ -1,0 +1,6 @@
+id: 4702
+name: "Sapphire lantern"
+examine: "You need to add lamp oil before you can use it."
+tradeable: false
+weight: 1.36
+equipment: null

@@ -1,0 +1,6 @@
+id: 1766
+name: "Yellow dye"
+examine: "A little bottle of yellow dye."
+tradeable: true
+weight: 0.02
+equipment: null

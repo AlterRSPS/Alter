@@ -1,0 +1,6 @@
+id: 12410
+name: "Elf camp teleport"
+examine: "Teleports you to the Elf camp."
+tradeable: true
+weight: 0.0
+equipment: null

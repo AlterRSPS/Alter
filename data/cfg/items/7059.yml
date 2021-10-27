@@ -1,0 +1,6 @@
+id: 7059
+name: "Mushroom potato"
+examine: "A baked potato with mushroom and onions."
+tradeable: true
+weight: 0.5
+equipment: null

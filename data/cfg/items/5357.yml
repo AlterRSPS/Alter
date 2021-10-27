@@ -1,0 +1,6 @@
+id: 5357
+name: "Plant pot"
+examine: "A plant pot filled with soil."
+tradeable: true
+weight: 0.9
+equipment: null

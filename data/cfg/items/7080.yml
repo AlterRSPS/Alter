@@ -1,0 +1,6 @@
+id: 7080
+name: "Sliced mushrooms"
+examine: "A bowl of sliced Bittercap mushrooms."
+tradeable: true
+weight: 0.5
+equipment: null

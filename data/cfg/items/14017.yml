@@ -1,0 +1,6 @@
+id: 14017
+name: "Herb sack"
+examine: "A sack for storing grimy herbs."
+tradeable: false
+weight: 1.0
+equipment: null

@@ -1,0 +1,6 @@
+id: 15949
+name: "Lumberyard teleport"
+examine: "Teleports you to the Lumberyard."
+tradeable: true
+weight: 0.0
+equipment: null

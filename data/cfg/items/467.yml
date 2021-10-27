@@ -1,0 +1,6 @@
+id: 467
+name: "Pickaxe handle"
+examine: "Useless without the head."
+tradeable: true
+weight: 0.1
+equipment: null

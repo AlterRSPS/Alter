@@ -1,0 +1,6 @@
+id: 24989
+name: "Rick's box"
+examine: "It seems to be locked. I wonder what he hid in here."
+tradeable: false
+weight: 1.0
+equipment: null

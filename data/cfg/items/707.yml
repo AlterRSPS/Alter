@@ -1,0 +1,6 @@
+id: 707
+name: "Chemical compound"
+examine: "A mixture of strong chemicals."
+tradeable: false
+weight: 0.035
+equipment: null

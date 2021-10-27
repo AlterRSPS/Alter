@@ -1,0 +1,6 @@
+id: 25200
+name: "Bones"
+examine: "Warning: May contain bones."
+tradeable: false
+weight: 0.05
+equipment: null

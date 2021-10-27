@@ -1,0 +1,6 @@
+id: 1522
+name: "Oak logs"
+examine: "Logs cut from an oak tree."
+tradeable: true
+weight: 2.0
+equipment: null

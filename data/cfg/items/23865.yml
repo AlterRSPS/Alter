@@ -1,0 +1,6 @@
+id: 23865
+name: "Pestle and mortar"
+examine: "I can grind things for potions in this."
+tradeable: false
+weight: 0.056
+equipment: null

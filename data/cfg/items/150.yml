@@ -1,0 +1,6 @@
+id: 150
+name: "Super attack(1)"
+examine: "1 dose of super Attack potion."
+tradeable: true
+weight: 0.02
+equipment: null

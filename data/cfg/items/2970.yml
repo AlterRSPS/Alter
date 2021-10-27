@@ -1,0 +1,6 @@
+id: 2970
+name: "Mort myre fungus"
+examine: "A mushroom from the swamps of Mort Myre."
+tradeable: true
+weight: 0.01
+equipment: null

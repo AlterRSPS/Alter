@@ -1,0 +1,6 @@
+id: 2115
+name: "Pineapple"
+examine: "It can be cut up into something more manageable with a knife."
+tradeable: true
+weight: 0.15
+equipment: null

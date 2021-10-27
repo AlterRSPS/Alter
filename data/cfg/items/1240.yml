@@ -1,0 +1,6 @@
+id: 1240
+name: "Iron spear"
+examine: "An iron tipped spear."
+tradeable: true
+weight: 2.267
+equipment: null

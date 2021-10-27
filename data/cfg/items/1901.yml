@@ -1,0 +1,6 @@
+id: 1901
+name: "Chocolate slice"
+examine: "I'd rather have a whole cake."
+tradeable: true
+weight: 0.1
+equipment: null

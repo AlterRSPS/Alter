@@ -1,0 +1,6 @@
+id: 9178
+name: "Iron crossbow"
+examine: "An iron crossbow."
+tradeable: true
+weight: 2.0
+equipment: null

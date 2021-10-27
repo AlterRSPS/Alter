@@ -1,0 +1,6 @@
+id: 5582
+name: "Vial of liquid"
+examine: "A vial of something labelled 'Dihydrogen Monoxide'."
+tradeable: false
+weight: 0.056
+equipment: null

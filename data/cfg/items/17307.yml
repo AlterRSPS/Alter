@@ -1,0 +1,6 @@
+id: 17307
+name: "Torn robe"
+examine: "This robe is too torn to wear."
+tradeable: false
+weight: 0.005
+equipment: null

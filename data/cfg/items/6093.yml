@@ -1,0 +1,6 @@
+id: 6093
+name: "Rotten apples"
+examine: "A barrel full of rotten apples."
+tradeable: false
+weight: 15.0
+equipment: null

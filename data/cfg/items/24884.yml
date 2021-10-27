@@ -1,0 +1,6 @@
+id: 24884
+name: "Supply crate"
+examine: "Some stuff you might find handy for Construction."
+tradeable: false
+weight: 5.15
+equipment: null

@@ -1,0 +1,6 @@
+id: 6059
+name: "Scarecrow"
+examine: "This should scare the birds."
+tradeable: false
+weight: 0.113
+equipment: null

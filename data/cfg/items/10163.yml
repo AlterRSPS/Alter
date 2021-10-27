@@ -1,0 +1,6 @@
+id: 10163
+name: "Swamp lizard"
+examine: "A very slimy and generally disgusting green lizard."
+tradeable: true
+weight: 4.0
+equipment: null

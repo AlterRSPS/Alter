@@ -1,0 +1,6 @@
+id: 3005
+name: "Snapdragon potion (unf)"
+examine: "I need another ingredient to finish this Snapdragon potion."
+tradeable: true
+weight: 0.056
+equipment: null

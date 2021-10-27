@@ -1,0 +1,6 @@
+id: 116
+name: "Strength potion(3)"
+examine: "3 doses of Strength potion."
+tradeable: true
+weight: 0.03
+equipment: null

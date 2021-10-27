@@ -1,0 +1,6 @@
+id: 17152
+name: "Dead orb"
+examine: "It's dead. You should get rid of it."
+tradeable: false
+weight: 5.0
+equipment: null

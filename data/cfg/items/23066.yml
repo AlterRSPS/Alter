@@ -1,0 +1,6 @@
+id: 23066
+name: "Jar of chemicals"
+examine: "Looks unstable."
+tradeable: true
+weight: 1.0
+equipment: null

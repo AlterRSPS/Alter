@@ -1,0 +1,6 @@
+id: 24690
+name: "Tome of experience"
+examine: "A tome of experience that awards 15,000 XP per chapter."
+tradeable: false
+weight: 1.0
+equipment: null

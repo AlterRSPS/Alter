@@ -1,0 +1,6 @@
+id: 8868
+name: "Silver key"
+examine: "You stole this key from a HAM guard."
+tradeable: false
+weight: 0.01
+equipment: null

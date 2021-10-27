@@ -1,0 +1,6 @@
+id: 16510
+name: "Chest"
+examine: "A dirty chest."
+tradeable: false
+weight: 0.03
+equipment: null

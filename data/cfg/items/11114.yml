@@ -1,0 +1,6 @@
+id: 11114
+name: "Skills necklace"
+examine: "You will need to recharge the necklace at the Legends Guild."
+tradeable: true
+weight: 0.01
+equipment: null

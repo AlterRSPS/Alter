@@ -1,0 +1,6 @@
+id: 8380
+name: "Crafting table 1"
+examine: "You can do delicate crafting here."
+tradeable: false
+weight: 0.0
+equipment: null

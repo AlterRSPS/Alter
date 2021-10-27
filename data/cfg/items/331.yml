@@ -1,0 +1,6 @@
+id: 331
+name: "Raw salmon"
+examine: "I should try cooking this."
+tradeable: true
+weight: 0.55
+equipment: null

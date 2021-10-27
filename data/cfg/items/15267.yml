@@ -1,0 +1,6 @@
+id: 15267
+name: "Weapon poison"
+examine: "For use on daggers and projectiles."
+tradeable: true
+weight: 0.025
+equipment: null

@@ -1,0 +1,6 @@
+id: 8128
+name: "Candles"
+examine: "Dungeon candles  Even a dungeon needs light!"
+tradeable: false
+weight: 0.0
+equipment: null

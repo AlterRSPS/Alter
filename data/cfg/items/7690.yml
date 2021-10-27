@@ -1,0 +1,6 @@
+id: 7690
+name: "Full kettle"
+examine: "It's full of cold water."
+tradeable: false
+weight: 0.001
+equipment: null

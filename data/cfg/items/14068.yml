@@ -1,0 +1,6 @@
+id: 14068
+name: "Empty vial pack"
+examine: "A pack containing 100 empty vials."
+tradeable: false
+weight: 0.0
+equipment: null

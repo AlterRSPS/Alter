@@ -1,0 +1,6 @@
+id: 5869
+name: "Greenmans ale(m2)"
+examine: "This keg contains 2 pints of mature Greenmans Ale."
+tradeable: true
+weight: 0.028
+equipment: null

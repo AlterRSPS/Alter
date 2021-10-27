@@ -1,0 +1,6 @@
+id: 20547
+name: "Monkfish"
+examine: "A tasty fish."
+tradeable: true
+weight: 0.4
+equipment: null

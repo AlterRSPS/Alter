@@ -1,0 +1,6 @@
+id: 6961
+name: "Baguette"
+examine: "A freshly baked baguette."
+tradeable: false
+weight: 0.02
+equipment: null

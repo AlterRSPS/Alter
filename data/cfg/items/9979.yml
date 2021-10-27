@@ -1,0 +1,6 @@
+id: 9979
+name: "Raw bird meat"
+examine: "This certainly needs cooking!"
+tradeable: true
+weight: 0.15
+equipment: null

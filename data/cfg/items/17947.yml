@@ -1,0 +1,6 @@
+id: 17947
+name: "Wolf bones"
+examine: "Bones of a recently slain wolf."
+tradeable: true
+weight: 0.5
+equipment: null

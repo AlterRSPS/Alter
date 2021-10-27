@@ -1,0 +1,6 @@
+id: 16663
+name: "Giant pen"
+examine: "The King should be able to use this."
+tradeable: false
+weight: 0.035
+equipment: null

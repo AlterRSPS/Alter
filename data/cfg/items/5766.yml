@@ -1,0 +1,6 @@
+id: 5766
+name: "Mature cider"
+examine: "This looks a good deal stronger than normal cider."
+tradeable: true
+weight: 0.55
+equipment: null

@@ -1,0 +1,7 @@
+id: 25572
+name: "Damp egg"
+examine: "This egg appears to have been for a swim recently. It probably wouldn't\
+  \ taste very nice."
+tradeable: true
+weight: 0.02
+equipment: null

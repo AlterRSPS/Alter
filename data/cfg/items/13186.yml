@@ -1,0 +1,6 @@
+id: 13186
+name: "Volatile mineral"
+examine: "Might explode if it hits the ground hard enough."
+tradeable: false
+weight: 0.0
+equipment: null

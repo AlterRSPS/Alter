@@ -1,0 +1,6 @@
+id: 24724
+name: "Hallowed focus"
+examine: "Removes the chance of failing to enchant portals within the Hallowed Sepulchre."
+tradeable: false
+weight: 0.001
+equipment: null

@@ -1,0 +1,6 @@
+id: 9085
+name: "Empty vial"
+examine: "A vessel for holding liquid."
+tradeable: false
+weight: 0.5
+equipment: null

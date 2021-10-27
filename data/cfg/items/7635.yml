@@ -1,0 +1,6 @@
+id: 7635
+name: "Leather book"
+examine: "An ancient leather-bound tome."
+tradeable: false
+weight: 0.51
+equipment: null
