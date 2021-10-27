@@ -3,4 +3,3 @@ debug-objects: true
 debug-buttons: true
 debug-items: true
 debug-spells: true
-getConsoledOutput: false

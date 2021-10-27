@@ -13,9 +13,7 @@ object Command {
     }
 
     fun command_log(vararg data: Any) {
-        if (world.devContext.getConsoledOutput) {
-            CLog.log("Command", data)
-        }
+           // CLog.log("Command", data)
     }
 
 }
