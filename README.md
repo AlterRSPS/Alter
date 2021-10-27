@@ -1,7 +1,7 @@
 # Alter
 [![revision: 198][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/QTpECWN6)
 
-**Alter** is a continued/modified version of [RSMod](https://github.com/Tomm0017/rsmod)
+**Alter** is a continued/modified version of [RSMod](https://github.com/Tomm0017/rsmod) that was abandoned
 
 **RSMod** is a highly flexible user-friendly game server for use with the OSRS client. Implemented in a modular way,
 the framework allows developers to make and create any sort of plugin they wish without having to modify the core game module.
@@ -11,7 +11,9 @@ Due to the plugin capabilities, even owners without programming experience can j
 - You can report them as Issues on GitHub
 
 #### Installation
-* This will be rewriten! but for now you can use the same as 
+* This will be rewriten! but for now you can use this as your guide https://github.com/Tomm0017/rsmod/#installation
+* Cache: https://archive.runestats.com/osrs/2021-09-22-rev199.tar.gz
+* Client: Soon.
 
 ## Acknowledgments
 
@@ -34,7 +36,7 @@ Due to the plugin capabilities, even owners without programming experience can j
   - Conversations of how to improve RS Mod
 * ##### Sini
   - Advice on improving RS Mod's infrastructure
-* ##### Kris
+* ##### Kris & Corey
   - Always willing to lend a hand and share some code
 * ##### Bart and Scu11
   - Helped solve an issue with setting up KotlinScript
