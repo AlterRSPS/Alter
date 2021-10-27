@@ -1,0 +1,3449 @@
+[
+  {
+    "name" : "Iban",
+    "id" : 1,
+    "tickDuration" : 343,
+    "hint" : "Entering Iban's temple"
+  }, {
+    "name" : "Autumn Voyage",
+    "id" : 2,
+    "tickDuration" : 228,
+    "hint" : "This track unlocks north of Lumbridge."
+  }, {
+    "name" : "Unknown Land",
+    "id" : 3,
+    "tickDuration" : 206,
+    "hint" : "Going to Draynor Market"
+  }, {
+    "name" : "Hells Bells",
+    "id" : 4,
+    "tickDuration" : 348,
+    "hint" : "This track unlocks during Troll Romance."
+  }, {
+    "name" : "Sad Meadow",
+    "id" : 5,
+    "tickDuration" : 360,
+    "hint" : "This track unlocks during Plague City."
+  }, {
+    "name" : "Jolly R",
+    "id" : 6,
+    "tickDuration" : 166,
+    "hint" : "This track unlocks at the north dock of Brimhaven."
+  }, {
+    "name" : "Overture",
+    "id" : 7,
+    "tickDuration" : 176,
+    "hint" : "This track unlocks in Seers' Village."
+  }, {
+    "name" : "Wildwood",
+    "id" : 8,
+    "tickDuration" : 343,
+    "hint" : "This track unlocks to east of the Dark Warriors' Fortress in the Wilderness."
+  }, {
+    "name" : "Kingdom",
+    "id" : 9,
+    "tickDuration" : 531,
+    "hint" : "This track unlocks at Death Plateau."
+  }, {
+    "name" : "Spooky 2",
+    "id" : 11,
+    "tickDuration" : 373,
+    "hint" : "This track unlocks at the entrance to the Haunted Mine."
+  }, {
+    "name" : "Long Way Home",
+    "id" : 12,
+    "tickDuration" : 208,
+    "hint" : "This track unlocks at Rimmington."
+  }, {
+    "name" : "Mage Arena",
+    "id" : 13,
+    "tickDuration" : 470,
+    "hint" : "This track unlocks at the Mage Arena."
+  }, {
+    "name" : "Witching",
+    "id" : 14,
+    "tickDuration" : 155,
+    "hint" : "This track unlocks on the east side of Wilderness."
+  }, {
+    "name" : "Workshop",
+    "id" : 15,
+    "tickDuration" : 416,
+    "hint" : "This track unlocks at the Mining Guild in Falador."
+  }, {
+    "name" : "Scape Main",
+    "id" : 16,
+    "tickDuration" : 316,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "Escape",
+    "id" : 17,
+    "tickDuration" : 280,
+    "hint" : "This track unlocks at the perfect gold mine under Ardougne."
+  }, {
+    "name" : "Horizon",
+    "id" : 18,
+    "tickDuration" : 538,
+    "hint" : "This track unlocks at Taverley."
+  }, {
+    "name" : "Arabique",
+    "id" : 19,
+    "tickDuration" : 373,
+    "hint" : "This track unlocks at the hellhounds in Taverley Dungeon."
+  }, {
+    "name" : "Lullaby",
+    "id" : 20,
+    "tickDuration" : 350,
+    "hint" : "This track unlocks at the area south-west of Rellekka."
+  }, {
+    "name" : "Monarch Waltz",
+    "id" : 21,
+    "tickDuration" : 240,
+    "hint" : "This track unlocks at the Sinclair Mansion."
+  }, {
+    "name" : "Gnome King",
+    "id" : 22,
+    "tickDuration" : 150,
+    "hint" : "This track unlocks at the Tree Gnome Stronghold."
+  }, {
+    "name" : "Fe Fi Fo Fum",
+    "id" : 23,
+    "tickDuration" : 321,
+    "hint" : "This track unlocks during Grim Tales."
+  }, {
+    "name" : "Attack 1",
+    "id" : 24,
+    "tickDuration" : 213,
+    "hint" : "This track unlocks at the Battlefield north of the Tree Gnome Village."
+  }, {
+    "name" : "Attack 2",
+    "id" : 25,
+    "tickDuration" : 270,
+    "hint" : "This track unlocks during the Dragon Slayer I quest."
+  }, {
+    "name" : "Attack 3",
+    "id" : 26,
+    "tickDuration" : 283,
+    "hint" : "This track unlocks in the dungeon north of the Lava Maze."
+  }, {
+    "name" : "Attack 4",
+    "id" : 27,
+    "tickDuration" : 248,
+    "hint" : "This track unlocks at the Fight Arena."
+  }, {
+    "name" : "Attack 5",
+    "id" : 28,
+    "tickDuration" : 248,
+    "hint" : "This track unlocks while fighting the King Black Dragon."
+  }, {
+    "name" : "Attack 6",
+    "id" : 29,
+    "tickDuration" : 248,
+    "hint" : "This track unlocks at Gu'Tanoth Ogre Enclave."
+  }, {
+    "name" : "Fight of the Basilisk",
+    "id" : 31,
+    "tickDuration" : 530,
+    "hint" : "This track unlocks during The Fremennik Exiles quest."
+  }, {
+    "name" : "Game Intro 1",
+    "id" : 31,
+    "tickDuration" : 40,
+    "hint" : "Not unlockable"
+  }, {
+    "name" : "Voodoo Cult",
+    "id" : 31,
+    "tickDuration" : 531,
+    "hint" : "This track unocks at the cave under the Kharazi Jungle."
+  }, {
+    "name" : "Voyage",
+    "id" : 32,
+    "tickDuration" : 291,
+    "hint" : "This track unlocks at the top of Baxtorian Falls."
+  }, {
+    "name" : "Gnome Village",
+    "id" : 33,
+    "tickDuration" : 136,
+    "hint" : "This unlocks in the Tree Gnome Stronghold agility course."
+  }, {
+    "name" : "Wonder",
+    "id" : 34,
+    "tickDuration" : 315,
+    "hint" : "This track unlocks north-west of the Black Knights' Fortress."
+  }, {
+    "name" : "Sea Shanty 2",
+    "id" : 35,
+    "tickDuration" : 206,
+    "hint" : "This track unlocks in Port Sarim."
+  }, {
+    "name" : "Arabian",
+    "id" : 36,
+    "tickDuration" : 240,
+    "hint" : "This track unlocks near the Duel Arena."
+  }, {
+    "name" : "Deep Wildy",
+    "id" : 37,
+    "tickDuration" : 251,
+    "hint" : "This track unlocks north-west of the Wilderness."
+  }, {
+    "name" : "Trawler",
+    "id" : 38,
+    "tickDuration" : 433,
+    "hint" : "This track unlocks during the Fishing Trawler minigame."
+  }, {
+    "name" : "Organ Music 1",
+    "id" : 39,
+    "tickDuration" : 125,
+    "hint" : "This track unlocks automatically."
+  }, {
+    "name" : "Organ Music 2",
+    "id" : 40,
+    "tickDuration" : 168,
+    "hint" : "This track unlocks automatically."
+  }, {
+    "name" : "Expecting",
+    "id" : 41,
+    "tickDuration" : 375,
+    "hint" : "This track unlocks at the unholy altar north of the Observatory."
+  }, {
+    "name" : "Wilderness 2",
+    "id" : 42,
+    "tickDuration" : 300,
+    "hint" : "This track unlocks to the south of the Lava Maze in the Wilderness."
+  }, {
+    "name" : "Wilderness 3",
+    "id" : 43,
+    "tickDuration" : 181,
+    "hint" : "This track unlocks at the Forgotten Cemetery in the Wilderness."
+  }, {
+    "name" : "Right on Track",
+    "id" : 44,
+    "tickDuration" : 308,
+    "hint" : "This track unlocks during Forgettable Tale..."
+  }, {
+    "name" : "Venture 2",
+    "id" : 45,
+    "tickDuration" : 326,
+    "hint" : "This track unlocks during The Dig Site."
+  }, {
+    "name" : "Harmony 2",
+    "id" : 46,
+    "tickDuration" : 430,
+    "hint" : "This track unlocks in Lumbridge Castle's basement."
+  }, {
+    "name" : "Duel Arena",
+    "id" : 47,
+    "tickDuration" : 395,
+    "hint" : "This track unlocks at the Duel Arena."
+  }, {
+    "name" : "Morytania",
+    "id" : 48,
+    "tickDuration" : 445,
+    "hint" : "This track unlocks near Paterdomus."
+  }, {
+    "name" : "Wander",
+    "id" : 49,
+    "tickDuration" : 335,
+    "hint" : "This track unlocks at the farm area south of Falador."
+  }, {
+    "name" : "Al Kharid",
+    "id" : 50,
+    "tickDuration" : 330,
+    "hint" : "This track unlocks in Al Kharid."
+  }, {
+    "name" : "Trawler Minor",
+    "id" : 51,
+    "tickDuration" : 280,
+    "hint" : "This track unlocks during Fishing Trawler."
+  }, {
+    "name" : "Serene",
+    "id" : 52,
+    "tickDuration" : 300,
+    "hint" : "This track unlocks at the Air altar."
+  }, {
+    "name" : "Royale",
+    "id" : 53,
+    "tickDuration" : 210,
+    "hint" : "This track unlocks automatically."
+  }, {
+    "name" : "Scape Soft",
+    "id" : 54,
+    "tickDuration" : 263,
+    "hint" : "This track unlocks north of Falador"
+  }, {
+    "name" : "High Seas",
+    "id" : 55,
+    "tickDuration" : 458,
+    "hint" : "This track unlocks at Brimhaven."
+  }, {
+    "name" : "Doorways",
+    "id" : 56,
+    "tickDuration" : 251,
+    "hint" : "The track unlocks north-east of Varrock."
+  }, {
+    "name" : "Rune Essence",
+    "id" : 57,
+    "tickDuration" : 200,
+    "hint" : "This track unlocks at the rune essence mine."
+  }, {
+    "name" : "Nomad",
+    "id" : 58,
+    "tickDuration" : 400,
+    "hint" : "This track unlocks to the east of the Bedabin Camp."
+  }, {
+    "name" : "Cursed",
+    "id" : 59,
+    "tickDuration" : 281,
+    "hint" : "This track unlocks during Underground Pass."
+  }, {
+    "name" : "Lasting",
+    "id" : 60,
+    "tickDuration" : 360,
+    "hint" : "This track unlocks at Hemenster."
+  }, {
+    "name" : "Village",
+    "id" : 61,
+    "tickDuration" : 356,
+    "hint" : "This track unlocks at Canifis in Morytania."
+  }, {
+    "name" : "Newbie Melody",
+    "id" : 62,
+    "tickDuration" : 370,
+    "hint" : "This track unlocks on Tutorial Island."
+  }, {
+    "name" : "Chain of Command",
+    "id" : 63,
+    "tickDuration" : 500,
+    "hint" : "This track unlocks during Temple of Ikov."
+  }, {
+    "name" : "Book of Spells",
+    "id" : 64,
+    "tickDuration" : 546,
+    "hint" : "This track unlocks in the Lumbridge Swamp."
+  }, {
+    "name" : "Miracle Dance",
+    "id" : 65,
+    "tickDuration" : 455,
+    "hint" : "This track unlocks at the Mind Altar."
+  }, {
+    "name" : "Legion",
+    "id" : 66,
+    "tickDuration" : 413,
+    "hint" : "This track unlocks at the Barbarian Outpost or in the Wilderness Bandit Camp."
+  }, {
+    "name" : "Close Quarters",
+    "id" : 67,
+    "tickDuration" : 323,
+    "hint" : "This track unlocks to the west of the Dark Warriors' Fortress in the Wilderness."
+  }, {
+    "name" : "Cavern",
+    "id" : 68,
+    "tickDuration" : 341,
+    "hint" : "This track unlocks at the Yanille Agility Dungeon."
+  }, {
+    "name" : "Egypt",
+    "id" : 69,
+    "tickDuration" : 356,
+    "hint" : "This track unlocks at the Shantay Pass."
+  }, {
+    "name" : "Upcoming",
+    "id" : 70,
+    "tickDuration" : 318,
+    "hint" : "This track unlocks at the tower of the Necromancer."
+  }, {
+    "name" : "Chompy Hunt",
+    "id" : 71,
+    "tickDuration" : 306,
+    "hint" : "This track unlocks at the chompy hunt area near Rantz the ogre."
+  }, {
+    "name" : "Fanfare",
+    "id" : 72,
+    "tickDuration" : 238,
+    "hint" : "This track unlocks in Falador Castle."
+  }, {
+    "name" : "All's Fairy in Love & War",
+    "id" : 73,
+    "tickDuration" : 348,
+    "hint" : "This track unlocks during the Fairytale II - Cure a Queen quest."
+  }, {
+    "name" : "Lightwalk",
+    "id" : 74,
+    "tickDuration" : 305,
+    "hint" : "This track unlocks at Keep le Faye."
+  }, {
+    "name" : "Venture",
+    "id" : 75,
+    "tickDuration" : 183,
+    "hint" : "This track unlocks at the Dig Site."
+  }, {
+    "name" : "Harmony",
+    "id" : 76,
+    "tickDuration" : 313,
+    "hint" : "This track unlocks at Lumbridge."
+  }, {
+    "name" : "Splendour",
+    "id" : 77,
+    "tickDuration" : 370,
+    "hint" : "This track unlocks at the Heroes' Guild"
+  }, {
+    "name" : "Reggae",
+    "id" : 78,
+    "tickDuration" : 190,
+    "hint" : "This track unlocks south-east of Kharazi Jungle."
+  }, {
+    "name" : "The Desert",
+    "id" : 79,
+    "tickDuration" : 885,
+    "hint" : "This track unlocks in the Kharidian Desert."
+  }, {
+    "name" : "Soundscape",
+    "id" : 80,
+    "tickDuration" : 335,
+    "hint" : "This track unlocks at the Feldip Hills glider area."
+  }, {
+    "name" : "Wonderous",
+    "id" : 81,
+    "tickDuration" : 385,
+    "hint" : "This track unlocks near the Legends' Guild."
+  }, {
+    "name" : "Waterfall",
+    "id" : 82,
+    "tickDuration" : 231,
+    "hint" : "This unlocks in the Baxtorian waterfall."
+  }, {
+    "name" : "Big Chords",
+    "id" : 83,
+    "tickDuration" : 246,
+    "hint" : "This track unlocks to the west of Yanille."
+  }, {
+    "name" : "Dead Quiet",
+    "id" : 84,
+    "tickDuration" : 650,
+    "hint" : "This track unlocks north of the Mort Myre Swamp."
+  }, {
+    "name" : "Vision",
+    "id" : 85,
+    "tickDuration" : 283,
+    "hint" : "This track unlocks at Wizards' Tower."
+  }, {
+    "name" : "Dimension X",
+    "id" : 86,
+    "tickDuration" : 250,
+    "hint" : "This track unlocks on the gorak plane in Fairy Tale Part II."
+  }, {
+    "name" : "Twilight",
+    "id" : 88,
+    "tickDuration" : 518,
+    "hint" : "This track unlocks during Elemental Workshop."
+  }, {
+    "name" : "Reggae 2",
+    "id" : 89,
+    "tickDuration" : 335,
+    "hint" : "This track unlocks east of Karamja jungle."
+  }, {
+    "name" : "Ambient Jungle",
+    "id" : 90,
+    "tickDuration" : 428,
+    "hint" : "This track unlocks at Shilo Village."
+  }, {
+    "name" : "Riverside",
+    "id" : 91,
+    "tickDuration" : 251,
+    "hint" : "This track unlocks to the west of Tyras Camp."
+  }, {
+    "name" : "Parade",
+    "id" : 93,
+    "tickDuration" : 158,
+    "hint" : "This track unlocks at Silvarea."
+  }, {
+    "name" : "Tribal 2",
+    "id" : 94,
+    "tickDuration" : 376,
+    "hint" : "This track unlocks at the gnome glider on Karamja."
+  }, {
+    "name" : "Intrepid",
+    "id" : 95,
+    "tickDuration" : 193,
+    "hint" : "This track unlocks in the Underground Pass caverns."
+  }, {
+    "name" : "Inspiration",
+    "id" : 96,
+    "tickDuration" : 568,
+    "hint" : "This track unlocks at the area north of the Black Knights' Fortress."
+  }, {
+    "name" : "Sea Shanty",
+    "id" : 96,
+    "tickDuration" : 186,
+    "hint" : "This track unlocks upon entering Musa Point."
+  }, {
+    "name" : "Hermit",
+    "id" : 97,
+    "tickDuration" : 176,
+    "hint" : "This track unlocks during the Death Plateau quest."
+  }, {
+    "name" : "Forever",
+    "id" : 98,
+    "tickDuration" : 365,
+    "hint" : "Edgeville and the Edgeville Dungeon"
+  }, {
+    "name" : "Baroque",
+    "id" : 99,
+    "tickDuration" : 213,
+    "hint" : "This track unlocks in Ardougne."
+  }, {
+    "name" : "Beyond",
+    "id" : 100,
+    "tickDuration" : 276,
+    "hint" : "This track unlocks in the Dwarven Tunnel under Wolf Mountain."
+  }, {
+    "name" : "Gnome Village 2",
+    "id" : 101,
+    "tickDuration" : 470,
+    "hint" : "This track unlocks south-west of the Tree Gnome Stronghold."
+  }, {
+    "name" : "Alone",
+    "id" : 102,
+    "tickDuration" : 345,
+    "hint" : "This track unlocks at Ice Mountain."
+  }, {
+    "name" : "Oriental",
+    "id" : 103,
+    "tickDuration" : 318,
+    "hint" : "This track can be unlocked in the Waterfall Dungeon, East of Shilo Village."
+  }, {
+    "name" : "Camelot",
+    "id" : 104,
+    "tickDuration" : 250,
+    "hint" : "This track unlocks at Camelot Castle."
+  }, {
+    "name" : "Tomorrow",
+    "id" : 105,
+    "tickDuration" : 260,
+    "hint" : "This track unlocks at the coastline south of Port Sarim."
+  }, {
+    "name" : "Expanse",
+    "id" : 106,
+    "tickDuration" : 288,
+    "hint" : "South of [[Varrock]], [[Deserted Keep]]"
+  }, {
+    "name" : "Miles Away",
+    "id" : 107,
+    "tickDuration" : 380,
+    "hint" : "This track unlocks at the Crafting Guild."
+  }, {
+    "name" : "Starlight",
+    "id" : 108,
+    "tickDuration" : 318,
+    "hint" : "This track can be unlocked at the Asgarnian Ice Dungeon north of Mudskipper Point."
+  }, {
+    "name" : "Theme",
+    "id" : 109,
+    "tickDuration" : 336,
+    "hint" : "This track unlocks at the Coal Trucks."
+  }, {
+    "name" : "Serenade",
+    "id" : 110,
+    "tickDuration" : 308,
+    "hint" : "This track unlocks at the Observatory."
+  }, {
+    "name" : "Still Night",
+    "id" : 111,
+    "tickDuration" : 280,
+    "hint" : "This track unlocks at the mining area south-east of Varrock."
+  }, {
+    "name" : "Gnomeball",
+    "id" : 112,
+    "tickDuration" : 251,
+    "hint" : "This track unlocks at Gnome Ball Field."
+  }, {
+    "name" : "Lightness",
+    "id" : 113,
+    "tickDuration" : 448,
+    "hint" : "This track unlocks to the north of Edgeville."
+  }, {
+    "name" : "Jungly 1",
+    "id" : 114,
+    "tickDuration" : 268,
+    "hint" : "This track unlocks at Cairn Isle."
+  }, {
+    "name" : "Jungly 2",
+    "id" : 115,
+    "tickDuration" : 228,
+    "hint" : "This track unlocks to the north-west of Brimhaven."
+  }, {
+    "name" : "Greatness",
+    "id" : 116,
+    "tickDuration" : 371,
+    "hint" : "This track unlocks south-west of Varrock."
+  }, {
+    "name" : "Jungly 3",
+    "id" : 117,
+    "tickDuration" : 133,
+    "hint" : "This track unlocks at Tai Bwo Wannai Village."
+  }, {
+    "name" : "Faerie",
+    "id" : 118,
+    "tickDuration" : 285,
+    "hint" : "This track unlocks at Zanaris."
+  }, {
+    "name" : "Fishing",
+    "id" : 119,
+    "tickDuration" : 313,
+    "hint" : "This track unlocks at Catherby beach."
+  }, {
+    "name" : "Shining",
+    "id" : 120,
+    "tickDuration" : 461,
+    "hint" : "This track unlocks at the Bone Yard."
+  }, {
+    "name" : "Forbidden",
+    "id" : 121,
+    "tickDuration" : 388,
+    "hint" : "This track unlocks in the Wilderness."
+  }, {
+    "name" : "Shine",
+    "id" : 122,
+    "tickDuration" : 533,
+    "hint" : "This track unlocks at the north of Duel Arena."
+  }, {
+    "name" : "Arabian 2",
+    "id" : 123,
+    "tickDuration" : 306,
+    "hint" : "This track unlocks north of [[Al Kharid]]."
+  }, {
+    "name" : "Arabian 3",
+    "id" : 124,
+    "tickDuration" : 241,
+    "hint" : "This track unlocks outside the Kalphite Lair."
+  }, {
+    "name" : "Garden",
+    "id" : 125,
+    "tickDuration" : 270,
+    "hint" : "This track unlocks at Varrock city centre."
+  }, {
+    "name" : "We Are the Fairies",
+    "id" : 126,
+    "tickDuration" : 466,
+    "hint" : "This track unlocks on the cosmic entity plane during Fairy Tale Part II."
+  }, {
+    "name" : "Nightfall",
+    "id" : 127,
+    "tickDuration" : 378,
+    "hint" : "This track unlocks north of Rimmington."
+  }, {
+    "name" : "Grumpy",
+    "id" : 128,
+    "tickDuration" : 236,
+    "hint" : "This track unlocks in the [[Corsair Cove Dungeon]]."
+  }, {
+    "name" : "Spooky Jungle",
+    "id" : 129,
+    "tickDuration" : 296,
+    "hint" : "This track unlocks to the south-west of Karamja."
+  }, {
+    "name" : "Tree Spirits",
+    "id" : 130,
+    "tickDuration" : 400,
+    "hint" : "This track unlocks to the west of the Tree Gnome Stronghold."
+  }, {
+    "name" : "Understanding",
+    "id" : 131,
+    "tickDuration" : 395,
+    "hint" : "This track unlocks in the Nature Altar."
+  }, {
+    "name" : "Breeze",
+    "id" : 132,
+    "tickDuration" : 341,
+    "hint" : "This track unlocks at Isafdar near the Underground Pass."
+  }, {
+    "name" : "The Tower",
+    "id" : 133,
+    "tickDuration" : 291,
+    "hint" : "This unlocks north of Ardougne."
+  }, {
+    "name" : "La Mort",
+    "id" : 134,
+    "tickDuration" : 440,
+    "hint" : "This track unlocks at the Death Altar."
+  }, {
+    "name" : "Ambience 2",
+    "id" : 135,
+    "tickDuration" : 40,
+    "hint" : "Not unlockable"
+  }, {
+    "name" : "Jaws of the Basilisk",
+    "id" : 135,
+    "tickDuration" : 500,
+    "hint" : "This track unlocks during The Fremennik Exiles quest."
+  }, {
+    "name" : "Ambience 3",
+    "id" : 136,
+    "tickDuration" : 55,
+    "hint" : "Not unlockable"
+  }, {
+    "name" : "Lair of the Basilisk",
+    "id" : 136,
+    "tickDuration" : 463,
+    "hint" : "This track unlocks during The Fremennik Exiles quest."
+  }, {
+    "name" : "Ambience 4",
+    "id" : 137,
+    "tickDuration" : 35,
+    "hint" : "Not unlockable"
+  }, {
+    "name" : "Emperor",
+    "id" : 138,
+    "tickDuration" : 398,
+    "hint" : "This track unlocks in Melzar's Maze."
+  }, {
+    "name" : "Ballad of the Basilisk",
+    "id" : 139,
+    "tickDuration" : 396,
+    "hint" : "This track unlocks during The Fremennik Exiles quest."
+  }, {
+    "name" : "Fade Test",
+    "id" : 139,
+    "tickDuration" : 80,
+    "hint" : "Not unlockable"
+  }, {
+    "name" : "Talking Forest",
+    "id" : 140,
+    "tickDuration" : 248,
+    "hint" : "This track unlocks at McGrubor's Wood"
+  }, {
+    "name" : "Barbarianism",
+    "id" : 141,
+    "tickDuration" : 455,
+    "hint" : "This track unlocks at Barbarian Village."
+  }, {
+    "name" : "Complication",
+    "id" : 142,
+    "tickDuration" : 281,
+    "hint" : "This track unlocks at the Chaos Altar."
+  }, {
+    "name" : "Down to Earth",
+    "id" : 143,
+    "tickDuration" : 406,
+    "hint" : "This track unlocks at the Earth Altar."
+  }, {
+    "name" : "Scape Cave",
+    "id" : 144,
+    "tickDuration" : 263,
+    "hint" : "This track unlocks in the cave on Tutorial Island."
+  }, {
+    "name" : "Yesteryear",
+    "id" : 145,
+    "tickDuration" : 393,
+    "hint" : "This track unlocks in the Lumbridge swamp."
+  }, {
+    "name" : "Zealot",
+    "id" : 146,
+    "tickDuration" : 430,
+    "hint" : "This track unlocks at the Water Altar."
+  }, {
+    "name" : "Emotion",
+    "id" : 148,
+    "tickDuration" : 320,
+    "hint" : "This track unlocks in the Tree Gnome Village maze."
+  }, {
+    "name" : "Principality",
+    "id" : 149,
+    "tickDuration" : 445,
+    "hint" : "This track unlocks in Burthorpe."
+  }, {
+    "name" : "Mouse Trap",
+    "id" : 150,
+    "tickDuration" : 371,
+    "hint" : "This track unlocks during Grim Tales."
+  }, {
+    "name" : "Start",
+    "id" : 151,
+    "tickDuration" : 275,
+    "hint" : "This track unlocks at Draynor Village."
+  }, {
+    "name" : "Ballad of Enchantment",
+    "id" : 152,
+    "tickDuration" : 345,
+    "hint" : "This track unlocks at the Ardougne Monastery."
+  }, {
+    "name" : "Expedition",
+    "id" : 153,
+    "tickDuration" : 286,
+    "hint" : "This track unlocks in the cavern below the Observatory."
+  }, {
+    "name" : "Bone Dance",
+    "id" : 154,
+    "tickDuration" : 308,
+    "hint" : "This track unlocks to the west of Mort'ton."
+  }, {
+    "name" : "Neverland",
+    "id" : 155,
+    "tickDuration" : 470,
+    "hint" : "This track unlocks to the centre of Tree Gnome Stronghold."
+  }, {
+    "name" : "Mausoleum",
+    "id" : 156,
+    "tickDuration" : 535,
+    "hint" : "This track unlocks under Paterdomus."
+  }, {
+    "name" : "Ice Melody",
+    "id" : 157,
+    "tickDuration" : 228,
+    "hint" : "This track unlocks at White Wolf Mountain."
+  }, {
+    "name" : "Medieval",
+    "id" : 157,
+    "tickDuration" : 398,
+    "hint" : "This track unlocks near the Varrock East guarded area."
+  }, {
+    "name" : "Quest",
+    "id" : 158,
+    "tickDuration" : 285,
+    "hint" : "This track unlocks in the Fire Altar."
+  }, {
+    "name" : "Gaol",
+    "id" : 159,
+    "tickDuration" : 190,
+    "hint" : "This track unlocks at Gu'Tanoth."
+  }, {
+    "name" : "Army of Darkness",
+    "id" : 160,
+    "tickDuration" : 258,
+    "hint" : "This track unlocks at the Dark Warriors' Fortress."
+  }, {
+    "name" : "Long Ago",
+    "id" : 161,
+    "tickDuration" : 216,
+    "hint" : "This track unlocks at Hazelmere's island East of Yanille."
+  }, {
+    "name" : "Tribal Bacround",
+    "id" : 162,
+    "tickDuration" : 351,
+    "hint" : "This track unlocks in the south-east Kharazi Jungle."
+  }, {
+    "name" : "Flute Salad",
+    "id" : 163,
+    "tickDuration" : 191,
+    "hint" : "This track unlocks of Lumbridge."
+  }, {
+    "name" : "Landlubber",
+    "id" : 164,
+    "tickDuration" : 400,
+    "hint" : "This track unlocks west of Brimhaven."
+  }, {
+    "name" : "Tribal",
+    "id" : 165,
+    "tickDuration" : 211,
+    "hint" : "This track unlocks to the east of Tai Bwo Wannai Village."
+  }, {
+    "name" : "Fanfare 2",
+    "id" : 166,
+    "tickDuration" : 195,
+    "hint" : "This track unlocks in the Karamja Ship Yard."
+  }, {
+    "name" : "Fanfare 3",
+    "id" : 167,
+    "tickDuration" : 440,
+    "hint" : "This track unlocks at Port Khazard."
+  }, {
+    "name" : "Lonesome",
+    "id" : 168,
+    "tickDuration" : 383,
+    "hint" : "This track unlocks at the Desert Mining Camp."
+  }, {
+    "name" : "Crystal Sword",
+    "id" : 169,
+    "tickDuration" : 281,
+    "hint" : "This track unlocks at the Wilderness, north of Varrock."
+  }, {
+    "name" : "The Shadow",
+    "id" : 170,
+    "tickDuration" : 293,
+    "hint" : "This track unlocks on Crandor."
+  }, {
+    "name" : "Jungle Island",
+    "id" : 172,
+    "tickDuration" : 301,
+    "hint" : "This track unlocks at Karamja."
+  }, {
+    "name" : "Dunjun",
+    "id" : 173,
+    "tickDuration" : 281,
+    "hint" : "This track unlocks in Taverley Dungeon."
+  }, {
+    "name" : "Desert Voyage",
+    "id" : 174,
+    "tickDuration" : 511,
+    "hint" : "This track unlocks around the Desert Mining Camp."
+  }, {
+    "name" : "Spirit",
+    "id" : 175,
+    "tickDuration" : 390,
+    "hint" : "This track unlocks at the Cooks' Guild."
+  }, {
+    "name" : "Undercurrent",
+    "id" : 176,
+    "tickDuration" : 540,
+    "hint" : "This track unlocks in the Wilderness"
+  }, {
+    "name" : "Adventure",
+    "id" : 177,
+    "tickDuration" : 256,
+    "hint" : "This track unlock in Varrock Palace."
+  }, {
+    "name" : "Courage",
+    "id" : 178,
+    "tickDuration" : 406,
+    "hint" : "This track unlocks at Taverley Dungeon."
+  }, {
+    "name" : "Underground",
+    "id" : 179,
+    "tickDuration" : 360,
+    "hint" : "This track unlocks at the dramen tree in Entrana Dungeon."
+  }, {
+    "name" : "Attention",
+    "id" : 180,
+    "tickDuration" : 286,
+    "hint" : "This track unlocks at the coastline south of Rimmington."
+  }, {
+    "name" : "Crystal Cave",
+    "id" : 181,
+    "tickDuration" : 386,
+    "hint" : "This track unlocks at Zanaris market."
+  }, {
+    "name" : "Dangerous",
+    "id" : 182,
+    "tickDuration" : 221,
+    "hint" : "This track unlocks somewhere in the Wilderness."
+  }, {
+    "name" : "Troubled",
+    "id" : 183,
+    "tickDuration" : 375,
+    "hint" : "This unlocks in the Wilderness."
+  }, {
+    "name" : "Magical Journey",
+    "id" : 184,
+    "tickDuration" : 365,
+    "hint" : "This track unlocks at the Sorcerer's Tower."
+  }, {
+    "name" : "Magic Dance",
+    "id" : 185,
+    "tickDuration" : 380,
+    "hint" : "This track unlocks in the east of Yanille."
+  }, {
+    "name" : "Arrival",
+    "id" : 186,
+    "tickDuration" : 165,
+    "hint" : "This track unlocks in Falador."
+  }, {
+    "name" : "Tremble",
+    "id" : 187,
+    "tickDuration" : 340,
+    "hint" : "This track unlocks during Death Plateau."
+  }, {
+    "name" : "In the Manor",
+    "id" : 188,
+    "tickDuration" : 153,
+    "hint" : "This track unlocks at the ogre island, west of Yanille."
+  }, {
+    "name" : "Wild Isle",
+    "id" : 189,
+    "tickDuration" : 401,
+    "hint" : "This track unlocks to the south of Lava Dragon Isle in the Wilderness."
+  }, {
+    "name" : "Heart and Mind",
+    "id" : 190,
+    "tickDuration" : 351,
+    "hint" : "This track unlocks at the Body Altar."
+  }, {
+    "name" : "Knightly",
+    "id" : 191,
+    "tickDuration" : 241,
+    "hint" : "This track unlocks at Ardougne Castle."
+  }, {
+    "name" : "Trinity",
+    "id" : 192,
+    "tickDuration" : 360,
+    "hint" : "This track unlocks at the Legends' Guild."
+  }, {
+    "name" : "Mellow",
+    "id" : 193,
+    "tickDuration" : 370,
+    "hint" : "This track unlocks at the Fishing Guild."
+  }, {
+    "name" : "Brimstail's Scales",
+    "id" : 194,
+    "tickDuration" : 330,
+    "hint" : "This track unlocks at Brimstail's cave."
+  }, {
+    "name" : "Delrith Summoning",
+    "id" : 195,
+    "tickDuration" : 35
+  }, {
+    "name" : "Wally Cutscene",
+    "id" : 196,
+    "tickDuration" : 51
+  }, {
+    "name" : "Lament of Meiyerditch",
+    "id" : 197,
+    "tickDuration" : 571,
+    "hint" : "This track unlocks during Darkness of Hallowvale."
+  }, {
+    "name" : "Dagannoth Dawn",
+    "id" : 198,
+    "tickDuration" : 330,
+    "hint" : "This track unlocks in Waterbirth Island Dungeon."
+  }, {
+    "name" : "Reign of the Basilisk",
+    "id" : 199,
+    "tickDuration" : 626,
+    "hint" : "This track unlocks during The Fremennik Exiles quest."
+  }, {
+    "name" : "Seaslug Sailing Journey",
+    "id" : 199,
+    "tickDuration" : 45
+  }, {
+    "name" : "The Mollusc Menace",
+    "id" : 200,
+    "tickDuration" : 318,
+    "hint" : "This track unlocks during Slug Menace."
+  }, {
+    "name" : "Slug a Bug Ball",
+    "id" : 201,
+    "tickDuration" : 341,
+    "hint" : "This track unlocks during The Slug Menace."
+  }, {
+    "name" : "Prime Time",
+    "id" : 202,
+    "tickDuration" : 466,
+    "hint" : "This track unlocks during Elemental Workshop II."
+  }, {
+    "name" : "My Arm's Journey",
+    "id" : 203,
+    "tickDuration" : 265,
+    "hint" : "This track unlocks during My Arm's Big Adventure."
+  }, {
+    "name" : "Roc and Roll",
+    "id" : 204,
+    "tickDuration" : 236,
+    "hint" : "This track unlocks during My Arm's Big Adventure."
+  }, {
+    "name" : "High Spirits",
+    "id" : 205,
+    "tickDuration" : 366,
+    "hint" : "This track unlocks in a Halloween holiday event (2006 onwards)."
+  }, {
+    "name" : "Floating Free",
+    "id" : 206,
+    "tickDuration" : 330,
+    "hint" : "This track unlocks during An Enlightened Journey."
+  }, {
+    "name" : "Scape Hunter",
+    "id" : 207,
+    "tickDuration" : 330,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "Jungle Island Xmas",
+    "id" : 208,
+    "tickDuration" : 301,
+    "hint" : "This track unlocks in a Christmas holiday event (2006 onwards)."
+  }, {
+    "name" : "Jungle Bells",
+    "id" : 209,
+    "tickDuration" : 383,
+    "hint" : "This track unlocks in a Christmas holiday event (2006 onwards)."
+  }, {
+    "name" : "Sea Shanty Xmas",
+    "id" : 210,
+    "tickDuration" : 183,
+    "hint" : "This track unlocks in a Christmas event (2006 onwards)."
+  }, {
+    "name" : "Pirates of Penance",
+    "id" : 211,
+    "tickDuration" : 396,
+    "hint" : "This track unlocks during Barbarian Assault."
+  }, {
+    "name" : "Barbarian Assault Tutorial",
+    "id" : 212,
+    "tickDuration" : 428
+  }, {
+    "name" : "Labyrinth",
+    "id" : 213,
+    "tickDuration" : 393,
+    "hint" : "This track unlocks during Contact!"
+  }, {
+    "name" : "Undead Dungeon",
+    "id" : 214,
+    "tickDuration" : 328,
+    "hint" : "This track unlocks in Tarn's Lair"
+  }, {
+    "name" : "Tarn's Theme",
+    "id" : 215,
+    "tickDuration" : 283
+  }, {
+    "name" : "Espionage",
+    "id" : 216,
+    "tickDuration" : 373,
+    "hint" : "This track unlocks during Cold War."
+  }, {
+    "name" : "Have an Ice Day",
+    "id" : 217,
+    "tickDuration" : 483,
+    "hint" : "This track unlocks during Cold War."
+  }, {
+    "name" : "Penguin Bards",
+    "id" : 218,
+    "tickDuration" : 133
+  }, {
+    "name" : "Penguin Plans",
+    "id" : 218,
+    "tickDuration" : 133
+  }, {
+    "name" : "Island of the Trolls",
+    "id" : 220,
+    "tickDuration" : 446,
+    "hint" : "This track unlocks during Fremennik Isles."
+  }, {
+    "name" : "Jester Minute",
+    "id" : 221,
+    "tickDuration" : 338,
+    "hint" : "This track unlocks during Fremennik Isles."
+  }, {
+    "name" : "Major Miner",
+    "id" : 222,
+    "tickDuration" : 363,
+    "hint" : "This track unlocks during Fremennik Isles."
+  }, {
+    "name" : "Norse Code",
+    "id" : 223,
+    "tickDuration" : 396,
+    "hint" : "This track unlocks when players first visit the Fremennik Isles."
+  }, {
+    "name" : "Ogre the Top",
+    "id" : 224,
+    "tickDuration" : 346,
+    "hint" : "This track unlocks during Fremennik Isles."
+  }, {
+    "name" : "Volcanic Vikings",
+    "id" : 225,
+    "tickDuration" : 336,
+    "hint" : "This track unlocks in Neitiznot."
+  }, {
+    "name" : "Ice Troll Caves",
+    "id" : 226,
+    "tickDuration" : 215
+  }, {
+    "name" : "Berating the King",
+    "id" : 227,
+    "tickDuration" : 298
+  }, {
+    "name" : "Garden of Autumn",
+    "id" : 228,
+    "tickDuration" : 346,
+    "hint" : "This track unlocks during the Sorcerer's Garden minigame."
+  }, {
+    "name" : "Garden of Spring",
+    "id" : 229,
+    "tickDuration" : 300,
+    "hint" : "This track unlocks during the Sorcerer's Garden minigame."
+  }, {
+    "name" : "Garden of Summer",
+    "id" : 230,
+    "tickDuration" : 300,
+    "hint" : "This track unlocks during the Sorcerer's Garden minigame."
+  }, {
+    "name" : "Garden of Winter",
+    "id" : 231,
+    "tickDuration" : 346,
+    "hint" : "This track unlocks during the Sorcerer's Garden minigame."
+  }, {
+    "name" : "Sorceress's Garden",
+    "id" : 232,
+    "tickDuration" : 50
+  }, {
+    "name" : "Bouncer's Theme",
+    "id" : 233,
+    "tickDuration" : 163
+  }, {
+    "name" : "Creature Cruelty",
+    "id" : 234,
+    "tickDuration" : 480,
+    "hint" : "This track unlocks during Tower of Life."
+  }, {
+    "name" : "Magic, Magic, Magic",
+    "id" : 235,
+    "tickDuration" : 481,
+    "hint" : "This track unlocks during Tower of Life."
+  }, {
+    "name" : "Mutant Medley",
+    "id" : 236,
+    "tickDuration" : 350,
+    "hint" : "This track unlocks during Tower of Life."
+  }, {
+    "name" : "Work, Work, Work",
+    "id" : 237,
+    "tickDuration" : 525,
+    "hint" : "This track unlocks during Tower of Life."
+  }, {
+    "name" : "Zombiism",
+    "id" : 238,
+    "tickDuration" : 380,
+    "hint" : "This track unlocks during The Great Brain Robbery."
+  }, {
+    "name" : "Barrelchest Battle",
+    "id" : 239,
+    "tickDuration" : 236
+  }, {
+    "name" : "Dorgeshuun City",
+    "id" : 240,
+    "tickDuration" : 453,
+    "hint" : "This track unlocks at Dorgesh-Kaan."
+  }, {
+    "name" : "Stagnant",
+    "id" : 241,
+    "tickDuration" : 425,
+    "hint" : "This track unlocks at the Hollows in the Mort Myre Swamp."
+  }, {
+    "name" : "Time Out",
+    "id" : 242,
+    "tickDuration" : 305,
+    "hint" : "This track unlocks in a random event."
+  }, {
+    "name" : "Stratosphere",
+    "id" : 243,
+    "tickDuration" : 385,
+    "hint" : "This track unlocks at the Cosmic Altar."
+  }, {
+    "name" : "Waterlogged",
+    "id" : 244,
+    "tickDuration" : 483,
+    "hint" : "This track unlocks to the south of Canifis."
+  }, {
+    "name" : "Natural",
+    "id" : 245,
+    "tickDuration" : 470,
+    "hint" : "This unlocks near the Nature Grotto."
+  }, {
+    "name" : "Grotto",
+    "id" : 246,
+    "tickDuration" : 406,
+    "hint" : "This track unlocks at the nature spirit's grotto in Mort Myre Swamp."
+  }, {
+    "name" : "Artistry",
+    "id" : 247,
+    "tickDuration" : 361,
+    "hint" : "This track unlocks during a Random Event."
+  }, {
+    "name" : "Aztec",
+    "id" : 248,
+    "tickDuration" : 350,
+    "hint" : "This track unlocks at the Brimhaven Agility Arena."
+  }, {
+    "name" : "Dorgeshuun Deep",
+    "id" : 249,
+    "tickDuration" : 443,
+    "hint" : "This track unlocks in the Dorgesh-Kaan South Dungeon."
+  }, {
+    "name" : "Surok's Revenge",
+    "id" : 250,
+    "tickDuration" : 328
+  }, {
+    "name" : "Forest",
+    "id" : 251,
+    "tickDuration" : 418,
+    "hint" : "This track unlocks to the south-east of Isafdar."
+  }, {
+    "name" : "Elven Mist",
+    "id" : 252,
+    "tickDuration" : 381,
+    "hint" : "This track unlocks at the exit of Underground Pass."
+  }, {
+    "name" : "Lost Soul",
+    "id" : 253,
+    "tickDuration" : 340,
+    "hint" : "This track unlocks at the Poison Waste in south Isafdar."
+  }, {
+    "name" : "Meridian",
+    "id" : 254,
+    "tickDuration" : 348,
+    "hint" : "This track unlocks near Tyras Camp in Isafdar."
+  }, {
+    "name" : "Woodland",
+    "id" : 255,
+    "tickDuration" : 336,
+    "hint" : "This track unlocks at the Iorwerth Camp in Tirannwn."
+  }, {
+    "name" : "Overpass",
+    "id" : 256,
+    "tickDuration" : 368,
+    "hint" : "This track unlocks at Arandar, east of Tirannwn."
+  }, {
+    "name" : "Sojourn",
+    "id" : 257,
+    "tickDuration" : 365,
+    "hint" : "This track unlocks during the Troll Stronghold quest."
+  }, {
+    "name" : "Contest",
+    "id" : 258,
+    "tickDuration" : 265,
+    "hint" : "This track unlocks in Trollheim."
+  }, {
+    "name" : "Crystal Castle",
+    "id" : 259,
+    "tickDuration" : 605,
+    "hint" : "This track unlocks to the south-east of Prifddinas."
+  }, {
+    "name" : "Insect Queen",
+    "id" : 260,
+    "tickDuration" : 423,
+    "hint" : "This track unlocks at the Kalphite Queen."
+  }, {
+    "name" : "Marzipan",
+    "id" : 261,
+    "tickDuration" : 373,
+    "hint" : "This track unlocks at the Trollheim cave."
+  }, {
+    "name" : "Righteousness",
+    "id" : 262,
+    "tickDuration" : 411,
+    "hint" : "This track unlocks at the Law Altar."
+  }, {
+    "name" : "Bandit Camp",
+    "id" : 263,
+    "tickDuration" : 300,
+    "hint" : "This track unlocks at the Bandit Camp in the Kharidian Desert."
+  }, {
+    "name" : "Mad Eadgar",
+    "id" : 264,
+    "tickDuration" : 370,
+    "hint" : "This track unlocks at Eadgar's cave atop Trollheim."
+  }, {
+    "name" : "Superstition",
+    "id" : 265,
+    "tickDuration" : 438,
+    "hint" : "This track unlocks at the cave below the Kharazi Jungle."
+  }, {
+    "name" : "Bone Dry",
+    "id" : 266,
+    "tickDuration" : 546,
+    "hint" : "This track unlocks in the smoky well near Pollnivneach."
+  }, {
+    "name" : "Sunburn",
+    "id" : 267,
+    "tickDuration" : 486,
+    "hint" : "This track unlocks in the desert north of Jaldraocht Pyramid."
+  }, {
+    "name" : "Everywhere",
+    "id" : 268,
+    "tickDuration" : 446,
+    "hint" : "This track unlocks to the north of Prifddinas."
+  }, {
+    "name" : "Competition",
+    "id" : 269,
+    "tickDuration" : 495,
+    "hint" : "This track unlocks at the Burthorpe Games Room."
+  }, {
+    "name" : "Exposed",
+    "id" : 270,
+    "tickDuration" : 436,
+    "hint" : "This track unlocks to the south of Tyras Camp in Isafdar."
+  }, {
+    "name" : "Well of Voyage",
+    "id" : 271,
+    "tickDuration" : 323,
+    "hint" : "This track unlocks in the passage between Iban's Temple and Isafdar."
+  }, {
+    "name" : "Alternative Root",
+    "id" : 272,
+    "tickDuration" : 348,
+    "hint" : "This track unlocks during the What Lies Below quest."
+  }, {
+    "name" : "Easter Jig",
+    "id" : 273,
+    "tickDuration" : 393,
+    "hint" : "This track unlocks during an [[Easter event|Easter holiday event]] (2013 onwards)."
+  }, {
+    "name" : "Rising Damp",
+    "id" : 274,
+    "tickDuration" : 448,
+    "hint" : "This track unlocks during Olaf's Quest."
+  }, {
+    "name" : "Slice of Station",
+    "id" : 275,
+    "tickDuration" : 341,
+    "hint" : "This track unlocks in Dorgesh-Kaan - Keldagrim Train System and Keldagrim station."
+  }, {
+    "name" : "H.A.M. and Seek",
+    "id" : 276,
+    "tickDuration" : 405,
+    "hint" : "This track unlocks during Another Slice of H.A.M."
+  }, {
+    "name" : "Haunted Mine",
+    "id" : 277,
+    "tickDuration" : 328,
+    "hint" : "This track unlocks at the boss area of the Haunted Mine."
+  }, {
+    "name" : "Deep Down",
+    "id" : 278,
+    "tickDuration" : 621,
+    "hint" : "This track unlocks at the bottom floor of the Haunted Mine"
+  }, {
+    "name" : "H.A.M. Attack",
+    "id" : 279,
+    "tickDuration" : 456,
+    "hint" : "This track unlocks during Another Slice of H.A.M."
+  }, {
+    "name" : "Slice of Silent Movie",
+    "id" : 281,
+    "tickDuration" : 340,
+    "hint" : "This track unlocks during Another Slice of H.A.M."
+  }, {
+    "name" : "Chamber",
+    "id" : 282,
+    "tickDuration" : 430,
+    "hint" : "This track unlocks on the middle floor of the Haunted Mine."
+  }, {
+    "name" : "Everlasting",
+    "id" : 283,
+    "tickDuration" : 273,
+    "hint" : "This track unlocks during Dream Mentor."
+  }, {
+    "name" : "Miscellania",
+    "id" : 284,
+    "tickDuration" : 440,
+    "hint" : "This track unlocks in Miscellania."
+  }, {
+    "name" : "Etceteria",
+    "id" : 285,
+    "tickDuration" : 400,
+    "hint" : "This track unlocks at Etceteria."
+  }, {
+    "name" : "Shadowland",
+    "id" : 286,
+    "tickDuration" : 420,
+    "hint" : "This track unlocks to the east of Mort'ton."
+  }, {
+    "name" : "Lair",
+    "id" : 287,
+    "tickDuration" : 503,
+    "hint" : "This track unlocks at the shade catacombs below Mort'ton."
+  }, {
+    "name" : "Deadlands",
+    "id" : 288,
+    "tickDuration" : 445,
+    "hint" : "This track unlocks at the Haunted Woods of Morytania."
+  }, {
+    "name" : "Rellekka",
+    "id" : 289,
+    "tickDuration" : 460,
+    "hint" : "This track unlocks in Rellekka."
+  }, {
+    "name" : "Saga",
+    "id" : 290,
+    "tickDuration" : 523,
+    "hint" : "This track unlocks to the south of Rellekka."
+  }, {
+    "name" : "Borderland",
+    "id" : 291,
+    "tickDuration" : 306,
+    "hint" : "This track unlocks to the east of Rellekka."
+  }, {
+    "name" : "Stranded",
+    "id" : 292,
+    "tickDuration" : 490,
+    "hint" : "This track unlocks at the gate to the Ice Path."
+  }, {
+    "name" : "Legend",
+    "id" : 293,
+    "tickDuration" : 466,
+    "hint" : "This track unlocks to the south-east of Rellekka."
+  }, {
+    "name" : "Frostbite",
+    "id" : 294,
+    "tickDuration" : 543,
+    "hint" : "This track unlocks at the Ice Path north of Trollheim."
+  }, {
+    "name" : "Warrior",
+    "id" : 295,
+    "tickDuration" : 328,
+    "hint" : "This track unlocks during Fremennik Trials."
+  }, {
+    "name" : "Technology",
+    "id" : 296,
+    "tickDuration" : 516,
+    "hint" : "This track unlocks in the gnome glider hangar."
+  }, {
+    "name" : "Etcetera Theme",
+    "id" : 297,
+    "tickDuration" : 400
+  }, {
+    "name" : "Illusive",
+    "id" : 298,
+    "tickDuration" : 413,
+    "hint" : "This track unlocks in Dream Mentor."
+  }, {
+    "name" : "Inadequacy",
+    "id" : 299,
+    "tickDuration" : 356,
+    "hint" : "This track unlocks during Dream Mentor."
+  }, {
+    "name" : "Untouchable",
+    "id" : 300,
+    "tickDuration" : 323,
+    "hint" : "This track unlocks during Dream Mentor."
+  }, {
+    "name" : "Down and Out",
+    "id" : 301,
+    "tickDuration" : 225,
+    "hint" : "This track unlocks during Dream Mentor."
+  }, {
+    "name" : "On the Up",
+    "id" : 302,
+    "tickDuration" : 228,
+    "hint" : "This track unlocks during Dream Mentor."
+  }, {
+    "name" : "Narnode's Theme",
+    "id" : 303,
+    "tickDuration" : 383,
+    "hint" : "This track unlocks beneath the Grand Tree."
+  }, {
+    "name" : "Monkey Madness",
+    "id" : 303,
+    "tickDuration" : 388,
+    "hint" : "This track unlocks on Ape Atoll."
+  }, {
+    "name" : "Marooned",
+    "id" : 304,
+    "tickDuration" : 328,
+    "hint" : "This track unlocks on Crash Island during Monkey Madness."
+  }, {
+    "name" : "Anywhere",
+    "id" : 305,
+    "tickDuration" : 395,
+    "hint" : "This track unlocks on Ape Atoll."
+  }, {
+    "name" : "Island Life",
+    "id" : 306,
+    "tickDuration" : 368,
+    "hint" : "This track unlocks at the southern part of Ape Atoll."
+  }, {
+    "name" : "Temple",
+    "id" : 307,
+    "tickDuration" : 595,
+    "hint" : "This track unlocks in the temple in Marim at Ape Atoll."
+  }, {
+    "name" : "Suspicious",
+    "id" : 308,
+    "tickDuration" : 415,
+    "hint" : "This track unlocks during Monkey Madness."
+  }, {
+    "name" : "Looking Back",
+    "id" : 309,
+    "tickDuration" : 338,
+    "hint" : "This track unlocks at Varrock Museum."
+  }, {
+    "name" : "Dwarf Theme",
+    "id" : 310,
+    "tickDuration" : 155,
+    "hint" : "This track unlocks at the Dwarven Mine."
+  }, {
+    "name" : "Showdown",
+    "id" : 311,
+    "tickDuration" : 330,
+    "hint" : "This track unlocks during the boss fight in Monkey Madness."
+  }, {
+    "name" : "Find My Way",
+    "id" : 312,
+    "tickDuration" : 416,
+    "hint" : "This track unlocks at the gnome tunnel in Monkey Madness."
+  }, {
+    "name" : "Goblin Village",
+    "id" : 313,
+    "tickDuration" : 158,
+    "hint" : "This track unlocks at Goblin Village."
+  }, {
+    "name" : "Castle Wars",
+    "id" : 314,
+    "tickDuration" : 381,
+    "hint" : "This track unlocks during Castle Wars gameplay"
+  }, {
+    "name" : "Impetuous Clue",
+    "id" : 315,
+    "tickDuration" : 580
+  }, {
+    "name" : "The Navigator",
+    "id" : 316,
+    "tickDuration" : 563,
+    "hint" : "This track unlocks during Fremennik Trials."
+  }, {
+    "name" : "Melodrama",
+    "id" : 317,
+    "tickDuration" : 325,
+    "hint" : "This track unlocks during Castle Wars."
+  }, {
+    "name" : "Ready for Battle",
+    "id" : 318,
+    "tickDuration" : 360,
+    "hint" : "This track unlocks during Castle Wars."
+  }, {
+    "name" : "Stillness",
+    "id" : 319,
+    "tickDuration" : 563,
+    "hint" : "This track unlocks at the Myreque area under Mort Myre."
+  }, {
+    "name" : "Lighthouse",
+    "id" : 320,
+    "tickDuration" : 480,
+    "hint" : "This track unlocks at the Lighthouse."
+  }, {
+    "name" : "Scape Scared",
+    "id" : 321,
+    "tickDuration" : 328,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "Out of the Deep",
+    "id" : 322,
+    "tickDuration" : 411,
+    "hint" : "This track unlocks at the dagannoth cave under the Lighthouse."
+  }, {
+    "name" : "Underground Pass",
+    "id" : 323,
+    "tickDuration" : 420,
+    "hint" : "This track unlocks during Underground Pass."
+  }, {
+    "name" : "Bacround",
+    "id" : 324,
+    "tickDuration" : 403,
+    "hint" : "This track unlocks on Entrana."
+  }, {
+    "name" : "Cave Bacround",
+    "id" : 325,
+    "tickDuration" : 436,
+    "hint" : "This track unlocks at the Dwarven Mine."
+  }, {
+    "name" : "Dark",
+    "id" : 326,
+    "tickDuration" : 286,
+    "hint" : "This track unlocks in the south-east of the Wilderness."
+  }, {
+    "name" : "Dream",
+    "id" : 327,
+    "tickDuration" : 255,
+    "hint" : "This track unlocks on the path between Lumbridge and Draynor."
+  }, {
+    "name" : "March",
+    "id" : 328,
+    "tickDuration" : 186,
+    "hint" : "This track unlocks at King Lathas's Combat Training Camp."
+  }, {
+    "name" : "Regal",
+    "id" : 329,
+    "tickDuration" : 346,
+    "hint" : "This track unlocks at the Rogues' Castle."
+  }, {
+    "name" : "Cellar Song",
+    "id" : 330,
+    "tickDuration" : 331,
+    "hint" : "This track unlocks at the bank vault west of Varrock."
+  }, {
+    "name" : "Scape Sad",
+    "id" : 331,
+    "tickDuration" : 308,
+    "hint" : "This track unlocks at the Demonic Ruins in the Wilderness."
+  }, {
+    "name" : "Scape Wild",
+    "id" : 332,
+    "tickDuration" : 235,
+    "hint" : "This track unlocks in the Wilderness."
+  }, {
+    "name" : "Spooky",
+    "id" : 333,
+    "tickDuration" : 358,
+    "hint" : "This track unlocks at Draynor Manor."
+  }, {
+    "name" : "Pirates of Peril",
+    "id" : 334,
+    "tickDuration" : 345,
+    "hint" : "This track unlocks at the Pirates' Hideout in the Wilderness."
+  }, {
+    "name" : "Romancing the Crone",
+    "id" : 335,
+    "tickDuration" : 318,
+    "hint" : "This track unlocks during Troll Romance."
+  }, {
+    "name" : "Dangerous Road",
+    "id" : 336,
+    "tickDuration" : 346,
+    "hint" : "This track unlocks at the caves below Karamja Volcano."
+  }, {
+    "name" : "Faithless",
+    "id" : 337,
+    "tickDuration" : 326,
+    "hint" : "This track unlocks at the Chaos Temple in the Wilderness."
+  }, {
+    "name" : "Tiptoe",
+    "id" : 338,
+    "tickDuration" : 468,
+    "hint" : "This track unlocks in Draynor Manor cellar."
+  }, {
+    "name" : "The Terrible Tower",
+    "id" : 339,
+    "tickDuration" : 466,
+    "hint" : "This track unlocks at the Slayer Tower."
+  }, {
+    "name" : "Masquerade",
+    "id" : 340,
+    "tickDuration" : 343,
+    "hint" : "This track unlocks in the Fremennik Slayer Dungeon."
+  }, {
+    "name" : "The Slayer",
+    "id" : 341,
+    "tickDuration" : 341,
+    "hint" : "This track unlocks on the east side of the Fremennik Slayer Dungeon."
+  }, {
+    "name" : "Body Parts",
+    "id" : 342,
+    "tickDuration" : 466,
+    "hint" : "This track unlocks at the dungeon south-east of Fenkenstrain's Castle."
+  }, {
+    "name" : "Monster Melee",
+    "id" : 343,
+    "tickDuration" : 376,
+    "hint" : "This track unlocks at the H.A.M. cave."
+  }, {
+    "name" : "Fenkenstrain's Refrain",
+    "id" : 344,
+    "tickDuration" : 413,
+    "hint" : "This track unlocks at Fenkenstrain's Castle."
+  }, {
+    "name" : "Barking Mad",
+    "id" : 345,
+    "tickDuration" : 293,
+    "hint" : "This track unlocks at Werewolf Agility Course."
+  }, {
+    "name" : "Goblin Game",
+    "id" : 346,
+    "tickDuration" : 373,
+    "hint" : "This track unlocks at the goblin cave near the fishing guild."
+  }, {
+    "name" : "Fruits de Mer",
+    "id" : 347,
+    "tickDuration" : 545,
+    "hint" : "This track unlocks on the Fishing Platform."
+  }, {
+    "name" : "Impetuous",
+    "id" : 349,
+    "tickDuration" : 335,
+    "hint" : "This track unlocks during Impetious Impulses."
+  }, {
+    "name" : "Dynasty",
+    "id" : 351,
+    "tickDuration" : 436,
+    "hint" : "This track unlocks at Pollnivneach."
+  }, {
+    "name" : "Scarab",
+    "id" : 352,
+    "tickDuration" : 516,
+    "hint" : "This track unlocks at Jaldraocht, the pyramid visited in Desert Treasure."
+  }, {
+    "name" : "Shipwrecked",
+    "id" : 353,
+    "tickDuration" : 345,
+    "hint" : "This track unlocks at the shipwreck on the north coast of Morytania."
+  }, {
+    "name" : "Phasmatys",
+    "id" : 354,
+    "tickDuration" : 481,
+    "hint" : "This track unlocks at the pool of ectoplasm under the Ectofuntus."
+  }, {
+    "name" : "The Other Side",
+    "id" : 355,
+    "tickDuration" : 550,
+    "hint" : "This track unlocks at Port Phasmatys."
+  }, {
+    "name" : "Settlement",
+    "id" : 356,
+    "tickDuration" : 490,
+    "hint" : "This track unlocks at the Mountain Camp."
+  }, {
+    "name" : "Cave of Beasts",
+    "id" : 357,
+    "tickDuration" : 598,
+    "hint" : "This track unlocks during Mountain Daughter."
+  }, {
+    "name" : "Dragontooth Island",
+    "id" : 358,
+    "tickDuration" : 498,
+    "hint" : "This track unlocks on Dragontooth Island."
+  }, {
+    "name" : "Sarcophagus",
+    "id" : 359,
+    "tickDuration" : 431,
+    "hint" : "This track unlocks in Jaldraocht pyramid visited in Desert Treasure."
+  }, {
+    "name" : "Elvarg's Theme",
+    "id" : 360,
+    "tickDuration" : 141
+  }, {
+    "name" : "Down Below",
+    "id" : 361,
+    "tickDuration" : 300,
+    "hint" : "This track unlocks at the dungeon below Draynor Village."
+  }, {
+    "name" : "Karamja Jam",
+    "id" : 362,
+    "tickDuration" : 380,
+    "hint" : "This track unlocks in the dragon area of Brimhaven Dungeon."
+  }, {
+    "name" : "7th Realm",
+    "id" : 363,
+    "tickDuration" : 418,
+    "hint" : "This track unlocks in Brimhaven Dungeon."
+  }, {
+    "name" : "Pathways",
+    "id" : 364,
+    "tickDuration" : 400,
+    "hint" : "This track unlocks at Brimhaven Dungeons entrance."
+  }, {
+    "name" : "The Maze",
+    "id" : 365,
+    "tickDuration" : 358,
+    "hint" : "This track unlocks during Dragon Slayer I."
+  }, {
+    "name" : "Eagles' Peak",
+    "id" : 366,
+    "tickDuration" : 421,
+    "hint" : "This track unlocks during [[Eagles' Peak]]"
+  }, {
+    "name" : "Barb Wire",
+    "id" : 367,
+    "tickDuration" : 353,
+    "hint" : "This track unlocks while learning barbarian skills."
+  }, {
+    "name" : "Observatory Telescope Cutscene",
+    "id" : 368,
+    "tickDuration" : 211
+  }, {
+    "name" : "Time to Mine",
+    "id" : 369,
+    "tickDuration" : 478,
+    "hint" : "This track unlocks during Between A Rock..."
+  }, {
+    "name" : "In Between",
+    "id" : 370,
+    "tickDuration" : 491,
+    "hint" : "This track unlocks during Between a Rock..."
+  }, {
+    "name" : "School's Out",
+    "id" : 371,
+    "tickDuration" : 325,
+    "hint" : "This track unlocks during a Random Event."
+  }, {
+    "name" : "Far Away",
+    "id" : 372,
+    "tickDuration" : 456,
+    "hint" : "This track unlocks at Lletya."
+  }, {
+    "name" : "Claustrophobia",
+    "id" : 373,
+    "tickDuration" : 530,
+    "hint" : "This track unlocks during Between a Rock..."
+  }, {
+    "name" : "Knightmare",
+    "id" : 374,
+    "tickDuration" : 306,
+    "hint" : "This track unlocks at Black Knights Fortress."
+  }, {
+    "name" : "Fight or Flight",
+    "id" : 375,
+    "tickDuration" : 443,
+    "hint" : "This track unlocks at the slave mine under West Ardougne."
+  }, {
+    "name" : "Temple of Light",
+    "id" : 376,
+    "tickDuration" : 630,
+    "hint" : "This track unlocks during Mourning's End Part II."
+  }, {
+    "name" : "The Golem",
+    "id" : 377,
+    "tickDuration" : 541,
+    "hint" : "This track unlocks near Uzer."
+  }, {
+    "name" : "Forgotten",
+    "id" : 378,
+    "tickDuration" : 511,
+    "hint" : "This track unlocks during the Golem."
+  }, {
+    "name" : "Throne of the Demon",
+    "id" : 379,
+    "tickDuration" : 590,
+    "hint" : "This track unlocks in the Golem quest."
+  }, {
+    "name" : "Dance of the Undead",
+    "id" : 380,
+    "tickDuration" : 393,
+    "hint" : "This track unlocks at the Barrows."
+  }, {
+    "name" : "Dangerous Way",
+    "id" : 381,
+    "tickDuration" : 553,
+    "hint" : "This track unlocks beneath the Barrows."
+  }, {
+    "name" : "Lore and Order",
+    "id" : 382,
+    "tickDuration" : 283,
+    "hint" : "This track unlocks during King's Ransom."
+  }, {
+    "name" : "City of the Dead",
+    "id" : 383,
+    "tickDuration" : 648,
+    "hint" : "This track unlocks during the Contact! quest."
+  }, {
+    "name" : "Hypnotized",
+    "id" : 384,
+    "tickDuration" : 476,
+    "hint" : "This track unlocks during Icthlarin's Little Helper."
+  }, {
+    "name" : "King's Ransom Betrayal",
+    "id" : 385,
+    "tickDuration" : 211
+  }, {
+    "name" : "Too Many Cooks...",
+    "id" : 386,
+    "tickDuration" : 340,
+    "hint" : "This track unlocks during Recipe For Disaster."
+  }, {
+    "name" : "Sphinx",
+    "id" : 387,
+    "tickDuration" : 451,
+    "hint" : "This track unlocks to the north of Sophanem."
+  }, {
+    "name" : "Mirage",
+    "id" : 388,
+    "tickDuration" : 546,
+    "hint" : "This track unlocks during Icthlarin's Little Helper."
+  }, {
+    "name" : "Cave of the Goblins",
+    "id" : 389,
+    "tickDuration" : 468,
+    "hint" : "This track unlocks at the caves beneath Lumbridge Swamp."
+  }, {
+    "name" : "Romper Chomper",
+    "id" : 390,
+    "tickDuration" : 330,
+    "hint" : "This track unlocks at the ogre area south of Castle Wars."
+  }, {
+    "name" : "Strength of Saradomin",
+    "id" : 391,
+    "tickDuration" : 348,
+    "hint" : "This track unlocks in the God Wars Dungeon."
+  }, {
+    "name" : "Zogre Dance",
+    "id" : 392,
+    "tickDuration" : 516,
+    "hint" : "This track unlocks at the zogre area."
+  }, {
+    "name" : "Path of Peril",
+    "id" : 393,
+    "tickDuration" : 648,
+    "hint" : "This track unlocks in Damis's Shadow Dungeon."
+  }, {
+    "name" : "Wayward",
+    "id" : 394,
+    "tickDuration" : 561,
+    "hint" : "This track unlocks at the zogre Dungeon."
+  }, {
+    "name" : "Tale of Keldagrim",
+    "id" : 395,
+    "tickDuration" : 390,
+    "hint" : "This track unlocks on the east side of Keldagrim."
+  }, {
+    "name" : "Land of the Dwarves",
+    "id" : 396,
+    "tickDuration" : 463,
+    "hint" : "This track unlocks on the west side of Keldagrim."
+  }, {
+    "name" : "Tears of Guthix",
+    "id" : 397,
+    "tickDuration" : 665,
+    "hint" : "This track unlocks during Tears of Guthix."
+  }, {
+    "name" : "The Power of Tears",
+    "id" : 398,
+    "tickDuration" : 233,
+    "hint" : "This track unlocks during the Tears of Guthix quest."
+  }, {
+    "name" : "Zamorak Zoo",
+    "id" : 399,
+    "tickDuration" : 301,
+    "hint" : "This track unlocks in the God Wars Dungeon."
+  }, {
+    "name" : "Scape Original",
+    "id" : 400,
+    "tickDuration" : 311,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "The Adventurer",
+    "id" : 401,
+    "tickDuration" : 465,
+    "hint" : "Not unlockable"
+  }, {
+    "name" : "The Rogues' Den",
+    "id" : 402,
+    "tickDuration" : 523,
+    "hint" : "This track unlocks at the Rogues' Den."
+  }, {
+    "name" : "The Far Side",
+    "id" : 403,
+    "tickDuration" : 391,
+    "hint" : "This track unlocks in the Rogue's Den."
+  }, {
+    "name" : "Armageddon",
+    "id" : 404,
+    "tickDuration" : 408,
+    "hint" : "This track unlocks in the God Wars Dungeon."
+  }, {
+    "name" : "Giant Dwarf Meeting",
+    "id" : 405,
+    "tickDuration" : 446
+  }, {
+    "name" : "Sailing Journey 2",
+    "id" : 406,
+    "tickDuration" : 176
+  }, {
+    "name" : "The Lost Melody",
+    "id" : 407,
+    "tickDuration" : 350,
+    "hint" : "This track unlocks at the Dorgesh-Kaan mine."
+  }, {
+    "name" : "Bandos Battalion",
+    "id" : 408,
+    "tickDuration" : 316,
+    "hint" : "This track unlocks in the God Wars Dungeon."
+  }, {
+    "name" : "Frogland",
+    "id" : 409,
+    "tickDuration" : 208,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "Lost Tribe Cutscene",
+    "id" : 410,
+    "tickDuration" : 116
+  }, {
+    "name" : "Evil Bob's Island",
+    "id" : 411,
+    "tickDuration" : 371,
+    "hint" : "This track unlocks during a Random Event."
+  }, {
+    "name" : "Into the Abyss",
+    "id" : 412,
+    "tickDuration" : 450,
+    "hint" : "This track unlocks in Abyssal space."
+  }, {
+    "name" : "The Quizmaster",
+    "id" : 413,
+    "tickDuration" : 425,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "Armadyl Alliance",
+    "id" : 414,
+    "tickDuration" : 300,
+    "hint" : "This track unlocks in the God Wars Dungeon."
+  }, {
+    "name" : "Athlete's Foot",
+    "id" : 415,
+    "tickDuration" : 321,
+    "hint" : "Not unlockable"
+  }, {
+    "name" : "Gnome Village Party",
+    "id" : 416,
+    "tickDuration" : 335,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "Beneath the Stronghold",
+    "id" : 417,
+    "tickDuration" : 280,
+    "hint" : "[[Stronghold Slayer Cave]]"
+  }, {
+    "name" : "Corporal Punishment",
+    "id" : 418,
+    "tickDuration" : 446,
+    "hint" : "This track unlocks during a Random Event."
+  }, {
+    "name" : "Pheasant Peasant",
+    "id" : 419,
+    "tickDuration" : 380,
+    "hint" : "This track unlocks during a Random Event."
+  }, {
+    "name" : "The Lost Tribe",
+    "id" : 420,
+    "tickDuration" : 371,
+    "hint" : "This track unlocks at the goblin mines under Lumbridge."
+  }, {
+    "name" : "Troubled Waters",
+    "id" : 421,
+    "tickDuration" : 335,
+    "hint" : "[[Kraken Cove]]"
+  }, {
+    "name" : "Nether Realm",
+    "id" : 422,
+    "tickDuration" : 425,
+    "hint" : "[[Brimhaven Dungeon]]'s task-only metal dragon area"
+  }, {
+    "name" : "Scorpia Dances",
+    "id" : 423,
+    "tickDuration" : 540,
+    "hint" : "Cave beneath [[Scorpion Pit]]"
+  }, {
+    "name" : "Devils May Care",
+    "id" : 424,
+    "tickDuration" : 366,
+    "hint" : "[[Smoke Devil Dungeon]]"
+  }, {
+    "name" : "The Chosen",
+    "id" : 425,
+    "tickDuration" : 431,
+    "hint" : "This track unlocks during the Recruitment Drive quest."
+  }, {
+    "name" : "Pick & Shovel",
+    "id" : 426,
+    "tickDuration" : 321,
+    "hint" : "This track unlocks by entering the Motherlode Mine."
+  }, {
+    "name" : "Warpath",
+    "id" : 427,
+    "tickDuration" : 473,
+    "hint" : "This track unlocks at the Clan Wars arena."
+  }, {
+    "name" : "Clan Wars",
+    "id" : 428,
+    "tickDuration" : 550,
+    "hint" : "This track unlocks during the Clan Wars activity."
+  }, {
+    "name" : "Shining Spirit",
+    "id" : 429,
+    "tickDuration" : 510,
+    "hint" : "This track unlocks at the Corporeal Beast lair."
+  }, {
+    "name" : "Bane",
+    "id" : 430,
+    "tickDuration" : 823,
+    "hint" : "This track unlocks in the [[Corporeal Beast]]'s Lair."
+  }, {
+    "name" : "Invader",
+    "id" : 430,
+    "tickDuration" : 661,
+    "hint" : "This track unlocks while fighting the Abyssal Sire."
+  }, {
+    "name" : "Grimly Fiendish",
+    "id" : 431,
+    "tickDuration" : 245,
+    "hint" : "Halloween holiday event (2014 onwards)."
+  }, {
+    "name" : "Coil",
+    "id" : 432,
+    "tickDuration" : 485,
+    "hint" : "[[Zulrah]]'s shrine"
+  }, {
+    "name" : "Thrall of the Serpent",
+    "id" : 433,
+    "tickDuration" : 585,
+    "hint" : "[[Zul-Andra]]"
+  }, {
+    "name" : "Have a Blast",
+    "id" : 434,
+    "tickDuration" : 450,
+    "hint" : "This track unlocks during the Blast Furnace minigame."
+  }, {
+    "name" : "Wilderness",
+    "id" : 435,
+    "tickDuration" : 350,
+    "hint" : "This track unlocks near the Hobgoblin mine."
+  }, {
+    "name" : "Forgettable Melody",
+    "id" : 436,
+    "tickDuration" : 390,
+    "hint" : "This track unlocks during Forgettable Tale..."
+  }, {
+    "name" : "Bunny's Sugar Rush",
+    "id" : 437,
+    "tickDuration" : 413,
+    "hint" : "Easter holiday event (2015 onwards)."
+  }, {
+    "name" : "Drunken Dwarf",
+    "id" : 438,
+    "tickDuration" : 115
+  }, {
+    "name" : "Maws, Jaws & Claws",
+    "id" : 439,
+    "tickDuration" : 565,
+    "hint" : "This track unlocks while fighting Cerberus."
+  }, {
+    "name" : "That Sullen Hall",
+    "id" : 440,
+    "tickDuration" : 633,
+    "hint" : "[[Cerberus's Lair]]"
+  }, {
+    "name" : "Dies Irae",
+    "id" : 442,
+    "tickDuration" : 543,
+    "hint" : "[[Halloween event]] (2015 onwards)"
+  }, {
+    "name" : "Nox Irae",
+    "id" : 443,
+    "tickDuration" : 320,
+    "hint" : "[[Halloween event]] (2015 onwards)"
+  }, {
+    "name" : "Soul Fall",
+    "id" : 444,
+    "tickDuration" : 393,
+    "hint" : "[[Soul altar]]"
+  }, {
+    "name" : "Rugged Terrain",
+    "id" : 445,
+    "tickDuration" : 411,
+    "hint" : "[[Graveyard of Heroes]]"
+  }, {
+    "name" : "Dwarven Domain",
+    "id" : 446,
+    "tickDuration" : 321,
+    "hint" : "[[Lovakengj]]"
+  }, {
+    "name" : "Over to Nardah",
+    "id" : 447,
+    "tickDuration" : 446,
+    "hint" : "This track unlocks at Nardah."
+  }, {
+    "name" : "The Monsters Below",
+    "id" : 448,
+    "tickDuration" : 395,
+    "hint" : "This track unlocks in Waterbirth Island Dungeon."
+  }, {
+    "name" : "The Militia",
+    "id" : 449,
+    "tickDuration" : 378,
+    "hint" : "[[Shayzien]]"
+  }, {
+    "name" : "Down by the Docks",
+    "id" : 450,
+    "tickDuration" : 320,
+    "hint" : "This track unlocks in Port Piscarilius."
+  }, {
+    "name" : "Kourend the Magnificent",
+    "id" : 451,
+    "tickDuration" : 476,
+    "hint" : "[[Kourend Castle]]"
+  }, {
+    "name" : "The Forlorn Homestead",
+    "id" : 452,
+    "tickDuration" : 608,
+    "hint" : "[[Hosidius]], southern coast"
+  }, {
+    "name" : "Jungle Hunt",
+    "id" : 453,
+    "tickDuration" : 433,
+    "hint" : "This track unlocks at the Feldip Hunter area."
+  }, {
+    "name" : "Home Sweet Home",
+    "id" : 454,
+    "tickDuration" : 535,
+    "hint" : "This track unlocks at your player-owned house."
+  }, {
+    "name" : "Arcane",
+    "id" : 455,
+    "tickDuration" : 278,
+    "hint" : "This track unlocks in Arceuus."
+  }, {
+    "name" : "Country Jig",
+    "id" : 456,
+    "tickDuration" : 295,
+    "hint" : "[[Hosidius]]"
+  }, {
+    "name" : "Monkey Trouble",
+    "id" : 457,
+    "tickDuration" : 531,
+    "hint" : "This track unlocks during the Monkey Madness II quest."
+  }, {
+    "name" : "Scape Ape",
+    "id" : 458,
+    "tickDuration" : 320,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "Monkey Sadness",
+    "id" : 459,
+    "tickDuration" : 613,
+    "hint" : "This track unlocks during the Monkey Madness II quest."
+  }, {
+    "name" : "Joy of the Hunt",
+    "id" : 460,
+    "tickDuration" : 383,
+    "hint" : "This track unlocks at the Feldip Hunter area."
+  }, {
+    "name" : "The Desolate Isle",
+    "id" : 461,
+    "tickDuration" : 656,
+    "hint" : "This track unlocks in Waterbirth Island."
+  }, {
+    "name" : "Spirits of the Elid",
+    "id" : 462,
+    "tickDuration" : 635,
+    "hint" : "This track unlocks during Spirits of the Elid."
+  }, {
+    "name" : "Fire and Brimstone",
+    "id" : 463,
+    "tickDuration" : 433,
+    "hint" : "This track unlocks in the TzHaar Fight Pit activity."
+  }, {
+    "name" : "Desert Heat",
+    "id" : 465,
+    "tickDuration" : 440,
+    "hint" : "This track unlocks in the desert north of Nardah."
+  }, {
+    "name" : "Scape Ground",
+    "id" : 466,
+    "tickDuration" : 348,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "Monkey Business",
+    "id" : 467,
+    "tickDuration" : 538,
+    "hint" : "This track unlocks during the Monkey Madness II quest."
+  }, {
+    "name" : "Monkey Badness",
+    "id" : 468,
+    "tickDuration" : 500,
+    "hint" : "This track unlocks during the Monkey Madness II quest."
+  }, {
+    "name" : "In the Pits",
+    "id" : 469,
+    "tickDuration" : 406,
+    "hint" : "This track unlocks in Mor Ul Rek."
+  }, {
+    "name" : "Strange Place",
+    "id" : 470,
+    "tickDuration" : 528,
+    "hint" : "This track unlocks during A Tail of Two Cats."
+  }, {
+    "name" : "Brew Hoo Hoo!",
+    "id" : 471,
+    "tickDuration" : 430,
+    "hint" : "This track unlocks at Port Phasmatys brewery."
+  }, {
+    "name" : "Darkly Altared",
+    "id" : 472,
+    "tickDuration" : 473,
+    "hint" : "[[Skotizo]]'s chamber"
+  }, {
+    "name" : "Massacre",
+    "id" : 472,
+    "tickDuration" : 351,
+    "hint" : "Not Unlockable"
+  }, {
+    "name" : "TzHaar!",
+    "id" : 473,
+    "tickDuration" : 370,
+    "hint" : "This track unlocks in the TzHaar Fight Caves."
+  }, {
+    "name" : "Last Man Standing",
+    "id" : 474,
+    "tickDuration" : 611,
+    "hint" : "[[Last Man Standing]] minigame"
+  }, {
+    "name" : "Wild Side",
+    "id" : 475,
+    "tickDuration" : 526,
+    "hint" : "This track unlocks to the north of the Lava Maze in the Wilderness."
+  }, {
+    "name" : "Dead Can Dance",
+    "id" : 476,
+    "tickDuration" : 368,
+    "hint" : "This track unlocks at the Graveyard of Shadows"
+  }, {
+    "name" : "The Doors of Dinh",
+    "id" : 477,
+    "tickDuration" : 511,
+    "hint" : "[[Wintertodt Camp]]"
+  }, {
+    "name" : "The Cellar Dwellers",
+    "id" : 478,
+    "tickDuration" : 516,
+    "hint" : "This music track was unlocked during Hazeel Cult."
+  }, {
+    "name" : "Jungle Troubles",
+    "id" : 479,
+    "tickDuration" : 385,
+    "hint" : "This track unlocks in the jungle north-east of Tai Bwo Wannai."
+  }, {
+    "name" : "Catch Me If You Can",
+    "id" : 481,
+    "tickDuration" : 355,
+    "hint" : "This track unlocks at the Ardougne Rat Pits."
+  }, {
+    "name" : "Rat a Tat Tat",
+    "id" : 482,
+    "tickDuration" : 291,
+    "hint" : "This track unlocks at the Varrock Rat Pits."
+  }, {
+    "name" : "Ice and Fire",
+    "id" : 483,
+    "tickDuration" : 338,
+    "hint" : "[[Wintertodt]]'s prison"
+  }, {
+    "name" : "Bob's on Holiday",
+    "id" : 484,
+    "tickDuration" : 253
+  }, {
+    "name" : "The Noble Rodent",
+    "id" : 485,
+    "tickDuration" : 318,
+    "hint" : "This track unlocks during Rat Catchers."
+  }, {
+    "name" : "Altar Ego",
+    "id" : 486,
+    "tickDuration" : 496,
+    "hint" : "This track unlocks in the Ourania Cave."
+  }, {
+    "name" : "Lower Depths",
+    "id" : 487,
+    "tickDuration" : 771,
+    "hint" : "[[Chambers of Xeric]]"
+  }, {
+    "name" : "March of the Shayzien",
+    "id" : 488,
+    "tickDuration" : 460,
+    "hint" : "[[Shayziens' Wall]]"
+  }, {
+    "name" : "Bubble and Squeak",
+    "id" : 489,
+    "tickDuration" : 316,
+    "hint" : "This track unlocks at the Keldagrim Rat Pits."
+  }, {
+    "name" : "Sarim's Vermin",
+    "id" : 490,
+    "tickDuration" : 331,
+    "hint" : "This unlocks during Ratcatchers."
+  }, {
+    "name" : "Rat Hunt",
+    "id" : 491,
+    "tickDuration" : 331,
+    "hint" : "This track unlocks during Rat Catchers."
+  }, {
+    "name" : "Upper Depths",
+    "id" : 492,
+    "tickDuration" : 413,
+    "hint" : "This track unlocks upon entering the Chambers of Xeric."
+  }, {
+    "name" : "Fire in the Deep",
+    "id" : 493,
+    "tickDuration" : 635,
+    "hint" : "This track unlocks in the Chambers of Xeric."
+  }, {
+    "name" : "Ascent",
+    "id" : 494,
+    "tickDuration" : 681,
+    "hint" : "This track unlocks at Mount Quidamortem."
+  }, {
+    "name" : "The Desolate Mage",
+    "id" : 495,
+    "tickDuration" : 663,
+    "hint" : "[[Mount Quidamortem]]"
+  }, {
+    "name" : "The Trade Parade",
+    "id" : 496,
+    "tickDuration" : 453,
+    "hint" : "[[Grand Exchange]]"
+  }, {
+    "name" : "Aye Car Rum Ba",
+    "id" : 497,
+    "tickDuration" : 428,
+    "hint" : "This track unlocks at Braindeath Island."
+  }, {
+    "name" : "Blistering Barnacles",
+    "id" : 498,
+    "tickDuration" : 395,
+    "hint" : "This track unlocks on Braindeath Island's mountain."
+  }, {
+    "name" : "Darkness in the Depths",
+    "id" : 499,
+    "tickDuration" : 510,
+    "hint" : "[[Chasm of Fire]]"
+  }, {
+    "name" : "Inferno",
+    "id" : 500,
+    "tickDuration" : 493,
+    "hint" : "This music track unlocks at the Inferno."
+  }, {
+    "name" : "Distant Land",
+    "id" : 501,
+    "tickDuration" : 601,
+    "hint" : "This track unlocks at Burgh de Rott."
+  }, {
+    "name" : "Mor Ul Rek",
+    "id" : 502,
+    "tickDuration" : 451,
+    "hint" : "This music track unlocks in the city of Mor Ul Rek."
+  }, {
+    "name" : "Lagoon",
+    "id" : 503,
+    "tickDuration" : 466,
+    "hint" : "This track unlocks while [[underwater]] in [[Fossil Island]]."
+  }, {
+    "name" : "Fangs for the Memory",
+    "id" : 504,
+    "tickDuration" : 335,
+    "hint" : "This track unlocks during In Aid of the Myreque."
+  }, {
+    "name" : "Pharaoh's Tomb",
+    "id" : 505,
+    "tickDuration" : 270,
+    "hint" : "This track unlocks at the Agility Pyramid."
+  }, {
+    "name" : "Land Down Under",
+    "id" : 506,
+    "tickDuration" : 323,
+    "hint" : "This track unlocks during Royal Trouble."
+  }, {
+    "name" : "Lava is Mine",
+    "id" : 507,
+    "tickDuration" : 398,
+    "hint" : "This track unlocks at the [[Volcanic Mine]]."
+  }, {
+    "name" : "Meddling Kids",
+    "id" : 508,
+    "tickDuration" : 331,
+    "hint" : "This track unlocks during Royal Trouble."
+  }, {
+    "name" : "Corridors of Power",
+    "id" : 509,
+    "tickDuration" : 538,
+    "hint" : "This track unlocks during Royal Trouble."
+  }, {
+    "name" : "Slither and Thither",
+    "id" : 510,
+    "tickDuration" : 216,
+    "hint" : "This track at the sea snake cave in Royal Trouble."
+  }, {
+    "name" : "In the Clink",
+    "id" : 511,
+    "tickDuration" : 393,
+    "hint" : "This track unlocks during the Prison Pete random event."
+  }, {
+    "name" : "Preservation",
+    "id" : 512,
+    "tickDuration" : 208,
+    "hint" : "This track unlocks upon arriving to [[Fossil Island]]."
+  }, {
+    "name" : "Preserved",
+    "id" : 513,
+    "tickDuration" : 205,
+    "hint" : "[[Fossil Island Volcano]], [[Tar Swamp]]"
+  }, {
+    "name" : "Fossilised",
+    "id" : 514,
+    "tickDuration" : 368,
+    "hint" : "This track unlocks in the [[Wyvern Cave]]"
+  }, {
+    "name" : "Mudskipper Melody",
+    "id" : 515,
+    "tickDuration" : 405,
+    "hint" : "This track unlocks at Mudskipper Point."
+  }, {
+    "name" : "Subterranea",
+    "id" : 517,
+    "tickDuration" : 461,
+    "hint" : "This track unlocks in Waterbirth Island Dungeon or Crabclaw Caves."
+  }, {
+    "name" : "Tempest",
+    "id" : 518,
+    "tickDuration" : 383,
+    "hint" : "This track unlocks during the fight with the [[Grotesque Guardians]]."
+  }, {
+    "name" : "Incantation",
+    "id" : 519,
+    "tickDuration" : 566,
+    "hint" : "This track unlocks during Shadow of the Storm."
+  }, {
+    "name" : "Grip of the Talon",
+    "id" : 520,
+    "tickDuration" : 283,
+    "hint" : "This track unlocks during Shadow of the Storm."
+  }, {
+    "name" : "Revenants",
+    "id" : 521,
+    "tickDuration" : 466,
+    "hint" : "This track unlocks in the [[Revenant Caves]]."
+  }, {
+    "name" : "On the Shore",
+    "id" : 522,
+    "tickDuration" : 503,
+    "hint" : "This music track unlocks at Corsair Cove."
+  }, {
+    "name" : "Land of Snow",
+    "id" : 523,
+    "tickDuration" : 268,
+    "hint" : "This track unlocks during the 2017 Christmas event and onwards."
+  }, {
+    "name" : "Title Fight",
+    "id" : 525,
+    "tickDuration" : 306,
+    "hint" : "This track unlocks at the Champions's Challenge underground area."
+  }, {
+    "name" : "Winter Funfair",
+    "id" : 526,
+    "tickDuration" : 430,
+    "hint" : "This track unlocks during the 2017 Christmas Event and onwards."
+  }, {
+    "name" : "The Forsaken",
+    "id" : 527,
+    "tickDuration" : 563,
+    "hint" : "This track unlocks during [[Dragon Slayer II]]."
+  }, {
+    "name" : "Victory is Mine",
+    "id" : 528,
+    "tickDuration" : 315,
+    "hint" : "This track unlocks in the Champion's Challenge arena."
+  }, {
+    "name" : "Woe of the Wyvern",
+    "id" : 529,
+    "tickDuration" : 390,
+    "hint" : "This track unlocks at the Asgarnian Ice Dungeon's wyvern area."
+  }, {
+    "name" : "In the Brine",
+    "id" : 530,
+    "tickDuration" : 343,
+    "hint" : "This track unlocks on Mos Le'Harmless."
+  }, {
+    "name" : "Lucid Nightmare",
+    "id" : 531,
+    "tickDuration" : 256,
+    "hint" : "This track unlocks during [[Dragon Slayer II]]."
+  }, {
+    "name" : "Diango's Little Helpers",
+    "id" : 532,
+    "tickDuration" : 381,
+    "hint" : "This track unlocks at Diango's Christmas workshop."
+  }, {
+    "name" : "Roll the Bones",
+    "id" : 533,
+    "tickDuration" : 366,
+    "hint" : "This unlocks in the Mage Training Arena."
+  }, {
+    "name" : "Mind over Matter",
+    "id" : 534,
+    "tickDuration" : 353,
+    "hint" : "This track unlocks at the Mage Training Arena Telekinetic Theatre."
+  }, {
+    "name" : "Golden Touch",
+    "id" : 535,
+    "tickDuration" : 400,
+    "hint" : "This track unlocks at the Mage Training Arena's Alchemists' Playground."
+  }, {
+    "name" : "Dogs of War",
+    "id" : 537,
+    "tickDuration" : 571,
+    "hint" : "This track unlocks in the Stronghold of Security."
+  }, {
+    "name" : "Autumn in Bridgelum",
+    "id" : 538,
+    "tickDuration" : 346,
+    "hint" : "Not unlockable"
+  }, {
+    "name" : "Lucid Dream",
+    "id" : 539,
+    "tickDuration" : 331,
+    "hint" : "This track unlocks during [[Dragon Slayer II]]."
+  }, {
+    "name" : "Oncoming Foe",
+    "id" : 540,
+    "tickDuration" : 550,
+    "hint" : "This track unlocks during [[Dragon Slayer II]]."
+  }, {
+    "name" : "The Enchanter",
+    "id" : 541,
+    "tickDuration" : 418,
+    "hint" : "This can be unlocked in the Mage Training Arena."
+  }, {
+    "name" : "Lament",
+    "id" : 542,
+    "tickDuration" : 481,
+    "hint" : "This track unlocks during Enakhra's Lament."
+  }, {
+    "name" : "The Dragon Slayer",
+    "id" : 543,
+    "tickDuration" : 776,
+    "hint" : "This track unlocks during [[Dragon Slayer II]]."
+  }, {
+    "name" : "Making Waves",
+    "id" : 544,
+    "tickDuration" : 338,
+    "hint" : "This track unlocks during Swan Song."
+  }, {
+    "name" : "Cabin Fever",
+    "id" : 545,
+    "tickDuration" : 291,
+    "hint" : "This track unlocks during Cabin Fever."
+  }, {
+    "name" : "Last Stand",
+    "id" : 546,
+    "tickDuration" : 195,
+    "hint" : "This track unlocks during Swan Song."
+  }, {
+    "name" : "Scape Santa",
+    "id" : 547,
+    "tickDuration" : 411,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "Poles Apart",
+    "id" : 548,
+    "tickDuration" : 465,
+    "hint" : "This track unlocks at Trollweiss and Rellekka hunter area."
+  }, {
+    "name" : "Relics",
+    "id" : 549,
+    "tickDuration" : 433,
+    "hint" : "This track unlocks during [[Dragon Slayer II]]."
+  }, {
+    "name" : "Mythical",
+    "id" : 550,
+    "tickDuration" : 400,
+    "hint" : "This track unlocks in the [[Myths' Guild]]."
+  }, {
+    "name" : "The Walking Dead",
+    "id" : 551,
+    "tickDuration" : 390,
+    "hint" : "This track unlocks in the [[Shayzien Crypts]]."
+  }, {
+    "name" : "Scape Five",
+    "id" : 552,
+    "tickDuration" : 713,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "Museum Medley",
+    "id" : 553,
+    "tickDuration" : 1116,
+    "hint" : "This track unlocks in the [[Old School Museum]]."
+  }, {
+    "name" : "Roots and Flutes",
+    "id" : 554,
+    "tickDuration" : 460,
+    "hint" : "This track unlocks during the fight with Bryophyta."
+  }, {
+    "name" : "Welcome to the Theatre",
+    "id" : 556,
+    "tickDuration" : 500,
+    "hint" : "This track unlocks at Ver Sinhaza."
+  }, {
+    "name" : "Bloodbath",
+    "id" : 557,
+    "tickDuration" : 281,
+    "hint" : "This track unlocks at [[Slepe]], east of [[Darkmeyer]]."
+  }, {
+    "name" : "Food for Thought",
+    "id" : 558,
+    "tickDuration" : 460,
+    "hint" : "This track unlocks in the Stronghold of Security."
+  }, {
+    "name" : "Malady",
+    "id" : 559,
+    "tickDuration" : 458,
+    "hint" : "This track unlocks in the Stronghold of Security."
+  }, {
+    "name" : "Dance of Death",
+    "id" : 560,
+    "tickDuration" : 475,
+    "hint" : "This track unlocks in the Stronghold of Security."
+  }, {
+    "name" : "Conspiracy",
+    "id" : 561,
+    "tickDuration" : 430,
+    "hint" : "This track unlocks during [[A Taste of Hope]]."
+  }, {
+    "name" : "Vanescula",
+    "id" : 562,
+    "tickDuration" : 266,
+    "hint" : "This track unlocks during A Taste of Hope."
+  }, {
+    "name" : "Bait",
+    "id" : 563,
+    "tickDuration" : 338,
+    "hint" : "This track unlocks during the A Taste of Hope quest."
+  }, {
+    "name" : "Last King of the Yarasa",
+    "id" : 564,
+    "tickDuration" : 706,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "Wrath and Ruin",
+    "id" : 565,
+    "tickDuration" : 383,
+    "hint" : "This track unlocks at the anger room of Tolna's Rift."
+  }, {
+    "name" : "It's not over 'til...",
+    "id" : 566,
+    "tickDuration" : 428,
+    "hint" : "This track unlocks in the Theatre of Blood."
+  }, {
+    "name" : "Predator Xarpus",
+    "id" : 567,
+    "tickDuration" : 493,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "Storm Brew",
+    "id" : 568,
+    "tickDuration" : 290,
+    "hint" : "This track unlocks at the killerwatt plane."
+  }, {
+    "name" : "The Maiden's Anger",
+    "id" : 569,
+    "tickDuration" : 688,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "The Maiden's Sorrow",
+    "id" : 570,
+    "tickDuration" : 896,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "The Nightmare Continues",
+    "id" : 571,
+    "tickDuration" : 756,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "The Fat Lady Sings",
+    "id" : 572,
+    "tickDuration" : 680,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "The Mad Mole",
+    "id" : 573,
+    "tickDuration" : 365,
+    "hint" : "This track unlocks at Falador Mole Lair."
+  }, {
+    "name" : "Fairy Dragon Cutscene",
+    "id" : 574,
+    "tickDuration" : 183
+  }, {
+    "name" : "Chickened Out",
+    "id" : 575,
+    "tickDuration" : 303,
+    "hint" : "This track unlocks at the Evil Chicken's lair."
+  }, {
+    "name" : "Davy Jones' Locker",
+    "id" : 576,
+    "tickDuration" : 308,
+    "hint" : "This track unlocks during Recipe for Disaster."
+  }, {
+    "name" : "Mastermindless",
+    "id" : 577,
+    "tickDuration" : 400,
+    "hint" : "This track unlocks during Recipe for Disaster."
+  }, {
+    "name" : "Welcome to my Nightmare",
+    "id" : 578,
+    "tickDuration" : 765,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "Arachnids of Vampyrium",
+    "id" : 579,
+    "tickDuration" : 686,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "Dance of the Nylocas",
+    "id" : 580,
+    "tickDuration" : 591,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "Power of the Shadow Realm",
+    "id" : 581,
+    "tickDuration" : 755,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "The Curtain Closes",
+    "id" : 582,
+    "tickDuration" : 713,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "Chef Surprise",
+    "id" : 583,
+    "tickDuration" : 260,
+    "hint" : "This track unlocks during Recipe for Disaster."
+  }, {
+    "name" : "The Dark Beast Sotetseg",
+    "id" : 584,
+    "tickDuration" : 601,
+    "hint" : "[[Theatre of Blood]]"
+  }, {
+    "name" : "Barren Land",
+    "id" : 585,
+    "tickDuration" : 533,
+    "hint" : "This track unlocks in the icy lands around [[Weiss]]."
+  }, {
+    "name" : "Everlasting Fire",
+    "id" : 586,
+    "tickDuration" : 380,
+    "hint" : "This track unlocks in the north-east corner of the Wilderness."
+  }, {
+    "name" : "Null and Void",
+    "id" : 587,
+    "tickDuration" : 365,
+    "hint" : "This track unlocks at the Pest Control landing area."
+  }, {
+    "name" : "Pest Control",
+    "id" : 588,
+    "tickDuration" : 438,
+    "hint" : "This track unlocks in When you first play Pest Control."
+  }, {
+    "name" : "Snowflake & My Arm",
+    "id" : 589,
+    "tickDuration" : 128,
+    "hint" : "This track unlocks during the Making Friends with My Arm quest."
+  }, {
+    "name" : "Lumbering",
+    "id" : 590,
+    "tickDuration" : 626,
+    "hint" : "This track unlocks in Weiss."
+  }, {
+    "name" : "Tomb Raider",
+    "id" : 591,
+    "tickDuration" : 555,
+    "hint" : "This track unlocks during the Pyramid Plunder activity."
+  }, {
+    "name" : "Troll Shuffle",
+    "id" : 592,
+    "tickDuration" : 588,
+    "hint" : "This track unlocks during the [[Making Friends with My Arm]] quest."
+  }, {
+    "name" : "Mother Ruckus",
+    "id" : 593,
+    "tickDuration" : 435,
+    "hint" : "This track unlocks during the Making Friends with My Arm quest"
+  }, {
+    "name" : "No Way Out",
+    "id" : 594,
+    "tickDuration" : 523,
+    "hint" : "This track unlocks at the Hopelessness Room of Tolna's Rift Area."
+  }, {
+    "name" : "Way of the Wyrm",
+    "id" : 595,
+    "tickDuration" : 551,
+    "hint" : "This track unlocks in the [[Karuulm Slayer Dungeon]]."
+  }, {
+    "name" : "Creeping Vines",
+    "id" : 596,
+    "tickDuration" : 731,
+    "hint" : "This track unlocks in the Farming Guild"
+  }, {
+    "name" : "Newbie Farming",
+    "id" : 597,
+    "tickDuration" : 375,
+    "hint" : "This track unlocks south of the Farming Guild."
+  }, {
+    "name" : "Alchemical Attack!",
+    "id" : 598,
+    "tickDuration" : 633,
+    "hint" : "This track unlocks while fighting the Alchemical Hydra."
+  }, {
+    "name" : "Hoe Down",
+    "id" : 599,
+    "tickDuration" : 351,
+    "hint" : "This track unlocks in the Farming Guild."
+  }, {
+    "name" : "Method of Madness",
+    "id" : 600,
+    "tickDuration" : 243,
+    "hint" : "This track unlocks at the Confusion Room of Tolna's Rift Area."
+  }, {
+    "name" : "A Thorn in My Side",
+    "id" : 601,
+    "tickDuration" : 738,
+    "hint" : "This track unlocks while fighting the Hespori."
+  }, {
+    "name" : "Fear and Loathing",
+    "id" : 602,
+    "tickDuration" : 503,
+    "hint" : "This track unlocks at the fear room of Tolna's Rift Area."
+  }, {
+    "name" : "Funny Bunnies",
+    "id" : 603,
+    "tickDuration" : 360,
+    "hint" : "This track unlocks in an Easter holiday event (2006 onwards)."
+  }, {
+    "name" : "Assault and Battery",
+    "id" : 604,
+    "tickDuration" : 371,
+    "hint" : "This track unlocks during the Barbarian Assault minigame."
+  }, {
+    "name" : "On the Frontline",
+    "id" : 605,
+    "tickDuration" : 475,
+    "hint" : "This track unlocks on the Kebos Battlefront."
+  }, {
+    "name" : "The Depths",
+    "id" : 606,
+    "tickDuration" : 515,
+    "hint" : "This track unlocks during Contact!"
+  }, {
+    "name" : "Stuck in the Mire",
+    "id" : 607,
+    "tickDuration" : 671,
+    "hint" : "This track unlocks in Kebos Swamp."
+  }, {
+    "name" : "Kanon of Kahlith",
+    "id" : 608,
+    "tickDuration" : 645,
+    "hint" : "This track unlocks in the Karuulm Slayer Dungeon."
+  }, {
+    "name" : "A Farmer's Grind",
+    "id" : 609,
+    "tickDuration" : 498,
+    "hint" : "This track unlocks in the Farming Guild."
+  }, {
+    "name" : "Distillery Hilarity",
+    "id" : 610,
+    "tickDuration" : 421,
+    "hint" : "This track unlocks at Trouble Brewing's distillery minigame lobby."
+  }, {
+    "name" : "Trouble Brewing",
+    "id" : 611,
+    "tickDuration" : 265,
+    "hint" : "This track unlocks during Trouble Brewing."
+  }, {
+    "name" : "Head to Head",
+    "id" : 612,
+    "tickDuration" : 338,
+    "hint" : "This track unlocks during the Evil twin random event."
+  }, {
+    "name" : "Grow Grow Grow",
+    "id" : 613,
+    "tickDuration" : 576,
+    "hint" : "This track unlocks in the Farming Guild."
+  }, {
+    "name" : "Pinball Wizard",
+    "id" : 614,
+    "tickDuration" : 411,
+    "hint" : "This track unlocks during the Pinball random event."
+  }, {
+    "name" : "Beetle Juice",
+    "id" : 615,
+    "tickDuration" : 243,
+    "hint" : "This track unlocks during Contact!"
+  }, {
+    "name" : "Back to Life",
+    "id" : 616,
+    "tickDuration" : 400,
+    "hint" : "This track unlocks in Sophanem."
+  }, {
+    "name" : "Getting Down to Business",
+    "id" : 617,
+    "tickDuration" : 383,
+    "hint" : "This track unlocks east of the Farming Guild."
+  }, {
+    "name" : "Gill Bill",
+    "id" : 618,
+    "tickDuration" : 658,
+    "hint" : "This track unlocks on Molch Island."
+  }, {
+    "name" : "Spy Games",
+    "id" : 619,
+    "tickDuration" : 360,
+    "hint" : "Not unlockable"
+  }, {
+    "name" : "Where Eagles Lair",
+    "id" : 620,
+    "tickDuration" : 378,
+    "hint" : "This track unlocks during Eagles' Peak."
+  }, {
+    "name" : "Scape Home",
+    "id" : 621,
+    "tickDuration" : 413,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "Waking Dream",
+    "id" : 622,
+    "tickDuration" : 326,
+    "hint" : "This track unlocks during your dream in Lunar Diplomacy."
+  }, {
+    "name" : "Dreamstate",
+    "id" : 623,
+    "tickDuration" : 426,
+    "hint" : "This track unlocks during your dream in Lunar Diplomacy."
+  }, {
+    "name" : "The Forsaken Tower",
+    "id" : 624,
+    "tickDuration" : 508,
+    "hint" : "This track unlocks during The Forsaken Tower quest."
+  }, {
+    "name" : "The Lunar Isle",
+    "id" : 625,
+    "tickDuration" : 361,
+    "hint" : "This track unlocks at Lunar Isle."
+  }, {
+    "name" : "Way of the Enchanter",
+    "id" : 626,
+    "tickDuration" : 356,
+    "hint" : "This track unlocks in the dungeon beneath Lunar Isle."
+  }, {
+    "name" : "Isle of Everywhere",
+    "id" : 627,
+    "tickDuration" : 276,
+    "hint" : "This track unlocks on the east coast of Lunar Isle."
+  }, {
+    "name" : "Servants of Strife",
+    "id" : 628,
+    "tickDuration" : 361,
+    "hint" : "This track unlocks in Molch."
+  }, {
+    "name" : "Burning Desire",
+    "id" : 629,
+    "tickDuration" : 680,
+    "hint" : "This track unlocks at Mount Karuulm."
+  }, {
+    "name" : "The Galleon",
+    "id" : 630,
+    "tickDuration" : 386,
+    "hint" : "This track unlocks during Lunar Diplomacy."
+  }, {
+    "name" : "Life's a Beach!",
+    "id" : 631,
+    "tickDuration" : 465,
+    "hint" : "This track unlocks at the coastal area of Mos Le'Harmless."
+  }, {
+    "name" : "Little Cave of Horrors",
+    "id" : 632,
+    "tickDuration" : 293,
+    "hint" : "This track unlocks in the cave horror dungeon beneath Mos Le'Harmless."
+  }, {
+    "name" : "On the Wing",
+    "id" : 633,
+    "tickDuration" : 420,
+    "hint" : "This track unlocks at the Falconer area, north-east of Eagle's Peak."
+  }, {
+    "name" : "Warriors' Guild",
+    "id" : 634,
+    "tickDuration" : 316,
+    "hint" : "This track unlocks in the Warriors' Guild."
+  }, {
+    "name" : "Ful to the Brim",
+    "id" : 635,
+    "tickDuration" : 453,
+    "hint" : "This track unlocks in the Karuulm Slayer Dungeon."
+  }, {
+    "name" : "A Walk in the Woods",
+    "id" : 636,
+    "tickDuration" : 173,
+    "hint" : "This track unlocks in the Kourend Woodland."
+  }, {
+    "name" : "Box of Delights",
+    "id" : 637,
+    "tickDuration" : 293,
+    "hint" : "This track unlocks in the Mimic Chest."
+  }, {
+    "name" : "H.A.M. Fisted",
+    "id" : 638,
+    "tickDuration" : 406,
+    "hint" : "This track unlocks during Death to the Dorgeshuun."
+  }, {
+    "name" : "A Forgotten Religion",
+    "id" : 639,
+    "tickDuration" : 646,
+    "hint" : "This track unlocks in the Forthos Dungeon."
+  }, {
+    "name" : "Sigmund's Showdown",
+    "id" : 640,
+    "tickDuration" : 355,
+    "hint" : "This track unlocks during Death to the Dorgeshuun."
+  }, {
+    "name" : "Sarachnis",
+    "id" : 641,
+    "tickDuration" : 623,
+    "hint" : "This track unlocks in Sarachnis' lair."
+  }, {
+    "name" : "No Pasaran",
+    "id" : 642,
+    "tickDuration" : 405,
+    "hint" : "This track unlocks during the Song of the Elves quest."
+  }, {
+    "name" : "The Last Shanty",
+    "id" : 643,
+    "tickDuration" : 400,
+    "hint" : "This track unlocks during the Darkness of Hallowvale."
+  }, {
+    "name" : "Safety in Numbers",
+    "id" : 643,
+    "tickDuration" : 298,
+    "hint" : "This track unlocks during the A Porcine of Interest quest."
+  }, {
+    "name" : "Iorwerth's Lament",
+    "id" : 644,
+    "tickDuration" : 695,
+    "hint" : "This track unlocks in Prifddinas."
+  }, {
+    "name" : "Song of the Elves",
+    "id" : 645,
+    "tickDuration" : 571,
+    "hint" : "This track unlocks during the Song of the Elves quest."
+  }, {
+    "name" : "A Dangerous Game",
+    "id" : 646,
+    "tickDuration" : 616,
+    "hint" : "This track unlocks in the Wilderness Slayer Cave."
+  }, {
+    "name" : "Night of the Vampyre",
+    "id" : 646,
+    "tickDuration" : 606,
+    "hint" : "This track unlocks during the Darkness of Hallowvale."
+  }, {
+    "name" : "Elven Guardians",
+    "id" : 647,
+    "tickDuration" : 625,
+    "hint" : "This track unlocks in Prifddinas."
+  }, {
+    "name" : "The Tower of Voices",
+    "id" : 648,
+    "tickDuration" : 715,
+    "hint" : "This track unlocks in Prifddinas."
+  }, {
+    "name" : "Trahaearn Toil",
+    "id" : 649,
+    "tickDuration" : 536,
+    "hint" : "This track unlocks in Prifddinas."
+  }, {
+    "name" : "The Gauntlet",
+    "id" : 650,
+    "tickDuration" : 1048,
+    "hint" : "This track unlocks in the Gauntlet."
+  }, {
+    "name" : "Architects of Prifddinas",
+    "id" : 651,
+    "tickDuration" : 565,
+    "hint" : "This track unlocks in Prifddinas."
+  }, {
+    "name" : "The Fragment",
+    "id" : 652,
+    "tickDuration" : 466,
+    "hint" : "This track unlocks during the Song of the Elves quest."
+  }, {
+    "name" : "Faith of the Hefin",
+    "id" : 653,
+    "tickDuration" : 643,
+    "hint" : "This track unlocks in Prifddinas."
+  }, {
+    "name" : "Elven Seed",
+    "id" : 654,
+    "tickDuration" : 413,
+    "hint" : "This track unlocks in Gwenith."
+  }, {
+    "name" : "Mystics of Nature",
+    "id" : 655,
+    "tickDuration" : 746,
+    "hint" : "This track unlocks in Prifddinas."
+  }, {
+    "name" : "Stand Up and Be Counted",
+    "id" : 656,
+    "tickDuration" : 416,
+    "hint" : "This track unlocks during the Song of the Elves quest."
+  }, {
+    "name" : "Sharp End of the Crystal",
+    "id" : 657,
+    "tickDuration" : 561,
+    "hint" : "This track unlocks in the Iorwerth Slayer Dungeon."
+  }, {
+    "name" : "The Fires of Lletya",
+    "id" : 658,
+    "tickDuration" : 515,
+    "hint" : "This track unlocks during the Song of the Elves quest."
+  }, {
+    "name" : "The Seed of Crwys",
+    "id" : 659,
+    "tickDuration" : 620,
+    "hint" : "This track unlocks in Prifddinas."
+  }, {
+    "name" : "Dance of the Meilyr",
+    "id" : 660,
+    "tickDuration" : 485,
+    "hint" : "This track unlocks in Prifddinas."
+  }, {
+    "name" : "Scape Crystal",
+    "id" : 661,
+    "tickDuration" : 321,
+    "hint" : "This track was unlocked automatically."
+  }, {
+    "name" : "The Spurned Demon",
+    "id" : 662,
+    "tickDuration" : 728,
+    "hint" : "This track unlocks while fighting Zalcano."
+  }, {
+    "name" : "The Bane of Ashihama",
+    "id" : 663,
+    "tickDuration" : 565,
+    "hint" : "This track unlocks while fighting the Nightmare."
+  }, {
+    "name" : "The Everlasting Slumber",
+    "id" : 664,
+    "tickDuration" : 626,
+    "hint" : "This track unlocks in the Slepe Dungeon."
+  }, {
+    "name" : "Lament for the Hallowed",
+    "id" : 665,
+    "tickDuration" : 680,
+    "hint" : "This track during the Sins of the Father quest."
+  }, {
+    "name" : "You Have My Attention",
+    "id" : 666,
+    "tickDuration" : 665,
+    "hint" : "This track during the Sins of the Father quest."
+  }, {
+    "name" : "The Terrible Caverns",
+    "id" : 667,
+    "tickDuration" : 413,
+    "hint" : "This track during the Sins of the Father quest."
+  }, {
+    "name" : "Arboretum",
+    "id" : 670,
+    "tickDuration" : 366,
+    "hint" : "This track during the Sins of the Father quest."
+  }, {
+    "name" : "Darkmeyer",
+    "id" : 671,
+    "tickDuration" : 883,
+    "hint" : "This track unlocks during the Sins of the Father quest."
+  }, {
+    "name" : "Upir Likhyi",
+    "id" : 672,
+    "tickDuration" : 611,
+    "hint" : "This track during the Sins of the Father quest."
+  }, {
+    "name" : "The Terrible Tunnels",
+    "id" : 675,
+    "tickDuration" : 506,
+    "hint" : "This track during the Sins of the Father quest."
+  }, {
+    "name" : "Morytanian Mystery",
+    "id" : 676,
+    "tickDuration" : 313,
+    "hint" : "This track unlocks during the Darkness of Hallowvale quest."
+  }, {
+    "name" : "Domain of the Vampyres",
+    "id" : 677,
+    "tickDuration" : 320,
+    "hint" : "This track unlocks during the Darkness of Hallowvale quest."
+  }, {
+    "name" : "Vampyre Assault",
+    "id" : 678,
+    "tickDuration" : 316,
+    "hint" : "This track unlocks during the In Aid of the Myreque quest."
+  }, {
+    "name" : "Rest in Peace",
+    "id" : 679,
+    "tickDuration" : 750,
+    "hint" : "This track unlocks in Death's Office."
+  }, {
+    "name" : "The Enclave",
+    "id" : 680,
+    "tickDuration" : 315,
+    "hint" : "This track unlocks in Ferox Enclave."
+  }, {
+    "name" : "Eve's Epinette",
+    "id" : 682,
+    "tickDuration" : 575,
+    "hint" : "This track unlocks during a Halloween event."
+  }, {
+    "name" : "Sea Minor Shanty",
+    "id" : 683,
+    "tickDuration" : 171,
+    "hint" : "This track unlocks during a Halloween event."
+  }, {
+    "name" : "Soul Wars",
+    "id" : 685,
+    "tickDuration" : 510,
+    "hint" : "This track unlocks on the [[Isle of Souls]]."
+  }, {
+    "name" : "The Waiting Game",
+    "id" : 686,
+    "tickDuration" : 465,
+    "hint" : "This track unlocks on the [[Isle of Souls]]."
+  }, {
+    "name" : "Scrubfoot's Descent",
+    "id" : 687,
+    "tickDuration" : 375,
+    "hint" : "This track unlocks during a Christmas event."
+  }, {
+    "name" : "Barbarian Workout",
+    "id" : 689,
+    "tickDuration" : 268,
+    "hint" : "This track unlocks during the Below Ice Mountain quest."
+  }, {
+    "name" : "Race Against the Clock",
+    "id" : 690,
+    "tickDuration" : 143,
+    "hint" : "This track unlocks in the Camdozaal Vault."
+  }, {
+    "name" : "The Ruins of Camdozaal",
+    "id" : 691,
+    "tickDuration" : 386,
+    "hint" : "This track unlocks during the Below Ice Mountain quest."
+  }, {
+    "name" : "Beneath the Kingdom",
+    "id" : 694,
+    "tickDuration" : 480,
+    "hint" : "This track unlocks in the Catacombs of Kourend."
+  }, {
+    "name" : "Military Life",
+    "id" : 695,
+    "tickDuration" : 440,
+    "hint" : "This track unlocks in the Shayzien Encampment."
+  }, {
+    "name" : "Judgement of the Depths",
+    "id" : 696,
+    "tickDuration" : 606,
+    "hint" : "This track unlocks during the A Kingdom Divided quest."
+  }, {
+    "name" : "Regal Pomp",
+    "id" : 697,
+    "tickDuration" : 265,
+    "hint" : "This track unlocks during the A Kingdom Divided quest."
+  }, {
+    "name" : "The Part Where You Die",
+    "id" : 698,
+    "tickDuration" : 518,
+    "hint" : "This track unlocks during the A Kingdom Divided quest."
+  }, {
+    "name" : "The Houses of Kourend",
+    "id" : 699,
+    "tickDuration" : 253,
+    "hint" : "This track unlocks during the A Kingdom Divided quest."
+  }, {
+    "name" : "Rose",
+    "id" : 700,
+    "tickDuration" : 430,
+    "hint" : "This track unlocks during the A Kingdom Divided quest."
+  }, {
+    "name" : "Confrontation",
+    "id" : 701,
+    "tickDuration" : 401,
+    "hint" : "This track unlocks during the A Kingdom Divided quest."
+  }, {
+    "name" : "What Happens Below...",
+    "id" : 703,
+    "tickDuration" : 348,
+    "hint" : "This track unlocks in the Warrens."
+  }, {
+    "name" : "Out at the Mines",
+    "id" : 704,
+    "tickDuration" : 336,
+    "hint" : "This track unlocks north west of Lovakengj."
+  }, {
+    "name" : "Not a Moment of Relief",
+    "id" : 705,
+    "tickDuration" : 453,
+    "hint" : "This track unlocks north of Arceuus."
+  }, {
+    "name" : "The Forests of Shayzien",
+    "id" : 706,
+    "tickDuration" : 333,
+    "hint" : "This track unlocks west of Shayzien."
+  }, {
+    "name" : "Beyond the Meadow",
+    "id" : 707,
+    "tickDuration" : 396,
+    "hint" : "This track unlocks west of Hosidius."
+  }
+]
