@@ -13,9 +13,6 @@ gradlew.bat
 
 /plugins/
 
-game.yml
-dev-settings.yml
-
 error.log
 
 first-launch
