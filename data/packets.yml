@@ -1268,11 +1268,11 @@ in-packets:
     opcode: 76
     ignore: true
 
-  # - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON2 -> ? What? This was included inside IF_BUTTON List above..
-  #   type: FIXED
-  #   opcode: 52
-  #   length: 8
-  #   ignore: true
+  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON2 -> ? What? This was included inside IF_BUTTON List above..
+    type: FIXED
+    opcode: 52
+    length: 8
+    ignore: true
 
   - message: gg.rsmod.game.message.impl.OpPlayer4Message
     type: FIXED

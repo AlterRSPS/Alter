@@ -16,6 +16,14 @@ players:
     - MOVEMENT
 
   blocks:
+    - block: FACE_PAWN
+      bit: 0x4
+      structure:
+        - name: pawn_index
+          sign: UNSIGNED
+          type: SHORT
+          order: LITTLE
+
     - block: APPEARANCE
       bit: 0x2
       structure:
@@ -35,7 +43,7 @@ players:
           trans: SUBTRACT
 
     - block: FORCE_CHAT
-      bit: 0x2
+      bit: 0x10
 
     - block: ANIMATION
       bit: 0x8
@@ -57,8 +65,8 @@ players:
           type: SHORT
           sign: UNSIGNED
         - name: settings
-          order: LITTLE
           type: INT
+          order: LITTLE
 
     - block: PUBLIC_CHAT
       bit: 0x80
@@ -91,14 +99,6 @@ players:
           trans: ADD
           order: LITTLE
           sign: UNSIGNED
-
-    - block: FACE_PAWN
-      bit: 0x4
-      structure:
-        - name: pawn_index
-          sign: UNSIGNED
-          type: SHORT
-          trans: ADD
 
     - block: CONTEXT_MENU
       bit: 0x2000
@@ -198,8 +198,7 @@ npcs:
         - name: transmog
           sign: UNSIGNED
           type: SHORT
-          trans: ADD
-          order: LITTLE
+          trans: SUBTRACT
 
     - block: GFX
       bit: 0x2

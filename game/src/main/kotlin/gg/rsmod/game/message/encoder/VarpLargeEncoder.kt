@@ -12,8 +12,8 @@ import gg.rsmod.game.message.impl.VarpSmallMessage
 class VarpLargeEncoder : MessageEncoder<VarpLargeMessage>() {
 
     override fun extract(message: VarpLargeMessage, key: String): Number = when (key) {
-        "id" -> message.id
-        "value" -> message.value
+        "id" -> message.id.also(::println)
+        "value" -> message.value.also(::println)
         else -> throw Exception("Unhandled value key.")
     }
 
