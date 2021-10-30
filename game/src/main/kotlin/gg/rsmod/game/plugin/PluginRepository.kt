@@ -874,7 +874,6 @@ class PluginRepository(val world: World) {
     }
 
     fun bindButton(parent: Int, child: Int, plugin: Plugin.() -> Unit) {
-        // @TODO println("[TEST_FROM_BIND_BUTTON:] - Parent: $parent | Child: $child")
         val hash = (parent shl 16) or child
         if (buttonPlugins.containsKey(hash)) {
             logger.error("Button hash already bound to a plugin: [parent=$parent, child=$child]")

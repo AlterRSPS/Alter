@@ -300,7 +300,7 @@ object Npcs {
     const val SPEEDY_KEITH = 303
     const val SALARIN_THE_TWISTED = 304
     const val JENNIFER = 305
-    const val LUMBRIDGE_GUIDE_306 = 306
+    const val LUMBRIDGE_GUIDE = 306
     const val DR_JEKYLL = 307
     const val EMBLEM_TRADER = 308
     const val REACHER = 309
@@ -586,7 +586,7 @@ object Npcs {
     const val ZOMBIE_PIRATE_598 = 598
     const val ZOMBIE_PIRATE_599 = 599
     const val BARRELCHEST = 600
-    const val PIRATE_PETE_601 = 601
+    const val PIRATE_PETE = 601
     const val PIRATE_PETE_602 = 602
     const val CAPTAIN_BRAINDEATH = 603
     const val _50_LUKE = 604
@@ -870,7 +870,7 @@ object Npcs {
     const val DENATH_898 = 898
     const val ERIC = 899
     const val ERIC_900 = 900
-    const val EVIL_DAVE_901 = 901
+    const val EVIL_DAVE = 901
     const val EVIL_DAVE_902 = 902
     const val MATTHEW = 903
     const val MATTHEW_904 = 904
@@ -1703,7 +1703,7 @@ object Npcs {
     const val SUMMER_ELEMENTAL_1806 = 1806
     const val SORCERESS = 1807
     const val APPRENTICE = 1808
-    const val OSMAN_1809 = 1809
+    const val OSMAN = 1809
     const val OSMAN_1810 = 1810
     const val OSMAN_1811 = 1811
     const val DELMONTY = 1813
@@ -1749,7 +1749,7 @@ object Npcs {
     const val TREE_SPIRIT_1864 = 1864
     const val TREE_SPIRIT_1865 = 1865
     const val TREE_SPIRIT_1866 = 1866
-    const val SIR_AMIK_VARZE_1867 = 1867
+    const val SIR_AMIK_VARZE = 1867
     const val SIR_AMIK_VARZE_1869 = 1869
     const val EVIL_CHICKEN = 1870
     const val BABY_BLACK_DRAGON = 1871

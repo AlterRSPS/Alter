@@ -87,7 +87,7 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
             if (!successfulEncryption) {
                 buf.resetReaderIndex()
                 buf.skipBytes(payloadLength)
-                logger.info("Channel '{}' login request rejected.", ctx.channel())
+                //logger.info("Channel '{}' login request rejected.", ctx.channel())
                 ctx.writeResponse(LoginResultType.BAD_SESSION_ID)
                 return
             }
@@ -161,22 +161,23 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
 
             val crcs = decodeCRCs(xteaBuf)
 
-            for (i in crcs.indices) {
-                /**
-                 * CRC for index 16 is always sent as 0 (at least on the
-                 * Desktop client, need to look into mobile).
-                 */
-                if (i == 16) {
-                    continue
-                }
-                if (crcs[i] != cacheCrcs[i]) {
-                    buf.resetReaderIndex()
-                    buf.skipBytes(payloadLength)
-                    logger.info { "User '$username' login request crc mismatch [requestCrc=${crcs.contentToString()}, cacheCrc=${cacheCrcs.contentToString()}]." }
-                    ctx.writeResponse(LoginResultType.REVISION_MISMATCH)
-                    return
-                }
-            }
+            //for (i in crcs.indices) {
+            //    /**
+            //     * CRC for index 16 is always sent as 0 (at least on the
+            //     * Desktop client, need to look into mobile).
+            //     */
+            //    if (i == 16) {
+            //        continue
+            //    }
+//
+            //    if (crcs[i] != cacheCrcs[i]) {
+            //        buf.resetReaderIndex()
+            //        buf.skipBytes(payloadLength)
+            //        logger.info { "User '$username' login request crc mismatch [requestCrc= \n ${crcs.contentToString()}, \n cacheCrc=${cacheCrcs.contentToString()}]." }
+            //        ctx.writeResponse(LoginResultType.REVISION_MISMATCH)
+            //        return
+            //    }
+            //}
 
             logger.info { "User '$username' login request from ${ctx.channel()}." }
 
@@ -194,7 +195,10 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
         /**
          * switch based on incoming CRCorder
          */
+
         for(i in CRCorder.indices){
+            println("$i = ${crcs[i]} ")
+
             when(val idx = CRCorder[i]){
                 3,12,0 -> crcs[idx] = xteaBuf.readInt()
                 15,10,7,1,18,2 -> crcs[idx] = xteaBuf.readIntLE()

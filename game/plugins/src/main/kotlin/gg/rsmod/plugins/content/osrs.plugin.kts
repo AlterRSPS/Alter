@@ -46,13 +46,16 @@ on_login {
     player.sendWeaponComponentInformation()
     player.sendCombatLevelText()
 
-    // Interface-related logic.
+    /**
+     * Interface-related logic.
+     * Removing login interface for now as it adds more time to load and fuck that.
+     */
     openWelcomeScreen(player, (time_lapsed/TimeConstants.MINUTE).toInt(), player.membersDaysLeft())
 
     // Inform the client whether or not we have a display name.
     val displayName = player.username.isNotBlank()
-//    player.runClientScript(1105, if (displayName) 1 else 0) // Has display name
-//    player.runClientScript(423, player.username)
+    player.runClientScript(1105, if (displayName) 1 else 0) // Has display name
+    player.runClientScript(423, player.username)
     if (player.getVarp(1055) == 0 && displayName) {
         player.syncVarp(1055)
     }

@@ -524,11 +524,6 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     fun can_drop_item(item: Int, plugin: (Plugin).() -> Boolean) = r.bindCanItemDrop(item, plugin)
 
-    /**
-     * Invoke [plugin] when [item] is used on [npc].
-     */
-    fun on_item_on_npc(item: Int, npc: Int, plugin: Plugin.() -> Unit) = r.bindItemOnNpc(npc = npc, item = item, plugin = plugin)
-
     fun get_all_commands(): ArrayList<String> {
         return r.get_all_commands()
     }

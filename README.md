@@ -1,7 +1,7 @@
 # Alter
 [![revision: 198][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/QTpECWN6)
 
-**Alter** is a continued/modified version of [RSMod](https://github.com/Tomm0017/rsmod) that was abandoned
+**Alter** is a modified version of [RSMod](https://github.com/Tomm0017/rsmod)
 
 **RSMod** is a highly flexible user-friendly game server for use with the OSRS client. Implemented in a modular way,
 the framework allows developers to make and create any sort of plugin they wish without having to modify the core game module.

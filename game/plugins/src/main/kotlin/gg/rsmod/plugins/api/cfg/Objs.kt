@@ -7351,7 +7351,7 @@ object Objs {
     const val ICON_OF_SARADOMIN = 13175
     const val ICON_OF_ZAMORAK = 13176
     const val ICON_OF_GUTHIX = 13177
-    const val ICON_OF_BOB_13178 = 13178
+    const val ICON_OF_BOB = 13178
     const val ALTAR_13179 = 13179
     const val ALTAR_13180 = 13180
     const val ALTAR_13181 = 13181
@@ -12210,7 +12210,7 @@ object Objs {
     const val STAIRS_22607 = 22607
     const val STAIRS_22608 = 22608
     const val STAIRS_22609 = 22609
-    const val DIAL_22624 = 22624
+    const val DIAL = 22624
     const val LEVERS = 22625
     const val CONSOLE = 22634
     const val BOILER_22635 = 22635
@@ -20548,7 +20548,7 @@ object Objs {
     const val ROTTEN_CARPET = 40233
     const val ROTTEN_CARPET_40236 = 40236
     const val CARPET_HOTSPOT = 40237
-    const val CARPET = 40240
+    const val CARPET_40240 = 40240
     const val PITFALL_40243 = 40243
     const val DAGANNOTH_SUPREME_JR_40244 = 40244
     const val VASA_MINIRIO_40245 = 40245
