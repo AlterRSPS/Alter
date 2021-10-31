@@ -41,12 +41,10 @@ out-packets:
     structure:
       - name: index
         type: BYTE
-        trans: ADD
-      - name: option
-        type: BYTES
       - name: left_click
         type: BYTE
-        trans: ADD
+      - name: option
+        type: BYTES
 
   - message: gg.rsmod.game.message.impl.SoundAreaMessage
     type: FIXED
@@ -91,6 +89,7 @@ out-packets:
         trans: SUBTRACT
       - name: angle
         type: BYTE
+        trans: NEGATE
       - name: offset_z
         type: BYTE
         trans: NEGATE
@@ -158,6 +157,7 @@ out-packets:
       - name: top
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IfOpenSubMessage
     type: FIXED
@@ -211,32 +211,6 @@ out-packets:
         type: BYTE
         trans: ADD
 
-  - message: gg.rsmod.game.message.impl.LocDelMessage
-    type: FIXED
-    opcode: 68
-    structure:
-      - name: settings
-        type: BYTE
-        trans: NEGATE
-      - name: tile
-        type: BYTE
-        trans: ADD
-
-  - message: gg.rsmod.game.message.impl.ObjAddMessage
-    type: FIXED
-    opcode: 34
-    structure:
-      - name: item
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-      - name: amount
-        type: BYTE
-        trans: NEGATE
-      - name: tile
-        type: SHORT
-        trans: ADD
-
   - message: gg.rsmod.game.message.impl.ObjDelMessage
     type: FIXED
     opcode: 65
@@ -288,7 +262,7 @@ out-packets:
     opcode: 21
     structure:
       - name: types
-        type: STRING #Byte
+        type: BYTE
       - name: args
         type: BYTES
       - name: id
@@ -297,6 +271,7 @@ out-packets:
   - message: gg.rsmod.game.message.impl.MessageGameMessage
     type: VARIABLE_BYTE
     opcode: 58
+    ignore: true
     structure:
       - name: type
         type: BYTE
@@ -325,7 +300,7 @@ out-packets:
         type: INT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.IfSetTextMessage
+  - message: gg.rsmod.game.message.impl.IfSetTextMessage # E1
     type: VARIABLE_SHORT
     opcode: 12
     structure:
@@ -349,7 +324,7 @@ out-packets:
         type: BYTE
 
   - message: gg.rsmod.game.message.impl.IfCloseSubMessage
-    type: FIXED
+    type: FIXED # ENDED IT HERE |
     opcode: 47
     structure:
       - name: hash
@@ -394,6 +369,7 @@ out-packets:
         order: INVERSE_MIDDLE
       - name: item
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IfSetNpcHeadMessage
     type: FIXED
@@ -402,6 +378,7 @@ out-packets:
       - name: npc
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: hash
         type: INT
         order: INVERSE_MIDDLE
@@ -435,6 +412,7 @@ out-packets:
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: hash
         type: INT
 
@@ -444,63 +422,70 @@ out-packets:
     structure:
       - name: x
         type: BYTE
+        sign: UNSIGNED
       - name: z
         type: BYTE
+        sign: UNSIGNED
+  # FOR NOW DISABLED => TILL OTHERS PACKETS ARE BEING CHECKED UNSURE YET.
+  #- message: gg.rsmod.game.message.impl.UpdateInvFullMessage
+  #  type: VARIABLE_SHORT
+  #  opcode: 87
+  #  structure:
+  #    - name: component_hash
+  #      type: INT
+  #    - name: container_key
+  #      type: SHORT
+  #      sign: UNSIGNED
+  #    - name: item_count
+  #      type: SHORT
+  #    - name: items
+  #      type: BYTES
+  #      order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.UpdateInvFullMessage
-    type: VARIABLE_SHORT
-    opcode: 87
-    structure:
-      - name: component_hash
-        type: INT
-      - name: container_key
-        type: SHORT
-      - name: item_count
-        type: SHORT
-      - name: items
-        type: BYTES
-        order: LITTLE
+  # THIS ONE ASWELL
+  #- message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
+  #  type: VARIABLE_SHORT
+  #  opcode: 19
+  #  structure:
+  #    - name: component_hash
+  #      type: INT
+  #    - name: container_key
+  #      type: SHORT
+  #    - name: items
+  #      type: BYTES
 
-  - message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
-    type: VARIABLE_SHORT
-    opcode: 19
-    structure:
-      - name: component_hash
-        type: INT
-      - name: container_key
-        type: SHORT
-      - name: items
-        type: BYTES
+  # @TODO ERROR DID NOT CHANGE AFTER DISABLING ABOVE.
+  # LEAVING FOR NOW
 
-  - message: gg.rsmod.game.message.impl.SynthSoundMessage
-    type: FIXED
-    opcode: 81
-    structure:
-      - name: sound
-        type: SHORT
-      - name: volume
-        type: BYTE
-      - name: delay
-        type: SHORT
+  #- message: gg.rsmod.game.message.impl.SynthSoundMessage
+  #  type: FIXED
+  #  opcode: 81
+  #  structure:
+  #    - name: sound
+  #      type: SHORT
+  #    - name: volume
+  #      type: BYTE
+  #    - name: delay
+  #      type: SHORT
 
-  - message: gg.rsmod.game.message.impl.MidiSongMessage
-    type: FIXED
-    opcode: 39
-    structure:
-      - name: id
-        type: SHORT
-        trans: ADD
+  #- message: gg.rsmod.game.message.impl.MidiSongMessage
+  #  type: FIXED
+  #  opcode: 39
+  #  structure:
+  #    - name: id
+  #      type: SHORT
+  #      trans: ADD
 
-  - message: gg.rsmod.game.message.impl.MidiJingleMessage
-    type: FIXED
-    opcode: 24
-    structure:
-      - name: id
-        type: SHORT
-        trans: ADD
-      - name: garbage_delay
-        type: MEDIUM
-        order: INVERSE_MIDDLE
+  #- message: gg.rsmod.game.message.impl.MidiJingleMessage
+  #  type: FIXED
+  #  opcode: 24
+  #  structure:
+  #    - name: id
+  #      type: SHORT
+  #      trans: ADD
+  #    - name: garbage_delay
+  #      type: MEDIUM
+  #      order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.UpdateRunWeightMessage
     type: FIXED
@@ -1188,7 +1173,46 @@ in-packets:
     type: FIXED
     opcode: 30
     length: 13
-    ignore: true
+    structure:
+      - name: gender
+        sign: UNSIGNED
+        type: BYTE
+      - name: appearance0
+        sign: UNSIGNED
+        type: BYTE
+      - name: appearance1
+        sign: UNSIGNED
+        type: BYTE
+      - name: appearance2
+        sign: UNSIGNED
+        type: BYTE
+      - name: appearance3
+        sign: UNSIGNED
+        type: BYTE
+      - name: appearance4
+        sign: UNSIGNED
+        type: BYTE
+      - name: appearance5
+        sign: UNSIGNED
+        type: BYTE
+      - name: appearance6
+        sign: UNSIGNED
+        type: BYTE
+      - name: color0
+        sign: UNSIGNED
+        type: BYTE
+      - name: color1
+        sign: UNSIGNED
+        type: BYTE
+      - name: color2
+        sign: UNSIGNED
+        type: BYTE
+      - name: color3
+        sign: UNSIGNED
+        type: BYTE
+      - name: color4
+        sign: UNSIGNED
+        type: BYTE
 
   - message: gg.rsmod.game.message.impl.NoTimeoutMessage
     type: FIXED
