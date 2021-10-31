@@ -10,9 +10,12 @@ class VarpDef(override val id: Int) : Definition(id) {
 
     var configType = 0
 
+    /**
+     * @TODO
+     */
     override fun decode(buf: ByteBuf, opcode: Int) {
         when (opcode) {
-            5 -> configType = buf.readUnsignedShort()
+            //5 -> configType = buf.readUnsignedShort()
         }
     }
 }

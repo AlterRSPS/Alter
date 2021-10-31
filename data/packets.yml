@@ -245,17 +245,18 @@ out-packets:
       - name: id
         type: SHORT
         order: LITTLE
-
-  - message: gg.rsmod.game.message.impl.VarpLargeMessage
-    type: FIXED
-    opcode: 64
-    structure:
-      - name: value
-        type: INT
-        order: MIDDLE
-      - name: id
-        type: SHORT
-        order: LITTLE
+  # @TODO Fix this packet it sends wrong data.
+  #- message: gg.rsmod.game.message.impl.VarpLargeMessage
+  #  type: FIXED
+  #  opcode: 64
+  #  structure:
+  #    - name: value
+  #      type: INT
+  #      order: MIDDLE
+  #    - name: id
+  #      type: SHORT
+  #      order: LITTLE
+  #      sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.RunClientScriptMessage
     type: VARIABLE_SHORT
