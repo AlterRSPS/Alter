@@ -1,5 +1,5 @@
 # Alter
-[![revision: 198][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/QTpECWN6)
+[![revision: 200][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/QTpECWN6)
 
 **Alter** is a modified version of [RSMod](https://github.com/Tomm0017/rsmod)
 
@@ -49,6 +49,6 @@ Due to the plugin capabilities, even owners without programming experience can j
 * ##### Rune-Status
   - Discord members lending a hand and being helpful
 
-[patch]: https://secure.runescape.com/m=news/tombs-of-amascut-rewards-beta?oldschool=1
-[rev-badge]: https://img.shields.io/badge/Revision-198-blueviolet
+[patch]: https://oldschool.runescape.wiki/w/Update:Revenant_Caves_%26_Deadman_Changes
+[rev-badge]: https://img.shields.io/badge/Revision-200-blueviolet
 [license-badge]: https://img.shields.io/badge/license-ISC-informational
