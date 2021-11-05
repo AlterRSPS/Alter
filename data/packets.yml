@@ -235,7 +235,7 @@ out-packets:
         trans: ADD
       - name: tile
         type: BYTE
-
+  # @TODO
   - message: gg.rsmod.game.message.impl.VarpSmallMessage
     type: FIXED
     opcode: 48
@@ -244,19 +244,18 @@ out-packets:
         type: BYTE
       - name: id
         type: SHORT
-        order: LITTLE
-  # @TODO Fix this packet it sends wrong data.
-  #- message: gg.rsmod.game.message.impl.VarpLargeMessage
-  #  type: FIXED
-  #  opcode: 64
-  #  structure:
-  #    - name: value
-  #      type: INT
-  #      order: MIDDLE
-  #    - name: id
-  #      type: SHORT
-  #      order: LITTLE
-  #      sign: UNSIGNED
+        order: MIDDLE
+  # @TODO
+  - message: gg.rsmod.game.message.impl.VarpLargeMessage
+    type: FIXED
+    opcode: 64
+    structure:
+      - name: value
+        type: INT
+        order: MIDDLE
+      - name: id
+        type: SHORT
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.RunClientScriptMessage
     type: VARIABLE_SHORT
@@ -325,7 +324,7 @@ out-packets:
         type: BYTE
 
   - message: gg.rsmod.game.message.impl.IfCloseSubMessage
-    type: FIXED # ENDED IT HERE |
+    type: FIXED
     opcode: 47
     structure:
       - name: hash
@@ -428,32 +427,32 @@ out-packets:
         type: BYTE
         sign: UNSIGNED
   # FOR NOW DISABLED => TILL OTHERS PACKETS ARE BEING CHECKED UNSURE YET.
-  #- message: gg.rsmod.game.message.impl.UpdateInvFullMessage
-  #  type: VARIABLE_SHORT
-  #  opcode: 87
-  #  structure:
-  #    - name: component_hash
-  #      type: INT
-  #    - name: container_key
-  #      type: SHORT
-  #      sign: UNSIGNED
-  #    - name: item_count
-  #      type: SHORT
-  #    - name: items
-  #      type: BYTES
-  #      order: LITTLE
+  - message: gg.rsmod.game.message.impl.UpdateInvFullMessage
+    type: VARIABLE_SHORT
+    opcode: 87
+    structure:
+      - name: component_hash
+        type: INT
+      - name: container_key
+        type: SHORT
+        sign: UNSIGNED
+      - name: item_count
+        type: SHORT
+      - name: items
+        type: BYTES
+        order: LITTLE
 
   # THIS ONE ASWELL
-  #- message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
-  #  type: VARIABLE_SHORT
-  #  opcode: 19
-  #  structure:
-  #    - name: component_hash
-  #      type: INT
-  #    - name: container_key
-  #      type: SHORT
-  #    - name: items
-  #      type: BYTES
+  - message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
+    type: VARIABLE_SHORT
+    opcode: 19
+    structure:
+      - name: component_hash
+        type: INT
+      - name: container_key
+        type: SHORT
+      - name: items
+        type: BYTES
 
   # @TODO ERROR DID NOT CHANGE AFTER DISABLING ABOVE.
   # LEAVING FOR NOW

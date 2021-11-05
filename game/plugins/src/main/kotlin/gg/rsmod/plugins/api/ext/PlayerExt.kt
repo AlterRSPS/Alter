@@ -368,7 +368,7 @@ fun Player.toggleVarp(id: Int) {
 }
 
 fun Player.syncVarp(id: Int) {
-    setVarp(id, getVarp(id))
+        setVarp(id, getVarp(id))
 }
 
 fun Player.getVarbit(id: Int): Int {
