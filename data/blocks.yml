@@ -33,15 +33,19 @@ players:
         - name: src_x
           type: BYTE
           trans: SUBTRACT
+          sign: SIGNED
         - name: src_z
           type: BYTE
           trans: SUBTRACT
+          sign: SIGNED
         - name: dst_x
           type: BYTE
           trans: NEGATE
+          sign: SIGNED
         - name: dst_z
           type: BYTE
           trans: NEGATE
+          sign: SIGNED
         - name: client_delay
           order: LITTLE
           type: SHORT
@@ -54,6 +58,7 @@ players:
           type: SHORT
           trans: ADD
           sign: UNSIGNED
+
     - block: FORCE_CHAT
       bit: 0x10
 
@@ -110,9 +115,6 @@ players:
       structure:
         - name: degrees
           type: SHORT
-          trans: ADD
-          order: LITTLE
-          sign: UNSIGNED
 
     - block: GFX
       bit: 0x1000
@@ -131,7 +133,6 @@ players:
       structure:
         - name: type
           type: BYTE
-          trans: SUBTRACT
 
     - block: APPEARANCE
       bit: 0x2
