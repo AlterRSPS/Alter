@@ -235,7 +235,7 @@ out-packets:
         trans: ADD
       - name: tile
         type: BYTE
-  # @TODO
+
   - message: gg.rsmod.game.message.impl.VarpSmallMessage
     type: FIXED
     opcode: 48
@@ -244,15 +244,15 @@ out-packets:
         type: BYTE
       - name: id
         type: SHORT
-        order: MIDDLE
-  # @TODO
+        order: LITTLE
+
   - message: gg.rsmod.game.message.impl.VarpLargeMessage
     type: FIXED
     opcode: 64
     structure:
       - name: value
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
       - name: id
         type: SHORT
         order: MIDDLE
@@ -355,7 +355,7 @@ out-packets:
         trans: NEGATE
       - name: hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.IfSetObjectMessage
     type: FIXED
@@ -389,7 +389,7 @@ out-packets:
     structure:
       - name: hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.IfSetAnimMessage
     type: FIXED
@@ -421,13 +421,15 @@ out-packets:
     opcode: 40
     structure:
       - name: x
-        type: BYTE
-        sign: UNSIGNED
+        type: BYTES
+        order: REVERSED
+        sign: SIGNED
       - name: z
-        type: BYTE
-        sign: UNSIGNED
-  # FOR NOW DISABLED => TILL OTHERS PACKETS ARE BEING CHECKED UNSURE YET.
-  - message: gg.rsmod.game.message.impl.UpdateInvFullMessage
+        type: BYTES
+        order: REVERSED
+        sign: SIGNED
+
+  - message: gg.rsmod.game.message.impl.UpdateInvFullMessage # TODO ->
     type: VARIABLE_SHORT
     opcode: 87
     structure:
@@ -435,12 +437,11 @@ out-packets:
         type: INT
       - name: container_key
         type: SHORT
-        sign: UNSIGNED
       - name: item_count
         type: SHORT
+        trans: ADD
       - name: items
         type: BYTES
-        order: LITTLE
 
   # THIS ONE ASWELL
   - message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
@@ -454,38 +455,35 @@ out-packets:
       - name: items
         type: BYTES
 
-  # @TODO ERROR DID NOT CHANGE AFTER DISABLING ABOVE.
-  # LEAVING FOR NOW
+  - message: gg.rsmod.game.message.impl.SynthSoundMessage
+    type: FIXED
+    opcode: 81
+    structure:
+      - name: sound
+        type: SHORT
+      - name: volume
+        type: BYTE
+      - name: delay
+        type: SHORT
 
-  #- message: gg.rsmod.game.message.impl.SynthSoundMessage
-  #  type: FIXED
-  #  opcode: 81
-  #  structure:
-  #    - name: sound
-  #      type: SHORT
-  #    - name: volume
-  #      type: BYTE
-  #    - name: delay
-  #      type: SHORT
+  - message: gg.rsmod.game.message.impl.MidiSongMessage
+    type: FIXED
+    opcode: 39
+    structure:
+      - name: id
+        type: SHORT
+        trans: ADD
 
-  #- message: gg.rsmod.game.message.impl.MidiSongMessage
-  #  type: FIXED
-  #  opcode: 39
-  #  structure:
-  #    - name: id
-  #      type: SHORT
-  #      trans: ADD
-
-  #- message: gg.rsmod.game.message.impl.MidiJingleMessage
-  #  type: FIXED
-  #  opcode: 24
-  #  structure:
-  #    - name: id
-  #      type: SHORT
-  #      trans: ADD
-  #    - name: garbage_delay
-  #      type: MEDIUM
-  #      order: INVERSE_MIDDLE
+  - message: gg.rsmod.game.message.impl.MidiJingleMessage
+    type: FIXED
+    opcode: 24
+    structure:
+      - name: id
+        type: SHORT
+        trans: ADD
+      - name: garbage_delay
+        type: MEDIUM
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.UpdateRunWeightMessage
     type: FIXED
@@ -493,6 +491,7 @@ out-packets:
     structure:
       - name: weight
         type: SHORT
+        sign: SIGNED
 
 in-packets:
 
@@ -503,7 +502,7 @@ in-packets:
     structure:
       - name: data
         type: INT
-        order: LITTLE
+        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpLocUMessage
     type: FIXED
@@ -532,7 +531,7 @@ in-packets:
       - name: unknown
         sign: UNSIGNED
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
       - name: slot
         type: SHORT
 
@@ -601,7 +600,7 @@ in-packets:
         order: LITTLE
       - name: to_component
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpNpcTMessage
     type: FIXED
@@ -631,7 +630,7 @@ in-packets:
     structure:
       - name: component_hash
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
       - name: movement_type
         type: BYTE
       - name: npc_index
@@ -845,11 +844,12 @@ in-packets:
     opcode: 44
     structure:
       - name: x
-        type: BYTE
-      - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
+      - name: z
+        type: SHORT
+        trans: ADD
       - name: movement_type
         type: BYTE
         trans: NEGATE
@@ -982,16 +982,14 @@ in-packets:
 
   - message: gg.rsmod.game.message.impl.IfButtonMessage
     type: FIXED
-    opcodes: 24,101,93,83,84,20,71,15,56,96
+    opcodes: 24,101,93,83,84,20,71,15,56,96,89
     length: 8
     structure:
       - name: hash
         type: INT
       - name: slot
-        sign: UNSIGNED
         type: SHORT
       - name: item
-        sign: UNSIGNED
         type: SHORT
 
   - message: gg.rsmod.game.message.impl.ResumePauseButtonMessage
@@ -1051,7 +1049,7 @@ in-packets:
         order: LITTLE
       - name: component_hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpHeld3Message
     type: FIXED
@@ -1094,7 +1092,7 @@ in-packets:
         order: LITTLE
       - name: component_hash
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
       - name: slot
         type: SHORT
 
@@ -1126,7 +1124,7 @@ in-packets:
         type: INT
       - name: from_hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.CloseModalMessage
     type: FIXED
@@ -1388,7 +1386,7 @@ in-packets:
         trans: NEGATE
       - name: component_hash
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
       - name: player_index
         type: SHORT
         trans: ADD
