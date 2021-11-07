@@ -36,12 +36,12 @@ class AddLocalNpcSegment(val player: Player, val npc: Npc, private val requiresB
         val facing = if (npc.lastFacingDirection != Direction.NONE) npc.lastFacingDirection else Direction.SOUTH
 
         buf.putBits(15, npc.index)
-        buf.putBits(1, if (requiresBlockUpdate) 1 else 0)
-        buf.putBits(3, facing.npcWalkValue)
         buf.putBits(if (largeScene) 8 else 5, dx)
-        buf.putBits(if (largeScene) 8 else 5, dz)
         buf.putBits(1, if (requiresBlockUpdate) 1 else 0)
+        buf.putBits(if (largeScene) 8 else 5, dz)
+        buf.putBits(3, facing.npcWalkValue)
         buf.putBits(14, id)
         buf.putBits(1, 1) // When client receives this one , it will just change to 1 does not matter what it will be
+        buf.putBits(1, if (requiresBlockUpdate) 1 else 0)
         }
 }

@@ -69,8 +69,10 @@ out-packets:
       - name: target_index
         type: SHORT
         order: LITTLE
+        sign: SIGNED
       - name: offset_x
         type: BYTE
+        sign: SIGNED
       - name: delay
         type: SHORT
         trans: ADD
@@ -93,6 +95,7 @@ out-packets:
       - name: offset_z
         type: BYTE
         trans: NEGATE
+        sign: SIGNED
       - name: lifespan
         type: SHORT
         order: LITTLE
@@ -196,7 +199,7 @@ out-packets:
         type: BYTE
         trans: SUBTRACT
       - name: payload
-        type: BYTES
+        type: BYTE
 
   - message: gg.rsmod.game.message.impl.LocAddChangeMessage
     type: FIXED
@@ -221,6 +224,21 @@ out-packets:
       - name: tile
         type: BYTE
 
+  - message: gg.rsmod.game.message.impl.ObjAddMessage
+    type: FIXED
+    opcode: 34
+    structure:
+      - name: item
+        type: SHORT
+        trans: ADD
+        order: LITTLE
+      - name: amount
+        type: BYTE
+        trans: NEGATE
+      - name: tile
+        type: SHORT
+        trans: ADD
+
   - message: gg.rsmod.game.message.impl.ObjCountMessage
     type: FIXED
     opcode: 61
@@ -242,6 +260,7 @@ out-packets:
     structure:
       - name: value
         type: BYTE
+        sign: SIGNED
       - name: id
         type: SHORT
         order: LITTLE
@@ -255,14 +274,14 @@ out-packets:
         order: INVERSE_MIDDLE
       - name: id
         type: SHORT
-        order: MIDDLE
+        order: MIDDLE # SHOULD BE LITTLE
 
   - message: gg.rsmod.game.message.impl.RunClientScriptMessage
     type: VARIABLE_SHORT
     opcode: 21
     structure:
       - name: types
-        type: BYTE
+        type: BYTES
       - name: args
         type: BYTES
       - name: id
@@ -363,10 +382,10 @@ out-packets:
     structure:
       - name: amount
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
       - name: hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
       - name: item
         type: SHORT
         sign: UNSIGNED
@@ -381,7 +400,7 @@ out-packets:
         sign: UNSIGNED
       - name: hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.IfSetPlayerHeadMessage
     type: FIXED
@@ -402,7 +421,7 @@ out-packets:
         trans: ADD
       - name: hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.IfSetModelMessage
     type: FIXED
@@ -443,17 +462,16 @@ out-packets:
       - name: items
         type: BYTES
 
-  # THIS ONE ASWELL
-  - message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
-    type: VARIABLE_SHORT
-    opcode: 19
-    structure:
-      - name: component_hash
-        type: INT
-      - name: container_key
-        type: SHORT
-      - name: items
-        type: BYTES
+  #- message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
+  #  type: VARIABLE_SHORT
+  #  opcode: 19
+  #  structure:
+  #    - name: component_hash
+  #      type: INT
+  #    - name: container_key
+  #      type: SHORT
+  #    - name: items
+  #      type: BYTES
 
   - message: gg.rsmod.game.message.impl.SynthSoundMessage
     type: FIXED

@@ -115,6 +115,7 @@ players:
       structure:
         - name: degrees
           type: SHORT
+          trans: ADD
 
     - block: GFX
       bit: 0x1000
@@ -133,6 +134,8 @@ players:
       structure:
         - name: type
           type: BYTE
+          trans: SUBTRACT
+          sign: SIGNED
 
     - block: APPEARANCE
       bit: 0x2
