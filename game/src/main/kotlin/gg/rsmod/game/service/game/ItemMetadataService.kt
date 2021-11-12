@@ -37,11 +37,6 @@ class ItemMetadataService : Service {
         val mapper = ObjectMapper(YAMLFactory())
         val itemCount = world.definitions.getCount(ItemDef::class.java)
 
-        /**
-         * @TODO Range should be 0..itemCount
-         * Made to only fetch upto 200 for now
-         *
-         */
         val range = 0..200
 
         val chunk = range.chunked(2500)

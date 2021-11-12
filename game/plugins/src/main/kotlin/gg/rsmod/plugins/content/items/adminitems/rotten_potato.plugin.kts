@@ -22,6 +22,11 @@ var nr: Int = 0
 /**
  * Select number -> Or input w.e you will call it gives wrong Title
  */
+on_item_option(Items.ROTTEN_POTATO, "Mash") {
+    player.openInterface(nr, InterfaceDestination.MAIN_SCREEN)
+    player.message("Opened $nr interface")
+    nr+1
+}
 on_item_option(Items.ROTTEN_POTATO, 1){
     // Where do you want to start
     when (type) {
@@ -48,11 +53,11 @@ on_item_option(Items.ROTTEN_POTATO, 1){
             player.message("Spawned 5x5 $nr Gfx ")
             nr+1
         }
-        //4 -> {
-        //    player.openInterface(nr, InterfaceDestination.MAIN_SCREEN)
-        //    player.message("Opened $nr interface")
-        //    nr+1
-        //}
+        4 -> {
+            player.openInterface(nr, InterfaceDestination.MAIN_SCREEN)
+            player.message("Opened $nr interface")
+            nr+1
+        }
         5 -> {
             val p_x = player.tile.x-3
             val p_z = player.tile.z-3

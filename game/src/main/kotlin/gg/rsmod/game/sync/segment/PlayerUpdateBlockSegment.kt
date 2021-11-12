@@ -116,9 +116,7 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                     buf.put(structure[0].type, structure[0].order, structure[0].transformation, other.blockBuffer.faceDegrees)
                 }
             }
-            /**
-             * @TODO Match osrs
-             */
+
             UpdateBlockType.APPEARANCE -> {
                 val appBuf = GamePacketBuilder()
                 appBuf.put(DataType.BYTE, other.appearance.gender.id)

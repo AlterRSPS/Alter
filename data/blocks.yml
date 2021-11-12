@@ -149,8 +149,8 @@ players:
           trans: ADD
 npcs:
 
-  updating-opcode: 73
-  large-updating-opcode: 25
+  updating-opcode: 25
+  large-updating-opcode: 73
 
   order:
     - FORCE_CHAT
