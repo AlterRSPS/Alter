@@ -9,7 +9,9 @@ import gg.rsmod.game.message.impl.IfSetPlayerHeadMessage
 class IfSetPlayerHeadEncoder : MessageEncoder<IfSetPlayerHeadMessage>() {
 
     override fun extract(message: IfSetPlayerHeadMessage, key: String): Number = when (key) {
-        "hash" -> message.hash
+        "hash" -> message.hash.also {
+            println("IfSetPlayerHead:Hash:${message.hash}");
+        }
         else -> throw Exception("Unhandled value key.")
     }
 

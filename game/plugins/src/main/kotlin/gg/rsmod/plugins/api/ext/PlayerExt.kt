@@ -377,6 +377,7 @@ fun Player.getVarbit(id: Int): Int {
 }
 
 fun Player.incrementVarbit(id: Int, amount: Int = 1): Int {
+    println("id: $id amount: $amount")
     val inc = getVarbit(id)+amount
     setVarbit(id, inc)
     return inc

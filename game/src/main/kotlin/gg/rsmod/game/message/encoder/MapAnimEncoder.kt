@@ -9,10 +9,18 @@ import gg.rsmod.game.message.impl.MapAnimMessage
 class MapAnimEncoder : MessageEncoder<MapAnimMessage>() {
 
     override fun extract(message: MapAnimMessage, key: String): Number = when (key) {
-        "id" -> message.id
-        "height" -> message.height
-        "delay" -> message.delay
-        "tile" -> message.tile
+        "id" -> message.id.also {
+            println("MapAnim:ID:${message.id}");
+        }
+        "height" -> message.height.also {
+            println("MapAnim:Height:${message.height}");
+        }
+        "delay" -> message.delay.also {
+            println("MapAnim:delay:${message.delay}");
+        }
+        "tile" -> message.tile.also {
+            println("MapAnim:Title:${message.tile}");
+        }
         else -> throw Exception("Unhandled value key.")
     }
 

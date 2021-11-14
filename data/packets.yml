@@ -224,13 +224,24 @@ out-packets:
       - name: tile
         type: BYTE
 
+  - message: gg.rsmod.game.message.impl.LocDelMessage
+    type: FIXED
+    opcode: 68
+    structure:
+      - name: settings
+        type: BYTE
+        trans: NEGATE
+      - name: tile
+        type: BYTE
+        trans: ADD
+
   - message: gg.rsmod.game.message.impl.ObjAddMessage
     type: FIXED
     opcode: 34
     structure:
       - name: item
-        type: SHORT
         trans: ADD
+        type: SHORT
         order: LITTLE
       - name: amount
         type: BYTE
@@ -274,18 +285,18 @@ out-packets:
         order: INVERSE_MIDDLE
       - name: id
         type: SHORT
-        order: MIDDLE # SHOULD BE LITTLE
+        order: LITTLE # SHOULD BE LITTLE
 
-  - message: gg.rsmod.game.message.impl.RunClientScriptMessage
-    type: VARIABLE_SHORT
-    opcode: 21
-    structure:
-      - name: types
-        type: BYTES
-      - name: args
-        type: BYTES
-      - name: id
-        type: INT
+  #- message: gg.rsmod.game.message.impl.RunClientScriptMessage
+  #  type: VARIABLE_SHORT
+  #  opcode: 21
+  #  structure:
+  #    - name: types
+  #      type: BYTES
+  #    - name: args
+  #      type: BYTES
+  #    - name: id
+  #      type: INT
 
   - message: gg.rsmod.game.message.impl.MessageGameMessage
     type: VARIABLE_BYTE
@@ -409,18 +420,18 @@ out-packets:
         type: INT
         order: MIDDLE
 
-  - message: gg.rsmod.game.message.impl.IfSetAnimMessage
-    type: FIXED
-    opcode: 63
-    structure:
-      - name: anim
-        sign: SIGNED
-        type: SHORT
-        order: LITTLE
-        trans: ADD
-      - name: hash
-        type: INT
-        order: MIDDLE
+  #- message: gg.rsmod.game.message.impl.IfSetAnimMessage
+  #  type: FIXED
+  #  opcode: 63
+  #  structure:
+  #    - name: anim
+  #      sign: SIGNED
+  #      type: SHORT
+  #      order: LITTLE
+  #      trans: ADD
+  #    - name: hash
+  #      type: INT
+  #      order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.IfSetModelMessage
     type: FIXED
@@ -461,16 +472,16 @@ out-packets:
       - name: items
         type: BYTES
 
-  #- message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
-  #  type: VARIABLE_SHORT
-  #  opcode: 19
-  #  structure:
-  #    - name: component_hash
-  #      type: INT
-  #    - name: container_key
-  #      type: SHORT
-  #    - name: items
-  #      type: BYTES
+  - message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
+    type: VARIABLE_SHORT
+    opcode: 19
+    structure:
+      - name: component_hash
+        type: INT
+      - name: container_key
+        type: SHORT
+      - name: items
+        type: BYTES
 
   - message: gg.rsmod.game.message.impl.SynthSoundMessage
     type: FIXED

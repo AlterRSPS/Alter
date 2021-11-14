@@ -9,9 +9,15 @@ import gg.rsmod.game.message.impl.IfOpenSubMessage
 class IfOpenSubEncoder : MessageEncoder<IfOpenSubMessage>() {
 
     override fun extract(message: IfOpenSubMessage, key: String): Number = when (key) {
-        "component" -> message.component
-        "overlay" -> (message.parent shl 16) or message.child
-        "type" -> message.type
+        "component" -> message.component.also {
+            println("IfOpenSubComponent: ${message.component}")
+        }
+        "overlay" -> (message.parent shl 16) or message.child.also {
+            println("IfOpenSubOverlay: ${message.parent shl 16 or message.child}")
+        }
+        "type" -> message.type.also {
+            println("IfOpenSub:TYPE: ${message.type}")
+        }
         else -> throw Exception("Unhandled value key.")
     }
 

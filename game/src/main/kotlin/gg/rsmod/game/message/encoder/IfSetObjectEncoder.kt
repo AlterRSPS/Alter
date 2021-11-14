@@ -9,9 +9,15 @@ import gg.rsmod.game.message.impl.IfSetObjectMessage
 class IfSetObjectEncoder : MessageEncoder<IfSetObjectMessage>() {
 
     override fun extract(message: IfSetObjectMessage, key: String): Number = when (key) {
-        "hash" -> message.hash
-        "item" -> message.item
-        "amount" -> message.amount
+        "hash" -> message.hash.also {
+            println("IfSetObject:Hash:${message.hash}");
+        }
+        "item" -> message.item.also {
+            println("IfSetObject:item:${message.item}");
+        }
+        "amount" -> message.amount.also {
+            println("IfSetObject:amount:${message.amount}");
+        }
         else -> throw Exception("Unhandled value key.")
     }
 

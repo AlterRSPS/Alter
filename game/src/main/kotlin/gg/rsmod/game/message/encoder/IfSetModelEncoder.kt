@@ -8,8 +8,12 @@ class IfSetModelEncoder : MessageEncoder<IfSetModelMessage>() {
 
     override fun extract(message: IfSetModelMessage, key: String): Number =
         when (key) {
-        "hash" -> message.hash
-        "model_id" -> message.model_id
+        "hash" -> message.hash.also {
+            println("IfSetModelEncoder:Hash:${message.hash}");
+        }
+        "model_id" -> message.model_id.also {
+            println("IfSetModelEncoder:Model_ID:${message.model_id}");
+        }
         else -> throw Exception("Unhandled value key.")
     }
 

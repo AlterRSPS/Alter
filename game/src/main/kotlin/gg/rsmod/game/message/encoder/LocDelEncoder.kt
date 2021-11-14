@@ -9,8 +9,12 @@ import gg.rsmod.game.message.impl.LocDelMessage
 class LocDelEncoder : MessageEncoder<LocDelMessage>() {
 
     override fun extract(message: LocDelMessage, key: String): Number = when (key) {
-        "tile" -> message.tile
-        "settings" -> message.settings
+        "tile" -> message.tile.also {
+            println("LocDel:Title:${message.tile}");
+        }
+        "settings" -> message.settings.also {
+            println("LocDel:settings:${message.settings}");
+        }
         else -> throw Exception("Unhandled value key.")
     }
 

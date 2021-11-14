@@ -250,7 +250,7 @@ class GamePacketBuilder {
      */
     @Throws(IllegalArgumentException::class)
     fun putBits(numBits: Int, value: Int) {
-        // @TODO print("$numBits : $value | ");
+        print("$numBits : $value | ");
         var numberOfBits = numBits
         Preconditions.checkArgument(numberOfBits in 1..32, "Number of bits must be between 1 and 32 inclusive.")
 

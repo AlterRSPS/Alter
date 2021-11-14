@@ -9,8 +9,12 @@ import gg.rsmod.game.message.impl.IfSetNpcHeadMessage
 class IfSetNpcHeadEncoder : MessageEncoder<IfSetNpcHeadMessage>() {
 
     override fun extract(message: IfSetNpcHeadMessage, key: String): Number = when (key) {
-        "hash" -> message.hash
-        "npc" -> message.npc
+        "hash" -> message.hash.also {
+            println("IfSetNpcHead:Hash:${message.hash}");
+        }
+        "npc" -> message.npc.also {
+            println("IfSetNpcHead:npc:${message.npc}");
+        }
         else -> throw Exception("Unhandled value key.")
     }
 

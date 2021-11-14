@@ -21,7 +21,6 @@ class RebuildLoginEncoder : MessageEncoder<RebuildLoginMessage>() {
     override fun extractBytes(message: RebuildLoginMessage, key: String): ByteArray = when (key) {
         "gpi" -> {
             val buf = GamePacketBuilder()
-
             buf.switchToBitAccess()
             buf.putBits(30, message.tile.as30BitInteger)
             for (i in 1 until 2048) {

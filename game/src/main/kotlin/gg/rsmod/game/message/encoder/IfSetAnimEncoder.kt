@@ -9,8 +9,12 @@ import gg.rsmod.game.message.impl.IfSetAnimMessage
 class IfSetAnimEncoder : MessageEncoder<IfSetAnimMessage>() {
 
     override fun extract(message: IfSetAnimMessage, key: String): Number = when (key) {
-        "hash" -> message.hash
-        "anim" -> message.anim
+        "hash" -> message.hash.also {
+            println("IfSetAnim:HASH: ${message.hash}")
+        }
+        "anim" -> message.anim.also {
+            println("IfSetAnim:ANIM: ${message.anim}")
+        }
         else -> throw Exception("Unhandled value key.")
     }
 

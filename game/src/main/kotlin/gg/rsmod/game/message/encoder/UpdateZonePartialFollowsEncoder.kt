@@ -9,7 +9,9 @@ import gg.rsmod.game.message.impl.UpdateZonePartialFollowsMessage
 class UpdateZonePartialFollowsEncoder : MessageEncoder<UpdateZonePartialFollowsMessage>() {
 
     override fun extract(message: UpdateZonePartialFollowsMessage, key: String): Number = when (key) {
-        "x" -> message.x
+        "x" -> message.x.also {
+            println("")
+        }
         "z" -> message.z
         else -> throw Exception("Unhandled value key.")
     }
