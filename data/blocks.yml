@@ -94,20 +94,16 @@ players:
           order: LITTLE
           type: SHORT
           trans: ADD
-          sign: UNSIGNED
         - name: icon
           type: BYTE
-          sign: UNSIGNED
         - name: auto
           type: BYTE
           trans: SUBTRACT
-          sign: UNSIGNED
         - name: compressed_length
           type: BYTE
           trans: NEGATE
-          sign: UNSIGNED
         - name: compressed_data
-          type: BYTES
+          type: BYTE
           trans: ADD
 
     - block: FACE_TILE
@@ -164,10 +160,11 @@ npcs:
 
   blocks:
     - block: FACE_PAWN
-      bit: 0x8
+      bit: 0x40
       structure:
         - name: pawn_index
-          type: STRING
+          type: SHORT
+          trans: ADD
 
     - block: FACE_TILE
       bit: 0x1
@@ -200,7 +197,7 @@ npcs:
         - name: transmog
           sign: UNSIGNED
           type: SHORT
-          trans: SUBTRACT
+          trans: ADD
 
     - block: GFX
       bit: 0x2
@@ -221,18 +218,14 @@ npcs:
       bit: 0x80
       structure:
         - name: hitmarks
-          sign: UNSIGNED
           type: BYTE
         - name: hitbars
-          sign: UNSIGNED
           type: BYTE
         - name: hitbar_percentage
-          sign: UNSIGNED
           type: BYTE
         - name: hitbar_to_percentage
-          sign: UNSIGNED
-          type: BYTE
           trans: NEGATE
+          type: BYTE
 
     - block: FORCE_MOVEMENT
       bit: 0x20

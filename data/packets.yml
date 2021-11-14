@@ -260,7 +260,6 @@ out-packets:
     structure:
       - name: value
         type: BYTE
-        sign: SIGNED
       - name: id
         type: SHORT
         order: LITTLE
@@ -274,7 +273,7 @@ out-packets:
         order: INVERSE_MIDDLE
       - name: id
         type: SHORT
-        order: MIDDLE # SHOULD BE LITTLE
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.RunClientScriptMessage
     type: VARIABLE_SHORT
@@ -290,7 +289,6 @@ out-packets:
   - message: gg.rsmod.game.message.impl.MessageGameMessage
     type: VARIABLE_BYTE
     opcode: 58
-    ignore: true
     structure:
       - name: type
         type: BYTE
