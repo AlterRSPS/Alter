@@ -9,9 +9,7 @@ import gg.rsmod.game.message.impl.IfCloseSubMessage
 class IfCloseSubEncoder : MessageEncoder<IfCloseSubMessage>() {
 
     override fun extract(message: IfCloseSubMessage, key: String): Number = when (key) {
-        "hash" -> message.hash.also {
-            println("IfCloseSub: ${message.hash}")
-        }
+        "hash" -> message.hash
         else -> throw Exception("Unhandled value key.")
     }
 

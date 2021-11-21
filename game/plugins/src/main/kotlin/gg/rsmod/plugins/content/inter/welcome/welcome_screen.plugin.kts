@@ -1,8 +1,17 @@
 package gg.rsmod.plugins.content.inter.welcome
 
+import gg.rsmod.game.message.impl.VarpLargeMessage
+import gg.rsmod.game.system.GameSystem
 import gg.rsmod.plugins.content.inter.welcome.WelcomeScreen.WELCOME_SCREEN_INTERFACE_ID
 import gg.rsmod.plugins.content.Osrs_plugin.OSRSInterfaces.openDefaultInterfaces
 
+/**
+ * @TODO
+ */
+on_login {
+    player.openDefaultInterfaces()
+    player.write(VarpLargeMessage(3412,6125))
+}
 on_button(WELCOME_SCREEN_INTERFACE_ID, 78) {
     player.closeInterface(WELCOME_SCREEN_INTERFACE_ID)
     player.openDefaultInterfaces()

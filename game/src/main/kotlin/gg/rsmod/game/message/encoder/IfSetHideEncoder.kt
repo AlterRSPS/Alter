@@ -9,9 +9,7 @@ import gg.rsmod.game.message.impl.IfSetHideMessage
 class IfSetHideEncoder : MessageEncoder<IfSetHideMessage>() {
 
     override fun extract(message: IfSetHideMessage, key: String): Number = when (key) {
-        "hash" -> message.hash.also {
-            println("IfSetHideENcoder:hash:${message.hash}");
-        }
+        "hash" -> message.hash
         "hidden" -> if (message.hidden) 1 else 0
         else -> throw Exception("Unhandled value key.")
     }

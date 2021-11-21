@@ -3172,6 +3172,7 @@ object Objs {
     const val MINERAL_VEIN = 5989
     const val MINERAL_VEIN_5990 = 5990
     const val MINERAL_VEIN_5991 = 5991
+    const val DEPLETED_VEIN = 5992
     const val ENTRANCE_5998 = 5998
     const val BLUE_FIRE = 6009
     const val BOILER = 6032
@@ -7000,7 +7001,7 @@ object Objs {
     const val STOOL_12407 = 12407
     const val STOOL_12408 = 12408
     const val STOOL_12409 = 12409
-    const val SAUCEPAN = 12410
+    const val SAUCEPAN_12410 = 12410
     const val SAUCEPAN_12411 = 12411
     const val ROLLING_PIN_12412 = 12412
     const val ROLLING_PIN_12413 = 12413
@@ -11213,7 +11214,7 @@ object Objs {
     const val BARREL_20431 = 20431
     const val CART_TUNNEL_20433 = 20433
     const val STAIRS_20435 = 20435
-    const val DEPLETED_VEIN = 20439
+    const val DEPLETED_VEIN_20439 = 20439
     const val DEPLETED_VEIN_20440 = 20440
     const val DEPLETED_VEIN_20441 = 20441
     const val DEPLETED_VEIN_20442 = 20442
@@ -13972,8 +13973,7 @@ object Objs {
     const val BROKEN_PILLAR = 26420
     const val BROKEN_PILLAR_26421 = 26421
     const val ROPE_26422 = 26422
-    const val FROZEN_DOOR = 26457
-    const val FROZEN_DOOR_26458 = 26458
+    const val BIRD_SNARE_26457 = 26457
     const val BIG_DOOR = 26461
     const val BARREL_26462 = 26462
     const val LARGE_GEYSER_26491 = 26491
@@ -21813,5 +21813,36 @@ object Objs {
     const val BANNER_42815 = 42815
     const val ROCKS_42817 = 42817
     const val LIGHT_42818 = 42818
+    const val PORTAL_42819 = 42819
+    const val PORTAL_42820 = 42820
+    const val PLANTS = 42821
+    const val STATUE_42822 = 42822
+    const val STATUE_42823 = 42823
+    const val FURNACE_42824 = 42824
+    const val ANVIL_42825 = 42825
+    const val ROWBOAT_42826 = 42826
+    const val ARMOUR_CRATE = 42827
+    const val HARDCORE_ARMOUR_CRATE = 42828
+    const val OAK_42831 = 42831
+    const val TREE_42832 = 42832
+    const val ROCKS_42833 = 42833
+    const val CHEST_42834 = 42834
+    const val BANK_BOOTH_42837 = 42837
+    const val FROZEN_DOOR = 42840
+    const val FROZEN_DOOR_42841 = 42841
+    const val PLAN = 42859
+    const val PLAN_42860 = 42860
+    const val PLAN_42861 = 42861
+    const val PLAN_42862 = 42862
+    const val CRATE_42863 = 42863
+    const val CRATE_42864 = 42864
+    const val DESK_42865 = 42865
+    const val TABLE_42866 = 42866
+    const val CHAIR_42867 = 42867
+    const val BAR_STOOL = 42868
+    const val TABLE_42871 = 42871
+    const val TABLE_42872 = 42872
+    const val EVERGREEN_42873 = 42873
+    const val EVERGREEN_42874 = 42874
     /* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
 }

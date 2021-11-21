@@ -2713,7 +2713,6 @@ object Npcs {
     const val COOK_2896 = 2896
     const val BANKER_2897 = 2897
     const val BANKER_2898 = 2898
-    const val IFFIE = 2899
     const val ELSIE = 2900
     const val CLEANER = 2901
     const val STRAY_DOG = 2902
@@ -9460,5 +9459,34 @@ object Npcs {
     const val GUARD_11209 = 11209
     const val GUARD_11210 = 11210
     const val PRIFDDINAS_GUARD_11211 = 11211
+    const val D3AD1I_F15HER = 11225
+    const val BOAR31337KILLER = 11226
+    const val ENRAGED_BOAR = 11227
+    const val R0CK_5MASHER = 11228
+    const val REGENT = 11229
+    const val GROUP_STORAGE_TUTOR = 11230
+    const val GROUP_IRON_TUTOR = 11231
+    const val IFFIE = 11232
+    const val MONK_11233 = 11233
+    const val BROTHER_JERED_11234 = 11234
+    const val BROTHER_JERED_11235 = 11235
+    const val OZIACH_11236 = 11236
+    const val OZIACH_11237 = 11237
+    const val ESTATE_AGENT_11238 = 11238
+    const val IFFIE_11239 = 11239
+    const val IFFIE_11240 = 11240
+    const val OZIACH_11241 = 11241
+    const val ESTATE_AGENT_11242 = 11242
+    const val DEATH_11243 = 11243
+    const val IFFIE_11245 = 11245
+    const val IFFIE_11246 = 11246
+    const val JONNY_THE_BEARD_11247 = 11247
+    const val WOMAN_11248 = 11248
+    const val DR_HARLOW_11249 = 11249
+    const val BARBARIAN_11250 = 11250
+    const val COOK_11251 = 11251
+    const val BARTENDER_11252 = 11252
+    const val XI_PLZPETDOGZ_XIX = 11254
+    const val ROCKING_CHAIR_11262 = 11262
     /* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
 }

@@ -58,7 +58,6 @@ on_login {
     player.runClientScript(423, player.username)
 
     if (player.getVarp(1055) == 0 && displayName) {
-        println("displayName: $displayName");
         player.syncVarp(1055)
     }
 

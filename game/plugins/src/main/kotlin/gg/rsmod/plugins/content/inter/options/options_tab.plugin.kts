@@ -188,6 +188,10 @@ on_button(OPTIONS_INTERFACE_ID, 82) {
     player.toggleDisplayInterface(mode)
 }
 
+on_login {
+    player.runClientScript(3998, 2)
+}
+
 set_window_status_logic {
     /**
      * DisplayMode changes moved to proper implementation for interface controlled

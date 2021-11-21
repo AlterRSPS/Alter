@@ -18,9 +18,7 @@ abstract class MessageEncoder<T : Message> {
     fun encode(message: T, builder: GamePacketBuilder, structure: MessageStructure) {
         structure.values.values.forEach { value ->
             if (value.type != DataType.BYTES) {
-                builder.put(value.type, value.order, value.transformation, extract(message, value.id)).also {
-                    println();
-                }
+                builder.put(value.type, value.order, value.transformation, extract(message, value.id))
             } else {
                 builder.putBytes(extractBytes(message, value.id))
             }

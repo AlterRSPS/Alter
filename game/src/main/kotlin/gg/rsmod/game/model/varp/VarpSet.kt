@@ -30,7 +30,6 @@ class VarpSet(val maxVarps: Int) {
     fun setState(id: Int, state: Int): VarpSet {
         varps[id].state = state
         dirty.add(id.toShort())
-        println("id: $id state: $state")
         return this
     }
 

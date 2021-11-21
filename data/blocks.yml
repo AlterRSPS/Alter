@@ -103,8 +103,9 @@ players:
           type: BYTE
           trans: NEGATE
         - name: compressed_data
-          type: BYTE
+          type: BYTES
           trans: ADD
+          order: REVERSED
 
     - block: FACE_TILE
       bit: 0x1
@@ -131,7 +132,6 @@ players:
         - name: type
           type: BYTE
           trans: SUBTRACT
-          sign: SIGNED
 
     - block: APPEARANCE
       bit: 0x2
@@ -187,7 +187,6 @@ npcs:
           type: SHORT
           trans: ADD
         - name: delay
-          sign: UNSIGNED
           type: BYTE
           trans: ADD
 

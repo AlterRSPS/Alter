@@ -9,24 +9,12 @@ import gg.rsmod.game.message.impl.OpHeldUMessage
 class OpHeldUDecoder : MessageDecoder<OpHeldUMessage>() {
 
     override fun decode(opcode: Int, opcodeIndex: Int, values: HashMap<String, Number>, stringValues: HashMap<String, String>): OpHeldUMessage {
-        val fromComponent = values["from_component"]!!.toInt().also {
-            println("fromComponent: $it")
-        }
-        val fromSlot = values["from_slot"]!!.toInt().also {
-            println("fromSlot: $it")
-        }
-        val fromItem = values["from_item"]!!.toInt().also {
-            println("fromItem: $it")
-        }
-        val toComponent = values["to_component"]!!.toInt().also {
-            println("toComponent: $it")
-        }
-        val toSlot = values["to_slot"]!!.toInt().also {
-            println("toSlot: $it")
-        }
-        val toItem = values["to_item"]!!.toInt().also {
-            println("toItem: $it")
-        }
+        val fromComponent = values["from_component"]!!.toInt()
+        val fromSlot = values["from_slot"]!!.toInt()
+        val fromItem = values["from_item"]!!.toInt()
+        val toComponent = values["to_component"]!!.toInt()
+        val toSlot = values["to_slot"]!!.toInt()
+        val toItem = values["to_item"]!!.toInt()
 
         return OpHeldUMessage(fromComponent, fromSlot, fromItem, toComponent, toSlot, toItem)
     }

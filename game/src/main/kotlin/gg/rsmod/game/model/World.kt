@@ -397,7 +397,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     fun spawn(item: GroundItem) {
         val tile = item.tile
         val chunk = chunks.getOrCreate(tile)
-        println("Item Spawned x: ${tile.x} z: ${tile.z} h: ${tile.height}");
         val def = definitions.get(ItemDef::class.java, item.item)
         if (def.stackable) {
             val oldItem = chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull { it.item == item.item && it.ownerUID == item.ownerUID }

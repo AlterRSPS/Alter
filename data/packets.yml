@@ -28,8 +28,8 @@ out-packets:
     opcode: 89
     structure:
       - name: cycles
-        type: SHORT
         order: LITTLE
+        type: SHORT
 
   - message: gg.rsmod.game.message.impl.TriggerOnDialogAbortMessage
     type: FIXED
@@ -112,6 +112,8 @@ out-packets:
         type: INT
         order: LITTLE
 
+    # @TODO RebuildLogin is the one that conflicts with [VarpLarge] packet
+    # Unsure for now. Leaving it like that don't really know how to fix it for now.
   - message: gg.rsmod.game.message.impl.RebuildLoginMessage
     type: VARIABLE_SHORT
     opcode: 62
@@ -126,32 +128,32 @@ out-packets:
       - name: xteas
         type: BYTES
 
-  - message: gg.rsmod.game.message.impl.RebuildNormalMessage
-    type: VARIABLE_SHORT
-    opcode: 62
-    structure:
-      - name: x
-        type: SHORT
-        order: LITTLE
-      - name: z
-        type: SHORT
-      - name: xteas
-        type: BYTES
+  #- message: gg.rsmod.game.message.impl.RebuildNormalMessage
+  #  type: VARIABLE_SHORT
+  #  opcode: 62
+  #  structure:
+  #    - name: x
+  #      type: SHORT
+  #      order: LITTLE
+  #    - name: z
+  #      type: SHORT
+  #    - name: xteas
+  #      type: BYTES
 
-  - message: gg.rsmod.game.message.impl.RebuildRegionMessage
-    type: VARIABLE_SHORT
-    opcode: 28
-    structure:
-      - name: force_load
-        type: BYTE
-        trans: NEGATE
-      - name: z
-        type: SHORT
-        order: LITTLE
-      - name: x
-        type: SHORT
-      - name: data
-        type: SHORT
+  #- message: gg.rsmod.game.message.impl.RebuildRegionMessage
+  #  type: VARIABLE_SHORT
+  #  opcode: 28
+  #  structure:
+  #    - name: z
+  #      type: SHORT
+  #      order: LITTLE
+  #    - name: x
+  #      type: SHORT
+  #    - name: data
+  #      type: BYTES #SHORT
+  #    - name: force_load
+  #      type: BYTE
+  #      trans: NEGATE
 
   - message: gg.rsmod.game.message.impl.IfOpenTopMessage
     type: FIXED
@@ -199,7 +201,7 @@ out-packets:
         type: BYTE
         trans: SUBTRACT
       - name: payload
-        type: BYTE
+        type: BYTES
 
   - message: gg.rsmod.game.message.impl.LocAddChangeMessage
     type: FIXED
@@ -243,10 +245,10 @@ out-packets:
         trans: ADD
         type: SHORT
         order: LITTLE
-      - name: amount
+      - name: tile
         type: BYTE
         trans: NEGATE
-      - name: tile
+      - name: amount
         type: SHORT
         trans: ADD
 
@@ -282,21 +284,21 @@ out-packets:
     structure:
       - name: value
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
       - name: id
         type: SHORT
-        order: LITTLE # SHOULD BE LITTLE
+        order: LITTLE
 
-  #- message: gg.rsmod.game.message.impl.RunClientScriptMessage
-  #  type: VARIABLE_SHORT
-  #  opcode: 21
-  #  structure:
-  #    - name: types
-  #      type: BYTES
-  #    - name: args
-  #      type: BYTES
-  #    - name: id
-  #      type: INT
+  - message: gg.rsmod.game.message.impl.RunClientScriptMessage
+    type: VARIABLE_SHORT
+    opcode: 21
+    structure:
+      - name: types
+        type: BYTES
+      - name: args
+        type: BYTES
+      - name: id
+        type: INT
 
   - message: gg.rsmod.game.message.impl.MessageGameMessage
     type: VARIABLE_BYTE
@@ -334,7 +336,7 @@ out-packets:
     opcode: 12
     structure:
       - name: text
-        type: BYTES
+        type: BYTES # ?
       - name: hash
         type: INT
 
@@ -450,11 +452,11 @@ out-packets:
     opcode: 40
     structure:
       - name: x
-        type: BYTES
+        type: BYTE
         order: REVERSED
         sign: SIGNED
       - name: z
-        type: BYTES
+        type: BYTE
         order: REVERSED
         sign: SIGNED
 
@@ -1010,7 +1012,8 @@ in-packets:
 
   - message: gg.rsmod.game.message.impl.IfButtonMessage
     type: FIXED
-    opcodes: 24,101,93,83,84,20,71,15,56,96,89
+    opcodes: 24,101,93,83,84,20,71,15,56,96
+            #75,82,54,96,20,86,77,45,91,94
     length: 8
     structure:
       - name: hash
@@ -1318,9 +1321,9 @@ in-packets:
     opcode: 76
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON2 -> ? What? This was included inside IF_BUTTON List above..
+  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON2
     type: FIXED
-    opcode: 52
+    opcode: 89
     length: 8
     ignore: true
 

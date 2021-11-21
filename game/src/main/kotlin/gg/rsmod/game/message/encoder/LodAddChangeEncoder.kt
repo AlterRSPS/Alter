@@ -10,15 +10,9 @@ import gg.rsmod.game.message.impl.LocAddChangeMessage
 class LodAddChangeEncoder : MessageEncoder<LocAddChangeMessage>() {
 
     override fun extract(message: LocAddChangeMessage, key: String): Number = when (key) {
-        "tile" -> message.tile.also {
-            println("LodAddChange:Hash:${message.tile}");
-        }
-        "settings" -> message.settings.also {
-            println("LodAddChange:settings:${message.settings}");
-        }
-        "id" -> message.id.also {
-            println("LodAddChange:Id:${message.id}");
-        }
+        "tile" -> message.tile
+        "settings" -> message.settings
+        "id" -> message.id
         else -> throw Exception("Unhandled value key.")
     }
 

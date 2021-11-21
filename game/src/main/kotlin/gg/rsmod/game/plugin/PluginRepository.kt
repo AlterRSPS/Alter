@@ -884,7 +884,6 @@ class PluginRepository(val world: World) {
     }
 
     fun executeButton(p: Player, parent: Int, child: Int): Boolean {
-        println("[TEST_FROM_EXECUTE_BUTTON:] - Parent: $parent | Child: $child")
         val hash = (parent shl 16) or child
         val plugin = buttonPlugins[hash]
         if (plugin != null) {

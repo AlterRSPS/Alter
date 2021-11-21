@@ -11,12 +11,8 @@ import gg.rsmod.game.message.impl.VarpSmallMessage
 class VarpSmallEncoder : MessageEncoder<VarpSmallMessage>() {
 
     override fun extract(message: VarpSmallMessage, key: String): Number = when (key) {
-        "id" -> message.id.also{
-            println("VarpSmall ID: ${message.id}")
-        }
-        "value" -> message.value.also {
-            println("VarpSmall Value: ${message.value}")
-        }
+        "id" -> message.id
+        "value" -> message.value
         else -> throw Exception("Unhandled value key.")
     }
 
