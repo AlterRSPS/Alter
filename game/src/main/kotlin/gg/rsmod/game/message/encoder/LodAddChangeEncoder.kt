@@ -5,6 +5,7 @@ import gg.rsmod.game.message.impl.LocAddChangeMessage
 
 /**
  * @author Tom <rspsmods@gmail.com>
+ * @TODO Lod or Loc? I think someone misspeled that D:
  */
 class LodAddChangeEncoder : MessageEncoder<LocAddChangeMessage>() {
 

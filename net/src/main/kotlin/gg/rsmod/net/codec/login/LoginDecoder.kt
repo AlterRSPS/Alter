@@ -169,10 +169,11 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
                 if (i == 16) {
                     continue
                 }
+
                 if (crcs[i] != cacheCrcs[i]) {
                     buf.resetReaderIndex()
                     buf.skipBytes(payloadLength)
-                    logger.info { "User '$username' login request crc mismatch [requestCrc=${crcs.contentToString()}, cacheCrc=${cacheCrcs.contentToString()}]." }
+                    logger.info { "User '$username' login request crc mismatch [requestCrc= \n ${crcs.contentToString()}, \n cacheCrc=${cacheCrcs.contentToString()}]." }
                     ctx.writeResponse(LoginResultType.REVISION_MISMATCH)
                     return
                 }
@@ -194,15 +195,15 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
         /**
          * switch based on incoming CRCorder
          */
+
         for(i in CRCorder.indices){
             when(val idx = CRCorder[i]){
-                3,12,0 -> crcs[idx] = xteaBuf.readInt()
-                15,10,7,1,18,2 -> crcs[idx] = xteaBuf.readIntLE()
-                17,8,19,16,20,14,6 -> crcs[idx] = xteaBuf.readIntME()
-                11,13,9,4,5 -> crcs[idx] = xteaBuf.readIntIME()
+                10,20,15,17,9,5,19,11 -> crcs[idx] = xteaBuf.readIntME()
+                6,7,1,16 -> crcs[idx] = xteaBuf.readInt()
+                2,4,12,18,13,14 -> crcs[idx] = xteaBuf.readIntLE()
+                0,3,8 -> crcs[idx] = xteaBuf.readIntIME()
             }
         }
-
         return crcs
     }
 
@@ -227,9 +228,11 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
          * and with varying byte orders
          */
         private val CRCorder = intArrayOf(
-                11,17,3,15,13,9,
-                4,5,10,7,1,
-                8,19,12,16,20,
-                14,6,18,2,0)
+            10,6,16,20,2,0,3,15,17,9,7,4,5,8,12,18,13,1,19,11,14
+        )
+//                11,17,3,15,13,9,
+//                4,5,10,7,1,
+//                8,19,12,16,20,
+//                14,6,18,2,0)
     }
 }

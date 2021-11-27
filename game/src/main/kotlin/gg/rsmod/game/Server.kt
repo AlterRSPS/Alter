@@ -207,9 +207,7 @@ class Server {
         val port = gameProperties.getOrDefault("game-port", 43594)
         bootstrap.bind(InetSocketAddress(port)).sync().awaitUninterruptibly()
         logger.info("Now listening for incoming connections on port $port...")
-
         System.gc()
-
         return world
     }
 

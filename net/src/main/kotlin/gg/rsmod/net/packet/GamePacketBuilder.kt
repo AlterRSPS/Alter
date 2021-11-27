@@ -113,7 +113,6 @@ class GamePacketBuilder {
      */
     fun put(type: DataType, order: DataOrder, transformation: DataTransformation, value: Number) {
         check(type != DataType.SMART) { "Use `putSmart` instead." }
-
         checkByteAccess()
         val longValue = value.toLong()
         val length = type.bytes
@@ -250,7 +249,6 @@ class GamePacketBuilder {
      */
     @Throws(IllegalArgumentException::class)
     fun putBits(numBits: Int, value: Int) {
-        // @TODO print("$numBits : $value | ");
         var numberOfBits = numBits
         Preconditions.checkArgument(numberOfBits in 1..32, "Number of bits must be between 1 and 32 inclusive.")
 

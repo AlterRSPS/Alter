@@ -368,7 +368,7 @@ fun Player.toggleVarp(id: Int) {
 }
 
 fun Player.syncVarp(id: Int) {
-    setVarp(id, getVarp(id))
+        setVarp(id, getVarp(id))
 }
 
 fun Player.getVarbit(id: Int): Int {
@@ -398,10 +398,11 @@ fun Player.setVarbit(id: Int, value: Int) {
  * its varp value in [Player.varps].
  */
 fun Player.sendTempVarbit(id: Int, value: Int) {
-    val def = world.definitions.get(VarbitDef::class.java, id)
-    val state = BitManipulation.setBit(varps.getState(def.varp), def.startBit, def.endBit, value)
-    val message = if (state in -Byte.MAX_VALUE..Byte.MAX_VALUE) VarpSmallMessage(def.varp, state) else VarpLargeMessage(def.varp, state)
-    write(message)
+    // @TODO DISABLED!
+    //val def = world.definitions.get(VarbitDef::class.java, id)
+    //val state = BitManipulation.setBit(varps.getState(def.varp), def.startBit, def.endBit, value)
+    //val message = if (state in -Byte.MAX_VALUE..Byte.MAX_VALUE) VarpSmallMessage(def.varp, state) else VarpLargeMessage(def.varp, state)
+    //write(message)
 }
 
 fun Player.toggleVarbit(id: Int) {

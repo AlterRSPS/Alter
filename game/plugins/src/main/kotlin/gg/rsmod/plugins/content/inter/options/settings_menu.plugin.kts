@@ -2,16 +2,13 @@ package gg.rsmod.plugins.content.inter.options
 
 import gg.rsmod.game.model.interf.DisplayMode
 
-
 fun bind_all_setting(child: Int, plugin: Plugin.() -> Unit) {
     on_button(interfaceId = OptionsTab.ALL_SETTINGS_INTERFACE_ID, component = child) {
+        player.message("InterfaceID: ${OptionsTab.ALL_SETTINGS_INTERFACE_ID} , child: $child")
         plugin(this)
     }
 }
 
-bind_all_setting(Settings.SETTINGS_TAB_SELECTOR) {
-    player.message("selected tab ${player.getInteractingSlot()}")
-}
 
 /**
  * Display Tab
@@ -58,6 +55,10 @@ bind_all_setting(child = 17) {
         30 -> player.toggleVarbit(OSRSGameframe.SHIFT_CLICK_DROP_VARBIT)
         else -> return@bind_all_setting
     }
+}
+
+bind_all_setting(child = 179) {
+    player.message("Ayy kys")
 }
 
 bind_all_setting(18) {

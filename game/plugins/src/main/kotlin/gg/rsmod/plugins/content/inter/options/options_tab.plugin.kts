@@ -39,7 +39,6 @@ bind_setting(child = ALL_SETTINGS_BUTTON_ID) {
     if (!player.lock.canInterfaceInteract()) {
         return@bind_setting
     }
-
     val main_parent = getDisplayComponentId(player.interfaces.displayMode)
     val main_child = getChildId(InterfaceDestination.MAIN_SCREEN, player.interfaces.displayMode)
     val world_child = getChildId(InterfaceDestination.WORLD_MAP, player.interfaces.displayMode)
@@ -50,10 +49,11 @@ bind_setting(child = ALL_SETTINGS_BUTTON_ID) {
     }
 
     player.openInterface(interfaceId = ALL_SETTINGS_INTERFACE_ID, dest = InterfaceDestination.WORLD_MAP)
-    player.setInterfaceEvents(interfaceId = ALL_SETTINGS_INTERFACE_ID, component = 22, range = 0..5, setting = 2)
-    player.setInterfaceEvents(interfaceId = ALL_SETTINGS_INTERFACE_ID, component = 18, range = 0..87, setting = 2)
-    player.setInterfaceEvents(interfaceId = ALL_SETTINGS_INTERFACE_ID, component = 27, range = 0..122, setting = 2)
+    player.setInterfaceEvents(interfaceId = ALL_SETTINGS_INTERFACE_ID, component = 21, range = 0..5, setting = 2)
+    player.setInterfaceEvents(interfaceId = ALL_SETTINGS_INTERFACE_ID, component = 19, range = 0..76, setting = 2)
+    player.setInterfaceEvents(interfaceId = ALL_SETTINGS_INTERFACE_ID, component = 18, range = 0..122, setting = 2)
     player.setInterfaceEvents(interfaceId = ALL_SETTINGS_INTERFACE_ID, component = 20, range = 0..28, setting = 2)
+// Comp -> 134:13
 }
 
 on_button(ALL_SETTINGS_INTERFACE_ID, Settings.SETTINGS_CLOSE_BUTTON_ID) {
@@ -186,6 +186,10 @@ on_button(OPTIONS_INTERFACE_ID, 82) {
     if(!(mode.isResizable() && player.interfaces.displayMode.isResizable()))
         player.runClientScript(3998, slot-1)
     player.toggleDisplayInterface(mode)
+}
+
+on_login {
+    player.runClientScript(3998, 2)
 }
 
 set_window_status_logic {

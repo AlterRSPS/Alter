@@ -7,14 +7,14 @@ package gg.rsmod.game.model.region.update
  * @author Tom <rspsmods@gmail.com>
  */
 enum class EntityUpdateType(val id: Int) {
-    REMOVE_GROUND_ITEM(id = 5), // * -
-    PLAY_TILE_SOUND(id = 8), // *
-    UNKNOWN(id = 3), // *
-    UPDATE_GROUND_ITEM(id = 7), // *
-    SPAWN_PROJECTILE(id = 9), // *
-    SPAWN_GROUND_ITEM(id = 6), // *
-    SPAWN_OBJECT(id = 0), // *
-    MAP_ANIM(id = 1), // *
-    REMOVE_OBJECT(id = 2), // * -
-    ANIMATE_OBJECT(id = 4); // *
+    PLAY_TILE_SOUND(id = 0), // AREA_SOUND*
+    SPAWN_GROUND_ITEM(id = 1),  // ITEM_ADD
+    REMOVE_OBJECT(id = 2), // OBJ_DEL
+    SPAWN_PROJECTILE(id = 3), //  MAP_ANIM?
+    MAP_ANIM(id = 4), // MAPPROJ_ANIM
+    REMOVE_GROUND_ITEM(id = 5), // ITEM_DEL
+    UNKNOWN(id = 6), // PREFETCH_GAMEOBJECTS
+    SPAWN_OBJECT(id = 7), // OBJ_ADD
+    UPDATE_GROUND_ITEM(id = 8), // ITEM_COUNT
+    ANIMATE_OBJECT(id = 9); // OBJECT_ANIM
 }
