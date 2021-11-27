@@ -2,12 +2,9 @@ package gg.rsmod.game.system
 
 import gg.rsmod.game.message.Message
 import gg.rsmod.game.message.MessageHandler
-import gg.rsmod.game.message.encoder.RebuildLoginEncoder
-import gg.rsmod.game.message.impl.*
 import gg.rsmod.game.model.World
 import gg.rsmod.game.model.entity.Client
 import gg.rsmod.game.service.GameService
-import gg.rsmod.game.service.xtea.XteaKeyService
 import gg.rsmod.net.packet.GamePacket
 import gg.rsmod.net.packet.GamePacketReader
 import io.netty.channel.Channel
@@ -15,7 +12,6 @@ import io.netty.channel.ChannelHandlerContext
 import mu.KLogging
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.BlockingQueue
-import kotlin.reflect.KClass
 
 /**
  * A [ServerSystem] responsible for decoding and encoding [Message]s from and
@@ -51,7 +47,7 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
 
     override fun terminate() {
         client.requestLogout()
-        //logger.info("User '{}' requested disconnection from channel {}.", client.username, channel)
+        logger.info("User '{}' requested disconnection from channel {}.", client.username, channel)
     }
 
     fun handleMessages() {
@@ -61,16 +57,7 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
         }
     }
 
-    val acceptedPackets = listOf(
-        //IfOpenTopMessage::class,
-        RebuildLoginMessage::class,
-        //IfOpenSubMessage::class,
-        VarpLargeMessage::class
-    )
-
     fun write(message: Message) {
-        if (message::class !in acceptedPackets) return
-        println(message)
         channel.write(message)
     }
 

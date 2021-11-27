@@ -300,7 +300,7 @@ object Npcs {
     const val SPEEDY_KEITH = 303
     const val SALARIN_THE_TWISTED = 304
     const val JENNIFER = 305
-    const val LUMBRIDGE_GUIDE = 306
+    const val LUMBRIDGE_GUIDE_306 = 306
     const val DR_JEKYLL = 307
     const val EMBLEM_TRADER = 308
     const val REACHER = 309
@@ -586,7 +586,7 @@ object Npcs {
     const val ZOMBIE_PIRATE_598 = 598
     const val ZOMBIE_PIRATE_599 = 599
     const val BARRELCHEST = 600
-    const val PIRATE_PETE = 601
+    const val PIRATE_PETE_601 = 601
     const val PIRATE_PETE_602 = 602
     const val CAPTAIN_BRAINDEATH = 603
     const val _50_LUKE = 604
@@ -870,7 +870,7 @@ object Npcs {
     const val DENATH_898 = 898
     const val ERIC = 899
     const val ERIC_900 = 900
-    const val EVIL_DAVE = 901
+    const val EVIL_DAVE_901 = 901
     const val EVIL_DAVE_902 = 902
     const val MATTHEW = 903
     const val MATTHEW_904 = 904
@@ -1703,7 +1703,7 @@ object Npcs {
     const val SUMMER_ELEMENTAL_1806 = 1806
     const val SORCERESS = 1807
     const val APPRENTICE = 1808
-    const val OSMAN = 1809
+    const val OSMAN_1809 = 1809
     const val OSMAN_1810 = 1810
     const val OSMAN_1811 = 1811
     const val DELMONTY = 1813
@@ -1749,7 +1749,7 @@ object Npcs {
     const val TREE_SPIRIT_1864 = 1864
     const val TREE_SPIRIT_1865 = 1865
     const val TREE_SPIRIT_1866 = 1866
-    const val SIR_AMIK_VARZE = 1867
+    const val SIR_AMIK_VARZE_1867 = 1867
     const val SIR_AMIK_VARZE_1869 = 1869
     const val EVIL_CHICKEN = 1870
     const val BABY_BLACK_DRAGON = 1871
@@ -2713,6 +2713,7 @@ object Npcs {
     const val COOK_2896 = 2896
     const val BANKER_2897 = 2897
     const val BANKER_2898 = 2898
+    const val IFFIE = 2899
     const val ELSIE = 2900
     const val CLEANER = 2901
     const val STRAY_DOG = 2902
@@ -9459,34 +9460,5 @@ object Npcs {
     const val GUARD_11209 = 11209
     const val GUARD_11210 = 11210
     const val PRIFDDINAS_GUARD_11211 = 11211
-    const val D3AD1I_F15HER = 11225
-    const val BOAR31337KILLER = 11226
-    const val ENRAGED_BOAR = 11227
-    const val R0CK_5MASHER = 11228
-    const val REGENT = 11229
-    const val GROUP_STORAGE_TUTOR = 11230
-    const val GROUP_IRON_TUTOR = 11231
-    const val IFFIE = 11232
-    const val MONK_11233 = 11233
-    const val BROTHER_JERED_11234 = 11234
-    const val BROTHER_JERED_11235 = 11235
-    const val OZIACH_11236 = 11236
-    const val OZIACH_11237 = 11237
-    const val ESTATE_AGENT_11238 = 11238
-    const val IFFIE_11239 = 11239
-    const val IFFIE_11240 = 11240
-    const val OZIACH_11241 = 11241
-    const val ESTATE_AGENT_11242 = 11242
-    const val DEATH_11243 = 11243
-    const val IFFIE_11245 = 11245
-    const val IFFIE_11246 = 11246
-    const val JONNY_THE_BEARD_11247 = 11247
-    const val WOMAN_11248 = 11248
-    const val DR_HARLOW_11249 = 11249
-    const val BARBARIAN_11250 = 11250
-    const val COOK_11251 = 11251
-    const val BARTENDER_11252 = 11252
-    const val XI_PLZPETDOGZ_XIX = 11254
-    const val ROCKING_CHAIR_11262 = 11262
     /* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
 }

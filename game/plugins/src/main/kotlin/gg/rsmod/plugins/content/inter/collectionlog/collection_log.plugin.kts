@@ -11,6 +11,8 @@ CollectionTabs.values().forEach { tab ->
     }
 
     val categories = world.definitions.get(EnumDef::class.java, ENUM_OFFSET + tab.ordinal).values.values.toList()
+    //println("${tab.name}: ")
+
     @Suppress("UNCHECKED_CAST")
     (categories as? List<Int>)?.forEach { cat ->
         val logs = world.definitions.get(StructDef::class.java, cat).params.values.toList()
