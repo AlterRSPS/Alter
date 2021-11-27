@@ -1,20 +1,20 @@
 # Alter
-[![revision: 200][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/QTpECWN6)
+[![revision: 201][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/QTpECWN6)
 
-**Alter** is a modified version of [RSMod](https://github.com/Tomm0017/rsmod)
-
-**RSMod** is a highly flexible user-friendly game server for use with the OSRS client. Implemented in a modular way,
+**Alter** is a modified version of [RSMod](https://github.com/Tomm0017/rsmod) a highly flexible user-friendly game server for use with the OSRS client. Implemented in a modular way,
 the framework allows developers to make and create any sort of plugin they wish without having to modify the core game module.
 Due to the plugin capabilities, even owners without programming experience can just have others make plugins for them and simply drop them into the plugins module to be automatically loaded on the next startup!
 
 #### I found a bug, where can I report it?
-- You can report them as Issues on GitHub
+- You can report them as Issues on GitHub or in Alter's [Discord Server](https://discord.gg/kdhBuRaduw)
 
-#### Installation
-* This will be rewriten! but for now you can use this as your guide https://github.com/Tomm0017/rsmod/#installation
-* Cache: https://archive.runestats.com/osrs/2021-09-22-rev199.tar.gz
-* Client: https://github.com/AlterRSPS/AlterClient
-* Or OpenOSRS: https://github.com/CloudS3c/OpenOSRS_RSPS
+## Installation:
+
+#### First download:
+* Cache: [Rev201 Cache](https://archive.runestats.com/osrs/2021-11-24-rev201-2.tar.gz)
+* OpenOSRS Client: https://github.com/CloudS3c/OpenOSRS_RSPS
+
+
 
 ## Acknowledgments
 
@@ -50,5 +50,5 @@ Due to the plugin capabilities, even owners without programming experience can j
   - Discord members lending a hand and being helpful
 
 [patch]: https://oldschool.runescape.wiki/w/Update:Revenant_Caves_%26_Deadman_Changes
-[rev-badge]: https://img.shields.io/badge/Revision-200-blueviolet
+[rev-badge]: https://img.shields.io/badge/Revision-201-blueviolet
 [license-badge]: https://img.shields.io/badge/license-ISC-informational

@@ -4,6 +4,7 @@ import gg.rsmod.game.model.attr.INTERACTING_ITEM_SLOT
 import gg.rsmod.game.model.attr.OTHER_ITEM_SLOT_ATTR
 import gg.rsmod.game.model.attr.LAST_LOGIN_ATTR
 import gg.rsmod.game.model.timer.TimeConstants
+import gg.rsmod.plugins.content.Osrs_plugin.OSRSInterfaces.openDefaultInterfaces
 import gg.rsmod.plugins.content.inter.welcome.WelcomeScreen.openWelcomeScreen
 
 /**
@@ -46,23 +47,19 @@ on_login {
     player.sendWeaponComponentInformation()
     player.sendCombatLevelText()
 
-    /**
-     * Interface-related logic.
-     * Removing login interface for now as it adds more time to load and fuck that.
-     */
-    openWelcomeScreen(player, (time_lapsed/TimeConstants.MINUTE).toInt(), player.membersDaysLeft())
-
+    // Interface-related logic.
+    //openWelcomeScreen(player, (time_lapsed/TimeConstants.MINUTE).toInt(), player.membersDaysLeft())
+    player.openDefaultInterfaces()
     // Inform the client whether or not we have a display name.
     val displayName = player.username.isNotBlank()
-    player.runClientScript(1105, if (displayName) 1 else 0) // Has display name
-    player.runClientScript(423, player.username)
+//    player.runClientScript(1105, if (displayName) 1 else 0) // Has display name
+//    player.runClientScript(423, player.username)
+    // @TODO CLOUD
+    //if (player.getVarp(1055) == 0 && displayName) {
+    //    player.syncVarp(1055)
+    //}
+    //player.setVarbit(8119, 1) // Has display name
 
-    if (player.getVarp(1055) == 0 && displayName) {
-        player.syncVarp(1055)
-    }
-
-    player.setVarbit(8119, 1) // Has display name
-    player.message("Before varbit 8119");
     // Sync attack priority options.
     player.syncVarp(OSRSGameframe.NPC_ATTACK_PRIORITY_VARP)
     player.syncVarp(OSRSGameframe.PLAYER_ATTACK_PRIORITY_VARP)
@@ -74,6 +71,9 @@ on_login {
 
     // Game-related logic.
     player.sendRunEnergy(player.runEnergy.toInt())
+    player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
+    player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
+    player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
     player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
 }
 

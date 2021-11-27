@@ -45,7 +45,10 @@ class NpcUpdateBlockSegment(private val npc: Npc, private val newAddition: Boole
     private fun write(buf: GamePacketBuilder, blockType: UpdateBlockType) {
         val blocks = npc.world.npcUpdateBlocks
         when (blockType) {
-
+            UpdateBlockType.OVERRIDE_LEVEL -> {
+                val structure = blocks.updateBlocks[blockType]!!.values
+                buf.put(structure[0].type, structure[0].order, structure[0].transformation, 120)
+            }
             UpdateBlockType.FACE_PAWN -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, npc.blockBuffer.facePawnIndex)

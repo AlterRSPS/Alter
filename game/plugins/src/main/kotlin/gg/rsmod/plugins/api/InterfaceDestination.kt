@@ -5,7 +5,7 @@ import gg.rsmod.game.model.interf.DisplayMode
 enum class InterfaceDestination(val interfaceId: Int, val fixedChildId: Int, val resizeChildId: Int, val resizeListChildId: Int,
                                 val fullscreenChildId: Int = -1, val clickThrough: Boolean = true) {
 
-    CHAT_BOX(interfaceId = 162, fixedChildId = 32, resizeChildId = 37, resizeListChildId = 39, fullscreenChildId = 1),
+    CHAT_BOX(interfaceId = 162, fixedChildId = 10, resizeChildId = 37, resizeListChildId = 39, fullscreenChildId = 1),
 
     XP_COUNTER(interfaceId = 122, fixedChildId = 21, resizeChildId = 11, resizeListChildId = 11, fullscreenChildId = 11),
 
@@ -13,13 +13,13 @@ enum class InterfaceDestination(val interfaceId: Int, val fixedChildId: Int, val
 
     SKILLS(interfaceId = 320, fixedChildId = 76, resizeChildId = 79, resizeListChildId = 78, fullscreenChildId = 16),
 
-    QUEST_ROOT(interfaceId = 629, fixedChildId = 77, resizeChildId = 80, resizeListChildId = 79, fullscreenChildId = 17),
+    QUEST_ROOT(interfaceId = 629, fixedChildId = 16, resizeChildId = 80, resizeListChildId = 79, fullscreenChildId = 17),
 
-    INVENTORY(interfaceId = 149, fixedChildId = 78, resizeChildId = 81, resizeListChildId = 80, fullscreenChildId = 18),
+    INVENTORY(interfaceId = 149, fixedChildId = 16, resizeChildId = 81, resizeListChildId = 80, fullscreenChildId = 18),
 
     EQUIPMENT(interfaceId = 387, fixedChildId = 79, resizeChildId = 82, resizeListChildId = 81, fullscreenChildId = 19),
 
-    PRAYER(interfaceId = 541, fixedChildId = 80, resizeChildId = 83, resizeListChildId = 82, fullscreenChildId = 20),
+    PRAYER(interfaceId = 541, fixedChildId = 13, resizeChildId = 83, resizeListChildId = 82, fullscreenChildId = 20),
 
     MAGIC(interfaceId = 218, fixedChildId = 81, resizeChildId = 84, resizeListChildId = 83, fullscreenChildId = 21),
 
@@ -39,17 +39,17 @@ enum class InterfaceDestination(val interfaceId: Int, val fixedChildId: Int, val
 
     PRIVATE_CHAT(interfaceId = 163, fixedChildId = 23, resizeChildId = 16, resizeListChildId = 16, fullscreenChildId = 30),
 
-    MINI_MAP(interfaceId = 160, fixedChildId = 11, resizeChildId = 36, resizeListChildId = 36, fullscreenChildId = 31),
+    MINI_MAP(interfaceId = 160, fixedChildId = 24, resizeChildId = 36, resizeListChildId = 36, fullscreenChildId = 31),
 
     MAIN_SCREEN(interfaceId = -1, fixedChildId = 28, resizeChildId = 20, resizeListChildId = 20, fullscreenChildId = 13,
             clickThrough = false),
 
-    TAB_AREA(interfaceId = -1, fixedChildId = 73, resizeChildId = 76, resizeListChildId = 75,
+    TAB_AREA(interfaceId = -1, fixedChildId = 14, resizeChildId = 76, resizeListChildId = 75,
             clickThrough = false),
 
-    WALKABLE(interfaceId = -1, fixedChildId = 14, resizeChildId = 3, resizeListChildId = 3),
+    WALKABLE(interfaceId = -1, fixedChildId = 9, resizeChildId = 3, resizeListChildId = 3),
 
-    WORLD_MAP(interfaceId = -1, fixedChildId = 29, resizeChildId = 21, resizeListChildId = 21, fullscreenChildId = 36),
+    WORLD_MAP(interfaceId = -1, fixedChildId = 8, resizeChildId = 21, resizeListChildId = 21, fullscreenChildId = 36),
 
     WORLD_MAP_FULL(interfaceId = -1, fixedChildId = 27, resizeChildId = 27, resizeListChildId = 27, fullscreenChildId = 27, clickThrough = false),
     // interface 90??

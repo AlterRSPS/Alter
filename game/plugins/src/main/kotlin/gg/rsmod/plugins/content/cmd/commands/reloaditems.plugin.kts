@@ -1,6 +1,9 @@
 import gg.rsmod.game.service.game.ItemMetadataService
 
 /**
- * @TODO
- * Itemreload => Refresh the items data
+ * @TODO Finish
  */
+on_command("reloaditems") {
+    load_service(ItemMetadataService())
+    player.message("ItemMetaDataService was reloaded.")
+}

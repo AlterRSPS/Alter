@@ -21830,19 +21830,5 @@ object Objs {
     const val BANK_BOOTH_42837 = 42837
     const val FROZEN_DOOR = 42840
     const val FROZEN_DOOR_42841 = 42841
-    const val PLAN = 42859
-    const val PLAN_42860 = 42860
-    const val PLAN_42861 = 42861
-    const val PLAN_42862 = 42862
-    const val CRATE_42863 = 42863
-    const val CRATE_42864 = 42864
-    const val DESK_42865 = 42865
-    const val TABLE_42866 = 42866
-    const val CHAIR_42867 = 42867
-    const val BAR_STOOL = 42868
-    const val TABLE_42871 = 42871
-    const val TABLE_42872 = 42872
-    const val EVERGREEN_42873 = 42873
-    const val EVERGREEN_42874 = 42874
     /* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
 }

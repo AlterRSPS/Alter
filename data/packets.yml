@@ -1,11 +1,12 @@
-# out-packets: packets sent from server to client
-# in-packets:  packets sent from client to server
+# server-packets: packets sent from server to client
+# client-packets:  packets sent from client to server
+# Stop confusing the shit out of me :lolbert: IN/OUT Simplify TOMM PLZ!
 
-out-packets:
+server-packets:
 
   - message: gg.rsmod.game.message.impl.MapAnimMessage
     type: FIXED
-    opcode: 8
+    opcode: 84
     structure:
       - name: height
         sign: UNSIGNED
@@ -25,22 +26,23 @@ out-packets:
 
   - message: gg.rsmod.game.message.impl.UpdateRebootTimerMessage
     type: FIXED
-    opcode: 89
+    opcode: 69
     structure:
       - name: cycles
-        order: LITTLE
         type: SHORT
+        trans: ADD
 
   - message: gg.rsmod.game.message.impl.TriggerOnDialogAbortMessage
     type: FIXED
-    opcode: 36
+    opcode: 72
 
   - message: gg.rsmod.game.message.impl.SetOpPlayerMessage
     type: VARIABLE_BYTE
-    opcode: 53
+    opcode: 3
     structure:
       - name: index
         type: BYTE
+        trans: SUBTRACT
       - name: left_click
         type: BYTE
       - name: option
@@ -48,250 +50,245 @@ out-packets:
 
   - message: gg.rsmod.game.message.impl.SoundAreaMessage
     type: FIXED
-    opcode: 1
+    opcode: 12
     structure:
-      - name: sound
-        type: SHORT
       - name: settings
         type: BYTE
-        trans: SUBTRACT
       - name: tile
         type: BYTE
-        trans: ADD
+        trans: SUBTRACT
       - name: delay
         type: BYTE
-        trans: SUBTRACT
+        trans: NEGATE
+      - name: sound
+        type: BYTE
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.MapProjAnimMessage
     type: FIXED
-    opcode: 85
+    opcode: 20
     structure:
-      - name: target_index
-        type: SHORT
-        order: LITTLE
-        sign: SIGNED
       - name: offset_x
         type: BYTE
-        sign: SIGNED
-      - name: delay
-        type: SHORT
+      - name: lifespan
         trans: ADD
-      - name: steepness
+        order: LITTLE
+        type: SHORT
+      - name: delay
+        order: LITTLE
+        type: SHORT
+      - name: start_height
         type: BYTE
+        trans: NEGATE
+      - name: target_index
+        trans: ADD
+        type: SHORT
+      - name: offset_z
+        trans: ADD
+        type: BYTE
+      - name: tile
+        trans: ADD
+        type: BYTE
+      - name: end_height
+        type: BYTE
+      - name: steepness
         trans: SUBTRACT
+        type: BYTE
       - name: gfx
         type: SHORT
         trans: ADD
         order: LITTLE
-      - name: start_height
-        type: BYTE
-        trans: ADD
-      - name: tile
-        type: BYTE
-        trans: SUBTRACT
       - name: angle
-        type: BYTE
-        trans: NEGATE
-      - name: offset_z
-        type: BYTE
-        trans: NEGATE
-        sign: SIGNED
-      - name: lifespan
-        type: SHORT
-        order: LITTLE
-      - name: end_height
+        trans: SUBTRACT
         type: BYTE
 
   - message: gg.rsmod.game.message.impl.IfMoveSubMessage
     type: FIXED
-    opcode: 84
+    opcode: 36
     structure:
       - name: from
         type: INT
+        order: LITTLE
       - name: to
         type: INT
         order: LITTLE
 
-    # @TODO RebuildLogin is the one that conflicts with [VarpLarge] packet
-    # Unsure for now. Leaving it like that don't really know how to fix it for now.
   - message: gg.rsmod.game.message.impl.RebuildLoginMessage
     type: VARIABLE_SHORT
-    opcode: 62
+    opcode: 47
     structure:
       - name: gpi
         type: BYTES
+      - name: z
+        type: SHORT
+        trans: ADD
       - name: x
         type: SHORT
         order: LITTLE
-      - name: z
-        type: SHORT
       - name: xteas
         type: BYTES
 
-  #- message: gg.rsmod.game.message.impl.RebuildNormalMessage
-  #  type: VARIABLE_SHORT
-  #  opcode: 62
-  #  structure:
-  #    - name: x
-  #      type: SHORT
-  #      order: LITTLE
-  #    - name: z
-  #      type: SHORT
-  #    - name: xteas
-  #      type: BYTES
+  - message: gg.rsmod.game.message.impl.RebuildNormalMessage
+    type: VARIABLE_SHORT
+    opcode: 47
+    structure:
+      - name: z
+        type: SHORT
+        trans: ADD
+      - name: x
+        type: SHORT
+        order: LITTLE
+      - name: xteas
+        type: BYTES
 
-  #- message: gg.rsmod.game.message.impl.RebuildRegionMessage
-  #  type: VARIABLE_SHORT
-  #  opcode: 28
-  #  structure:
-  #    - name: z
-  #      type: SHORT
-  #      order: LITTLE
-  #    - name: x
-  #      type: SHORT
-  #    - name: data
-  #      type: BYTES #SHORT
-  #    - name: force_load
-  #      type: BYTE
-  #      trans: NEGATE
+  - message: gg.rsmod.game.message.impl.RebuildRegionMessage
+    type: VARIABLE_SHORT
+    opcode: 1
+    structure:
+      - name: z
+        type: SHORT
+        trans: ADD
+      - name: x
+        type: SHORT
+      - name: force_load
+        type: BYTE
+      - name: data
+        type: BYTES
 
   - message: gg.rsmod.game.message.impl.IfOpenTopMessage
     type: FIXED
-    opcode: 49
+    opcode: 6
     structure:
       - name: top
         type: SHORT
         trans: ADD
-        sign: UNSIGNED
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.IfOpenSubMessage
     type: FIXED
-    opcode: 33
+    opcode: 17
     structure:
       - name: component
         type: SHORT
         trans: ADD
         order: LITTLE
-      - name: type
-        type: BYTE
-        trans: SUBTRACT
       - name: overlay
         type: INT
-        order: LITTLE
+        order: INVERSE_MIDDLE
+      - name: type
+        type: BYTE
+        trans: ADD
 
   - message: gg.rsmod.game.message.impl.UpdateZonePartialFollowsMessage
     type: FIXED
-    opcode: 9
+    opcode: 48
     structure:
-      - name: x
-        type: BYTE
-        trans: SUBTRACT
       - name: z
+        type: BYTE
+      - name: x
         type: BYTE
         trans: NEGATE
 
   - message: gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
     type: VARIABLE_SHORT
-    opcode: 29
+    opcode: 56
     structure:
       - name: z
         type: BYTE
-        trans: NEGATE
+        trans: ADD
       - name: x
         type: BYTE
-        trans: SUBTRACT
       - name: payload
         type: BYTES
 
   - message: gg.rsmod.game.message.impl.LocAddChangeMessage
     type: FIXED
-    opcode: 43
+    opcode: 61
+    structure:
+      - name: tile
+        type: BYTE
+        trans: ADD
+      - name: settings
+        type: BYTE
+      - name: id
+        type: SHORT
+        order: LITTLE
+
+  - message: gg.rsmod.game.message.impl.ObjDelMessage
+    type: FIXED
+    opcode: 32
+    structure:
+      - name: tile
+        type: BYTE
+        trans: ADD
+      - name: item
+        type: SHORT
+        order: LITTLE
+
+  - message: gg.rsmod.game.message.impl.LocDelMessage
+    type: FIXED
+    opcode: 77
     structure:
       - name: settings
         type: BYTE
         trans: SUBTRACT
-      - name: id
-        type: SHORT
       - name: tile
         type: BYTE
-        trans: ADD
-
-  - message: gg.rsmod.game.message.impl.ObjDelMessage
-    type: FIXED
-    opcode: 65
-    structure:
-      - name: item
-        type: SHORT
-        order: LITTLE
-      - name: tile
-        type: BYTE
-
-  - message: gg.rsmod.game.message.impl.LocDelMessage
-    type: FIXED
-    opcode: 68
-    structure:
-      - name: settings
-        type: BYTE
-        trans: NEGATE
-      - name: tile
-        type: BYTE
-        trans: ADD
 
   - message: gg.rsmod.game.message.impl.ObjAddMessage
     type: FIXED
-    opcode: 34
+    opcode: 31
     structure:
       - name: item
-        trans: ADD
         type: SHORT
         order: LITTLE
-      - name: tile
-        type: BYTE
-        trans: NEGATE
       - name: amount
         type: SHORT
+        trans: ADD
+      - name: tile
+        type: BYTE
         trans: ADD
 
   - message: gg.rsmod.game.message.impl.ObjCountMessage
     type: FIXED
-    opcode: 61
+    opcode: 57
     structure:
-      - name: old_amount
-        type: SHORT
-      - name: item
-        type: SHORT
-        order: LITTLE
+      - name: tile
+        type: BYTE
       - name: new_amount
         type: SHORT
         trans: ADD
-      - name: tile
-        type: BYTE
+      - name: item
+        type: SHORT
+        trans: ADD
+      - name: old_amount
+        type: SHORT
+        trans: ADD
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.VarpSmallMessage
     type: FIXED
-    opcode: 48
+    opcode: 10
     structure:
       - name: value
         type: BYTE
-        sign: SIGNED
       - name: id
         type: SHORT
-        order: LITTLE
+        trans: ADD
 
   - message: gg.rsmod.game.message.impl.VarpLargeMessage
     type: FIXED
-    opcode: 64
+    opcode: 40
     structure:
       - name: value
         type: INT
-        order: MIDDLE
+        order: LITTLE
       - name: id
         type: SHORT
-        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.RunClientScriptMessage
     type: VARIABLE_SHORT
-    opcode: 21
+    opcode: 28
     structure:
       - name: types
         type: BYTES
@@ -302,7 +299,7 @@ out-packets:
 
   - message: gg.rsmod.game.message.impl.MessageGameMessage
     type: VARIABLE_BYTE
-    opcode: 58
+    opcode: 68
     structure:
       - name: type
         type: BYTE
@@ -315,154 +312,144 @@ out-packets:
 
   - message: gg.rsmod.game.message.impl.LogoutFullMessage
     type: FIXED
-    opcode: 75
+    opcode: 14
 
   - message: gg.rsmod.game.message.impl.UpdateStatMessage
     type: FIXED
-    opcode: 66
+    opcode: 23
     structure:
       - name: skill
         type: BYTE
         trans: SUBTRACT
-      - name: level
-        type: BYTE
-        trans: NEGATE
       - name: xp
         type: INT
-        order: LITTLE
+        order: INVERSE_MIDDLE
+      - name: level
+        type: BYTE
+        trans: ADD
 
-  - message: gg.rsmod.game.message.impl.IfSetTextMessage # E1
+  - message: gg.rsmod.game.message.impl.IfSetTextMessage
     type: VARIABLE_SHORT
-    opcode: 12
+    opcode: 53
     structure:
       - name: text
-        type: BYTES # ?
+        type: BYTES
       - name: hash
         type: INT
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpenUrlMessage
     type: VARIABLE_SHORT
-    opcode: 67
+    opcode: 63
     structure:
       - name: url
         type: BYTES
 
   - message: gg.rsmod.game.message.impl.UpdateRunEnergyMessage
     type: FIXED
-    opcode: 88
+    opcode: 49
     structure:
       - name: energy
         type: BYTE
 
   - message: gg.rsmod.game.message.impl.IfCloseSubMessage
     type: FIXED
-    opcode: 47
+    opcode: 16
     structure:
       - name: hash
         type: INT
 
-  - message: gg.rsmod.game.message.impl.IfSetEventsMessage
+  - message: gg.rsmod.game.message.impl.IfSetEventsMessage #
     type: FIXED
-    opcode: 78
+    opcode: 71
     structure:
       - name: setting
         type: INT
-        order: LITTLE
-      - name: from
-        type: SHORT
-        trans: ADD
+        order: MIDDLE
       - name: hash
         type: INT
       - name: to
         type: SHORT
-        order: LITTLE
+      - name: from
+        type: SHORT
+        trans: ADD
 
   - message: gg.rsmod.game.message.impl.IfSetHideMessage
     type: FIXED
-    opcode: 37
+    opcode: 94
     structure:
-      - name: hidden
-        type: BYTE
-        trans: NEGATE
       - name: hash
         type: INT
-        order: MIDDLE
+        order: LITTLE
+      - name: hidden
+        type: BYTE
 
   - message: gg.rsmod.game.message.impl.IfSetObjectMessage
     type: FIXED
-    opcode: 14
+    opcode: 33
     structure:
-      - name: amount
-        type: INT
-        order: INVERSE_MIDDLE
-      - name: hash
-        type: INT
-        order: MIDDLE
       - name: item
-        type: SHORT
-        sign: UNSIGNED
-
-  - message: gg.rsmod.game.message.impl.IfSetNpcHeadMessage
-    type: FIXED
-    opcode: 10
-    structure:
-      - name: npc
-        type: SHORT
-        order: LITTLE
-        sign: UNSIGNED
-      - name: hash
-        type: INT
-        order: MIDDLE
-
-  - message: gg.rsmod.game.message.impl.IfSetPlayerHeadMessage
-    type: FIXED
-    opcode: 13
-    structure:
-      - name: hash
-        type: INT
-        order: MIDDLE
-
-  #- message: gg.rsmod.game.message.impl.IfSetAnimMessage
-  #  type: FIXED
-  #  opcode: 63
-  #  structure:
-  #    - name: anim
-  #      sign: SIGNED
-  #      type: SHORT
-  #      order: LITTLE
-  #      trans: ADD
-  #    - name: hash
-  #      type: INT
-  #      order: MIDDLE
-
-  - message: gg.rsmod.game.message.impl.IfSetModelMessage
-    type: FIXED
-    opcode: 75
-    structure:
-      - name: model_id
         type: SHORT
         trans: ADD
         order: LITTLE
-        sign: UNSIGNED
       - name: hash
         type: INT
+      - name: amount
+        type: INT
+        order: INVERSE_MIDDLE
+
+  - message: gg.rsmod.game.message.impl.IfSetNpcHeadMessage
+    type: FIXED
+    opcode: 26
+    structure:
+      - name: hash
+        type: INT
+      - name: npc
+        type: SHORT
+
+  - message: gg.rsmod.game.message.impl.IfSetPlayerHeadMessage
+    type: FIXED
+    opcode: 90
+    structure:
+      - name: hash
+        type: INT
+        order: MIDDLE
+
+  - message: gg.rsmod.game.message.impl.IfSetAnimMessage
+    type: FIXED
+    opcode: 58
+    structure:
+      - name: anim
+        type: SHORT
+        trans: ADD
+      - name: hash
+        type: INT
+        order: LITTLE
+
+  #- message: gg.rsmod.game.message.impl.IfSetModelMessage
+  #  type: FIXED
+  #  opcode: 75
+  #  structure:
+  #    - name: model_id
+  #      type: SHORT
+  #      trans: ADD
+  #      order: LITTLE
+  #      sign: UNSIGNED
+  #    - name: hash
+  #      type: INT
 
   - message: gg.rsmod.game.message.impl.SetMapFlagMessage
     type: FIXED
-    opcode: 40
+    opcode: 39
     structure:
       - name: x
         type: BYTE
-        order: REVERSED
-        sign: SIGNED
       - name: z
         type: BYTE
-        order: REVERSED
-        sign: SIGNED
 
-  - message: gg.rsmod.game.message.impl.UpdateInvFullMessage # TODO ->
+  - message: gg.rsmod.game.message.impl.UpdateInvFullMessage
     type: VARIABLE_SHORT
-    opcode: 87
+    opcode: 54
     structure:
       - name: component_hash
         type: INT
@@ -473,21 +460,20 @@ out-packets:
         trans: ADD
       - name: items
         type: BYTES
-
-  - message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
-    type: VARIABLE_SHORT
-    opcode: 19
-    structure:
-      - name: component_hash
-        type: INT
-      - name: container_key
-        type: SHORT
-      - name: items
-        type: BYTES
+  #- message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
+  #  type: VARIABLE_SHORT
+  #  opcode: 19
+  #  structure:
+  #    - name: component_hash
+  #      type: INT
+  #    - name: container_key
+  #      type: SHORT
+  #    - name: items
+  #      type: BYTES
 
   - message: gg.rsmod.game.message.impl.SynthSoundMessage
     type: FIXED
-    opcode: 81
+    opcode: 79
     structure:
       - name: sound
         type: SHORT
@@ -498,7 +484,7 @@ out-packets:
 
   - message: gg.rsmod.game.message.impl.MidiSongMessage
     type: FIXED
-    opcode: 39
+    opcode: 18
     structure:
       - name: id
         type: SHORT
@@ -506,360 +492,352 @@ out-packets:
 
   - message: gg.rsmod.game.message.impl.MidiJingleMessage
     type: FIXED
-    opcode: 24
+    opcode: 83
     structure:
-      - name: id
-        type: SHORT
-        trans: ADD
       - name: garbage_delay
         type: MEDIUM
-        order: LITTLE
+      - name: id
+        type: SHORT
 
   - message: gg.rsmod.game.message.impl.UpdateRunWeightMessage
     type: FIXED
-    opcode: 31
+    opcode: 13
     structure:
       - name: weight
         type: SHORT
-        sign: SIGNED
 
-in-packets:
+client-packets:
 
   - message: gg.rsmod.game.message.impl.ClickWorldMapMessage
     type: FIXED
-    opcode: 2
+    opcode: 56
     length: 4
     structure:
       - name: data
         type: INT
-        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpLocUMessage
     type: FIXED
-    opcode: 104
+    opcode: 65
     length: 15
     structure:
-      - name: obj
-        sign: UNSIGNED
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-      - name: item
-        sign: UNSIGNED
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-      - name: movement_type
-        type: BYTE
-        trans: ADD
-      - name: pos_z
-        sign: UNSIGNED
+      - name: slot #
         type: SHORT
         order: LITTLE
-      - name: pos_x
+      - name: pos_z #
         type: SHORT
+        order: LITTLE
       - name: unknown
-        sign: UNSIGNED
         type: INT
-        order: MIDDLE
-      - name: slot
+        order: LITTLE
+      - name: pos_x #
         type: SHORT
+        trans: ADD
+      - name: obj
+        type: SHORT
+        order: LITTLE
+      - name: item #
+        type: SHORT
+        order: LITTLE
+        trans: ADD
+      - name: movement_type #
+        type: BYTE
+        trans: NEGATE
 
   - message: gg.rsmod.game.message.impl.IfButtonDMessage
     type: FIXED
-    opcode: 25
+    opcode: 63
     length: 16
     structure:
+      - name: dst_item
+        type: SHORT
+        order: LITTLE
+      - name: dst_slot
+        type: SHORT
+      - name: src_slot
+        type: SHORT
+        order: LITTLE
+      - name: dst_component_hash
+        type: INT
+        order: INVERSE_MIDDLE
+      - name: src_item
+        type: SHORT
+        order: LITTLE
       - name: src_component_hash
         type: INT
         order: MIDDLE
-      - name: src_slot
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-      - name: dst_slot
-        type: SHORT
-        order: LITTLE
-      - name: dst_item
-        type: SHORT
-      - name: src_item
-        type: SHORT
-        trans: ADD
-      - name: dst_component_hash
-        type: INT
-        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpHeldDMessage
     type: FIXED
-    opcode: 91
+    opcode: 5
     length: 9
     structure:
-      - name: insert_mode
-        type: BYTE
-        trans: NEGATE
       - name: src_slot
         type: SHORT
-        trans: NEGATE
         order: LITTLE
       - name: dst_slot
         type: SHORT
-        trans: NEGATE
         order: LITTLE
+        trans: ADD
+      - name: insert_mode
+        type: BYTE
+        trans: NEGATE
       - name: component_hash
         type: INT
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpHeldUMessage
     type: FIXED
-    opcode: 57
+    opcode: 43
     length: 16
     structure:
-      - name: from_item
-        type: SHORT
-      - name: from_component
-        type: INT
-        order: LITTLE
-      - name: from_slot
-        type: SHORT
-      - name: to_slot
-        type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: to_item
         type: SHORT
         trans: ADD
+      - name: from_component
+        type: INT
         order: LITTLE
+      - name: to_slot
+        type: SHORT
       - name: to_component
         type: INT
-        order: MIDDLE
-
-  - message: gg.rsmod.game.message.impl.OpNpcTMessage
-    type: FIXED
-    opcode: 88
-    length: 11
-    structure:
-      - name: component_slot
-        type: SHORT
         order: LITTLE
-      - name: npc_index
+      - name: from_item
         type: SHORT
         trans: ADD
         order: LITTLE
+      - name: from_slot
+        type: SHORT
+        trans: ADD
+
+  - message: gg.rsmod.game.message.impl.OpNpcTMessage
+    type: FIXED
+    opcode: 77
+    length: 11
+    structure:
       - name: component_hash
         type: INT
-        order: LITTLE
+        order: MIDDLE
+      - name: component_slot
+        type: SHORT
+        trans: ADD
       - name: movement_type
         type: BYTE
+        trans: NEGATE
+      - name: npc_index
+        type: SHORT
         trans: ADD
       - name: verify
         type: SHORT
 
   - message: gg.rsmod.game.message.impl.OpNpcUMessage
     type: FIXED
-    opcode: 58
+    opcode: 37
     length: 11
     structure:
-      - name: component_hash
-        type: INT
-        order: INVERSE_MIDDLE
       - name: movement_type
         type: BYTE
-      - name: npc_index
-        type: SHORT
         trans: ADD
       - name: item
         type: SHORT
-        order: LITTLE
+        trans: ADD
       - name: slot
         type: SHORT
+        order: LITTLE
+      - name: component_hash
+        type: INT
+        order: INVERSE_MIDDLE
+      - name: npc_index
+        type: SHORT
+        trans: ADD
         order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpNpc1Message
     type: FIXED
-    opcode: 70
-    length: 3
-    structure:
-      - name: movement_type
-        type: BYTE
-        trans: NEGATE
-      - name: index
-        type: SHORT
-
-  - message: gg.rsmod.game.message.impl.OpNpc2Message
-    type: FIXED
-    opcode: 68
+    opcode: 53
     length: 3
     structure:
       - name: movement_type
         type: BYTE
         trans: ADD
-      - name: index
-        type: SHORT
-        trans: ADD
-
-  - message: gg.rsmod.game.message.impl.OpNpc3Message
-    type: FIXED
-    opcode: 12
-    length: 3
-    structure:
-      - name: movement_type
-        type: BYTE
       - name: index
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.OpNpc4Message
+  - message: gg.rsmod.game.message.impl.OpNpc2Message
     type: FIXED
-    opcode: 35
+    opcode: 15
+    length: 3
+    structure:
+      - name: index
+        type: SHORT
+        order: LITTLE
+      - name: movement_type
+        type: BYTE
+
+  - message: gg.rsmod.game.message.impl.OpNpc3Message
+    type: FIXED
+    opcode: 59
     length: 3
     structure:
       - name: movement_type
         type: BYTE
-        trans: NEGATE
-      - name: index
-        type: SHORT
-
-  - message: gg.rsmod.game.message.impl.OpNpc5Message
-    type: FIXED
-    opcode: 69
-    length: 3
-    structure:
+        trans: ADD
       - name: index
         type: SHORT
         trans: ADD
+
+  - message: gg.rsmod.game.message.impl.OpNpc4Message
+    type: FIXED
+    opcode: 66
+    length: 3
+    structure:
+      - name: index
+        type: SHORT
+        order: LITTLE
+      - name: movement_type
+        type: BYTE
+        trans: NEGATE
+
+  - message: gg.rsmod.game.message.impl.OpNpc5Message
+    type: FIXED
+    opcode: 8
+    length: 3
+    structure:
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
+      - name: index
+        type: SHORT
 
   - message: gg.rsmod.game.message.impl.OpNpc6Message
     type: FIXED
-    opcode: 39
+    opcode: 2
     length: 2
     structure:
       - name: npc_id
         type: SHORT
-        trans: ADD
 
   - message: gg.rsmod.game.message.impl.OpObj1Message
     type: FIXED
-    opcode: 52
-    length: 8
+    opcode: 97
+    length: 7
     structure:
-      - name: movement_type
-        type: BYTE
-      - name: z
-        type: SHORT
-        order: LITTLE
       - name: x
         type: SHORT
+        trans: ADD
       - name: item
         type: SHORT
+      - name: z
+        type: SHORT
+      - name: movement_type
+        type: BYTE
         trans: ADD
 
   - message: gg.rsmod.game.message.impl.OpObj2Message
     type: FIXED
-    opcode: 29
+    opcode: 104
     length: 7
     structure:
-      - name: item
-        type: SHORT
-      - name: x
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-      - name: movement_type
-        type: BYTE
       - name: z
         type: SHORT
         trans: ADD
+      - name: movement_type
+        type: BYTE
+        trans: ADD
+      - name: item
+        type: SHORT
+        order: LITTLE
+      - name: x
+        type: SHORT
 
   - message: gg.rsmod.game.message.impl.OpObj3Message
     type: FIXED
-    opcode: 33
+    opcode: 45
     length: 7
     structure:
       - name: z
         type: SHORT
-        order: LITTLE
-      - name: x
-        type: SHORT
+        trans: ADD
       - name: movement_type
         type: BYTE
+        trans: ADD
+      - name: x
+        type: SHORT
+        trans: ADD
       - name: item
         type: SHORT
         trans: ADD
-        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpObj4Message
     type: FIXED
-    opcode: 4
+    opcode: 51
     length: 7
     structure:
+      - name: z
+        type: SHORT
+        trans: ADD
       - name: item
+        type: SHORT
+      - name: x
         type: SHORT
         trans: ADD
         order: LITTLE
       - name: movement_type
         type: BYTE
-        trans: SUBTRACT
-      - name: x
-        type: SHORT
         trans: ADD
-      - name: z
-        type: SHORT
-        trans: ADD
-        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpObjUMessage
     type: FIXED
-    opcode: 22
+    opcode: 92
     length: 15
     structure:
-      - name: movement_type
-        type: BYTE
       - name: ground_item
         type: SHORT
         trans: ADD
-      - name: item
-        type: SHORT
-      - name: component_hash
-        type: INT
+        order: LITTLE
       - name: z
         type: SHORT
-        trans: ADD
-        order: LITTLE
-      - name: slot
+      - name: item
         type: SHORT
-        order: LITTLE
       - name: x
         type: SHORT
+      - name: movement_type
+        type: BYTE
+        trans: SUBTRACT
+      - name: slot
+        type: SHORT
         trans: ADD
+        order: LITTLE
+      - name: component_hash
+        type: INT
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.ResumePObjDialogMessage
     type: FIXED
-    opcode: 14
+    opcode: 21
     length: 2
     structure:
       - name: item
-        sign: UNSIGNED
         type: SHORT
 
   - message: gg.rsmod.game.message.impl.ResumePStringDialogMessage
     type: VARIABLE_BYTE
-    opcode: 82
+    opcode: 70
     structure:
       - name: input
         type: STRING
-
+  # @TODO
   - message: gg.rsmod.game.message.impl.ClientCheatMessage
     type: VARIABLE_BYTE
-    opcode: 97
+    opcode: 57
     structure:
       - name: command
         type: STRING
 
   - message: gg.rsmod.game.message.impl.WindowStatusMessage
     type: FIXED
-    opcode: 59
+    opcode: 10
     length: 5
     structure:
       - name: mode
@@ -871,104 +849,96 @@ in-packets:
 
   - message: gg.rsmod.game.message.impl.MoveGameClickMessage
     type: VARIABLE_BYTE
-    opcode: 44
+    opcode: 96
     structure:
       - name: x
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-      - name: z
         type: SHORT
         trans: ADD
       - name: movement_type
         type: BYTE
         trans: NEGATE
+      - name: z
+        type: SHORT
+        trans: ADD
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.MoveMinimapClickMessage
     type: VARIABLE_BYTE
-    opcode: 86
+    opcode: 85
     structure:
       - name: x
         type: SHORT
         trans: ADD
-        order: LITTLE
+      - name: movement_type
+        type: BYTE
+        trans: NEGATE
       - name: z
         type: SHORT
+        order: LITTLE
         trans: ADD
-      - name: movement_type
-        type: SHORT
-        trans: NEGATE
 
   - message: gg.rsmod.game.message.impl.TeleportMessage
     type: FIXED
-    opcode: 47
+    opcode: 72
     length: 9
     structure:
-      - name: height
-        type: BYTE
-        trans: SUBTRACT
-      - name: unknown
-        type: INT
-      - name: z
-        type: SHORT
-        trans: ADD
       - name: x
         type: SHORT
         trans: ADD
+      - name: z
+        type: SHORT
+        trans: ADD
+      - name: height
+        type: BYTE
+        trans: NEGATE
+      - name: unknown
+        type: INT
+        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpLoc1Message
     type: FIXED
-    opcode: 103
+    opcode: 80
     length: 7
     structure:
+      - name: x
+        type: SHORT
+        order: LITTLE
+      - name: z
+        type: SHORT
       - name: id
         type: SHORT
         trans: ADD
-        order: LITTLE
       - name: movement_type
         type: BYTE
-        trans: SUBTRACT
-      - name: z
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-      - name: x
-        type: SHORT
-        trans: ADD
-        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpLoc2Message
     type: FIXED
-    opcode: 49
+    opcode: 90
     length: 7
     structure:
       - name: x
         type: SHORT
-        trans: ADD
         order: LITTLE
-      - name: z
-        type: SHORT
-        trans: ADD
       - name: movement_type
         type: BYTE
       - name: id
         type: SHORT
+      - name: z
+        type: SHORT
         trans: ADD
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpLoc3Message
     type: FIXED
-    opcode: 53
+    opcode: 84
     length: 7
     structure:
-      - name: z
-        type: SHORT
-        order: LITTLE
-      - name: movement_type
-        type: BYTE
       - name: x
         type: SHORT
-        trans: ADD
-        order: LITTLE
+      - name: movement_type
+        type: BYTE
+      - name: z
+        type: SHORT
       - name: id
         type: SHORT
         trans: ADD
@@ -978,65 +948,68 @@ in-packets:
     opcode: 41
     length: 7
     structure:
-      - name: z
+      - name: id
         type: SHORT
         trans: ADD
+        order: LITTLE
+      - name: z
+        type: SHORT
       - name: x
         type: SHORT
         trans: ADD
+        order: LITTLE
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
-      - name: id
-        type: SHORT
-        trans: ADD
-        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpLoc5Message
     type: FIXED
-    opcode: 42
+    opcode: 6
     length: 7
     structure:
+      - name: x
+        type: SHORT
+        trans: ADD
       - name: id
         type: SHORT
+        trans: ADD
         order: LITTLE
       - name: z
         type: SHORT
-        order: LITTLE
-      - name: x
-        type: SHORT
+        trans: ADD
         order: LITTLE
       - name: movement_type
         type: BYTE
-        trans: ADD
+        trans: NEGATE
 
   - message: gg.rsmod.game.message.impl.IfButtonMessage
     type: FIXED
-    opcodes: 24,101,93,83,84,20,71,15,56,96
-            #75,82,54,96,20,86,77,45,91,94
+    opcodes: 22,17,18,19,0,39,26,91,47,25
     length: 8
     structure:
       - name: hash
         type: INT
       - name: slot
+        sign: UNSIGNED
         type: SHORT
       - name: item
+        sign: UNSIGNED
         type: SHORT
 
   - message: gg.rsmod.game.message.impl.ResumePauseButtonMessage
     type: FIXED
-    opcode: 75
+    opcode: 64
     length: 6
     structure:
-      - name: slot
-        type: SHORT
-        order: LITTLE
       - name: hash
         type: INT
+        order: LITTLE
+      - name: slot
+        type: SHORT
 
   - message: gg.rsmod.game.message.impl.ResumePCountDialogMessage
     type: FIXED
-    opcode: 48
+    opcode: 27
     length: 4
     structure:
       - name: input
@@ -1044,70 +1017,71 @@ in-packets:
 
   - message: gg.rsmod.game.message.impl.OpLoc6Message
     type: FIXED
-    opcode: 36
+    opcode: 33
     length: 2
     structure:
       - name: id
         type: SHORT
-        trans: ADD
         order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpHeld1Message
     type: FIXED
-    opcode: 9
+    opcode: 93
     length: 8
     structure:
-      - name: component_hash
-        type: INT
+      - name: item
+        type: SHORT
+        trans: ADD
         order: LITTLE
       - name: slot
         type: SHORT
         order: LITTLE
-      - name: item
-        type: SHORT
+      - name: component_hash
+        type: INT
+        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpHeld2Message
     type: FIXED
-    opcode: 72
+    opcode: 94
     length: 8
     structure:
+      - name: item
+        type: SHORT
+        trans: ADD
       - name: slot
         type: SHORT
         trans: ADD
-        order: LITTLE
-      - name: item
-        type: SHORT
-        order: LITTLE
       - name: component_hash
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpHeld3Message
     type: FIXED
-    opcode: 55
+    opcode: 13
     length: 8
     structure:
       - name: item
+        type: SHORT
+        order: LITTLE
+        trans: ADD
+      - name: slot
         type: SHORT
         trans: ADD
       - name: component_hash
         type: INT
-        order: LITTLE
-      - name: slot
-        type: SHORT
-        trans: ADD
+        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpHeld4Message
     type: FIXED
-    opcode: 32
+    opcode: 76
     length: 8
     structure:
-      - name: slot
-        type: SHORT
-        trans: ADD
       - name: item
         type: SHORT
+        order: LITTLE
         trans: ADD
+      - name: slot
+        type: SHORT
         order: LITTLE
       - name: component_hash
         type: INT
@@ -1115,84 +1089,86 @@ in-packets:
 
   - message: gg.rsmod.game.message.impl.OpHeld5Message
     type: FIXED
-    opcode: 99
+    opcode: 67
     length: 8
     structure:
-      - name: item
-        type: SHORT
-        order: LITTLE
-      - name: component_hash
-        type: INT
-        order: INVERSE_MIDDLE
       - name: slot
         type: SHORT
+        trans: ADD
+      - name: item
+        type: SHORT
+      - name: componet_hash
+        type: INT
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpHeld6Message
     type: FIXED
-    opcode: 92
+    opcode: 7
     length: 2
     structure:
       - name: item
         type: SHORT
         order: LITTLE
+        trans: ADD
 
   - message: gg.rsmod.game.message.impl.OpHeldTMessage
     type: FIXED
-    opcode: 54
+    opcode: 58
     length: 14
     structure:
-      - name: spell_slot
-        type: SHORT
       - name: item_slot
         type: SHORT
+        order: LITTLE
         trans: ADD
+      - name: from_hash
+        type: INT
+      - name: spell_slot
+        type: SHORT
+      - name: to_hash
+        type: INT
         order: LITTLE
       - name: item_id
         type: SHORT
         trans: ADD
-        order: LITTLE
-      - name: to_hash
-        type: INT
-      - name: from_hash
-        type: INT
-        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.CloseModalMessage
     type: FIXED
-    opcode: 67
+    opcode: 48
     length: 0
 
   - message: gg.rsmod.game.message.impl.ClanJoinChatLeaveChatMessage
     type: VARIABLE_BYTE
-    opcode: 1
+    opcode: 29
     structure:
       - name: name
-        type: STRING
+        type: BYTE
 
   - message: gg.rsmod.game.message.impl.EventCameraPositionMessage
     type: FIXED
-    opcode: 61
+    opcode: 20
     length: 4
     structure:
+      - name: pitch
+        type: SHORT
+        order: LITTLE
       - name: yaw
         type: SHORT
         trans: ADD
-      - name: pitch
-        type: SHORT
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.EventMouseIdleMessage
     type: FIXED
-    opcode: 16
+    opcode: 55
     length: 0
 
   - message: gg.rsmod.game.message.impl.EventMouseMoveMessage # TODO: need to refactor code to see what values are received
     type: VARIABLE_BYTE
-    opcode: 27
+    opcode: 40
     ignore: true
 
   - message: gg.rsmod.game.message.impl.DetectModifiedClientMessage
     type: FIXED
-    opcode: 64
+    opcode: 50
     length: 4
     structure:
       - name: dummy
@@ -1200,7 +1176,7 @@ in-packets:
 
   - message: gg.rsmod.game.message.impl.UpdateAppearanceMessage # Not usable in newer rev's
     type: FIXED
-    opcode: 30
+    opcode: 24
     length: 13
     structure:
       - name: gender
@@ -1245,9 +1221,9 @@ in-packets:
 
   - message: gg.rsmod.game.message.impl.NoTimeoutMessage
     type: FIXED
-    opcode: 0
-    length: 0
     ignore: true
+    opcode: 62
+    length: 0
 
   - message: gg.rsmod.game.message.impl.MessagePublicMessage
     type: VARIABLE_BYTE
@@ -1260,31 +1236,26 @@ in-packets:
       - name: effect
         type: BYTE
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # Unknown message
-    type: VARIABLE_BYTE
-    opcode: 65
-    ignore: true
-
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: PING_STATISTICS - need to refactor code to see what values are received
     type: FIXED
-    opcode: 73
+    opcode: 16
     length: 10
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: EVENT_MOUSE_CLICK - need to refactor code to see what values are received
     type: FIXED
-    opcode: 51
+    opcode: 61
     length: 6
     ignore: true
 
   - message: gg.rsmod.game.message.impl.MapBuildCompleteMessage
     type: FIXED
-    opcode: 21
+    opcode: 14
     length: 0
 
   - message: gg.rsmod.game.message.impl.EventAppletFocusMessage
     type: FIXED
-    opcode: 10
+    opcode: 79
     length: 1
     structure:
       - name: state
@@ -1292,44 +1263,45 @@ in-packets:
 
   - message: gg.rsmod.game.message.impl.EventKeyboardMessage
     type: VARIABLE_SHORT
-    opcode: 8
+    ignore: true
+    opcode: 52
     structure:
-      - name: key
-        type: BYTE
-        trans: NEGATE
       - name: last_key_press
         type: MEDIUM
-        order: LITTLE
+        order: INVERSE_MIDDLE
+      - name: key
+        type: BYTE
+        trans: SUBTRACT
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: CLAN_KICKUSER
     type: VARIABLE_BYTE
-    opcode: 40
+    opcode: 102
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: CHAT_SETMODE
     type: FIXED
-    opcode: 90
+    opcode: 32
     length: 3
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: BUG_REPORT
     type: VARIABLE_SHORT
-    opcode: 37
+    opcode: 60
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: MESSAGE_PRIVATE
     type: VARIABLE_SHORT
-    opcode: 76
+    opcode: 11
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON2
     type: FIXED
-    opcode: 89
+    opcode: 82
     length: 8
     ignore: true
 
   - message: gg.rsmod.game.message.impl.OpPlayer4Message
     type: FIXED
-    opcode: 23
+    opcode: 99
     length: 3
     structure:
       - name: index
@@ -1341,33 +1313,43 @@ in-packets:
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IGNORELIST_DEL
     type: VARIABLE_BYTE
-    opcode: 87
+    opcode: 36
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON5
     type: FIXED
-    opcode: 7
+    opcode: 42
     length: 8
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: FREECAM_EXIT
     type: FIXED
-    opcode: 38
+    opcode: 78
     length: 0
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: SEND_SNAPSHOT
     type: VARIABLE_BYTE
-    opcode: 26
+    opcode: 4
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON1
     type: FIXED
-    opcode: 89
+    opcode: 69
     length: 8
     ignore: true
 
   - message: gg.rsmod.game.message.impl.OpPlayer1Message
+    type: FIXED
+    opcode: 31
+    length: 3
+    structure:
+      - name: index
+        type: SHORT
+      - name: unknown
+        type: BYTE
+
+  - message: gg.rsmod.game.message.impl.OpPlayer8Message
     type: FIXED
     opcode: 81
     length: 3
@@ -1376,35 +1358,24 @@ in-packets:
         type: BYTE
       - name: index
         type: SHORT
-        order: LITTLE
-
-  - message: gg.rsmod.game.message.impl.OpPlayer8Message
-    type: FIXED
-    opcode: 3
-    length: 3
-    structure:
-      - name: index
-        type: SHORT
         trans: ADD
         order: LITTLE
-      - name: unknown
-        type: BYTE
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: OPOBJ5
     type: FIXED
-    opcode: 77
+    opcode: 86
     length: 7
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: OPOBJT
     type: FIXED
-    opcode: 11
+    opcode: 71
     length: 15
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: FRIENDLIST_DEL
     type: VARIABLE_BYTE
-    opcode: 28
+    opcode: 1
     ignore: true
 
   - message: gg.rsmod.game.message.impl.OpPlayerTMessage
@@ -1412,60 +1383,58 @@ in-packets:
     opcode: 105
     length: 11
     structure:
-      - name: keydown
-        type: BYTE
-        trans: NEGATE
-      - name: component_hash
-        type: INT
-        order: INVERSE_MIDDLE
-      - name: player_index
-        type: SHORT
-        trans: ADD
       - name: verify
         type: SHORT
+        trans: ADD
+      - name: player_index
+        type: SHORT
+        order: LITTLE
         trans: ADD
       - name: spell_child_index
         type: SHORT
         trans: ADD
+        order: LITTLE
+      - name: component_hash
+        type: INT
+      - name: keydown
+        type: BYTE
 
   - message: gg.rsmod.game.message.impl.OpPlayer2Message
     type: FIXED
-    opcode: 102
+    opcode: 23
     length: 3
     structure:
       - name: index
+        type: BYTE
+      - name: unknown
         type: SHORT
         trans: ADD
-      - name: unknown
-        type: BYTE
-        trans: NEGATE
 
   - message: gg.rsmod.game.message.impl.OpPlayer3Message
     type: FIXED
-    opcode: 5
+    opcode: 46
     length: 3
     structure:
-      - name: index
-        type: SHORT
-        trans: ADD
       - name: unknown
         type: BYTE
+      - name: index
+        type: SHORT
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON4
     type: FIXED
-    opcode: 63
+    opcode: 3
     length: 8
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON3
     type: FIXED
-    opcode: 13
+    opcode: 54
     length: 8
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IfModelOp1Message # Legacy Interface Model Button Option1
     type: FIXED
-    opcode: 80
+    opcode: 38
     length: 4
     structure:
       - name: component
@@ -1473,88 +1442,90 @@ in-packets:
 
   - message: gg.rsmod.game.message.impl.OpPlayer7Message
     type: FIXED
-    opcode: 50
+    opcode: 9
     length: 3
     structure:
-      - name: unknown
-        type: BYTE
-        trans: NEGATE
       - name: index
         type: SHORT
+      - name: unknown
+        type: BYTE
         trans: ADD
-        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: FRIEND_SETRANK
     type: VARIABLE_BYTE
-    opcode: 6
+    opcode: 87
     length: -1
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: OPPLAYERU
     type: FIXED
-    opcode: 94
+    opcode: 103
     length: 11
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF_BUTTONT
     type: FIXED
-    opcode: 46
+    opcode: 89
     length: 16
     ignore: true
 
   - message: gg.rsmod.game.message.impl.OpPlayer5Message
     type: FIXED
-    opcode: 78
+    opcode: 30
     length: 3
     structure:
       - name: index
         type: SHORT
         order: LITTLE
+        trans: ADD
       - name: unknown
         type: BYTE
+        trans: ADD
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: FRIENDLIST_ADD
     type: VARIABLE_BYTE
-    opcode: 17
+    opcode: 83
     length: -1
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IGNORELIST_ADD
     type: VARIABLE_BYTE
-    opcode: 66
+    opcode: 88
     length: -1
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: REFLECTION_CHECK_REPLY
     type: VARIABLE_BYTE
-    opcode: 45
+    opcode: 12
     length: -1
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: OPLOCT
     type: FIXED
-    opcode: 69
+    opcode: 74
     length: 15
     ignore: true
 
   - message: gg.rsmod.game.message.impl.OpPlayer6Message
     type: FIXED
-    opcode: 62
+    opcode: 49
     length: 3
     structure:
-      - name: unknown
-        type: BYTE
-        trans: ADD
       - name: index
         type: SHORT
         order: LITTLE
-
-  - message: gg.rsmod.game.message.impl.ResumePNameDialogMessage
-    type: VARIABLE_BYTE
-    opcode: 60
-    length: -1
-    structure:
       - name: unknown
         type: BYTE
+        trans: NEGATE
+    # UNKNOWN is name's length+1
+  - message: gg.rsmod.game.message.impl.ResumePNameDialogMessage
+    type: VARIABLE_BYTE
+    opcode: 100
+    structure:
       - name: name
         type: STRING
+
+  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: LOGIN_STATISTICS
+    type: VARIABLE_BYTE
+    opcode: 35
+    ignore: true

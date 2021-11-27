@@ -36,9 +36,7 @@ class ItemMetadataService : Service {
         val path = Paths.get(serviceProperties.getOrDefault("path", "./data/cfg/items/"))
         val mapper = ObjectMapper(YAMLFactory())
         val itemCount = world.definitions.getCount(ItemDef::class.java)
-
         val range = 0..200
-
         val chunk = range.chunked(2500)
         chunk.parallelStream().forEach { range ->
             for (fileId in range) {

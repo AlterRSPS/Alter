@@ -48,7 +48,7 @@ class MessageStructureSet {
     }
 
     private fun load(properties: ServerProperties, storeOpcodes: Boolean) {
-        val packets = properties.get<ArrayList<Any>>(if (storeOpcodes) "in-packets" else "out-packets")!!
+        val packets = properties.get<ArrayList<Any>>(if (storeOpcodes) "client-packets" else "server-packets")!!
         packets.forEach { packet ->
             val values = packet as LinkedHashMap<*, *>
             val className = values["message"] as String

@@ -13,6 +13,7 @@ class OpHeldDDecoder : MessageDecoder<OpHeldDMessage>() {
         val dstSlot = values["dst_slot"]!!.toInt()
         val componentHash = values["component_hash"]!!.toInt()
         val insertMode = values["insert_mode"]!!.toInt() == 1
+
         return OpHeldDMessage(srcSlot, dstSlot, componentHash, insertMode)
     }
 }

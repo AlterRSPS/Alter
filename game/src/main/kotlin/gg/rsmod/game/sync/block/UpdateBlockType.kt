@@ -25,5 +25,7 @@ enum class UpdateBlockType {
 
     HITMARK,
 
+    OVERRIDE_LEVEL,
+
     FORCE_CHAT;
 }
