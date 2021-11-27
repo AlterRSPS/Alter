@@ -4,7 +4,6 @@ import gg.rsmod.game.model.priv.Privilege
 import gg.rsmod.plugins.content.inter.emotes.EmotesTab
 
 on_login {
-
     if (world.gameContext.initialLaunch) {
         world.gameContext.initialLaunch = false
 

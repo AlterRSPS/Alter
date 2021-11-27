@@ -1,5 +1,7 @@
 package gg.rsmod.plugins.content.cmd
 
+import gg.rsmod.util.console.CLog
+
 object Command {
     fun tryWithUsage(player: Player, args: Array<String>, failMessage: String, tryUnit: Function1<Array<String>, Unit>) {
         try {
@@ -9,5 +11,9 @@ object Command {
             e.printStackTrace()
         }
     }
-    // Removed as there wasnt any use for that rn.
+
+    fun command_log(vararg data: Any) {
+           // CLog.log("Command", data)
+    }
+
 }

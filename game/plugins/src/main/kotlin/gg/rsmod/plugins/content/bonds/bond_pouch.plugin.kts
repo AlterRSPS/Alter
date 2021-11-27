@@ -167,24 +167,23 @@ on_button(interfaceId = BONDS_INTERFACE_ID, component = 124) {
 
 //// cs2278[ package#, displayText, numberOfBonds, iconId, iconWidth, iconHeight, awardText, debugText ]
 ////   Note| if debugText is set then the package button is DISABLED and logs in the chat debugText
-
+//player.runClientScript(2278, 1, "1 Bond", 1, 1129, 39, 39, "14 days", "")
+//player.runClientScript(2278, 2, "2 Bonds", 2, 1129, 39, 39, "29 days", "")
+//player.runClientScript(2278, 3, "3 Bonds", 3, 1129, 39, 39, "45 days", "")
+//player.runClientScript(2277, "Premier Club 2021") // insert subheader at first break in BondPackage listings
+//player.runClientScript(2278, 4, "",  0, -1, 0, 0, "",  "")
+//player.runClientScript(2278, 5, "",  0, -1, 0, 0, "",  "")
+//player.runClientScript(2278, 6, "",  0, -1, 0, 0, "",  "")
+//player.runClientScript(2278, 7, "Premier Club: Bronze", 5, 1408, 40, 40, "3 months", "")
+//player.runClientScript(2278, 8, "Premier Club: Silver", 10, 1409, 40, 40, "6 months", "")
+//player.runClientScript(2278, 9, "Premier Club: Gold", 20, 1410, 40, 40, "12 months", "")
+//player.runClientScript(2278, 10, "",  0, -1, 0, 0, "",  "")
+//player.runClientScript(2278, 11, "",  0, -1, 0, 0, "",  "")
+//player.runClientScript(2278, 12, "",  0, -1, 0, 0, "",  "")
+//player.runClientScript(2278, 13, "",  0, -1, 0, 0, "",  "")
+//player.runClientScript(2278, 14, "",  0, -1, 0, 0, "",  "")
+//player.runClientScript(2278, 15, "",  0, -1, 0, 0, "",  "")
 fun openBondRedeemInterface(player: Player){
-    player.runClientScript(2278, 1, "1 Bond", 1, 1129, 39, 39, "14 days", "")
-    player.runClientScript(2278, 2, "2 Bonds", 2, 1129, 39, 39, "29 days", "")
-    player.runClientScript(2278, 3, "3 Bonds", 3, 1129, 39, 39, "45 days", "")
-    player.runClientScript(2277, "Premier Club 2021") // insert subheader at first break in BondPackage listings
-    player.runClientScript(2278, 4, "",  0, -1, 0, 0, "",  "")
-    player.runClientScript(2278, 5, "",  0, -1, 0, 0, "",  "")
-    player.runClientScript(2278, 6, "",  0, -1, 0, 0, "",  "")
-    player.runClientScript(2278, 7, "Premier Club: Bronze", 5, 1408, 40, 40, "3 months", "")
-    player.runClientScript(2278, 8, "Premier Club: Silver", 10, 1409, 40, 40, "6 months", "")
-    player.runClientScript(2278, 9, "Premier Club: Gold", 20, 1410, 40, 40, "12 months", "")
-    player.runClientScript(2278, 10, "",  0, -1, 0, 0, "",  "")
-    player.runClientScript(2278, 11, "",  0, -1, 0, 0, "",  "")
-    player.runClientScript(2278, 12, "",  0, -1, 0, 0, "",  "")
-    player.runClientScript(2278, 13, "",  0, -1, 0, 0, "",  "")
-    player.runClientScript(2278, 14, "",  0, -1, 0, 0, "",  "")
-    player.runClientScript(2278, 15, "",  0, -1, 0, 0, "",  "")
     player.playSound(2266, 1, 0)
     player.runClientScript(2524, -1, -1)
     player.setVarbit(10149, 1)

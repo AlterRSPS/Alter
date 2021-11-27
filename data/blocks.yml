@@ -1,94 +1,63 @@
 players:
 
-  updating-opcode: 16
-  excess-mask: 0x40
+  updating-opcode: 38
+  excess-mask: 0x20
 
   order:
-    - FACE_PAWN
-    - FORCE_MOVEMENT
-    - FORCE_CHAT
-    - HITMARK
-    - ANIMATION
-    - PUBLIC_CHAT
     - FACE_TILE
     - GFX
-    - MOVEMENT
     - APPEARANCE
+    - FORCE_CHAT
+    - ANIMATION
+    - FACE_PAWN
+    - FORCE_MOVEMENT
+    - PUBLIC_CHAT
+    - HITMARK
+    - MOVEMENT
 
   blocks:
-    - block: CONTEXT_MENU
-      bit: 0x2000
-
-    - block: FACE_PAWN
-      bit: 0x4
+    - block: APPEARANCE
+      bit: 0x10
       structure:
-        - name: pawn_index
-          sign: UNSIGNED
-          type: SHORT
-          order: LITTLE
-
-    - block: FORCE_MOVEMENT
-      bit: 0x100
-      structure:
-        - name: src_x
+        - name: length
           type: BYTE
-          trans: SUBTRACT
-          sign: SIGNED
-        - name: src_z
-          type: BYTE
-          trans: SUBTRACT
-          sign: SIGNED
-        - name: dst_x
-          type: BYTE
-          trans: NEGATE
-          sign: SIGNED
-        - name: dst_z
-          type: BYTE
-          trans: NEGATE
-          sign: SIGNED
-        - name: client_delay
-          order: LITTLE
-          type: SHORT
-          sign: UNSIGNED
-        - name: client_duration
-          type: SHORT
-          order: LITTLE
-          sign: UNSIGNED
-        - name: direction_angle
-          type: SHORT
           trans: ADD
-          sign: UNSIGNED
+        - name: buffer
+          order: REVERSED
+          type: BYTES
+          trans: ADD
+
+    - block: MOVEMENT
+      bit: 0x2000
+      structure:
+        - name: type
+          type: BYTE
 
     - block: FORCE_CHAT
-      bit: 0x10
-
-    - block: HITMARK
-      bit: 0x20
-      structure:
-        - name: hitmarks
-          type: BYTE
-          trans: ADD
-        - name: hitbars
-          type: BYTE
-        - name: hitbar_percentage
-          type: BYTE
-        - name: hitbar_to_percentage
-          type: BYTE
-          trans: ADD
+      bit: 0x2
 
     - block: ANIMATION
-      bit: 0x8
+      bit: 0x1
       structure:
         - name: animation
           type: SHORT
-          order: LITTLE
-          sign: UNSIGNED
+          trans: ADD
         - name: delay
           type: BYTE
-          sign: UNSIGNED
+          trans: SUBTRACT
+
+    - block: GFX
+      bit: 0x400
+      structure:
+        - name: gfx
+          order: LITTLE
+          type: SHORT
+        - name: settings
+          order: LITTLE
+          type: INT
 
     - block: PUBLIC_CHAT
-      bit: 0x80
+      bit: 0x8
       structure:
         - name: effects
           order: LITTLE
@@ -96,161 +65,171 @@ players:
           trans: ADD
         - name: icon
           type: BYTE
+          trans: ADD
         - name: auto
           type: BYTE
-          trans: SUBTRACT
         - name: compressed_length
           type: BYTE
           trans: NEGATE
         - name: compressed_data
           type: BYTES
           trans: ADD
-          order: REVERSED
 
     - block: FACE_TILE
-      bit: 0x1
+      bit: 0x40
       structure:
         - name: degrees
           type: SHORT
-          trans: ADD
 
-    - block: GFX
-      bit: 0x1000
-      structure:
-        - name: gfx
-          trans: ADD
-          order: LITTLE
-          type: SHORT
-          sign: UNSIGNED
-        - name: settings
-          type: INT
-          order: LITTLE
-
-    - block: MOVEMENT
-      bit: 0x800
-      structure:
-        - name: type
-          type: BYTE
-          trans: SUBTRACT
-
-    - block: APPEARANCE
-      bit: 0x2
-      structure:
-        - name: buffer
-          type: BYTE
-          trans: SUBTRACT
-        - name: length
-          type: BYTES
-          order: REVERSED
-          trans: ADD
-npcs:
-
-  updating-opcode: 25
-  large-updating-opcode: 73
-
-  order:
-    - FORCE_CHAT
-    - GFX
-    - ANIMATION
-    - HITMARK
-    - APPEARANCE
-    - FACE_TILE
-    - FORCE_MOVEMENT
-    - FACE_PAWN
-
-  blocks:
     - block: FACE_PAWN
-      bit: 0x40
-      structure:
-        - name: pawn_index
-          type: SHORT
-          trans: ADD
-
-    - block: FACE_TILE
-      bit: 0x1
-      structure:
-        - name: x
-          sign: UNSIGNED
-          type: SHORT
-          trans: ADD
-          order: LITTLE
-        - name: z
-          sign: UNSIGNED
-          type: SHORT
-          order: LITTLE
-
-    - block: ANIMATION
       bit: 0x4
       structure:
-        - name: animation
-          sign: UNSIGNED
+        - name: pawn_index
+          order: LITTLE
           type: SHORT
-          trans: ADD
-        - name: delay
+
+    - block: CONTEXT_MENU
+      bit: 0x1000
+
+    - block: FORCE_MOVEMENT
+      bit: 0x100
+      structure:
+        - name: src_x
+          type: BYTE
+          trans: NEGATE
+        - name: src_z
           type: BYTE
           trans: ADD
-
-    - block: APPEARANCE
-      bit: 0x8
-      structure:
-        - name: transmog
-          sign: UNSIGNED
-          type: SHORT
-          trans: ADD
-
-    - block: GFX
-      bit: 0x2
-      structure:
-        - name: gfx
-          sign: UNSIGNED
-          type: SHORT
-          trans: ADD
+        - name: dst_x
+          type: BYTE
+        - name: dst_z
+          type: BYTE
+          trans: SUBTRACT
+        - name: client_delay
           order: LITTLE
-        - name: settings
-          type: INT
-          order: INVERSE_MIDDLE
-
-    - block: FORCE_CHAT
-      bit: 0x10
+          type: SHORT
+          trans: ADD
+        - name: client_duration
+          type: SHORT
+          trans: ADD
+        - name: direction_angle
+          type: SHORT
 
     - block: HITMARK
       bit: 0x80
       structure:
         - name: hitmarks
           type: BYTE
+          trans: NEGATE
         - name: hitbars
           type: BYTE
+          trans: ADD
         - name: hitbar_percentage
           type: BYTE
+          trans: ADD
         - name: hitbar_to_percentage
+          type: BYTE
+          trans: SUBTRACT
+
+npcs:
+
+  updating-opcode: 79
+  large-updating-opcode: 36
+
+  order:
+    - FORCE_MOVEMENT
+    - FACE_TILE
+    - APPEARANCE
+    - ANIMATION
+    - HITMARK
+    - FORCE_CHAT
+    - GFX
+    - FACE_PAWN
+
+  blocks:
+    - block: FACE_PAWN
+      bit: 0x8
+      structure:
+        - name: pawn_index
+          type: SHORT
+
+    - block: FACE_TILE
+      bit: 0x20
+      structure:
+        - name: x
+          type: SHORT
+        - name: z
+          order: LITTLE
+          type: SHORT
+          trans: ADD
+
+    - block: ANIMATION
+      bit: 0x10
+      structure:
+        - name: animation
+          order: LITTLE
+          type: SHORT
+          trans: ADD
+        - name: delay
+          type: BYTE
+
+    - block: APPEARANCE
+      bit: 0x40
+      structure:
+        - name: transmog
+          type: SHORT
+
+    - block: GFX
+      bit: 0x2
+      structure:
+        - name: gfx
+          order: LITTLE
+          type: SHORT
+        - name: settings
+          order: INVERSE_MIDDLE
+          type: INT
+
+    - block: FORCE_CHAT
+      bit: 0x4
+
+    - block: HITMARK
+      bit: 0x1
+      structure:
+        - name: hitmarks
+          type: BYTE
+          trans: ADD
+        - name: hitbars
+          type: BYTE
           trans: NEGATE
+        - name: hitbar_percentage
+          type: BYTE
+          trans: NEGATE
+        - name: hitbar_to_percentage
           type: BYTE
 
     - block: FORCE_MOVEMENT
-      bit: 0x20
+      bit: 0x80
       structure:
         - name: src_x
           type: BYTE
-          trans: SUBTRACT
+          trans: NEGATE
+          sign: SIGNED
         - name: src_z
           type: BYTE
-          trans: SUBTRACT
+          trans: NEGATE
+          sign: SIGNED
         - name: dst_x
           type: BYTE
           trans: ADD
+          sign: SIGNED
         - name: dst_z
           type: BYTE
-          trans: ADD
+          trans: SUBTRACT
+          sign: SIGNED
         - name: client_delay
-          sign: UNSIGNED
-          type: SHORT
-          trans: ADD
-        - name: client_duration
-          sign: UNSIGNED
-          type: SHORT
           order: LITTLE
-        - name: direction_angle
-          sign: UNSIGNED
           type: SHORT
-          trans: ADD
-          orrder: LITTLE
+        - name: client_duration
+          type: SHORT
+        - name: direction_angle
+          type: SHORT

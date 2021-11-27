@@ -5,10 +5,6 @@ import gg.rsmod.game.model.priv.Privilege
 
 var TOURNAMENT_SUPPLIES_INTERFACE = 100
 
-on_login() {
-    player.openInterface(100, InterfaceDestination.MAIN_SCREEN)
-}
-
 on_interface_open(interfaceId = TOURNAMENT_SUPPLIES_INTERFACE) p@ {
     if (player.privilege.powers.contains(Privilege.DEV_POWER)) {
         player.setInterfaceEvents(TOURNAMENT_SUPPLIES_INTERFACE, component = 4, range = 0..443, setting = 1086)

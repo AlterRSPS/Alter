@@ -1,11 +1,6 @@
 package gg.rsmod.plugins.content.inter.keybind
 
 /**
- * @TODO This should be at options folder.
- */
-
-
-/**
  * Set 'focused' hotkey.
  */
 Hotkey.values.forEach { hotkey ->

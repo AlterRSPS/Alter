@@ -18,15 +18,10 @@ package gg.rsmod.plugins.content.items.others.adminitems
  *
  */
 var type = 0
-var nr = 0
+var nr: Int = 0
 /**
  * Select number -> Or input w.e you will call it gives wrong Title
  */
-on_item_option(Items.ROTTEN_POTATO, "Mash") {
-    player.hit(1, HitType.get(22)!!)
-    player.message("Damaged 1 in 30")
-
-}
 on_item_option(Items.ROTTEN_POTATO, 1){
     // Where do you want to start
     when (type) {
@@ -34,13 +29,13 @@ on_item_option(Items.ROTTEN_POTATO, 1){
             player.graphic(-1)
             player.graphic(nr, 100)
             player.message("Playing $nr gfx")
-            nr += 1
+            nr+1
         }
         2 -> {
             player.animate(-1)
             player.animate(nr)
             player.message("Playing $nr animation")
-            nr += 1
+            nr+1
         }
         3 -> {
             val p_x = player.tile.x-3
@@ -51,13 +46,13 @@ on_item_option(Items.ROTTEN_POTATO, 1){
                 }
             }
             player.message("Spawned 5x5 $nr Gfx ")
-            nr += 1
+            nr+1
         }
-        4 -> {
-            player.openInterface(nr, InterfaceDestination.MAIN_SCREEN)
-            player.message("Opened $nr interface")
-            nr += 1
-        }
+        //4 -> {
+        //    player.openInterface(nr, InterfaceDestination.MAIN_SCREEN)
+        //    player.message("Opened $nr interface")
+        //    nr+1
+        //}
         5 -> {
             val p_x = player.tile.x-3
             val p_z = player.tile.z-3
@@ -73,7 +68,7 @@ on_item_option(Items.ROTTEN_POTATO, 1){
         4 -> {
             player.playJingle(nr)
             player.message("Playing jingle song: $nr")
-            nr += 1
+            nr+=1
         }
         else -> player.message("You haven't select category, to select the category click on <col=ffff66>Slice</col> option.")
     }
