@@ -57,15 +57,7 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
             next.handler.handle(client, world, next.message)
         }
     }
-    val allowed = listOf(
-        MessageGameMessage::class,
-        RebuildLoginMessage::class,
-        IfOpenTopMessage::class,
-        IfOpenSubMessage::class,
-        VarpLargeMessage::class,
-        VarpSmallMessage::class,
-        UpdateInvFullMessage::class,
-    )
+
     fun write(message: Message) {
         channel.write(message)
     }

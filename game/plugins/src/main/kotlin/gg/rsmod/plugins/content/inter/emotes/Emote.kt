@@ -55,7 +55,6 @@ enum class Emote(val slot: Int, val anim: Int, val gfx: Int = -1,
     SMOOTH_DANCE(slot = 46, anim = 7533, varbit = EmotesTab.SMOOTH_DANCE_EMOTE_VARBIT),
     CRAZY_DANCE(slot = 47, anim = 7536, varbit = EmotesTab.CRAZY_DANCE_EMOTE_VARBIT),
     // bronze, silver, and gold shield, referencing the 3, 6, and 12 month packages from the Premier Club.
-    // @TODO Maybe make this reference Players Dono Rank? xd
     PREMIER_SHIELD(slot = 48, anim = 7751, gfx = 1412, varbit = EmotesTab.PREMIER_SHIELD_EMOTE_VARBIT),
     EXPLORE(slot = 49, anim = 7751, gfx = 1412, varbit = EmotesTab.EXPLORE_VARBIT), // @TODO
     //https://oldschool.runescape.wiki/w/Relic_Unlock

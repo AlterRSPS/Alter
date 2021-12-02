@@ -8,21 +8,19 @@ server-packets:
     type: FIXED
     opcode: 84
     structure:
-      - name: height
-        sign: UNSIGNED
-        type: BYTE
-        trans: ADD
-      - name: delay
-        sign: UNSIGNED
-        type: SHORT
-      - name: tile
-        type: BYTE
-        trans: ADD
-        sign: UNSIGNED
       - name: id
         type: SHORT
         order: LITTLE
-        sign: UNSIGNED
+        trans: ADD
+      - name: height
+        type: BYTE
+      - name: delay
+        type: SHORT
+        trans: ADD
+        order: LITTLE
+      - name: tile
+        type: BYTE
+        trans: NEGATE
 
   - message: gg.rsmod.game.message.impl.UpdateRebootTimerMessage
     type: FIXED
@@ -183,9 +181,9 @@ server-packets:
     type: FIXED
     opcode: 48
     structure:
-      - name: z
-        type: BYTE
       - name: x
+        type: BYTE
+      - name: z
         type: BYTE
         trans: NEGATE
 
@@ -247,7 +245,6 @@ server-packets:
         trans: ADD
       - name: tile
         type: BYTE
-        trans: ADD
 
   - message: gg.rsmod.game.message.impl.ObjCountMessage
     type: FIXED
@@ -1097,7 +1094,7 @@ client-packets:
         trans: ADD
       - name: item
         type: SHORT
-      - name: componet_hash
+      - name: component_hash
         type: INT
         order: LITTLE
 

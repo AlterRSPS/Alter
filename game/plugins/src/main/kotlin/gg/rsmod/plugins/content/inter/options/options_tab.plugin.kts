@@ -157,13 +157,14 @@ bind_setting(child = 44) {
 
 ///**
 // * Screen brightness.
+// setInterfaceEvents(interfaceId = ALL_SETTINGS_INTERFACE_ID, component = 22, range = 0..5, setting = 2)
 // */
-//bind_setting(child = 115) {
-//    val slot = player.getInteractingSlot()
-//    player.message("Brightness set: $slot")
-//    player.message("This actually works?")
-//    player.setVarp(OSRSGameframe.SCREEN_BRIGHTNESS_VARP, slot + 1)
-//}
+bind_setting(child = 166) {
+    val slot = player.getInteractingSlot()
+    player.message("Brightness set: $slot")
+    player.message("This actually works?")
+    player.setVarp(OSRSGameframe.SCREEN_BRIGHTNESS_VARP, slot + 1)
+}
 
 /**
  * Display mode dropdown.

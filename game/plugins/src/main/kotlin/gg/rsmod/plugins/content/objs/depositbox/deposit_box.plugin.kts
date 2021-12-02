@@ -28,7 +28,7 @@ on_button(interfaceId = DEPOSIT_INTERFACE_ID, component = 2) {
     val slot = player.getInteractingSlot()
     val opt = player.getInteractingOption()
     when (opt) {
-        2 -> deposit_item(player, slot, 1)
+        1 -> deposit_item(player, slot, 1) // Was option 2 Before #201Rev but when it changed unsure most likely was not tested before 193Rev aswell D:
         3 -> deposit_item(player, slot, 5)
         4 -> deposit_item(player, slot, 10)
         5 -> deposit_item(player, slot, Int.MAX_VALUE)

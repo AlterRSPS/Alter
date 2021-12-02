@@ -49,16 +49,16 @@ on_login {
 
     // Interface-related logic.
     //openWelcomeScreen(player, (time_lapsed/TimeConstants.MINUTE).toInt(), player.membersDaysLeft())
+
     player.openDefaultInterfaces()
     // Inform the client whether or not we have a display name.
     val displayName = player.username.isNotBlank()
-//    player.runClientScript(1105, if (displayName) 1 else 0) // Has display name
-//    player.runClientScript(423, player.username)
-    // @TODO CLOUD
-    //if (player.getVarp(1055) == 0 && displayName) {
-    //    player.syncVarp(1055)
-    //}
-    //player.setVarbit(8119, 1) // Has display name
+    player.runClientScript(1105, if (displayName) 1 else 0) // Has display name
+    player.runClientScript(423, player.username)
+    if (player.getVarp(1055) == 0 && displayName) {
+        player.syncVarp(1055)
+    }
+    player.setVarbit(8119, 1) // Has display name
 
     // Sync attack priority options.
     player.syncVarp(OSRSGameframe.NPC_ATTACK_PRIORITY_VARP)
@@ -72,9 +72,7 @@ on_login {
     // Game-related logic.
     player.sendRunEnergy(player.runEnergy.toInt())
     player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
-    player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
-    player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
-    player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
+    player.message("Welcome to ${world.gameContext.name} ${player.username}.", ChatMessageType.BROADCAST)
 }
 
 /**

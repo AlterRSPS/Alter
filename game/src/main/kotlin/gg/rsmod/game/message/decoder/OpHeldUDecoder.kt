@@ -15,7 +15,7 @@ class OpHeldUDecoder : MessageDecoder<OpHeldUMessage>() {
         val toComponent = values["to_component"]!!.toInt()
         val toSlot = values["to_slot"]!!.toInt()
         val toItem = values["to_item"]!!.toInt()
-
+        println("OpheldU:to_component: "+ toComponent);
         return OpHeldUMessage(fromComponent, fromSlot, fromItem, toComponent, toSlot, toItem)
     }
 }

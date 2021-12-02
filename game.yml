@@ -1,9 +1,8 @@
 # Game values
 # You want to edit these to fit your game.
-name: "RS Mod Server"
+name: "Alter"
 game-port: 43594
 revision: 201
-
 
 # The coordinates for the home location.
 home-x: 3218
