@@ -44,6 +44,15 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
         }
     }
 
+    // RCrc=[579285872, -627646252, -1179614022, -1543731410, 1276263438, -850017710, 584215312, -207766596, -1100854392, 1820792396, -1323667403, 1299596538, -1648037426, 1207725196, -1467078391, -445574398, 0, 900902055, -724532311, -1185343682, 1406652382],
+    // CCrc=[579285872, -627646252, -1165709127, 780663971, 238817868, -850017710, 584215312, -1128555021, -2008325442, 1820792396, -1323667403, 1299596538, -1648037426, 1207725196, 153718440, -445574398, 606679656, -1481854411, -724532311, 1041717689, 1406652382]].
+    // RCrc=[579285872, -627646252, -1179614022, -1543731410, 1276263438, -850017710, 584215312, -207766596, -1100854392, 1820792396, -1323667403, 1299596538, -1648037426, 1207725196, -1467078391, -445574398, 0, 900902055, -724532311, -1185343682, 1406652382], cacheCrc=[579285872, -627646252, 878419145, 2098258566, 238817868, -850017710, 584215312, 478731189, -1471105173, 1820792396, -1323667403, 1299596538, -1713803822, 1207725196, 153718440, -445574398, -975080844, -1481854411, -724532311, -956860576, 1406652382]].
+    private fun ChannelHandlerContext.writeResponse(result: LoginResultType) {
+        val buf = channel().alloc().buffer(1)
+        buf.writeByte(result.id)
+        writeAndFlush(buf).addListener(ChannelFutureListener.CLOSE)
+    }
+
     private fun decodeHeader(ctx: ChannelHandlerContext, buf: ByteBuf, out: MutableList<Any>) {
         if (buf.readableBytes() >= 3) {
             val size = buf.readUnsignedShort() // always 0
@@ -69,7 +78,6 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
             }
         }
     }
-
     private fun decodePayload(ctx: ChannelHandlerContext, buf: ByteBuf, out: MutableList<Any>) {
         if (buf.readableBytes() >= payloadLength) {
             buf.markReaderIndex()
@@ -161,22 +169,22 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
 
             val crcs = decodeCRCs(xteaBuf)
 
-            //for (i in crcs.indices) {
-            //    /**
-            //     * CRC for index 16 is always sent as 0 (at least on the
-            //     * Desktop client, need to look into mobile).
-            //     */
-            //    if (i == 16) {
-            //        continue
-            //    }
-            //    if (crcs[i] != cacheCrcs[i]) {
-            //        buf.resetReaderIndex()
-            //        buf.skipBytes(payloadLength)
-            //        logger.info { "User '$username' login request crc mismatch [requestCrc=${crcs.contentToString()}, cacheCrc=${cacheCrcs.contentToString()}]." }
-            //        ctx.writeResponse(LoginResultType.REVISION_MISMATCH)
-            //        return
-            //    }
-            //}
+            for (i in crcs.indices) {
+                /**
+                 * CRC for index 16 is always sent as 0 (at least on the
+                 * Desktop client, need to look into mobile).
+                 */
+                if (i == 16) {
+                    continue
+                }
+                if (crcs[i] != cacheCrcs[i]) {
+                    buf.resetReaderIndex()
+                    buf.skipBytes(payloadLength)
+                    logger.info { "User '$username' login request crc mismatch [requestCrc=${crcs.contentToString()}, cacheCrc=${cacheCrcs.contentToString()}]." }
+                    ctx.writeResponse(LoginResultType.REVISION_MISMATCH)
+                    return
+                }
+            }
 
             logger.info { "User '$username' login request from ${ctx.channel()}." }
 
@@ -188,48 +196,39 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
         }
     }
 
+    private fun ByteBuf.decipher(xteaKeys: IntArray): ByteBuf {
+        val data = ByteArray(readableBytes())
+        readBytes(data)
+        return Unpooled.wrappedBuffer(Xtea.decipher(xteaKeys, data, 0, data.size))
+    }
+    /**
+     * switch based on incoming CRCorder
+     */
     private fun decodeCRCs(xteaBuf: ByteBuf): IntArray {
         val crcs = IntArray(cacheCrcs.size)
-
-        /**
-         * switch based on incoming CRCorder
-         */
         for(i in CRCorder.indices){
             when(val idx = CRCorder[i]){
-                3,12,0 -> crcs[idx] = xteaBuf.readInt()
-                15,10,7,1,18,2 -> crcs[idx] = xteaBuf.readIntLE()
-                17,8,19,16,20,14,6 -> crcs[idx] = xteaBuf.readIntME()
-                11,13,9,4,5 -> crcs[idx] = xteaBuf.readIntIME()
+                7,2 -> crcs[idx] = xteaBuf.readIntIME()
+                14,17,8,19,4,3 -> crcs[idx] = xteaBuf.readIntME()
+                6,20,18,16,12,9,10 -> crcs[idx] = xteaBuf.readIntLE()
+                15,1,0,5,13,11 -> crcs[idx] = xteaBuf.readInt()
             }
         }
 
         return crcs
     }
 
-    private fun ChannelHandlerContext.writeResponse(result: LoginResultType) {
-        val buf = channel().alloc().buffer(1)
-        buf.writeByte(result.id)
-        writeAndFlush(buf).addListener(ChannelFutureListener.CLOSE)
-    }
-
-    private fun ByteBuf.decipher(xteaKeys: IntArray): ByteBuf {
-        val data = ByteArray(readableBytes())
-        readBytes(data)
-        return Unpooled.wrappedBuffer(Xtea.decipher(xteaKeys, data, 0, data.size))
-    }
-
+    /**
+     * As of revision 190 the client now sends the CRCs out of order
+     * and with varying byte orders
+     */
     companion object : KLogging() {
         private const val LOGIN_OPCODE = 16
         private const val RECONNECT_OPCODE = 18
-
-        /**
-         * As of revision 190 the client now sends the CRCs out of order
-         * and with varying byte orders
-         */
         private val CRCorder = intArrayOf(
-                11,17,3,15,13,9,
-                4,5,10,7,1,
-                8,19,12,16,20,
-                14,6,18,2,0)
+            6,15,14,7,20,
+            17,8,18,2,16,
+            12,9,1,0,10,5,
+            19,4,3,13,11)
     }
 }
