@@ -187,7 +187,7 @@ server-packets:
         type: BYTE
         trans: NEGATE
 
-  - message: gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
+  - message: gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage # @TODO BUGGED
     type: VARIABLE_SHORT
     opcode: 56
     structure:
