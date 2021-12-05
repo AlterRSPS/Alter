@@ -12,9 +12,9 @@ import gg.rsmod.plugins.content.inter.bank.BankTabs.SELECTED_TAB_VARBIT
  * @author Tom <rspsmods@gmail.com>
  */
 object Bank {
-    const val BANK_INTERFACE_ID = 13
-    const val BANK_MAINTAB_COMPONENT = 13
-    const val INV_INTERFACE_ID = 16
+    const val BANK_INTERFACE_ID = 12
+    const val BANK_MAINTAB_COMPONENT = 12
+    const val INV_INTERFACE_ID = 15
     const val INV_INTERFACE_CHILD = 4
 
     const val WITHDRAW_AS_VARBIT = 3958
