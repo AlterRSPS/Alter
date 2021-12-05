@@ -13974,6 +13974,7 @@ object Objs {
     const val BROKEN_PILLAR_26421 = 26421
     const val ROPE_26422 = 26422
     const val BIRD_SNARE_26457 = 26457
+    const val GOLD_SINK_26458 = 26458
     const val BIG_DOOR = 26461
     const val BARREL_26462 = 26462
     const val LARGE_GEYSER_26491 = 26491
@@ -21830,5 +21831,6 @@ object Objs {
     const val BANK_BOOTH_42837 = 42837
     const val FROZEN_DOOR = 42840
     const val FROZEN_DOOR_42841 = 42841
+    const val GOLD_SINK_42852 = 42852
     /* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
 }

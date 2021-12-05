@@ -46,25 +46,25 @@ on_interface_close(BANK_INTERFACE_ID) {
     player.closeInputDialog()
 }
 
-intArrayOf(16, 18).forEachIndexed { index, button ->
+intArrayOf(17, 19).forEachIndexed { index, button ->
     on_button(interfaceId = BANK_INTERFACE_ID, component = button) {
         player.setVarbit(REARRANGE_MODE_VARBIT, index)
     }
 }
 
-intArrayOf(21, 23).forEachIndexed { index, button ->
+intArrayOf(22, 24).forEachIndexed { index, button ->
     on_button(interfaceId = BANK_INTERFACE_ID, component = button) {
         player.setVarbit(WITHDRAW_AS_VARBIT, index)
     }
 }
 
-on_button(interfaceId = BANK_INTERFACE_ID, component = 37) {
+on_button(interfaceId = BANK_INTERFACE_ID, component = 38) {
     player.toggleVarbit(ALWAYS_PLACEHOLD_VARBIT)
 }
 
-intArrayOf(27, 29, 31, 33, 35).forEach { quantity ->
+intArrayOf(28, 30, 32, 34, 36).forEach { quantity ->
     on_button(interfaceId = BANK_INTERFACE_ID, component = quantity) {
-        val state = (quantity - 27) / 2
+        val state = (quantity - 27) / 2 // wat?
         player.setVarbit(QUANTITY_VARBIT, state)
     }
 }
@@ -72,11 +72,11 @@ intArrayOf(27, 29, 31, 33, 35).forEach { quantity ->
 /**
  * Added incinerator support.
  */
-on_button(interfaceId = BANK_INTERFACE_ID, component = 52) {
+on_button(interfaceId = BANK_INTERFACE_ID, component = 53) {
     player.toggleVarbit(INCINERATOR_VARBIT)
 }
 
-on_button(interfaceId = BANK_INTERFACE_ID, component = 46) {
+on_button(interfaceId = BANK_INTERFACE_ID, component = 47) {
     val slot = player.getInteractingSlot() - 1
     val destroyItems = player.bank[slot]!!
     val tabAffected = getCurrentTab(player, slot)
@@ -87,7 +87,7 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 46) {
 }
 
 // bank inventory
-on_button(interfaceId = BANK_INTERFACE_ID, component = 41) {
+on_button(interfaceId = BANK_INTERFACE_ID, component = 42) {
     val from = player.inventory
     val to = player.bank
 
@@ -127,7 +127,7 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 41) {
 }
 
 // bank equipment
-on_button(interfaceId = BANK_INTERFACE_ID, component = 43) {
+on_button(interfaceId = BANK_INTERFACE_ID, component = 44) {
     val from = player.equipment
     val to = player.bank
 

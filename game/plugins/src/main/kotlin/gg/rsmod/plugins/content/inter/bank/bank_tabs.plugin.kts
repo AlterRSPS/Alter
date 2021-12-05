@@ -5,6 +5,8 @@ import gg.rsmod.game.model.attr.INTERACTING_ITEM_SLOT
 import gg.rsmod.game.model.attr.OTHER_ITEM_SLOT_ATTR
 import gg.rsmod.plugins.content.inter.bank.Bank.BANK_INTERFACE_ID
 import gg.rsmod.plugins.content.inter.bank.Bank.BANK_MAINTAB_COMPONENT
+import gg.rsmod.plugins.content.inter.bank.Bank.INV_INTERFACE_CHILD
+import gg.rsmod.plugins.content.inter.bank.Bank.INV_INTERFACE_ID
 import gg.rsmod.plugins.content.inter.bank.Bank.REARRANGE_MODE_VARBIT
 import gg.rsmod.plugins.content.inter.bank.Bank.insert
 import gg.rsmod.plugins.content.inter.bank.BankTabs.BANK_TABLIST_ID
@@ -23,6 +25,12 @@ on_button(BANK_INTERFACE_ID, BANK_TABLIST_ID){
     val dstTab = player.getInteractingSlot()-10
     if(dstTab <= numTabsUnlocked(player))
         player.setVarbit(SELECTED_TAB_VARBIT, dstTab)
+}
+
+on_button(BANK_INTERFACE_ID, 113) {
+    //player.setVarbit(386, 1)
+    //player.closeInterface(dest = InterfaceDestination.TAB_AREA)
+    //player.openInterface(INV_INTERFACE_ID, 4)
 }
 
 /**

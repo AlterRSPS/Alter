@@ -39,7 +39,7 @@ class ItemMetadataService : Service {
         val range = 0..200
         val chunk = range.chunked(2500)
         chunk.parallelStream().forEach { range ->
-            for (fileId in range) {
+            for (fileId in 0..2000) {
                 val file = File("$path/$fileId.yml")
                 if (file.exists()) {
                     val def = world.definitions.get(ItemDef::class.java, fileId)

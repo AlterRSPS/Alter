@@ -57,8 +57,13 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
             next.handler.handle(client, world, next.message)
         }
     }
-
+    val debug = listOf(
+        VarpSmallMessage::class
+    )
     fun write(message: Message) {
+        if (message::class in debug){
+            println(message)
+        }
         channel.write(message)
     }
 

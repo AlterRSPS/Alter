@@ -29,6 +29,15 @@ set_menu_open_check {
  * Execute when a player logs in.
  */
 on_login {
+    // Skill-related logic.
+    player.calculateAndSetCombatLevel()
+    if (player.getSkills().getBaseLevel(Skills.HITPOINTS) < 10) {
+        player.getSkills().setBaseLevel(Skills.HITPOINTS, 10)
+    }
+    player.calculateAndSetCombatLevel()
+    player.sendWeaponComponentInformation()
+    player.sendCombatLevelText()
+
     val now = System.currentTimeMillis()
     val last = player.attr.getOrDefault(LAST_LOGIN_ATTR, now.toString()).toLong()
     val time_lapsed = now - last
@@ -39,14 +48,6 @@ on_login {
 
     player.runClientScript(2498, if(player.hasMembers()) 1 else 0, memberRecurring, noLinkedEmail)
 
-    // Skill-related logic.
-    if (player.getSkills().getBaseLevel(Skills.HITPOINTS) < 10) {
-        player.getSkills().setBaseLevel(Skills.HITPOINTS, 10)
-    }
-    player.calculateAndSetCombatLevel()
-    player.sendWeaponComponentInformation()
-    player.sendCombatLevelText()
-
     // Interface-related logic.
     //openWelcomeScreen(player, (time_lapsed/TimeConstants.MINUTE).toInt(), player.membersDaysLeft())
 
@@ -55,6 +56,8 @@ on_login {
     val displayName = player.username.isNotBlank()
     player.runClientScript(1105, if (displayName) 1 else 0) // Has display name
     player.runClientScript(423, player.username)
+    player.setVarbit(13027, player.combatLevel)
+    //player.runClientScript(420)
     if (player.getVarp(1055) == 0 && displayName) {
         player.syncVarp(1055)
     }
@@ -71,8 +74,7 @@ on_login {
 
     // Game-related logic.
     player.sendRunEnergy(player.runEnergy.toInt())
-    player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
-    player.message("Welcome to ${world.gameContext.name} ${player.username}.", ChatMessageType.BROADCAST)
+    player.message("Welcome ${player.username} to ${world.gameContext.name}.", ChatMessageType.BROADCAST)
 }
 
 /**

@@ -5,15 +5,6 @@ package gg.rsmod.plugins.content.items.others.adminitems
 /**
  * Good old Rotten Potato
  * @author Cl0udS3c
- * Item Menu Options:
-     * 1 Eat
-     * 2 Slice
-     * 3 Peel
-     * 4 Use
-     * 5 Mash
-     * 6 Drop
-     * 7 Examine
- * Since the item's options can get updated we use [Option index for that]
  * @since 2021.09.01
  *
  */
