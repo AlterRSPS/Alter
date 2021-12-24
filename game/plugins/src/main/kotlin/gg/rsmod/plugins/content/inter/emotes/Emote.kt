@@ -46,12 +46,12 @@ enum class Emote(val slot: Int, val anim: Int, val gfx: Int = -1,
     PUSH_UP(slot = 37, anim = 2762, varbit = EmotesTab.EXERCISE_EMOTES),
     STAR_JUMP(slot = 38, anim = 2761, varbit = EmotesTab.EXERCISE_EMOTES),
     JOG(slot = 39, anim = 2764, varbit = EmotesTab.EXERCISE_EMOTES),
-    FLEX(slot = 40, anim = -1, gfx = 0, varbit = EmotesTab.FLEX_EMOTE_VARBIT), // @TODO
+    FLEX(slot = 40, anim = 8917, gfx = -1, varbit = EmotesTab.FLEX_EMOTE_VARBIT),
     ZOMBIE_HAND(slot = 41, anim = 1708, gfx = 320, varbit = EmotesTab.ZOMBIE_HAND_EMOTE_VARBIT),
     HYPERMOBILE_DRINKER(slot = 42, anim = 7131, varbit = EmotesTab.HYPERMOBILE_DRINKER_EMOTE_VARBIT),
     SKILLCAPE(slot = 43, anim = -1), // @TODO
     AIR_GUITAR(slot = 44, anim = 4751, gfx = 1239, varbit = EmotesTab.AIR_GUITAR_EMOTE_VARBIT),
-    URI_TRANSFORM(slot = 45, anim = -1, gfx = -1, varbit = EmotesTab.URI_TRANSFORM_EMOTE_VARBIT),
+    URI_TRANSFORM(slot = 45, anim = -1, gfx = -1, varbit = EmotesTab.URI_TRANSFORM_EMOTE_VARBIT), // @TODO
     SMOOTH_DANCE(slot = 46, anim = 7533, varbit = EmotesTab.SMOOTH_DANCE_EMOTE_VARBIT),
     CRAZY_DANCE(slot = 47, anim = 7536, varbit = EmotesTab.CRAZY_DANCE_EMOTE_VARBIT),
     // bronze, silver, and gold shield, referencing the 3, 6, and 12 month packages from the Premier Club.

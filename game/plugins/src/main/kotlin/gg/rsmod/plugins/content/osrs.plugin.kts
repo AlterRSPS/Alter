@@ -58,9 +58,9 @@ on_login {
     player.runClientScript(423, player.username)
     player.setVarbit(13027, player.combatLevel)
     //player.runClientScript(420)
-    if (player.getVarp(1055) == 0 && displayName) {
-        player.syncVarp(1055)
-    }
+    //if (player.getVarp(1055) == 0 && displayName) {
+    //    player.syncVarp(1055)
+    //}
     player.setVarbit(8119, 1) // Has display name
 
     // Sync attack priority options.

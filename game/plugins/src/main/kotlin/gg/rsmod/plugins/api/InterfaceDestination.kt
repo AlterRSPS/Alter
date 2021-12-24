@@ -2,19 +2,16 @@ package gg.rsmod.plugins.api
 
 import gg.rsmod.game.model.interf.DisplayMode
 
-/**
- * Thanks to @
- */
 enum class InterfaceDestination(val interfaceId: Int, val fixedChildId: Int, val resizeChildId: Int, val resizeListChildId: Int,
                                 val fullscreenChildId: Int = -1, val clickThrough: Boolean = true) {
 
-    CHAT_BOX(interfaceId = 162, fixedChildId = 10, resizeChildId = 37, resizeListChildId = 39, fullscreenChildId = 1),
+    CHAT_BOX(interfaceId = 162, fixedChildId = 10, resizeChildId = 94, resizeListChildId = 91, fullscreenChildId = 1),
 
-    XP_COUNTER(interfaceId = 122, fixedChildId = 21, resizeChildId = 11, resizeListChildId = 11, fullscreenChildId = 11),
+    XP_COUNTER(interfaceId = 122, fixedChildId = 21, resizeChildId = 4, resizeListChildId = 11, fullscreenChildId = 11),
 
-    ATTACK(interfaceId = 593, fixedChildId = 79, resizeChildId = 78, resizeListChildId = 72, fullscreenChildId = 15),
+    ATTACK(interfaceId = 593, fixedChildId = 79, resizeChildId = 81, resizeListChildId = 72, fullscreenChildId = 15),
 
-    SKILLS(interfaceId = 320, fixedChildId = 80, resizeChildId = 79, resizeListChildId = 73, fullscreenChildId = 16),
+    SKILLS(interfaceId = 320, fixedChildId = 80, resizeChildId = 72, resizeListChildId = 73, fullscreenChildId = 16),
 
     QUEST_ROOT(interfaceId = 629, fixedChildId = 81, resizeChildId = 80, resizeListChildId = 74, fullscreenChildId = 17),
 
@@ -40,23 +37,26 @@ enum class InterfaceDestination(val interfaceId: Int, val fixedChildId: Int, val
 
     MUSIC(interfaceId = 239, fixedChildId = 92, resizeChildId = 91, resizeListChildId = 85, fullscreenChildId = 28),
 
-    PRIVATE_CHAT(interfaceId = 163, fixedChildId = 35, resizeChildId = 16, resizeListChildId = 16, fullscreenChildId = 30),
+    PRIVATE_CHAT(interfaceId = 163, fixedChildId = 35, resizeChildId = 16, resizeListChildId = 88, fullscreenChildId = 30),
 
-    MINI_MAP(interfaceId = 160, fixedChildId = 24, resizeChildId = 36, resizeListChildId = 36, fullscreenChildId = 31),
+    MINI_MAP(interfaceId = 160, fixedChildId = 24, resizeChildId = 36, resizeListChildId = 90, fullscreenChildId = 31),
 
-    MAIN_SCREEN(interfaceId = -1, fixedChildId = 9, resizeChildId = 20, resizeListChildId = 20, fullscreenChildId = 13, clickThrough = false),
+    MAIN_SCREEN(interfaceId = -1, fixedChildId = 9, resizeChildId = 20, resizeListChildId = 16, fullscreenChildId = 13, clickThrough = false),
 
-    TAB_AREA(interfaceId = -1, fixedChildId = 16, resizeChildId = 72, resizeListChildId = 95, clickThrough = false),
+    TAB_AREA(interfaceId = -1, fixedChildId = 16, resizeChildId = 72, resizeListChildId = 70, clickThrough = false),
 
     WALKABLE(interfaceId = -1, fixedChildId = 9, resizeChildId = 3, resizeListChildId = 3),
 
-    WORLD_MAP(interfaceId = -1, fixedChildId = 9, resizeChildId = 17, resizeListChildId = 17, fullscreenChildId = 36),
+    WORLD_MAP(interfaceId = -1, fixedChildId = 9, resizeChildId = 17, resizeListChildId = 15, fullscreenChildId = 36),
 
-    WORLD_MAP_FULL(interfaceId = -1, fixedChildId = 27, resizeChildId = 27, resizeListChildId = 27, fullscreenChildId = 27, clickThrough = false),
+    WORLD_MAP_FULL(interfaceId = -1, fixedChildId = 27, resizeChildId = 21, resizeListChildId = 37, fullscreenChildId = 27, clickThrough = false), // @TODO
 
-    OVERLAY(interfaceId = -1, fixedChildId = 16, resizeChildId = 5, resizeListChildId = 5, fullscreenChildId = 29)
-    ;
+    OVERLAY(interfaceId = -1, fixedChildId = 9, resizeChildId = 68, resizeListChildId = 68, fullscreenChildId = 29);
 
+    /**
+     * gg.rsmod.game.message.impl.RebuildNormalMessage
+        gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
+     */
     fun isSwitchable(): Boolean = when (this) {
         CHAT_BOX, MAIN_SCREEN, WALKABLE, TAB_AREA,
         ATTACK, SKILLS, QUEST_ROOT, INVENTORY, EQUIPMENT,

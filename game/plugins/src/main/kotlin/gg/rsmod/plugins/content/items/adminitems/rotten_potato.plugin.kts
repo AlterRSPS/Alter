@@ -1,5 +1,9 @@
 package gg.rsmod.plugins.content.items.others.adminitems
 
+import gg.rsmod.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
+import gg.rsmod.plugins.content.combat.dealHit
+import gg.rsmod.plugins.content.combat.formula.MeleeCombatFormula
+
 //import gg.rsmod.plugins.content.inter.tournament_supplies.Tournament_Supplies
 
 /**
@@ -13,6 +17,12 @@ var nr: Int = 0
 /**
  * Select number -> Or input w.e you will call it gives wrong Title
  */
+
+/**
+ * IDEAS:
+ * Add incremental varbit option
+ * Paged options
+ */
 on_item_option(Items.ROTTEN_POTATO, 1){
     // Where do you want to start
     when (type) {
@@ -20,13 +30,13 @@ on_item_option(Items.ROTTEN_POTATO, 1){
             player.graphic(-1)
             player.graphic(nr, 100)
             player.message("Playing $nr gfx")
-            nr+1
+            nr += 1
         }
         2 -> {
             player.animate(-1)
             player.animate(nr)
             player.message("Playing $nr animation")
-            nr+1
+            nr += 1
         }
         3 -> {
             val p_x = player.tile.x-3
@@ -37,13 +47,13 @@ on_item_option(Items.ROTTEN_POTATO, 1){
                 }
             }
             player.message("Spawned 5x5 $nr Gfx ")
+            nr += 1
+        }
+        4 -> {
+            player.openInterface(nr, InterfaceDestination.MAIN_SCREEN)
+            player.message("Opened $nr interface")
             nr+1
         }
-        //4 -> {
-        //    player.openInterface(nr, InterfaceDestination.MAIN_SCREEN)
-        //    player.message("Opened $nr interface")
-        //    nr+1
-        //}
         5 -> {
             val p_x = player.tile.x-3
             val p_z = player.tile.z-3
@@ -56,10 +66,16 @@ on_item_option(Items.ROTTEN_POTATO, 1){
             }
             player.message("Spawned 10x10 from $nr to ${nr+100} items. ")
         }
-        4 -> {
+        6 -> {
             player.playJingle(nr)
             player.message("Playing jingle song: $nr")
             nr+=1
+        }
+        11 -> {
+            player.message("Interacting with 11")
+        }
+        13 -> {
+            player.message("Interacting with 13")
         }
         else -> player.message("You haven't select category, to select the category click on <col=ffff66>Slice</col> option.")
     }
@@ -77,11 +93,43 @@ on_item_option(Items.ROTTEN_POTATO, 3) {
         player.message("You have set $nr as starting number")
     }
 }
+on_command("maxcapes") {
+    val capes = listOf(Items.MAX_CAPE_13342,
+        Items.ATTACK_CAPE, Items.ATTACK_CAPET,
+        Items.STRENGTH_CAPE, Items.STRENGTH_CAPET,
+        Items.DEFENCE_CAPE, Items.DEFENCE_CAPET,
+        Items.RANGING_CAPE, Items.RANGING_CAPET,
+        Items.PRAYER_CAPE, Items.PRAYER_CAPET,
+        Items.MAGIC_CAPE, Items.MAGIC_CAPET,
+        Items.RUNECRAFT_CAPE, Items.RUNECRAFT_CAPET,
+        Items.HITPOINTS_CAPE, Items.HITPOINTS_CAPET,
+        Items.AGILITY_CAPE, Items.AGILITY_CAPET,
+        Items.HERBLORE_CAPE, Items.HERBLORE_CAPET,
+        Items.THIEVING_CAPE, Items.THIEVING_CAPET,
+        Items.CRAFTING_CAPE, Items.CRAFTING_CAPET,
+        Items.FLETCHING_CAPE, Items.FLETCHING_CAPET,
+        Items.SLAYER_CAPE, Items.SLAYER_CAPET,
+        Items.CONSTRUCT_CAPE, Items.CONSTRUCT_CAPET,
+        Items.MINING_CAPE, Items.MINING_CAPET,
+        Items.SMITHING_CAPE, Items.SMITHING_CAPET,
+        Items.FISHING_CAPE, Items.FISHING_CAPET,
+        Items.COOKING_CAPE, Items.COOKING_CAPET,
+        Items.FIREMAKING_CAPE, Items.FIREMAKING_CAPET,
+        Items.WOODCUTTING_CAPE, Items.WOODCUT_CAPET,
+        Items.FARMING_CAPE, Items.FARMING_CAPET,
+        Items.HUNTER_CAPE, Items.HUNTER_CAPET,
+        Items.CABBAGE_CAPE,
+        Items.QUEST_POINT_CAPE, Items.QUEST_POINT_CAPE_T,
+        Items.ACHIEVEMENT_DIARY_CAPE, Items.ACHIEVEMENT_DIARY_CAPE_T,
+        Items.MUSIC_CAPE, Items.MUSIC_CAPET)
 
+    for (cape in capes) {
+        player.bank.add(cape, 2)
+    }
+}
 suspend fun QueueTask.getStart(): Int {
     return inputInt("From what ID do you want to start:")
 }
-
 suspend fun QueueTask.selectCategory(): Int {
     val type = when (options(
         "Animations", // On clicking Option 1 it will play Animation (On the player) increase [nr]
@@ -90,16 +138,28 @@ suspend fun QueueTask.selectCategory(): Int {
         "Interface", // Open's Interface + each click will open and increast [nr]
         "Item Drop 10x10", // Drops random item starting from NR and increase on each Tile
         "Jingle", // Drops random item starting from NR and increase on each Tile
+        "Jingle2", // Drops random item starting from NR and increase on each Tile
+        "Jingle3", // Drops random item starting from NR and increase on each Tile
+        "Jingle4", // Drops random item starting from NR and increase on each Tile
+        "Jingle5", // Drops random item starting from NR and increase on each Tile
+        "Jingle6", // Drops random item starting from NR and increase on each Tile
+        "Jingle7", // Drops random item starting from NR and increase on each Tile
+        "Jingle8", // Drops random item starting from NR and increase on each Tile
         title = "Type to increase each time you click on Eat?")) {
-        1 -> 2
-        2 -> 1
+        1 -> 1
+        2 -> 2
         3 -> 3
         4 -> 4
         5 -> 5
         6 -> 6
+        7 -> 7
+        8 -> 8
+        9 -> 9
+        11 -> 11
+        12 -> 12
+        13 -> 13
         else -> return 0
     }
     nr = 0
     return type
 }
-

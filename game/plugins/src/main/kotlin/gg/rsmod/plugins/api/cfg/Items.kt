@@ -2411,6 +2411,7 @@ object Items {
     const val ZAMORAK_STAFF = 2417
     const val BRONZE_KEY = 2418
     const val WIG = 2419
+    const val BUCHU_SEED_2420 = 2420
     const val WIG_2421 = 2421
     const val BLUE_PARTYHAT_2422 = 2422
     const val KEY_PRINT = 2423
@@ -2476,12 +2477,12 @@ object Items {
     const val LANTADYME_POTION_UNF_NOTED = 2484
     const val GRIMY_LANTADYME = 2485
     const val GRIMY_LANTADYME_NOTED = 2486
-    const val BLUE_DHIDE_VAMBRACES = 2487
-    const val BLUE_DHIDE_VAMBRACES_NOTED = 2488
-    const val RED_DHIDE_VAMBRACES = 2489
-    const val RED_DHIDE_VAMBRACES_NOTED = 2490
-    const val BLACK_DHIDE_VAMBRACES = 2491
-    const val BLACK_DHIDE_VAMBRACES_NOTED = 2492
+    const val BLUE_DHIDE_VAMB = 2487
+    const val BLUE_DHIDE_VAMB_NOTED = 2488
+    const val RED_DHIDE_VAMB = 2489
+    const val RED_DHIDE_VAMB_NOTED = 2490
+    const val BLACK_DHIDE_VAMB = 2491
+    const val BLACK_DHIDE_VAMB_NOTED = 2492
     const val BLUE_DHIDE_CHAPS = 2493
     const val BLUE_DHIDE_CHAPS_NOTED = 2494
     const val RED_DHIDE_CHAPS = 2495

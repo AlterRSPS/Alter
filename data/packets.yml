@@ -59,7 +59,7 @@ server-packets:
         type: BYTE
         trans: NEGATE
       - name: sound
-        type: BYTE
+        type: SHORT
         order: LITTLE
 
   - message: gg.rsmod.game.message.impl.MapProjAnimMessage
@@ -187,7 +187,7 @@ server-packets:
         type: BYTE
         trans: NEGATE
 
-  - message: gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage # @TODO BUGGED
+  - message: gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
     type: VARIABLE_SHORT
     opcode: 56
     structure:
@@ -457,6 +457,7 @@ server-packets:
         trans: ADD
       - name: items
         type: BYTES
+
   #- message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
   #  type: VARIABLE_SHORT
   #  opcode: 19

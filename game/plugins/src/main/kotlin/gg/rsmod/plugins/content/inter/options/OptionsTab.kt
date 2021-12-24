@@ -37,7 +37,7 @@ object OptionsTab {
      * Display Settings Tab
      */
     const val DISPLAY_SETTINGS_BUTTON_ID = 71
-    const val DISPLAY_MODE_DROPDOWN_ID = 12
+    const val DISPLAY_MODE_DROPDOWN_ID = 25
 
     val GAME_NOTIFICATIONS = BitStorage(persistenceKey = "game_notifications")
 }

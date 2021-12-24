@@ -17,19 +17,61 @@ fun bind_setting(child: Int, plugin: Plugin.() -> Unit) {
 }
 
 on_login {
-    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 6, range = 1..4, setting = 2) // Player option priority
-    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 7, range = 1..4, setting = 2) // Npc option priority
+    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 6, range = 1..4, setting = 2) // Player option priority
+    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 7, range = 1..4, setting = 2) // Npc option priority
+    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 40, range = 0..4, setting = 2)
+    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 42, range = 0..4, setting = 2)
+    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 44, range = 0..4, setting = 2)
+    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 35, range = 1..4, setting = 2)
+    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 36, range = 1..4, setting = 2)
+    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 25, range = 1..5, setting = 2)
+    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 115, range = 0..3, setting = 2)
 
-    /**
-     * Changing display modes (fixed, resizable).
-     */
-    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 40, range = 0..4, setting = 2)
-    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 42, range = 0..4, setting = 2)
-    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 44, range = 0..4, setting = 2)
-    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 35, range = 1..4, setting = 2)
-    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 36, range = 1..4, setting = 2)
-    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 37, range = 1..3, setting = 2)
-    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 115, range = 0..3, setting = 2)
+    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 55, range = 0..21, setting = 2)
+    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 84, range = 1..3, setting = 2)
+    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 69, range = 0..21, setting = 2)
+    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 82, range = 1..4, setting = 2)
+    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 83, range = 1..5, setting = 2)
+    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 81, range = 1..5, setting = 2)
+    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 41, range = 0..21, setting = 2)
+    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 23, range =  0..21, setting = 2)
+}
+val ints = listOf( 55, 84, 69, 83, 81, 41, 23 )
+ints.forEach { child ->
+    bind_setting(child = child) {
+        player.message("interacting with $child")
+    }
+}
+
+
+/**
+ * Display mode dropdown.
+ */
+bind_setting(child = 82) {
+    //val slot = player.getInteractingSlot()
+    val slot = player.attr[INTERACTING_SLOT_ATTR]!!
+    val mode = when (slot) {
+        2 -> {
+            player.setVarbit(OSRSGameframe.SIDESTONES_ARRAGEMENT_VARBIT, 0)
+            DisplayMode.RESIZABLE_NORMAL
+        }
+        3 -> {
+            player.setVarbit(OSRSGameframe.SIDESTONES_ARRAGEMENT_VARBIT, 1)
+            DisplayMode.RESIZABLE_LIST
+        }
+        else -> DisplayMode.FIXED
+    }
+    if(!(mode.isResizable() && player.interfaces.displayMode.isResizable()))
+        player.runClientScript(3998, slot-1)
+    player.toggleDisplayInterface(mode)
+}
+
+/*
+bind_setting(child = 11) {
+    val slot = player.getInteractingSlot()
+    player.message("Brightness set: $slot")
+    player.message("This actually works?")
+    player.setVarp(OSRSGameframe.SCREEN_BRIGHTNESS_VARP, slot + 1)
 }
 
 /**
@@ -159,36 +201,8 @@ bind_setting(child = 44) {
 // * Screen brightness.
 // setInterfaceEvents(interfaceId = ALL_SETTINGS_INTERFACE_ID, component = 22, range = 0..5, setting = 2)
 // */
-bind_setting(child = 166) {
-    val slot = player.getInteractingSlot()
-    player.message("Brightness set: $slot")
-    player.message("This actually works?")
-    player.setVarp(OSRSGameframe.SCREEN_BRIGHTNESS_VARP, slot + 1)
-}
 
-/**
- * Display mode dropdown.
- * @TODO
- */
-on_button(OPTIONS_INTERFACE_ID, 82) {
-    //val slot = player.getInteractingSlot()
-    val slot = player.attr[INTERACTING_SLOT_ATTR]!!
-    val mode = when (slot) {
-        2 -> {
-            player.setVarbit(OSRSGameframe.SIDESTONES_ARRAGEMENT_VARBIT, 0)
-            DisplayMode.RESIZABLE_NORMAL
-        }
-        3 -> {
-            player.setVarbit(OSRSGameframe.SIDESTONES_ARRAGEMENT_VARBIT, 1)
-            DisplayMode.RESIZABLE_LIST
-        }
-        else -> DisplayMode.FIXED
-    }
-    if(!(mode.isResizable() && player.interfaces.displayMode.isResizable()))
-        player.runClientScript(3998, slot-1)
-    player.toggleDisplayInterface(mode)
-}
-
+*/
 set_window_status_logic {
     /**
      * DisplayMode changes moved to proper implementation for interface controlled

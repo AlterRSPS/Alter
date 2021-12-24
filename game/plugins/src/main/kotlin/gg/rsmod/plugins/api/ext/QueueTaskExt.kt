@@ -11,6 +11,7 @@ import gg.rsmod.game.model.item.Item
 import gg.rsmod.game.model.queue.QueueTask
 import gg.rsmod.plugins.api.InterfaceDestination
 import gg.rsmod.plugins.api.Skills
+import kotlin.math.ceil
 
 /**
  * The child id of the chat box in the gameframe interface. This can change
@@ -71,17 +72,18 @@ inline val QueueTask.npc: Npc get() = ctx as Npc
  * @return
  * The id of the option chosen. The id can range from [1] inclusive to [options.size] inclusive.
  */
-suspend fun QueueTask.options(vararg options: String, title: String = "Select an Option"): Int {
+suspend fun QueueTask.options(vararg options: String, title: String = "Select an Option", next: String = "Next Page", back: String = "Back", optionIndex: Int = 0): Int {
     player.sendTempVarbit(5983, 1)
     player.runClientScript(2379)
+    if (options.size > 5) {
+
+    }
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 219)
     player.runClientScript(58, title, options.joinToString("|"))
     player.setInterfaceEvents(interfaceId = 219, component = 1, from = 1, to = options.size, setting = 1)
-
     terminateAction = closeDialog
     waitReturnValue()
     terminateAction!!(this)
-
     return (requestReturnValue as? ResumePauseButtonMessage)?.slot ?: -1
 }
 
@@ -220,13 +222,13 @@ suspend fun QueueTask.chatNpc(message: String, npc: Int = -1, animation: Int = 5
 
     player.runClientScript(2379)
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 231)
-    player.setComponentNpcHead(interfaceId = 231, component = 1, npc = npcId)
-    player.setComponentAnim(interfaceId = 231, component = 1, anim = animation)
-    player.setComponentText(interfaceId = 231, component = 2, text = dialogTitle)
-    player.setComponentText(interfaceId = 231, component = 4, text = message)
+    player.setComponentNpcHead(interfaceId = 231, component = 6, npc = npcId)
+    player.setComponentAnim(interfaceId = 231, component = 6, anim = animation)
+    player.setComponentText(interfaceId = 231, component = 3, text = dialogTitle)
+    player.setComponentText(interfaceId = 231, component = 5, text = message)
     player.runClientScript(600, 1, 1, 16, 15138820)
-    player.setInterfaceEvents(interfaceId = 231, component = 3, from = -1, to = -1, setting = 1)
-    player.setComponentText(interfaceId = 231, component = 3, text = "Click here to continue")
+    player.setInterfaceEvents(interfaceId = 231, component = 4, from = -1, to = -1, setting = 1)
+    player.setComponentText(interfaceId = 231, component = 4, text = "Click here to continue")
 
     terminateAction = closeDialog
     waitReturnValue()
@@ -244,13 +246,13 @@ suspend fun QueueTask.chatPlayer(message: String, animation: Int = 588, title: S
 
     player.runClientScript(2379)
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 217)
-    player.setComponentPlayerHead(interfaceId = 217, component = 1)
-    player.setComponentAnim(interfaceId = 217, component = 1, anim = animation)
-    player.setComponentText(interfaceId = 217, component = 2, text = dialogTitle)
-    player.setComponentText(interfaceId = 217, component = 4, text = message)
+    player.setComponentPlayerHead(interfaceId = 217, component = 6)
+    player.setComponentAnim(interfaceId = 217, component = 6, anim = animation)
+    player.setComponentText(interfaceId = 217, component = 3, text = dialogTitle)
+    player.setComponentText(interfaceId = 217, component = 5, text = message)
     player.runClientScript(600, 1, 1, 16, 14221316)
-    player.setInterfaceEvents(interfaceId = 217, component = 3, from = -1, to = -1, setting = 1)
-    player.setComponentText(interfaceId = 217, component = 3, text = "Click here to continue")
+    player.setInterfaceEvents(interfaceId = 217, component = 4, from = -1, to = -1, setting = 1)
+    player.setComponentText(interfaceId = 217, component = 4, text = "Click here to continue")
 
     terminateAction = closeDialog
     waitReturnValue()

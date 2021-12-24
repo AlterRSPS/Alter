@@ -492,12 +492,22 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     fun animate(id: Int, delay: Int = 0) {
+        animateSend(-1, 0)
+        animateSend(id, delay)
+    }
+    fun graphic(id: Int, height: Int = 0, delay: Int = 0) {
+        graphicSend(-1, 0, 0)
+        graphicSend(id, height, delay)
+    }
+
+
+    fun animateSend(id: Int, delay: Int = 0) {
         blockBuffer.animation = id
         blockBuffer.animationDelay = delay
         addBlock(UpdateBlockType.ANIMATION)
     }
 
-    fun graphic(id: Int, height: Int = 0, delay: Int = 0) {
+    fun graphicSend(id: Int, height: Int = 0, delay: Int = 0) {
         blockBuffer.graphicId = id
         blockBuffer.graphicHeight = height
         blockBuffer.graphicDelay = delay

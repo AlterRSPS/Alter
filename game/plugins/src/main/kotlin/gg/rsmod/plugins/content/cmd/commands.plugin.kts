@@ -11,9 +11,4 @@ object Command {
             e.printStackTrace()
         }
     }
-
-    fun command_log(vararg data: Any) {
-           // CLog.log("Command", data)
-    }
-
 }

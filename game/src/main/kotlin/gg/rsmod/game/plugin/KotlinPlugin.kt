@@ -420,14 +420,6 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun on_command(command: String, powerRequired: String? = null, logic: (Plugin).() -> Unit) = r.bindCommand(command, powerRequired, logic)
 
     /**
-     * @param [powerRequired] *important to set [Privilege] as first parameter*
-     * @param [commands] is set as array for multiple commands for the same functionality
-     * Invoke [logic] when [gg.rsmod.game.message.impl.ClientCheatMessage] is handled.
-     */
-    fun on_commands(powerRequired: String? = null, vararg commands: String, logic: (Plugin).() -> Unit) = r.bindCommands(logic, powerRequired, *commands)
-
-
-    /**
      * Invoke [logic] when an item is equipped onto equipment slot [equipSlot].
      */
     fun on_equip_to_slot(equipSlot: Int, logic: (Plugin).() -> Unit) = r.bindEquipSlot(equipSlot, logic)

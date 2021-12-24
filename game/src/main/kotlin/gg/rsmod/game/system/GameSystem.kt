@@ -57,8 +57,14 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
             next.handler.handle(client, world, next.message)
         }
     }
-
+    val filter = listOf(
+        UpdateRunEnergyMessage::class,
+        SetMapFlagMessage::class
+    )
     fun write(message: Message) {
+        if (message::class !in filter) {
+            println(message)
+        }
         channel.write(message)
     }
 

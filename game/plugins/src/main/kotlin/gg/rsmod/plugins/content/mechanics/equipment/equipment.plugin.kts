@@ -4,8 +4,10 @@ import gg.rsmod.plugins.api.EquipmentType.Companion.EQUIPMENT_INTERFACE_ID
 import gg.rsmod.game.action.EquipAction
 
 /**
+ * @TODO next =>
  * This actually varies by item and needs to be worked into a proper implementation
  * accounting for such.
+ *
  */
 val EQUIP_ITEM_SOUND = 2238
 

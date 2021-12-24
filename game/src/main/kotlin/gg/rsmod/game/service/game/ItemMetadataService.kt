@@ -34,56 +34,78 @@ class ItemMetadataService : Service {
 
     override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
         val path = Paths.get(serviceProperties.getOrDefault("path", "./data/cfg/items/"))
-        val mapper = ObjectMapper(YAMLFactory())
         val itemCount = world.definitions.getCount(ItemDef::class.java)
-        val range = 0..200
+        val range = 0..2500
         val chunk = range.chunked(2500)
         chunk.parallelStream().forEach { range ->
-            for (fileId in 0..2000) {
-                val file = File("$path/$fileId.yml")
-                if (file.exists()) {
-                    val def = world.definitions.get(ItemDef::class.java, fileId)
-                    val data = mapper.readValue(file, Metadata()::class.java) ?: continue
-                    def.name = data.name
-                    def.examine = data.examine
-                    def.tradeable = data.tradeable
-                    def.weight = data.weight
-                    if (data.equipment != null) {
-                        val equipment = data.equipment
-                        val slots = if (equipment.equipSlot != null) getEquipmentSlots(equipment.equipSlot) else null
+            for (fileId in 0..2500) { //range) {
+                load(File("$path/$fileId.yml"), fileId, world)
+            }
+        }
+    }
 
-                        def.attackSpeed = equipment.attackSpeed
-                        def.weaponType = equipment.weaponType
-                        def.renderAnimations = equipment.renderAnimations
-                        if (slots != null) {
-                            def.equipSlot = slots.slot
-                            def.equipType = slots.secondary
-                        }
-                        if (equipment.skillReqs != null) {
-                            val reqs = Byte2ByteOpenHashMap()
-                            equipment.skillReqs.filter { it.skill != null }.forEach { req ->
-                                reqs[getSkillId(req.skill!!)] = req.level!!.toByte()
-                            }
-                            def.skillReqs = reqs
-                        }
-                        def.bonuses = intArrayOf(
-                            equipment.attackStab,
-                            equipment.attackSlash,
-                            equipment.attackCrush,
-                            equipment.attackMagic,
-                            equipment.attackRanged,
-                            equipment.defenceStab,
-                            equipment.defenceSlash,
-                            equipment.defenceCrush,
-                            equipment.defenceMagic,
-                            equipment.defenceRanged,
-                            equipment.meleeStrength,
-                            equipment.rangedStrength,
-                            equipment.magicDamage,
-                            equipment.prayer
-                        )
+    /**
+     * Just testing
+     * Code is shit will clean it up abit later
+     *
+     */
+    fun loadBytest(fileId: Int, world: World) {
+        val path = Paths.get("./data/cfg/items/")
+        val t = File("$path/$fileId.yml")
+        load(t, fileId, world)
+    }
+    private fun load(file: File, fileId: Int, world: World) {
+        val mapper = ObjectMapper(YAMLFactory())
+        if (file.exists()) {
+            val def = world.definitions.get(ItemDef::class.java, fileId)
+            val data = mapper.readValue(file, Metadata()::class.java)
+            def.name = data.name
+            def.examine = data.examine
+            def.tradeable = data.tradeable
+            def.weight = data.weight
+            if (data.equipment != null) {
+                val equipment = data.equipment
+                val slots = if (equipment.equipSlot != null) getEquipmentSlots(equipment.equipSlot) else null
+
+                def.attackSpeed = equipment.attackSpeed
+
+                if (equipment.weaponType == -1 && slots != null) {
+                    if (slots.slot == 3) {
+                        //println("Setting 17 to -1 at $fileId");
+                        def.weaponType = 17
                     }
+                } else {
+                    def.weaponType = equipment.weaponType
                 }
+
+                def.renderAnimations = equipment.renderAnimations
+                if (slots != null) {
+                    def.equipSlot = slots.slot
+                    def.equipType = slots.secondary
+                }
+                if (equipment.skillReqs != null) {
+                    val reqs = Byte2ByteOpenHashMap()
+                    equipment.skillReqs.filter { it.skill != null }.forEach { req ->
+                        reqs[getSkillId(req.skill!!)] = req.level!!.toByte()
+                    }
+                    def.skillReqs = reqs
+                }
+                def.bonuses = intArrayOf(
+                    equipment.attackStab,
+                    equipment.attackSlash,
+                    equipment.attackCrush,
+                    equipment.attackMagic,
+                    equipment.attackRanged,
+                    equipment.defenceStab,
+                    equipment.defenceSlash,
+                    equipment.defenceCrush,
+                    equipment.defenceMagic,
+                    equipment.defenceRanged,
+                    equipment.meleeStrength,
+                    equipment.rangedStrength,
+                    equipment.magicDamage,
+                    equipment.prayer
+                )
             }
         }
     }
