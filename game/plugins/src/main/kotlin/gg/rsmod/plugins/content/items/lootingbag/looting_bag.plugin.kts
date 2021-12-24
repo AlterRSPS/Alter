@@ -107,19 +107,19 @@ on_button(interfaceId = 15, component = 10) {
     }
 }
 
-on_button(interfaceId = 15, component = 5) {
-    val container = player.containers[CONTAINER_KEY] ?: return@on_button
-    when {
-        container.isEmpty -> player.message("You have nothing to deposit.")
-        bank_all(player, container) -> player.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
-        else -> player.message("Bank full.")
-    }
-}
-
-on_button(TAB_INTERFACE_ID, component = 2) {
-    player.closeInterface(TAB_INTERFACE_ID)
-}
-
+//on_button(interfaceId = 15, component = 5) {
+//    val container = player.containers[CONTAINER_KEY] ?: return@on_button
+//    when {
+//        container.isEmpty -> player.message("You have nothing to deposit.")
+//        bank_all(player, container) -> player.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
+//        else -> player.message("Bank full.")
+//    }
+//}
+//
+//on_button(TAB_INTERFACE_ID, component = 2) {
+//    player.closeInterface(TAB_INTERFACE_ID)
+//}
+//
 /**
  * Register "Deposit loot" button from deposit boxes.
  */
