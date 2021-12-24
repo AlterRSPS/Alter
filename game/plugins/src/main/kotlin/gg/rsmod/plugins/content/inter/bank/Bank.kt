@@ -13,9 +13,9 @@ import gg.rsmod.plugins.content.inter.bank.BankTabs.SELECTED_TAB_VARBIT
  */
 object Bank {
     const val BANK_INTERFACE_ID = 12
-    const val BANK_MAINTAB_COMPONENT = 12
+    const val BANK_MAINTAB_COMPONENT = 13
     const val INV_INTERFACE_ID = 15
-    const val INV_INTERFACE_CHILD = 4
+    const val INV_INTERFACE_CHILD = 3
 
     const val WITHDRAW_AS_VARBIT = 3958
     const val REARRANGE_MODE_VARBIT = 3959
@@ -143,7 +143,7 @@ object Bank {
         p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 13, range = 834..843, setting = 1048576)
         p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 11, range = 10..10, setting = 1048706)
         p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 11, range = 11..19, setting = 1179842)
-        p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 4, range = 0..27, setting = 1181694)
+        p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 3, range = 0..27, setting = 1181694)
         p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 14, range = 0..27, setting = 1054)
         p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 20, range = 0..27, setting = 1054)
         p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 5, range = 0..27, setting = 1180674)

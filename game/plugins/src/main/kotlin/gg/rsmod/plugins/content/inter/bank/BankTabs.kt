@@ -11,7 +11,7 @@ import gg.rsmod.plugins.content.inter.bank.Bank.insert
  * @author bmyte <bmytescape@gmail.com>
  */
 object BankTabs{
-    const val BANK_TABLIST_ID = 10
+    const val BANK_TABLIST_ID = 11
 
     const val SELECTED_TAB_VARBIT = 4150
     const val BANK_TAB_ROOT_VARBIT = 4170
@@ -184,7 +184,7 @@ object BankTabs{
      */
     fun startPoint(player: Player, tabIndex: Int = 0) : Int {
         var dex = 0
-        if(tabIndex == 0){
+        if(tabIndex == 0) {
             for(tab in 1..9)
                 dex += player.getVarbit(BANK_TAB_ROOT_VARBIT+tab)
         } else{

@@ -168,6 +168,7 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 44) {
 on_button(interfaceId = INV_INTERFACE_ID, component = INV_INTERFACE_CHILD) p@{
     val opt = player.getInteractingOption()
     val slot = player.getInteractingSlot()
+
     val item = player.inventory[slot] ?: return@p
 
     if (opt == 10) {
@@ -225,6 +226,8 @@ on_button(interfaceId = INV_INTERFACE_ID, component = INV_INTERFACE_CHILD) p@{
 on_button(interfaceId = BANK_INTERFACE_ID, component = BANK_MAINTAB_COMPONENT) p@{
     val opt = player.getInteractingOption()
     val slot = player.getInteractingSlot()
+    player.message("opt: $opt | slot: $slot")
+
     val item = player.bank[slot] ?: return@p
 
     if (opt == 10) {
