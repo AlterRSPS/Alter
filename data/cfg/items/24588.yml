@@ -1,6 +1,0 @@
-id: 24588
-name: "Rune pouch note"
-examine: "A note that may be exchanged at a bank for a Rune Pouch."
-tradeable: true
-weight: 0.0
-equipment: null

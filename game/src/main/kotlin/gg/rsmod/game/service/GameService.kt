@@ -287,15 +287,16 @@ class GameService : Service {
 
         val freeTime = world.gameContext.cycleTime - (System.currentTimeMillis() - start)
         if (freeTime < 0) {
-            /*
+            /**
+             * @TODO
              * If the cycle took more than [GameContext.cycleTime]ms, we log the
              * occurrence as well as the time each [GameTask] took to complete,
              * as well as how long each [gg.rsmod.game.model.entity.Player] took
              * to process this cycle.
              */
-            logger.error { "Cycle took longer than expected: ${(-freeTime) + world.gameContext.cycleTime}ms / ${world.gameContext.cycleTime}ms!" }
-            logger.error { taskTimes.toList().sortedByDescending { (_, value) -> value }.toMap() }
-            logger.error { playerTimes.toList().sortedByDescending { (_, value) -> value }.toMap() }
+            //logger.error { "Cycle took longer than expected: ${(-freeTime) + world.gameContext.cycleTime}ms / ${world.gameContext.cycleTime}ms!" }
+            //logger.error { taskTimes.toList().sortedByDescending { (_, value) -> value }.toMap() }
+            //logger.error { playerTimes.toList().sortedByDescending { (_, value) -> value }.toMap() }
         }
     }
 

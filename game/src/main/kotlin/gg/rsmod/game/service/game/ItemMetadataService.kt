@@ -2,10 +2,9 @@ package gg.rsmod.game.service.game
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.google.common.base.Stopwatch
 import gg.rsmod.game.Server
-import gg.rsmod.game.fs.DefinitionSet
 import gg.rsmod.game.fs.def.ItemDef
 import gg.rsmod.game.model.World
 import gg.rsmod.game.service.Service
@@ -14,10 +13,9 @@ import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
 import mu.KLogging
 import java.io.*
 import java.nio.file.Files
-import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.*
-import kotlin.collections.ArrayList
+import java.util.concurrent.TimeUnit
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -33,38 +31,40 @@ class ItemMetadataService : Service {
     }
 
     override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
-        val path = Paths.get(serviceProperties.getOrDefault("path", "./data/cfg/items/"))
-        val itemCount = world.definitions.getCount(ItemDef::class.java)
-        val range = 0..2500
-        val chunk = range.chunked(2500)
-        chunk.parallelStream().forEach { range ->
-            for (fileId in 0..2500) { //range) {
-                load(File("$path/$fileId.yml"), fileId, world)
+        loadAll(world)
+    }
+    var ms: Long = 0
+    fun loadAll(world: World) {
+        val stopwatch = Stopwatch.createStarted().reset().start()
+        val mapper = ObjectMapper(YAMLFactory())
+        Files.newBufferedReader(Paths.get("./data/cfg/items/_Items.yml")).use { reader ->
+            val data = mapper.readValue(reader, Array<Metadata>::class.java)
+            data.forEach { item ->
+                load(item, world)
             }
         }
+        /**
+         * @TODO
+         * Problem with this one is that it wont throw if the path exists or not.
+         * Will do it abit later.
+         */
+        Paths.get("./data/cfg/items/equippable").toFile().walk().forEach {
+            if (it.isFile){
+                val data = mapper.readValue(it, Metadata()::class.java)
+                load(data, world)
+            }
+        }
+        ms = stopwatch.elapsed(TimeUnit.MILLISECONDS)
     }
 
-    /**
-     * Just testing
-     * Code is shit will clean it up abit later
-     *
-     */
-    fun loadBytest(fileId: Int, world: World) {
-        val path = Paths.get("./data/cfg/items/")
-        val t = File("$path/$fileId.yml")
-        load(t, fileId, world)
-    }
-    private fun load(file: File, fileId: Int, world: World) {
-        val mapper = ObjectMapper(YAMLFactory())
-        if (file.exists()) {
-            val def = world.definitions.get(ItemDef::class.java, fileId)
-            val data = mapper.readValue(file, Metadata()::class.java)
-            def.name = data.name
-            def.examine = data.examine
-            def.tradeable = data.tradeable
-            def.weight = data.weight
-            if (data.equipment != null) {
-                val equipment = data.equipment
+    private fun load(item: Metadata, world: World) {
+            val def = world.definitions.get(ItemDef::class.java, item.id)
+            def.name = item.name
+            def.examine = item.examine
+            def.tradeable = item.tradeable
+            def.weight = item.weight
+            if (item.equipment != null) {
+                val equipment = item.equipment
                 val slots = if (equipment.equipSlot != null) getEquipmentSlots(equipment.equipSlot) else null
 
                 def.attackSpeed = equipment.attackSpeed
@@ -106,7 +106,6 @@ class ItemMetadataService : Service {
                     equipment.magicDamage,
                     equipment.prayer
                 )
-            }
         }
     }
 

@@ -1,6 +1,0 @@
-id: 9649
-name: "Message"
-examine: "A message found behind a loose tile."
-tradeable: false
-weight: 0.001
-equipment: null

@@ -47,7 +47,6 @@ class OpHeld2Handler : MessageHandler<OpHeld2Message> {
         val result = EquipAction.equip(client, item, message.slot)
         if (result == EquipAction.Result.UNHANDLED && world.devContext.debugItemActions) {
             val itemMetaDataService = client.world.getService(ItemMetadataService::class.java)
-            itemMetaDataService!!.loadBytest(item.id, world)
             client.writeMessage("Unhandled item action: [item=${item.id}, slot=${message.slot}, option=2]")
         }
     }

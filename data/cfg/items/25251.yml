@@ -1,7 +1,0 @@
-id: 25251
-name: "Salve amulet(i)"
-examine: "Increases melee, ranged and magic damage & accuracy by 15%{{Sic|The correct\
-  \ value is 1/6th, equal to 16.67%.}} against the undead."
-tradeable: false
-weight: 0.0
-equipment: null

@@ -1,6 +1,0 @@
-id: 10008
-name: "Box trap"
-examine: "If a creature goes inside, the box should then slam shut."
-tradeable: true
-weight: 0.226
-equipment: null

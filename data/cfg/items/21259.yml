@@ -1,7 +1,0 @@
-id: 21259
-name: "Enchanted scroll"
-examine: "This scroll sends messages to the client when written on with an enchanted\
-  \ quill. Using a feather on the scroll should transfer its magic!"
-tradeable: false
-weight: 0.0
-equipment: null
