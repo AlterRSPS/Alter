@@ -93,7 +93,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
     /**
      * Gets the [NpcDef] corresponding to our [id].
      */
-    val def: NpcDef = world.definitions.get(NpcDef::class.java, id)
+    val def: NpcDef = world.definitions.get( NpcDef::class.java, id)
 
     /**
      * Getter property for our npc name.

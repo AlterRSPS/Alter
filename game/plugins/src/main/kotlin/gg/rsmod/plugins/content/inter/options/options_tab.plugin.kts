@@ -17,8 +17,8 @@ fun bind_setting(child: Int, plugin: Plugin.() -> Unit) {
 }
 
 on_login {
-    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 6, range = 1..4, setting = 2) // Player option priority
-    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 7, range = 1..4, setting = 2) // Npc option priority
+    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 6, range = 1..4, setting = 2) // Player option priority
+    player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 7, range = 1..4, setting = 2) // Npc option priority
     //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 40, range = 0..4, setting = 2)
     //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 42, range = 0..4, setting = 2)
     //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 44, range = 0..4, setting = 2)
@@ -36,11 +36,11 @@ on_login {
     player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 41, range = 0..21, setting = 2)
     player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 23, range =  0..21, setting = 2)
 }
-val ints = listOf( 55, 84, 69, 83, 81, 41, 23 )
-ints.forEach { child ->
-    bind_setting(child = child) {
-        player.message("interacting with $child")
-    }
+val ints = listOf( 55, 84, 69, 83, 81, 41, 23, 6, 7 )
+ints.forEach { i ->
+        bind_setting(child = i) {
+            player.message("interacting with $i")
+        }
 }
 
 
@@ -66,7 +66,7 @@ bind_setting(child = 82) {
     player.toggleDisplayInterface(mode)
 }
 
-/*
+
 bind_setting(child = 11) {
     val slot = player.getInteractingSlot()
     player.message("Brightness set: $slot")
@@ -202,7 +202,7 @@ bind_setting(child = 44) {
 // setInterfaceEvents(interfaceId = ALL_SETTINGS_INTERFACE_ID, component = 22, range = 0..5, setting = 2)
 // */
 
-*/
+
 set_window_status_logic {
     /**
      * DisplayMode changes moved to proper implementation for interface controlled

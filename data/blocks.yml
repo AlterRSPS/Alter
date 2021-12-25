@@ -9,6 +9,7 @@ players:
     - PUBLIC_CHAT
     - FORCE_CHAT
     - APPEARANCE
+    - CONTEXT_MENU
     - ANIMATION
     - FORCE_MOVEMENT
     - MOVEMENT

@@ -26,6 +26,8 @@ interface MessageHandler<T : Message> {
         if (client.logPackets) {
             val message = String.format(format, *args)
             val logService = client.world.getService(LoggerService::class.java, searchSubclasses = true)
+            println("Logger-message: [$message] , client: [$client]")
+
             if (logService != null) {
                 logService.logPacket(client, message)
             } else {

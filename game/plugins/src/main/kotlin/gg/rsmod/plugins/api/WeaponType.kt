@@ -12,7 +12,7 @@ enum class WeaponType(val id: Int) {
     CROSSBOW(id = 5),
     SALAMANDER(id = 6),
     CHINCHOMPA(id = 7),
-    UNKNOWN(id = 8), // has Aim and Fire and Kick
+    GUN(id = 8), // Aim / Fire options => used for Fixed Device
     LONG_SWORD(id = 9),
     TWO_HANDED(id = 10),
     PICKAXE(id = 11),

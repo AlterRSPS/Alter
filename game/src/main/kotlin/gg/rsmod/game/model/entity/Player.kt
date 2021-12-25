@@ -574,6 +574,10 @@ open class Player(world: World) : Pawn(world) {
         write(MessageGameMessage(type = 0, message = message, username = null))
     }
 
+    internal fun playSound(id: Int, volume: Int = 1, delay: Int = 0) {
+        write(SynthSoundMessage(sound = id, volume = volume, delay = delay))
+    }
+
     override fun toString(): String = MoreObjects.toStringHelper(this)
             .add("name", username)
             .add("pid", index)

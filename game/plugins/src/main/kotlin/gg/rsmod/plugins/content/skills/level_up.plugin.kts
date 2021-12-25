@@ -19,7 +19,7 @@ set_level_up_logic {
      * Show the level-up chatbox interface.
      */
     player.queue {
-        if(player.getSkills()[skill].currentLevel == 99) player.graphic(1388)
+        if(player.getSkills()[skill].currentLevel == 99) player.graphic(1388) // @TODO
         levelUpMessageBox(skill, increment)
     }
 }
