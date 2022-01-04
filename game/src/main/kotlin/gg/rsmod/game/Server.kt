@@ -60,7 +60,6 @@ class Server {
          * Inform the time it took to load the API related logic.
          */
         logger.info("${getApiName()} loaded up in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms.")
-        logger.info("Visit our site ${getApiSite()} to purchase & sell plugins.")
     }
 
     /**
@@ -207,7 +206,6 @@ class Server {
         val port = gameProperties.getOrDefault("game-port", 43594)
         bootstrap.bind(InetSocketAddress(port)).sync().awaitUninterruptibly()
         logger.info("Now listening for incoming connections on port $port...")
-
         System.gc()
 
         return world
@@ -216,9 +214,7 @@ class Server {
     /**
      * Gets the API-specific org name.
      */
-    fun getApiName(): String = apiProperties.getOrDefault("org", "RS Mod")
-
-    fun getApiSite(): String = apiProperties.getOrDefault("org-site", "rspsmods.com")
+    fun getApiName(): String = apiProperties.getOrDefault("org", "Alter")
 
     companion object : KLogging()
 }

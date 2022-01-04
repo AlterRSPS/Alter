@@ -191,10 +191,10 @@ server-packets:
     type: VARIABLE_SHORT
     opcode: 56
     structure:
-      - name: z
+      - name: x
         type: BYTE
         trans: ADD
-      - name: x
+      - name: z
         type: BYTE
       - name: payload
         type: BYTES
@@ -311,7 +311,7 @@ server-packets:
     type: FIXED
     opcode: 14
 
-  - message: gg.rsmod.game.message.impl.UpdateStatMessage
+  - message: gg.rsmod.game.message.impl.UpdateStatMessage # TODO
     type: FIXED
     opcode: 23
     structure:
