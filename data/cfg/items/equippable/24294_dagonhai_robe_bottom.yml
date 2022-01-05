@@ -1,0 +1,30 @@
+---
+id: 24294
+name: "Dagon'hai robe bottom"
+examine: "A robe worn by members of the Dagon'hai."
+tradeable: true
+weight: 1.814
+equipment:
+  prayer: 2
+  equipSlot: "legs"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 18
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 14
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "defence"
+    level: 40
+  - skill: "magic"
+    level: 70

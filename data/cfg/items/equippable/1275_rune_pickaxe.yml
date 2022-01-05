@@ -1,0 +1,37 @@
+---
+id: 1275
+name: "Rune pickaxe"
+examine: "Used for mining."
+tradeable: true
+weight: 2.267
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 11
+  attackSpeed: 5
+  attackStab: 26
+  attackSlash: -2
+  attackCrush: 24
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 1
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 29
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
+  skillReqs:
+  - skill: "mining"
+    level: 41
+  - skill: "attack"
+    level: 40

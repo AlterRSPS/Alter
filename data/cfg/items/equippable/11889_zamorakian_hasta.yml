@@ -1,0 +1,35 @@
+---
+id: 11889
+name: "Zamorakian hasta"
+examine: "An evil one-handed spear."
+tradeable: true
+weight: 3.0
+equipment:
+  prayer: 2
+  equipSlot: "weapon"
+  weaponType: 15
+  attackSpeed: 4
+  attackStab: 85
+  attackSlash: 65
+  attackCrush: 65
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 13
+  defenceSlash: 13
+  defenceCrush: 12
+  defenceMagic: 0
+  defenceRanged: 13
+  meleeStrength: 75
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
+  skillReqs:
+  - skill: "attack"
+    level: 70

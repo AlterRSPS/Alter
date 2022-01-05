@@ -1,0 +1,35 @@
+---
+id: 1434
+name: "Dragon mace"
+examine: "A spiky mace."
+tradeable: true
+weight: 1.814
+equipment:
+  prayer: 5
+  equipSlot: "weapon"
+  weaponType: 16
+  attackSpeed: 5
+  attackStab: 40
+  attackSlash: -2
+  attackCrush: 60
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 55
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
+  skillReqs:
+  - skill: "attack"
+    level: 60

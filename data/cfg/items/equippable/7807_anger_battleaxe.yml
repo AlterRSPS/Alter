@@ -1,0 +1,33 @@
+---
+id: 7807
+name: "Anger battleaxe"
+examine: "A heavy duty axe."
+tradeable: false
+weight: 2.721
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 1
+  attackSpeed: 6
+  attackStab: 2
+  attackSlash: 2
+  attackCrush: 2
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: -1
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
+  skillReqs: null

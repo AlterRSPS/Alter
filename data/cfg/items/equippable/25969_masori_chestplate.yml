@@ -1,0 +1,26 @@
+---
+id: 25969
+name: "Masori chestplate"
+examine: "An ancient chestplate once worn by a powerful ranger."
+tradeable: false
+weight: 4.0
+equipment:
+  prayer: 0
+  equipSlot: "body"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -4
+  attackRanged: 30
+  defenceStab: 12
+  defenceSlash: 8
+  defenceCrush: 15
+  defenceMagic: 6
+  defenceRanged: 12
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs: null

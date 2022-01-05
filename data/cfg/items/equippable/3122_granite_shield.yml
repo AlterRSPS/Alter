@@ -1,0 +1,37 @@
+---
+id: 3122
+name: "Granite shield"
+examine: "A solid stone shield."
+tradeable: true
+weight: 6.803
+equipment:
+  prayer: 0
+  equipSlot: "shield"
+  weaponType: 0
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -12
+  attackRanged: -8
+  defenceStab: 40
+  defenceSlash: 42
+  defenceCrush: 38
+  defenceMagic: 0
+  defenceRanged: 65
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
+  skillReqs:
+  - skill: "defence"
+    level: 50
+  - skill: "strength"
+    level: 50

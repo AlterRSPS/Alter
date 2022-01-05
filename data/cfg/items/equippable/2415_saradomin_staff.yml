@@ -1,0 +1,35 @@
+---
+id: 2415
+name: "Saradomin staff"
+examine: "A magical staff imbued with the power of Saradomin."
+tradeable: false
+weight: 2.267
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 18
+  attackSpeed: 5
+  attackStab: -1
+  attackSlash: -1
+  attackCrush: 6
+  attackMagic: 6
+  attackRanged: 0
+  defenceStab: 2
+  defenceSlash: 3
+  defenceCrush: 1
+  defenceMagic: 6
+  defenceRanged: 0
+  meleeStrength: 2
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
+  skillReqs:
+  - skill: "magic"
+    level: 60

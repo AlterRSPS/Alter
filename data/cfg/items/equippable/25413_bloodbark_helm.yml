@@ -1,0 +1,30 @@
+---
+id: 25413
+name: "Bloodbark helm"
+examine: "A rather interesting smelling helmet."
+tradeable: true
+weight: 0.907
+equipment:
+  prayer: 0
+  equipSlot: "hat"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 5
+  attackRanged: 0
+  defenceStab: 16
+  defenceSlash: 14
+  defenceCrush: 17
+  defenceMagic: 6
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "defence"
+    level: 60
+  - skill: "magic"
+    level: 60

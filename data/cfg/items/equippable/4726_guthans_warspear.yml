@@ -1,0 +1,35 @@
+---
+id: 4726
+name: "Guthan's warspear"
+examine: "Guthan the Infested's warspear."
+tradeable: true
+weight: 2.267
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: 15
+  attackSpeed: 5
+  attackStab: 75
+  attackSlash: 75
+  attackCrush: 75
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 7
+  defenceSlash: 7
+  defenceCrush: 7
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 75
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
+  skillReqs:
+  - skill: "attack"
+    level: 70

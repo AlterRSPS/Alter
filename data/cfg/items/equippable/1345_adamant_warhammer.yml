@@ -1,0 +1,28 @@
+---
+id: 1345
+name: "Adamant warhammer"
+examine: "I don't think it's intended for joinery."
+tradeable: true
+weight: 2.041
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: -1
+  attackSpeed: 6
+  attackStab: -4
+  attackSlash: -4
+  attackCrush: 33
+  attackMagic: -4
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 31
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "attack"
+    level: 30

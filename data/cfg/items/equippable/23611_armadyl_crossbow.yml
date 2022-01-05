@@ -1,0 +1,28 @@
+---
+id: 23611
+name: "Armadyl crossbow"
+examine: "A weapon originally developed for Armadyl's forces."
+tradeable: false
+weight: 0.0
+equipment:
+  prayer: 1
+  equipSlot: "weapon"
+  weaponType: 5
+  attackSpeed: 6
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 100
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "ranged"
+    level: 70

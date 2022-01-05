@@ -1,0 +1,28 @@
+---
+id: 10553
+name: "Penance gloves"
+examine: "These gloves seem unbelievably light!"
+tradeable: false
+weight: 0.3
+equipment:
+  prayer: 0
+  equipSlot: "hands"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 3
+  defenceCrush: 4
+  defenceMagic: 0
+  defenceRanged: 2
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "defence"
+    level: 40

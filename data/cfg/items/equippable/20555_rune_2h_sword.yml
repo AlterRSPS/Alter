@@ -1,0 +1,28 @@
+---
+id: 20555
+name: "Rune 2h sword"
+examine: "A two handed sword."
+tradeable: true
+weight: 3.628
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: -1
+  attackSpeed: 7
+  attackStab: -4
+  attackSlash: 69
+  attackCrush: 50
+  attackMagic: -4
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: -1
+  meleeStrength: 70
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "attack"
+    level: 40

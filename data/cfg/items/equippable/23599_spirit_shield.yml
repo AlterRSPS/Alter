@@ -1,0 +1,30 @@
+---
+id: 23599
+name: "Spirit shield"
+examine: "An ethereal shield."
+tradeable: false
+weight: 0.0
+equipment:
+  prayer: 1
+  equipSlot: "shield"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 39
+  defenceSlash: 41
+  defenceCrush: 50
+  defenceMagic: 1
+  defenceRanged: 45
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "defence"
+    level: 45
+  - skill: "prayer"
+    level: 55

@@ -1,0 +1,37 @@
+---
+id: 20727
+name: "Leaf-bladed battleaxe"
+examine: "A razor-sharp battleaxe."
+tradeable: true
+weight: 2.7
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 1
+  attackSpeed: 5
+  attackStab: -2
+  attackSlash: 72
+  attackCrush: 72
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: -1
+  meleeStrength: 92
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
+  skillReqs:
+  - skill: "attack"
+    level: 65
+  - skill: "slayer"
+    level: 55

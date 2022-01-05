@@ -1,0 +1,37 @@
+---
+id: 12796
+name: "Mystic steam staff"
+examine: "It's a slightly magical stick."
+tradeable: true
+weight: 2.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 0
+  attackSpeed: 5
+  attackStab: 7
+  attackSlash: -1
+  attackCrush: 40
+  attackMagic: 10
+  attackRanged: 0
+  defenceStab: 2
+  defenceSlash: 3
+  defenceCrush: 1
+  defenceMagic: 10
+  defenceRanged: 0
+  meleeStrength: 50
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
+  skillReqs:
+  - skill: "attack"
+    level: 40
+  - skill: "magic"
+    level: 40

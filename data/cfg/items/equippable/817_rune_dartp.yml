@@ -1,0 +1,28 @@
+---
+id: 817
+name: "Rune dart(p)"
+examine: "A deadly poisoned dart with a rune tip."
+tradeable: true
+weight: 0.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: -1
+  attackSpeed: 3
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 15
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 14
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "ranged"
+    level: 40

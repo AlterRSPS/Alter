@@ -1,0 +1,37 @@
+---
+id: 11902
+name: "Leaf-bladed sword"
+examine: "A razor-sharp sword."
+tradeable: true
+weight: 1.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 17
+  attackSpeed: 4
+  attackStab: 67
+  attackSlash: 62
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 50
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
+  skillReqs:
+  - skill: "attack"
+    level: 50
+  - skill: "slayer"
+    level: 55

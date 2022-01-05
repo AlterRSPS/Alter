@@ -1,0 +1,30 @@
+---
+id: 9044
+name: "Pharaoh's sceptre (3)"
+examine: "This sceptre is fully charged."
+tradeable: true
+weight: 2.0
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: -1
+  attackSpeed: 4
+  attackStab: 7
+  attackSlash: -1
+  attackCrush: 25
+  attackMagic: 10
+  attackRanged: 0
+  defenceStab: 2
+  defenceSlash: 3
+  defenceCrush: 1
+  defenceMagic: 10
+  defenceRanged: 0
+  meleeStrength: 32
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "attack"
+    level: 30
+  - skill: "magic"
+    level: 30

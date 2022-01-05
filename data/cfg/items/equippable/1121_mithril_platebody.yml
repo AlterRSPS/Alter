@@ -1,0 +1,28 @@
+---
+id: 1121
+name: "Mithril platebody"
+examine: "Provides excellent protection."
+tradeable: true
+weight: 8.0
+equipment:
+  prayer: 0
+  equipSlot: "body"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -30
+  attackRanged: -10
+  defenceStab: 46
+  defenceSlash: 44
+  defenceCrush: 38
+  defenceMagic: -6
+  defenceRanged: 44
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "defence"
+    level: 20

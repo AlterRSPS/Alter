@@ -1,0 +1,35 @@
+---
+id: 9183
+name: "Adamant crossbow"
+examine: "An adamantite crossbow."
+tradeable: true
+weight: 2.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 5
+  attackSpeed: 6
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 78
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 4591
+  - 823
+  - 4226
+  - 4227
+  - 821
+  - 822
+  - 4228
+  skillReqs:
+  - skill: "ranged"
+    level: 46

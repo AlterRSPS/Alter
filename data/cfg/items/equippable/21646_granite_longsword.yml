@@ -1,0 +1,37 @@
+---
+id: 21646
+name: "Granite longsword"
+examine: "A razor sharp longsword made of stone."
+tradeable: true
+weight: 2.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 9
+  attackSpeed: 5
+  attackStab: 56
+  attackSlash: 65
+  attackCrush: -2
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 3
+  defenceCrush: 2
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 62
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 809
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
+  skillReqs:
+  - skill: "attack"
+    level: 50
+  - skill: "strength"
+    level: 50

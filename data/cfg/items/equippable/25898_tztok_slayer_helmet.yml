@@ -1,0 +1,26 @@
+---
+id: 25898
+name: "Tztok slayer helmet"
+examine: "You really don't want to wear it inside-out."
+tradeable: false
+weight: 2.267
+equipment:
+  prayer: 0
+  equipSlot: "nohair"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -6
+  attackRanged: -2
+  defenceStab: 30
+  defenceSlash: 32
+  defenceCrush: 27
+  defenceMagic: -1
+  defenceRanged: 30
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs: null

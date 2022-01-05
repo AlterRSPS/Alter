@@ -1,0 +1,35 @@
+---
+id: 11259
+name: "Magic butterfly net"
+examine: "For catching butterflies."
+tradeable: false
+weight: 0.226
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 15
+  attackSpeed: 6
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 6604
+  - 6611
+  - 6607
+  - 6608
+  - 6610
+  - 6609
+  - 6603
+  skillReqs:
+  - skill: "hunter"
+    level: 17

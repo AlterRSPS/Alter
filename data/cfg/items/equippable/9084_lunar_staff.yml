@@ -1,0 +1,35 @@
+---
+id: 9084
+name: "Lunar staff"
+examine: "A Moonclan staff."
+tradeable: false
+weight: 2.267
+equipment:
+  prayer: 3
+  equipSlot: "weapon"
+  weaponType: 18
+  attackSpeed: 5
+  attackStab: 3
+  attackSlash: 2
+  attackCrush: 16
+  attackMagic: 13
+  attackRanged: 0
+  defenceStab: 2
+  defenceSlash: 3
+  defenceCrush: 2
+  defenceMagic: 13
+  defenceRanged: 1
+  meleeStrength: 15
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
+  skillReqs:
+  - skill: "magic"
+    level: 65

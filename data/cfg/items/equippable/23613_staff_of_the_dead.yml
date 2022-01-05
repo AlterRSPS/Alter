@@ -1,0 +1,30 @@
+---
+id: 23613
+name: "Staff of the dead"
+examine: "A ghastly weapon with evil origins."
+tradeable: false
+weight: 0.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 21
+  attackSpeed: 4
+  attackStab: 55
+  attackSlash: 70
+  attackCrush: 0
+  attackMagic: 17
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 3
+  defenceCrush: 3
+  defenceMagic: 17
+  defenceRanged: 0
+  meleeStrength: 72
+  rangedStrength: 0
+  magicDamage: 15
+  renderAnimations: null
+  skillReqs:
+  - skill: "attack"
+    level: 75
+  - skill: "magic"
+    level: 75

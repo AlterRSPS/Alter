@@ -1,0 +1,33 @@
+---
+id: 10858
+name: "Shadow sword"
+examine: "A shadow sword."
+tradeable: false
+weight: 3.628
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: 10
+  attackSpeed: 6
+  attackStab: -4
+  attackSlash: 27
+  attackCrush: 21
+  attackMagic: 4
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 4
+  defenceRanged: -1
+  meleeStrength: 26
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 2561
+  - 823
+  - 2562
+  - 2562
+  - 2562
+  - 2562
+  - 2563
+  skillReqs: null

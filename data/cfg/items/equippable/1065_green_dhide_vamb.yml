@@ -1,0 +1,28 @@
+---
+id: 1065
+name: "Green d'hide vamb"
+examine: "Vambraces made from 100% real dragonhide."
+tradeable: true
+weight: 0.283
+equipment:
+  prayer: 0
+  equipSlot: "hands"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -10
+  attackRanged: 8
+  defenceStab: 3
+  defenceSlash: 2
+  defenceCrush: 4
+  defenceMagic: 2
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "defence"
+    level: 40

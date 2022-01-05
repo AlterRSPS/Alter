@@ -1,0 +1,35 @@
+---
+id: 12373
+name: "Dragon cane"
+examine: "An onyx topped cane."
+tradeable: true
+weight: 1.0
+equipment:
+  prayer: 5
+  equipSlot: "weapon"
+  weaponType: 16
+  attackSpeed: 5
+  attackStab: 42
+  attackSlash: -2
+  attackCrush: 60
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 55
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
+  skillReqs:
+  - skill: "attack"
+    level: 60

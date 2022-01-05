@@ -1,0 +1,33 @@
+---
+id: 20836
+name: "Giant present"
+examine: "That's one ginormous present."
+tradeable: false
+weight: 15.0
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: 0
+  attackSpeed: 4
+  attackStab: -100
+  attackSlash: -100
+  attackCrush: -50
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: -10
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 4193
+  - 4194
+  - 4194
+  - 4194
+  - 4194
+  - 4194
+  - 4194
+  skillReqs: null

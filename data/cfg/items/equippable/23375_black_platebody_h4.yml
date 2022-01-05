@@ -1,0 +1,28 @@
+---
+id: 23375
+name: "Black platebody (h4)"
+examine: "Black plate body with a heraldic design."
+tradeable: true
+weight: 9.979
+equipment:
+  prayer: 0
+  equipSlot: "body"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -30
+  attackRanged: -15
+  defenceStab: 41
+  defenceSlash: 40
+  defenceCrush: 30
+  defenceMagic: -6
+  defenceRanged: 40
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "defence"
+    level: 10

@@ -1,0 +1,28 @@
+---
+id: 12415
+name: "Dragon platelegs (g)"
+examine: "Heavy protective legwear with a gold trim."
+tradeable: false
+weight: 9.0
+equipment:
+  prayer: 0
+  equipSlot: "legs"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -21
+  attackRanged: -7
+  defenceStab: 68
+  defenceSlash: 66
+  defenceCrush: 63
+  defenceMagic: -4
+  defenceRanged: 65
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "attack"
+    level: 60

@@ -1,0 +1,37 @@
+---
+id: 13263
+name: "Abyssal bludgeon"
+examine: "Elements of deceased Abyssal Sires have been fused together."
+tradeable: true
+weight: 6.0
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: 26
+  attackSpeed: 4
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 102
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 85
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 1662
+  - 823
+  - 1663
+  - 1663
+  - 1663
+  - 1663
+  - 1664
+  skillReqs:
+  - skill: "attack"
+    level: 70
+  - skill: "strength"
+    level: 70

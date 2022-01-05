@@ -1,0 +1,33 @@
+---
+id: 11709
+name: "Cursed goblin staff"
+examine: "A curse has been placed on this magical staff."
+tradeable: false
+weight: 2.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 0
+  attackSpeed: 5
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
+  skillReqs: null

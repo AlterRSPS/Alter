@@ -1,0 +1,35 @@
+---
+id: 22290
+name: "Uncharged trident (e)"
+examine: "It needs to be charged with death runes, chaos runes, fire runes and coins."
+tradeable: true
+weight: 1.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 23
+  attackSpeed: 4
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 15
+  attackRanged: 0
+  defenceStab: 2
+  defenceSlash: 3
+  defenceCrush: 1
+  defenceMagic: 15
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
+  skillReqs:
+  - skill: "magic"
+    level: 75

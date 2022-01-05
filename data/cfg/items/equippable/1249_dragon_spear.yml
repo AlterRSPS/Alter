@@ -1,0 +1,35 @@
+---
+id: 1249
+name: "Dragon spear"
+examine: "A dragon tipped spear."
+tradeable: true
+weight: 2.267
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: 15
+  attackSpeed: 5
+  attackStab: 55
+  attackSlash: 55
+  attackCrush: 55
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 5
+  defenceSlash: 5
+  defenceCrush: 5
+  defenceMagic: 5
+  defenceRanged: 5
+  meleeStrength: 60
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
+  skillReqs:
+  - skill: "attack"
+    level: 60

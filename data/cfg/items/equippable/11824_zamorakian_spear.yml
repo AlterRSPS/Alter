@@ -1,0 +1,35 @@
+---
+id: 11824
+name: "Zamorakian spear"
+examine: "An evil spear."
+tradeable: true
+weight: 3.0
+equipment:
+  prayer: 2
+  equipSlot: "2h"
+  weaponType: 15
+  attackSpeed: 4
+  attackStab: 85
+  attackSlash: 65
+  attackCrush: 65
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 13
+  defenceSlash: 13
+  defenceCrush: 12
+  defenceMagic: 0
+  defenceRanged: 13
+  meleeStrength: 75
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 1713
+  - 1702
+  - 1703
+  - 1704
+  - 1706
+  - 1705
+  - 1707
+  skillReqs:
+  - skill: "attack"
+    level: 70

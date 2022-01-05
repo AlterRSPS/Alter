@@ -1,0 +1,28 @@
+---
+id: 23620
+name: "Statius's warhammer"
+examine: "A powerful warhammer."
+tradeable: false
+weight: 0.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 18
+  attackSpeed: 5
+  attackStab: -4
+  attackSlash: -4
+  attackCrush: 123
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 114
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "attack"
+    level: 78

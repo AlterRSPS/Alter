@@ -1,0 +1,37 @@
+---
+id: 21015
+name: "Dinh's bulwark"
+examine: "Is it... looking at me?"
+tradeable: true
+weight: 30.0
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: 27
+  attackSpeed: 6
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 110
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 141
+  defenceSlash: 145
+  defenceCrush: 145
+  defenceMagic: 18
+  defenceRanged: 148
+  meleeStrength: 38
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 7508
+  - 7510
+  - 7509
+  - 7509
+  - 7509
+  - 7509
+  - 7509
+  skillReqs:
+  - skill: "attack"
+    level: 75
+  - skill: "defence"
+    level: 75

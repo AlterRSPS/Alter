@@ -1,0 +1,30 @@
+---
+id: 23653
+name: "Ahrim's staff"
+examine: "Ahrim the Blighted's quarterstaff."
+tradeable: false
+weight: 0.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 12
+  attackSpeed: 6
+  attackStab: 12
+  attackSlash: -1
+  attackCrush: 65
+  attackMagic: 15
+  attackRanged: 0
+  defenceStab: 3
+  defenceSlash: 5
+  defenceCrush: 2
+  defenceMagic: 15
+  defenceRanged: 0
+  meleeStrength: 68
+  rangedStrength: 0
+  magicDamage: 5
+  renderAnimations: null
+  skillReqs:
+  - skill: "attack"
+    level: 70
+  - skill: "magic"
+    level: 70

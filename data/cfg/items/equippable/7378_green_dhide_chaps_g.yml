@@ -1,0 +1,28 @@
+---
+id: 7378
+name: "Green d'hide chaps (g)"
+examine: "Made from 100% real dragonhide. With colourful trim!"
+tradeable: true
+weight: 5.443
+equipment:
+  prayer: 0
+  equipSlot: "legs"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -10
+  attackRanged: 8
+  defenceStab: 22
+  defenceSlash: 16
+  defenceCrush: 24
+  defenceMagic: 8
+  defenceRanged: 22
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "ranged"
+    level: 40

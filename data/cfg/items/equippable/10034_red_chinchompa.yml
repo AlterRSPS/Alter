@@ -1,0 +1,35 @@
+---
+id: 10034
+name: "Red chinchompa"
+examine: "Even more volatile than its vegetarian counterpart."
+tradeable: true
+weight: 0.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 7
+  attackSpeed: 4
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 70
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 15
+  magicDamage: 0
+  renderAnimations:
+  - 3175
+  - 3177
+  - 3177
+  - 3177
+  - 3177
+  - 3177
+  - 3178
+  skillReqs:
+  - skill: "ranged"
+    level: 55

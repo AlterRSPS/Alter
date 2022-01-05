@@ -1,0 +1,37 @@
+---
+id: 4221
+name: "Crystal bow 3/10"
+examine: "A nice sturdy magical bow."
+tradeable: false
+weight: 2.0
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: 3
+  attackSpeed: 5
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 72
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 56
+  magicDamage: 0
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
+  skillReqs:
+  - skill: "agility"
+    level: 50
+  - skill: "ranged"
+    level: 70

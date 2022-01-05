@@ -1,0 +1,35 @@
+---
+id: 21006
+name: "Kodai wand"
+examine: "A wand of an ancient Kodai mage."
+tradeable: true
+weight: 0.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 18
+  attackSpeed: 4
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 28
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 3
+  defenceCrush: 3
+  defenceMagic: 20
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 15
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
+  skillReqs:
+  - skill: "magic"
+    level: 75

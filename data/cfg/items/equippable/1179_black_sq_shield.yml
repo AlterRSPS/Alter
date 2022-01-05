@@ -1,0 +1,28 @@
+---
+id: 1179
+name: "Black sq shield"
+examine: "A medium square shield."
+tradeable: true
+weight: 3.628
+equipment:
+  prayer: 0
+  equipSlot: "shield"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -6
+  attackRanged: -2
+  defenceStab: 15
+  defenceSlash: 16
+  defenceCrush: 14
+  defenceMagic: 0
+  defenceRanged: 15
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "defence"
+    level: 10

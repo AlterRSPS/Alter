@@ -1,0 +1,28 @@
+---
+id: 7382
+name: "Blue d'hide chaps (g)"
+examine: "Made from 100% real dragonhide. With colourful trim!"
+tradeable: true
+weight: 5.443
+equipment:
+  prayer: 0
+  equipSlot: "legs"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -10
+  attackRanged: 11
+  defenceStab: 25
+  defenceSlash: 19
+  defenceCrush: 27
+  defenceMagic: 14
+  defenceRanged: 25
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "ranged"
+    level: 50

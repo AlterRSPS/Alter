@@ -1,0 +1,33 @@
+---
+id: 25741
+name: "Sanguine scythe of vitur (uncharged)"
+examine: "A powerful scythe that drips the blood of the slain. It is currently uncharged."
+tradeable: false
+weight: 3.175
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: 14
+  attackSpeed: 5
+  attackStab: 50
+  attackSlash: 75
+  attackCrush: 10
+  attackMagic: -6
+  attackRanged: 0
+  defenceStab: -2
+  defenceSlash: 6
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 50
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
+  skillReqs: null

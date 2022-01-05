@@ -1,0 +1,28 @@
+---
+id: 7668
+name: "Gadderhammer"
+examine: "A specially crafted hammer with strange markings on it."
+tradeable: true
+weight: 1.814
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: -1
+  attackSpeed: 5
+  attackStab: -4
+  attackSlash: -4
+  attackCrush: 35
+  attackMagic: -4
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 35
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "attack"
+    level: 30

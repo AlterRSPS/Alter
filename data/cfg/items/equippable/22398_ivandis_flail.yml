@@ -1,0 +1,33 @@
+---
+id: 22398
+name: "Ivandis flail"
+examine: "A legendary flail."
+tradeable: false
+weight: 0.0
+equipment:
+  prayer: 5
+  equipSlot: "weapon"
+  weaponType: -1
+  attackSpeed: 5
+  attackStab: 24
+  attackSlash: 38
+  attackCrush: 62
+  attackMagic: 8
+  attackRanged: 0
+  defenceStab: 4
+  defenceSlash: 4
+  defenceCrush: 2
+  defenceMagic: 8
+  defenceRanged: 0
+  meleeStrength: 42
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 8009
+  - 8015
+  - 8011
+  - 8012
+  - 8014
+  - 8013
+  - 8016
+  skillReqs: null

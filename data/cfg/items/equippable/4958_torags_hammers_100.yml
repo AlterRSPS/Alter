@@ -1,0 +1,37 @@
+---
+id: 4958
+name: "Torag's hammers 100"
+examine: "Torag the Corrupted's twin hammers."
+tradeable: false
+weight: 3.628
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: 2
+  attackSpeed: 5
+  attackStab: -4
+  attackSlash: -4
+  attackCrush: 85
+  attackMagic: -4
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 72
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
+  skillReqs:
+  - skill: "attack"
+    level: 70
+  - skill: "strength"
+    level: 70

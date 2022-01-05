@@ -1,0 +1,30 @@
+---
+id: 22664
+name: "Scythe of vitur"
+examine: "A powerful scythe."
+tradeable: false
+weight: 3.175
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: -1
+  attackSpeed: 5
+  attackStab: 70
+  attackSlash: 110
+  attackCrush: 30
+  attackMagic: -6
+  attackRanged: 0
+  defenceStab: -2
+  defenceSlash: 8
+  defenceCrush: 10
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 75
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "attack"
+    level: 75
+  - skill: "strength"
+    level: 75

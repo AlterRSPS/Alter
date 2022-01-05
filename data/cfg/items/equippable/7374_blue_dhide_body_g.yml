@@ -1,0 +1,30 @@
+---
+id: 7374
+name: "Blue d'hide body (g)"
+examine: "Made from 100% real dragonhide. With colourful trim!"
+tradeable: true
+weight: 6.803
+equipment:
+  prayer: 0
+  equipSlot: "body"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -15
+  attackRanged: 20
+  defenceStab: 45
+  defenceSlash: 37
+  defenceCrush: 50
+  defenceMagic: 30
+  defenceRanged: 45
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "ranged"
+    level: 50
+  - skill: "defence"
+    level: 40

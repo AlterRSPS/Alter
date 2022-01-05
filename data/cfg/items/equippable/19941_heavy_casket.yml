@@ -1,0 +1,33 @@
+---
+id: 19941
+name: "Heavy casket"
+examine: "Full to the brim with loot... Where's that key gone?"
+tradeable: false
+weight: 15.0
+equipment:
+  prayer: 0
+  equipSlot: "2h"
+  weaponType: 0
+  attackSpeed: 6
+  attackStab: -4
+  attackSlash: -4
+  attackCrush: 11
+  attackMagic: -4
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 9
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 4193
+  - 4194
+  - 4194
+  - 4194
+  - 4194
+  - 4194
+  - 4194
+  skillReqs: null

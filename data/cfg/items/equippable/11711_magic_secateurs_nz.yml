@@ -1,0 +1,26 @@
+---
+id: 11711
+name: "Magic secateurs (nz)"
+examine: "The only way to kill a Tanglefoot."
+tradeable: false
+weight: 0.453
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: -1
+  attackSpeed: 5
+  attackStab: 7
+  attackSlash: 9
+  attackCrush: -5
+  attackMagic: 1
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 1
+  defenceCrush: 0
+  defenceMagic: 1
+  defenceRanged: 0
+  meleeStrength: 1
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs: null

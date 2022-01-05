@@ -1,0 +1,33 @@
+---
+id: 20056
+name: "Ale of the gods"
+examine: "Ale of the gods."
+tradeable: true
+weight: 0.0
+equipment:
+  prayer: 0
+  equipSlot: "weapon"
+  weaponType: 0
+  attackSpeed: 4
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 0
+  defenceSlash: 0
+  defenceCrush: 0
+  defenceMagic: 0
+  defenceRanged: 0
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations:
+  - 3040
+  - 2769
+  - 2769
+  - 2769
+  - 2769
+  - 2769
+  - 2769
+  skillReqs: null

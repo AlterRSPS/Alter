@@ -1,0 +1,28 @@
+---
+id: 11899
+name: "Decorative armour"
+examine: "Very decorative armour."
+tradeable: false
+weight: 6.8
+equipment:
+  prayer: 0
+  equipSlot: "body"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: 0
+  attackRanged: 0
+  defenceStab: 20
+  defenceSlash: 20
+  defenceCrush: 20
+  defenceMagic: 20
+  defenceRanged: 20
+  meleeStrength: 0
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs:
+  - skill: "defence"
+    level: 5
