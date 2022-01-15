@@ -3,4 +3,7 @@ package gg.rsmod.plugins.content.mechanics.npcspawns
 /**
  * @author CloudS3c
  */
-load_service(NpcSpawnService())
+on_login {
+    player.message("NPC Spawn Service Disabled.")
+}
+//load_service(NpcSpawnService())

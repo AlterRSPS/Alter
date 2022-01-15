@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.mechanics.ItemSpawns
+package gg.rsmod.plugins.content.mechanics.itemspawns
 
 data class ItemSpawn(
     val id: Int= -1,

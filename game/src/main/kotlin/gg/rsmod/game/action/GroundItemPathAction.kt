@@ -2,12 +2,15 @@ package gg.rsmod.game.action
 
 import gg.rsmod.game.fs.def.ItemDef
 import gg.rsmod.game.message.impl.SetMapFlagMessage
+import gg.rsmod.game.model.EntityType
 import gg.rsmod.game.model.MovementQueue
+import gg.rsmod.game.model.Tile
 import gg.rsmod.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import gg.rsmod.game.model.attr.INTERACTING_GROUNDITEM_ATTR
 import gg.rsmod.game.model.attr.INTERACTING_ITEM
 import gg.rsmod.game.model.attr.INTERACTING_OPT_ATTR
 import gg.rsmod.game.model.entity.Entity
+import gg.rsmod.game.model.entity.GameObject
 import gg.rsmod.game.model.entity.GroundItem
 import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.item.Item
@@ -35,8 +38,17 @@ object GroundItemPathAction {
         val item = p.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
         val opt = p.attr[INTERACTING_OPT_ATTR]!!
 
-        if (p.tile.sameAs(item.tile)) {
-            handleAction(p, item, opt)
+        val chunk = p.world.chunks.getOrCreate(item.tile)
+        val obj = chunk.getEntities<GameObject>(item.tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull()
+
+        if (p.tile.sameAs(item.tile) || p.tile.isNextTo(item.tile)) {
+            if (obj != null && obj.type != 22) {
+                p.faceTile(item.tile)
+                p.animate(832)
+                handleAction(p, item, opt)
+            } else {
+                handleAction(p, item, opt)
+            }
         } else {
             p.walkTo(item.tile, MovementQueue.StepType.NORMAL)
             p.queue(TaskPriority.STANDARD) {
@@ -61,9 +73,17 @@ object GroundItemPathAction {
                 wait(1)
                 continue
             }
-            // TODO: check if player can grab the item by leaning over
-            if (p.tile.sameAs(item.tile)) {
-                handleAction(p, item, opt)
+            if (p.tile.sameAs(item.tile) || p.tile.isNextTo(item.tile)) {
+                val chunk = p.world.chunks.getOrCreate(item.tile)
+                val obj = chunk.getEntities<GameObject>(item.tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull()
+                if (obj != null && obj.type != 22) {
+                    p.faceTile(item.tile)
+                    wait(1)
+                    p.animate(832)
+                    handleAction(p, item, opt)
+                } else {
+                    handleAction(p, item, opt)
+                }
             } else {
                 p.writeMessage(Entity.YOU_CANT_REACH_THAT)
             }
@@ -91,6 +111,8 @@ object GroundItemPathAction {
 
             if (add.getLeftOver() != 0) {
                 p.writeMessage("You don't have enough inventory space to hold any more.")
+            } else {
+                p.playSound(2582)
             }
 
             add.items.firstOrNull()?.let { item ->

@@ -2,10 +2,6 @@ package gg.rsmod.plugins.content.mechanics.doors
 
 import gg.rsmod.game.model.collision.ObjectType
 
-val CLOSE_DOOR_SFX = 60
-val STUCK_DOOR_SFX = 61
-val OPEN_DOOR_SFX = 62
-
 val STICK_STATE = AttributeKey<DoorStickState>()
 
 val CHANGES_BEFORE_STICK_TAG = "opens_before_stick"
@@ -49,10 +45,10 @@ on_world_init {
                     val newDoor = world.closeDoor(obj, closed = door.closed, invertTransform = obj.type == ObjectType.DIAGONAL_WALL.value)
                     copy_stick_vars(obj, newDoor)
                     add_stick_var(world, newDoor)
-                    player.playSound(CLOSE_DOOR_SFX)
+                    player.playSound(Sounds.CLOSE_DOOR_SFX)
                 } else {
                     player.message("The door seems to be stuck.")
-                    player.playSound(STUCK_DOOR_SFX)
+                    player.playSound(Sounds.STUCK_DOOR_SFX)
                 }
             }
 
@@ -61,7 +57,7 @@ on_world_init {
                 val newDoor = world.openDoor(obj, opened = door.opened, invertTransform = obj.type == ObjectType.DIAGONAL_WALL.value)
                 copy_stick_vars(obj, newDoor)
                 add_stick_var(world, newDoor)
-                player.playSound(OPEN_DOOR_SFX)
+                player.playSound(Sounds.OPEN_DOOR_SFX)
             }
         }
 
@@ -100,7 +96,7 @@ fun handle_double_doors(p: Player, obj: GameObject, doors: DoubleDoorSet, open: 
 
     if (!open && (is_stuck(world, obj) || is_stuck(world, otherDoor))) {
         p.message("The door seems to be stuck.")
-        p.playSound(STUCK_DOOR_SFX)
+        p.playSound(Sounds.STUCK_DOOR_SFX)
         return
     }
 
@@ -111,7 +107,7 @@ fun handle_double_doors(p: Player, obj: GameObject, doors: DoubleDoorSet, open: 
         add_stick_var(world, door1)
         copy_stick_vars(obj, door2)
         add_stick_var(world, door2)
-        p.playSound(OPEN_DOOR_SFX)
+        p.playSound(Sounds.OPEN_DOOR_SFX)
     } else {
         val door1 = world.closeDoor(obj, closed = if (left) doors.closed.left else doors.closed.right, invertRot = left, invertTransform = left)
         val door2 = world.closeDoor(otherDoor, closed = if (left) doors.closed.right else doors.closed.left, invertRot = right, invertTransform = right)
@@ -119,7 +115,7 @@ fun handle_double_doors(p: Player, obj: GameObject, doors: DoubleDoorSet, open: 
         add_stick_var(world, door1)
         copy_stick_vars(obj, door2)
         add_stick_var(world, door2)
-        p.playSound(CLOSE_DOOR_SFX)
+        p.playSound(Sounds.CLOSE_DOOR_SFX)
     }
 }
 

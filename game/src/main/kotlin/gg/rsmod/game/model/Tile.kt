@@ -1,6 +1,8 @@
 package gg.rsmod.game.model
 
 import com.google.common.base.MoreObjects
+import gg.rsmod.game.model.collision.CollisionFlag
+import gg.rsmod.game.model.entity.GroundItem
 import gg.rsmod.game.model.region.Chunk
 import gg.rsmod.game.model.region.ChunkCoords
 
@@ -86,6 +88,8 @@ class Tile {
         return dx <= radius && dz <= radius
     }
 
+    fun isNextTo(other: Tile): Boolean = Math.abs(x - other.x) + Math.abs(z - other.z) == 1
+
     /**
      * Checks if the [other] tile is within the [radius]x[radius] distance of
      * this [Tile].
@@ -124,6 +128,8 @@ class Tile {
      * Checks if the [other] tile has the same coordinates as this tile.
      */
     fun sameAs(other: Tile): Boolean = other.x == x && other.z == z && other.height == height
+
+
 
     fun sameAs(x: Int, z: Int): Boolean = x == this.x && z == this.z
 

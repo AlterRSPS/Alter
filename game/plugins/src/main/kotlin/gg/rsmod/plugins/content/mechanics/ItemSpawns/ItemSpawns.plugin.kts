@@ -1,4 +1,4 @@
-import gg.rsmod.plugins.content.mechanics.ItemSpawns.ItemSpawnsService
+import gg.rsmod.plugins.content.mechanics.itemspawns.ItemSpawnsService
 
 load_service(ItemSpawnsService())
 on_world_init {

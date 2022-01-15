@@ -44,6 +44,10 @@ class NpcCombatBuilder {
 
     private var defaultBlockAnim = -1
 
+    private var defaultAttackSound = -1
+
+    private var defaultBlockSound = -1
+
     private val deathAnimList = mutableListOf<Int>()
 
     private var respawnDelay = -1
@@ -156,6 +160,16 @@ class NpcCombatBuilder {
         return this
     }
 
+    fun setDefaultAttackSound(sound: Int) {
+        check(defaultAttackSound == -1) { "Default attack sound already set." }
+        defaultAttackSound = sound
+    }
+
+    fun setDefaultBlockSound(sound: Int) {
+        check(defaultBlockSound == -1) { "Default block sound already set." }
+        defaultBlockSound = sound
+    }
+
     fun setDefaultAttackAnimation(animation: Int): NpcCombatBuilder {
         check(defaultAttackAnim == -1) { "Default attack animation already set." }
         defaultAttackAnim = animation
@@ -172,6 +186,11 @@ class NpcCombatBuilder {
         setDefaultAttackAnimation(attackAnimation)
         setDefaultBlockAnimation(blockAnimation)
         return this
+    }
+
+    fun setCombatSounds(attackSound: Int, blockSound: Int) {
+        setDefaultAttackSound(attackSound)
+        setDefaultBlockSound(blockSound)
     }
 
     fun setDeathAnimation(vararg anims: Int): NpcCombatBuilder {

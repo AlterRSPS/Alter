@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.mechanics.ItemSpawns
+package gg.rsmod.plugins.content.mechanics.itemspawns
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
