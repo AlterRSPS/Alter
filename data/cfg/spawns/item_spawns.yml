@@ -4241,6 +4241,12 @@
   height: 0
   amount: 1
   respawnTime: 50
+- id: 357
+  x: 2820
+  z: 3453
+  height: 0
+  amount: 1
+  respawnTime: 50
 - id: 1929
   x: 2823
   z: 3449

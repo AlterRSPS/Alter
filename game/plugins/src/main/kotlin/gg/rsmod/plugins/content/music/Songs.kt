@@ -664,5 +664,13 @@ enum class Songs(val title: String, val id: Int) {
             }
             return "";
         }
+
+        fun getId(title: String): Int {
+            values.forEach {
+                if (it.title == title) return it.id
+            }
+            return -1
+        }
+
     }
 }

@@ -33,20 +33,22 @@ object GroundItemPathAction {
      */
     internal const val ITEM_ON_GROUND_ITEM_OPTION = -1
 
+    /**
+     *  Note from : @Kris
+     *  also thats exactly how it works
+     *  if someone freezes u in pvp and an item is next to you, u will do the anim when u pick it up
+     *  despite there being nothing on that given tile
+     */
     val walkPlugin: Plugin.() -> Unit = {
         val p = ctx as Player
         val item = p.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
         val opt = p.attr[INTERACTING_OPT_ATTR]!!
-
-        val chunk = p.world.chunks.getOrCreate(item.tile)
-        val obj = chunk.getEntities<GameObject>(item.tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull()
-
         if (p.tile.sameAs(item.tile) || p.tile.isNextTo(item.tile)) {
-            if (obj != null && obj.type != 22) {
+            if (p.tile.isNextTo(item.tile)) {
                 p.faceTile(item.tile)
                 p.animate(832)
                 handleAction(p, item, opt)
-            } else {
+            } else if (p.tile.sameAs(item.tile)) {
                 handleAction(p, item, opt)
             }
         } else {
@@ -74,14 +76,11 @@ object GroundItemPathAction {
                 continue
             }
             if (p.tile.sameAs(item.tile) || p.tile.isNextTo(item.tile)) {
-                val chunk = p.world.chunks.getOrCreate(item.tile)
-                val obj = chunk.getEntities<GameObject>(item.tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull()
-                if (obj != null && obj.type != 22) {
+                if (p.tile.isNextTo(item.tile)) {
                     p.faceTile(item.tile)
-                    wait(1)
                     p.animate(832)
                     handleAction(p, item, opt)
-                } else {
+                } else if (p.tile.sameAs(item.tile)) {
                     handleAction(p, item, opt)
                 }
             } else {

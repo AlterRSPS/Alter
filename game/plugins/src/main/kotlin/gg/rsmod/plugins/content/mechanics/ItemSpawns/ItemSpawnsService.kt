@@ -30,7 +30,7 @@ class ItemSpawnsService : Service {
     }
 
     override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
-        val path = Paths.get("./data/cfg/spawns/item_spawns.yml")
+        val path = Paths.get("./data/cfg/spawns/item_spawns-example.yml")
         if (!Files.exists(path)) {
             throw FileNotFoundException("Path does not exist. $path")
         }

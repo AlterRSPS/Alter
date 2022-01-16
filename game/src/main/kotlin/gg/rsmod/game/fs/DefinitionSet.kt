@@ -200,7 +200,7 @@ class DefinitionSet {
                          * We don't want the bottom of the bridge to be blocked,
                          * so remove the blocked tile if applicable.
                          */
-                        blocked.remove(tile.transform(-1))
+                        blocked.remove(tile.transform(0))
                     }
                 }
             }
