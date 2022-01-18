@@ -12,7 +12,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 
 #### First download:
 * Cache: [Rev201 Cache](https://archive.runestats.com/osrs/2021-11-24-rev201-2.tar.gz)
-* OpenOSRS Client: https://github.com/CloudS3c/OpenOSRS_RSPS
+* OpenOSRS Client: https://github.com/AlterRSPS/runelite
 
 ## Acknowledgments
 
