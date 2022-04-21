@@ -12,8 +12,8 @@ class OpenUrlEncoder : MessageEncoder<OpenUrlMessage>() {
 
     override fun extractBytes(message: OpenUrlMessage, key: String): ByteArray = when (key) {
         "url" -> {
-            val data = ByteArray(message.url.length + 1)
-            System.arraycopy(message.url.toByteArray(), 0, data, 0, data.size - 1)
+            val data = ByteArray(message.url.length)
+            System.arraycopy(message.url.toByteArray(), 0, data, 0, data.size)
             data
         }
         else -> throw Exception("Unhandled value key.")

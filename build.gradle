@@ -41,6 +41,7 @@ allprojects {
         implementation "com.github.runelite.runelite:cache:$runeliteVersion"
         implementation "io.netty:netty-all:$nettyVersion"
         implementation 'org.apache.commons:commons-lang3:3.0'
+        implementation 'io.guthix:js5-filestore:0.5.0'
 
         testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
     }

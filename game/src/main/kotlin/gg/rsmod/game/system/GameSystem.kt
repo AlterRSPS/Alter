@@ -58,19 +58,17 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
         }
     }
 
+    val filterpackets: Boolean = false
+
     /**
-     * @TODO
-     * Disables [GamePacket] writing
+     * Packet Filter.
      */
     val disabled = listOf(
-        UpdateStatMessage::class, // Bugs out the [chatbox] username not showing up on login request
+        UpdateStatMessage::class,
     )
 
     fun write(message: Message) {
-//        if(message::class in disabled) {
-//            println("Message sent: [${message::class}]");
-//            return
-//        }
+        if(filterpackets && message::class in disabled) return
         channel.write(message)
     }
 
