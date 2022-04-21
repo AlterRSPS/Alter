@@ -93,7 +93,7 @@ players:
         - name: compressed_data
           type: BYTES
           trans: ADD
-          order: REVERSED
+
 
     - block: FACE_TILE
       bit: 0x20

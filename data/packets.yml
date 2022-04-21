@@ -4,6 +4,23 @@
 
 server-packets:
 
+  - message: gg.rsmod.game.message.impl.CamResetMessage
+    type: FIXED
+    opcode: 60
+
+  - message: gg.rsmod.game.message.impl.CamShakeMessage
+    type: FIXED
+    opcode: 66
+    structure:
+      - name: index
+        type: BYTE
+      - name: left
+        type: BYTE
+      - name: center
+        type: BYTE
+      - name: right
+        type: BYTE
+
   - message: gg.rsmod.game.message.impl.MapAnimMessage
     type: FIXED
     opcode: 84

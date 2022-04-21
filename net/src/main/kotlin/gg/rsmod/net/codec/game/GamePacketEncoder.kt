@@ -33,7 +33,7 @@ class GamePacketEncoder(private val random: IsaacRandom?) : MessageToByteEncoder
          * The [OpenUrlMessage] is a unique packet which
          * requires each byte be masked with isaac randoms
          */
-        if(msg.opcode == 64){
+        if(msg.opcode == 63){
             for (i in 0 until msg.length){
                 out.writeByte((msg.payload.getByte(i) + (random?.nextInt() ?: 0)) and 0xFF)
             }

@@ -63,6 +63,8 @@ class MessageEncoderSet {
         put(UpdateRebootTimerEncoder(), UpdateRebootTimerMessage::class.java)
         put(MapAnimEncoder(), MapAnimMessage::class.java)
         put(IfSetModelEncoder(), IfSetModelMessage::class.java)
+        put(CamShakeEncoder(), CamShakeMessage::class.java)
+        put(CameraResetEncoder(), CamResetMessage::class.java)
     }
 
     private fun <T : Message> put(encoder: MessageEncoder<T>, message: Class<out T>) {

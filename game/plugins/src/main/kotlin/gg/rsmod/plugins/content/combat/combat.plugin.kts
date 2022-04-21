@@ -92,7 +92,6 @@ suspend fun cycle(it: QueueTask): Boolean {
 
     if (Combat.isAttackDelayReady(pawn)) {
         if (Combat.canAttack(pawn, target, strategy)) {
-
             if (pawn is Player && AttackTab.isSpecialEnabled(pawn) && pawn.getEquipment(EquipmentType.WEAPON) != null) {
                 AttackTab.disableSpecial(pawn)
                 if (SpecialAttacks.execute(pawn, target, world)) {

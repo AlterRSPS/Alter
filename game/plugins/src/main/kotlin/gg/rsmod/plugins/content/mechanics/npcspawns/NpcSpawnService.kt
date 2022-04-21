@@ -17,16 +17,6 @@ import java.nio.file.Paths
  * @author CloudS3c
  */
 class NpcSpawnService : Service {
-
-    override fun postLoad(server: Server, world: World) {
-    }
-
-    override fun bindNet(server: Server, world: World) {
-    }
-
-    override fun terminate(server: Server, world: World) {
-    }
-
     override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
         val path = Paths.get("./data/cfg/spawns/npc_spawns.yml")
         if (!Files.exists(path)) {
@@ -45,6 +35,15 @@ class NpcSpawnService : Service {
             }
             logger.info {"Loaded ${data.size} Npc Spawns."}
         }
+    }
+
+    override fun postLoad(server: Server, world: World) {
+    }
+
+    override fun bindNet(server: Server, world: World) {
+    }
+
+    override fun terminate(server: Server, world: World) {
     }
 
     companion object : KLogging()
