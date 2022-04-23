@@ -9,7 +9,9 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider
 import org.bouncycastle.util.io.pem.PemObject
 import org.bouncycastle.util.io.pem.PemReader
 import org.bouncycastle.util.io.pem.PemWriter
+import java.io.File
 import java.io.IOException
+import java.io.PrintWriter
 import java.math.BigInteger
 import java.nio.file.Files
 import java.nio.file.Path
@@ -20,6 +22,7 @@ import java.security.Security
 import java.security.interfaces.RSAPrivateKey
 import java.security.interfaces.RSAPublicKey
 import java.security.spec.PKCS8EncodedKeySpec
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -104,7 +107,19 @@ class RsaService : Service {
         println("--------------------")
         println("public key: " + publicKey.publicExponent.toString(radix))
         println("modulus: " + publicKey.modulus.toString(radix))
-        println("")
+
+        try {
+            val writer = PrintWriter(File("./modulus"))
+            writer.println("/* Auto-generated file using ${this::class.java} ${SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())} */")
+            writer.println("")
+            writer.println("Place these keys in the client (find BigInteger(\"10001\" in client code):")
+            writer.println("--------------------")
+            writer.println("public key: " + publicKey.publicExponent.toString(radix))
+            writer.println("modulus: " + publicKey.modulus.toString(radix))
+            writer.close()
+        } catch (e: Exception) {
+            logger.error(e.toString())
+        }
 
         try {
             PemWriter(Files.newBufferedWriter(keyPath)).use { writer ->
