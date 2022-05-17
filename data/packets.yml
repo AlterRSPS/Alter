@@ -130,29 +130,29 @@ server-packets:
 
   - message: gg.rsmod.game.message.impl.RebuildLoginMessage
     type: VARIABLE_SHORT
-    opcode: 47
+    opcode: 0
     structure:
       - name: gpi
         type: BYTES
       - name: z
         type: SHORT
         trans: ADD
+        order: LITTLE
       - name: x
         type: SHORT
-        order: LITTLE
       - name: xteas
         type: BYTES
 
   - message: gg.rsmod.game.message.impl.RebuildNormalMessage
     type: VARIABLE_SHORT
-    opcode: 47
+    opcode: 0
     structure:
       - name: z
         type: SHORT
         trans: ADD
+        order: LITTLE
       - name: x
         type: SHORT
-        order: LITTLE
       - name: xteas
         type: BYTES
 
@@ -172,7 +172,7 @@ server-packets:
 
   - message: gg.rsmod.game.message.impl.IfOpenTopMessage
     type: FIXED
-    opcode: 6
+    opcode: 49
     structure:
       - name: top
         type: SHORT
@@ -181,18 +181,17 @@ server-packets:
 
   - message: gg.rsmod.game.message.impl.IfOpenSubMessage
     type: FIXED
-    opcode: 17
+    opcode: 48
     structure:
       - name: component
         type: SHORT
         trans: ADD
-        order: LITTLE
-      - name: overlay
-        type: INT
-        order: INVERSE_MIDDLE
       - name: type
         type: BYTE
         trans: ADD
+      - name: overlay
+        type: INT
+        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.UpdateZonePartialFollowsMessage
     type: FIXED
