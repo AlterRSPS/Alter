@@ -58,17 +58,23 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
         }
     }
 
-    val filterpackets: Boolean = false
-
     /**
-     * Packet Filter.
+     * List of which packets are allowed to pass >> If [filterpackets] is enabled
      */
-    val disabled = listOf(
-        UpdateStatMessage::class,
+    val accepted = listOf(
+        IfOpenSubMessage::class,
+        IfOpenTopMessage::class,
+        RebuildLoginMessage::class,
+        RebuildNormalMessage::class,
     )
 
+    /**
+     * Will be moved to [game.yml]
+     */
+    val filterpackets: Boolean = true
+
     fun write(message: Message) {
-        if(filterpackets && message::class in disabled) return
+        if(filterpackets && message::class !in accepted) return
         channel.write(message)
     }
 
