@@ -151,18 +151,18 @@ enum class PickpocketNpc(val npcIds: IntArray, val experience: Double, val reqLe
             damage = 1..3,
             stunTicks = 6
     ),
-    ALKHARID_WARRIOR(
-            npcIds = intArrayOf(
-                    Npcs.ALKHARID_WARRIOR, Npcs.WARRIOR_WOMAN_3260
-            ),
-            experience = 26.0,
-            reqLevel = 25,
-            rewards = arrayOf(
-                    WeightItem(item = Items.COINS_995, amount = 18, weight = ALWAYS)
-            ),
-            damage = 2..2,
-            stunTicks = 8
-    ),
+    //ALKHARID_WARRIOR(
+    //        npcIds = intArrayOf(
+    //                Npcs.ALKHARID_WARRIOR, Npcs.WARRIOR_WOMAN_3260
+    //        ),
+    //        experience = 26.0,
+    //        reqLevel = 25,
+    //        rewards = arrayOf(
+    //                WeightItem(item = Items.COINS_995, amount = 18, weight = ALWAYS)
+    //        ),
+    //        damage = 2..2,
+    //        stunTicks = 8
+    //),
     ROGUE(
             npcIds = intArrayOf(
                     Npcs.ROGUE_526
