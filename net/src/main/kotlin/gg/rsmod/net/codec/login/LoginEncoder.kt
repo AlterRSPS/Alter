@@ -15,7 +15,7 @@ class LoginEncoder : MessageToByteEncoder<LoginResponse>() {
         out.writeByte(0)
         out.writeInt(0)
         out.writeByte(msg.privilege)
-        out.writeBoolean(true) // members
+        out.writeBoolean(true) // Player mod : members
         out.writeShort(msg.index)
         out.writeBoolean(true) // members
     }
