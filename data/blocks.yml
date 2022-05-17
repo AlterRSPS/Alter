@@ -1,46 +1,76 @@
 players:
 
-  updating-opcode: 38
-  excess-mask: 0x80
+  updating-opcode: 80
+  excess-mask: 0x2
 
   order:
-    - FACE_PAWN
-    - FACE_TILE
     - PUBLIC_CHAT
-    - FORCE_CHAT
+    - FACE_TILE
     - APPEARANCE
-    - CONTEXT_MENU
-    - ANIMATION
-    - FORCE_MOVEMENT
-    - MOVEMENT
     - GFX
+    - FORCE_MOVEMENT
+    - ANIMATION
+    - MOVEMENT
+    - FACE_PAWN
     - HITMARK
+    - CONTEXT_MENU
+    - FORCE_CHAT
 
   blocks:
     - block: CONTEXT_MENU
+      bit: 0x2000
+
+    - block: APPLY_TINT
       bit: 0x400
+      structure:
+        - name: recolourStartCycle
+          type: SHORT
+          trans: ADD
+          order: LITTLE
+        - name: recolourEndCycle
+          type: SHORT
+        - name: recolourHue
+          type: BYTE
+          trans: ADD
+        - name: recolourSaturation
+          type: BYTE
+          trans: SUBTRACT
+        - name: recolourLuminance
+          type: BYTE
+          trans: NEGATE
+        - name: recolourAmount
+          type: BYTE
+
+    - block: NAME_CHANGE
+      bit: 0x800
+      structure:
+        - name: new_name
+          type: BYTE
+          trans: SUBTRACT
 
     - block: FACE_PAWN
-      bit: 0x4
+      bit: 0x80
       structure:
         - name: pawn_index
           type: SHORT
           trans: ADD
 
     - block: FORCE_MOVEMENT
-      bit: 0x200
+      bit: 0x4000
       structure:
         - name: src_x
           type: BYTE
           trans: ADD
         - name: src_z
           type: BYTE
+          trans: NEGATE
         - name: dst_x
           type: BYTE
+          trans: NEGATE
         - name: dst_z
           type: BYTE
+          trans: SUBTRACT
         - name: client_delay
-          order: LITTLE
           type: SHORT
         - name: client_duration
           type: SHORT
@@ -49,80 +79,83 @@ players:
           type: SHORT
 
     - block: FORCE_CHAT
-      bit: 0x40
+      bit: 0x8
 
     - block: HITMARK
-      bit: 0x2
+      bit: 0x40
       structure:
         - name: hitmarks
           type: BYTE
-          trans: SUBTRACT
         - name: hitbars
           type: BYTE
-          trans: ADD
+          trans: SUBTRACT
         - name: hitbar_percentage
           type: BYTE
-          trans: SUBTRACT
         - name: hitbar_to_percentage
           type: BYTE
-          trans: SUBTRACT
+          trans: ADD
 
     - block: ANIMATION
-      bit: 0x8
+      bit: 0x20
       structure:
         - name: animation
           type: SHORT
           trans: ADD
         - name: delay
-          type: BYTE
-          trans: NEGATE
+          type: INT
+          order: INVERSE_MIDDLE
 
     - block: PUBLIC_CHAT
-      bit: 0x10
+      bit: 0x1
       structure:
         - name: effects
           type: SHORT
           trans: ADD
+          order: LITTLE
         - name: icon
           type: BYTE
-          trans: NEGATE
         - name: auto
           type: BYTE
+          trans: ADD
         - name: compressed_length
           type: BYTE
+          trans: NEGATE
         - name: compressed_data
           type: BYTES
-          trans: ADD
-
+          order: REVERSED
 
     - block: FACE_TILE
-      bit: 0x20
+      bit: 0x4
       structure:
         - name: degrees
           type: SHORT
           trans: ADD
+          order: LITTLE
 
     - block: GFX
-      bit: 0x100
+      bit: 0x1000
       structure:
         - name: gfx
           order: LITTLE
           type: SHORT
+          trans: ADD
         - name: settings
           type: INT
+          order: INVERSE_MIDDLE
 
     - block: MOVEMENT
-      bit: 0x1000
+      bit: 0x100
       structure:
         - name: type
           type: BYTE
-          trans: NEGATE
+          trans: SUBTRACT
 
     - block: APPEARANCE
-      bit: 0x1
+      bit: 0x10
       structure:
         - name: length
           type: BYTE
+          trans: ADD
         - name: buffer
           type: BYTES
           order: REVERSED
