@@ -176,7 +176,6 @@ server-packets:
     structure:
       - name: top
         type: SHORT
-        trans: ADD
         order: LITTLE
 
   - message: gg.rsmod.game.message.impl.IfOpenSubMessage

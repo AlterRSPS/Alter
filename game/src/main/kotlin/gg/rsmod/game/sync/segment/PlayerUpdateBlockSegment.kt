@@ -222,13 +222,17 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                     }
                 }
 
-                appBuf.putString(other.username)
+                appBuf.putString(other.username).also{
+                    println(other.username);
+                }
                 appBuf.put(DataType.BYTE, other.combatLevel)
                 appBuf.put(DataType.SHORT, 0)
                 appBuf.put(DataType.BYTE, 0)
+                appBuf.put(DataType.SHORT, 32768)
 
                 val structure = blocks.updateBlocks[blockType]!!.values
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, appBuf.byteBuf.readableBytes())
+
                 if(structure[1].order == DataOrder.REVERSED){
                     val bytes = ByteArray(appBuf.readableBytes)
                     appBuf.byteBuf.readBytes(bytes)

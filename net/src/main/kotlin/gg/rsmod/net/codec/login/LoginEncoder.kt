@@ -10,13 +10,17 @@ import io.netty.handler.codec.MessageToByteEncoder
 class LoginEncoder : MessageToByteEncoder<LoginResponse>() {
 
     override fun encode(ctx: ChannelHandlerContext, msg: LoginResponse, out: ByteBuf) {
-        out.writeByte(2)
-        out.writeByte(13)
-        out.writeByte(0)
-        out.writeInt(0)
-        out.writeByte(msg.privilege)
-        out.writeBoolean(true) // Player mod : members
-        out.writeShort(msg.index)
-        out.writeBoolean(true) // members
+        with(out) {
+            writeByte(2)
+            writeByte(29)
+            writeByte(0)
+            writeInt(0)
+            writeByte( msg.privilege)
+            writeBoolean (true) // pmod
+            writeShort(msg.index)
+            writeBoolean(true) // expanded friend list
+            writeLong(0)
+            writeLong(0)
+        }
     }
 }

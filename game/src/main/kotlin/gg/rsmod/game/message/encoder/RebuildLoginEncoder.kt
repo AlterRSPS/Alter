@@ -13,8 +13,12 @@ import gg.rsmod.net.packet.GamePacketBuilder
 class RebuildLoginEncoder : MessageEncoder<RebuildLoginMessage>() {
 
     override fun extract(message: RebuildLoginMessage, key: String): Number = when (key) {
-        "x" -> message.tile.x shr 3
-        "z" -> message.tile.z shr 3
+        "x" -> message.tile.x shr 3.also{
+            println("x: ${message.tile.x shr 3}");
+        }
+        "z" -> message.tile.z shr 3.also{
+            println("z: ${message.tile.z shr 3}");
+        }
         else -> throw Exception("Unhandled value key.")
     }
 

@@ -62,7 +62,7 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
      * List of which packets are allowed to pass >> If [filterpackets] is enabled
      */
     val accepted = listOf(
-        IfOpenSubMessage::class,
+        //IfOpenSubMessage::class,
         IfOpenTopMessage::class,
         RebuildLoginMessage::class,
         RebuildNormalMessage::class,

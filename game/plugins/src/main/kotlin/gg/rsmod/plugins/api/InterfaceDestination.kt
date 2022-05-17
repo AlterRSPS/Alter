@@ -56,7 +56,7 @@ enum class InterfaceDestination(val interfaceId: Int, val fixedChildId: Int, val
 
 fun getDisplayComponentId(displayMode: DisplayMode) =
     when (displayMode) {
-        DisplayMode.FIXED -> 548
+        DisplayMode.FIXED -> 165
         DisplayMode.RESIZABLE_NORMAL -> 161
         DisplayMode.RESIZABLE_LIST -> 164
         DisplayMode.FULLSCREEN -> 165
