@@ -27,5 +27,9 @@ enum class UpdateBlockType {
 
     OVERRIDE_LEVEL,
 
-    FORCE_CHAT;
+    FORCE_CHAT,
+
+    APPLY_TINT,
+
+    NAME_CHANGE;
 }
