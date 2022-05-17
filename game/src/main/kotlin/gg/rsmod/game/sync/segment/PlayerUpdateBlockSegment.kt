@@ -71,22 +71,11 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 val chatMessage = other.blockBuffer.publicChat
                 val compressed = ByteArray(256)
                 val length = other.world.huffman.compress(chatMessage.text, compressed)
-                //buf.put(structure[0].type, structure[0].order, structure[0].transformation, (chatMessage.color.id shl 8) or chatMessage.effect.id)
-                //buf.put(structure[1].type, structure[1].order, structure[1].transformation, chatMessage.icon)
-                //buf.put(structure[2].type, structure[2].order, structure[2].transformation, if (chatMessage.type == ChatMessage.ChatType.AUTOCHAT) 1 else 0)
-                //buf.put(structure[3].type, structure[3].order, structure[3].transformation, length)
-                //buf.putBytes(structure[4].transformation, compressed)
-                buf.put(DataType.SHORT, DataTransformation.ADD, (chatMessage.color.id shl 8) or chatMessage.effect.id)
-                buf.put(DataType.BYTE, chatMessage.icon)
-                buf.put(DataType.BYTE, if (chatMessage.type == ChatMessage.ChatType.AUTOCHAT) 1 else 0)
-                buf.put(DataType.BYTE, length-1)
-                buf.putBytes(DataTransformation.ADD, compressed)
-
-                println("length? : $length")
-                println("compressed? : $compressed")
-                println("chatMessage? : $chatMessage")
-                println("AutoChat? : ${if (chatMessage.type == ChatMessage.ChatType.AUTOCHAT) 1 else 0}")
-                println("icon? : ${chatMessage.icon}")
+                buf.put(structure[0].type, structure[0].order, structure[0].transformation, (chatMessage.color.id shl 8) or chatMessage.effect.id)
+                buf.put(structure[1].type, structure[1].order, structure[1].transformation, chatMessage.icon)
+                buf.put(structure[2].type, structure[2].order, structure[2].transformation, if (chatMessage.type == ChatMessage.ChatType.AUTOCHAT) 1 else 0)
+                buf.put(structure[3].type, structure[3].order, structure[3].transformation, length)
+                buf.putBytes(structure[4].transformation, compressed)
 
                 /**
                  * @TODO Public Chat Seagment
@@ -335,6 +324,21 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 buf.put(structure[4].type, structure[4].order, structure[4].transformation, other.blockBuffer.forceMovement.clientDuration1)
                 buf.put(structure[5].type, structure[5].order, structure[5].transformation, other.blockBuffer.forceMovement.clientDuration2)
                 buf.put(structure[6].type, structure[6].order, structure[6].transformation, other.blockBuffer.forceMovement.directionAngle)
+            }
+
+            UpdateBlockType.APPLY_TINT -> {
+                //val structure = blocks.updateBlocks[blockType]!!.values
+                //buf.put(structure[0].type, structure[0].order, structure[0].transformation, 0) // recolourStartCycle
+                //buf.put(structure[1].type, structure[1].order, structure[1].transformation, 0) // recolourEndCycle
+                //buf.put(structure[2].type, structure[2].order, structure[2].transformation, 0) // recolourHue
+                //buf.put(structure[3].type, structure[3].order, structure[3].transformation, 0) // recolourSaturation
+                //buf.put(structure[4].type, structure[4].order, structure[4].transformation, 0) // recolourLuminance
+                //buf.put(structure[5].type, structure[5].order, structure[5].transformation, 0) // recolourAmount
+            }
+
+            UpdateBlockType.NAME_CHANGE -> {
+                //val structure = blocks.updateBlocks[blockType]!!.values
+                //buf.put(structure[0].type, structure[0].order, structure[0].transformation, 0)
             }
 
             else -> throw RuntimeException("Unhandled update block type: $blockType")
