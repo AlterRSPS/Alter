@@ -81,7 +81,6 @@ class UpdateBlockSet {
                     structureValues.add(MessageValue(id = name, order = order, transformation = transform, type = type, signature = signature))
                 }
             }
-
             val block = UpdateBlockType.valueOf(blockType)
             val structure = UpdateBlockStructure(bit = bit, values = structureValues)
             this.updateBlocks[block] = structure
