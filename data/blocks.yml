@@ -102,8 +102,8 @@ players:
           type: SHORT
           trans: ADD
         - name: delay
-          type: INT
-          order: INVERSE_MIDDLE
+          type: BYTE
+          trans: ADD
 
     - block: PUBLIC_CHAT
       bit: 0x1
