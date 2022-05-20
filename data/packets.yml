@@ -868,7 +868,7 @@ client-packets:
     structure:
       - name: z
         type: SHORT
-        trnas: ADD
+        trans: ADD
       - name: x
         type: SHORT
         order: LITTLE
