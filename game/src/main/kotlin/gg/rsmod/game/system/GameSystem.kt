@@ -79,7 +79,7 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
 
     fun write(message: Message) {
         //if(filterpackets && message::class !in accepted) return
-        if (message::class in dismis) return
+        //if (message::class in dismis) return
         channel.write(message)
     }
 

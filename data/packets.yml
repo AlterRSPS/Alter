@@ -439,6 +439,7 @@ server-packets:
       - name: item_count
         type: SHORT
       - name: items
+        sign: SIGNED
         type: BYTES
 
   #- message: gg.rsmod.game.message.impl.UpdateInvPartialMessage

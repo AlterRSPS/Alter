@@ -13,9 +13,7 @@ import gg.rsmod.net.packet.GamePacketBuilder
 class UpdateInvFullEncoder : MessageEncoder<UpdateInvFullMessage>() {
 
     override fun extract(message: UpdateInvFullMessage, key: String): Number = when (key) {
-        "component_hash" -> message.componentHash.also {
-            println(message.componentHash)
-        }
+        "component_hash" -> -1 //message.componentHash
         "container_key" -> message.containerKey.also {
             println(message.containerKey)
         }
@@ -38,7 +36,7 @@ class UpdateInvFullEncoder : MessageEncoder<UpdateInvFullMessage>() {
                 if (item != null && item.amount != 0) {
                     buf.put(DataType.BYTE, Math.min(255, item.amount))
                     if (item.amount >= 255) {
-                        buf.put(DataType.INT, DataOrder.MIDDLE, item.amount)
+                        buf.put(DataType.INT, DataOrder.INVERSE_MIDDLE, item.amount)
                     }
                     buf.put(DataType.SHORT, DataOrder.LITTLE, item.id + 1)
                 } else {

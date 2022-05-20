@@ -136,12 +136,12 @@ players:
       bit: 0x1000
       structure:
         - name: gfx
-          order: LITTLE
           type: SHORT
           trans: ADD
+          order: LITTLE
         - name: settings
           type: INT
-          order: INVERSE_MIDDLE
+          order: MIDDLE
 
     - block: MOVEMENT
       bit: 0x100
