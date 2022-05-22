@@ -86,7 +86,10 @@ class MessageStructureSet {
                         var transform = DataTransformation.NONE
                         var type:DataType? = null
                         val signature = DataSignature.SIGNED
-
+                        /**
+                         * Will be removed
+                         *
+                         */
                         when (write.toLowerCase()) {
                             "byte" -> type = DataType.BYTE
                             "short" -> type = DataType.SHORT

@@ -9,9 +9,7 @@ import gg.rsmod.game.message.impl.IfOpenTopMessage
 class IfOpenTopEncoder : MessageEncoder<IfOpenTopMessage>() {
 
     override fun extract(message: IfOpenTopMessage, key: String): Number = when (key) {
-        "top" -> message.top.also{
-            println("IfOpenTop: ${message.top}")
-        }
+        "top" -> message.top
         else -> throw Exception("Unhandled value key.")
     }
 

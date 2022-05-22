@@ -14,12 +14,8 @@ class UpdateInvFullEncoder : MessageEncoder<UpdateInvFullMessage>() {
 
     override fun extract(message: UpdateInvFullMessage, key: String): Number = when (key) {
         "component_hash" -> -1 //message.componentHash
-        "container_key" -> message.containerKey.also {
-            println(message.containerKey)
-        }
-        "item_count" -> message.items.size.also {
-            println(message.items.size)
-        }
+        "container_key" -> message.containerKey
+        "item_count" -> message.items.size
         else -> throw Exception("Unhandled value key.")
     }
 
