@@ -222,9 +222,7 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                     }
                 }
 
-                appBuf.putString(other.username).also{
-                    println(other.username);
-                }
+                appBuf.putString(other.username)
                 appBuf.put(DataType.BYTE, other.combatLevel)
                 appBuf.put(DataType.SHORT, 0)
                 appBuf.put(DataType.BYTE, 0)
@@ -315,12 +313,8 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
 
             UpdateBlockType.GFX -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
-                buf.put(structure[0].type, structure[0].order, structure[0].transformation, other.blockBuffer.graphicId).also {
-                    println("other.blockBuffer.graphicId: ${other.blockBuffer.graphicId}")
-                }
-                buf.put(structure[1].type, structure[1].order, structure[1].transformation, (other.blockBuffer.graphicHeight shl 16) or other.blockBuffer.graphicDelay).also {
-                    println("(other.blockBuffer.graphicHeight shl 16) or other.blockBuffer.graphicDelay: ${(other.blockBuffer.graphicHeight shl 16) or other.blockBuffer.graphicDelay}")
-                }
+                buf.put(structure[0].type, structure[0].order, structure[0].transformation, other.blockBuffer.graphicId)
+                buf.put(structure[1].type, structure[1].order, structure[1].transformation, (other.blockBuffer.graphicHeight shl 16) or other.blockBuffer.graphicDelay)
             }
 
             UpdateBlockType.FORCE_MOVEMENT -> {
