@@ -27,15 +27,12 @@ class XteaKeyService : Service {
         get() = keys.keys.toIntArray()
 
     override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
-        val path = Paths.get(serviceProperties.getOrDefault("path", "./data/xteas/"))
-        if (!Files.exists(path)) {
-            throw FileNotFoundException("Path does not exist. $path")
-        }
+        val path = Paths.get(serviceProperties.getOrDefault("path", "./data/"))
         val singleFile = path.resolve("xteas.json")
         if (Files.exists(singleFile)) {
             loadSingleFile(singleFile)
         } else {
-            loadDirectory(path)
+            throw FileNotFoundException("Missing xteas.json file at $path. NOTE: You get it in same zip file from which you extracted the cache.")
         }
 
         loadKeys(world)
