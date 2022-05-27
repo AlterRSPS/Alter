@@ -1471,13 +1471,13 @@ client-packets:
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: REFLECTION_CHECK_REPLY
     type: VARIABLE_BYTE
-    opcode: 12
+    opcode: 99
     length: -1
     ignore: true
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: OPLOCT
     type: FIXED
-    opcode: 99
+    opcode: 76
     length: 15
     ignore: true
 

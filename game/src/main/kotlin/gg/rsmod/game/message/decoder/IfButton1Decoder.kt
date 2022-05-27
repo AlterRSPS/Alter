@@ -12,8 +12,6 @@ class IfButton1Decoder : MessageDecoder<IfButtonMessage>() {
         val hash = values["hash"]!!.toInt()
         val slot = values["slot"]!!.toInt()
         val item = values["item"]!!.toInt()
-
-        println("IF_BUTTON: hash = $hash, option = $opcodeIndex, slot = ${if (slot == 0xFFFF) -1 else slot} item = ${if (item == 0xFFFF) -1 else item}");
         return IfButtonMessage(hash = hash, option = opcodeIndex, slot = if (slot == 0xFFFF) -1 else slot, item = if (item == 0xFFFF) -1 else item)
     }
 }

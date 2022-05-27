@@ -165,6 +165,15 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     /**
+     * Spawn a [GroundItem] on the given coordinates.
+     */
+    fun spawn_item(item: Int, amount: Int, tile: Tile, respawnCycles: Int = GroundItem.DEFAULT_RESPAWN_CYCLES) {
+        val ground = GroundItem(item, amount, Tile(tile))
+        ground.respawnCycles = respawnCycles
+        r.itemSpawns.add(ground)
+    }
+
+    /**
      * Invoke [logic] when the [option] option is clicked on an inventory
      * [gg.rsmod.game.model.item.Item].
      *

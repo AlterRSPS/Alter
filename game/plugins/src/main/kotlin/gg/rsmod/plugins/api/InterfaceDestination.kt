@@ -36,7 +36,7 @@ enum class InterfaceDestination(val interfaceId: Int, val fixedChildId: Int, val
 
     /**
      * gg.rsmod.game.message.impl.RebuildNormalMessage
-    gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
+     * gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
      */
     fun isSwitchable(): Boolean = when (this) {
         CHAT_BOX, MAIN_SCREEN, WALKABLE, TAB_AREA,
