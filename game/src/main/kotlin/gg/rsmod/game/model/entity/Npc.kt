@@ -128,6 +128,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
     }
 
     override fun hasBlock(block: UpdateBlockType): Boolean {
+        println("Block? : $block");
         val bits = world.npcUpdateBlocks.updateBlocks[block]!!
         return blockBuffer.hasBit(bits.bit)
     }
