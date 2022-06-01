@@ -179,6 +179,28 @@ npcs:
     - APPEARANCE
 
   blocks:
+    - block: APPLY_TINT
+      bit: 0x200
+      structure:
+        - name: NOTHING
+          type: SHORT
+          trans: ADD
+          order: LITTLE
+        - name: NOTHING
+          type: SHORT
+        - name: NOTHING
+          type: BYTE
+          trans: ADD
+        - name: NOTHING
+          type: BYTE
+          trans: SUBTRACT
+        - name: NOTHING
+          type: BYTE
+          trans: NEGATE
+        - name: NOTHING
+          type: BYTE
+
+
     - block: NAME_CHANGE
       bit: 0x800
       structure:
