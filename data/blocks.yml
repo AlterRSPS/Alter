@@ -113,8 +113,10 @@ players:
           trans: ADD
           order: LITTLE
         - name: icon
+          sign: UNSIGNED
           type: BYTE
         - name: auto
+          sign: UNSIGNED
           type: BYTE
           trans: ADD
         - name: compressed_length
