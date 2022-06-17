@@ -42,7 +42,7 @@ private val BOOTHS = with(Objs) { setOf(
 //         BANK_BOOTH_28547,
 //         BANK_BOOTH_28548,
 //         BANK_BOOTH_28549,
-//         BANK_BOOTH_32666,
+         BANK_BOOTH_32666,
 //         BANK_BOOTH_36559,
 //         BANK_BOOTH_37959,
 //         BANK_BOOTH_39238,

@@ -245,6 +245,7 @@ class DefinitionSet {
             }
             return true
         } catch (e: IOException) {
+            e.printStackTrace()
             logger.error("Could not decrypt map region {}.", id)
             return false
         }

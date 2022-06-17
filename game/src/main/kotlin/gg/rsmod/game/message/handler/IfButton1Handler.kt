@@ -28,6 +28,8 @@ class IfButton1Handler : MessageHandler<IfButtonMessage> {
         val component = message.hash and 0xFFFF
         val option = message.option + 1
 
+        log(client, "Message: %d, %d, %d, %d", message.slot, message.item, message.hash, message.option)
+
         if (interfaceId == 149) {
             if (message.slot < 0 || message.slot >= client.inventory.capacity) {
                 return

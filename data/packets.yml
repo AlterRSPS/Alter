@@ -324,6 +324,7 @@ server-packets:
     opcode: 23
     structure:
       - name: text
+
         write: BYTES
       - name: hash
         write: INT
@@ -886,16 +887,20 @@ client-packets:
     length: 7
     structure:
       - name: movement_type
+        sign: UNSIGNED
         type: BYTE
         trans: SUBTRACT
       - name: id
+        sign: UNSIGNED
         type: SHORT
         order: LITTLE
       - name: x
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
         order: LITTLE
       - name: z
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
 
@@ -905,16 +910,20 @@ client-packets:
     length: 7
     structure:
       - name: id
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
         order: LITTLE
       - name: movement_type
+        sign: UNSIGNED
         type: BYTE
         trans: SUBTRACT
       - name: z
+        sign: UNSIGNED
         type: SHORT
         order: LITTLE
       - name: x
+        sign: UNSIGNED
         type: SHORT
         order: LITTLE
 
@@ -924,15 +933,19 @@ client-packets:
     length: 7
     structure:
       - name: z
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
         order: LITTLE
       - name: movement_type
+        sign: UNSIGNED
         type: BYTE
         trans: ADD
       - name: x
+        sign: UNSIGNED
         type: SHORT
       - name: id
+        sign: UNSIGNED
         type: SHORT
         order: LITTLE
 
@@ -942,12 +955,16 @@ client-packets:
     length: 7
     structure:
       - name: id
+        sign: UNSIGNED
         type: SHORT
       - name: z
+        sign: UNSIGNED
         type: SHORT
       - name: x
+        sign: UNSIGNED
         type: SHORT
       - name: movement_type
+        sign: UNSIGNED
         type: BYTE
         trans: NEGATE
 
@@ -957,14 +974,18 @@ client-packets:
     length: 7
     structure:
       - name: z
+        sign: UNSIGNED
         type: SHORT
       - name: id
+        sign: UNSIGNED
         type: SHORT
       - name: x
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
         order: LITTLE
       - name: movement_type
+        sign: UNSIGNED
         type: BYTE
 
   - message: gg.rsmod.game.message.impl.IfButtonMessage
@@ -1203,10 +1224,13 @@ client-packets:
     opcode: 25
     structure:
       - name: type
+        sign: UNSIGNED
         type: BYTE
       - name: color
+        sign: UNSIGNED
         type: BYTE
       - name: effect
+        sign: UNSIGNED
         type: BYTE
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: PING_STATISTICS - need to refactor code to see what values are received
@@ -1487,10 +1511,12 @@ client-packets:
     length: 3
     structure:
       - name: index
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
         order: LITTLE
       - name: unknown
+        sign: UNSIGNED
         type: BYTE
         trans: ADD
 

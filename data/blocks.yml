@@ -209,6 +209,27 @@ npcs:
         - name: name
           type: STRING
 
+    - block: APPLY_TINT
+      bit: 0x200
+      structure:
+        - name: recolourStartCycle
+          type: SHORT
+          trans: ADD
+          order: LITTLE
+        - name: recolourEndCycle
+          type: SHORT
+        - name: recolourHue
+          type: BYTE
+          trans: ADD
+        - name: recolourSaturation
+          type: BYTE
+          trans: SUBTRACT
+        - name: recolourLuminance
+          type: BYTE
+          trans: NEGATE
+        - name: recolourAmount
+          type: BYTE
+
     - block: OVERRIDE_LEVEL
       bit: 0x400
       structure:
