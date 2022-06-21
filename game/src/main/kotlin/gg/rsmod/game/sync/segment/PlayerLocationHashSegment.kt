@@ -51,21 +51,14 @@ class PlayerLocationHashSegment(private val lastHash: Int, private val currHash:
             }
 
             buf.putBits(2, 2)
-            println("Bit: 2 , 2 - PlayerLocationSegment");
             buf.putBits(2, diffH)
-            println("Bit 2 - diffH $diffH ")
             buf.putBits(3, direction)
-            println("Bit 3 $direction")
         } else {
             // If we moved further.
             buf.putBits(2, 3)
-            println("else 2 3 ");
             buf.putBits(2, diffH)
-            println("Bit 2 diffH: $diffH")
             buf.putBits(8, diffX and 0xFF)
             buf.putBits(8, diffZ and 0xFF)
-            println("diffX: $diffX")
-            println("diffZ: $diffZ")
         }
     }
 }
