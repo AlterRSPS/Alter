@@ -37,7 +37,6 @@ class NpcUpdateBlockSegment(private val npc: Npc, private val newAddition: Boole
                 else -> false
             }
             if (npc.hasBlock(blockType) || force) {
-                println("blockType: $blockType")
                 write(buf, blockType)
             }
         }
@@ -63,7 +62,6 @@ class NpcUpdateBlockSegment(private val npc: Npc, private val newAddition: Boole
             UpdateBlockType.FACE_PAWN -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, npc.blockBuffer.facePawnIndex)
-                println("FACE_PAWN BLOCK : [${npc.blockBuffer.facePawnIndex}]")
             }
 
             UpdateBlockType.FACE_TILE -> {
@@ -72,20 +70,17 @@ class NpcUpdateBlockSegment(private val npc: Npc, private val newAddition: Boole
                 val z = npc.blockBuffer.faceDegrees and 0xFFFF
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, x)
                 buf.put(structure[1].type, structure[1].order, structure[1].transformation, z)
-                println("FACE_TILE BLOCK : X: $x , Z: $z")
             }
 
             UpdateBlockType.ANIMATION -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, npc.blockBuffer.animation)
                 buf.put(structure[1].type, structure[1].order, structure[1].transformation, npc.blockBuffer.animationDelay)
-                println("ANIMATION BLOCK : [${npc.blockBuffer.animation} , ${npc.blockBuffer.animationDelay} ]")
             }
 
             UpdateBlockType.APPEARANCE -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, npc.getTransmogId())
-                println("npc.getTransmogId: ${npc.getTransmogId()}")
             }
 
             UpdateBlockType.GFX -> {

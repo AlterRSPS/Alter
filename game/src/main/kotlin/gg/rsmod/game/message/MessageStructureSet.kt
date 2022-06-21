@@ -85,42 +85,66 @@ class MessageStructureSet {
                         var order = DataOrder.BIG
                         var transform = DataTransformation.NONE
                         var type:DataType? = null
-                        val signature = DataSignature.SIGNED
+                        var signature = DataSignature.SIGNED
                         /**
                          * Will be removed
                          *
                          */
                         when (write.toLowerCase()) {
-                            "byte" -> type = DataType.BYTE
-                            "short" -> type = DataType.SHORT
-                            "medium" -> type = DataType.MEDIUM
-                            "int" -> type = DataType.INT
-                            "string" -> type = DataType.STRING
-                            "bytes" -> type = DataType.BYTES
+                            "byte" -> {
+                                type = DataType.BYTE
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "short" -> {
+                                type = DataType.SHORT
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "medium" -> {
+                                type = DataType.MEDIUM
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "int" -> {
+                                type = DataType.INT
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "string" -> {
+                                type = DataType.STRING
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "bytes" -> {
+                                type = DataType.BYTES
+                                signature = DataSignature.UNSIGNED
+                            }
                             "byteadd" -> {
                                 type = DataType.BYTE
                                 transform = DataTransformation.ADD
+                                signature = DataSignature.UNSIGNED
                             }
                             "byteneg" -> {
                                 type = DataType.BYTE
                                 transform = DataTransformation.NEGATE
+                                signature = DataSignature.UNSIGNED
                             }
                             "bytesub" -> {
                                 type = DataType.BYTE
                                 transform = DataTransformation.SUBTRACT
+                                signature = DataSignature.UNSIGNED
                             }
                             "shortle" -> {
                                 type = DataType.SHORT
                                 order = DataOrder.LITTLE
+                                signature = DataSignature.UNSIGNED
                             }
                             "shortadd" -> {
                                 type = DataType.SHORT
                                 transform = DataTransformation.ADD
+                                signature = DataSignature.UNSIGNED
                             }
                             "shortaddle" -> {
                                 type = DataType.SHORT
                                 transform = DataTransformation.ADD
                                 order = DataOrder.LITTLE
+                                signature = DataSignature.UNSIGNED
                             }
                             "medium2" -> {
                                 println("UNKNOWN")
@@ -131,18 +155,22 @@ class MessageStructureSet {
                             "medium1" -> {
                                 type = DataType.MEDIUM
                                 order = DataOrder.INVERSE_MIDDLE
+                                signature = DataSignature.UNSIGNED
                             }
                             "intle" -> {
                                 type = DataType.INT
                                 order = DataOrder.LITTLE
+                                signature = DataSignature.UNSIGNED
                             }
                             "intime" -> {
                                 type = DataType.INT
                                 order = DataOrder.INVERSE_MIDDLE
+                                signature = DataSignature.UNSIGNED
                             }
                             "intme" -> {
                                 type = DataType.INT
                                 order = DataOrder.MIDDLE
+                                signature = DataSignature.UNSIGNED
                             }
                             else -> {
                                 println("???: $write");

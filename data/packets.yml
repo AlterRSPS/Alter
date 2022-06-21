@@ -130,6 +130,9 @@ server-packets:
         type: INT
         order: LITTLE
 
+
+
+
   - message: gg.rsmod.game.message.impl.RebuildLoginMessage
     type: VARIABLE_SHORT
     opcode: 0
@@ -167,6 +170,29 @@ server-packets:
       - name: data
         write: short
 
+  - message: gg.rsmod.game.message.impl.UpdateZonePartialFollowsMessage
+    type: FIXED
+    opcode: 21
+    structure:
+      - name: x
+        write: BYTE
+      - name: z
+        write: ByteNeg
+
+  - message: gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
+    type: VARIABLE_SHORT
+    opcode: 32
+    structure:
+      - name: x
+        write: ByteSub
+      - name: z
+        write: Byte
+      - name: payload
+        write: BYTES
+
+
+
+
   - message: gg.rsmod.game.message.impl.IfOpenTopMessage
     type: FIXED
     opcode: 49
@@ -188,26 +214,6 @@ server-packets:
       - name: overlay
         type: INT
         order: MIDDLE
-
-  - message: gg.rsmod.game.message.impl.UpdateZonePartialFollowsMessage
-    type: FIXED
-    opcode: 21
-    structure:
-      - name: x
-        write: BYTE
-      - name: z
-        write: ByteNeg
-
-  - message: gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
-    type: VARIABLE_SHORT
-    opcode: 32
-    structure:
-      - name: z
-        write: ByteSub
-      - name: x
-        write: Byte
-      - name: payload
-        write: BYTES
 
   - message: gg.rsmod.game.message.impl.LocAddChangeMessage
     type: FIXED
@@ -502,6 +508,7 @@ client-packets:
       - name: data
         type: INT
         order: MIDDLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpLocUMessage
     type: FIXED
@@ -510,26 +517,33 @@ client-packets:
     structure:
       - name: unknown
         type: INT
+        sign: UNSIGNED
       - name: pos_z
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: pos_x
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
       - name: obj
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: ADD
+        sign: UNSIGNED
       - name: item
         type: SHORT
         order: LITTLE
         trans: ADD
+        sign: UNSIGNED
       - name: slot
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IfButtonDMessage
     type: FIXED
@@ -538,18 +552,24 @@ client-packets:
     structure:
       - name: src_slot
         type: SHORT
+        sign: UNSIGNED
       - name: dst_component_hash
         type: INT
         order: LITTLE
+        sign: UNSIGNED
       - name: dst_slot
         type: SHORT
+        sign: UNSIGNED
       - name: dst_item
         type: SHORT
+        sign: UNSIGNED
       - name: src_component_hash
         type: INT
         order: MIDDLE
+        sign: UNSIGNED
       - name: src_item
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpHeldDMessage
     type: FIXED
@@ -558,12 +578,16 @@ client-packets:
     structure:
       - name: src_slot
         type: SHORT
+        sign: UNSIGNED
       - name: dst_slot
         type: SHORT
+        sign: UNSIGNED
       - name: insert_mode
         type: BYTE
+        sign: UNSIGNED
       - name: component_hash
         type: INT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpHeldUMessage
     type: FIXED
@@ -573,22 +597,28 @@ client-packets:
       - name: from_component
         type: INT
         order: LITTLE
+        sign: UNSIGNED
       - name: to_item
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: from_slot
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: from_item
         type: INT
         order: MIDDLE
+        sign: UNSIGNED
       - name: to_component
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: to_slot
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpNpcTMessage
     type: FIXED
@@ -599,17 +629,22 @@ client-packets:
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: verify
         type: SHORT
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: NEGATE
+        sign: UNSIGNED
       - name: component_slot
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
       - name: component_hash
         type: INT
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpNpcUMessage
     type: FIXED
@@ -619,14 +654,19 @@ client-packets:
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: item
         type: SHORT
+        sign: UNSIGNED
       - name: component_hash
         type: INT
+        sign: UNSIGNED
       - name: npc_index
         type: SHORT
+        sign: UNSIGNED
       - name: slot
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpNpc1Message
     type: FIXED
@@ -636,8 +676,10 @@ client-packets:
       - name: index
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpNpc2Message
     type: FIXED
@@ -647,9 +689,11 @@ client-packets:
       - name: index
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: NEGATE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpNpc3Message
     type: FIXED
@@ -659,10 +703,12 @@ client-packets:
       - name: movement_type
         type: BYTE
         trans: NEGATE
+        sign: UNSIGNED
       - name: index
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpNpc4Message
     type: FIXED
@@ -672,10 +718,12 @@ client-packets:
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: index
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpNpc5Message
     type: FIXED
@@ -685,9 +733,11 @@ client-packets:
       - name: index
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: NEGATE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpNpc6Message
     type: FIXED
@@ -697,6 +747,7 @@ client-packets:
       - name: npc_id
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpObj1Message
     type: FIXED
@@ -706,15 +757,19 @@ client-packets:
       - name: x
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: item
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
       - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpObj2Message
     type: FIXED
@@ -724,16 +779,20 @@ client-packets:
       - name: movement_type
         type: BYTE
         trans: NEGATE
+        sign: UNSIGNED
       - name: x
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: item
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpObj3Message
     type: FIXED
@@ -742,16 +801,20 @@ client-packets:
     structure:
       - name: z
         type: SHORT
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: x
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
       - name: item
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpObj4Message
     type: FIXED
@@ -761,13 +824,17 @@ client-packets:
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: x
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: item
         type: SHORT
+        sign: UNSIGNED
       - name: z
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpObjUMessage
     type: FIXED
@@ -778,26 +845,33 @@ client-packets:
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: z
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: ground_item
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: component_hash
         type: INT
         order: LITTLE
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: ADD
+        sign: UNSIGNED
       - name: slot
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: item
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.ResumePObjDialogMessage
     type: FIXED
@@ -806,6 +880,7 @@ client-packets:
     structure:
       - name: item
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.ResumePStringDialogMessage
     type: VARIABLE_BYTE
@@ -813,6 +888,7 @@ client-packets:
     structure:
       - name: input
         type: STRING
+        sign: UNSIGNED
 
   # @TODO
   - message: gg.rsmod.game.message.impl.ClientCheatMessage
@@ -821,6 +897,7 @@ client-packets:
     structure:
       - name: command
         type: STRING
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.WindowStatusMessage
     type: FIXED
@@ -829,10 +906,13 @@ client-packets:
     structure:
       - name: mode
         type: BYTE
+        sign: UNSIGNED
       - name: width
         type: SHORT
+        sign: UNSIGNED
       - name: height
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.MoveGameClickMessage
     type: VARIABLE_BYTE
@@ -841,12 +921,15 @@ client-packets:
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: x
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.MoveMinimapClickMessage
     type: VARIABLE_BYTE
@@ -855,12 +938,15 @@ client-packets:
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: z
         type: SHORT
         order: LITTLE
         trans: ADD
+        sign: UNSIGNED
       - name: x
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.TeleportMessage
     type: FIXED
@@ -870,15 +956,19 @@ client-packets:
       - name: z
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
       - name: x
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: height
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: unknown
         type: INT
         order: MIDDLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpLoc1Message
     type: FIXED
@@ -888,16 +978,20 @@ client-packets:
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: id
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: x
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: z
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpLoc2Message
     type: FIXED
@@ -908,15 +1002,19 @@ client-packets:
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: z
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: x
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpLoc3Message
     type: FIXED
@@ -927,14 +1025,18 @@ client-packets:
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: ADD
+        sign: UNSIGNED
       - name: x
         type: SHORT
+        sign: UNSIGNED
       - name: id
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpLoc4Message
     type: FIXED
@@ -943,13 +1045,17 @@ client-packets:
     structure:
       - name: id
         type: SHORT
+        sign: UNSIGNED
       - name: z
         type: SHORT
+        sign: UNSIGNED
       - name: x
         type: SHORT
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: NEGATE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpLoc5Message
     type: FIXED
@@ -958,14 +1064,18 @@ client-packets:
     structure:
       - name: z
         type: SHORT
+        sign: UNSIGNED
       - name: id
         type: SHORT
+        sign: UNSIGNED
       - name: x
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IfButtonMessage
     type: FIXED
@@ -974,10 +1084,13 @@ client-packets:
     structure:
       - name: hash
         type: INT
+        sign: UNSIGNED
       - name: slot
         type: SHORT
+        sign: UNSIGNED
       - name: item
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.ResumePauseButtonMessage
     type: FIXED
@@ -987,9 +1100,11 @@ client-packets:
       - name: hash
         type: INT
         order: MIDDLE
+        sign: UNSIGNED
       - name: slot
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.ResumePCountDialogMessage
     type: FIXED
@@ -998,6 +1113,7 @@ client-packets:
     structure:
       - name: input
         type: INT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpLoc6Message
     type: FIXED
@@ -1006,6 +1122,7 @@ client-packets:
     structure:
       - name: id
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpHeld1Message
     type: FIXED
@@ -1014,11 +1131,14 @@ client-packets:
     structure:
       - name: slot
         type: SHORT
+        sign: UNSIGNED
       - name: item
         type: SHORT
+        sign: UNSIGNED
       - name: component_hash
         type: INT
         order: MIDDLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpHeld2Message
     type: FIXED
@@ -1028,12 +1148,15 @@ client-packets:
       - name: item
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
       - name: component_hash
         type: INT
+        sign: UNSIGNED
       - name: slot
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpHeld3Message
     type: FIXED
@@ -1043,12 +1166,15 @@ client-packets:
       - name: component_hash
         type: INT
         order: MIDDLE
+        sign: UNSIGNED
       - name: slot
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
       - name: item
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpHeld4Message
     type: FIXED
@@ -1059,12 +1185,15 @@ client-packets:
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: slot
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: component_hash
         type: INT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpHeld5Message
     type: FIXED
@@ -1074,10 +1203,13 @@ client-packets:
       - name: slot
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: item
         type: SHORT
+        sign: UNSIGNED
       - name: component_hash
         type: INT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpHeld6Message
     type: FIXED
@@ -1086,6 +1218,7 @@ client-packets:
     structure:
       - name: item
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpHeldTMessage
     type: FIXED
@@ -1095,17 +1228,22 @@ client-packets:
       - name: item_slot
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: spell_slot
         type: SHORT
+        sign: UNSIGNED
       - name: to_hash
         type: INT
         order: MIDDLE
+        sign: UNSIGNED
       - name: from_hash
         type: INT
         order: MIDDLE
+        sign: UNSIGNED
       - name: item_id
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.CloseModalMessage
     type: FIXED
@@ -1118,6 +1256,7 @@ client-packets:
     structure:
       - name: name
         type: BYTE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.EventCameraPositionMessage
     type: FIXED
@@ -1126,8 +1265,10 @@ client-packets:
     structure:
       - name: yaw
         type: SHORT
+        sign: UNSIGNED
       - name: pitch
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.EventMouseIdleMessage
     type: FIXED
@@ -1146,6 +1287,7 @@ client-packets:
     structure:
       - name: dummy
         type: INT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.UpdateAppearanceMessage
     type: FIXED
@@ -1204,10 +1346,13 @@ client-packets:
     structure:
       - name: type
         type: BYTE
+        sign: UNSIGNED
       - name: color
         type: BYTE
+        sign: UNSIGNED
       - name: effect
         type: BYTE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: PING_STATISTICS - need to refactor code to see what values are received
     type: FIXED
@@ -1233,6 +1378,7 @@ client-packets:
     structure:
       - name: state
         type: BYTE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.EventKeyboardMessage
     type: VARIABLE_SHORT
@@ -1242,8 +1388,10 @@ client-packets:
       - name: last_key_press
         type: MEDIUM
         order: LITTLE
+        sign: UNSIGNED
       - name: key
         type: BYTE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: CLAN_KICKUSER
     type: VARIABLE_BYTE
@@ -1278,8 +1426,10 @@ client-packets:
     structure:
       - name: unknown
         type: BYTE
+        sign: UNSIGNED
       - name: index
         type: SHORT
+        sign: UNSIGNED
         trans: ADD
         order: LITTLE
 
@@ -1318,9 +1468,11 @@ client-packets:
     structure:
       - name: index
         type: SHORT
+        sign: UNSIGNED
       - name: unknown
         type: BYTE
         trans: ADD
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpPlayer8Message
     type: FIXED
@@ -1330,10 +1482,12 @@ client-packets:
       - name: unknown
         type: BYTE
         trans: NEGATE
+        sign: UNSIGNED
       - name: index
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: OPOBJ5
     type: FIXED
@@ -1359,17 +1513,22 @@ client-packets:
     structure:
       - name: component_hash
         type: INT
+        sign: UNSIGNED
       - name: keydown
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: verify
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: spell_child_index
         type: SHORT
+        sign: UNSIGNED
       - name: player_index
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
         order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpPlayer2Message
@@ -1380,9 +1539,11 @@ client-packets:
       - name: index
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: unknown
         type: BYTE
         trans: NEGATE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpPlayer3Message
     type: FIXED
@@ -1392,8 +1553,10 @@ client-packets:
       - name: unknown
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: index
         type: SHORT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON4
     type: FIXED
@@ -1414,6 +1577,7 @@ client-packets:
     structure:
       - name: component
         type: INT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.OpPlayer7Message
     type: FIXED
@@ -1423,10 +1587,12 @@ client-packets:
       - name: unknown
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
       - name: index
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: FRIEND_SETRANK
     type: VARIABLE_BYTE
@@ -1453,9 +1619,11 @@ client-packets:
     structure:
       - name: index
         type: SHORT
+        sign: UNSIGNED
       - name: unknown
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: FRIENDLIST_ADD
     type: VARIABLE_BYTE
@@ -1490,9 +1658,11 @@ client-packets:
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: unknown
         type: BYTE
         trans: ADD
+        sign: UNSIGNED
 
     # UNKNOWN is name's length+1
   - message: gg.rsmod.game.message.impl.ResumePNameDialogMessage
@@ -1501,6 +1671,7 @@ client-packets:
     structure:
       - name: name
         type: STRING
+        sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: LOGIN_STATISTICS
     type: VARIABLE_BYTE
