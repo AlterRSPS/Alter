@@ -116,13 +116,6 @@ bind_all_setting(child = 69) {
 }
 
 /**
- * Toggle idle timeout notification.
- */
-bind_all_setting(child = 73) {
-    player.toggleVarbit(OSRSGameframe.IDLE_NOTIFICATION_VARBIT)
-}
-
-/**
  * Toggle number of mouse buttons.
  */
 bind_all_setting(child = 77) {

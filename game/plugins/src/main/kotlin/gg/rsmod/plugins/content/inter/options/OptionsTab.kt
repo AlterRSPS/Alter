@@ -9,15 +9,15 @@ object OptionsTab {
 
     const val OPTIONS_INTERFACE_ID = 116
     const val OPTIONS_TAB_SELECTED_VARBIT = 9683
-    const val ALL_SETTINGS_BUTTON_ID = 73
+    const val ALL_SETTINGS_BUTTON_ID = 75
     const val ALL_SETTINGS_INTERFACE_ID = 134
 
     /**
      * Control Settings Tab
      */
     const val CONTROL_SETTINGS_BUTTON_ID = 65
-    const val ACCEPT_AID_BUTTON_ID = 26
-    const val RUN_MODE_BUTTON_ID = 27
+    const val ACCEPT_AID_BUTTON_ID = 72
+    const val RUN_MODE_BUTTON_ID = 73
 
     const val HOUSE_OPT_BUTTON_ID = 28
     const val HOUSE_OPT_INTERFACE_ID = 370

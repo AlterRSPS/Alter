@@ -9,6 +9,9 @@ import gg.rsmod.game.message.impl.IfButtonMessage
 class IfButton1Decoder : MessageDecoder<IfButtonMessage>() {
 
     override fun decode(opcode: Int, opcodeIndex: Int, values: HashMap<String, Number>, stringValues: HashMap<String, String>): IfButtonMessage {
+
+        System.out.println(values)
+
         val hash = values["hash"]!!.toInt()
         val slot = values["slot"]!!.toInt()
         val item = values["item"]!!.toInt()

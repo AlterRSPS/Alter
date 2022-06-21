@@ -330,6 +330,7 @@ server-packets:
     opcode: 23
     structure:
       - name: text
+
         write: BYTES
       - name: hash
         write: INT
@@ -976,19 +977,23 @@ client-packets:
     length: 7
     structure:
       - name: movement_type
+        sign: UNSIGNED
         type: BYTE
         trans: SUBTRACT
         sign: UNSIGNED
       - name: id
+        sign: UNSIGNED
         type: SHORT
         order: LITTLE
         sign: UNSIGNED
       - name: x
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
         order: LITTLE
         sign: UNSIGNED
       - name: z
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
         sign: UNSIGNED
@@ -999,19 +1004,23 @@ client-packets:
     length: 7
     structure:
       - name: id
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
         order: LITTLE
         sign: UNSIGNED
       - name: movement_type
+        sign: UNSIGNED
         type: BYTE
         trans: SUBTRACT
         sign: UNSIGNED
       - name: z
+        sign: UNSIGNED
         type: SHORT
         order: LITTLE
         sign: UNSIGNED
       - name: x
+        sign: UNSIGNED
         type: SHORT
         order: LITTLE
         sign: UNSIGNED
@@ -1022,18 +1031,22 @@ client-packets:
     length: 7
     structure:
       - name: z
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
         order: LITTLE
         sign: UNSIGNED
       - name: movement_type
+        sign: UNSIGNED
         type: BYTE
         trans: ADD
         sign: UNSIGNED
       - name: x
+        sign: UNSIGNED
         type: SHORT
         sign: UNSIGNED
       - name: id
+        sign: UNSIGNED
         type: SHORT
         order: LITTLE
         sign: UNSIGNED
@@ -1044,15 +1057,19 @@ client-packets:
     length: 7
     structure:
       - name: id
+        sign: UNSIGNED
         type: SHORT
         sign: UNSIGNED
       - name: z
+        sign: UNSIGNED
         type: SHORT
         sign: UNSIGNED
       - name: x
+        sign: UNSIGNED
         type: SHORT
         sign: UNSIGNED
       - name: movement_type
+        sign: UNSIGNED
         type: BYTE
         trans: NEGATE
         sign: UNSIGNED
@@ -1063,17 +1080,21 @@ client-packets:
     length: 7
     structure:
       - name: z
+        sign: UNSIGNED
         type: SHORT
         sign: UNSIGNED
       - name: id
+        sign: UNSIGNED
         type: SHORT
         sign: UNSIGNED
       - name: x
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
         order: LITTLE
         sign: UNSIGNED
       - name: movement_type
+        sign: UNSIGNED
         type: BYTE
         sign: UNSIGNED
 
@@ -1345,12 +1366,15 @@ client-packets:
     opcode: 25
     structure:
       - name: type
+        sign: UNSIGNED
         type: BYTE
         sign: UNSIGNED
       - name: color
+        sign: UNSIGNED
         type: BYTE
         sign: UNSIGNED
       - name: effect
+        sign: UNSIGNED
         type: BYTE
         sign: UNSIGNED
 
@@ -1655,11 +1679,13 @@ client-packets:
     length: 3
     structure:
       - name: index
+        sign: UNSIGNED
         type: SHORT
         trans: ADD
         order: LITTLE
         sign: UNSIGNED
       - name: unknown
+        sign: UNSIGNED
         type: BYTE
         trans: ADD
         sign: UNSIGNED
