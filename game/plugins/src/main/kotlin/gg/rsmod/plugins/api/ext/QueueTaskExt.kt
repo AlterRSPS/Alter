@@ -75,9 +75,6 @@ inline val QueueTask.npc: Npc get() = ctx as Npc
 suspend fun QueueTask.options(vararg options: String, title: String = "Select an Option", next: String = "Next Page", back: String = "Back", optionIndex: Int = 0): Int {
     player.sendTempVarbit(5983, 1)
     player.runClientScript(2379)
-    if (options.size > 5) {
-
-    }
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 219)
     player.runClientScript(58, title, options.joinToString("|"))
     player.setInterfaceEvents(interfaceId = 219, component = 1, from = 1, to = options.size, setting = 1)
