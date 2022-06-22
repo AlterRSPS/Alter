@@ -39,7 +39,7 @@ Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#sect
 * Disable/Enable the plugin and login into game and done enjoy making content or w.e you will do.
 
 ### Credits:
-* Credits are given out to everyone who helped out with information or contributed in some form to the project. And can be found in: 
+* Credits are given out to everyone who helped out with information or contributed in some form to the project. And can be found in: [Here](https://github.com/AlterRSPS)
 
 ### Some info:
 * Original project founder: [Tomm0017](https://github.com/Tomm0017)
