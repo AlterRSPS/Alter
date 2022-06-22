@@ -1607,11 +1607,29 @@ client-packets:
     length: 11
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF_BUTTONT
+  - message: gg.rsmod.game.message.impl.IfButtonTMessage
     type: FIXED
     opcode: 15
     length: 16
-    ignore: true
+    structure:
+      - name: from_component_hash
+        type: INT
+        order: MIDDLE
+      - name: to_component_hash
+        type: INT
+        order: LITTLE
+      - name: toItem
+        type: SHORT
+      - name: fromSlot
+        type: SHORT
+        trans: ADD
+      - name: toSlot
+        type: SHORT
+        order: LITTLE
+      - name: fromItem
+        type: SHORT
+        trans: ADD
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpPlayer5Message
     type: FIXED
