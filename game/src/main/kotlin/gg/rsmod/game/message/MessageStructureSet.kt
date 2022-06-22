@@ -1,6 +1,7 @@
 package gg.rsmod.game.message
 
 import gg.rsmod.game.message.impl.IgnoreMessage
+import gg.rsmod.game.plugin.PluginRepository
 import gg.rsmod.net.packet.DataOrder
 import gg.rsmod.net.packet.DataSignature
 import gg.rsmod.net.packet.DataTransformation
@@ -146,12 +147,6 @@ class MessageStructureSet {
                                 order = DataOrder.LITTLE
                                 signature = DataSignature.UNSIGNED
                             }
-                            "medium2" -> {
-                                println("UNKNOWN")
-                            }
-                            "medium0" -> {
-                                println("UNKNOWN")
-                            }
                             "medium1" -> {
                                 type = DataType.MEDIUM
                                 order = DataOrder.INVERSE_MIDDLE
@@ -173,7 +168,7 @@ class MessageStructureSet {
                                 signature = DataSignature.UNSIGNED
                             }
                             else -> {
-                                println("???: $write");
+                                PluginRepository.logger.warn("$write is unknown")
                             }
                         }
                         if (type == null) {

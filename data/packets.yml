@@ -174,9 +174,9 @@ server-packets:
     type: FIXED
     opcode: 21
     structure:
-      - name: x
-        write: BYTE
       - name: z
+        write: BYTE
+      - name: x
         write: ByteNeg
 
   - message: gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
@@ -189,9 +189,6 @@ server-packets:
         write: Byte
       - name: payload
         write: BYTES
-
-
-
 
   - message: gg.rsmod.game.message.impl.IfOpenTopMessage
     type: FIXED

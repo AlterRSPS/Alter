@@ -51,7 +51,5 @@ class IfButtonDHandler : MessageHandler<IfButtonDMessage> {
                         "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]")
             }
         }
-
-
     }
 }
