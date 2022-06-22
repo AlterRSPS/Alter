@@ -12,7 +12,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 First download: [2022-06-08-rev205.tar.gz](https://archive.runestats.com/osrs/2022-06-08-rev205.tar.gz)
 Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed. 
 * Firstly open up Intellij, (If you already have a project open, either do File -> Close, or File -> New -> Project from Version Control)
-  ![tutor1](https://raw.githubusercontent.com/AlterRSPS/Alter/docs/resources/tutor1.png)
+![[tutor1](https://raw.githubusercontent.com/AlterRSPS/Alter/docs/resources/tutor1.png)](Test)
   ![tutor2](https://raw.githubusercontent.com/AlterRSPS/Alter/docs/resources/tutor2.png)
 * Second paste `https://github.com/AlterRSPS/Alter` in URL Field and hit Clone.
 * Let the project fully load.
