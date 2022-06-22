@@ -238,9 +238,6 @@ fun Player.openOverlayInterface(displayMode: DisplayMode) {
     write(IfOpenTopMessage(component))
 }
 
-/**
- * @TODO
- */
 fun Player.initInterfaces(displayMode: DisplayMode) {
     when(displayMode) {
         DisplayMode.FIXED -> {

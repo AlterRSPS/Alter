@@ -30,13 +30,13 @@ enum class InterfaceDestination(val interfaceId: Int, val fixedChildId: Int, val
     MAIN_SCREEN(interfaceId = -1, fixedChildId = 9, resizeChildId = 20, resizeListChildId = 16, fullscreenChildId = 13, clickThrough = false),
     TAB_AREA(interfaceId = -1, fixedChildId = 16, resizeChildId = 72, resizeListChildId = 70, clickThrough = false),
     WALKABLE(interfaceId = -1, fixedChildId = 9, resizeChildId = 3, resizeListChildId = 3),
-    WORLD_MAP(interfaceId = -1, fixedChildId = 9, resizeChildId = 17, resizeListChildId = 15, fullscreenChildId = 36),
+    WORLD_MAP(interfaceId = -1, fixedChildId = 41, resizeChildId = 17, resizeListChildId = 15, fullscreenChildId = 36),
     WORLD_MAP_FULL(interfaceId = -1, fixedChildId = 27, resizeChildId = 21, resizeListChildId = 37, fullscreenChildId = 27, clickThrough = false), // @TODO
     OVERLAY(interfaceId = -1, fixedChildId = 9, resizeChildId = 92, resizeListChildId = 68, fullscreenChildId = 29);
 
     /**
      * gg.rsmod.game.message.impl.RebuildNormalMessage
-    gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
+     * gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
      */
     fun isSwitchable(): Boolean = when (this) {
         CHAT_BOX, MAIN_SCREEN, WALKABLE, TAB_AREA,

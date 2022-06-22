@@ -3,11 +3,8 @@ package gg.rsmod.plugins.content.inter.options
 import gg.rsmod.plugins.content.inter.options.OptionsTab.OPTIONS_INTERFACE_ID
 import gg.rsmod.plugins.content.inter.options.OptionsTab.ALL_SETTINGS_INTERFACE_ID
 import gg.rsmod.plugins.content.inter.options.OptionsTab.ALL_SETTINGS_BUTTON_ID
-import gg.rsmod.game.model.attr.DISPLAY_MODE_CHANGE_ATTR
-import gg.rsmod.game.model.attr.INTERACTING_ITEM_ID
 import gg.rsmod.game.model.attr.INTERACTING_SLOT_ATTR
 import gg.rsmod.game.model.interf.DisplayMode
-
 
 
 fun bind_setting(child: Int, plugin: Plugin.() -> Unit) {
@@ -148,10 +145,17 @@ bind_setting(child = 36) {
 }
 
 /**
+ * Toggle run mode
+ */
+bind_setting(child = OptionsTab.RUN_MODE_BUTTON_ID) {
+    player.toggleVarp(OSRSGameframe.RUN_MODE_VARP)
+}
+
+/**
  * Accept aid toggle.
  */
 bind_setting(child = OptionsTab.ACCEPT_AID_BUTTON_ID) {
-    player.toggleVarp(OSRSGameframe.ACCEPT_AID_VARBIT)
+    player.toggleVarbit(OSRSGameframe.ACCEPT_AID_VARBIT)
 }
 
 // Run toggle already handled by run_energy plugin

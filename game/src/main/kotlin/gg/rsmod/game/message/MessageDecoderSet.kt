@@ -47,6 +47,9 @@ class MessageDecoderSet {
 
         put(CloseModalMessage::class.java, CloseModalDecoder(), CloseMainComponentHandler(), structures)
         put(IfButtonMessage::class.java, IfButton1Decoder(), IfButton1Handler(), structures)
+
+        put(IfButtonTMessage::class.java, IfButtonTDecoder(), IfButtonTHandler(), structures)
+
         put(IfButtonDMessage::class.java, IfButtonDDecoder(), IfButtonDHandler(), structures)
         put(IfModelOp1Message::class.java, IfModelOp1Decoder(), IfModelOp1Handler(), structures)
 

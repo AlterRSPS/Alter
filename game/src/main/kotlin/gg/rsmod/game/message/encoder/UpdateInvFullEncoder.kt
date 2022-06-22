@@ -13,7 +13,7 @@ import gg.rsmod.net.packet.GamePacketBuilder
 class UpdateInvFullEncoder : MessageEncoder<UpdateInvFullMessage>() {
 
     override fun extract(message: UpdateInvFullMessage, key: String): Number = when (key) {
-        "component_hash" -> message.componentHash
+        "component_hash" -> -1 //message.componentHash
         "container_key" -> message.containerKey
         "item_count" -> message.items.size
         else -> throw Exception("Unhandled value key.")
@@ -30,7 +30,7 @@ class UpdateInvFullEncoder : MessageEncoder<UpdateInvFullMessage>() {
             val buf = GamePacketBuilder()
             message.items.forEach { item ->
                 if (item != null && item.amount != 0) {
-                    buf.put(DataType.BYTE, DataTransformation.NEGATE, Math.min(255, item.amount))
+                    buf.put(DataType.BYTE, Math.min(255, item.amount))
                     if (item.amount >= 255) {
                         buf.put(DataType.INT, DataOrder.INVERSE_MIDDLE, item.amount)
                     }

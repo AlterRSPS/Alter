@@ -58,17 +58,7 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
         }
     }
 
-    val filterpackets: Boolean = false
-
-    /**
-     * Packet Filter.
-     */
-    val disabled = listOf(
-        UpdateStatMessage::class,
-    )
-
     fun write(message: Message) {
-        if(filterpackets && message::class in disabled) return
         channel.write(message)
     }
 

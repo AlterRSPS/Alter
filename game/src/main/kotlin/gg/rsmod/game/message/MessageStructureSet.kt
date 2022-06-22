@@ -1,6 +1,7 @@
 package gg.rsmod.game.message
 
 import gg.rsmod.game.message.impl.IgnoreMessage
+import gg.rsmod.game.plugin.PluginRepository
 import gg.rsmod.net.packet.DataOrder
 import gg.rsmod.net.packet.DataSignature
 import gg.rsmod.net.packet.DataTransformation
@@ -12,6 +13,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import java.io.File
 import java.util.ArrayList
 import java.util.LinkedHashMap
+import javax.xml.crypto.Data
 import kotlin.collections.set
 
 /**
@@ -70,20 +72,121 @@ class MessageStructureSet {
                 val packetValues = Object2ObjectLinkedOpenHashMap<String, MessageValue>()
                 packetStructure?.forEach { structure ->
                     val structValues = structure as LinkedHashMap<*, *>
-                    val name = structValues["name"] as String
-                    val order = if (structValues.containsKey("order")) DataOrder.valueOf(structValues["order"] as String) else DataOrder.BIG
-                    val transform = if (structValues.containsKey("trans")) DataTransformation.valueOf(structValues["trans"] as String) else DataTransformation.NONE
-                    val type = DataType.valueOf(structValues["type"] as String)
-                    val signature = if (structValues.containsKey("sign")) DataSignature.valueOf((structValues["sign"] as String).toUpperCase()) else DataSignature.SIGNED
-                    packetValues[name] = MessageValue(id = name, order = order, transformation = transform, type = type,
+                    if (!structValues.containsKey("write")) {
+                        val name = structValues["name"] as String
+                        val order = if (structValues.containsKey("order")) DataOrder.valueOf(structValues["order"] as String) else DataOrder.BIG
+                        val transform = if (structValues.containsKey("trans")) DataTransformation.valueOf(structValues["trans"] as String) else DataTransformation.NONE
+                        val type = DataType.valueOf(structValues["type"] as String)
+                        val signature = if (structValues.containsKey("sign")) DataSignature.valueOf((structValues["sign"] as String).toUpperCase()) else DataSignature.SIGNED
+                        packetValues[name] = MessageValue(id = name, order = order, transformation = transform, type = type, signature = signature)
+                    } else {
+                        // Default values
+                        val name = structValues["name"] as String
+                        val write = structValues["write"] as String
+                        var order = DataOrder.BIG
+                        var transform = DataTransformation.NONE
+                        var type:DataType? = null
+                        var signature = DataSignature.SIGNED
+                        /**
+                         * Will be removed
+                         *
+                         */
+                        when (write.toLowerCase()) {
+                            "byte" -> {
+                                type = DataType.BYTE
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "short" -> {
+                                type = DataType.SHORT
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "medium" -> {
+                                type = DataType.MEDIUM
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "int" -> {
+                                type = DataType.INT
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "string" -> {
+                                type = DataType.STRING
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "bytes" -> {
+                                type = DataType.BYTES
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "byteadd" -> {
+                                type = DataType.BYTE
+                                transform = DataTransformation.ADD
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "byteneg" -> {
+                                type = DataType.BYTE
+                                transform = DataTransformation.NEGATE
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "bytesub" -> {
+                                type = DataType.BYTE
+                                transform = DataTransformation.SUBTRACT
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "shortle" -> {
+                                type = DataType.SHORT
+                                order = DataOrder.LITTLE
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "shortadd" -> {
+                                type = DataType.SHORT
+                                transform = DataTransformation.ADD
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "shortaddle" -> {
+                                type = DataType.SHORT
+                                transform = DataTransformation.ADD
+                                order = DataOrder.LITTLE
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "medium1" -> {
+                                type = DataType.MEDIUM
+                                order = DataOrder.INVERSE_MIDDLE
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "intle" -> {
+                                type = DataType.INT
+                                order = DataOrder.LITTLE
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "intime" -> {
+                                type = DataType.INT
+                                order = DataOrder.INVERSE_MIDDLE
+                                signature = DataSignature.UNSIGNED
+                            }
+                            "intme" -> {
+                                type = DataType.INT
+                                order = DataOrder.MIDDLE
+                                signature = DataSignature.UNSIGNED
+                            }
+                            else -> {
+                                PluginRepository.logger.warn("$write is unknown")
+                            }
+                        }
+                        if (type == null) {
+                            throw Exception("$name type = null")
+                        }
+                        packetValues[name] = MessageValue(id = name, order = order, transformation = transform, type = type,
                             signature = signature)
+                    }
                 }
+
                 val messageStructure = MessageStructure(type = packetType, opcodes = packetOpcodes.toIntArray(), length = packetLength,
                         ignore = ignore, values = packetValues)
                 structureClasses[clazz] = messageStructure
                 if (storeOpcodes) {
                     packetOpcodes.forEach { opcode -> structureOpcodes[opcode] = messageStructure }
                 }
+
+
             } else {
                 val messageStructure = MessageStructure(type = packetType, opcodes = packetOpcodes.toIntArray(), length = packetLength,
                         ignore = ignore, values = Object2ObjectLinkedOpenHashMap(0))

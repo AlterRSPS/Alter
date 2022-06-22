@@ -29,6 +29,10 @@ set_menu_open_check {
  * Execute when a player logs in.
  */
 on_login {
+    // Remove after
+    spawn_item(522, 1, player.tile)
+
+
     // Skill-related logic.
     player.calculateAndSetCombatLevel()
     if (player.getSkills().getBaseLevel(Skills.HITPOINTS) < 10) {
@@ -50,7 +54,7 @@ on_login {
 
     // Interface-related logic.
     //openWelcomeScreen(player, (time_lapsed/TimeConstants.MINUTE).toInt(), player.membersDaysLeft())
-
+    player.setInterfaceEvents(interfaceId = 149, component = 0, range = 0..27, setting = 3407068)
     player.openDefaultInterfaces()
     // Inform the client whether or not we have a display name.
     val displayName = player.username.isNotBlank()
