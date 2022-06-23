@@ -21,6 +21,9 @@ SpecialAttacks.register(Items.DRAGON_DAGGER, SPECIAL_REQUIREMENT) {
     }
 }
 
+/**
+ * Example of set_weapon_combat_logic()
+ */
 set_weapon_combat_logic(Items.DRAGON_DAGGER) {
     /**
      * Need to add a check for which attack -> style the player is using
