@@ -2,9 +2,7 @@ package gg.rsmod.game.service.game
 
 import gg.rsmod.game.Server
 import gg.rsmod.game.fs.DefinitionSet
-import gg.rsmod.game.fs.def.ItemDef
-import gg.rsmod.game.fs.def.NpcDef
-import gg.rsmod.game.fs.def.ObjectDef
+import gg.rsmod.game.fs.def.*
 import gg.rsmod.game.model.World
 import gg.rsmod.game.service.Service
 import gg.rsmod.util.ServerProperties
@@ -51,12 +49,52 @@ class DumpEntityIdService : Service {
         writeItems(definitions, namer)
         writeNpcs(definitions, namer)
         writeObjs(definitions, namer)
+        writeStructs(definitions, namer)
     }
 
     override fun bindNet(server: Server, world: World) {
     }
 
     override fun terminate(server: Server, world: World) {
+    }
+
+    private fun writeStructs(definitions: DefinitionSet, namer: Namer) {
+        // Get all enums from cache
+        val enumCount = definitions.getCount(EnumDef::class.java)
+        val enums : MutableList<EnumDef> = mutableListOf()
+
+        // Get all structs from cache
+        val structCount = definitions.getCount(StructDef::class.java)
+        val structs : MutableList<StructDef> = mutableListOf()
+
+        for (s in 0 until structCount) {
+            val struct = definitions.getNullable(StructDef::class.java, s) ?: continue
+            structs.add(s, struct)
+        }
+
+        for (e in 0 until enumCount) {
+            val enum = definitions.getNullable(EnumDef::class.java, e) ?: continue
+            enums.add(e, enum)
+        }
+
+        val settingsFile = generateWriter("SettingCategories.kt")
+
+        // Get all settings structs
+        enums[422].values.forEach { (_, u) ->
+            var name = ""
+
+            structs[u as Int].params.forEach { (k, v) ->
+                if(k == 744) {
+                    name = namer.name(v.toString(), k)
+                }
+
+                if(k == 745 && name.isNotBlank()) {
+                    write(settingsFile, "const val $name = $v")
+                }
+            }
+        }
+
+        endWriter(settingsFile)
     }
 
     private fun writeItems(definitions: DefinitionSet, namer: Namer) {

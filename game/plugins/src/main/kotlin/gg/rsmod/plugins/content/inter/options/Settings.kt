@@ -7,6 +7,7 @@ object Settings {
     /**
      * Controls setting tab
      */
-    const val KEYBIND = 19
-    const val KEYBIND_DROPDOWN = 28
+    const val DROPDOWN = 19
+    const val DROPDOWN_CLICK = 28
+    const val TAB_CLICK = 23
 }
