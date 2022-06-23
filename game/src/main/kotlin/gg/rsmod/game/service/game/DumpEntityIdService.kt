@@ -78,6 +78,7 @@ class DumpEntityIdService : Service {
         }
 
         val settingsFile = generateWriter("SettingCategories.kt")
+        val structsFile = generateWriter("SettingStructs.kt")
 
         // Get all settings structs
         enums[422].values.forEach { (_, u) ->
@@ -85,15 +86,20 @@ class DumpEntityIdService : Service {
 
             structs[u as Int].params.forEach { (k, v) ->
                 if(k == 744) {
-                    name = namer.name(v.toString(), k)
+                    name = namer.name(v.toString() + "_enum_id", k)
                 }
 
                 if(k == 745 && name.isNotBlank()) {
                     write(settingsFile, "const val $name = $v")
+
+                    enums[v as Int].values.forEach { e ->
+                        System.out.println(e)
+                    }
                 }
             }
         }
 
+        endWriter(structsFile)
         endWriter(settingsFile)
     }
 

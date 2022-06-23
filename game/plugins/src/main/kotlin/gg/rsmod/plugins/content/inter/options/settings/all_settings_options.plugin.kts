@@ -1,3 +1,4 @@
+import gg.rsmod.game.fs.DefinitionSet
 import gg.rsmod.game.model.attr.AttributeKey
 import gg.rsmod.game.plugin.Plugin
 import gg.rsmod.plugins.api.cfg.Varbits
