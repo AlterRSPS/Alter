@@ -71,7 +71,6 @@ class ItemMetadataService : Service {
 
                 if (equipment.weaponType == -1 && slots != null) {
                     if (slots.slot == 3) {
-                        //println("Setting 17 to -1 at $fileId");
                         def.weaponType = 17
                     }
                 } else {

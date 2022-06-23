@@ -68,9 +68,6 @@ bind_setting(child = OptionsTab.ALL_SETTINGS_BUTTON_ID) {
         return@bind_setting
     }
 
-    System.out.println("InterfaceID: " + OptionsTab.ALL_SETTINGS_INTERFACE_ID)
-    System.out.println("topComponent: " + world_child)
-    System.out.println("topInterface: " + main_parent)
 
     player.openInterface(interfaceId = OptionsTab.ALL_SETTINGS_INTERFACE_ID, parent = main_parent, child = world_child)
     player.setInterfaceEvents(interfaceId = OptionsTab.ALL_SETTINGS_INTERFACE_ID, component = 21, range = 0..147, setting = 2)

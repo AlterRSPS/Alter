@@ -449,6 +449,11 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun on_item_equip(item: Int, logic: (Plugin).() -> Unit) = r.bindEquipItem(item, logic)
 
     /**
+     * Invoke [logic] when attacking with that weapon.
+     */
+    fun set_weapon_combat_logic(item: Int, logic: (Plugin).() -> Unit) = r.setWeaponCombat(item, logic)
+
+    /**
      * Invoke [logic] when [item] is removed from equipment.
      */
     fun on_item_unequip(item: Int, logic: (Plugin).() -> Unit) = r.bindUnequipItem(item, logic)
