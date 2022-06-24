@@ -46,10 +46,8 @@ suspend fun cycle(it: QueueTask): Boolean {
         pawn.resetFacePawn()
         return false
     }
-
     if (pawn is Player) {
         pawn.setVarp(Combat.PRIORITY_PID_VARP, target.index)
-
         if (!pawn.attr.has(Combat.CASTING_SPELL) && pawn.getVarbit(Combat.SELECTED_AUTOCAST_VARBIT) != 0) {
             val spell = CombatSpell.values.firstOrNull { it.autoCastId == pawn.getVarbit(Combat.SELECTED_AUTOCAST_VARBIT) }
             if (spell != null) {
@@ -60,9 +58,7 @@ suspend fun cycle(it: QueueTask): Boolean {
 
     val strategy = CombatConfigs.getCombatStrategy(pawn)
     val attackRange = strategy.getAttackRange(pawn)
-
     val pathFound = PawnPathAction.walkTo(it, pawn, target, interactionRange = attackRange, lineOfSight = false)
-
     if (target != pawn.attr[FACING_PAWN_ATTR]?.get()) {
         return false
     }
