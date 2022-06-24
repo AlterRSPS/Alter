@@ -76,6 +76,7 @@ fun Player.focusTab(tab: GameframeTab) {
 }
 
 fun Player.setInterfaceUnderlay(color: Int, transparency: Int) {
+    runClientScript(917, color, transparency)
     runClientScript(2524, color, transparency)
 }
 

@@ -1,3 +1,5 @@
+import gg.rsmod.game.model.attr.INTERACTING_SLOT_ATTR
+import gg.rsmod.game.model.interf.DisplayMode
 import gg.rsmod.plugins.content.inter.options.OptionsTab
 
 fun bind_setting(child: Int, plugin: Plugin.() -> Unit) {
@@ -5,6 +7,7 @@ fun bind_setting(child: Int, plugin: Plugin.() -> Unit) {
         plugin(this)
     }
 }
+
 
 on_login {
     player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 6, range = 1..4, setting = 2) // Player option priority
@@ -26,13 +29,24 @@ on_login {
     player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 41, range = 0..21, setting = 2)
     player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 23, range =  0..21, setting = 2)
 }
-val ints = listOf( 55, 84, 69, 83, 81, 41, 23, 6, 7 )
-ints.forEach { i ->
-    bind_setting(child = i) {
-        player.message("interacting with $i")
+bind_setting(child = 84) {
+    //val slot = player.getInteractingSlot()
+    val slot = player.attr[INTERACTING_SLOT_ATTR]!!
+    val mode = when (slot) {
+        2 -> {
+            player.setVarbit(OSRSGameframe.SIDESTONES_ARRAGEMENT_VARBIT, 0)
+            DisplayMode.RESIZABLE_NORMAL
+        }
+        3 -> {
+            player.setVarbit(OSRSGameframe.SIDESTONES_ARRAGEMENT_VARBIT, 1)
+            DisplayMode.RESIZABLE_LIST
+        }
+        else -> DisplayMode.FIXED
     }
+    if(!(mode.isResizable() && player.interfaces.displayMode.isResizable()))
+    player.runClientScript(3998, slot-1)
+    player.toggleDisplayInterface(mode)
 }
-
 /**
  * Toggle run mode
  */
