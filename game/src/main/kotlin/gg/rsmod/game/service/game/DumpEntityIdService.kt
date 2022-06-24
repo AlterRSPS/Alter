@@ -59,7 +59,7 @@ class DumpEntityIdService : Service {
     }
 
     private fun writeStructs(definitions: DefinitionSet, namer: Namer) {
-        // Get all enums from cache
+        /*// Get all enums from cache
         val enumCount = definitions.getCount(EnumDef::class.java)
         val enums : MutableList<EnumDef> = mutableListOf()
 
@@ -100,7 +100,7 @@ class DumpEntityIdService : Service {
         }
 
         endWriter(structsFile)
-        endWriter(settingsFile)
+        endWriter(settingsFile)*/
     }
 
     private fun writeItems(definitions: DefinitionSet, namer: Namer) {
