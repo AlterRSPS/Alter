@@ -38,6 +38,7 @@ import kotlinx.coroutines.CoroutineScope
 import mu.KLogging
 import net.runelite.cache.IndexType
 import net.runelite.cache.fs.Store
+import okhttp3.internal.http2.Settings
 import java.io.File
 import java.security.SecureRandom
 import java.util.ArrayList
@@ -62,6 +63,8 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      * The [DefinitionSet] that holds general filestore data.
      */
     val definitions = DefinitionSet()
+
+    var settings = null
 
     /**
      * The [HuffmanCodec] used to compress and decompress public chat messages.

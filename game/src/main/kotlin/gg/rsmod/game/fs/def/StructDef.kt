@@ -17,4 +17,5 @@ class StructDef(override val id: Int) : Definition(id) {
         }
     }
 
+
 }
