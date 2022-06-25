@@ -219,13 +219,13 @@ suspend fun QueueTask.chatNpc(message: String, npc: Int = -1, animation: Int = 5
 
     player.runClientScript(2379)
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 231)
-    player.setComponentNpcHead(interfaceId = 231, component = 6, npc = npcId)
-    player.setComponentAnim(interfaceId = 231, component = 6, anim = animation)
-    player.setComponentText(interfaceId = 231, component = 3, text = dialogTitle)
-    player.setComponentText(interfaceId = 231, component = 5, text = message)
+    player.setComponentNpcHead(interfaceId = 231, component = 2, npc = npcId)
+    player.setComponentAnim(interfaceId = 231, component = 2, anim = animation)
+    player.setComponentText(interfaceId = 231, component = 4, text = dialogTitle)
+    player.setComponentText(interfaceId = 231, component = 6, text = message)
     player.runClientScript(600, 1, 1, 16, 15138820)
     player.setInterfaceEvents(interfaceId = 231, component = 4, from = -1, to = -1, setting = 1)
-    player.setComponentText(interfaceId = 231, component = 4, text = "Click here to continue")
+    player.setComponentText(interfaceId = 231, component = 5, text = "Click here to continue")
 
     terminateAction = closeDialog
     waitReturnValue()
