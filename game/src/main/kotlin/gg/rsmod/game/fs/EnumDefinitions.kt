@@ -27,19 +27,23 @@ class EnumDefinitions(id : Int, world : World) {
         return enumId
     }
 
-    fun getValueAsString(value: Int) : String {
-        return values[value].toString()
-    }
-
-    fun getValueAsInt(value : Int) : Int {
-        return values[value] as Int
-    }
-
-    fun getValueAsBoolean(value: Int) : Boolean {
-        return values[value] as Boolean
-    }
-
     fun getValues() : Int2ObjectOpenHashMap<Any> {
         return values
+    }
+
+    fun getValueAsString(param: Int) : String? {
+        return values.getOrDefault(param, null) as String?
+    }
+
+    fun getValueAsInt(param : Int) : Int? {
+        return values.getOrDefault(param, null) as Int?
+    }
+
+    fun getValueAsBoolean(param: Int) : Boolean {
+        if(values.getOrDefault(param, "no") == "yes") {
+            return true
+        }
+
+        return false
     }
 }

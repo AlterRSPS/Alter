@@ -27,7 +27,6 @@ import gg.rsmod.game.plugin.Plugin
 import gg.rsmod.game.plugin.PluginRepository
 import gg.rsmod.game.service.GameService
 import gg.rsmod.game.service.Service
-import gg.rsmod.game.service.world.Settings
 import gg.rsmod.game.service.xtea.XteaKeyService
 import gg.rsmod.game.sync.block.UpdateBlockSet
 import gg.rsmod.util.HuffmanCodec
@@ -39,6 +38,7 @@ import kotlinx.coroutines.CoroutineScope
 import mu.KLogging
 import net.runelite.cache.IndexType
 import net.runelite.cache.fs.Store
+import okhttp3.internal.http2.Settings
 import java.io.File
 import java.security.SecureRandom
 import java.util.ArrayList
@@ -64,7 +64,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      */
     val definitions = DefinitionSet()
 
-    lateinit var settings : Settings
+    var settings = null
 
     /**
      * The [HuffmanCodec] used to compress and decompress public chat messages.
@@ -589,14 +589,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
             return services.firstOrNull { type.isAssignableFrom(it::class.java) } as T?
         }
         return services.firstOrNull { it::class.java == type } as T?
-    }
-
-    internal fun loadSettings() {
-        logger.info("Initiated Settings")
-        settings = Settings(this)
-        settings.initializeCategories()
-        logger.info("Loaded Settings")
-        logger.info("Settings: {}", settings.getCategories())
     }
 
     /**

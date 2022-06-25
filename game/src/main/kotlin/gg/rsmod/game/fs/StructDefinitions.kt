@@ -1,5 +1,6 @@
 package gg.rsmod.game.fs
 
+import gg.rsmod.game.Server.Companion.logger
 import gg.rsmod.game.fs.def.StructDef
 import gg.rsmod.game.model.World
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
@@ -22,19 +23,27 @@ class StructDefinitions(id : Int, world : World) {
         return this
     }
 
+    fun getAllParams() : Int2ObjectOpenHashMap<Any> {
+        return params
+    }
+
     fun getId() : Int {
         return structId
     }
 
-    fun getParamAsString(param: Int) : String {
-        return params[param].toString()
+    fun getParamAsString(param: Int) : String? {
+        return params.getOrDefault(param, null) as String?
     }
 
-    fun getParamAsInt(param : Int) : Int {
-        return params[param] as Int
+    fun getParamAsInt(param : Int) : Int? {
+        return params.getOrDefault(param, null) as Int?
     }
 
     fun getParamAsBoolean(param: Int) : Boolean {
-        return params[param] as Boolean
+        if(params.getOrDefault(param, "no") == "yes") {
+            return true
+        }
+
+        return false
     }
 }

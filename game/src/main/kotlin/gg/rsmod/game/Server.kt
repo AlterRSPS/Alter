@@ -127,7 +127,6 @@ class Server {
          * Load the services required to run the server.
          */
         world.loadServices(this, gameProperties)
-        world.loadSettings()
         world.init()
 
         if (gameContext.preloadMaps) {
