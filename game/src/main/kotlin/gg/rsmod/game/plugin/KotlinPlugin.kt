@@ -220,6 +220,25 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     /**
+     * Checks if a [obj] has [option]
+     * Returns true if that option found for that object.
+     */
+    fun if_obj_has_option(obj: Int, option: String) : Boolean {
+        val opt = option.toLowerCase()
+        val def = world.definitions.get(ObjectDef::class.java, obj)
+        val slot = def.options.indexOfFirst {
+            it?.toLowerCase() == opt
+        }
+        if (slot < 1) {
+            return false
+        }
+        return true
+    }
+
+
+
+
+    /**
      * Invoke [logic] when the [option] option is clicked on an [Npc].
      *
      * This method should be used over the option-int variant whenever possible.
@@ -447,6 +466,11 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      * Invoke [logic] when [item] is equipped.
      */
     fun on_item_equip(item: Int, logic: (Plugin).() -> Unit) = r.bindEquipItem(item, logic)
+
+    /**
+     * Invoke [logic] when attacking with that weapon.
+     */
+    fun set_weapon_combat_logic(item: Int, logic: (Plugin).() -> Unit) = r.setWeaponCombat(item, logic)
 
     /**
      * Invoke [logic] when [item] is removed from equipment.

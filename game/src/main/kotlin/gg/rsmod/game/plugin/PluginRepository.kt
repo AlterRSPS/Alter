@@ -176,6 +176,11 @@ class PluginRepository(val world: World) {
     private val equipItemPlugins = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
 
     /**
+     * A map of plugins that maps weapon combat logic.
+     */
+    private val weaponCombatLogic = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
+
+    /**
      * A map of plugins that are executed when a player un-equips an item.
      */
     private val unequipItemPlugins = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
@@ -961,6 +966,15 @@ class PluginRepository(val world: World) {
         return true
     }
 
+    fun setWeaponCombat(item: Int, plugin: Plugin.() -> Unit) {
+        if (weaponCombatLogic.containsKey(item)) {
+            logger.error("Weapon logic already bound to a plugin: [item=$item]")
+            throw IllegalStateException("Weapon logic already bound to a plugin: [item=$item]")
+        }
+        weaponCombatLogic[item] = plugin
+        pluginCount++
+    }
+
     fun bindEquipItem(item: Int, plugin: Plugin.() -> Unit) {
         if (equipItemPlugins.containsKey(item)) {
             logger.error("Equip item already bound to a plugin: [item=$item]")
@@ -986,6 +1000,15 @@ class PluginRepository(val world: World) {
         }
         unequipItemPlugins[item] = plugin
         pluginCount++
+    }
+
+    fun executeWeaponCombatLogic(p: Player, item: Int): Boolean {
+        val plugin = weaponCombatLogic[item]
+        if (plugin != null) {
+            p.executePlugin(plugin)
+            return true
+        }
+        return false
     }
 
     fun executeUnequipItem(p: Player, item: Int): Boolean {

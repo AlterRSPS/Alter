@@ -20,7 +20,6 @@ import java.lang.ref.WeakReference
 class OpLoc3Handler : MessageHandler<OpLoc3Message> {
 
     override fun handle(client: Client, world: World, message: OpLoc3Message) {
-        println("3")
         /*
          * If tile is too far away, don't process it.
          */
