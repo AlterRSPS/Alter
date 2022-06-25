@@ -966,14 +966,6 @@ class PluginRepository(val world: World) {
         return true
     }
 
-    fun setWeaponCombat(item: Int, plugin: Plugin.() -> Unit) {
-        if (weaponCombatLogic.containsKey(item)) {
-            logger.error("Weapon logic already bound to a plugin: [item=$item]")
-            throw IllegalStateException("Weapon logic already bound to a plugin: [item=$item]")
-        }
-        weaponCombatLogic[item] = plugin
-        pluginCount++
-    }
 
     fun bindEquipItem(item: Int, plugin: Plugin.() -> Unit) {
         if (equipItemPlugins.containsKey(item)) {
@@ -999,6 +991,15 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Unequip item already bound to a plugin: [item=$item]")
         }
         unequipItemPlugins[item] = plugin
+        pluginCount++
+    }
+
+    fun setWeaponCombat(item: Int, plugin: Plugin.() -> Unit) {
+        if (weaponCombatLogic.containsKey(item)) {
+            logger.error("Weapon logic already bound to a plugin: [item=$item]")
+            throw IllegalStateException("Weapon logic already bound to a plugin: [item=$item]")
+        }
+        weaponCombatLogic[item] = plugin
         pluginCount++
     }
 

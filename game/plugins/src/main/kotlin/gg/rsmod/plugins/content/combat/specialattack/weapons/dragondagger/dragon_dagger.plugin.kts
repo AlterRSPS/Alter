@@ -36,7 +36,6 @@ set_weapon_combat_logic(Items.DRAGON_DAGGER) {
         target?.let {
             for (i in 0 until 5) {
                 target.graphic(5)
-                player.message("Size: ${target.getSize()}")
                 val maxHit = MeleeCombatFormula.getMaxHit(player, it, specialAttackMultiplier = 1.15)
                 val accuracy = MeleeCombatFormula.getAccuracy(player, it, specialAttackMultiplier = 1.25)
                 val landHit = accuracy >= world.randomDouble()
