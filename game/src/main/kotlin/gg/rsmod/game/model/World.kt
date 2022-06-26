@@ -64,7 +64,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      */
     val definitions = DefinitionSet()
 
-    var settings = null
+    lateinit var settings : Any
 
     /**
      * The [HuffmanCodec] used to compress and decompress public chat messages.

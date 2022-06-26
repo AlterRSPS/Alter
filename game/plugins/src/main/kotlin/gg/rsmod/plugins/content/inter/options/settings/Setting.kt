@@ -97,6 +97,8 @@ class Setting(private val struct : StructDefinitions, position : Int) {
     private val dropdownEntriesEnumId : Int? = struct.getParamAsInt(DROPDOWN_ENTRIES_PARAM);
     private val mobileDropDownEntriesEnumId : Int? = struct.getParamAsInt(DROPDOWN_ENTRIES_MOBILE_PARAM);
 
+    private val type : SettingType? = this.typeId?.let { SettingType.getByValue(it) }
+
     fun getPosition() : Int {
         return position
     }
@@ -111,6 +113,10 @@ class Setting(private val struct : StructDefinitions, position : Int) {
 
     fun getTypeId() : Int? {
         return typeId
+    }
+
+    fun getType() : SettingType? {
+        return this.type
     }
 
     fun getName() : String? {

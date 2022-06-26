@@ -1,3 +1,4 @@
+import gg.rsmod.game.Server.Companion.logger
 import gg.rsmod.game.fs.DefinitionSet
 import gg.rsmod.game.model.attr.AttributeKey
 import gg.rsmod.game.plugin.Plugin
@@ -19,12 +20,13 @@ on_button(OptionsTab.ALL_SETTINGS_INTERFACE_ID, Settings.SETTINGS_CLOSE_BUTTON_I
 }
 
 bind_all_setting(Settings.TAB_CLICK) {
-    player.attr[AttributeKey("setting_tab")] = player.getInteractingSlot()
-    player.setVarbit(Varbits.ALL_SETTINGS_TAB, player.getInteractingSlot())
+    world.getSettings().setSelectedCategory(player, world.getSettings().getCategory(player.getInteractingSlot()))
 }
 
 bind_all_setting(Settings.DROPDOWN) {
-    player.attr[AttributeKey("Keybind")] = player.getInteractingSlot()
+    println(world.getSettings().getSelectedCategory(player)?.getName())
+
+    /*player.attr[AttributeKey("keybind")] = player.getInteractingSlot()
 
     if(player.getInteractingSlot() == 36) {
         player.queue {
@@ -41,11 +43,11 @@ bind_all_setting(Settings.DROPDOWN) {
                 }
             }
         }
-    }
+    }*/
 }
 
 bind_all_setting(Settings.DROPDOWN_CLICK) {
-    val slot = player.getInteractingSlot()
+    /*val slot = player.getInteractingSlot()
 
     keyBindSettings.forEach { (t, u) ->
         if(player.getVarbit(u) == (slot - 2) / 3) {
@@ -53,26 +55,9 @@ bind_all_setting(Settings.DROPDOWN_CLICK) {
         }
     }
 
-    val varbit = keyBindSettings.getOrDefault(player.attr[AttributeKey("Keybind")], 0)
+    val varbit = keyBindSettings.getOrDefault(player.attr[AttributeKey("keybind")], 0)
 
     if(varbit != 0) {
-        player.setVarbit(keyBindSettings.getOrDefault(player.attr[AttributeKey("Keybind")], 0), (slot - 2) / 3)
-    }
+        player.setVarbit(keyBindSettings.getOrDefault(player.attr[AttributeKey("keybind")], 0), (slot - 2) / 3)
+    }*/
 }
-
-val keyBindSettings = mapOf(
-    22 to Varbits.ATTACK_KEYBIND,
-    23 to Varbits.PRAYER_KEYBIND,
-    24 to Varbits.SETTINGS_KEYBIND,
-    25 to Varbits.SKILLS_KEYBIND,
-    26 to Varbits.MAGEBOOK_KEYBIND,
-    27 to Varbits.EMOTES_KEYBIND,
-    28 to Varbits.QUEST_KEYBIND,
-    29 to Varbits.FRIENDS_KEYBIND,
-    30 to Varbits.CLAN_KEYBIND,
-    31 to Varbits.INVENTORY_KEYBIND,
-    32 to Varbits.PROFILE_KEYBIND,
-    33 to Varbits.MUSIC_KEYBIND,
-    34 to Varbits.EQUIPMENT_KEYBIND,
-    35 to Varbits.LOGOUT_KEYBIND,
-)
