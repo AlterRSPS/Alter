@@ -38,7 +38,7 @@ class Settings(private val world: World) {
     }
 
     fun setSelectedCategory(player : Player, settingCategory: SettingCategory) {
-        player.attr[AttributeKey(CURRENT_CATEGORY_ATTR_KEY)] = settingCategory
+        player.attr[AttributeKey(CURRENT_CATEGORY_ATTR_KEY, temp = true)] = settingCategory
         settingCategory.getSlotId()?.let { player.setVarbit(Varbits.ALL_SETTINGS_TAB, it) }
     }
 
