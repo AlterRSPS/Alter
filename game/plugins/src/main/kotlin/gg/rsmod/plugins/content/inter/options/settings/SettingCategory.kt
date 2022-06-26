@@ -29,6 +29,10 @@ class SettingCategory(private val struct : StructDefinitions, private val world:
         return this
     }
 
+    fun getSlotId() : Int? {
+        return slotId
+    }
+
     fun getName() : String? {
         return name
     }

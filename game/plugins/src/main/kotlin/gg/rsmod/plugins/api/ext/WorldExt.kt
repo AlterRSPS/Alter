@@ -4,6 +4,7 @@ import gg.rsmod.game.model.World
 import gg.rsmod.game.model.collision.ObjectType
 import gg.rsmod.game.model.entity.DynamicObject
 import gg.rsmod.game.model.entity.GameObject
+import gg.rsmod.plugins.content.inter.options.settings.Settings
 
 fun World.openDoor(obj: GameObject, opened: Int = obj.id + 1, invertRot: Boolean = false, invertTransform: Boolean = false): GameObject {
     val oldRot = obj.rot
@@ -41,4 +42,8 @@ fun World.closeDoor(obj: GameObject, closed: Int = obj.id - 1, invertRot: Boolea
     remove(obj)
     spawn(newDoor)
     return newDoor
+}
+
+fun World.getSettings() : Settings {
+    return this.settings as Settings
 }
