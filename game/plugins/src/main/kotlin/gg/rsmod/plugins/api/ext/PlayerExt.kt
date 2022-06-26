@@ -513,14 +513,15 @@ fun Player.sendWeaponComponentInformation() {
         name = definition.name
 
         panel = Math.max(0, definition.weaponType)
+        setComponentText(593, 2, "Category: " + WeaponCategory.get(definition.category))
     } else {
         name = "Unarmed"
         panel = 0
+        setComponentText(593, 2, "Category: Unarmed")
     }
 
     setComponentText(593, 1, name)
     setVarbit(357, panel)
-    setComponentText(593, 2, "Category: " + WeaponType.values().get(getWeaponType()).name.toLowerCase().replace("_", " ").capitalize())
 }
 
 fun Player.calculateAndSetCombatLevel(): Boolean {
