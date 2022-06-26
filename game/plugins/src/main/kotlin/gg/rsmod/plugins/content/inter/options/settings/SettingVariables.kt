@@ -1,7 +1,10 @@
 package gg.rsmod.plugins.content.inter.options.settings
 
+import gg.rsmod.game.Server.Companion.logger
+import gg.rsmod.game.model.entity.Player
 import gg.rsmod.plugins.api.cfg.SettingStructs
-import gg.rsmod.plugins.api.cfg.Varbits
+import gg.rsmod.plugins.api.ext.setVarbit
+import gg.rsmod.plugins.api.ext.setVarp
 
 class SettingVariables {
       val HIGHLIGHT_ENTITIES_ON_MOUSEOVER_VARBIT_ID = 13088
@@ -407,6 +410,8 @@ class SettingVariables {
             SettingStructs.LOGOUT_TAB_KEYBIND_STRUCT_ID to LOGOUT_TAB_KEYBIND_VARBIT_ID
       )
 
+      val KEYBIND_SETTING_VARPS = emptyMap<Int, Int>()
+
       val COLOUR_SETTING_VARPS = mapOf(
             SettingStructs.OPAQUE_PUBLIC_CHAT_STRUCT_ID to OPAQUE_PUBLIC_CHAT_VARP_ID,
             SettingStructs.TRANSPARENT_PUBLIC_CHAT_STRUCT_ID to TRANSPARENT_PUBLIC_CHAT_VARP_ID,
@@ -444,11 +449,56 @@ class SettingVariables {
             SettingStructs.IN_PROGRESS_QUEST_TEXT_COLOUR_STRUCT_ID to IN_PROGRESS_QUEST_TEXT_COLOUR_VARP_ID
       )
 
+      val COLOUR_SETTING_VARBITS = emptyMap<Int, Int>()
+
       val ALL_VARP_SETTINGS = listOf(
-            TOGGLE_SETTINGS_VARPS, SLIDER_SETTING_VARPS, DROPDOWN_SETTING_VARPS, COLOUR_SETTING_VARPS
+            TOGGLE_SETTINGS_VARPS, SLIDER_SETTING_VARPS, DROPDOWN_SETTING_VARPS, COLOUR_SETTING_VARPS, KEYBIND_SETTING_VARPS
       )
 
       val ALL_VARBIT_SETTINGS = listOf(
-            TOGGLE_SETTING_VARBITS, SLIDER_SETTING_VARBITS, DROPDOWN_SETTING_VARBITS, KEYBIND_SETTING_VARBITS
+            TOGGLE_SETTING_VARBITS, SLIDER_SETTING_VARBITS, DROPDOWN_SETTING_VARBITS, KEYBIND_SETTING_VARBITS, COLOUR_SETTING_VARBITS
       )
+
+      fun setVariableValue(setting: Setting, player: Player, value : Int) {
+            when(val type : SettingType? = setting.getType()) {
+                  SettingType.TOGGLE -> {
+                        setVariableValue(setting, player, value, TOGGLE_SETTINGS_VARPS, TOGGLE_SETTING_VARBITS)
+                  }
+                  SettingType.SLIDER -> {
+                        setVariableValue(setting, player, value, SLIDER_SETTING_VARPS, SLIDER_SETTING_VARBITS)
+                  }
+                  SettingType.DROPDOWN -> {
+                        setVariableValue(setting, player, value, DROPDOWN_SETTING_VARPS, DROPDOWN_SETTING_VARBITS)
+                  }
+                  SettingType.KEYBIND -> {
+                        setVariableValue(setting, player, value, KEYBIND_SETTING_VARPS, KEYBIND_SETTING_VARBITS)
+                  }
+                  SettingType.COLOUR -> {
+                        setVariableValue(setting, player, value, COLOUR_SETTING_VARPS, COLOUR_SETTING_VARBITS)
+                  }
+                  else -> {
+                        throw IllegalArgumentException("Setting '" + setting.getId() + "' uses unsupported type '" + type + "'.")
+                  }
+            }
+      }
+
+      private fun setVariableValue(
+            setting: Setting,
+            player: Player,
+            value: Int,
+            varps: Map<Int, Int>,
+            varbits: Map<Int, Int>
+      ) {
+            val varp = varps.get(setting.getStructId())
+            if (varp != null) {
+                  player.setVarp(varp, value)
+                  logger.info("Setting Varp: {} with value: {}", varp, value)
+                  return
+            }
+            val varbit = varbits.get(setting.getStructId())
+                  ?: throw IllegalStateException("Setting '" + setting.getId() + "' does not define a variable.")
+
+            logger.info("Setting Varbit: {} with value: {}", varbit, value)
+            player.setVarbit(varbit, value)
+      }
 }
