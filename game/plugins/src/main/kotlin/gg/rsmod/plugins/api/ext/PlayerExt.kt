@@ -519,8 +519,8 @@ fun Player.sendWeaponComponentInformation() {
     }
 
     setComponentText(593, 1, name)
-    setComponentText(593, 2, "Category: [NOT_IMPLEMENTED]")
     setVarbit(357, panel)
+    setComponentText(593, 2, "Category: " + WeaponType.values().get(getWeaponType()).name.toLowerCase().replace("_", " ").capitalize())
 }
 
 fun Player.calculateAndSetCombatLevel(): Boolean {
