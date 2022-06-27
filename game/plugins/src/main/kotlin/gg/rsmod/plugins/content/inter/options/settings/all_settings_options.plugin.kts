@@ -1,3 +1,4 @@
+import gg.rsmod.game.Server.Companion.logger
 import gg.rsmod.plugins.api.ext.*
 import gg.rsmod.plugins.content.inter.options.OptionsTab
 import gg.rsmod.plugins.content.inter.options.Settings
@@ -29,7 +30,22 @@ bind_all_setting(Settings.CLICK) {
         SettingType.TOGGLE -> {
             toggle(player, setting)
         }
+        SettingType.DROPDOWN -> {
+            dropdown(player, setting)
+        }
+        SettingType.KEYBIND -> {
+            dropdown(player, setting)
+        }
     }
+}
+
+bind_all_setting(Settings.DROPDOWN_CLICK) {
+    world.getSettings().getCurrentDropdownSetting(player)
+        ?.let { SettingVariables.setVariableValue(it, player, player.getInteractingSlot() / 3) }
+}
+
+fun dropdown(player: Player, setting: Setting) {
+    world.getSettings().setCurrentDropdownSetting(player, world.getSettings().getSelectedCategory(player)?.getSetting(player.getInteractingSlot()))
 }
 
 fun toggle(player: Player, setting: Setting) {
