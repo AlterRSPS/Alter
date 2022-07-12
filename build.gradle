@@ -29,16 +29,12 @@ allprojects {
     dependencies {
         ktlint "com.github.shyiko:ktlint:0.15.0"
 
-        compile 'com.sparkjava:spark-core:2.3'
         compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
         compile "org.slf4j:slf4j-api:$slf4jVersion"
         compile "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
         compile "io.github.microutils:kotlin-logging:$kloggingVersion"
         compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
         compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$yamlVersion"
-        compile "org.postgresql:postgresql:42.2.2"
-        compile "mysql:mysql-connector-java:5.1.46"
-        compile "com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre7"
 
         implementation "org.mindrot:jbcrypt:$bcryptVersion"
         implementation "com.google.code.gson:gson:$gsonVersion"
@@ -47,7 +43,6 @@ allprojects {
         implementation 'org.apache.commons:commons-lang3:3.0'
         implementation 'io.guthix:js5-filestore:0.5.0'
 
-        testCompile group: 'junit', name: 'junit', version: '4.+'
         testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
     }
 

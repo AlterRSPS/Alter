@@ -1,10 +1,11 @@
 import gg.rsmod.game.Server.Companion.logger
+import gg.rsmod.game.fs.DefinitionSet
+import gg.rsmod.game.model.attr.AttributeKey
+import gg.rsmod.game.plugin.Plugin
+import gg.rsmod.plugins.api.cfg.Varbits
 import gg.rsmod.plugins.api.ext.*
 import gg.rsmod.plugins.content.inter.options.OptionsTab
 import gg.rsmod.plugins.content.inter.options.Settings
-import gg.rsmod.plugins.content.inter.options.settings.Setting
-import gg.rsmod.plugins.content.inter.options.settings.SettingType
-import gg.rsmod.plugins.content.inter.options.settings.SettingVariables
 
 fun bind_all_setting(child: Int, plugin: Plugin.() -> Unit) {
     on_button(interfaceId = OptionsTab.ALL_SETTINGS_INTERFACE_ID, component = child) {
@@ -22,33 +23,41 @@ bind_all_setting(Settings.TAB_CLICK) {
     world.getSettings().setSelectedCategory(player, world.getSettings().getCategory(player.getInteractingSlot()))
 }
 
-bind_all_setting(Settings.CLICK) {
-    val category = world.getSettings().getSelectedCategory(player)
-    val setting = category?.getSettings()?.stream()?.filter { t -> t.getPosition() == player.getInteractingSlot() }?.findFirst()?.get()
+bind_all_setting(Settings.DROPDOWN) {
+    println(world.getSettings().getSelectedCategory(player)?.getName())
 
-    when(setting?.getType()) {
-        SettingType.TOGGLE -> {
-            toggle(player, setting)
+    /*player.attr[AttributeKey("keybind")] = player.getInteractingSlot()
+
+    if(player.getInteractingSlot() == 36) {
+        player.queue {
+            when(this.options(title = "Are you sure you want to reset your keybinds?", options = arrayOf("Yes.", "No."))) {
+                1 -> {
+                    keyBindSettings.forEach { (t, u) ->
+                        player.setVarbit(u, 0)
+                    }
+
+                    player.message("Your keybinds has been reset.")
+                }
+                2 -> {
+                    player.message("You did not reset your keybinds.")
+                }
+            }
         }
-        SettingType.DROPDOWN -> {
-            dropdown(player, setting)
-        }
-        SettingType.KEYBIND -> {
-            dropdown(player, setting)
-        }
-    }
+    }*/
 }
 
 bind_all_setting(Settings.DROPDOWN_CLICK) {
-    world.getSettings().getCurrentDropdownSetting(player)
-        ?.let { SettingVariables.setVariableValue(it, player, player.getInteractingSlot() / 3) }
-}
+    /*val slot = player.getInteractingSlot()
 
-fun dropdown(player: Player, setting: Setting) {
-    world.getSettings().setCurrentDropdownSetting(player, world.getSettings().getSelectedCategory(player)?.getSetting(player.getInteractingSlot()))
-}
+    keyBindSettings.forEach { (t, u) ->
+        if(player.getVarbit(u) == (slot - 2) / 3) {
+            player.setVarbit(u, 0)
+        }
+    }
 
-fun toggle(player: Player, setting: Setting) {
-    val currentValue: Int = SettingVariables.getVariableValue(setting, player)
-    SettingVariables.setVariableValue(setting, player, if (currentValue == 1) 0 else 1)
+    val varbit = keyBindSettings.getOrDefault(player.attr[AttributeKey("keybind")], 0)
+
+    if(varbit != 0) {
+        player.setVarbit(keyBindSettings.getOrDefault(player.attr[AttributeKey("keybind")], 0), (slot - 2) / 3)
+    }*/
 }

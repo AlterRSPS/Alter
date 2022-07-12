@@ -3,12 +3,10 @@ package gg.rsmod.plugins.content.inter.options.settings
 import gg.rsmod.game.Server.Companion.logger
 import gg.rsmod.game.model.entity.Player
 import gg.rsmod.plugins.api.cfg.SettingStructs
-import gg.rsmod.plugins.api.ext.getVarbit
-import gg.rsmod.plugins.api.ext.getVarp
 import gg.rsmod.plugins.api.ext.setVarbit
 import gg.rsmod.plugins.api.ext.setVarp
 
-object SettingVariables {
+class SettingVariables {
       val HIGHLIGHT_ENTITIES_ON_MOUSEOVER_VARBIT_ID = 13088
       val HIGHLIGHT_AGILITY_SHORTCUTS_SHORTCUT_REQUIREMENTS_VARBIT_ID = 13136
       val BIRD_NEST_NOTIFICATION_VARBIT_ID = 13087
@@ -461,33 +459,8 @@ object SettingVariables {
             TOGGLE_SETTING_VARBITS, SLIDER_SETTING_VARBITS, DROPDOWN_SETTING_VARBITS, KEYBIND_SETTING_VARBITS, COLOUR_SETTING_VARBITS
       )
 
-      fun getVariableValue(setting: Setting, player: Player): Int {
-            val type = setting.getType()
-            when(type) {
-                  SettingType.TOGGLE -> {
-                        return getVariableValue(setting, player, TOGGLE_SETTINGS_VARPS, TOGGLE_SETTING_VARBITS)
-                  }
-                  SettingType.SLIDER -> {
-                        return getVariableValue(setting, player, SLIDER_SETTING_VARPS, SLIDER_SETTING_VARBITS)
-                  }
-                  SettingType.DROPDOWN -> {
-                        return getVariableValue(setting, player, DROPDOWN_SETTING_VARPS, DROPDOWN_SETTING_VARBITS)
-                  }
-                  SettingType.KEYBIND -> {
-                        return getVariableValue(setting, player, KEYBIND_SETTING_VARPS, KEYBIND_SETTING_VARBITS)
-                  }
-                  SettingType.COLOUR -> {
-                        return getVariableValue(setting, player, COLOUR_SETTING_VARPS, COLOUR_SETTING_VARBITS)
-                  }
-                  else -> {
-                        throw IllegalArgumentException("Setting '" + setting.getId() + "' uses unsupported type '" + type + "'.")
-                  }
-            }
-      }
-
       fun setVariableValue(setting: Setting, player: Player, value : Int) {
-            val type = setting.getType()
-            when(type) {
+            when(val type : SettingType? = setting.getType()) {
                   SettingType.TOGGLE -> {
                         setVariableValue(setting, player, value, TOGGLE_SETTINGS_VARPS, TOGGLE_SETTING_VARBITS)
                   }
@@ -507,21 +480,6 @@ object SettingVariables {
                         throw IllegalArgumentException("Setting '" + setting.getId() + "' uses unsupported type '" + type + "'.")
                   }
             }
-      }
-
-      private fun getVariableValue(
-            setting: Setting,
-            player: Player,
-            varps: Map<Int, Int>,
-            varbits: Map<Int, Int>
-      ): Int {
-            val varp = varps[setting.getStructId()]
-            if (varp != null) {
-                  return player.getVarp(varp)
-            }
-            val varbit = varbits[setting.getStructId()]
-                  ?: throw IllegalStateException("Setting '" + setting.getId() + "' does not define a variable.")
-            return player.getVarbit(varbit)
       }
 
       private fun setVariableValue(
