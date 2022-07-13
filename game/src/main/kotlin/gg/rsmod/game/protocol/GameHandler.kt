@@ -55,7 +55,10 @@ class GameHandler(private val filestore: Store, private val world: World) : Chan
             if (cause is ReadTimeoutException) {
                 logger.info("Channel disconnected due to read timeout: {}", ctx.channel())
             } else {
-                logger.error("Channel threw an exception: ${ctx.channel()}", cause)
+
+                if (cause.message != "Connection reset") {
+                    logger.error("Channel threw an exception: ${ctx.channel()}", cause)
+                }
             }
         }
         ctx.channel().close()
