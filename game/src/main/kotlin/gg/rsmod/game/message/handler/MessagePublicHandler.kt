@@ -25,13 +25,6 @@ class MessagePublicHandler : MessageHandler<MessagePublicMessage> {
         val effect = ChatMessage.ChatEffect.values.firstOrNull { it.id == message.effect } ?: ChatMessage.ChatEffect.NONE
         val color = ChatMessage.ChatColor.values.firstOrNull { it.id == message.color } ?: ChatMessage.ChatColor.NONE
 
-        println(unpacked)
-        println(type)
-        println(effect)
-        println(color)
-        println(client.privilege.icon)
-        println(message)
-
         client.blockBuffer.publicChat = ChatMessage(unpacked, client.privilege.icon, type, effect, color)
 
         client.addBlock(UpdateBlockType.PUBLIC_CHAT)
