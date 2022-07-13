@@ -40,13 +40,4 @@ class SettingCategory(private val struct : StructDefinitions, private val world:
     fun getSettings() : MutableList<Setting> {
         return settings
     }
-
-    fun getSetting(position : Int) : Setting {
-        return settings.stream()
-            .filter { t ->
-                t.getPosition() == position
-            }
-            .findFirst()
-            .get()
-    }
 }
