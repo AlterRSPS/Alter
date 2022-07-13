@@ -29,6 +29,8 @@ on_login {
     player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 41, range = 0..21, setting = 2)
     player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 23, range =  0..21, setting = 2)
 }
+
+
 bind_setting(child = 84) {
     //val slot = player.getInteractingSlot()
     val slot = player.attr[INTERACTING_SLOT_ATTR]!!
@@ -47,6 +49,24 @@ bind_setting(child = 84) {
     player.runClientScript(3998, slot-1)
     player.toggleDisplayInterface(mode)
 }
+
+var Debug = setOf(30, 65, 66, 74, 77, 78, 79, 80)
+Debug.forEach {
+    bind_setting(child = it) {
+        player.message("CLICK detected $it")
+    }
+}
+
+bind_setting(child = OptionsTab.BOND_BUTTON_ID) {
+    player.openInterface(interfaceId = 589, dest = InterfaceDestination.TAB_AREA)
+    player.setComponentText(interfaceId = 589, component = 6, text = "Next free change:")
+    player.setComponentText(interfaceId = 589, component = 7, text = "Now!") // Make this a method to pull last updated date from your database, return that date, or "Now!"
+    player.setInterfaceEvents(interfaceId = 589, component = 18, range = 0..9, setting = 0)
+    player.setVarbit(5605, 1)
+}
+
+
+
 /**
  * Toggle run mode
  */

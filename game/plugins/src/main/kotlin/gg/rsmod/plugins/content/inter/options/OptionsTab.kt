@@ -22,7 +22,7 @@ object OptionsTab {
     const val HOUSE_OPT_BUTTON_ID = 28
     const val HOUSE_OPT_INTERFACE_ID = 370
 
-    const val BOND_BUTTON_ID = 30
+    const val BOND_BUTTON_ID = 76
     const val BONDS_INTERFACE_ID = 65
     const val REDEEM_BONDS_INTERFACE_ID = 66
 

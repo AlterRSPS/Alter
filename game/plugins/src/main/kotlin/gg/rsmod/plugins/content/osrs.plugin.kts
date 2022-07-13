@@ -113,14 +113,62 @@ object OSRSInterfaces {
             } else if (pane == InterfaceDestination.MINI_MAP && player.getVarbit(OSRSGameframe.HIDE_DATA_ORBS_VARBIT) == 1) {
                 return@forEach
             } else if (pane == InterfaceDestination.QUEST_ROOT) {
+                when (player.getVarbit(8168)) {
+                    0 -> {
+                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 712, 1)
+                    }
+                    1 -> {
+                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 399, 1)
+                    }
+                    2 -> {
+                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 259, 1)
+                    }
+                    3 -> {
+                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 245, 1)
+                    }
+                }
+
+
+                player.setVarbit(11877, 155) // Quests Completed
+                player.setVarp(2944, 1404) // Quests Completed
                 player.openInterface(pane.interfaceId, pane, fullscreen)
-                player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 399, 1) // quest sub interfaces
+                //player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 712, 1) // quest sub interfaces
                 player.setInterfaceEvents(interfaceId = 399, component = 6, range = 0..20, setting = 14)
                 player.setInterfaceEvents(interfaceId = 399, component = 7, range = 0..125, setting = 14)
                 player.setInterfaceEvents(interfaceId = 399, component = 8, range = 0..13, setting = 14)
+                player.setInterfaceEvents(399, 3, 0..7, 14)
+                player.setComponentText(399, 9, "Completed: 0/154")
+                player.setComponentText(399, 10, "Quest Points: 0/290")
+                player.setComponentText(712, 1, text = player.username)
+                player.setComponentText(712, 3, text = player.combatLevel.toString())
                 return@forEach
             }
             player.openInterface(pane.interfaceId, pane, fullscreen)
         }
     }
 }
+
+// Character summary
+on_button(InterfaceDestination.QUEST_ROOT.interfaceId, 3) {
+    player.setVarbit(8168, 0)
+    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 712, 1)
+}
+// Quest Tab
+on_button(InterfaceDestination.QUEST_ROOT.interfaceId,8) {
+    player.setVarbit(8168, 1)
+    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 399, 1)
+}
+
+on_button(InterfaceDestination.QUEST_ROOT.interfaceId,13) {
+    player.setVarbit(8168, 2)
+    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 259, 1)
+}
+
+on_button(InterfaceDestination.QUEST_ROOT.interfaceId,18) {
+    player.setVarbit(8168, 3)
+    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 245, 1)
+}
+on_button(245, 20) {
+    player.openInterface(interfaceId = 626, dest = InterfaceDestination.MAIN_SCREEN)
+}
+
