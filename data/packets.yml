@@ -373,7 +373,7 @@ server-packets:
       - name: hidden
         write: ByteAdd
       - name: hash
-        write: IntIME
+        write: IntME
 
   - message: gg.rsmod.game.message.impl.IfSetObjectMessage
     type: FIXED

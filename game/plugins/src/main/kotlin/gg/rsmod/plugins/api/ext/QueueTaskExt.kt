@@ -356,19 +356,16 @@ suspend fun QueueTask.levelUpMessageBox(skill: Int, levelIncrement: Int) {
         player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 233)
     } else {
         val levelFormat = if (levelIncrement == 1) "a" else "$levelIncrement"
-
         player.setInterfaceEvents(interfaceId = 132, component = 3, from = -1, to = -1, setting = 1)
         player.setInterfaceEvents(interfaceId = 132, component = 4, from = -1, to = -1, setting = 0)
         player.setInterfaceEvents(interfaceId = 132, component = 5, from = -1, to = -1, setting = 0)
 
+        player.setInterfaceEvents(interfaceId = 193, component = 0, from = -1, to = 1, setting = 0)
         player.setComponentItem(interfaceId = 193, component = 1, item = 9951, amountOrZoom = 400)
 
         player.setComponentText(interfaceId = 193, component = 2, text = "<col=000080>Congratulations, you've just advanced $levelFormat Hunter ${"level".pluralSuffix(levelIncrement)}." +
                 "<col=000000><br><br>Your Hunter level is now ${player.getSkills().getBaseLevel(skill)}.")
-        player.setComponentText(interfaceId = 193, component = 3, text = "Click here to continue")
-        player.setComponentText(interfaceId = 193, component = 4, text = "")
-        player.setComponentText(interfaceId = 193, component = 5, text = "")
-
+        player.runClientScript(2868, "Click here to continue")
         player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 193)
     }
 

@@ -166,7 +166,7 @@ class SkillSet(val maxSkills: Int) {
         /**
          * The default amount of trainable skills by players.
          */
-        const val DEFAULT_SKILL_COUNT = 23
+        const val DEFAULT_SKILL_COUNT = 25 //23
 
         /**
          * Gets the level correspondent to the [xp] given.
