@@ -4,8 +4,8 @@ package gg.rsmod.plugins.content.inter.options
  * custom game notifications implementation -> unsure of proper component to map to
  * mapped to Merchandise button in useful links for now, should be worked in to custom
  * interface as it does not seem to emulate OSRS
- */
-on_button(interfaceId = 109, component = 85) {
+
+on_button(interfaceId = 109, component = 0) {
     player.queue {
         while (true) {
 

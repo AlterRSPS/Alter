@@ -1,0 +1,26 @@
+---
+id: 26384
+name: "Torva platebody"
+examine: "An ancient warrior's platebody."
+tradeable: true
+weight: 9.5
+equipment:
+  prayer: 1
+  equipSlot: "body"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -31
+  attackRanged: -11
+  defenceStab: 156
+  defenceSlash: 140
+  defenceCrush: 120
+  defenceMagic: -10
+  defenceRanged: 160
+  meleeStrength: 4
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs: null
