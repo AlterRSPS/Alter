@@ -1,19 +1,12 @@
 package gg.rsmod.plugins.api.cfg
 
 object Varbits {
-
     const val ALL_SETTINGS_TAB = 9656
-
-    // Activities
     const val ACTIVITIES_HITSPLAT_TINTING = 10236
     const val ACTIVITIES_SHOW_BOSS_HEALTH_OVERLAY = 12389
     const val ACTIVITIES_LAST_MAN_STANDING_FOG_COLOUR = 11865
-
-    // Audio
     const val AUDIO_MUSIC_AREA_MODE = 12233
     const val AUDIO_MUSIC_UNLOCK_MESSAGE = 10078
-
-    // Chat
     const val CHAT_FRIENDS_LOGIN_LOGOUT_MESSAGES = 12274
     const val CHAT_HIDE_PRIVATE_CHAT_WHEN_CHATBOX_IS_HIDDEN = 4089
     const val CHAT_PRECISE_TIMING = 11866
@@ -28,8 +21,6 @@ object Varbits {
     const val CHAT_COMBAT_ACHIEVEMENT_FAILURE_REPEAT = 12457
     const val CHAT_COMBAT_ACHIEVEMENT_COMPLETION_REPEAT = 12456
     const val CHAT_CHATBOX_MODE_AUTOMATIC = 13120
-
-    // Keybinds
     const val ATTACK_KEYBIND = 4675
     const val PRAYER_KEYBIND = 4680
     const val SETTINGS_KEYBIND = 4686
@@ -44,5 +35,29 @@ object Varbits {
     const val MUSIC_KEYBIND = 4688
     const val EQUIPMENT_KEYBIND = 4679
     const val LOGOUT_KEYBIND = 4689
-
+    const val PK_PREVENT_SKULL = 13131
+    const val SETTINGS_TAB_FOCUS = 9683
+    const val DISABLE_ZOOM = 6357
+    const val XP_DROPS_VISIBLE_VARBIT = 4702
+    const val ACCEPT_AID_VARBIT = 4180
+    const val DISABLE_MOUSEWHEEL_ZOOM_VARBIT = 6357
+    const val HIDE_PM_WHEN_CHAT_HIDDEN_VARBIT = 4089
+    const val IDLE_NOTIFICATION_VARBIT = 1627
+    const val MOUSE_CAMERA_VARBIT = 4134
+    const val PET_OPTIONS_VARBIT = 5599
+    const val SHIFT_CLICK_DROP_VARBIT = 5542
+    const val CHATBOX_SCROLLBAR_VARBIT = 6374
+    const val DISABLE_SIDEPANELS_OPAQUE_VARBIT = 4609
+    const val DISABLE_XP_TILL_LEVEL_VARBIT = 4181
+    const val DISABLE_PRAYER_TOOLTIP_VARBIT = 5711
+    const val DISABLE_SPECIAL_ATTACK_TOOLTIP_VARBIT = 5712
+    const val HIDE_DATA_ORBS_VARBIT = 4084
+    const val CHATBOX_TRANSPARENT_VARBIT = 4608
+    const val CHATBOX_SOLID_VARBIT = 2570
+    const val SIDESTONES_ARRAGEMENT_VARBIT = 4607
+    const val CLOSE_TABS_WITH_HOTKEY_VARBIT = 4611
+    const val BOND_INTERFACE_FOCUS_TAB = 9544
+    const val PLAYER_SUMMARY_FOCUS_TAB = 8168 // Sets which tab to focus Player Summary / Quests tab / Achievement Diary / Favour tab
+    const val SETTINGS_INTERFACE_INFORMATION = 9665 // Show description or not.
+    const val PLAYER_GAME_MODE_VARBIT = 1777 // Changes icon in ChatBox
 }

@@ -5,8 +5,8 @@ import gg.rsmod.game.model.bits.InfiniteVarsType
 import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.timer.TimerKey
 import gg.rsmod.plugins.api.EquipmentType
-import gg.rsmod.plugins.api.OSRSGameframe
 import gg.rsmod.plugins.api.Skills
+import gg.rsmod.plugins.api.cfg.Varps
 import gg.rsmod.plugins.api.ext.*
 
 /**
@@ -21,7 +21,7 @@ object RunEnergy {
      */
     val STAMINA_BOOST = TimerKey("stamina_boost", tickOffline = false)
 
-    const val RUN_ENABLED_VARP = OSRSGameframe.RUN_MODE_VARP
+    const val RUN_ENABLED_VARP = Varps.RUN_MODE_VARP
 
     fun toggle(p: Player) {
         if (p.runEnergy >= 1.0) {

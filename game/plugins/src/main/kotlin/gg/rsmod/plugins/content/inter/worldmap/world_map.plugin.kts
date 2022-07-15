@@ -17,6 +17,7 @@ on_button(interfaceId = 160, component = 48) {
         if (opt != 2) {
             player.openInterface(interfaceId = WORLD_MAP_FULLSCREEN_INTERFACE_ID, dest = InterfaceDestination.WORLD_MAP_FULL, fullscreen = true)
         }
+        player.animate(Animation.LOOK_AT_MINIMAP_WHEN_FULLSCREEN)
         player.setInterfaceEvents(interfaceId = WORLD_MAP_INTERFACE_ID, component = 20, range = 0..4, setting = 2)
         player.timers[UPDATE_TIMER] = 1
     } else {

@@ -10,4 +10,7 @@ object Settings {
     const val CLICK = 19
     const val DROPDOWN_CLICK = 28
     const val TAB_CLICK = 23
+
+
+    const val SHOW_INFORMATION = 5
 }

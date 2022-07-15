@@ -18,6 +18,7 @@ import gg.rsmod.game.model.item.Item
 import gg.rsmod.game.model.timer.SKULL_ICON_DURATION_TIMER
 import gg.rsmod.game.sync.block.UpdateBlockType
 import gg.rsmod.plugins.api.*
+import gg.rsmod.plugins.api.cfg.Varps
 import gg.rsmod.plugins.content.music.Songs
 import gg.rsmod.plugins.service.marketvalue.ItemMarketValueService
 import gg.rsmod.util.BitManipulation
@@ -387,6 +388,9 @@ fun Player.decrementVarbit(id: Int, amount: Int = 1): Int {
 }
 
 fun Player.setVarbit(id: Int, value: Int) {
+    if (getVarp(Varps.DEVEL_VARP_DEBUG) > 0) {
+        message("Varbit $id was set to $value")
+    }
     val def = world.definitions.get(VarbitDef::class.java, id)
     varps.setBit(def.varp, def.startBit, def.endBit, value)
 }
@@ -404,6 +408,9 @@ fun Player.sendTempVarbit(id: Int, value: Int) {
 
 fun Player.toggleVarbit(id: Int) {
     val def = world.definitions.get(VarbitDef::class.java, id)
+    if (getVarp(Varps.DEVEL_VARP_DEBUG) > 0) {
+        message("Varbit $id was set to ${getVarbit(id) xor 1}")
+    }
     varps.setBit(def.varp, def.startBit, def.endBit, getVarbit(id) xor 1)
 }
 
@@ -540,6 +547,7 @@ fun Player.calculateAndSetCombatLevel(): Boolean {
     combatLevel = ((base * 1.3 + defence + hitpoints + prayer / 2) / 4).toInt()
 
     val changed = combatLevel != old
+    runClientScript(3954, 46661634, 46661635, combatLevel)
     if (changed) {
         runClientScript(389, combatLevel)
         sendCombatLevelText()
