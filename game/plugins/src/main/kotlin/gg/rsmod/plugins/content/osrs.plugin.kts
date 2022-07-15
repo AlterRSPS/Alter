@@ -1,5 +1,6 @@
 package gg.rsmod.plugins.content
 
+import com.google.common.base.Stopwatch
 import gg.rsmod.game.model.attr.INTERACTING_ITEM_SLOT
 import gg.rsmod.game.model.attr.OTHER_ITEM_SLOT_ATTR
 import gg.rsmod.game.model.attr.LAST_LOGIN_ATTR
@@ -29,10 +30,6 @@ set_menu_open_check {
  * Execute when a player logs in.
  */
 on_login {
-    // Remove after
-    spawn_item(522, 1, player.tile)
-
-
     // Skill-related logic.
     player.calculateAndSetCombatLevel()
     if (player.getSkills().getBaseLevel(Skills.HITPOINTS) < 10) {
@@ -42,14 +39,25 @@ on_login {
     player.sendWeaponComponentInformation()
     player.sendCombatLevelText()
 
+    /**
+     * Still don't know which one of this triggers it, but one of them fixes the chatbox username
+     */
+   //val someRandomVarps = listOf(18,20,21,23,25,46,153,168,169,281,300,849,850,851,852,853,854,855,856,872)
+   //val someRandomVarbits = listOf(5411,5412,4137,3216,10066,1782,2885,3638,3713,6363,8354,5605,5607,3924,5102,1303,4609,4702)
+   //someRandomVarbits.forEach {
+   //    player.setVarbit(it, 0)
+   //}
+   //someRandomVarps.forEach {
+   //    player.setVarp(it, 0)
+   //}
+
+
     val now = System.currentTimeMillis()
     val last = player.attr.getOrDefault(LAST_LOGIN_ATTR, now.toString()).toLong()
     val time_lapsed = now - last
     player.attr[LAST_LOGIN_ATTR] = now.toString()
-
     val memberRecurring = 0 // no subs system support as of now
     val noLinkedEmail = 0 // set to 1 disables inbox button??
-
     player.runClientScript(2498, if(player.hasMembers()) 1 else 0, memberRecurring, noLinkedEmail)
 
     // Interface-related logic.
@@ -61,15 +69,15 @@ on_login {
     player.runClientScript(1105, if (displayName) 1 else 0) // Has display name
     player.runClientScript(423, player.username)
     player.setVarbit(13027, player.combatLevel)
-    //player.runClientScript(420)
-    //if (player.getVarp(1055) == 0 && displayName) {
-    //    player.syncVarp(1055)
-    //}
+    player.runClientScript(420)
+    if (player.getVarp(1055) == 0 && displayName) {
+        player.syncVarp(1055)
+    }
     player.setVarbit(8119, 1) // Has display name
 
     // Sync attack priority options.
-    player.syncVarp(OSRSGameframe.NPC_ATTACK_PRIORITY_VARP)
-    player.syncVarp(OSRSGameframe.PLAYER_ATTACK_PRIORITY_VARP)
+    player.syncVarp(Varps.NPC_ATTACK_PRIORITY_VARP)
+    player.syncVarp(Varps.PLAYER_ATTACK_PRIORITY_VARP)
 
     // Send player interaction options.
     player.sendOption("Follow", 3)
@@ -81,22 +89,7 @@ on_login {
     player.message("Welcome ${player.username} to ${world.gameContext.name}.", ChatMessageType.BROADCAST)
 }
 
-/**
- * Logic for swapping items in inventory.
- */
-on_component_item_swap(interfaceId = 149, component = 0) {
-    val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
-    val dstSlot = player.attr[OTHER_ITEM_SLOT_ATTR]!!
 
-    val container = player.inventory
-
-    if (srcSlot in 0 until container.capacity && dstSlot in 0 until container.capacity) {
-        container.swap(srcSlot, dstSlot)
-    } else {
-        // Sync the container on the client
-        container.dirty = true
-    }
-}
 
 object OSRSInterfaces {
     fun Player.openDefaultInterfaces() {
@@ -108,12 +101,12 @@ object OSRSInterfaces {
 
     fun openModals(player: Player, fullscreen: Boolean = false) {
         InterfaceDestination.getModals().forEach { pane ->
-            if (pane == InterfaceDestination.XP_COUNTER && player.getVarbit(OSRSGameframe.XP_DROPS_VISIBLE_VARBIT) == 0) {
+            if (pane == InterfaceDestination.XP_COUNTER && player.getVarbit(Varbits.XP_DROPS_VISIBLE_VARBIT) == 0) {
                 return@forEach
-            } else if (pane == InterfaceDestination.MINI_MAP && player.getVarbit(OSRSGameframe.HIDE_DATA_ORBS_VARBIT) == 1) {
+            } else if (pane == InterfaceDestination.MINI_MAP && player.getVarbit(Varbits.HIDE_DATA_ORBS_VARBIT) == 1) {
                 return@forEach
             } else if (pane == InterfaceDestination.QUEST_ROOT) {
-                when (player.getVarbit(8168)) {
+                when (player.getVarbit(Varbits.PLAYER_SUMMARY_FOCUS_TAB)) {
                     0 -> {
                         player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 712, 1)
                     }
@@ -153,22 +146,34 @@ on_button(InterfaceDestination.QUEST_ROOT.interfaceId, 3) {
     player.setVarbit(8168, 0)
     player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 712, 1)
 }
-// Quest Tab
-on_button(InterfaceDestination.QUEST_ROOT.interfaceId,8) {
-    player.setVarbit(8168, 1)
-    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 399, 1)
+
+on_button(109, 45) {
+    /**
+     * @TODO On move this interface should be closed.
+     */
+    player.openInterface(interfaceId = 589, dest = InterfaceDestination.TAB_AREA)
+    player.setComponentText(interfaceId = 589, component = 6, text = "Next free change:")
+    player.setComponentText(interfaceId = 589, component = 7, text = "Now!") // Make this a method to pull last updated date from your database, return that date, or "Now!"
+    player.setInterfaceEvents(interfaceId = 589, component = 18, range = 0..9, setting = 0)
+    player.setVarbit(5605, 1)
 }
 
-on_button(InterfaceDestination.QUEST_ROOT.interfaceId,13) {
-    player.setVarbit(8168, 2)
-    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 259, 1)
-}
+    // Quest Tab
+    on_button(InterfaceDestination.QUEST_ROOT.interfaceId,8) {
+        player.setVarbit(Varbits.PLAYER_SUMMARY_FOCUS_TAB, 1)
+        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 399, 1)
+    }
 
-on_button(InterfaceDestination.QUEST_ROOT.interfaceId,18) {
-    player.setVarbit(8168, 3)
-    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 245, 1)
-}
-on_button(245, 20) {
-    player.openInterface(interfaceId = 626, dest = InterfaceDestination.MAIN_SCREEN)
-}
+    on_button(InterfaceDestination.QUEST_ROOT.interfaceId,13) {
+        player.setVarbit(Varbits.PLAYER_SUMMARY_FOCUS_TAB, 2)
+        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 259, 1)
+    }
+
+    on_button(InterfaceDestination.QUEST_ROOT.interfaceId,18) {
+        player.setVarbit(Varbits.PLAYER_SUMMARY_FOCUS_TAB, 3)
+        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 245, 1)
+    }
+    on_button(245, 20) {
+        player.openInterface(interfaceId = 626, dest = InterfaceDestination.MAIN_SCREEN)
+    }
 
