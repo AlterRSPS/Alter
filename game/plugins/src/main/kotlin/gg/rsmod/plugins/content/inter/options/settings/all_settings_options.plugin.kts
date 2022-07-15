@@ -1,4 +1,6 @@
 import gg.rsmod.game.Server.Companion.logger
+import gg.rsmod.game.model.attr.INTERACTING_SLOT_ATTR
+import gg.rsmod.game.model.interf.DisplayMode
 import gg.rsmod.plugins.api.ext.*
 import gg.rsmod.plugins.content.inter.options.OptionsTab
 import gg.rsmod.plugins.content.inter.options.Settings
@@ -52,3 +54,29 @@ fun toggle(player: Player, setting: Setting) {
     val currentValue: Int = SettingVariables.getVariableValue(setting, player)
     SettingVariables.setVariableValue(setting, player, if (currentValue == 1) 0 else 1)
 }
+
+on_button(OptionsTab.ALL_SETTINGS_INTERFACE_ID, Settings.SHOW_INFORMATION) {
+    player.toggleVarbit(Varbits.SETTINGS_INTERFACE_INFORMATION)
+}
+
+
+bind_all_setting(child = OptionsTab.DISPLAY_MODE_DROPDOWN_ID) {
+    //val slot = player.getInteractingSlot()
+    val slot = player.attr[INTERACTING_SLOT_ATTR]!!
+    val mode = when (slot) {
+        2 -> {
+            player.setVarbit(Varbits.SIDESTONES_ARRAGEMENT_VARBIT, 0)
+            DisplayMode.RESIZABLE_NORMAL
+        }
+        3 -> {
+            player.setVarbit(Varbits.SIDESTONES_ARRAGEMENT_VARBIT, 1)
+            DisplayMode.RESIZABLE_LIST
+        }
+        else -> DisplayMode.FIXED
+    }
+    if(!(mode.isResizable() && player.interfaces.displayMode.isResizable()))
+        player.runClientScript(3998, slot-1)
+    player.toggleDisplayInterface(mode)
+}
+
+
