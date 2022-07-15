@@ -3,7 +3,7 @@ package gg.rsmod.plugins.content.mechanics.inventory
 import gg.rsmod.game.action.EquipAction
 import gg.rsmod.game.model.attr.*
 
-on_button(149 /* Inventory interface ID */, 0) {
+on_button(InterfaceDestination.INVENTORY.interfaceId/* Inventory interface ID */, 0) {
     val slot: Int? = player.attr[INTERACTING_SLOT_ATTR]
     val option = player.attr[INTERACTING_OPT_ATTR]
     if (slot != null) {
@@ -46,5 +46,21 @@ on_button(149 /* Inventory interface ID */, 0) {
                 }
             }
         }
+    }
+}
+/**
+ * Logic for swapping items in inventory.
+ */
+on_component_item_swap(interfaceId = 149, component = 0) {
+    val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
+    val dstSlot = player.attr[OTHER_ITEM_SLOT_ATTR]!!
+
+    val container = player.inventory
+
+    if (srcSlot in 0 until container.capacity && dstSlot in 0 until container.capacity) {
+        container.swap(srcSlot, dstSlot)
+    } else {
+        // Sync the container on the client
+        container.dirty = true
     }
 }
