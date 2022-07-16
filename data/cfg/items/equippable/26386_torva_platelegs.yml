@@ -1,0 +1,26 @@
+---
+id: 26386
+name: "Torva platelegs"
+examine: "An ancient warrior's platelegs."
+tradeable: true
+weight: 9
+equipment:
+  prayer: 1
+  equipSlot: "legs"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -21
+  attackRanged: -8
+  defenceStab: 112
+  defenceSlash: 100
+  defenceCrush: 95
+  defenceMagic: -5
+  defenceRanged: 125
+  meleeStrength: 2
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs: null

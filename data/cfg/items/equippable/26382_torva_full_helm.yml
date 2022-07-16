@@ -1,0 +1,26 @@
+---
+id: 26382
+name: "Torva full helm"
+examine: "An ancient warrior's full helm"
+tradeable: true
+weight: 2
+equipment:
+  prayer: 1
+  equipSlot: "nohair"
+  weaponType: -1
+  attackSpeed: 0
+  attackStab: 0
+  attackSlash: 0
+  attackCrush: 0
+  attackMagic: -7
+  attackRanged: -3
+  defenceStab: 68
+  defenceSlash: 73
+  defenceCrush: 65
+  defenceMagic: -2
+  defenceRanged: 74
+  meleeStrength: 3
+  rangedStrength: 0
+  magicDamage: 0
+  renderAnimations: null
+  skillReqs: null
