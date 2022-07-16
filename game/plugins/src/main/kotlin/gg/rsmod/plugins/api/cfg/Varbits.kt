@@ -58,6 +58,7 @@ object Varbits {
     const val CLOSE_TABS_WITH_HOTKEY_VARBIT = 4611
     const val BOND_INTERFACE_FOCUS_TAB = 9544
     const val PLAYER_SUMMARY_FOCUS_TAB = 8168 // Sets which tab to focus Player Summary / Quests tab / Achievement Diary / Favour tab
+    const val FRIEND_FACE_ID = 6516
     const val SETTINGS_INTERFACE_INFORMATION = 9665 // Show description or not.
     const val PLAYER_GAME_MODE_VARBIT = 1777 // Changes icon in ChatBox
 }
