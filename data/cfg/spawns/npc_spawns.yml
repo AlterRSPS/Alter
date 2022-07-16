@@ -69544,46 +69544,6 @@
   x: 2144
   z: 5109
   height: 1
-- id: 634
-  name: "Brewer"
-  x: 2148
-  z: 5096
-  height: 1
-- id: 627
-  name: "Brewer"
-  x: 2149
-  z: 5093
-  height: 1
-- id: 628
-  name: "Brewer"
-  x: 2151
-  z: 5094
-  height: 1
-- id: 633
-  name: "Brewer"
-  x: 2152
-  z: 5096
-  height: 1
-- id: 629
-  name: "Brewer"
-  x: 2154
-  z: 5094
-  height: 1
-- id: 630
-  name: "Brewer"
-  x: 2158
-  z: 5094
-  height: 1
-- id: 631
-  name: "Brewer"
-  x: 2158
-  z: 5096
-  height: 1
-- id: 632
-  name: "Brewer"
-  x: 2160
-  z: 5094
-  height: 1
 - id: 602
   name: "Pirate Pete"
   x: 2162

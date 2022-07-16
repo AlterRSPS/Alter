@@ -10,14 +10,16 @@ on_command("yell") {
     when (player.privilege.id) {
         0 -> { rank = "Player"
                color = ""}
-        1 -> { rank = "<img=1>Donator"
+        1 -> { rank = "<img=0>Moderator"
                color = "<shad=16711680>"}
-        2 -> { rank = "<img=0>Admin"
+        2 -> { rank = "<img=1>Admin"
                color = "<shad=65280>"}
         3 -> { rank = "<img=21>Developer"
                color = "<shad=53247>"}
         4 -> { rank = "<img=1>Owner"
                color = "<shad=16777215>"}
+        5 -> { rank = "<img=8>Donator"
+               color = "<shad=16711680>"}
 
     else -> { rank = "unidendified"
               color = ""}

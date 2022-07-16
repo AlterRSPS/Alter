@@ -5,8 +5,8 @@ game-port: 43594
 revision: 205
 
 # The coordinates for the home location.
-home-x: 3218
-home-z: 3218
+home-x: 3087
+home-z: 3494
 
 # Privileges
 # Any privilege you want to be represented in-game you define here.
@@ -22,11 +22,19 @@ privileges:
   - id: 2
     icon: 2
     name: "administrator"
-    powers: ["mod", "admin"]
+    powers: ["mod", "admin", "donor"]
   - id: 3
     icon: 2
+    name: "developer"
+    powers: ["mod", "dev", "admin", "owner", "donor"]
+  - id: 4
+    icon: 2
     name: "owner"
-    powers: ["mod", "dev", "admin", "owner"]
+    powers: [ "mod", "dev", "admin", "owner", "donor"]
+  - id: 5
+    icon: 8
+    name: "donator"
+    powers: [ "donor" ]
 
 # Game services
 # You can pick and choose which services you want to run.
