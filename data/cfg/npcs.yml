@@ -3097,6 +3097,8 @@
   examine: "He kills in the name of Saradomin."
 - id: 1612
   examine: "He kills in the name of Guthix."
+- id: 1613
+  examine: "It's a Banker"
 - id: 1614
   examine: "A banknote exchange merchant."
 - id: 1615
