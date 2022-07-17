@@ -1,12 +1,7 @@
 package gg.rsmod.plugins.content
 
-import com.google.common.base.Stopwatch
-import gg.rsmod.game.model.attr.INTERACTING_ITEM_SLOT
-import gg.rsmod.game.model.attr.OTHER_ITEM_SLOT_ATTR
 import gg.rsmod.game.model.attr.LAST_LOGIN_ATTR
-import gg.rsmod.game.model.timer.TimeConstants
 import gg.rsmod.plugins.content.Osrs_plugin.OSRSInterfaces.openDefaultInterfaces
-import gg.rsmod.plugins.content.inter.welcome.WelcomeScreen.openWelcomeScreen
 
 /**
  * Closing main modal for players.
@@ -42,15 +37,14 @@ on_login {
     /**
      * Still don't know which one of this triggers it, but one of them fixes the chatbox username
      */
-   //val someRandomVarps = listOf(18,20,21,23,25,46,153,168,169,281,300,849,850,851,852,853,854,855,856,872)
-   //val someRandomVarbits = listOf(5411,5412,4137,3216,10066,1782,2885,3638,3713,6363,8354,5605,5607,3924,5102,1303,4609,4702)
-   //someRandomVarbits.forEach {
-   //    player.setVarbit(it, 0)
-   //}
-   //someRandomVarps.forEach {
-   //    player.setVarp(it, 0)
-   //}
-
+    val someRandomVarps = listOf(18,20,21,23,25,46,153,168,169,281,300,849,850,851,852,853,854,855,856,872)
+    val someRandomVarbits = listOf(5411,5412,4137,3216,10066,1782,2885,3638,3713,6363,8354,5605,5607,3924,5102,1303,4609,4702)
+    someRandomVarbits.forEach {
+        player.setVarbit(it, 0)
+    }
+    someRandomVarps.forEach {
+        player.setVarp(it, 0)
+    }
 
     val now = System.currentTimeMillis()
     val last = player.attr.getOrDefault(LAST_LOGIN_ATTR, now.toString()).toLong()
@@ -61,7 +55,6 @@ on_login {
     player.runClientScript(2498, if(player.hasMembers()) 1 else 0, memberRecurring, noLinkedEmail)
 
     // Interface-related logic.
-    //openWelcomeScreen(player, (time_lapsed/TimeConstants.MINUTE).toInt(), player.membersDaysLeft())
     player.setInterfaceEvents(interfaceId = 149, component = 0, range = 0..27, setting = 3407068)
     player.openDefaultInterfaces()
     // Inform the client whether or not we have a display name.
