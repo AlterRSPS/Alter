@@ -8,6 +8,6 @@ on_command("spellbook", Privilege.ADMIN_POWER) {
         if (id > 3) {
             player.message("SpellBook does not exist.")
         }
-        player.setVarbit(4070, id)
+        player.setVarbit(Varbits.PLAYER_SPELL_BOOK, id)
     }
 }

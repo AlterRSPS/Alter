@@ -30,7 +30,7 @@ object Varps {
     const val NPC_ATTACK_PRIORITY_VARP = 1306
 
     const val DEVEL_VARP_DEBUG = 1014 // Since this varp is not used gonna use it as a debug toggler @TODO
-
+    const val WEAPON_ATTACK_STYLE = 43
 
 
 }

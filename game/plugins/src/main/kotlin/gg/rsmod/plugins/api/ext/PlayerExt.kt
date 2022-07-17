@@ -18,6 +18,7 @@ import gg.rsmod.game.model.item.Item
 import gg.rsmod.game.model.timer.SKULL_ICON_DURATION_TIMER
 import gg.rsmod.game.sync.block.UpdateBlockType
 import gg.rsmod.plugins.api.*
+import gg.rsmod.plugins.api.cfg.Varbits
 import gg.rsmod.plugins.api.cfg.Varps
 import gg.rsmod.plugins.content.music.Songs
 import gg.rsmod.plugins.service.marketvalue.ItemMarketValueService
@@ -463,15 +464,15 @@ fun Player.heal(amount: Int, capValue: Int = 0) {
     getSkills().alterCurrentLevel(skill = Skills.HITPOINTS, value = amount, capValue = capValue)
 }
 
-fun Player.hasSpellbook(book: Spellbook): Boolean = getVarbit(4070) == book.id
+fun Player.hasSpellbook(book: Spellbook): Boolean = getVarbit(Varbits.PLAYER_SPELL_BOOK) == book.id
 
-fun Player.getSpellbook(): Spellbook = Spellbook.values.first { getVarbit(4070) == it.id }
+fun Player.getSpellbook(): Spellbook = Spellbook.values.first { getVarbit(Varbits.PLAYER_SPELL_BOOK) == it.id }
 
-fun Player.setSpellbook(book: Spellbook) = setVarbit(4070, book.id)
+fun Player.setSpellbook(book: Spellbook) = setVarbit(Varbits.PLAYER_SPELL_BOOK, book.id)
 
-fun Player.getWeaponType(): Int = getVarbit(357)
+fun Player.getWeaponType(): Int = getVarbit(Varbits.WEAPON_TYPE_VARBIT)
 
-fun Player.getAttackStyle(): Int = getVarp(43)
+fun Player.getAttackStyle(): Int = getVarp(Varps.WEAPON_ATTACK_STYLE)
 
 fun Player.hasWeaponType(type: WeaponType, vararg others: WeaponType): Boolean = getWeaponType() == type.id || others.isNotEmpty() && getWeaponType() in others.map { it.id }
 
