@@ -31,9 +31,6 @@ import java.util.*
     }
     */
 
-private val friends: MutableList<String> = LinkedList()
-private val ignores: MutableList<String> = LinkedList()
-
 fun SendPrivateMessage()  {
 
     /**
