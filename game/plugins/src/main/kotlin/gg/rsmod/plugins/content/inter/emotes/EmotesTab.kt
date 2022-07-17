@@ -4,6 +4,7 @@ import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.queue.TaskPriority
 import gg.rsmod.plugins.api.EquipmentType
 import gg.rsmod.plugins.api.cfg.Items
+import gg.rsmod.plugins.api.cfg.Varbits
 import gg.rsmod.plugins.api.ext.getVarbit
 import gg.rsmod.plugins.api.ext.messageBox
 import gg.rsmod.plugins.api.ext.player
@@ -17,58 +18,34 @@ object EmotesTab {
 
     const val COMPONENT_ID = 216
 
-    const val GOBLIN_EMOTES_VARBIT = 532
-    const val GLASS_BOX_EMOTE_VARBIT = 1368
-    const val CLIMB_ROPE_EMOTE_VARBIT = 1369
-    const val LEAN_EMOTE_VARBIT = 1370
-    const val GLASS_WALL_EMOTE_VARBIT = 1367
-    const val IDEA_EMOTE_VARBIT = 2311
-    const val STAMP_EMOTE_VARBIT = 2312
-    const val FLAP_EMOTE_VARBIT = 2309
-    const val SLAP_HEAD_EMOTE_VARBIT = 2310
-    const val ZOMBIE_WALK_EMOTE_VARBIT = 1921
-    const val ZOMBIE_DANCE_EMOTE_VARBIT = 1920
-    const val SCARED_EMOTE_VARBIT = 1371
-    const val RABBIT_HOP_EMOTE_VARBIT = 2055
-    const val EXERCISE_EMOTES = 4732
-    const val ZOMBIE_HAND_EMOTE_VARBIT = 1000
-    const val HYPERMOBILE_DRINKER_EMOTE_VARBIT = 4802
-    const val SKILLCAPE_EMOTE_VARBIT = 4797
-    const val AIR_GUITAR_EMOTE_VARBIT = 4673
-    const val URI_TRANSFORM_EMOTE_VARBIT = 5104
-    const val SMOOTH_DANCE_EMOTE_VARBIT = 5597
-    const val CRAZY_DANCE_EMOTE_VARBIT = 5598
-    const val PREMIER_SHIELD_EMOTE_VARBIT = 6041
-    const val EXPLORE_VARBIT = 10115
-    const val FLEX_EMOTE_VARBIT = 12062
-    const val RELIC_UNLOCKED_EMOTE_VARBIT = 11757
+
 
     fun unlockAll(p: Player) {
-        p.setVarbit(GOBLIN_EMOTES_VARBIT, 7)
-        p.setVarbit(GLASS_BOX_EMOTE_VARBIT, 1)
-        p.setVarbit(CLIMB_ROPE_EMOTE_VARBIT, 1)
-        p.setVarbit(LEAN_EMOTE_VARBIT, 1)
-        p.setVarbit(GLASS_WALL_EMOTE_VARBIT, 1)
-        p.setVarbit(IDEA_EMOTE_VARBIT, 1)
-        p.setVarbit(STAMP_EMOTE_VARBIT, 1)
-        p.setVarbit(FLAP_EMOTE_VARBIT, 1)
-        p.setVarbit(SLAP_HEAD_EMOTE_VARBIT, 1)
-        p.setVarbit(ZOMBIE_WALK_EMOTE_VARBIT, 1)
-        p.setVarbit(ZOMBIE_DANCE_EMOTE_VARBIT, 1)
-        p.setVarbit(SCARED_EMOTE_VARBIT, 1)
-        p.setVarbit(RABBIT_HOP_EMOTE_VARBIT, 1)
-        p.setVarbit(EXERCISE_EMOTES, 1)
-        p.setVarbit(ZOMBIE_HAND_EMOTE_VARBIT, 1)
-        p.setVarbit(HYPERMOBILE_DRINKER_EMOTE_VARBIT, 1)
-        p.setVarbit(SKILLCAPE_EMOTE_VARBIT, 1)
-        p.setVarbit(AIR_GUITAR_EMOTE_VARBIT, 1)
-        p.setVarbit(URI_TRANSFORM_EMOTE_VARBIT, 1)
-        p.setVarbit(SMOOTH_DANCE_EMOTE_VARBIT, 1)
-        p.setVarbit(CRAZY_DANCE_EMOTE_VARBIT, 1)
-        p.setVarbit(PREMIER_SHIELD_EMOTE_VARBIT, 1)
-        p.setVarbit(EXPLORE_VARBIT, 1)
-        p.setVarbit(FLEX_EMOTE_VARBIT, 1)
-        p.setVarbit(RELIC_UNLOCKED_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.GOBLIN_EMOTES_VARBIT, 7)
+        p.setVarbit(Varbits.GLASS_BOX_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.CLIMB_ROPE_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.LEAN_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.GLASS_WALL_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.IDEA_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.STAMP_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.FLAP_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.SLAP_HEAD_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.ZOMBIE_WALK_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.ZOMBIE_DANCE_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.SCARED_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.RABBIT_HOP_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.EXERCISE_EMOTES, 1)
+        p.setVarbit(Varbits.ZOMBIE_HAND_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.HYPERMOBILE_DRINKER_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.SKILLCAPE_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.AIR_GUITAR_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.URI_TRANSFORM_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.SMOOTH_DANCE_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.CRAZY_DANCE_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.PREMIER_SHIELD_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.EXPLORE_VARBIT, 1)
+        p.setVarbit(Varbits.FLEX_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.RELIC_UNLOCKED_EMOTE_VARBIT, 1)
     }
 
     fun performEmote(p: Player, emote: Emote) {
