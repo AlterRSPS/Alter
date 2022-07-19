@@ -87,4 +87,5 @@ object Varbits {
     const val EXPLORE_VARBIT = 10115
     const val FLEX_EMOTE_VARBIT = 12062
     const val RELIC_UNLOCKED_EMOTE_VARBIT = 11757
+    const val FRIEND_FACE_ID_VARBIT = 6516 //varbit for smiley or sad face.
 }
