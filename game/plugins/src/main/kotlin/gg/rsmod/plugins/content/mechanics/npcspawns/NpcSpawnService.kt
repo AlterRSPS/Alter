@@ -3,6 +3,7 @@ package gg.rsmod.plugins.content.mechanics.npcspawns
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import gg.rsmod.game.Server
+import gg.rsmod.game.model.Direction
 import gg.rsmod.game.model.Tile
 import gg.rsmod.game.model.World
 import gg.rsmod.game.model.entity.Npc
@@ -17,6 +18,7 @@ import java.nio.file.Paths
  * @author CloudS3c
  */
 class NpcSpawnService : Service {
+
     override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
         val path = Paths.get("./data/cfg/spawns/npc_spawns.yml")
         if (!Files.exists(path)) {
@@ -28,9 +30,16 @@ class NpcSpawnService : Service {
             data.forEach { spawn ->
                 world.queue {
                     val npc = Npc(id = spawn.id, Tile(x = spawn.x, z = spawn.z, height = spawn.height), world)
-                    npc.walkRadius = 0
+                    npc.walkRadius = spawn.wander
+                    when (spawn.facing) {
+                        1 -> { npc.lastFacingDirection = Direction.NORTH }
+                        2 -> { npc.lastFacingDirection = Direction.EAST }
+                        3 -> { npc.lastFacingDirection = Direction.SOUTH }
+                        4 -> { npc.lastFacingDirection = Direction.WEST }
+                    }
                     npc.respawns
                     world.spawn(npc)
+
                 }
             }
             logger.info {"Loaded ${data.size} Npc Spawns."}
