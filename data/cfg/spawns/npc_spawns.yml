@@ -47099,21 +47099,25 @@
   x: 3096
   z: 3489
   height: 0
+  facing: 4
 - id: 1618
   name: "Banker"
   x: 3096
   z: 3491
   height: 0
+  facing: 4
 - id: 1618
   name: "Banker"
   x: 3096
   z: 3492
   height: 0
+  facing: 1
 - id: 308
   name: "Emblem Trader"
   x: 3096
   z: 3505
   height: 0
+  wander: 3
 - id: 3108
   name: "Man"
   x: 3097
@@ -47129,6 +47133,7 @@
   x: 3098
   z: 3492
   height: 0
+  facing: 1
 - id: 2200
   name: "Richard"
   x: 3099

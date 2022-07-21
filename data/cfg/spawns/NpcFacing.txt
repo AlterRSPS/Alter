@@ -1,0 +1,5 @@
+Facing in npc_spawns.yml
+1 = NORTH
+2 = EAST
+3 = SOUTH
+4 = WEST
