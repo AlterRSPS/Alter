@@ -80,7 +80,7 @@ abstract class Pawn(val world: World) : Entity() {
     /**
      * The last [Direction] this pawn was facing.
      */
-    var lastFacingDirection: Direction = Direction.SOUTH
+    internal var lastFacingDirection: Direction = Direction.SOUTH
 
     /**
      * A public getter property for [lastFacingDirection].

@@ -8,6 +8,4 @@ data class NpcSpawn(
     val height: Int = -1,
     val wander: Int = -1,
     val facing: Int = 1
-
-
 )
