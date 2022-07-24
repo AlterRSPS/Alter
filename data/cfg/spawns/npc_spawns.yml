@@ -47115,7 +47115,7 @@
 - id: 308
   name: "Emblem Trader"
   x: 3096
-  z: 3505
+  z: 3502
   height: 0
   wander: 3
 - id: 3108
@@ -47136,24 +47136,10 @@
   facing: 1
 - id: 2200
   name: "Richard"
-  x: 3099
-  z: 3519
+  x: 3088
+  z: 3513
   height: 0
-- id: 3106
-  name: "Man"
-  x: 3100
-  z: 3509
-  height: 0
-- id: 3107
-  name: "Man"
-  x: 3100
-  z: 3511
-  height: 0
-- id: 3108
-  name: "Man"
-  x: 3101
-  z: 3509
-  height: 0
+  wander: 2
 - id: 3254
   name: "Guard"
   x: 3109
@@ -108580,9 +108566,16 @@
   height: 0
 - id: 4589
   name: "Jimmy Dazzler"
-  x: 2562
-  z: 3320
+  x: 3091
+  z: 3492
   height: 0
+  facing: 2
+- id: 4918
+  name: "Seth"
+  x: 3100
+  z: 3506
+  height: 0
+  facing: 3
 - id: 1198
   name: "Ceril Carnillean"
   x: 2565
@@ -109595,9 +109588,10 @@
   height: 0
 - id: 3461
   name: "Ruantun"
-  x: 3112
-  z: 9690
+  x: 3098
+  z: 3495
   height: 0
+  facing: 4
 - id: 2854
   name: "Rat"
   x: 3113
