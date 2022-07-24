@@ -148,6 +148,17 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     /**
+     * Spawn an [Npc] on the given [tile].
+     */
+    fun spawn_npc(npc: Int, tile: Tile, walkRadius: Int = 0, direction: Direction = Direction.SOUTH) {
+        val n = Npc(npc, tile, world)
+        n.respawns = true
+        n.walkRadius = walkRadius
+        n.lastFacingDirection = direction
+        r.npcSpawns.add(n)
+    }
+
+    /**
      * Spawn a [DynamicObject] on the given coordinates.
      */
     fun spawn_obj(obj: Int, x: Int, z: Int, height: Int = 0, type: Int = 10, rot: Int = 0) {
