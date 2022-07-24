@@ -25,7 +25,6 @@ on_interface_close(interfaceId = SHOP_INTERFACE_ID) {
     player.attr[CURRENT_SHOP_ATTR]?.let { shop ->
         shop.viewers.remove(player.uid)
         player.closeInterface(interfaceId = INV_INTERFACE_ID)
-        player.openInterface(dest = InterfaceDestination.INVENTORY)
     }
 }
 
