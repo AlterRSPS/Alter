@@ -42,9 +42,9 @@ fun Player.openShop(shop: String) {
     if (s != null) {
         attr[CURRENT_SHOP_ATTR] = s
         shopDirty = true
-
+        setInterfaceUnderlay(-1, -2)
         openInterface(interfaceId = 300, dest = InterfaceDestination.MAIN_SCREEN)
-        openInterface(interfaceId = 301, dest = InterfaceDestination.INVENTORY)
+        openInterface(interfaceId = 301, dest = InterfaceDestination.TAB_AREA)
         setInterfaceEvents(interfaceId = 300, component = 16, range = 0..s.items.size, setting = 1086)
         setInterfaceEvents(interfaceId = 301, component = 0, range = 0 until inventory.capacity, setting = 1086)
         runClientScript(1074, 13, s.name)
