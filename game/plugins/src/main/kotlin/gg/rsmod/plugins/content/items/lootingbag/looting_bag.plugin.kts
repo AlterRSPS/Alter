@@ -34,12 +34,14 @@ on_global_item_pickup {
 }
 
 on_item_option(Items.LOOTING_BAG, "open") {
-    open(player, player.getInteractingItemSlot())
+    val slott = player.inventory.getItemIndex(Items.LOOTING_BAG, false)
+    open(player, slott)
     player.message("You open your looting bag, ready to fill it.")
 }
 
 on_item_option(Items.LOOTING_BAG_22586, "close") {
-    close(player, player.getInteractingItemSlot())
+    val slott = player.inventory.getItemIndex(Items.LOOTING_BAG_22586, false)
+    close(player, slott)
     player.message("You close your looting bag.")
 }
 
