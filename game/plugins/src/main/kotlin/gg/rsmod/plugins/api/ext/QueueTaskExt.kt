@@ -223,7 +223,7 @@ suspend fun QueueTask.chatNpc(message: String, npc: Int = -1, animation: Int = 5
     player.setComponentAnim(interfaceId = 231, component = 2, anim = animation)
     player.setComponentText(interfaceId = 231, component = 4, text = dialogTitle)
     player.setComponentText(interfaceId = 231, component = 6, text = message)
-    player.runClientScript(600, 1, 1, 16, 15138820)
+    player.runClientScript(600, 1, 1, 16, 15138822)
     player.setInterfaceEvents(interfaceId = 231, component = 4, from = -1, to = -1, setting = 1)
     player.setComponentText(interfaceId = 231, component = 5, text = "Click here to continue")
 
@@ -243,13 +243,13 @@ suspend fun QueueTask.chatPlayer(message: String, animation: Int = 588, title: S
 
     player.runClientScript(2379)
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 217)
-    player.setComponentPlayerHead(interfaceId = 217, component = 6)
-    player.setComponentAnim(interfaceId = 217, component = 6, anim = animation)
-    player.setComponentText(interfaceId = 217, component = 3, text = dialogTitle)
-    player.setComponentText(interfaceId = 217, component = 5, text = message)
+    player.setComponentPlayerHead(interfaceId = 217, component = 2)
+    player.setComponentAnim(interfaceId = 217, component = 2, anim = animation)
+    player.setComponentText(interfaceId = 217, component = 4, text = dialogTitle)
+    player.setComponentText(interfaceId = 217, component = 6, text = message)
     player.runClientScript(600, 1, 1, 16, 14221316)
-    player.setInterfaceEvents(interfaceId = 217, component = 4, from = -1, to = -1, setting = 1)
-    player.setComponentText(interfaceId = 217, component = 4, text = "Click here to continue")
+    player.setInterfaceEvents(interfaceId = 217, component = 3, from = -1, to = -1, setting = 1)
+    player.setComponentText(interfaceId = 217, component = 5, text = "Click here to continue")
 
     terminateAction = closeDialog
     waitReturnValue()
