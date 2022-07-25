@@ -32,12 +32,12 @@ class NpcSpawnService : Service {
                     val npc = Npc(id = spawn.id, Tile(x = spawn.x, z = spawn.z, height = spawn.height), world)
                     npc.walkRadius = spawn.wander
                     when (spawn.facing) {
-                        1 -> npc.faceDirection(Direction.NORTH)
-                        2 -> npc.faceDirection(Direction.EAST)
-                        3 -> npc.faceDirection(Direction.SOUTH)
-                        4 -> npc.faceDirection(Direction.WEST)
+                        1 -> npc.lastFacingDirection = Direction.NORTH
+                        2 -> npc.lastFacingDirection = Direction.EAST
+                        3 -> npc.lastFacingDirection = Direction.SOUTH
+                        4 -> npc.lastFacingDirection = Direction.WEST
                         else -> {
-                            npc.faceDirection(Direction.EAST)
+                            npc.lastFacingDirection = Direction.EAST
                             logger.info("Not found ${spawn.facing} applying default value: EAST")
                         }
                     }
