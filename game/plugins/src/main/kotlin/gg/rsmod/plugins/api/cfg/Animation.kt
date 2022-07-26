@@ -1,10 +1,12 @@
 package gg.rsmod.plugins.api.cfg
 
 object Animation {
+    const val RESET_CHARACTER = -1
     const val PICKUP_FROM_TABLE = 832
     const val USE_ITEM_ON_OBJECT_THAT_CAN_STORE_OBJECTS = 832
     const val LOOK_AT_MINIMAP_WHEN_FULLSCREEN = 5354
     const val PRAYER_BURY_BONE = 827
+    const val DIG_WITH_SPADE = 831
     /**
      * Firemaking Animations
      */
