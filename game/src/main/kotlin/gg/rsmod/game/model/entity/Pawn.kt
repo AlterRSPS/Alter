@@ -79,7 +79,6 @@ abstract class Pawn(val world: World) : Entity() {
 
     /**
      * The last [Direction] this pawn was facing.
-     * @TODO Was Internal had to change for a bit . Since some API methods currently do not work.
      */
     var lastFacingDirection: Direction = Direction.SOUTH
 

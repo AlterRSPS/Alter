@@ -5,7 +5,7 @@ Npcs.SHOP_ASSISTANT_2818, Npcs.SHOP_KEEPER_7913, Npcs.BANDIT_SHOPKEEPER, Npcs.GH
 Npcs.SHOP_KEEPER_2815, Npcs.SHOP_ASSISTANT_2816, Npcs.SHOP_KEEPER_2825, Npcs.SHOP_ASSISTANT_2826, Npcs.FAIRY_SHOP_KEEPER, Npcs.FAIRY_SHOP_ASSISTANT,
 Npcs.SHOP_KEEPER_2888, Npcs.SHOP_KEEPER_2894).forEach { shopkeeper ->
 
-        on_npc_option(npc = shopkeeper, option = "Talk-to", lineOfSightDistance = 0) {
+        on_npc_option(npc = shopkeeper, option = "Talk-to", lineOfSightDistance = 3) {
             player.queue {
                 dialog(this)
             }

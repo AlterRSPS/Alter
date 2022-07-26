@@ -142,6 +142,8 @@ class PluginRepository(val world: World) {
      */
     private val commandPlugins = hashMapOf<String, Pair<String?, Plugin.() -> Unit>>()
 
+    private val commandDescription = hashMapOf<String, String>()
+
     /**
      * A map of button click plugins. The key is a shifted value of the parent
      * and child id.
@@ -833,13 +835,15 @@ class PluginRepository(val world: World) {
         return false
     }
 
-    fun bindCommand(command: String, powerRequired: String? = null, plugin: Plugin.() -> Unit) {
+    fun bindCommand(command: String, powerRequired: String? = null, description: String? = null, plugin: Plugin.() -> Unit) {
         val cmd = command.toLowerCase()
+        val desc = description.toString().toLowerCase()
         if (commandPlugins.containsKey(cmd)) {
             logger.error("Command is already bound to a plugin: $cmd")
             throw IllegalStateException("Command is already bound to a plugin: $cmd")
         }
         commandPlugins[cmd] = Pair(powerRequired, plugin)
+        commandDescription[cmd] = desc
         pluginCount++
     }
 
@@ -1314,9 +1318,22 @@ class PluginRepository(val world: World) {
 
     fun get_all_commands(): ArrayList<String> {
         val str_list = ArrayList<String>()
-        commandPlugins.forEach { t, _ ->  str_list.add(t) }
+        commandPlugins.forEach { (t, _) ->
+            var value = "::$t"
+            if (getDescription(t) != "") {
+                value += " = [ ${getDescription(t)} ]"
+            }
+            str_list.add(value)
+        }
         return str_list
     }
+
+   fun getDescription(command: String): String? {
+       if (commandDescription.get(command) != "null") {
+            return commandDescription.get(command)
+       }
+       return ""
+   }
 
     companion object : KLogging()
 }

@@ -75,10 +75,6 @@ object RangedCombatFormula : CombatFormula {
         return maxRoll.toInt()
     }
 
-    /**
-     * Who tf wrote this?
-     * @TODO
-     */
     private fun applyRangedSpecials(player: Player, target: Pawn, base: Int, specialAttackMultiplier: Double, specialPassiveMultiplier: Double): Int {
         var hit = base.toDouble()
 

@@ -7,6 +7,7 @@ import gg.rsmod.game.fs.def.ItemDef
 import gg.rsmod.game.fs.def.NpcDef
 import gg.rsmod.game.fs.def.ObjectDef
 import gg.rsmod.game.model.Direction
+import gg.rsmod.game.model.PlayerUID
 import gg.rsmod.game.model.Tile
 import gg.rsmod.game.model.World
 import gg.rsmod.game.model.combat.NpcCombatDef
@@ -14,6 +15,7 @@ import gg.rsmod.game.model.container.key.ContainerKey
 import gg.rsmod.game.model.entity.DynamicObject
 import gg.rsmod.game.model.entity.GroundItem
 import gg.rsmod.game.model.entity.Npc
+import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.shop.PurchasePolicy
 import gg.rsmod.game.model.shop.Shop
 import gg.rsmod.game.model.shop.ShopCurrency
@@ -41,6 +43,10 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      * exposed to the plugin.
      */
     private lateinit var properties: MutableMap<String, Any>
+
+    fun getSpawns(): MutableList<GroundItem> {
+        return r.itemSpawns
+    }
 
     /**
      * Get property associated with [key] casted as [T].
@@ -144,7 +150,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         n.respawns = true
         n.walkRadius = walkRadius
         n.lastFacingDirection = direction
-        r.npcSpawns.add(n)
+        world.spawn(n)
     }
 
     /**
@@ -155,7 +161,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         n.respawns = true
         n.walkRadius = walkRadius
         n.lastFacingDirection = direction
-        r.npcSpawns.add(n)
+        world.spawn(n)
     }
 
     /**
@@ -163,7 +169,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     fun spawn_obj(obj: Int, x: Int, z: Int, height: Int = 0, type: Int = 10, rot: Int = 0) {
         val o = DynamicObject(obj, type, rot, Tile(x, z, height))
-        r.objSpawns.add(o)
+        world.spawn(o)
     }
 
     /**
@@ -172,7 +178,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun spawn_item(item: Int, amount: Int, x: Int, z: Int, height: Int = 0, respawnCycles: Int = GroundItem.DEFAULT_RESPAWN_CYCLES) {
         val ground = GroundItem(item, amount, Tile(x, z, height))
         ground.respawnCycles = respawnCycles
-        r.itemSpawns.add(ground)
+        world.spawn(ground)
     }
 
     /**
@@ -181,7 +187,16 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun spawn_item(item: Int, amount: Int, tile: Tile, respawnCycles: Int = GroundItem.DEFAULT_RESPAWN_CYCLES) {
         val ground = GroundItem(item, amount, Tile(tile))
         ground.respawnCycles = respawnCycles
-        r.itemSpawns.add(ground)
+        world.spawn(ground)
+    }
+
+    /**
+     * Spawn a [GroundItem] on the given coordinates for player
+     */
+    fun spawn_item(item: Int, amount: Int, tile: Tile, owner: Player) {
+        val ground = GroundItem(item, amount, Tile(tile))
+        ground.ownerUID = owner.uid
+        world.spawn(ground)
     }
 
     /**
@@ -456,7 +471,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     /**
      * Invoke [logic] when [gg.rsmod.game.message.impl.ClientCheatMessage] is handled.
      */
-    fun on_command(command: String, powerRequired: String? = null, logic: (Plugin).() -> Unit) = r.bindCommand(command, powerRequired, logic)
+    fun on_command(command: String, powerRequired: String? = null, description: String? = null, logic: (Plugin).() -> Unit) = r.bindCommand(command, powerRequired, description, logic)
 
     /**
      * Invoke [logic] when an item is equipped onto equipment slot [equipSlot].

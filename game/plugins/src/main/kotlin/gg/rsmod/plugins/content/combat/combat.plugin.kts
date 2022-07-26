@@ -95,10 +95,11 @@ suspend fun cycle(it: QueueTask): Boolean {
                     return true
                 }
                 pawn.message("You don't have enough power left.")
-            }
+            } else {
             if (pawn is Player && pawn.getEquipment(EquipmentType.WEAPON) != null && world.plugins.executeWeaponCombatLogic(pawn, pawn.getEquipment(EquipmentType.WEAPON)!!.id)) else
-            strategy.attack(pawn, target)
-            Combat.postAttack(pawn, target)
+                strategy.attack(pawn, target)
+                Combat.postAttack(pawn, target)
+            }
         } else {
             Combat.reset(pawn)
             return false

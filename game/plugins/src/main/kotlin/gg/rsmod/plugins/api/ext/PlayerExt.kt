@@ -5,6 +5,7 @@ import gg.rsmod.game.fs.def.ItemDef
 import gg.rsmod.game.fs.def.VarbitDef
 import gg.rsmod.game.message.impl.*
 import gg.rsmod.game.model.World
+import gg.rsmod.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import gg.rsmod.game.model.attr.CURRENT_SHOP_ATTR
 import gg.rsmod.game.model.attr.PROTECT_ITEM_ATTR
 import gg.rsmod.game.model.bits.BitStorage
@@ -12,6 +13,7 @@ import gg.rsmod.game.model.bits.StorageBits
 import gg.rsmod.game.model.container.ContainerStackType
 import gg.rsmod.game.model.container.ItemContainer
 import gg.rsmod.game.model.entity.Entity
+import gg.rsmod.game.model.entity.Pawn
 import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.interf.DisplayMode
 import gg.rsmod.game.model.item.Item
@@ -462,6 +464,8 @@ fun Player.toggleStorageBit(storage: BitStorage, bits: StorageBits) {
 fun Player.heal(amount: Int, capValue: Int = 0) {
     getSkills().alterCurrentLevel(skill = Skills.HITPOINTS, value = amount, capValue = capValue)
 }
+
+fun Player.getTarget(): Pawn? = attr[COMBAT_TARGET_FOCUS_ATTR]?.get()
 
 fun Player.hasSpellbook(book: Spellbook): Boolean = getVarbit(Varbits.PLAYER_SPELL_BOOK) == book.id
 

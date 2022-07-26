@@ -6,7 +6,9 @@ import gg.rsmod.game.model.attr.*
 on_button(InterfaceDestination.INVENTORY.interfaceId/* Inventory interface ID */, 0) {
     val slot: Int? = player.attr[INTERACTING_SLOT_ATTR]
     val option = player.attr[INTERACTING_OPT_ATTR]
+
     if (slot != null) {
+        player.message("${slot}")
         if (slot < 0 || slot >= player.inventory.capacity) {
             return@on_button
         }
@@ -16,18 +18,18 @@ on_button(InterfaceDestination.INVENTORY.interfaceId/* Inventory interface ID */
         val item = player.inventory[slot] ?: return@on_button
         when(option) {
             7 -> {
-                if (!world.plugins.executeItem(player, item.id, option-1)) {
-                    if (world.plugins.canDropItem(player, item.id)) {
-                        val remove = player.inventory.remove(item, assureFullRemoval = false, beginSlot = slot)
-                        if (remove.completed > 0) {
-                            val floor = GroundItem(item.id, remove.completed, player.tile, player)
-                            remove.firstOrNull()?.let { removed ->
-                                floor.copyAttr(removed.item.attr)
+                if (world.plugins.canDropItem(player, item.id)) {
+                    if (!world.plugins.executeItem(player, item.id, option-1)) {
+                            val remove = player.inventory.remove(item, assureFullRemoval = false, beginSlot = slot)
+                            if (remove.completed > 0) {
+                                val floor = GroundItem(item.id, remove.completed, player.tile, player)
+                                remove.firstOrNull()?.let { removed ->
+                                    floor.copyAttr(removed.item.attr)
+                                }
+                                world.spawn(floor)
                             }
-                            world.spawn(floor)
                         }
                     }
-                }
             }
             3 -> {
                 val result = EquipAction.equip(player, item, slot)
