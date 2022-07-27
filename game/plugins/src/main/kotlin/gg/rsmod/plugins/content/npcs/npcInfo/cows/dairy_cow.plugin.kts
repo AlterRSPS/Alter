@@ -3,7 +3,7 @@ package gg.rsmod.plugins.content.npcs.npcInfo.cows
 on_obj_option(8689, "milk") {
     player.queue {
         if (!player.inventory.contains(Items.BUCKET)) {
-            milkcow(this)
+            milkcow()
         } else {
             player.lock()
             player.animate(2305)
@@ -28,11 +28,11 @@ on_item_option(1927, "empty") {
     player.inventory.add(Items.BUCKET, 1)
 }
 
-suspend fun milkcow(it: QueueTask) {
-    it.chatNpc(npc = 4628, title = "Gillie Groats the Milkmaid", message = "Tee hee! You've never milked a cow before, have you?")
-    it.chatPlayer("Erm... No. How could you tell?")
-    it.chatNpc(npc = 4628, title = "Gillie Groats the Milkmaid", message = "Because you're spilling milk all over the floor. What a<br>waste! You need something to hold the milk.")
-    it.chatPlayer("Ah yes, I really should have guessed that one, shouldn't I?")
-    it.chatNpc(npc = 4628, title = "Gillie Groats the Milkmaid", message = "You're from the city. aren't you... Try it again with an<br>empty bucket.")
-    it.chatPlayer("Right, I'll do that.")
+suspend fun QueueTask.milkcow() {
+    chatNpc(npc = 4628, title = "Gillie Groats the Milkmaid", message = "Tee hee! You've never milked a cow before, have you?")
+    chatPlayer("Erm... No. How could you tell?")
+    chatNpc(npc = 4628, title = "Gillie Groats the Milkmaid", message = "Because you're spilling milk all over the floor. What a<br>waste! You need something to hold the milk.")
+    chatPlayer("Ah yes, I really should have guessed that one, shouldn't I?")
+    chatNpc(npc = 4628, title = "Gillie Groats the Milkmaid", message = "You're from the city. aren't you... Try it again with an<br>empty bucket.")
+    chatPlayer("Right, I'll do that.")
 }

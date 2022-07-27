@@ -8,4 +8,5 @@ create_shop("General Store", CoinCurrency(), purchasePolicy = PurchasePolicy.BUY
             items[0] = ShopItem(Items.TINDERBOX, 1)
             items[1] = ShopItem(Items.CHISEL, 2, 1, 0, 1)
             items[2] = ShopItem(Items.HAMMER, 5)
+            items[3] = ShopItem(Items.SPADE, 1)
         }
