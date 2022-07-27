@@ -237,7 +237,8 @@ suspend fun QueueTask.chatNpc(message: String, npc: Int = -1, animation: Int = 5
  *
  * @param message
  * The message to render on the dialog box.
- */
+*/
+
 suspend fun QueueTask.chatPlayer(message: String, animation: Int = 588, title: String? = null) {
     val dialogTitle = title ?: player.username
 

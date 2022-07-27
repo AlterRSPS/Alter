@@ -12,6 +12,7 @@ import gg.rsmod.game.model.Tile
 import gg.rsmod.game.model.World
 import gg.rsmod.game.model.combat.NpcCombatDef
 import gg.rsmod.game.model.container.key.ContainerKey
+import gg.rsmod.game.model.droptable.NpcDropTableDef
 import gg.rsmod.game.model.entity.DynamicObject
 import gg.rsmod.game.model.entity.GroundItem
 import gg.rsmod.game.model.entity.Npc
@@ -113,6 +114,11 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun set_combat_def(npc: Int, def: NpcCombatDef) {
         check(!r.npcCombatDefs.containsKey(npc)) { "Npc combat definition has been previously set: $npc" }
         r.npcCombatDefs[npc] = def
+    }
+
+    fun set_drop_table(npc: Int, def: NpcDropTableDef) {
+        check(!r.npcDropTableDefs.containsKey(npc)) { "Npc drop table defs have been previously set: $npc" }
+        r.npcDropTableDefs[npc] = def
     }
 
     /**

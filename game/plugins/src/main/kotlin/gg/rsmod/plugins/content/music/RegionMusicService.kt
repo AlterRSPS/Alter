@@ -9,7 +9,6 @@ import gg.rsmod.game.Server
 import gg.rsmod.game.model.Tile
 import gg.rsmod.game.model.World
 import gg.rsmod.game.service.Service
-import gg.rsmod.plugins.content.mechanics.npcspawns.NpcSpawn
 import gg.rsmod.util.ServerProperties
 import mu.KLogging
 import java.io.BufferedReader
