@@ -8,7 +8,6 @@ on_button(InterfaceDestination.INVENTORY.interfaceId/* Inventory interface ID */
     val option = player.attr[INTERACTING_OPT_ATTR]
 
     if (slot != null) {
-        player.message("${slot}")
         if (slot < 0 || slot >= player.inventory.capacity) {
             return@on_button
         }
@@ -16,6 +15,8 @@ on_button(InterfaceDestination.INVENTORY.interfaceId/* Inventory interface ID */
             return@on_button
         }
         val item = player.inventory[slot] ?: return@on_button
+        player.attr[INTERACTING_ITEM_SLOT] = slot
+
         when(option) {
             7 -> {
                 if (world.plugins.canDropItem(player, item.id)) {
