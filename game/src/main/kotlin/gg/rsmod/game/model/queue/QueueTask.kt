@@ -89,6 +89,16 @@ data class QueueTask(val ctx: Any, val priority: TaskPriority) : Continuation<Un
         check(cycles > 0) { "Wait cycles must be greater than 0." }
         nextStep = SuspendableStep(WaitCondition(cycles), it)
     }
+    /**
+     * Wait for the specified amount of game cycles [cycles] - [cycles] before
+     * continuing the logic associated with this task.
+     */
+    suspend fun wait(cyclesfrom: Int, cyclesto: Int): Unit = suspendCoroutine {
+        check(cyclesfrom > 0) { "Wait cycles must be greater than 0." }
+        check(cyclesto > cyclesfrom) { "Wait cycles must be greater than ${cyclesfrom}." }
+        val cycles = (cyclesfrom..cyclesto).random()
+        nextStep = SuspendableStep(WaitCondition(cycles), it)
+    }
 
     /**
      * Wait for [predicate] to return true.

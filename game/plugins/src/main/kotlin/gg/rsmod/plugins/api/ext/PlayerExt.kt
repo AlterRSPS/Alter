@@ -25,6 +25,8 @@ import gg.rsmod.plugins.api.cfg.Varps
 import gg.rsmod.plugins.content.music.Songs
 import gg.rsmod.plugins.service.marketvalue.ItemMarketValueService
 import gg.rsmod.util.BitManipulation
+import java.awt.Desktop
+import java.net.URI
 
 /**
  * The interface key used by inventory overlays
@@ -66,8 +68,12 @@ fun Player.filterableMessage(message: String) {
     write(MessageGameMessage(type = ChatMessageType.SPAM.id, message = message, username = null))
 }
 
-fun Player.openUrl(url: String) {
-    write(OpenUrlMessage(url))
+fun Player.openUrl(url: String){
+    try {
+        Desktop.getDesktop().browse(URI(url))
+    } catch (e:Exception) {
+        e.printStackTrace()
+    }
 }
 
 fun Player.runClientScript(id: Int, vararg args: Any) {

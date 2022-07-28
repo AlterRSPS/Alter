@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.area.edgeville.shopkeeper.npcs
+package gg.rsmod.plugins.content.area.edgeville.npcs
 
 arrayOf(Npcs.SHOP_KEEPER_2821, Npcs.SHOP_ASSISTANT_2822, Npcs.SHOP_KEEPER_7769, Npcs.SHOP_KEEPER_2823, Npcs.SHOP_ASSISTANT_2824, Npcs.SHOP_KEEPER_2817,
 Npcs.SHOP_ASSISTANT_2818, Npcs.SHOP_KEEPER_7913, Npcs.BANDIT_SHOPKEEPER, Npcs.GHOST_SHOPKEEPER, Npcs.SHOP_KEEPER_2884, Npcs.SHOP_ASSISTANT_2885,
@@ -19,8 +19,7 @@ Npcs.SHOP_KEEPER_2888, Npcs.SHOP_KEEPER_2894).forEach { shopkeeper ->
 }
 
 suspend fun dialog(it: QueueTask) {
-    it.chatNpc("Good day")
-    it.chatNpc("how may I help you?")
+    it.chatNpc("<br>Good day<br>How can i help you", title = "General Store")
     when (options(it)) {
         1 -> it.player.openShop("General Store")
 
