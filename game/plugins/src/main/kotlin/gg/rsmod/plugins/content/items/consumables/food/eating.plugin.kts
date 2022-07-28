@@ -6,7 +6,7 @@ Food.values.forEach { food ->
             return@on_item_option
         }
 
-        val inventorySlot = player.getInteractingItemId()
+        val inventorySlot = player.getInteractingItemSlot()
         if (player.inventory.remove(item = food.item, beginSlot = inventorySlot).hasSucceeded()) {
             Foods.eat(player, food)
             if (food.replacement != -1) {
