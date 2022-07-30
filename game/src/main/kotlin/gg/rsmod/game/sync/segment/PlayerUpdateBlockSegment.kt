@@ -137,9 +137,7 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                             appBuf.put(DataType.BYTE, 0)
                             continue
                         }
-                        /**
-                         * @TODO Is it correctly implemented?
-                         */
+
                         if (i == beard) {
                             val item = other.equipment[0]
                             if (item != null) {

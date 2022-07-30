@@ -39,6 +39,7 @@ allprojects {
         compile "org.postgresql:postgresql:42.2.2"
         compile "mysql:mysql-connector-java:5.1.46"
         compile "com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre7"
+        compile 'org.json:json:20220320'
 
         implementation "org.mindrot:jbcrypt:$bcryptVersion"
         implementation "com.google.code.gson:gson:$gsonVersion"
