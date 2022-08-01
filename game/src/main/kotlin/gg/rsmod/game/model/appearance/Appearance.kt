@@ -29,6 +29,7 @@ data class Appearance(val looks: IntArray, val colors: IntArray, var gender: Gen
      *      based on the supplies option
      */
     fun getLook(option: Int): Int {
+        println("gender: $gender looks: ${looks[6]}")
         return when(gender) {
             Gender.MALE -> {
                 when(option) {

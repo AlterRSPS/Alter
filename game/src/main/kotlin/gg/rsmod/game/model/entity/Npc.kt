@@ -11,6 +11,7 @@ import gg.rsmod.game.model.combat.CombatClass
 import gg.rsmod.game.model.combat.CombatStyle
 import gg.rsmod.game.model.combat.NpcCombatDef
 import gg.rsmod.game.sync.block.UpdateBlockType
+import gg.rsmod.game.model.droptable.NpcDropTableDef
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -64,6 +65,8 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      * it may want to use a different [NpcCombatDef].
      */
     lateinit var combatDef: NpcCombatDef
+
+    lateinit var dropTables: NpcDropTableDef
 
     /**
      * The [CombatClass] the npc will use on its next attack.
