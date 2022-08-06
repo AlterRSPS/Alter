@@ -9,7 +9,7 @@ import gg.rsmod.game.model.varp.Varp
  * @author Tom <rspsmods@gmail.com>
  */
 data class JsonPlayerSaveData(val passwordHash: String, val username: String, val displayName: String,
-                              val previousXteas: IntArray, val x: Int, val z: Int, val height: Int, val privilege: Int,
+                              val previousXteas: IntArray, val x: Int, val z: Int, val height: Int, val privilege: Int, val bhpoints: Int,
                               val displayMode: Int, val runEnergy: Double, val appearance: JsonPlayerSerializer.PersistentAppearance,
                               val skills: List<JsonPlayerSerializer.PersistentSkill>,val attributes: Map<String, Any>,
                               val timers: List<TimerMap.PersistentTimer>, val itemContainers: List<JsonPlayerSerializer.PersistentContainer>,
@@ -29,6 +29,7 @@ data class JsonPlayerSaveData(val passwordHash: String, val username: String, va
         if (z != other.z) return false
         if (height != other.height) return false
         if (privilege != other.privilege) return false
+        if (bhpoints != other.bhpoints) return false
         if (displayMode != other.displayMode) return false
         if (runEnergy != other.runEnergy) return false
         if (appearance != other.appearance) return false
@@ -50,6 +51,7 @@ data class JsonPlayerSaveData(val passwordHash: String, val username: String, va
         result = 31 * result + z
         result = 31 * result + height
         result = 31 * result + privilege
+        result = 31 * result + bhpoints
         result = 31 * result + displayMode
         result = 31 * result + runEnergy.hashCode()
         result = 31 * result + appearance.hashCode()

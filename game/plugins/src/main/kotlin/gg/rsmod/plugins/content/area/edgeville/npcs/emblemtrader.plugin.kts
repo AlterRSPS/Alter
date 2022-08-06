@@ -9,7 +9,8 @@ arrayOf(Npcs.EMBLEM_TRADER, Npcs.EMBLEM_TRADER_7943).forEach { emblemtrader ->
     }
     on_npc_option(npc = emblemtrader, option = "Rewards", lineOfSightDistance = 0) {
         player.queue {
-            NpcPlaceHolder().dialog(this)
+            player.openShop("Emblem Trader")
+            player.message("You have ${player.bountypoints} Bounty hunter Points to spend")
         }
     }
     on_npc_option(npc = emblemtrader, option = "Coffer", lineOfSightDistance = 0) {
