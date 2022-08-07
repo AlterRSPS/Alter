@@ -3,10 +3,8 @@ package gg.rsmod.plugins.content.skills.fishing.data
 import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.queue.QueueTask
 import gg.rsmod.plugins.api.Skills
-import gg.rsmod.plugins.api.ext.getVarp
 import gg.rsmod.plugins.api.ext.interpolate
 import gg.rsmod.plugins.api.ext.message
-/*import gg.rsmod.plugins.content.modules.tutorialisland.TutorialIsland*/
 
 /**
  * @author Fritz <frikkipafi@gmail.com>
@@ -36,10 +34,6 @@ class Fishing(val player: Player, val spot: FishingSpots) {
             if(lvl.interpolate(minChance = 60, maxChance = 190, minLvl = randomFish.level, maxLvl = 99, cap = 255)) {
                 player.world.plugins.executeOnCatchFish(player, spot.spotEntityId)
                 player.message("You catch some fish.")
-
-                /*if(player.getVarp(TutorialIsland.COMPLETION_VARP) >= 1000) {
-                    player.message("You catch some fish.")
-                }*/
 
                 if(spot.baitId != -1) {
                     player.inventory.remove(spot.baitId, 1)
@@ -78,11 +72,6 @@ class Fishing(val player: Player, val spot: FishingSpots) {
             player.message("You do not have enough space to hold any more fish.")
             return false
         }
-
-        // Tutorial island support
-        /*if(player.getVarp(TutorialIsland.COMPLETION_VARP) == 50) {
-            return false
-        }*/
 
         return true
     }

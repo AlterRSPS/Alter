@@ -3,7 +3,7 @@ package gg.rsmod.plugins.content.cmd.commands.developer
 import gg.rsmod.game.model.priv.Privilege
 import gg.rsmod.plugins.content.cmd.Commands_plugin.Command.tryWithUsage
 
-on_command("getvarbits", Privilege.DEV_POWER) {
+on_command("getvarbits", Privilege.DEV_POWER, description = "Get varbits for varp") {
     val args = player.getCommandArgs()
     tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::getvarbits 83</col>") { values ->
         val varp = values[0].toInt()

@@ -2,7 +2,7 @@ import gg.rsmod.game.model.priv.Privilege
 import gg.rsmod.plugins.content.cmd.Commands_plugin.Command.tryWithUsage
 import java.text.DecimalFormat
 
-on_command("item", Privilege.ADMIN_POWER) {
+on_command("item", Privilege.ADMIN_POWER, description = "Spawn items") {
     val args = player.getCommandArgs()
     tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::item 4151 1</col> or <col=801700>::item 4151</col>") { values ->
         val item = values[0].toInt()

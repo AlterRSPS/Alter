@@ -45,7 +45,7 @@ open class Player(world: World) : Pawn(world) {
         bountypoints -= removepoints
     }
     fun setBHP(setpoints: Int){
-        bountypoints == setpoints
+        bountypoints = setpoints
     }
 
     /**

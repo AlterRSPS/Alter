@@ -2,8 +2,6 @@ package gg.rsmod.plugins.content.skills.prayer
 
 import gg.rsmod.game.fs.def.ItemDef
 import gg.rsmod.game.model.entity.Player
-import gg.rsmod.game.model.timer.BONE_OFFER_DELAY
-import gg.rsmod.game.model.timer.BURY_BONE_DELAY
 import gg.rsmod.plugins.api.Skills
 import gg.rsmod.plugins.api.ext.message
 
@@ -12,30 +10,19 @@ import gg.rsmod.plugins.api.ext.message
  */
 object Offer {
 
-    fun canOffer(p: Player, bones: Bones): Boolean = !p.timers.has(BONE_OFFER_DELAY)
+    fun canOffer(p: Player, bones: Bones): Boolean = true
 
     fun OfferBones(p: Player, bones: Bones, Altar: Int) {
-        val delay = BURY_BONE_DELAY
         val boneName = p.world.definitions.get(ItemDef::class.java, bones.id).name
-        val xp = bones.xp
-        when (Altar) {
-            //Gilded Altar
-            1 -> {
-                val xp = bones.gilded
-            }
-            //Ecto
-            2 -> {
-                val xp = bones.ecto
-            }
-            //Chaos Altar
-            3 -> {
-                val xp = bones.chaos
-            }
+        val altars = arrayOf(bones.gilded, bones.ecto, bones.chaos)
+        // Altar = 1(gilded), Altar = 2(ecto), Altar = 3(chaos)
+        p.queue {
+            p.addXp(Skills.PRAYER, altars[Altar + 1])
+            p.animate(Prayer.ALTAR_ANIM)
+            p.resetFacePawn()
+            wait(3)
         }
-        p.addXp(Skills.PRAYER, xp)
-        p.animate(Prayer.ALTAR_ANIM)
-        p.resetFacePawn()
-        p.timers[delay] = 3
+
         when(bones){
             else -> {
                 p.message("You offer the ${boneName.toLowerCase()} to Gilded altar")

@@ -14,13 +14,14 @@ Bones.values.forEach { bones ->
         }
     }
     /**not working.
-    item_on_obj(obj = Objs.CHAOS_ALTAR_411, item = bones.id) {
-        player.message("You offer the to Gilded altar")
+    on_item_on_obj(obj = Objs.CHAOS_ALTAR_411, item = bones.id) {
+        player.message("You offer the to Chaos altar")
         if (!Offer.canOffer(player, bones)) {
             return@item_on_obj
         }
         val inventorySlot = player.getInteractingItemSlot()
         if (player.inventory.remove(item = bones.id, beginSlot = inventorySlot).hasSucceeded()) {
+            // 1(gilded), 2(ecto), 3(chaos)
             Offer.OfferBones(player, bones, 3)
 
         }

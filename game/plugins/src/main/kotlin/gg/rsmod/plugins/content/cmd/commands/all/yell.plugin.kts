@@ -2,7 +2,7 @@
  * @author Fritz <frikkipafi@gmail.com>
  */
 
-on_command("yell") {
+on_command("yell", description = "Yell to everyone") {
 
     val rank: String
     val color: String
