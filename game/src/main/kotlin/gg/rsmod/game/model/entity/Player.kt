@@ -37,7 +37,9 @@ open class Player(world: World) : Pawn(world) {
      * Bounty hunter points
      */
     var bountypoints = 0
-
+    fun getBHP(): Int {
+        return bountypoints
+    }
     fun addBHP(addpoints: Int){
         bountypoints += addpoints
     }

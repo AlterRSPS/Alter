@@ -8,6 +8,11 @@ object Animation {
     const val PRAYER_BURY_BONE = 827
     const val DIG_WITH_SPADE = 831
     /**
+     * Prayer Animations
+     */
+    const val BURY_BONE_ANIM = 827
+    const val ALTAR_ANIM = 896;
+    /**
      * Firemaking Animations
      */
     const val FIREMAKING_TINDERBOX = 733

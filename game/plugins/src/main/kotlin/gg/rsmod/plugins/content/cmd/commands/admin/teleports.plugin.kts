@@ -18,3 +18,6 @@ on_command("lumbridge", Privilege.ADMIN_POWER, description = "Teleports you to L
 on_command("yanille", Privilege.ADMIN_POWER, description = "Teleports you to Yanille") {
     player.moveTo(Tile(x = 2606, z = 3093, height = 0))
 }
+on_command("gnome", Privilege.ADMIN_POWER, description = "Teleports you to Gnome Stronghold") {
+    player.moveTo(Tile(x = 2461, z = 3443, height = 0))
+}

@@ -36,11 +36,11 @@ on_command("checkbhp", description = "Check players Bountyhunter points"){
     val username = args[0]
     val target = world.getPlayerForName(username)
     if (target != null) {
-        player.message("${username} has ${target.bountypoints} Bounty hunter Points")
+        player.message("${username} has ${target.getBHP()} Bounty hunter Points")
     } else {
         player.message("Player ${username} not found")
     }
 }
 on_command("bhp", description = "Check your Bountyhunter points"){
-    player.message("You have ${player.bountypoints} Bounty hunter Points")
+    player.message("You have ${player.getBHP()} Bounty hunter Points")
 }
