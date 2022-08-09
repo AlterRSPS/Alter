@@ -1,6 +1,4 @@
-package gg.rsmod.plugins.content.areas.varrock.objs
-
-import net.runelite.http.api.item.ItemType
+package gg.rsmod.plugins.content.area.varrock.objs
 
 val SLASH_WEP = 2500
 val SLASH_KNIFE = 2548

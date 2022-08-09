@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.barbvillage.config
+package gg.rsmod.plugins.content.area.barbvillage.config
 
 private val BARBVILLAGE_MULTI_REGION = 12341
 

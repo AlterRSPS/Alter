@@ -1,143 +1,145 @@
 package gg.rsmod.plugins.content.area.edgeville.chat
+/**
+ * @TODO fix the chat for limiting targets & add coffer
+ * Emblem trader "real" npc has an id of 308, this npc then changes appearance
+ * based on its varbit state for each player.
+ */
 
-// Emblem trader "real" npc has an id of 308, this npc then changes appearance
-// based on its varbit state for each player.
-spawn_npc(npc = 308, x = 3096, z = 3504, walkRadius = 2)
+spawn_npc(npc = Npcs.EMBLEM_TRADER, x = 3096, z = 3504, walkRadius = 2)
 
 val HIDE_STREAK_VARBIT = 1621
 val LIMIT_TARGETS_VARBIT = 6503
-
 val SKULL_SHORT_DURATION = 500
 val SKULL_LONG_DURATION = 2000
 
-/*arrayOf(Npcs.EMBLEM_TRADER, Npcs.EMBLEM_TRADER_316).forEach { npc ->
-    on_npc_option(npc = npc, option = "talk-to") {
-        player.queue { chat(this) }
+    on_npc_option(npc = Npcs.EMBLEM_TRADER, option = "Talk-to") {
+        player.queue { chat() }
     }
 
-    on_npc_option(npc = npc, option = "trade") {
-        open_bounty_store(player)
+    on_npc_option(npc = Npcs.EMBLEM_TRADER, option = "Rewards") {
+        player.queue { chatNpc(" I'm afraid I've retired my shop. I hurt my back lifting<br><br>bounty crates and I can't do it anymore.") }
     }
 
-    on_npc_option(npc = npc, option = "skull") {
+    on_npc_option(npc = Npcs.EMBLEM_TRADER, option = "Coffer") {
+        player.queue {
+            coffer_option()
+        }
+    }
+
+    on_npc_option(npc = Npcs.EMBLEM_TRADER, option = "skull") {
         player.queue {
             if (player.hasSkullIcon(SkullIcon.NONE)) {
-                give_pk_skull(this)
+                give_pk_skull()
             } else {
-                extend_pk_skull(this)
+                extend_pk_skull()
             }
         }
     }
 
-    if (npc == Npcs.EMBLEM_TRADER) {
-        on_npc_option(npc = npc, option = "hide-streaks") {
-            player.queue {
-                if (options("Yes", "No", title = "Hide kill streak data?") == 1) {
-                    hide_killstreak_data(player)
-                    player.message("Bounty Hunter kill streak data has now been hidden.")
-                }
-            }
-        }
-    } else if (npc == Npcs.EMBLEM_TRADER_316) {
-        on_npc_option(npc = npc, option = "show-streaks") {
-            player.queue {
-                if (options("Yes", "No", title = "Show kill streak data?") == 1) {
-                    show_killstreak_data(player)
-                    player.message("Bounty Hunter kill streak data has now been activated.")
-                }
-            }
-        }
-    }
-}*/
-
-suspend fun chat(it: QueueTask) {
-    it.chatNpc("Hello, wanderer.", animation = 588)
-    it.chatNpc("Don't suppose you've come across any strange...<br>emblems or artefacts along your journey?", animation = 589)
-    it.chatPlayer("Not that I've seen.", animation = 588)
-    it.chatNpc("If you do, please do let me know. I'll reward you<br>handsomely.", animation = 589)
-    options(it)
+suspend fun QueueTask.chat() {
+    chatNpc("Don't suppose you've come across any strange...<br>emblems or artefacts along your journey? Ancient<br>artifacts?", animation = 588)
+    chatNpc("Nothing to report now.", animation = 589)
+    chatNpc("If you find any, please bring them to me. I am happy<br>to offer rewards for such items. My master is pleased<br>by your interest, so I'll mark that task off on your<br>diary.", animation = 588)
+    options()
 }
 
-suspend fun options(it: QueueTask) {
-    val player = it.player
-
-    val skullOption = if (player.hasSkullIcon(SkullIcon.NONE)) "Can I have a PK skull, please?" else "Can you make my PK skull last longer?"
-    val killstreakOption = if (player.getVarbit(HIDE_STREAK_VARBIT) == 1) "I'd like to see kill streak data." else "I don't want to see kill streak data."
-    val targetOption = if (player.getVarbit(LIMIT_TARGETS_VARBIT) == 0) "I'd like to limit my potential targets." else "I don't want to limit my potential targets."
-
-    when (it.options("What rewards have you got?", skullOption, killstreakOption, targetOption, "That's nice.")) {
-        1 -> rewards(it)
-        2 -> pk_skull(it)
-        3 -> killstreak_data(it)
-        4 -> limit_targets(it)
-        5 -> {
-            it.chatPlayer("That's nice.", animation = 567)
+suspend fun QueueTask.options() {
+    when (options("Let's trade for rewards.", "Can I have a PK skull, please?", "Let's talk about Targets.", "I'll leave you alone.")) {
+        1 -> {
+            chatPlayer("Let's trade for rewards.", animation = 554)
+            chatNpc(" I'm afraid I've retired my shop. I hurt my back lifting<br><br>bounty crates and I can't do it anymore.")
         }
+        2 -> pk_skull()
+        3 -> limit_targets()
+        4 -> leave_alone()
     }
 }
 
-suspend fun rewards(it: QueueTask) {
-    it.chatPlayer("What rewards have you got?", animation = 554)
-    open_bounty_store(it.player)
-}
-
-fun open_bounty_store(p: Player) {
-    p.setInterfaceUnderlay(color = -1, transparency = -1)
-    p.openInterface(interfaceId = 178, dest = InterfaceDestination.MAIN_SCREEN)
-}
-
-suspend fun pk_skull(it: QueueTask) {
-    val player = it.player
+suspend fun QueueTask.pk_skull() {
+    val player = player
     if (player.hasSkullIcon(SkullIcon.NONE)) {
-        it.chatPlayer("Can I have a PK skull, please?", animation = 554)
-        give_pk_skull(it)
+        chatPlayer("Can I have a PK skull, please?", animation = 554)
+        give_pk_skull()
     } else {
-        it.chatPlayer("Can you make my PK skull last longer?", animation = 554)
-        extend_pk_skull(it)
+        chatPlayer("Can you make my PK skull last longer?", animation = 554)
+        extend_pk_skull()
     }
 }
 
-suspend fun give_pk_skull(it: QueueTask) {
-    if (it.options("Give me a PK skull.", "Cancel.", title = "A PK skull means you drop ALL your items on death.") == 1) {
-        it.player.skull(SkullIcon.WHITE, durationCycles = SKULL_SHORT_DURATION)
-        it.itemMessageBox("You are now skulled.", item = Items.SKULL, amountOrZoom = 400)
+suspend fun QueueTask.give_pk_skull() {
+    if (options("Give me a PK skull.", "Cancel.", title = "A PK skull means you drop ALL your items on death.") == 1) {
+        player.skull(SkullIcon.WHITE, durationCycles = SKULL_SHORT_DURATION)
+        itemMessageBox("You are now skulled.", item = Items.SKULL, amountOrZoom = 400)
     }
 }
 
-suspend fun extend_pk_skull(it: QueueTask) {
-    if (it.options("Yes", "No", title = "Extend your PK skull duration?") == 1) {
-        it.player.skull(SkullIcon.WHITE, durationCycles = SKULL_LONG_DURATION)
-        it.itemMessageBox("Your PK skull will now last for the full 20 minutes.", item = Items.SKULL)
+suspend fun QueueTask.extend_pk_skull() {
+    if (options("Yes", "No", title = "Extend your PK skull duration?") == 1) {
+        player.skull(SkullIcon.WHITE, durationCycles = SKULL_LONG_DURATION)
+        itemMessageBox("Your PK skull will now last for the full 20 minutes.", item = Items.SKULL)
     }
 }
 
-suspend fun killstreak_data(it: QueueTask) {
-    if (it.player.getVarbit(HIDE_STREAK_VARBIT) == 0) {
-        it.chatPlayer("I don't want to see kill streak data.", animation = 554)
-        hide_killstreak_data(it.player)
-        it.chatNpc("Very well, you will no longer see kill streak data when<br>you are engaged in Bounty Hunting.", animation = 568)
-    } else {
-        it.chatPlayer("I'd like to see kill streak data.", animation = 554)
-        show_killstreak_data(it.player)
-        it.chatNpc("Very well, you will now see kill streak data when you<br>are engaged in Bounty Hunting.", animation = 568)
-    }
-}
-
-fun hide_killstreak_data(p: Player) {
-    p.setVarbit(HIDE_STREAK_VARBIT, 1)
-}
-
-fun show_killstreak_data(p: Player) {
-    p.setVarbit(HIDE_STREAK_VARBIT, 0)
-}
-
-suspend fun limit_targets(it: QueueTask) {
-    val player = it.player
+suspend fun QueueTask.limit_targets() {
+    val player = player
     if (player.getVarbit(LIMIT_TARGETS_VARBIT) == 0) {
-        it.chatPlayer("I'd like to limit my potential targets.", animation = 554)
-        it.chatNpc("Very well, you will no longer be assigned targets deep<br>in the wilderness.", animation = 568)
-    } else {
-        it.chatPlayer("I don't want to limit my potential targets.", animation = 554)
-        it.chatNpc("Very well, you may now be assigned targets deep in<br>the wilderness.", animation = 568)
+        chatPlayer("Let's talk about Targets.", animation = 554)
+        when (options("Can I access my Target Coffer?", "I'd like to limit my potential Targets.", "I'll leave you alone")) {
+            1 -> {
+                chatPlayer("Can I access my Target Coffer?")
+                coffer_option()
+            }
+            2 -> {
+                chatPlayer("I'd like to limit my potential Targets.")
+                chatNpc("Very well, you will no longer be assigned targets deep<br><br>in the wilderness.", animation = 568)
+                coffer_umlimit()
+            }
+            3 -> leave_alone()
+        }
+        } else {
+        chatPlayer("I don't want to limit my potential targets.", animation = 554)
+        chatNpc("Very well, you may now be assigned targets deep in<br>the wilderness.", animation = 568)
     }
+}
+
+suspend fun QueueTask.coffer_umlimit() {
+    when (options("Can I access my Target Coffer?", "I don't want to limit my potential Targets.", "I'll leave you alone")) {
+        1 -> coffer_option()
+        2 -> {
+            chatPlayer("I don't want to limit my potential Targets.")
+            chatNpc("Very well, you may now be assigned Targets deep in<br><br>the wilderness.")
+            access_coffer()
+        }
+        3 -> leave_alone()
+    }
+}
+
+suspend fun QueueTask.access_coffer(){
+    when (options("Can I access my Target Coffer?", "I'd like to limit my potential Targets.", "I'll leave you alone")) {
+        1 -> coffer_option()
+        2 -> limit_targets()
+        3 -> leave_alone()
+    }
+}
+
+suspend fun QueueTask.coffer_option() {
+    chatPlayer("Can I access my Target Coffer?")
+    when (options("Ask about the coffer", "Deposit", "Other options")) {
+        1 -> {
+            chatNpc("Anyone wishing to participate in the Targeting system<br>must take a little risk, if they wish to be considered a<br>worthy opponent.")
+            itemMessageBox("They may put money in their Target Coffer here, by<br>talking to me. They must store at least <col=7f0000>20,000 coins</col> to<br>play.", item = 1004)
+            chatNpc(" If another person kills you in the Wilderness on a<br>Target world, <col=7f0000>20,000 coins</col> will be taken from your<br>Coffer, and given to your killer.")
+            chatNpc("Any surplus money in your Coffer will remain safe,<br>here, with me. Only <col=7f0000>20,000 coins</col> will be taken from it<br>as you die.")
+            coffer_option()
+        }
+        2 -> {
+            chatNpc("You must be on a Target world to deposit coins into<br>the Target Coffer.")
+            coffer_option()
+        }
+        3 -> access_coffer()
+    }
+}
+
+suspend fun QueueTask.leave_alone() {
+    chatPlayer("I'll leave you alone.", animation = 567)
 }

@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.edgeville.objs
+package gg.rsmod.plugins.content.area.edgeville.objs
 
 on_obj_option(Objs.LEVER_26761, "pull") {
     val obj = player.getInteractingGameObj()

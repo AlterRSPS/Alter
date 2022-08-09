@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.varrock.shops
+package gg.rsmod.plugins.content.area.varrock.shops
 
 import gg.rsmod.plugins.content.mechanics.shops.CoinCurrency
 

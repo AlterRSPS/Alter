@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.edgeville.objs
+package gg.rsmod.plugins.content.area.edgeville.objs
 
 for (roses in 9260..9262) {
     on_obj_option(obj = roses, option = "take-seed") {

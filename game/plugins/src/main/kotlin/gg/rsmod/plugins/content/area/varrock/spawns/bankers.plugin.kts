@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.varrock.spawns
+package gg.rsmod.plugins.content.area.varrock.spawns
 
 //Example
 /**spawn_npc(npc = Npcs.ID, x = xxxx, z = zzzz, height = 0, walk = 0, direction = Direction.NORTH)*/

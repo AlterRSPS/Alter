@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.varrock.spawns.sewers
+package gg.rsmod.plugins.content.area.varrock.spawns.sewers
 
 spawn_npc(Npcs.SPIDER_3019, 3261, 9869, walkRadius = 8)//20sec
 spawn_npc(Npcs.SPIDER_3019, 3262, 9870, walkRadius = 8)//20sec
@@ -98,6 +98,7 @@ spawn_npc(Npcs.MOSS_GIANT_2092, 3155,9904,0,1, Direction.EAST)
 spawn_npc(Npcs.MOSS_GIANT_2093, 3166,9883,0,1, Direction.NORTH_WEST)
 spawn_npc(Npcs.MOSS_GIANT_2093, 3159,9902,0,1, Direction.NORTH_EAST)
 
+/**Items*/
 spawn_item(Items.IRON_AXE, 1, 3162,9888,0,100)
 spawn_item(Items.COINS_995, 5, 3169,9880,0,100)
 spawn_item(Items.COINS_995, 7, 3173,9881,0,100)

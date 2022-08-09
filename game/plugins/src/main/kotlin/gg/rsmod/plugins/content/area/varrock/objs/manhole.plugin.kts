@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.varrock.objs
+package gg.rsmod.plugins.content.area.varrock.objs
 
 val OPEN_SFX = 54
 

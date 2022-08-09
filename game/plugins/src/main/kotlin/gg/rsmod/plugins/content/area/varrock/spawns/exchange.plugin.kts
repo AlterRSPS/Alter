@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.varrock.spawns
+package gg.rsmod.plugins.content.area.varrock.spawns
 
 /**exchange people*/
 spawn_npc(npc = Npcs.HOFUTHAND_WEAPONS_AND_ARMOUR, x = 3156, z = 3498, direction = Direction.SOUTH_EAST)

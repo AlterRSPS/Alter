@@ -6,6 +6,7 @@ enum class InterfaceDestination(val interfaceId: Int, val fixedChildId: Int, val
                                 val fullscreenChildId: Int = -1, val clickThrough: Boolean = true) {
 
     CHAT_BOX(interfaceId = 162, fixedChildId = 10, resizeChildId = 94, resizeListChildId = 91, fullscreenChildId = 1),
+    PVP_OVERLAY(interfaceId = -1, fixedChildId = 15, resizeChildId = 4, resizeListChildId = 4),
     XP_COUNTER(interfaceId = 122, fixedChildId = 33, resizeChildId = 9, resizeListChildId = 9, fullscreenChildId = 11, clickThrough = true),
     ATTACK(interfaceId = 593, fixedChildId = 79, resizeChildId = 75, resizeListChildId = 72, fullscreenChildId = 15),
     SKILLS(interfaceId = 320, fixedChildId = 80, resizeChildId = 76, resizeListChildId = 73, fullscreenChildId = 16),

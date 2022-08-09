@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.edgeville.shops
+package gg.rsmod.plugins.content.area.edgeville.shops
 
 import gg.rsmod.game.model.shop.PurchasePolicy
 import gg.rsmod.plugins.content.mechanics.shops.CoinCurrency
@@ -15,6 +15,7 @@ create_shop("Edgeville General Store", CoinCurrency(), purchasePolicy = Purchase
     items[8] = ShopItem(Items.TINDERBOX, 2)
     items[9] = ShopItem(Items.CHISEL, 2)
     items[10] = ShopItem(Items.HAMMER, 5)
-    items[11] = ShopItem(Items.NEWCOMER_MAP, 5)
-    items[12] = ShopItem(Items.SECURITY_BOOK, 5)
+    items[11] = ShopItem(Items.KNIFE, 1)
+    items[12] = ShopItem(Items.NEWCOMER_MAP, 5)
+    items[13] = ShopItem(Items.SECURITY_BOOK, 5)
 }

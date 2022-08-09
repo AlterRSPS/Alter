@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.edgeville.spawns.dungeon
+package gg.rsmod.plugins.content.area.edgeville.spawns.dungeon
 
 spawn_npc(npc = Npcs.GIANT_SPIDER_3017, x = 3096, z = 9878, walkRadius = 9)//17sec
 spawn_npc(npc = Npcs.GIANT_SPIDER_3017, x = 3097, z = 9878, walkRadius = 9)
@@ -68,7 +68,7 @@ spawn_npc(npc = Npcs.HILL_GIANT_2099, x = 3117, z = 9843, walkRadius = 4)//17sec
 spawn_npc(npc = Npcs.HILL_GIANT, x = 3117, z = 9850, walkRadius = 4)//17sec
 spawn_npc(npc = Npcs.HILL_GIANT, x = 3111, z = 9841, walkRadius = 4)//17sec
 
-
+/**Items*/
 spawn_item(Items.BONES, 1, x = 3093, z = 9879)
 spawn_item(Items.BONES, 1, x = 3093, z = 9884)
 spawn_item(Items.BONES, 1, x = 3098, z = 9886)

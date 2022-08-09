@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.edgeville.objs
+package gg.rsmod.plugins.content.area.edgeville.objs
 
 val OPEN_SFX = 53
 val CLOSE_SFX = 54

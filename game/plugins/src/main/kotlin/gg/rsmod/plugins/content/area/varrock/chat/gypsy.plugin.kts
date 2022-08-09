@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.varrock.chat
+package gg.rsmod.plugins.content.area.varrock.chat
 
 spawn_npc(npc = Npcs.GYPSY, x = 3203, z = 3424, walkRadius = 2, direction = Direction.EAST)
 

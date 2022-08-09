@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.edgeville.shops
+package gg.rsmod.plugins.content.area.edgeville.shops
 
 import gg.rsmod.plugins.content.mechanics.shops.CoinCurrency
 
