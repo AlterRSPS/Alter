@@ -1,1 +1,1 @@
-package gg.rsmod.plugins.content.areas.falador
+package gg.rsmod.plugins.content.area.falador

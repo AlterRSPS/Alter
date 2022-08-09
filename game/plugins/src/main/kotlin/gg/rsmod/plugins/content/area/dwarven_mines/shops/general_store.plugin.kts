@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.dwarven_mines.shops
+package gg.rsmod.plugins.content.area.dwarven_mines.shops
 
 import gg.rsmod.plugins.content.mechanics.shops.CoinCurrency
 

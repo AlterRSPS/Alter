@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.dwarven_mines.spawns
+package gg.rsmod.plugins.content.area.dwarven_mines.spawns
 
 spawn_npc(npc = Npcs.SCORPION_3024, x = 3042, z = 9800, walkRadius = 13)
 spawn_npc(npc = Npcs.SCORPION_3024, x = 3039, z = 9802, walkRadius = 13)

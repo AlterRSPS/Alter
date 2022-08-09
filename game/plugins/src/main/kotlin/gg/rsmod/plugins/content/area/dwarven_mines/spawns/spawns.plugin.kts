@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.dwarven_mines.spawns
+package gg.rsmod.plugins.content.area.dwarven_mines.spawns
 
 spawn_npc(npc = Npcs.CART_CONDUCTOR_2391, x = 2995, z = 9837, walkRadius = 3)
 spawn_npc(npc = Npcs.HURA, x = 3003, z = 9799, walkRadius = 0, direction = Direction.SOUTH)

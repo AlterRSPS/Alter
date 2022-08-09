@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.dwarven_mines.objs.mining_guild
+package gg.rsmod.plugins.content.area.dwarven_mines.objs.mining_guild
 
 on_obj_option(Objs.DOOR_30364, option = "open") {
     if (player.getSkills().getCurrentLevel(Skills.MINING) < 60) {
