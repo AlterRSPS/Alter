@@ -1,17 +1,21 @@
 package gg.rsmod.plugins.content.skills.woodcutting
 
 import gg.rsmod.game.fs.def.ItemDef
+import gg.rsmod.game.model.attr.AttributeKey
 import gg.rsmod.game.model.entity.DynamicObject
 import gg.rsmod.game.model.entity.GameObject
 import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.queue.QueueTask
 import gg.rsmod.plugins.api.Skills
+import gg.rsmod.plugins.api.cfg.Items
 import gg.rsmod.plugins.api.ext.*
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 object Woodcutting {
+
+    val infernalAxe = AttributeKey<Int>("Infernal Axe Charges")
 
     data class Tree(val type: TreeType, val obj: Int, val trunk: Int)
 
@@ -86,5 +90,28 @@ object Woodcutting {
         }
 
         return true
+    }
+
+    fun createAxe(player: Player) {
+        if (player.getSkills().getBaseLevel(Skills.WOODCUTTING) >= 61 && player.getSkills().getBaseLevel(Skills.FIREMAKING) >= 85) {
+            player.inventory.remove(Items.DRAGON_AXE)
+            player.inventory.remove(Items.SMOULDERING_STONE)
+            player.inventory.add(Items.INFERNAL_AXE)
+
+            player.attr.put(infernalAxe, 5000)
+
+            player.animate(id = 4511, delay = 2)
+            player.graphic(id = 1240, height = 2)
+
+            player.addXp(Skills.FIREMAKING, 350.0)
+            player.addXp(Skills.WOODCUTTING, 200.0)
+        } else if (player.getSkills().getBaseLevel(Skills.FIREMAKING) < 85 || player.getSkills().getBaseLevel(Skills.WOODCUTTING) < 61 &&
+            player.getSkills().getBaseLevel(Skills.FIREMAKING) >= 85 || player.getSkills().getBaseLevel(Skills.WOODCUTTING) >= 61) {
+            player.message("You need 61 woodcrafing and 85 firemaking to make this")
+        }
+    }
+
+    fun checkCharges(p: Player) {
+        p.message("Your infernal axe currently has ${p.attr.get(infernalAxe)} charges left.")
     }
 }

@@ -396,7 +396,7 @@ suspend fun QueueTask.levelUpMessageBox(skill: Int, levelIncrement: Int) {
  * @return
  * The id of the option chosen. The id can range from [1] inclusive to [9] inclusive.
  */
-suspend fun QueueTask.produceItemBox(vararg items: Int, title: String = "What would you like to make?", maxProducable: Int = player.inventory.capacity, logic: Player.(Int, Int) -> Unit) {
+suspend fun QueueTask.produceItemBox(vararg items: Int, type: Int = 0, title: String = "What would you like to make?", maxProducable: Int = player.inventory.capacity, logic: Player.(Int, Int) -> Unit) {
     val defs = player.world.definitions
     val itemDefs = items.map { defs.get(ItemDef::class.java, it) }
 

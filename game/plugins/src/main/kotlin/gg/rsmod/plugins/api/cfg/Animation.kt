@@ -157,5 +157,10 @@ object Animation {
     const val AGILITY_PIPE_START =746
     const val AGILITY_PIPE_CRAWL = 749
     const val AGILITY_PIPE_EXIT = 748
+    /**
+     * Prayer Animations
+     */
+    const val BURY_BONE_ANIM = 827
+    const val ALTAR_ANIM = 896;
 
 }
