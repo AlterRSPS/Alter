@@ -5,8 +5,12 @@ object Animation {
     const val PICKUP_FROM_TABLE = 832
     const val USE_ITEM_ON_OBJECT_THAT_CAN_STORE_OBJECTS = 832
     const val LOOK_AT_MINIMAP_WHEN_FULLSCREEN = 5354
-    const val PRAYER_BURY_BONE = 827
     const val DIG_WITH_SPADE = 831
+    /**
+     * Prayer Animations
+     */
+    const val BURY_BONE_ANIM = 827
+    const val ALTAR_ANIM = 896;
     /**
      * Firemaking Animations
      */
@@ -157,10 +161,5 @@ object Animation {
     const val AGILITY_PIPE_START =746
     const val AGILITY_PIPE_CRAWL = 749
     const val AGILITY_PIPE_EXIT = 748
-    /**
-     * Prayer Animations
-     */
-    const val BURY_BONE_ANIM = 827
-    const val ALTAR_ANIM = 896;
 
 }

@@ -11,6 +11,7 @@ import gg.rsmod.game.model.combat.NpcCombatDef
 import gg.rsmod.game.model.container.key.*
 import gg.rsmod.game.model.droptable.NpcDropTableDef
 import gg.rsmod.game.model.entity.*
+import gg.rsmod.game.model.droptable.NpcDropTableDef
 import gg.rsmod.game.model.priv.Privilege
 import gg.rsmod.game.model.priv.PrivilegeSet
 import gg.rsmod.game.model.shop.Shop
@@ -1347,6 +1348,37 @@ class PluginRepository(val world: World) {
        }
        return ""
    }
+    fun bindOnStartFishing(npc_spot: Int, plugin: Plugin.() -> Unit) {
+        if(onStartFishingPlugins.containsKey(npc_spot)) {
+            val error = IllegalStateException("Start fishing listener already bound to a plugin: npc=$npc_spot")
+            logger.error(error) {}
+            throw error
+        }
+        onStartFishingPlugins[npc_spot] = plugin
+        pluginCount++
+    }
+
+    fun executeOnStartFishing(p: Player, npc_spot: Int): Boolean {
+        val plugin = onStartFishingPlugins[npc_spot] ?: return false
+        p.executePlugin(plugin)
+        return true
+    }
+
+    fun bindOnCatchFish(npc_spot: Int, plugin: Plugin.() -> Unit) {
+        if(onCatchFishPlugins.contains(npc_spot)) {
+            val error = IllegalStateException("Catch fish listener already bound to a plugin: npc=$npc_spot")
+            logger.error(error) {}
+            throw error
+        }
+        onCatchFishPlugins[npc_spot] = plugin
+        pluginCount++
+    }
+
+    fun executeOnCatchFish(p: Player, npc_spot: Int): Boolean {
+        val plugin = onCatchFishPlugins[npc_spot] ?: return false
+        p.executePlugin(plugin)
+        return true
+    }
 
     fun bindOnStartFishing(npc_spot: Int, plugin: Plugin.() -> Unit) {
         if(onStartFishingPlugins.containsKey(npc_spot)) {

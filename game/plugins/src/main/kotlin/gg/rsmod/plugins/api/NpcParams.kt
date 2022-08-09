@@ -367,6 +367,9 @@ class NpcCombatBuilder {
     }
 }
 
+/**
+ * @author Kyle Escobar
+ */
 class NpcDropTableBuilder {
     private var json = ""
     private var rolls = -1

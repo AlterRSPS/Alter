@@ -15,7 +15,6 @@ import gg.rsmod.game.model.combat.NpcCombatDef
 import gg.rsmod.game.model.droptable.NpcDropTableDef
 import gg.rsmod.game.model.timer.RESET_PAWN_FACING_TIMER
 import gg.rsmod.game.sync.block.UpdateBlockType
-
 /**
  * @author Tom <rspsmods@gmail.com>
  */
@@ -70,7 +69,6 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
     lateinit var combatDef: NpcCombatDef
 
     lateinit var dropTables: NpcDropTableDef
-
 
     /**
      * The [CombatClass] the npc will use on its next attack.
