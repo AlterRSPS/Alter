@@ -38,6 +38,7 @@ class PlayerController(req: Request, resp: Response, auth: Boolean) : Controller
                 pObj.addProperty("isOnline", player.isOnline)
                 pObj.addProperty("xpRate", player.xpRate)
                 pObj.addProperty("UID", player.uid.toString())
+                pObj.addProperty("BHPoints", player.bountypoints)
 
                 val skillArr = JsonArray()
 

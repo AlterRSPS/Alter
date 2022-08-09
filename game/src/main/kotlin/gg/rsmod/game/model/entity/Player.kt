@@ -34,6 +34,23 @@ import java.util.Arrays
 open class Player(world: World) : Pawn(world) {
 
     /**
+     * Bounty hunter points
+     */
+    var bountypoints = 0
+    fun getBHP(): Int {
+        return bountypoints
+    }
+    fun addBHP(addpoints: Int){
+        bountypoints += addpoints
+    }
+    fun removeBHP(removepoints: Int){
+        bountypoints -= removepoints
+    }
+    fun setBHP(setpoints: Int){
+        bountypoints = setpoints
+    }
+
+    /**
      * A persistent and unique id. This is <strong>not</strong> the index
      * of our [Player] when registered to the [World], it is a value determined
      * when the [Player] first registers their account.

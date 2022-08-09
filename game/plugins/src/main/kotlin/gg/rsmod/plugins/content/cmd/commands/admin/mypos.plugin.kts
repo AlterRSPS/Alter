@@ -2,7 +2,7 @@ import gg.rsmod.game.model.priv.Privilege
 
 arrayOf("mypos", "coords", "pos").forEach { pos ->
 
-on_command(pos, Privilege.ADMIN_POWER) {
+on_command(pos, Privilege.ADMIN_POWER, description = "Your position in coordinates") {
     val instancedMap = world.instanceAllocator.getMap(player.tile)
     val tile = player.tile
     if (instancedMap == null) {

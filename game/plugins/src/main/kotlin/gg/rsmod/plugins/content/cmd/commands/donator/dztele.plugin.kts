@@ -5,8 +5,7 @@ import gg.rsmod.plugins.content.magic.TeleportType
 import gg.rsmod.plugins.content.magic.canTeleport
 import gg.rsmod.plugins.content.magic.prepareForTeleport
 
-
-on_command("dz", Privilege.DONOR_POWER ) {
+on_command("dz", Privilege.DONOR_POWER, description = "Donatorzone teleport") {
     player.queue(TaskPriority.STRONG) {
         player.teleport(this)
     }

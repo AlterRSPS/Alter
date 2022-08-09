@@ -2,7 +2,7 @@
  * @author Fritz <frikkipafi@gmail.com>
  */
 
-on_command("yell") {
+on_command("yell", description = "Yell to everyone") {
 
     val rank: String
     val color: String
@@ -21,7 +21,7 @@ on_command("yell") {
         5 -> { rank = "<img=8>Donator"
                color = "<shad=16711680>"}
 
-    else -> { rank = "unidendified"
+    else -> { rank = "unidentified"
               color = ""}
     }
 
