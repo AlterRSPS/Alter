@@ -574,9 +574,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         npc.combatDef.bonuses.forEachIndexed { index, bonus -> npc.equipmentBonuses[index] = bonus }
         npc.respawns = combatDef.respawnDelay > 0
 
-        val dropTableDef = plugins.npcDropTableDefs.getOrDefault(npc.id, null) ?: NpcDropTableDef.DEFAULT
-        npc.dropTables = dropTableDef
-
         npc.setCurrentHp(npc.combatDef.hitpoints)
         combatDef.stats.forEachIndexed { index, level ->
             npc.stats.setMaxLevel(index, level)

@@ -44,7 +44,7 @@ services:
   - class: gg.rsmod.game.service.game.DumpEntityIdService
     cache-path: "./data/cache/"
     output-path: "./game/plugins/src/main/kotlin/gg/rsmod/plugins/api/cfg/"
-    dump: true
+    dump: false
 
   - class: gg.rsmod.game.service.rsa.RsaService
 
