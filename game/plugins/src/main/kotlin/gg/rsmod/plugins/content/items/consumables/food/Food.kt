@@ -2,6 +2,7 @@ package gg.rsmod.plugins.content.items.food
 
 import gg.rsmod.plugins.api.cfg.Items
 
+
 enum class Food(val item: Int, val heal: Int = 0, val overheal: Boolean = false,
                 val replacement: Int = -1, val tickDelay: Int = 3,
                 val comboFood: Boolean = false) {

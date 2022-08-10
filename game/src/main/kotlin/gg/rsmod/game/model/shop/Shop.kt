@@ -1,5 +1,6 @@
 package gg.rsmod.game.model.shop
 
+import gg.rsmod.game.fs.def.ItemDef
 import gg.rsmod.game.model.PlayerUID
 import gg.rsmod.game.model.World
 import gg.rsmod.game.model.attr.CURRENT_SHOP_ATTR

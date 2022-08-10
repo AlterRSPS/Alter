@@ -1,3 +1,3 @@
 package gg.rsmod.plugins.content.mechanics.objspawns
 
-load_service(ObjSpawnService())
+//load_service(ObjSpawnService())

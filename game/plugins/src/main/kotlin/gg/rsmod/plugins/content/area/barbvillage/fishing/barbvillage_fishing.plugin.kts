@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.barbvillage.fishing
+package gg.rsmod.plugins.content.area.barbvillage.fishing
 
 import gg.rsmod.plugins.content.skills.fishing.data.FishingLocation
 import gg.rsmod.plugins.content.skills.fishing.data.FishingSpot

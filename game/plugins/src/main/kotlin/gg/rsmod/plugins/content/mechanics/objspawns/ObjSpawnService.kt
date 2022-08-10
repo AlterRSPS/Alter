@@ -22,7 +22,7 @@ import java.nio.file.Paths
 /**
  * @author CloudS3c
  */
-class ObjSpawnService : Service {
+/*class ObjSpawnService : Service {
 
     override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
         val path = Paths.get("./data/cfg/spawns/obj_spawns.yml")
@@ -53,4 +53,4 @@ class ObjSpawnService : Service {
     }
 
     companion object : KLogging()
-}
+}*/
