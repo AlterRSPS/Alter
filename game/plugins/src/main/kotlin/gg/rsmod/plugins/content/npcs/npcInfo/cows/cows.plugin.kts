@@ -42,9 +42,9 @@ arrayOf(Npcs.COW_2791, Npcs.COW_2793, Npcs.COW).forEach { cow ->
         }
     }
 
-    set_drop_table(cow) {
-        droptable {
-            dropTableJSON = "cows/cow.drops.json"
-        }
-    }
+    //set_drop_table(cow) {
+    //    droptable {
+    //        dropTableJSON = "cows/cow.drops.json"
+    //    }
+    //}
 }

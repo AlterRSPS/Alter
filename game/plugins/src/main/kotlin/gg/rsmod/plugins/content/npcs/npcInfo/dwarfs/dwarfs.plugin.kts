@@ -42,9 +42,9 @@ arrayOf(Npcs.DWARF_290).forEach { rats ->
         }
     }
 
-    set_drop_table(rats) {
-        droptable {
-            dropTableJSON = "dwarfs/dwarf.drops.json"
-        }
-    }
+//    set_drop_table(rats) {
+        //droptable {
+        //    dropTableJSON = "dwarfs/dwarf.drops.json"
+        //}
+//    }
 }

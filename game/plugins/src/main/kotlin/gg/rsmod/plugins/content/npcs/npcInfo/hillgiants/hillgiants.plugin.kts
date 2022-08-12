@@ -48,9 +48,9 @@ arrayOf(Npcs.HILL_GIANT, Npcs.HILL_GIANT_2099, Npcs.HILL_GIANT_2100, Npcs.HILL_G
         }
     }
 
-    set_drop_table(Npc) {
-        droptable {
-            dropTableJSON = "hillgiants/hillgiant.drops.json"
-        }
-    }
+    //set_drop_table(Npc) {
+    //    droptable {
+    //        dropTableJSON = "hillgiants/hillgiant.drops.json"
+    //    }
+    //}
 }

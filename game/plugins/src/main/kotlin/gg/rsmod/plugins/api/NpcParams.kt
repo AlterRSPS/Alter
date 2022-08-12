@@ -1,13 +1,7 @@
 package gg.rsmod.plugins.api
 
 import gg.rsmod.game.model.combat.NpcCombatDef
-import gg.rsmod.game.model.droptable.DropTable
-import gg.rsmod.game.model.droptable.NpcDropTableDef
 import gg.rsmod.plugins.api.ext.enumSetOf
-import org.json.JSONObject
-import java.io.File
-import java.io.InputStream
-import java.nio.charset.Charset
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -359,40 +353,10 @@ class NpcCombatBuilder {
         return this
     }
 
+
     companion object {
         private const val BONUS_COUNT = 14
         private const val DEFAULT_AGGRO_TIMER = 1000 // 10 minutes
     }
-}
 
-/**
- * @author Kyle Escobar
- */
-class NpcDropTableBuilder {
-    private var json = ""
-    private var rolls = -1
-    private var always_table = DropTable("{}")
-    private var common_table = DropTable("{}")
-    private var uncommon_table = DropTable("{}")
-    private var rare_table = DropTable("{}")
-    private var veryrare_table = DropTable("{}")
-
-    fun build(): NpcDropTableDef {
-        rolls = JSONObject(json).optInt("rolls")
-        always_table = DropTable(JSONObject(json).optJSONObject("always").toString())
-        common_table = DropTable(JSONObject(json).optJSONObject("common").toString())
-        uncommon_table = DropTable(JSONObject(json).optJSONObject("uncommon").toString())
-        rare_table = DropTable(JSONObject(json).optJSONObject("rare").toString())
-        veryrare_table = DropTable(JSONObject(json).optJSONObject("veryrare").toString())
-
-        return NpcDropTableDef(rolls, always_table, common_table, uncommon_table, rare_table, veryrare_table)
-    }
-
-    fun setJson(jsonString: String) {
-
-        val file = File("game/plugins/src/main/kotlin/gg/rsmod/plugins/content/npcs/npcInfo/$jsonString")
-        val ins: InputStream = file.inputStream()
-
-        json = ins.readBytes().toString(Charset.defaultCharset())
-    }
 }

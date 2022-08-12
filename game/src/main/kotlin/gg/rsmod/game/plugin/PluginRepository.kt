@@ -10,9 +10,6 @@ import gg.rsmod.game.model.attr.COMMAND_ATTR
 import gg.rsmod.game.model.combat.NpcCombatDef
 import gg.rsmod.game.model.container.key.*
 import gg.rsmod.game.model.entity.*
-import gg.rsmod.game.model.droptable.NpcDropTableDef
-import gg.rsmod.game.model.priv.Privilege
-import gg.rsmod.game.model.priv.PrivilegeSet
 import gg.rsmod.game.model.shop.Shop
 import gg.rsmod.game.model.timer.TimerKey
 import gg.rsmod.game.service.Service
@@ -382,8 +379,6 @@ class PluginRepository(val world: World) {
      * A map of [NpcCombatDef]s that have been set by [KotlinPlugin]s.
      */
     internal val npcCombatDefs = Int2ObjectOpenHashMap<NpcCombatDef>()
-
-    internal val npcDropTableDefs = Int2ObjectOpenHashMap<NpcDropTableDef>()
 
     /**
      * Holds all valid shops set from plugins for this [PluginRepository].

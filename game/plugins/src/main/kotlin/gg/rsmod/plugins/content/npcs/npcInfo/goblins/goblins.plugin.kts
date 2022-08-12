@@ -46,9 +46,9 @@ Goblins.forEach { goblins ->
         }
     }
 
-    set_drop_table(goblins) {
-        droptable {
-            dropTableJSON = "goblins/goblin.drops.json"
-        }
-    }
+    //set_drop_table(goblins) {
+    //    droptable {
+    //        dropTableJSON = "goblins/goblin.drops.json"
+    //    }
+    //}
 }

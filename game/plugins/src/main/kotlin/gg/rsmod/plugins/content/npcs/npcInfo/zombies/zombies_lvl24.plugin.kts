@@ -50,11 +50,11 @@ arrayOf(Npcs.ZOMBIE_55, Npcs.ZOMBIE_57).forEach { zombie ->
             death = 5575
         }
 
-        set_drop_table(zombie) {
-            droptable {
-                dropTableJSON = "zombies/zombie.drops.json"
-            }
-        }
+        //set_drop_table(zombie) {
+        //    droptable {
+        //        dropTableJSON = "zombies/zombie.drops.json"
+        //    }
+        //}
     }
 }
 
@@ -107,11 +107,11 @@ set_combat_def(Npcs.ZOMBIE_56) {
         death = 5569
     }
 
-    set_drop_table(Npcs.ZOMBIE_56) {
-        droptable {
-            dropTableJSON = "zombies/zombie.drops.json"
-        }
-    }
+    //set_drop_table(Npcs.ZOMBIE_56) {
+    //    droptable {
+    //        dropTableJSON = "zombies/zombie.drops.json"
+    //    }
+    //}
 }
 
 set_combat_def(Npcs.ZOMBIE_58) {
@@ -163,9 +163,9 @@ set_combat_def(Npcs.ZOMBIE_58) {
         death = 5580
     }
 
-    set_drop_table(Npcs.ZOMBIE_58) {
-        droptable {
-            dropTableJSON = "zombies/zombie.drops.json"
-        }
-    }
+    //set_drop_table(Npcs.ZOMBIE_58) {
+    //    droptable {
+    //        dropTableJSON = "zombies/zombie.drops.json"
+    //    }
+    //}
 }

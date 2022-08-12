@@ -42,9 +42,9 @@ arrayOf(Npcs.MOSS_GIANT, Npcs.MOSS_GIANT_2091, Npcs.MOSS_GIANT_2092, Npcs.MOSS_G
         }
     }
 
-    set_drop_table(mossgiant) {
-        droptable {
-            dropTableJSON = "mossgiants/mossgiant.drops.json"
-        }
-    }
+    //set_drop_table(mossgiant) {
+    //    droptable {
+    //        dropTableJSON = "mossgiants/mossgiant.drops.json"
+    //    }
+    //}
 }

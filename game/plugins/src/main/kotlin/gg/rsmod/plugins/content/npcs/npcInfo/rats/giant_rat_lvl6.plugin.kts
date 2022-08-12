@@ -43,9 +43,9 @@ arrayOf(Npcs.GIANT_RAT_2863, Npcs.GIANT_RAT_2864).forEach { rats ->
         }
     }
 
-    set_drop_table(rats) {
-        droptable {
-            dropTableJSON = "rats/giant_rat_lvl6.drops.json"
-        }
-    }
+    //set_drop_table(rats) {
+    //    droptable {
+    //        dropTableJSON = "rats/giant_rat_lvl6.drops.json"
+    //    }
+    //}
 }

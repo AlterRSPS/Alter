@@ -46,8 +46,8 @@ package gg.rsmod.plugins.content.npcs.npcInfo.hobgoblins
         }
     }
 
-    set_drop_table(Npcs.HOBGOBLIN_3050) {
-        droptable {
-            dropTableJSON = "hobgoblins/hobgoblin.drops.json"
-        }
-    }
+    //set_drop_table(Npcs.HOBGOBLIN_3050) {
+    //    droptable {
+    //        dropTableJSON = "hobgoblins/hobgoblin.drops.json"
+    //    }
+    //}

@@ -41,11 +41,11 @@ arrayOf(Npcs.SKELETON_77, Npcs.SKELETON_78, Npcs.SKELETON_81).forEach { skeleton
         }
     }
 
-    set_drop_table(skeleton) {
-        droptable {
-            dropTableJSON = "skeletons/skeleton_lvl25.drops.json"
-        }
-    }
+    //set_drop_table(skeleton) {
+    //    droptable {
+    //        dropTableJSON = "skeletons/skeleton_lvl25.drops.json"
+    //    }
+    //}
 }
 
 arrayOf(Npcs.SKELETON_79, Npcs.SKELETON_80).forEach { skeletons ->
@@ -89,9 +89,9 @@ arrayOf(Npcs.SKELETON_79, Npcs.SKELETON_80).forEach { skeletons ->
         }
     }
 
-    set_drop_table(skeletons) {
-        droptable {
-            dropTableJSON = "skeletons/skeleton_lvl25.drops.json"
-        }
-    }
+    //set_drop_table(skeletons) {
+    //    droptable {
+    //        dropTableJSON = "skeletons/skeleton_lvl25.drops.json"
+    //    }
+    //}
 }

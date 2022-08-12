@@ -41,9 +41,9 @@ arrayOf(Npcs.SKELETON_74, Npcs.SKELETON_75, Npcs.SKELETON_76).forEach { skeleton
         }
     }
 
-    set_drop_table(skeleton) {
-        droptable {
-            dropTableJSON = "skeletons/skeleton.drops.json"
-        }
-    }
+    //set_drop_table(skeleton) {
+    //    droptable {
+    //        dropTableJSON = "skeletons/skeleton.drops.json"
+    //    }
+    //}
 }

@@ -43,9 +43,9 @@ arrayOf(Npcs.FARMER_3114, /*Npcs.FARMER_3087, Npcs.FARMER_3088*/).forEach { farm
         }
     }
 
-    set_drop_table(farmer) {
-        droptable {
-            dropTableJSON = "farmers/farmer.drops.json"
-        }
-    }
+    //set_drop_table(farmer) {
+    //    droptable {
+    //        dropTableJSON = "farmers/farmer.drops.json"
+    //    }
+    //}
 }

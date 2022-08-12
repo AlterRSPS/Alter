@@ -13,7 +13,6 @@ import gg.rsmod.game.message.impl.UpdateRebootTimerMessage
 import gg.rsmod.game.model.attr.AttributeMap
 import gg.rsmod.game.model.collision.CollisionManager
 import gg.rsmod.game.model.combat.NpcCombatDef
-import gg.rsmod.game.model.droptable.NpcDropTableDef
 import gg.rsmod.game.model.entity.*
 import gg.rsmod.game.model.instance.InstancedMapAllocator
 import gg.rsmod.game.model.priv.PrivilegeSet
@@ -39,7 +38,6 @@ import kotlinx.coroutines.CoroutineScope
 import mu.KLogging
 import net.runelite.cache.IndexType
 import net.runelite.cache.fs.Store
-import okhttp3.internal.http2.Settings
 import java.io.File
 import java.security.SecureRandom
 import java.util.ArrayList
@@ -570,9 +568,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
 
         npc.combatDef.bonuses.forEachIndexed { index, bonus -> npc.equipmentBonuses[index] = bonus }
         npc.respawns = combatDef.respawnDelay > 0
-
-        val dropTableDef = plugins.npcDropTableDefs.getOrDefault(npc.id, null) ?: NpcDropTableDef.DEFAULT
-        npc.dropTables = dropTableDef
 
         npc.setCurrentHp(npc.combatDef.hitpoints)
         combatDef.stats.forEachIndexed { index, level ->

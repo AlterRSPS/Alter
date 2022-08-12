@@ -11,7 +11,6 @@ import gg.rsmod.game.model.item.Item
 import gg.rsmod.game.model.queue.QueueTask
 import gg.rsmod.plugins.api.InterfaceDestination
 import gg.rsmod.plugins.api.Skills
-import kotlin.math.ceil
 
 /**
  * The child id of the chat box in the gameframe interface. This can change

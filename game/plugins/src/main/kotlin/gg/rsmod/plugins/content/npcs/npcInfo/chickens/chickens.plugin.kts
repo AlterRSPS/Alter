@@ -43,9 +43,9 @@ arrayOf(Npcs.CHICKEN_1173, Npcs.CHICKEN_1174).forEach { chicken ->
         }
     }
 
-    set_drop_table(chicken) {
-        droptable {
-            dropTableJSON = "chickens/chicken.drops.json"
-        }
-    }
+    //set_drop_table(chicken) {
+    //    droptable {
+    //        dropTableJSON = "chickens/chicken.drops.json"
+    //    }
+    //}
 }

@@ -49,11 +49,11 @@ set_combat_def(Npcs.ZOMBIE_42) {
         death = 5580
     }
 
-    set_drop_table(Npcs.ZOMBIE_42) {
-        droptable {
-            dropTableJSON = "zombies/zombie_lvl18.drops.json"
-        }
-    }
+    //set_drop_table(Npcs.ZOMBIE_42) {
+    //    droptable {
+    //        dropTableJSON = "zombies/zombie_lvl18.drops.json"
+    //    }
+    //}
 }
 
 set_combat_def(Npcs.ZOMBIE_43) {
@@ -105,11 +105,11 @@ set_combat_def(Npcs.ZOMBIE_43) {
         death = 5569
     }
 
-    set_drop_table(Npcs.ZOMBIE_43) {
-        droptable {
-            dropTableJSON = "zombies/zombie_lvl18.drops.json"
-        }
-    }
+    //set_drop_table(Npcs.ZOMBIE_43) {
+    //    droptable {
+    //        dropTableJSON = "zombies/zombie_lvl18.drops.json"
+    //    }
+    //}
 }
 
 set_combat_def(Npcs.ZOMBIE_44) {
@@ -161,9 +161,9 @@ set_combat_def(Npcs.ZOMBIE_44) {
         death = 5575
     }
 
-    set_drop_table(Npcs.ZOMBIE_44) {
-        droptable {
-            dropTableJSON = "zombies/zombie_lvl18.drops.json"
-        }
-    }
+    //set_drop_table(Npcs.ZOMBIE_44) {
+    //    droptable {
+    //        dropTableJSON = "zombies/zombie_lvl18.drops.json"
+    //    }
+    //}
 }

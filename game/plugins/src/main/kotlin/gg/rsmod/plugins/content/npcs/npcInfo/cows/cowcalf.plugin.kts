@@ -1,7 +1,6 @@
 package gg.rsmod.plugins.content.npcs.npcInfo.cows
 
 arrayOf(Npcs.COW_CALF, Npcs.COW_CALF_2794, Npcs.COW_CALF_2801).forEach { cowcalf ->
-
     set_combat_def(cowcalf) {
         configs {
             attackSpeed = 6
@@ -43,9 +42,4 @@ arrayOf(Npcs.COW_CALF, Npcs.COW_CALF_2794, Npcs.COW_CALF_2801).forEach { cowcalf
         }
     }
 
-    set_drop_table(cowcalf) {
-        droptable {
-            dropTableJSON = "cows/cowcalf.drops.json"
-        }
-    }
 }
