@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.areas.lumbridge.fishing
+package gg.rsmod.plugins.content.area.lumbridge.fishing
 
 import gg.rsmod.plugins.content.skills.fishing.data.FishingLocation
 import gg.rsmod.plugins.content.skills.fishing.data.FishingSpot

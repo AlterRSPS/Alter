@@ -68,6 +68,12 @@ val PROTECT_ITEM_ATTR = AttributeKey<Boolean>()
 val DISPLAY_MODE_CHANGE_ATTR = AttributeKey<Int>()
 
 /**
+ * The distance a [Pawm] keeps facing their [FACING_PAWN_ATTR].
+ */
+val RESET_FACING_PAWN_DISTANCE_ATTR = AttributeKey<Int>()
+
+
+/**
  * The [Pawn] which another pawn is facing.
  */
 val FACING_PAWN_ATTR = AttributeKey<WeakReference<Pawn>>()

@@ -79,7 +79,7 @@ on_login {
 
     // Game-related logic.
     player.sendRunEnergy(player.runEnergy.toInt())
-    player.message("Welcome ${player.username} to ${world.gameContext.name}.", ChatMessageType.BROADCAST)
+    player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
 }
 
 
