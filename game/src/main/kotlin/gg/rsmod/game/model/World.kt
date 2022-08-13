@@ -501,6 +501,8 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
 
     fun getShop(name: String): Shop? = plugins.shops.getOrDefault(name, null)
 
+    fun getShop(shopId: Int): Shop? = plugins.shops.values.elementAt(shopId)
+
     fun getMultiCombatChunks(): Set<Int> = plugins.multiCombatChunks
 
     fun getMultiCombatRegions(): Set<Int> = plugins.multiCombatRegions

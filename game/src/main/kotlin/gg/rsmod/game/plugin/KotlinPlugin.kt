@@ -21,6 +21,7 @@ import gg.rsmod.game.model.shop.ShopCurrency
 import gg.rsmod.game.model.shop.StockType
 import gg.rsmod.game.model.timer.TimerKey
 import gg.rsmod.game.service.Service
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.script.experimental.annotations.KotlinScript
@@ -594,6 +595,10 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
 
     fun get_all_commands(): ArrayList<String> {
         return r.get_all_commands()
+    }
+
+    fun get_all_shops(): Object2ObjectOpenHashMap<String, Shop> {
+        return r.shops
     }
 
     companion object {

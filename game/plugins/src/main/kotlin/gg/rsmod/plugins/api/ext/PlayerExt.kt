@@ -54,6 +54,21 @@ fun Player.openShop(shop: String) {
     }
 }
 
+fun Player.openShop(shopId: Int) {
+    val s = world.getShop(shopId)
+    if (s != null) {
+        attr[CURRENT_SHOP_ATTR] = s
+        shopDirty = true
+        openInterface(interfaceId = 300, dest = InterfaceDestination.MAIN_SCREEN)
+        openInterface(interfaceId = 301, dest = InterfaceDestination.TAB_AREA)
+        runClientScript(1074, 13, s.name)
+        setInterfaceEvents(interfaceId = 300, component = 16, range = 0..s.items.size, setting = 1086)
+        setInterfaceEvents(interfaceId = 301, component = 0, range = 0 until inventory.capacity, setting = 1086)
+    } else {
+        World.logger.warn { "Player \"$username\" is unable to open shop \"$shopId\" as it does not exist." }
+    }
+}
+
 fun Player.message(message: String, type: ChatMessageType = ChatMessageType.CONSOLE, username: String? = null) {
     write(MessageGameMessage(type = type.id, message = message, username = username))
 }
