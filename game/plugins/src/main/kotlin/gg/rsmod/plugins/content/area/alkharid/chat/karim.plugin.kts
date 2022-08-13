@@ -15,9 +15,10 @@ suspend fun dialog(it: QueueTask) {
             if (it.player.inventory.getItemCount(Items.COINS_995) >= 1) {
                 it.player.inventory.remove(Items.COINS_995, 1)
                 it.player.inventory.add(Items.KEBAB, 1)
-            } else
+            } else {
                 it.chatPlayer("Oopz, I forgot to bring any money with me.", animation = 554)
                 it.chatNpc("Come back when you have some.", animation = 554)
+            }
         }
     }
 }
