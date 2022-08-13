@@ -51,11 +51,6 @@ civilian.forEach { civilian ->
         }
     }
 
-    set_drop_table(civilian) {
-        droptable {
-            dropTableJSON = "man/man.drops.json"
-        }
-    }
 }
 
 suspend fun QueueTask.chat() {
