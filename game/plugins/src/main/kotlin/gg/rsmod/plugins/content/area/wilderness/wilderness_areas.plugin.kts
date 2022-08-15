@@ -1,5 +1,5 @@
 package gg.rsmod.plugins.content.area.wilderness
-
+/*
 val CHECK_TIMER = TimerKey()
 val WAS_IN_WILD = AttributeKey<Boolean>()
 
