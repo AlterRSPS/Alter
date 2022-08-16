@@ -54,7 +54,7 @@ fun pray(player: Player) {
         player.lock()
         player.getSkills() .restore(Skills.PRAYER)
         player.playSound(Sounds.ALTAR_PRAY)
-        player.animate(Animation.ALTAR_ANIM)
+        player.animate(Animation.ALTAR_PRAY)
         wait(2)
         player.filterableMessage("Your prayer has been restored.")
         player.unlock()
