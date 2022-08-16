@@ -5,7 +5,7 @@ arrayOf(Objs.ALTAR_409, Objs.ALTAR_14860, Objs.CHAOS_ALTAR, Objs.ALTAR_8749, Obj
         player.queue {
             player.lock()
             player.playSound(2674)
-            player.animate(896)
+            player.animate(645)
             player.getSkills() .restore(Skills.PRAYER)
             wait(2)
             player.filterableMessage("The Gods have answered your prayers.")
@@ -19,7 +19,7 @@ arrayOf(Objs.BANDOS_ALTAR, Objs.ARMADYL_ALTAR, Objs.SARADOMIN_ALTAR, Objs.ALTAR_
         player.queue {
             player.lock()
             player.playSound(2674)
-            player.animate(896)
+            player.animate(645)
             player.getSkills() .restore(Skills.PRAYER)
             wait(2)
             player.filterableMessage("The Gods have answered your prayers")
