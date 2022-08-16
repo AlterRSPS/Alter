@@ -27,6 +27,189 @@ fun Player.climbLadder(direction: Direction) {
     }
 }
 
+
+/**Lumby Arches Lower*/
+on_obj_option(Objs.LADDER_16683, option = "climb-up") {
+    if (player.tile.x == 3229 && player.tile.z == 3223) {
+        player.animate(828)
+        player.moveTo(3229, 3223, 1)
+    } else if (player.tile.x == 3229 && player.tile.z == 3225) {
+        player.animate(828)
+        player.moveTo(3229, 3223, 1)
+    } else if (player.tile.x == 3230 && player.tile.z == 3224) {
+        player.animate(828)
+        player.moveTo(3229, 3223, 1)
+    } else if (player.tile.x == 3228 && player.tile.z == 3224) {
+        player.animate(828)
+        player.moveTo(3229, 3223, 1)
+    } else if (player.tile.x == 3229 && player.tile.z == 3214) {
+        player.animate(828)
+        player.moveTo(3229, 3214, 1)
+    } else if (player.tile.x == 3230 && player.tile.z == 3213) {
+        player.animate(828)
+        player.moveTo(3229, 3214, 1)
+    } else if (player.tile.x == 3228 && player.tile.z == 3213) {
+        player.animate(828)
+        player.moveTo(3229, 3214, 1)
+    } else if (player.tile.x == 3229 && player.tile.z == 3212) {
+        player.animate(828)
+        player.moveTo(3229, 3214, 1)
+    } else if (player.tile.x == 3211 && player.tile.z == 3243) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3211, 3243, 1)
+        }
+    }
+}
+
+/**Lumby Ladder Middle Up*/
+on_obj_option(Objs.LADDER_16684, option = "climb-up") {
+    if (player.tile.x == 3229 && player.tile.z == 3214) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3214, 2)
+        }
+    } else if (player.tile.x == 3230 && player.tile.z == 3213) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3214, 2)
+        }
+    } else if (player.tile.x == 3228 && player.tile.z == 3213) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3214, 2)
+        }
+    } else if (player.tile.x == 3229 && player.tile.z == 3223) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 2)
+        }
+    } else if (player.tile.x == 3230 && player.tile.z == 3224) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 2)
+        }
+    } else if (player.tile.x == 3229 && player.tile.z == 3225) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 2)
+        }
+    } else if (player.tile.x == 3228 && player.tile.z == 3224) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 2)
+        }
+    }
+}
+
+/**Lumby Ladder Middle Down*/
+on_obj_option(Objs.LADDER_16684, option = "climb-down") {
+    if (player.tile.x == 3229 && player.tile.z == 3214) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3214, 0)
+        }
+    } else if (player.tile.x == 3230 && player.tile.z == 3213) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3214, 0)
+        }
+    } else if (player.tile.x == 3228 && player.tile.z == 3213) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3214, 0)
+        }
+    } else if (player.tile.x == 3229 && player.tile.z == 3223) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 0)
+        }
+    } else if (player.tile.x == 3230 && player.tile.z == 3224) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 0)
+        }
+    } else if (player.tile.x == 3229 && player.tile.z == 3225) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 0)
+        }
+    } else if (player.tile.x == 3228 && player.tile.z == 3224) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 0)
+        }
+    }
+}
+
+/**Lumby Ladders*/
+on_obj_option(Objs.LADDER_16679, option = "climb-down") {
+    if (player.tile.x == 3211 && player.tile.z == 3243) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3211, 3243, 0)
+        }
+    } else if (player.tile.x == 3230 && player.tile.z == 3213) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3214, 1)
+        }
+    } else if (player.tile.x == 3228 && player.tile.z == 3213) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3214, 1)
+        }
+    } else if (player.tile.x == 3229 && player.tile.z == 3223) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 1)
+        }
+    } else if (player.tile.x == 3230 && player.tile.z == 3224) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 1)
+        }
+    } else if (player.tile.x == 3229 && player.tile.z == 3225) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 1)
+        }
+    } else if (player.tile.x == 3228 && player.tile.z == 3224) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3223, 1)
+        }
+    } else if (player.tile.x == 3229 && player.tile.z == 3214) {
+        player.queue {
+            player.animate(828)
+            wait(2)
+            player.moveTo(3229, 3214, 1)
+        }
+    }
+}
+
 /**Windmill bottom floor*/
 on_obj_option(Objs.LADDER_12964, option = "climb-up") {
     player.animate(828)
@@ -125,41 +308,6 @@ on_obj_option(Objs.LADDER_30367, option = "climb-down") {
             }
         }
 }
-on_obj_option(Objs.LADDER_17385, "climb-up") {
-    player.queue {
-        wait(2)
-        player.animate(828)
-        wait(1)
-        if (player.tile.x == 3019 && player.tile.z == 9741) {
-            player.moveTo(player.tile.x, 3341)
-        }
-        if (player.tile.x == 3021 && player.tile.z == 9739) {
-            player.moveTo(player.tile.x, 3339)
-        }
-        if (player.tile.x == 3019 && player.tile.z == 9737) {
-            player.moveTo(player.tile.x, 3337)
-        }
-        if (player.tile.x == 3017 && player.tile.z == 9739) {
-            player.moveTo(player.tile.x, 3339)
-        }
-        if (player.tile.x == 3020 && player.tile.z == 9738) {
-            player.moveTo(player.tile.x, 3338)
-        }
-        if (player.tile.x == 3020 && player.tile.z == 9740) {
-            player.moveTo(player.tile.x, 3340)
-        }
-        if (player.tile.x == 3018 && player.tile.z == 9740) {
-            player.moveTo(player.tile.x, 3340)
-        }
-        if (player.tile.x == 3018 && player.tile.z == 9738) {
-            player.moveTo(player.tile.x, 3338)
-        }
-        if (player.tile.x == 3096 && player.tile.z == 9867 || player.tile.x == 3097 && player.tile.z == 9868) {
-            player.moveTo(3096, 3468)
-            faceWest(player)
-        }
-    }
-}
 
 /**Dwarven mines*/
 on_obj_option(Objs.TRAPDOOR_11867, "climb-down") {
@@ -191,7 +339,7 @@ on_obj_option(Objs.LADDER_17387, "climb-up") {
     }
 }
 
-/**Varrock man hole*/
+/**Varrock manhole*/
 on_obj_option(Objs.LADDER_11806, option = "climb-up") {
     if (player.tile.x == 3236 && player.tile.z == 9858) {
         player.queue {
@@ -201,8 +349,4 @@ on_obj_option(Objs.LADDER_11806, option = "climb-up") {
             player.moveTo(3236, 3458)
         }
     }
-}
-
-/*on_obj_option(19044, 1) {
-    player.climbLadder(Direction.NORTH_WEST)
 }
