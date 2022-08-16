@@ -1,46 +1,37 @@
-package gg.rsmod.plugins.content.objs.climbable
+package gg.rsmod.plugins.content.objs.ladder
 
-
-/**Lumby staircase floor*/
-on_obj_option(Objs.STAIRCASE_16671, option = "climb-up") {
-    player.moveTo(3205, 3209, 1)
+/**Climbing up stairs.*/
+arrayOf(Objs.STAIRCASE_16671).forEach { stair_up ->
+    on_obj_option(obj = stair_up, option = "climb-up")
+    {
+        climbupstairs(player)
+    }
 }
 
-/**Lumby staircase middle*/
-private val STAIRCASE2 = 16672
-on_obj_option(obj = STAIRCASE2, option = "climb") {
-    player.queue {
-        when (options("Climb up the stairs.", "Climb down the stairs.", title = "Climb up or down the stairs?")) {
-            1 -> player.moveTo(3205, 3209, 2)
-            2 -> player.moveTo(3206, 3208, 0)
+/**Interacting with multilevel stairs*/
+arrayOf(Objs.STAIRCASE_16672).forEach {staircase ->
+    on_obj_option(obj = staircase, option = "climb")
+    {
+        player.queue {
+            when (options("Climb up the stairs.", "Climb down the stairs.")) {
+                1 -> climbupstairs(player)
+                2 -> climbdownstairs(player)
             }
         }
     }
-on_obj_option(obj = STAIRCASE2, option = "climb-up") {
-    player.moveTo(3205, 3209, 2)
-}
-on_obj_option(obj = STAIRCASE2, option = "climb-down") {
-    player.moveTo(3206, 3208, 0)
 }
 
-/**Lumby staircase top*/
-on_obj_option(Objs.STAIRCASE_16673, option = "climb-down") {
-    player.moveTo(3206, 3208, 1)
-}
-
-/**Dwarven mine*/
-on_obj_option(Objs.STAIRCASE_16664, option = "climb-down") {
-    if (player.tile.x == 3061 && player.tile.z == 3376) {
-        player.moveTo(3058, 9776)
-    } else if (player.tile.x == 3061 && player.tile.z == 3377) {
-        player.moveTo(3058, 9777)
+/**Climbing down the stairs.*/
+arrayOf(Objs.STAIRCASE_16673).forEach {stair_down ->
+    on_obj_option(obj = stair_down, option ="climb-down") {
+        climbdownstairs(player)
     }
+
 }
-on_obj_option(Objs.STAIRCASE_23969, option = "climb-up") {
-    if (player.tile.x == 3058 && player.tile.z == 9776) {
-        player.moveTo(3061, 3376)
-    } else if (player.tile.x == 3058 && player.tile.z == 9777) {
-        player.moveTo(3061, 3377)
-    }
+fun climbupstairs(player: Player) {
+    player.moveTo(player.tile.x, player.tile.z, player.tile.height + 1)
 }
 
+fun climbdownstairs(player: Player) {
+    player.moveTo(player.tile.x, player.tile.z, player.tile.height -1)
+}
