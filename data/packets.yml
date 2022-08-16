@@ -1646,11 +1646,32 @@ client-packets:
     length: -1
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: OPLOCT
+  - message: gg.rsmod.game.message.impl.OpLocTMessage
     type: FIXED
     opcode: 76
     length: 15
-    ignore: true
+    structure:
+      - name: x
+        type: SHORT
+        trans: ADD
+      - name: z
+        type: SHORT
+      - name: item
+        type: SHORT
+        trans: ADD
+      - name: slot
+        type: SHORT
+        trans: ADD
+      - name: obj
+        type: SHORT
+        trans: ADD
+        order: LITTLE
+      - name: movement_type
+        type: BYTE
+        trans: ADD
+      - name: hash
+        type: INT
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpPlayer6Message
     type: FIXED
