@@ -52,9 +52,9 @@ arrayOf(
 fun pray(player: Player) {
     player.queue {
         player.lock()
+        player.getSkills() .restore(Skills.PRAYER)
         player.playSound(Sounds.ALTAR_PRAY)
         player.animate(Animation.ALTAR_ANIM)
-        player.getSkills() .restore(Skills.PRAYER)
         wait(2)
         player.filterableMessage("Your prayer has been restored.")
         player.unlock()
