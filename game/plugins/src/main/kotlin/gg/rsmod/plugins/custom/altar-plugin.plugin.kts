@@ -1,5 +1,7 @@
 package gg.rsmod.plugins.custom
 
+/**Altars with the "pray-at" option.*/
+
 arrayOf(
     Objs.ALTAR_409,
     Objs.ALTAR_14860,
@@ -12,7 +14,10 @@ arrayOf(
     Objs.ALTAR_OF_ZAMORAK,
     Objs.SHRINE,
     Objs.ALTAR_2640,
-    Objs.ALTAR_28455
+    Objs.ALTAR_28455,
+    Objs.GORILLA_STATUE_4859,
+    Objs.ALTAR_OF_GUTHIX,
+    Objs.ALTAR_19145
 ).forEach { altar ->
 
     on_obj_option(obj = altar, option = "pray-at") {
@@ -20,6 +25,8 @@ arrayOf(
 
     }
 }
+
+/**Altars with the "pray" option.*/
 
 arrayOf(
     Objs.BANDOS_ALTAR,
@@ -39,6 +46,8 @@ arrayOf(
     }
 
 }
+
+/**Function for praying at an altar.*/
 
 fun pray(player: Player) {
     player.queue {
