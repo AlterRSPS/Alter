@@ -20,7 +20,7 @@ fun Player.maxPossible(vararg items: Int, container: ItemContainer = inventory):
     items.forEach { item ->
         counts.add(container.getItemCount(item))
     }
-    return Math.min(counts.max()!!, container.capacity)
+    return Math.min(counts.maxOrNull()!!, container.capacity)
 }
 
 // not slot-aware (uses first available) defaults to inventory
