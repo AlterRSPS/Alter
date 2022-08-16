@@ -65,6 +65,7 @@ class MessageDecoderSet {
         put(OpLoc4Message::class.java, OpLoc4Decoder(), OpLoc4Handler(), structures)
         put(OpLoc5Message::class.java, OpLoc5Decoder(), OpLoc5Handler(), structures)
         put(OpLoc6Message::class.java, OpLoc6Decoder(), OpLoc6Handler(), structures)
+        put(OpLocTMessage::class.java, OpLocTDecoder(), OpLocTHandler(), structures)
 
         put(OpHeld1Message::class.java, OpHeld1Decoder(), OpHeld1Handler(), structures)
         put(OpHeld2Message::class.java, OpHeld2Decoder(), OpHeld2Handler(), structures)
