@@ -11,6 +11,7 @@ object Animation {
      */
     const val BURY_BONE_ANIM = 827
     const val ALTAR_ANIM = 896;
+    const val ALTAR_PRAY = 645
     /**
      * Firemaking Animations
      */
