@@ -1,7 +1,8 @@
 package gg.rsmod.plugins.custom
 
-/**Altars with the "pray-at" option.*/
-
+/**
+ * Altars with the "pray-at" option.
+ */
 arrayOf(
     Objs.ALTAR_409,
     Objs.ALTAR_14860,
@@ -19,15 +20,14 @@ arrayOf(
     Objs.ALTAR_OF_GUTHIX,
     Objs.ALTAR_19145
 ).forEach { altar ->
-
     on_obj_option(obj = altar, option = "pray-at") {
         pray(player)
-
     }
 }
 
-/**Altars with the "pray" option.*/
-
+/**
+ * Altars with the "pray" option.
+ */
 arrayOf(
     Objs.BANDOS_ALTAR,
     Objs.ARMADYL_ALTAR,
@@ -39,24 +39,26 @@ arrayOf(
     Objs.ALTAR_28566,
     Objs.ALTAR_18258
 ).forEach { altar2 ->
-
     on_obj_option(obj = altar2, option = "pray") {
         pray(player)
-
     }
-
 }
 
-/**Function for praying at an altar.*/
-
+/**
+ * Function for praying at an altar.
+ */
 fun pray(player: Player) {
-    player.queue {
-        player.lock()
-        player.getSkills() .restore(Skills.PRAYER)
-        player.playSound(Sounds.ALTAR_PRAY)
-        player.animate(Animation.ALTAR_PRAY)
-        wait(2)
-        player.filterableMessage("Your prayer has been restored.")
-        player.unlock()
+    if (player.getSkills().getCurrentLevel(Skills.PRAYER) >= player.getSkills().getBaseLevel(Skills.PRAYER)) {
+        player.filterableMessage("You already have full Prayer points.")
+    } else {
+        player.queue {
+            player.lock()
+            player.getSkills() .restore(Skills.PRAYER)
+            player.playSound(Sounds.ALTAR_PRAY)
+            player.animate(Animation.PRAY_AT_ALTAR_ANIM)
+            wait(2)
+            player.filterableMessage("Your prayer has been restored.")
+            player.unlock()
+        }
     }
 }
