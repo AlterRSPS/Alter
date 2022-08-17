@@ -23,3 +23,5 @@ first-launch-example
 /game/plugins/src/main/kotlin/gg/rsmod/plugins/api/cfg/Objs.kt
 /game/plugins/src/main/kotlin/gg/rsmod/plugins/api/cfg/
 /game/plugins/src/main/kotlin/gg/rsmod/plugins/content/Testing
+/game.yml
+/dev-settings.yml
