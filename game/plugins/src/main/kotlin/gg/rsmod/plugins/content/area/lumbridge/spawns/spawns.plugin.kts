@@ -1,7 +1,7 @@
 package gg.rsmod.plugins.content.area.lumbridge.spawns
 
 /**Example
- *spawn_npc(npc = Npcs.ID, x = xxxx, z = zzzz, height = 0, walk = 0, direction = Direction.NORTH)
+ *spawn_npc(npc = Npcs.ID, x = xxxx, z = zzzz, height = 0, walkRadius = 0, direction = Direction.NORTH)
  */
 
 /**Lumbridge castle*/
@@ -30,6 +30,46 @@ spawn_npc(npc= Npcs.SHEEP_2789, x = 3206, z = 3266, walkRadius = 10, direction =
 spawn_npc(npc= Npcs.RAM_1265, x = 3201, z = 3263, walkRadius = 10, direction = Direction.NORTH)
 spawn_npc(npc= Npcs.RAM_1265, x = 3207, z = 3271, walkRadius = 10, direction = Direction.SOUTH)
 spawn_npc(npc= Npcs.RAM_1265, x = 3195, z = 3271, walkRadius = 10, direction = Direction.EAST)
+spawn_npc(npc= Npcs.DRUNKEN_MAN, x = 3230, z = 3241, walkRadius = 3, direction = Direction.EAST)
+spawn_npc(npc= Npcs.MAN_3109, x = 3228, z = 3239, walkRadius = 3, direction = Direction.WEST)
+spawn_npc(npc= Npcs.WOMAN_3112, x = 3229, z = 3238, walkRadius = 3, direction = Direction.SOUTH)
+spawn_npc(npc= Npcs.MAN_3014, x = 3231, z = 3236, walkRadius = 3, direction = Direction.WEST)
+spawn_npc(npc= Npcs.ZOMBIE_RAT_3970, x = 3246, z = 3198, walkRadius = 5, direction = Direction.WEST)
+spawn_npc(npc= Npcs.ZOMBIE_RAT, x = 3239, z = 3198, walkRadius = 5, direction = Direction.WEST)
+spawn_npc(npc= Npcs.RAT_2854, x = 3209, z = 9622, walkRadius = 5, direction = Direction.NORTH)
+spawn_npc(npc= Npcs.RAT_2854, x = 3212, z = 9616, walkRadius = 5, direction = Direction.WEST)
+spawn_npc(npc= Npcs.RAT_2854, x = 3218, z = 9621, walkRadius = 5, direction = Direction.EAST)
+spawn_npc(npc= Npcs.RAT_2854, x = 3217, z = 9617, walkRadius = 5, direction = Direction.WEST)
+spawn_npc(npc= 732, x = 3190, z = 3272, walkRadius = 2, direction = Direction.NORTH)
+spawn_npc(npc= 1173, x = 3191, z = 3277, walkRadius = 3, direction = Direction.NORTH)
+spawn_npc(npc= 1173, x = 3190, z = 3278, walkRadius = 3, direction = Direction.NORTH)
+spawn_npc(npc= 1173, x = 3188, z = 3277, walkRadius = 3, direction = Direction.NORTH)
+spawn_npc(npc= 1173, x = 3187, z = 3278, walkRadius = 3, direction = Direction.NORTH)
+
+/**Lumbridge item spawns*/
+spawn_item(item = Items.LOGS, amount = 1, x = 3205, z = 3224, height = 2)
+spawn_item(item = Items.LOGS, amount = 1, x = 3205, z = 3226, height = 2)
+spawn_item(item = Items.LOGS, amount = 1, x = 3208, z = 3225, height = 2)
+spawn_item(item = Items.LOGS, amount = 1, x = 3209, z = 3224, height = 2)
+spawn_item(item = Items.MIND_RUNE, amount = 1, x = 3206, z = 3208)
+spawn_item(item = Items.BRONZE_ARROW, amount = 1, x = 3205, z = 3227)
+spawn_item(item = Items.BRONZE_DAGGER, amount = 1, x = 3213, z = 3216, height = 1)
+spawn_item(item = Items.KNIFE, amount = 1, x = 3205, z = 3212)
+spawn_item(item = Items.KNIFE, amount = 1, x = 3224, z = 3202)
+spawn_item(item = Items.POT, amount = 1, x = 3209, z = 3214)
+spawn_item(item = Items.BOWL, amount = 1, x = 3208, z = 3214)
+spawn_item(item = Items.JUG, amount = 1, x = 3211, z = 3212)
+spawn_item(item = Items.KNIFE, amount = 1, x = 3215, z = 9625)
+spawn_item(item = Items.BUCKET, amount = 1, x = 3216, z = 9625)
+spawn_item(item = Items.CABBAGE, amount = 1, x = 3217, z = 9622)
+spawn_item(item = Items.LEATHER_BOOTS, amount = 1, x = 3210, z = 9615)
+spawn_item(item = Items.LEATHER_BOOTS, amount = 1, x = 3208, z = 9620)
+spawn_item(item = Items.BRONZE_PICKAXE, amount = 1, x = 3229, z = 3223, 2)
+spawn_item(item = Items.BRONZE_PICKAXE, amount = 1, x = 3229, z = 3215, 2)
+spawn_item(item = Items.EGG, amount = 1, x = 3185, z = 3278)
+spawn_item(item = Items.SHEARS, amount = 1, x = 3192, z = 3272)
+
+/**Lumbridge Spawns*/
 spawn_npc(npc= Npcs.HUGE_SPIDER_134, x = 3168, z = 3243, walkRadius = 7, direction = Direction.SOUTH)
 spawn_npc(npc= Npcs.GIANT_SPIDER, x = 3165, z = 3251, walkRadius = 7, direction = Direction.EAST)
 spawn_npc(npc= Npcs.GIANT_SPIDER_3018, x = 3246, z = 3248, walkRadius = 7, direction = Direction.EAST)
@@ -68,25 +108,10 @@ spawn_npc(npc= Npcs.GOBLIN_2245, x = 3246, z = 3240, walkRadius = 8, direction =
 spawn_npc(npc= Npcs.GOBLIN_2486, x = 3248, z = 3242, walkRadius = 8, direction = Direction.EAST)
 spawn_npc(npc= Npcs.GOBLIN_3028, x = 3221, z = 3271, walkRadius = 8, direction = Direction.WEST)
 spawn_npc(npc= Npcs.GOBLIN_2487, x = 3213, z = 3282, walkRadius = 8, direction = Direction.SOUTH)
-spawn_npc(npc= Npcs.DRUNKEN_MAN, x = 3230, z = 3241, walkRadius = 3, direction = Direction.EAST)
-spawn_npc(npc= Npcs.MAN_3109, x = 3228, z = 3239, walkRadius = 3, direction = Direction.WEST)
-spawn_npc(npc= Npcs.WOMAN_3112, x = 3229, z = 3238, walkRadius = 3, direction = Direction.SOUTH)
-spawn_npc(npc= Npcs.MAN_3014, x = 3231, z = 3236, walkRadius = 3, direction = Direction.WEST)
-spawn_npc(npc= Npcs.ZOMBIE_RAT_3970, x = 3246, z = 3198, walkRadius = 5, direction = Direction.WEST)
-spawn_npc(npc= Npcs.ZOMBIE_RAT, x = 3239, z = 3198, walkRadius = 5, direction = Direction.WEST)
-
-/**Lumbridge item spawns*/
-spawn_item(item = Items.LOGS, amount = 1, x = 3205, z = 3224, height = 2)
-spawn_item(item = Items.LOGS, amount = 1, x = 3205, z = 3226, height = 2)
-spawn_item(item = Items.LOGS, amount = 1, x = 3208, z = 3225, height = 2)
-spawn_item(item = Items.LOGS, amount = 1, x = 3209, z = 3224, height = 2)
-spawn_item(item = Items.MIND_RUNE, amount = 1, x = 3206, z = 3208)
-spawn_item(item = Items.BRONZE_ARROW, amount = 1, x = 3205, z = 3227)
-spawn_item(item = Items.BRONZE_DAGGER, amount = 1, x = 3213, z = 3216, height = 1)
-spawn_item(item = Items.KNIFE, amount = 1, x = 3205, z = 3212)
-spawn_item(item = Items.KNIFE, amount = 1, x = 3224, z = 3202)
-spawn_item(item = Items.POT, amount = 1, x = 3209, z = 3214)
-spawn_item(item = Items.BOWL, amount = 1, x = 3208, z = 3214)
-spawn_item(item = Items.JUG, amount = 1, x = 3211, z = 3212)
-
-/**Lumbridge Spawns*/
+spawn_npc(npc= Npcs.GOBLIN_2484, x = 3195, z = 3278, walkRadius = 5, direction = Direction.SOUTH)
+spawn_npc(npc= Npcs.GOBLIN_2247, x = 3191, z = 3286, walkRadius = 5, direction = Direction.WEST)
+spawn_npc(npc= Npcs.GOBLIN_2489, x = 3286, z = 3288, walkRadius = 5, direction = Direction.NORTH)
+spawn_npc(npc= Npcs.GOBLIN_3028, x = 3190, z = 3291, walkRadius = 5, direction = Direction.WEST)
+spawn_npc(npc= Npcs.GOBLIN_3054, x = 3183, z = 3281, walkRadius = 5, direction = Direction.WEST)
+spawn_npc(npc= Npcs.GOBLIN_3028, x = 3180, z = 3285, walkRadius = 5, direction = Direction.WEST)
+spawn_npc(npc= Npcs.GOBLIN_2247, x = 3175, z = 3283, walkRadius = 5, direction = Direction.WEST)

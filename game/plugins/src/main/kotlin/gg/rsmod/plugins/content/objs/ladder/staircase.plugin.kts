@@ -17,6 +17,12 @@ arrayOf(Objs.STAIRCASE_16672).forEach {staircase ->
                 1 -> climbupstairs(player)
                 2 -> climbdownstairs(player)
             }
+            on_obj_option(obj = staircase, option = "climb-up") {
+                climbupstairs(player)
+            }
+            on_obj_option(obj = staircase, option = "climb-down") {
+                climbdownstairs(player)
+            }
         }
     }
 }
@@ -35,3 +41,5 @@ fun climbupstairs(player: Player) {
 fun climbdownstairs(player: Player) {
     player.moveTo(player.tile.x, player.tile.z, player.tile.height -1)
 }
+
+/**@TODO - Fix right-click to move.*/
