@@ -1,9 +1,15 @@
 package gg.rsmod.plugins.custom
 
-/**
- * Altars with the "pray-at" option.
- */
-arrayOf(
+val alters = arrayOf(
+    Objs.BANDOS_ALTAR,
+    Objs.ARMADYL_ALTAR,
+    Objs.SARADOMIN_ALTAR,
+    Objs.ALTAR_42965,
+    Objs.ZAMORAK_ALTAR,
+    Objs.ALTAR_27501,
+    Objs.ALTAR_39723,
+    Objs.ALTAR_28566,
+    Objs.ALTAR_18258,
     Objs.ALTAR_409,
     Objs.ALTAR_14860,
     Objs.CHAOS_ALTAR,
@@ -19,28 +25,15 @@ arrayOf(
     Objs.GORILLA_STATUE_4859,
     Objs.ALTAR_OF_GUTHIX,
     Objs.ALTAR_19145
-).forEach { altar ->
-    on_obj_option(obj = altar, option = "pray-at") {
-        pray(player)
-    }
-}
+)
 
-/**
- * Altars with the "pray" option.
- */
-arrayOf(
-    Objs.BANDOS_ALTAR,
-    Objs.ARMADYL_ALTAR,
-    Objs.SARADOMIN_ALTAR,
-    Objs.ALTAR_42965,
-    Objs.ZAMORAK_ALTAR,
-    Objs.ALTAR_27501,
-    Objs.ALTAR_39723,
-    Objs.ALTAR_28566,
-    Objs.ALTAR_18258
-).forEach { altar2 ->
-    on_obj_option(obj = altar2, option = "pray") {
-        pray(player)
+alters.forEach { obj ->
+    arrayOf("Pray", "Pray-at").forEach {
+        if (if_obj_has_option(obj, it)) {
+            on_obj_option(obj, it) {
+                pray(player)
+            }
+        }
     }
 }
 
