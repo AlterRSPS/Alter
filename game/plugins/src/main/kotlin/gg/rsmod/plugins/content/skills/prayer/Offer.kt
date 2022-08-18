@@ -20,7 +20,7 @@ object Offer {
         p.queue {
             p.lock()
             p.addXp(Skills.PRAYER, altars[Altar + 1])
-            p.animate(Animation.ALTAR_ANIM)
+            p.animate(Animation.OFFER_BONES_TO_ALTER_ANIM)
             p.resetFacePawn()
             wait(3)
             p.unlock()
