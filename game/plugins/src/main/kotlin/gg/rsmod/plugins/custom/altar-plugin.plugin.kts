@@ -1,6 +1,6 @@
 package gg.rsmod.plugins.custom
 
-val alters = arrayOf(
+val altars = arrayOf(
     Objs.BANDOS_ALTAR,
     Objs.ARMADYL_ALTAR,
     Objs.SARADOMIN_ALTAR,
@@ -27,7 +27,7 @@ val alters = arrayOf(
     Objs.ALTAR_19145
 )
 
-alters.forEach { obj ->
+altars.forEach { obj ->
     arrayOf("Pray", "Pray-at").forEach {
         if (if_obj_has_option(obj, it)) {
             on_obj_option(obj, it) {
