@@ -16,9 +16,7 @@ val SKULL_LONG_DURATION = 2000
         player.queue { chat() }
     }
 
-    on_npc_option(npc = Npcs.EMBLEM_TRADER, option = "Rewards") {
-        player.queue { chatNpc(" I'm afraid I've retired my shop. I hurt my back lifting<br><br>bounty crates and I can't do it anymore.") }
-    }
+    on_npc_option(npc = Npcs.EMBLEM_TRADER, option = "Rewards") { open_shop(player) }
 
     on_npc_option(npc = Npcs.EMBLEM_TRADER, option = "Coffer") {
         player.queue {
@@ -35,7 +33,9 @@ val SKULL_LONG_DURATION = 2000
             }
         }
     }
-
+fun open_shop(p: Player) {
+    p.openShop("Emblem Trader")
+}
 suspend fun QueueTask.chat() {
     chatNpc("Don't suppose you've come across any strange...<br>emblems or artefacts along your journey? Ancient<br>artifacts?", animation = 588)
     chatNpc("Nothing to report now.", animation = 589)
@@ -47,7 +47,7 @@ suspend fun QueueTask.options() {
     when (options("Let's trade for rewards.", "Can I have a PK skull, please?", "Let's talk about Targets.", "I'll leave you alone.")) {
         1 -> {
             chatPlayer("Let's trade for rewards.", animation = 554)
-            chatNpc(" I'm afraid I've retired my shop. I hurt my back lifting<br><br>bounty crates and I can't do it anymore.")
+            open_shop(player)
         }
         2 -> pk_skull()
         3 -> limit_targets()

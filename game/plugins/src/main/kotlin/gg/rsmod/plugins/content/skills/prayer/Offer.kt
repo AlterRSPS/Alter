@@ -27,7 +27,7 @@ object Offer {
                         p.message("You offer ${boneName} to the ectoplasmic altar.") }
                 3 -> {  if (p.world.chance(1, 2)) { p.message("You saved a ${boneName}.") }
                         else { p.inventory.remove(item = bones.id, beginSlot = inventorySlot).hasSucceeded()
-                                p.message("You offer ${boneName} to the chaos altar.")
+                               p.message("You offer ${boneName} to the chaos altar.")
                              }
                         p.addXp(Skills.PRAYER, bones.chaos)
                      }
