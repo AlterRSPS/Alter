@@ -47,7 +47,7 @@ open class BountyHunterPoints() : ShopCurrency {
         val value = shopItem.sellPrice ?: getSellPrice(p.world, unnoted.id)
         val name = unnoted.getName(p.world.definitions)
         val currency = p.bountypoints
-        p.message("$name: currently costs $value Bounty hunter Points")
+        p.message("$name costs $value Bounty hunter Points")
     }
 
     override fun getSellPrice(world: World, item: Int): Int =
@@ -97,8 +97,10 @@ open class BountyHunterPoints() : ShopCurrency {
         if (add.completed == 0) {
             p.message("You don't have enough inventory space.")
         } else if(add.completed == 1) {
+            val unnoted = Item(shopItem.item).toUnnoted(p.world.definitions)
+            val name = unnoted.getName(p.world.definitions)
             p.removeBHP(totalCost.toInt())
-            p.message("${shopItem.item} Costed you ${totalCost.toInt()} Bounty hunter Points")
+            p.message("${name} Costed you ${totalCost.toInt()} Bounty hunter Points")
         }
 
         if (add.getLeftOver() > 0) {
