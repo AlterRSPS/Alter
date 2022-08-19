@@ -14,6 +14,13 @@ on_login {
     if (player.attr.getOrDefault(NEW_ACCOUNT_ATTR, false)) {
         setEnergy(player, 100)
     }
+    AttackTab.resetRestorationTimer(player)
+}
+
+on_timer(AttackTab.SPEC_RESTORE)
+{
+    AttackTab.restoreEnergy(player)
+    AttackTab.resetRestorationTimer(player)
 }
 
 /**

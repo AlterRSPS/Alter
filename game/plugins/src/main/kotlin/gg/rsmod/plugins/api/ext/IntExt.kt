@@ -4,6 +4,7 @@ import gg.rsmod.game.fs.DefinitionSet
 import gg.rsmod.game.fs.def.ItemDef
 import gg.rsmod.game.fs.def.ObjectDef
 import gg.rsmod.game.model.item.Item
+import kotlin.math.ceil
 
 /**
  * A map of numbers to English string literals
@@ -72,3 +73,38 @@ fun Int.getObjName(definitions: DefinitionSet, lowercase: Boolean = false): Stri
     else
         definitions.get(ObjectDef::class.java, this).name
 }
+
+/**
+ * Converts seconds to ticks
+ */
+fun Int.secondsToTicks(): Int = ceil(this / 0.6).toInt()
+
+/**
+ * Converts minutes to ticks
+ */
+fun Int.minutesToTicks(): Int = ceil((this * 60) / 0.6).toInt()
+
+/**
+ * Converts hours to ticks
+ */
+fun Int.hoursToTicks(): Int = ceil((this * 60.minutesToTicks()) / 0.6).toInt()
+
+/**
+ * Converts days to ticks
+ */
+fun Int.daysToTicks(): Int = ceil((this * 24.hoursToTicks()) / 0.6).toInt()
+
+/**
+ * Converts weeks to ticks
+ */
+fun Int.weeksToTicks(): Int = ceil((this * 7.daysToTicks()) / 0.6).toInt()
+
+/**
+ * Converts months to ticks
+ */
+fun Int.monthsToTicks(): Int = ceil((this * 4.weeksToTicks()) / 0.6).toInt()
+
+/**
+ * Converts years to ticks
+ */
+fun Int.yearsToTicks(): Int = ceil((this * 12.monthsToTicks()) / 0.6).toInt()
