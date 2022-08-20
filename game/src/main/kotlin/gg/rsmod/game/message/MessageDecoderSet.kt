@@ -102,6 +102,14 @@ class MessageDecoderSet {
         put(OpPlayer7Message::class.java, OpPlayer7Decoder(), OpPlayer7Handler(), structures)
         put(OpPlayer8Message::class.java, OpPlayer8Decoder(), OpPlayer8Handler(), structures)
         put(OpPlayerTMessage::class.java, OpPlayerTDecoder(), OpPlayerTHandler(), structures)
+
+        put(FriendListAddMessage::class.java, FriendListAddDecoder(), FriendListAddHandler(), structures)
+        put(FriendListDeleteMessage::class.java, FriendListDeleteDecoder(), FriendListDeleteHandler(), structures)
+        put(IgnoreListAddMessage::class.java, IgnoreListAddDecoder(), IgnoreListAddHandler(), structures)
+        put(IgnoreListDeleteMessage::class.java, IgnoreListDeleteDecoder(), IgnoreListDeleteHandler(), structures)
+
+        put(MessagePrivateSenderMessage::class.java, MessagePrivateSenderDecoder(), MessagePrivateSenderHandler(), structures)
+
     }
 
     private fun <T : Message> put(messageType: Class<T>, decoderType: MessageDecoder<T>, handlerType: MessageHandler<T>, structures: MessageStructureSet) {

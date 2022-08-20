@@ -327,7 +327,6 @@ server-packets:
     opcode: 23
     structure:
       - name: text
-
         write: BYTES
       - name: hash
         write: INT
@@ -358,9 +357,9 @@ server-packets:
     opcode: 87
     structure:
       - name: hash
-        write: intle
+        write: intLe
       - name: to
-        write: shortle
+        write: shortLe
       - name: setting
         write: IntLE
       - name: from
@@ -380,7 +379,7 @@ server-packets:
     opcode: 90
     structure:
       - name: item
-        write: ShortADdLe
+        write: ShortAddLe
       - name: amount
         write: IntLE
       - name: hash
@@ -491,6 +490,52 @@ server-packets:
       - name: weight
         write: SHORT
 
+  - message: gg.rsmod.game.message.impl.UpdateFriendListMessage
+    type: VARIABLE_SHORT
+    opcode: 22
+    structure:
+      - name: online
+        write: BYTE
+      - name: username
+        write: BYTES
+      - name: previousUsername
+        write: BYTES
+      - name: world
+        write: SHORT
+      - name: clanRank
+        write: BYTE
+      - name: rights
+        write: BYTE
+
+  - message: gg.rsmod.game.message.impl.UpdateIgnoreListMessage
+    type: VARIABLE_SHORT
+    opcode: 8
+    structure:
+      - name: online
+        write: BYTE
+      - name: username
+        write: BYTES
+      - name: previousUsername
+        write: BYTES
+
+  - message: gg.rsmod.game.message.impl.FriendListLoadedMessage
+    type: VARIABLE_SHORT
+    opcode: 22
+
+  - message: gg.rsmod.game.message.impl.MessagePrivateReceiverMessage
+    type: VARIABLE_SHORT
+    opcode: 95
+    structure:
+      - name: target
+        write: BYTES
+      - name: unknown
+        write: SHORT
+        sign: UNSIGNED
+      - name: unknown2
+        write: MEDIUM
+      - name: rights
+        write: BYTE
+        sign: UNSIGNED
 
 
 # TODO
@@ -1393,10 +1438,14 @@ client-packets:
     type: VARIABLE_SHORT
     opcode: 26
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: MESSAGE_PRIVATE
+  - message: gg.rsmod.game.message.impl.MessagePrivateSenderMessage
     type: VARIABLE_SHORT
     opcode: 84
-    ignore: true
+    structure:
+      - name: target
+        type: BYTES
+      - name: length
+        type: SHORT
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON2
     type: FIXED
@@ -1418,10 +1467,13 @@ client-packets:
         trans: ADD
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IGNORELIST_DEL
+  - message: gg.rsmod.game.message.impl.IgnoreListDeleteMessage
     type: VARIABLE_BYTE
     opcode: 86
-    ignore: true
+    length: -1
+    structure:
+      - name: name
+        type: STRING
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IF1_BUTTON5
     type: FIXED
@@ -1486,10 +1538,13 @@ client-packets:
     length: 15
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: FRIENDLIST_DEL
+  - message: gg.rsmod.game.message.impl.FriendListDeleteMessage
     type: VARIABLE_BYTE
     opcode: 43
-    ignore: true
+    length: -1
+    structure:
+      - name: name
+        type: STRING
 
   - message: gg.rsmod.game.message.impl.OpPlayerTMessage
     type: FIXED
@@ -1628,17 +1683,20 @@ client-packets:
         trans: SUBTRACT
         sign: UNSIGNED
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: FRIENDLIST_ADD
+  - message: gg.rsmod.game.message.impl.FriendListAddMessage
     type: VARIABLE_BYTE
     opcode: 50
     length: -1
-    ignore: true
+    structure:
+      - name: name
+        type: STRING
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: IGNORELIST_ADD
+  - message: gg.rsmod.game.message.impl.IgnoreListAddMessage
     type: VARIABLE_BYTE
     opcode: 11
-    length: -1
-    ignore: true
+    structure:
+      - name: name
+        type: STRING
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: REFLECTION_CHECK_REPLY
     type: VARIABLE_BYTE
