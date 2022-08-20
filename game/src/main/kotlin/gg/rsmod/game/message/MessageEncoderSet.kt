@@ -65,6 +65,11 @@ class MessageEncoderSet {
         put(IfSetModelEncoder(), IfSetModelMessage::class.java)
         put(CamShakeEncoder(), CamShakeMessage::class.java)
         put(CameraResetEncoder(), CamResetMessage::class.java)
+        put(LoadFriendListEncoder(), UpdateFriendListMessage::class.java)
+        put(LoadIgnoreListEncoder(), UpdateIgnoreListMessage::class.java)
+        put(LoadEmptyFriendsListEncoder(), FriendListLoadedMessage::class.java)
+
+        put(MessagePrivateReceiverEncoder(), MessagePrivateReceiverMessage::class.java)
     }
 
     private fun <T : Message> put(encoder: MessageEncoder<T>, message: Class<out T>) {
