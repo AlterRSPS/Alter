@@ -13,6 +13,7 @@ object Sounds {
     const val CLOSE_DOOR_SFX = 60
     const val STUCK_DOOR_SFX = 61
     const val OPEN_DOOR_SFX = 62
+    const val ALTAR_PRAY = 2674
     /**
 
     Tree once cut to a stump: 2734

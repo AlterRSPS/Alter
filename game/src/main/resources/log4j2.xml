@@ -2,7 +2,9 @@
 <Configuration status="warn" packages="gg.rsmod">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%d{HH:mm:ss.SSS} %-5level] %-20.20c{1} | %msg%n"/>
+            <PatternLayout disableAnsi="false">
+                <pattern> [ %highlight{%-5level}] [ %d{HH:mm:ss.SSS} ] [ %-20.20c{1} ] | %msg%n</pattern>
+            </PatternLayout>
         </Console>
         <File name="File" fileName="error.log" append="false">
             <PatternLayout pattern="[%d{ISO8601} %-5level] %logger{36} - %msg%n"/>

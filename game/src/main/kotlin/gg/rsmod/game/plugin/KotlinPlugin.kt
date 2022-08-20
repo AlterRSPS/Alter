@@ -256,7 +256,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         val slot = def.options.indexOfFirst {
             it?.toLowerCase() == opt
         }
-        if (slot < 1) {
+        if (slot == -1) {
             return false
         }
         return true
@@ -271,7 +271,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         val slot = def.options.indexOfFirst {
             it?.toLowerCase() == opt
         }
-        if (slot < 1) {
+        if (slot == -1) {
             return false
         }
         return true

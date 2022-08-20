@@ -6,6 +6,9 @@ on_command("home", Privilege.ADMIN_POWER, description = "Teleports you home") {
     val home = world.gameContext.home
     player.moveTo(home)
 }
+on_command("edge", Privilege.ADMIN_POWER, description = "Teleports you to Edgeville") {
+    player.moveTo(Tile(x = 3087, z = 3499, height = 0))
+}
 on_command("varrock", Privilege.ADMIN_POWER, description = "Teleports you to Varrock") {
     player.moveTo(Tile(x = 3211, z = 3424, height = 0))
 }
