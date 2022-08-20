@@ -40,7 +40,7 @@ on_button(ItemSets.ITEMSETS_INTERFACE, 2) {
             if (index == itemList[Item]!!.size - 1) {
                 message.append(".")
             } else {
-                message.append(",   ")
+                message.append(", ")
             }
         }
     }
@@ -66,7 +66,7 @@ on_button(ItemSets.ITEMSETS_INVENTORY, 0) {
                 }
             }
         } else {
-            player.message("You don't have enough inventory space.")
+            player.message("You need ${itemList[Item]!!.size} free space to unpack this set.")
         }
     }
 }

@@ -7,7 +7,7 @@ spawn_npc(Npcs.ELLIS, 3273, 3192, 0, 4, Direction.EAST)
     }
 
     on_npc_option(npc = Npcs.ELLIS, option = "trade") {
-        player.setInterfaceUnderlay(-1, -2)
+        player.setInterfaceUnderlay(-1, -1)
         player.openInterface(324, InterfaceDestination.MAIN_SCREEN)
     }
 
@@ -18,7 +18,7 @@ suspend fun dialog(it: QueueTask) {
         when (it.options("Yes please.", "No thanks.")) {
             1 -> {
                 it.chatPlayer("Yes please.", animation = 567)
-                it.player.setInterfaceUnderlay(-1, -2)
+                it.player.setInterfaceUnderlay(-1, -1)
                 it.player.openInterface(324, InterfaceDestination.MAIN_SCREEN)
             }
             2 -> {
