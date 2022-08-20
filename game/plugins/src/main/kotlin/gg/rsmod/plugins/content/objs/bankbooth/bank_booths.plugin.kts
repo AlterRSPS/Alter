@@ -49,8 +49,8 @@ BOOTHS.forEach { booth ->
     on_obj_option(obj = booth, option = "bank") {
         player.openBank()
     }
-    if (if_obj_has_option(booth, "collect")) {
-        on_obj_option(obj = booth, option = "collect") {
+    if (if_obj_has_option(booth, "Collect")) {
+        on_obj_option(obj = booth, option = "Collect") {
             open_collect(player)
         }
     }

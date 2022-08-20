@@ -405,9 +405,6 @@ fun Player.decrementVarbit(id: Int, amount: Int = 1): Int {
 }
 
 fun Player.setVarbit(id: Int, value: Int) {
-    if (getVarp(Varps.DEVEL_VARP_DEBUG) > 0) {
-        message("Varbit $id was set to $value")
-    }
     val def = world.definitions.get(VarbitDef::class.java, id)
     varps.setBit(def.varp, def.startBit, def.endBit, value)
 }
@@ -425,9 +422,6 @@ fun Player.sendTempVarbit(id: Int, value: Int) {
 
 fun Player.toggleVarbit(id: Int) {
     val def = world.definitions.get(VarbitDef::class.java, id)
-    if (getVarp(Varps.DEVEL_VARP_DEBUG) > 0) {
-        message("Varbit $id was set to ${getVarbit(id) xor 1}")
-    }
     varps.setBit(def.varp, def.startBit, def.endBit, getVarbit(id) xor 1)
 }
 
