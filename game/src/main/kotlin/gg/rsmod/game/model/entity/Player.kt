@@ -36,6 +36,8 @@ open class Player(world: World) : Pawn(world) {
 
     /**
      * Bounty hunter points
+     *
+     * @CloudS3c : This will reset every time. Use player.attr[]
      */
     var bountypoints = 0
     fun getBHP(): Int {

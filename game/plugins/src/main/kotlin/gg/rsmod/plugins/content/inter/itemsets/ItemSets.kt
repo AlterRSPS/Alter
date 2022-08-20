@@ -11,9 +11,10 @@ object ItemSets {
     var ITEMSETS_INVENTORY = 430
 
     fun open(p: Player) {
-        p.setInterfaceUnderlay(-1, -2)
+        p.setInterfaceUnderlay(-1, -1)
         p.openInterface(ITEMSETS_INTERFACE, InterfaceDestination.MAIN_SCREEN)
         p.openInterface(ITEMSETS_INVENTORY, InterfaceDestination.TAB_AREA)
+
         p.setInterfaceEvents(ITEMSETS_INTERFACE, component = 2, range = 0..104, setting = 1086)
         p.setInterfaceEvents(ITEMSETS_INVENTORY, component = 0, range = 0..27, setting = 1086)
     }

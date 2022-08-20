@@ -12,7 +12,7 @@ object Tournament_Supplies {
     var TOURNAMENT_SUPPLIES_INVENTORY_INTERFACE = 115
 
     fun open(p: Player) {
-        p.setInterfaceUnderlay(-1, -2)
+        p.setInterfaceUnderlay(-1, -1)
         p.openInterface(TOURNAMENT_SUPPLIES_INTERFACE, InterfaceDestination.MAIN_SCREEN)
         p.openInterface(TOURNAMENT_SUPPLIES_INVENTORY_INTERFACE, InterfaceDestination.TAB_AREA)
         p.setInterfaceEvents(TOURNAMENT_SUPPLIES_INTERFACE, component = 4, range = 0..491, setting = 1086)
