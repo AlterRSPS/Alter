@@ -68,7 +68,7 @@ allprojects {
 }
 
 task packageServer(type: Zip) {
-    archiveFileName = "rsmod.zip"
+    archiveFileName = "Alter.zip"
     destinationDirectory = file('.')
 
     from('./') {
@@ -81,6 +81,8 @@ task packageServer(type: Zip) {
         include 'LICENSE'
         include 'README.md'
 
+        include 'management-interface'
+
         include 'first-launch-template'
         rename 'first-launch-template', 'first-launch'
     }
@@ -91,11 +93,11 @@ task packageServer(type: Zip) {
 
     from('data/') {
         into 'data'
-
         exclude 'cache'
         exclude 'rsa'
         exclude 'saves'
         exclude 'xteas'
+        exclude 'xteas.json'
     }
 
     from('game/') {
@@ -145,7 +147,7 @@ task packageServer(type: Zip) {
 }
 
 task packageLibs(type: Zip) {
-    archiveFileName = "rsmod-libs.zip"
+    archiveFileName = "Alter-libs.zip"
     destinationDirectory = file('.')
 
     from('game/build/libs/') {
