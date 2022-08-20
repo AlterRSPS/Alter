@@ -1,7 +1,15 @@
 package gg.rsmod.plugins.content.skills.thieving.objs
 
 Stall.values().forEach{ stall ->
-    on_obj_option(stall.stallID, "Steal-from") {
-        stall.steal(player)
+    stall.stalls.forEach { id ->
+        if (if_obj_has_option(id, "Steal-from")) {
+            on_obj_option(id, "Steal-from") {
+                stall.steal(player, id)
+            }
+        } else if (if_obj_has_option(id, "Steal from")) {
+            on_obj_option(id, "Steal from") {
+                stall.steal(player, id)
+            }
+        }
     }
 }
