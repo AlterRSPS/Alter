@@ -151,7 +151,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         n.respawns = true
         n.walkRadius = walkRadius
         n.lastFacingDirection = direction
-        world.spawn(n)
+        r.npcSpawns.add(n)
     }
 
     /**
@@ -162,7 +162,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         n.respawns = true
         n.walkRadius = walkRadius
         n.lastFacingDirection = direction
-        world.spawn(n)
+        r.npcSpawns.add(n)
     }
 
     /**
@@ -170,7 +170,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     fun spawn_obj(obj: Int, x: Int, z: Int, height: Int = 0, type: Int = 10, rot: Int = 0) {
         val o = DynamicObject(obj, type, rot, Tile(x, z, height))
-        world.spawn(o)
+        r.objSpawns.add(o)
     }
 
     /**
@@ -179,7 +179,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun spawn_item(item: Int, amount: Int, x: Int, z: Int, height: Int = 0, respawnCycles: Int = GroundItem.DEFAULT_RESPAWN_CYCLES) {
         val ground = GroundItem(item, amount, Tile(x, z, height))
         ground.respawnCycles = respawnCycles
-        world.spawn(ground)
+        r.itemSpawns.add(ground)
     }
 
     /**
@@ -188,7 +188,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun spawn_item(item: Int, amount: Int, tile: Tile, respawnCycles: Int = GroundItem.DEFAULT_RESPAWN_CYCLES) {
         val ground = GroundItem(item, amount, Tile(tile))
         ground.respawnCycles = respawnCycles
-        world.spawn(ground)
+        r.itemSpawns.add(ground)
     }
 
     /**
@@ -197,7 +197,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun spawn_item(item: Int, amount: Int, tile: Tile, owner: Player) {
         val ground = GroundItem(item, amount, Tile(tile))
         ground.ownerUID = owner.uid
-        world.spawn(ground)
+        r.itemSpawns.add(ground)
     }
 
     /**
