@@ -11,9 +11,6 @@ import gg.rsmod.plugins.api.cfg.Items
 import gg.rsmod.plugins.api.ext.*
 import kotlin.random.Random
 
-/**
- * @author Anthony Loukinas <anthony.loukinas@gmail.com>
- */
 object Mining {
     data class Ore(val type: OreType, val obj: Int, val emptyOreId: Int)
 
@@ -37,10 +34,10 @@ object Mining {
 
         var oreName = p.world.definitions.get(ItemDef::class.java, ore.ore).name
         val equipmentPickaxe = PickaxeType.values.firstOrNull {
-            p.getSkills().getMaxLevel(Skills.MINING) >= it.level && (p.equipment.contains(it.item))
+            p.getSkills().getBaseLevel(Skills.MINING) >= it.level && (p.equipment.contains(it.item))
         }
         val inventoryPickaxe = PickaxeType.values.lastOrNull {
-            p.getSkills().getMaxLevel(Skills.MINING) >= it.level && (p.inventory.contains(it.item))
+            p.getSkills().getBaseLevel(Skills.MINING) >= it.level && (p.inventory.contains(it.item))
         }
         val pickaxe = equipmentPickaxe ?: inventoryPickaxe!!
 
@@ -75,19 +72,9 @@ object Mining {
             val level = p.getSkills().getCurrentLevel(Skills.MINING)
             // TODO: Implement pickaxe type interpolation
             val mineChance = level.interpolate(minChance = 60, maxChance = 190, minLvl = 1, maxLvl = 99, cap = 255)
-            p.message(mineChance.toString())
-
             if(mineChance) {
 
                 when(ore) {
-                    OreType.RUNE_ESSENCE -> {
-                        val essenceType = evalEssenceType(level)
-                        oreName = p.world.definitions.get(ItemDef::class.java, essenceType.ore).name
-                        p.filterableMessage("You manage to mine some $oreName.")
-                        p.playSound(3600) // may need to update this
-                        p.inventory.add(essenceType.ore)
-                        p.addXp(Skills.MINING, essenceType.xp)
-                    }
                     OreType.SANDSTONE1 -> {
                         val sandstoneWeight = evalSandstoneWeight()
                         oreName = p.world.definitions.get(ItemDef::class.java, sandstoneWeight.ore).name
@@ -120,7 +107,6 @@ object Mining {
                     }
                 }
 
-                p.animate(-1) // reset animation
                 val world = p.world
 
                 if(emptyOreId != 0) {
@@ -144,24 +130,24 @@ object Mining {
         // TODO: Add a gemDropRate val on OreType
 //        val level = p.getSkills().getCurrentLevel(Skills.MINING)
         val listOfGlorys = arrayOf(
-                Items.AMULET_OF_GLORY1,
-                Items.AMULET_OF_GLORY2,
-                Items.AMULET_OF_GLORY3,
-                Items.AMULET_OF_GLORY4,
-                Items.AMULET_OF_GLORY5,
-                Items.AMULET_OF_GLORY6,
-                Items.AMULET_OF_GLORY_T1,
-                Items.AMULET_OF_GLORY_T2,
-                Items.AMULET_OF_GLORY_T3,
-                Items.AMULET_OF_GLORY_T4,
-                Items.AMULET_OF_GLORY_T5,
-                Items.AMULET_OF_GLORY_T6
+            Items.AMULET_OF_GLORY1,
+            Items.AMULET_OF_GLORY2,
+            Items.AMULET_OF_GLORY3,
+            Items.AMULET_OF_GLORY4,
+            Items.AMULET_OF_GLORY5,
+            Items.AMULET_OF_GLORY6,
+            Items.AMULET_OF_GLORY_T1,
+            Items.AMULET_OF_GLORY_T2,
+            Items.AMULET_OF_GLORY_T3,
+            Items.AMULET_OF_GLORY_T4,
+            Items.AMULET_OF_GLORY_T5,
+            Items.AMULET_OF_GLORY_T6
         )
         val listOfGems = arrayOf(
-                Items.UNCUT_RUBY,
-                Items.UNCUT_SAPPHIRE,
-                Items.UNCUT_EMERALD,
-                Items.UNCUT_DIAMOND
+            Items.UNCUT_SAPPHIRE,
+            Items.UNCUT_EMERALD,
+            Items.UNCUT_RUBY,
+            Items.UNCUT_DIAMOND
         )
 
         var isWearingGlory = false
@@ -218,23 +204,15 @@ object Mining {
             return false
         }
 
-        val pickaxe = PickaxeType.values.lastOrNull { p.getSkills().getMaxLevel(Skills.MINING) >= it.level && (p.equipment.contains(it.item) || p.inventory.contains(it.item)) }
+        val pickaxe = PickaxeType.values.lastOrNull { p.getSkills().getBaseLevel(Skills.MINING) >= it.level && (p.equipment.contains(it.item) || p.inventory.contains(it.item)) }
         if(pickaxe == null){
-            p.message("You need a pickaxe to mine this rock.")
-            p.message("You do not have a pickaxe which you have the Mining level to use.")
+            p.queue {messageBox("You need a pickaxe to mine this rock. You do not have a pickaxe<br>which you have the Mining level to use.")}
             return false
         }
 
-        if(p.getSkills().getMaxLevel(Skills.MINING) < ore.level) {
+        if(p.getSkills().getBaseLevel(Skills.MINING) < ore.level) {
             p.message("You need a Mining level of ${ore.level} to mine this ore.")
             return false
-        }
-
-        if(ore == OreType.DENSE_ESSENCE) {
-            if(p.getSkills().getMaxLevel(Skills.CRAFTING) < 38) {
-                p.message("You need a Crafting level of 38 to mine this ore.")
-                return false
-            }
         }
 
         if(p.inventory.isFull) {
