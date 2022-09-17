@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.custom
+package gg.rsmod.plugins.content.skills.prayer
 
 val altars = arrayOf(
     Objs.BANDOS_ALTAR,
