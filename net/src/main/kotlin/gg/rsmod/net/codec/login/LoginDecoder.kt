@@ -186,9 +186,9 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
             logger.info { "User '$username' login request from ${ctx.channel()}." }
 
             val request = LoginRequest(channel = ctx.channel(), username = username,
-                    password = password ?: "", revision = serverRevision, xteaKeys = xteaKeys,
-                    resizableClient = clientResizable, auth = authCode, uuid = "".toUpperCase(), clientWidth = clientWidth, clientHeight = clientHeight,
-                    reconnecting = reconnecting)
+                password = password ?: "", revision = serverRevision, xteaKeys = xteaKeys,
+                resizableClient = clientResizable, auth = authCode, uuid = "".toUpperCase(), clientWidth = clientWidth, clientHeight = clientHeight,
+                reconnecting = reconnecting)
             out.add(request)
         }
     }

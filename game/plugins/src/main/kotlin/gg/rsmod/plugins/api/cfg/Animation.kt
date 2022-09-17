@@ -67,6 +67,8 @@ object Animation {
     const val MINING_INFERNAL_PICKAXE = 4482
     const val MINING_THIRDAGE_PICKAXE = 7283
     const val MINING_CRYSTAL_PICKAXE = 8347
+
+    const val NEED_ANIMATION_ID = 625
     /**
      * Smithing Animations
      */

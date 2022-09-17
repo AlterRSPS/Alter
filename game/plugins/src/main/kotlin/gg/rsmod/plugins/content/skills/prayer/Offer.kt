@@ -25,7 +25,6 @@ object Offer {
             wait(3)
             p.unlock()
         }
-
         when(bones){
             else -> {
                 p.message("You offer the ${boneName.toLowerCase()} to Gilded altar")

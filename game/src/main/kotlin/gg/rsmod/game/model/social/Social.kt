@@ -25,7 +25,12 @@ class Social {
                 if (user != null && !user.social.ignores.contains(player.username))
                     player.write(UpdateFriendListMessage(0, user.username, "", 304, 0, 0))
                 else
-                    player.write(UpdateFriendListMessage(0, it, "", 0, 0, 0))
+                /**
+                 * @TODO
+                 * When implementing name change -> save old user name for [previousUsername]
+                 * Actually forgot if it was a list of usernames or only latest
+                 */
+                player.write(UpdateFriendListMessage(0, it, "", 0, 0, 0))
             }
         }
     }

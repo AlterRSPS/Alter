@@ -186,6 +186,19 @@ suspend fun QueueTask.searchItemInputT(message: String): Int {
 
     return requestReturnValue as? Int ?: -1
 }
+suspend fun QueueTask.searchItemWithPrevious(message: String): Int {
+    player.setVarbit(4439, 1)
+    player.runClientScript(5730, "", "", 30474256, 30474258)
+    player.runClientScript(5730, "Click the icon on the left to search for items.", "", 30474266, 30474268)
+    player.runClientScript(750, message, 1, -1, 1)
+    player.runClientScript(4517, 0, 100, 75)
+    player.runClientScript(4518, 100, 100)
+
+    terminateAction = closeInput
+    waitReturnValue()
+
+    return requestReturnValue as? Int ?: -1
+}
 
 /**
  * Sends a normal message dialog.
