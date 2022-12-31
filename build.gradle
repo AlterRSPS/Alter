@@ -12,7 +12,7 @@ allprojects {
 
     apply from: "$rootDir/gradle/kotlin.gradle"
 
-    group = 'rsmod'
+    group = 'alter'
     version = '0.0.4'
 
     repositories {
