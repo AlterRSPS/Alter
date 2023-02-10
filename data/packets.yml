@@ -52,7 +52,55 @@ server-packets:
     structure:
       - name: top
         write: ShortAddLE
-
+  - message: gg.rsmod.game.message.impl.IfSetTextMessage
+    type: VARIABLE_SHORT
+    opcode: 83
+    structure:
+      - name: text
+        write: BYTES
+      - name: hash
+        write: IntLE
+  - message: gg.rsmod.game.message.impl.SetOpPlayerMessage
+    type: VARIABLE_BYTE
+    opcode: 56
+    structure:
+      - name: option
+        type: BYTES
+      - name: left_click
+        type: BYTE
+        trans: NEGATE
+      - name: index
+        type: BYTE
+        trans: SUBTRACT
+  - message: gg.rsmod.game.message.impl.UpdateRunEnergyMessage
+    type: FIXED
+    opcode: 75
+    structure:
+      - name: energy
+        write: SHORT
+  - message: gg.rsmod.game.message.impl.IfOpenSubMessage
+    type: FIXED
+    opcode: 89
+    structure:
+      - name: component
+        type: SHORT
+      - name: type
+        type: BYTE
+      - name: overlay
+        type: INT
+        order: LITTLE
+  - message: gg.rsmod.game.message.impl.MessageGameMessage
+    type: VARIABLE_BYTE
+    opcode: 32
+    structure:
+      - name: type
+        write: BYTE
+      - name: check_ignore
+        write: BYTE
+      - name: username
+        write: BYTES
+      - name: message
+        write: BYTES
 
 client-packets:
   - message: gg.rsmod.game.message.impl.NoTimeoutMessage
