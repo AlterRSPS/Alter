@@ -21,7 +21,12 @@ class MessageEncoderSet {
      */
     fun init() {
         put(RebuildLoginEncoder(), RebuildLoginMessage::class.java)
-        put(VarpSmallEncoder(), VarpSmallMessage::class.java)
+        put(RebuildNormalEncoder(), RebuildNormalMessage::class.java)
+        put(IfSetEventsEncoder(), IfSetEventsMessage::class.java)
+        put(RunClientScriptEncoder(), RunClientScriptMessage::class.java)
+        put(IfOpenTopEncoder(), IfOpenTopMessage::class.java)
+
+/*        put(VarpSmallEncoder(), VarpSmallMessage::class.java)
         put(VarpLargeEncoder(), VarpLargeMessage::class.java)
         put(OpenUrlEncoder(), OpenUrlMessage::class.java)
         put(IfOpenSubEncoder(), IfOpenSubMessage::class.java)
@@ -33,9 +38,8 @@ class MessageEncoderSet {
         put(IfSetObjectEncoder(), IfSetObjectMessage::class.java)
         put(IfSetNpcHeadEncoder(), IfSetNpcHeadMessage::class.java)
         put(IfSetPlayerHeadEncoder(), IfSetPlayerHeadMessage::class.java)
-        put(IfOpenTopEncoder(), IfOpenTopMessage::class.java)
+
         put(IfMoveSubEncoder(), IfMoveSubMessage::class.java)
-        put(RunClientScriptEncoder(), RunClientScriptMessage::class.java)
         put(RebuildNormalEncoder(), RebuildNormalMessage::class.java)
         put(RebuildRegionEncoder(), RebuildRegionMessage::class.java)
         put(MessageGameEncoder(), MessageGameMessage::class.java)
@@ -69,7 +73,7 @@ class MessageEncoderSet {
         put(LoadIgnoreListEncoder(), UpdateIgnoreListMessage::class.java)
         put(LoadEmptyFriendsListEncoder(), FriendListLoadedMessage::class.java)
 
-        put(MessagePrivateReceiverEncoder(), MessagePrivateReceiverMessage::class.java)
+        put(MessagePrivateReceiverEncoder(), MessagePrivateReceiverMessage::class.java)*/
     }
 
     private fun <T : Message> put(encoder: MessageEncoder<T>, message: Class<out T>) {

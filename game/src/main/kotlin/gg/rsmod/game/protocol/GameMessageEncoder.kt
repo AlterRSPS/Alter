@@ -3,6 +3,7 @@ package gg.rsmod.game.protocol
 import gg.rsmod.game.message.Message
 import gg.rsmod.game.message.MessageEncoderSet
 import gg.rsmod.game.message.MessageStructureSet
+import gg.rsmod.game.message.impl.*
 import gg.rsmod.net.packet.GamePacketBuilder
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageEncoder
@@ -35,9 +36,19 @@ class GameMessageEncoder(private val encoders: MessageEncoderSet, private val st
             return
         }
 
-        val builder = GamePacketBuilder(structure.opcodes.first(), structure.type)
-        encoder.encode(msg, builder, structure)
-        out.add(builder.toGamePacket())
+        if (
+            msg is RebuildLoginMessage
+            || msg is RebuildNormalMessage
+            || msg is IfSetEventsMessage
+            || msg is RunClientScriptMessage
+            || msg is IfOpenTopMessage
+            ) {
+            println(msg)
+            val builder = GamePacketBuilder(structure.opcodes.first(), structure.type)
+            encoder.encode(msg, builder, structure)
+            out.add(builder.toGamePacket())
+        }
+
     }
 
     companion object : KLogging()
