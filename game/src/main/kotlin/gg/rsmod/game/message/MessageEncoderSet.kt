@@ -38,18 +38,17 @@ class MessageEncoderSet {
         put(VarpLargeEncoder(), VarpLargeMessage::class.java)
         put(UpdateStatEncoder(), UpdateStatMessage::class.java)
         put(UpdateZonePartialEnclosedEncoder(), UpdateZonePartialEnclosedMessage::class.java)
+        put(IfMoveSubEncoder(), IfMoveSubMessage::class.java)
+        put(IfCloseSubEncoder(), IfCloseSubMessage::class.java)
 /*
 
         put(OpenUrlEncoder(), OpenUrlMessage::class.java)
-        put(IfCloseSubEncoder(), IfCloseSubMessage::class.java)
         put(IfSetEventsEncoder(), IfSetEventsMessage::class.java)
         put(IfSetHideEncoder(), IfSetHideMessage::class.java)
         put(IfSetAnimEncoder(), IfSetAnimMessage::class.java)
         put(IfSetObjectEncoder(), IfSetObjectMessage::class.java)
         put(IfSetNpcHeadEncoder(), IfSetNpcHeadMessage::class.java)
         put(IfSetPlayerHeadEncoder(), IfSetPlayerHeadMessage::class.java)
-
-        put(IfMoveSubEncoder(), IfMoveSubMessage::class.java)
         put(RebuildNormalEncoder(), RebuildNormalMessage::class.java)
         put(RebuildRegionEncoder(), RebuildRegionMessage::class.java)
         put(LogoutFullEncoder(), LogoutFullMessage::class.java)

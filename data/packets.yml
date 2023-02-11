@@ -175,7 +175,12 @@ server-packets:
       - name: to
         type: INT
         order: LITTLE
-
+  - message: gg.rsmod.game.message.impl.IfCloseSubMessage
+    type: FIXED
+    opcode: 64
+    structure:
+      - name: hash
+        write: INT
 
 
 client-packets:
@@ -206,4 +211,35 @@ client-packets:
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: LOGIN_STATISTICS
     type: VARIABLE_BYTE
     opcode: 28
+    ignore: true
+  - message: gg.rsmod.game.message.impl.IfButtonMessage
+    type: FIXED
+    opcodes: 62,55,18,22,85,75,78,57,102,25 # 10
+    length: 8
+    structure:
+      - name: hash
+        type: INT
+        sign: UNSIGNED
+      - name: slot
+        type: SHORT
+        sign: UNSIGNED
+      - name: item
+        type: SHORT
+        sign: UNSIGNED
+  - message: gg.rsmod.game.message.impl.EventMouseMoveMessage # TODO: need to refactor code to see what values are received
+    type: VARIABLE_BYTE
+    opcode: 2
+    ignore: true
+  - message: gg.rsmod.game.message.impl.EventAppletFocusMessage
+    type: FIXED
+    opcode: 39
+    length: 1
+    structure:
+      - name: state
+        type: BYTE
+        sign: UNSIGNED
+  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: EVENT_MOUSE_CLICK - need to refactor code to see what values are received
+    type: FIXED
+    opcode: 3
+    length: 6
     ignore: true

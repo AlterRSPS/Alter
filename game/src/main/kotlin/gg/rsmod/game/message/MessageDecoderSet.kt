@@ -28,7 +28,9 @@ class MessageDecoderSet {
     fun init(structures: MessageStructureSet) {
         put(WindowStatusMessage::class.java, WindowStatusDecoder(), WindowStatusHandler(), structures)
         put(MapBuildCompleteMessage::class.java, MapBuildCompleteDecoder(), MapBuildCompleteHandler(), structures)
-/*        put(EventAppletFocusMessage::class.java, EventAppletFocusDecoder(), EventAppletFocusHandler(), structures)
+        put(IfButtonMessage::class.java, IfButton1Decoder(), IfButton1Handler(), structures)
+        put(EventAppletFocusMessage::class.java, EventAppletFocusDecoder(), EventAppletFocusHandler(), structures)
+/*
         put(EventCameraPositionMessage::class.java, EventCameraPositionDecoder(), EventCameraPositionHandler(), structures)
         put(EventMouseIdleMessage::class.java, EventMouseIdleDecoder(), EventMouseIdleHandler(), structures)
         put(EventKeyboardMessage::class.java, EventKeyboardDecoder(), EventKeyboardHandler(), structures)
@@ -45,7 +47,7 @@ class MessageDecoderSet {
         put(ClickWorldMapMessage::class.java, ClickWorldMapDecoder(), ClickWorldMapHandler(), structures)
 
         put(CloseModalMessage::class.java, CloseModalDecoder(), CloseMainComponentHandler(), structures)
-        put(IfButtonMessage::class.java, IfButton1Decoder(), IfButton1Handler(), structures)
+
 
         put(IfButtonTMessage::class.java, IfButtonTDecoder(), IfButtonTHandler(), structures)
 

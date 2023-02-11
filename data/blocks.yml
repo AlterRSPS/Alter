@@ -48,6 +48,7 @@ players:
           trans: ADD
         - name: buffer
           type: BYTES
+          trans: ADD
           order: REVERSED
     - block: PUBLIC_CHAT
       bit: 0x8
@@ -158,8 +159,8 @@ players:
 
 npcs:
 
-  updating-opcode: 53
-  large-updating-opcode: 7
+  updating-opcode: 9
+  large-updating-opcode: 63
 
   order:
     - APPLY_TINT
