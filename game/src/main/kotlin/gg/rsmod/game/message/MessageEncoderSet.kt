@@ -37,6 +37,7 @@ class MessageEncoderSet {
         put(VarpSmallEncoder(), VarpSmallMessage::class.java)
         put(VarpLargeEncoder(), VarpLargeMessage::class.java)
         put(UpdateStatEncoder(), UpdateStatMessage::class.java)
+        put(UpdateZonePartialEnclosedEncoder(), UpdateZonePartialEnclosedMessage::class.java)
 /*
 
         put(OpenUrlEncoder(), OpenUrlMessage::class.java)
@@ -58,7 +59,7 @@ class MessageEncoderSet {
         put(UpdateZonePartialFollowsEncoder(), UpdateZonePartialFollowsMessage::class.java)
         put(LodAddChangeEncoder(), LocAddChangeMessage::class.java)
         put(LocDelEncoder(), LocDelMessage::class.java)
-        put(UpdateZonePartialEnclosedEncoder(), UpdateZonePartialEnclosedMessage::class.java)
+
         put(ObjAddEncoder(), ObjAddMessage::class.java)
         put(ObjDelEncoder(), ObjDelMessage::class.java)
         put(ObjCountEncoder(), ObjCountMessage::class.java)

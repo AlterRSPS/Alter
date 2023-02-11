@@ -27,15 +27,13 @@ class MessageDecoderSet {
      */
     fun init(structures: MessageStructureSet) {
         put(WindowStatusMessage::class.java, WindowStatusDecoder(), WindowStatusHandler(), structures)
+        put(MapBuildCompleteMessage::class.java, MapBuildCompleteDecoder(), MapBuildCompleteHandler(), structures)
 /*        put(EventAppletFocusMessage::class.java, EventAppletFocusDecoder(), EventAppletFocusHandler(), structures)
         put(EventCameraPositionMessage::class.java, EventCameraPositionDecoder(), EventCameraPositionHandler(), structures)
         put(EventMouseIdleMessage::class.java, EventMouseIdleDecoder(), EventMouseIdleHandler(), structures)
         put(EventKeyboardMessage::class.java, EventKeyboardDecoder(), EventKeyboardHandler(), structures)
 
         put(DetectModifiedClientMessage::class.java, DetectModifiedClientDecoder(), DetectModifiedClientHandler(), structures)
-        put(WindowStatusMessage::class.java, WindowStatusDecoder(), WindowStatusHandler(), structures)
-
-        put(MapBuildCompleteMessage::class.java, MapBuildCompleteDecoder(), MapBuildCompleteHandler(), structures)
         put(MessagePublicMessage::class.java, MessagePublicDecoder(), MessagePublicHandler(), structures)
         put(UpdateAppearanceMessage::class.java, UpdateAppearanceDecoder(), UpdateAppearanceHandler(), structures)
         put(ClientCheatMessage::class.java, ClientCheatDecoder(), ClientCheatHandler(), structures)

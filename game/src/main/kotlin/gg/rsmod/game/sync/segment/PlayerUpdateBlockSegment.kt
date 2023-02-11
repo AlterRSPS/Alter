@@ -40,8 +40,8 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 }
             }
         }
-
-        if (mask >= 0x100) {
+        mask = 0
+        if (mask >= 0xFF) {
             mask = mask or blocks.updateBlockExcessMask
             buf.put(DataType.BYTE, mask and 0xFF)
             buf.put(DataType.BYTE, mask shr 8)
@@ -57,7 +57,7 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 else -> false
             }
             if (other.hasBlock(blockType) || force) {
-                write(buf, blockType, forceFace)
+                //write(buf, blockType, forceFace)
             }
         }
     }

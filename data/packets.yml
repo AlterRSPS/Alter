@@ -155,8 +155,26 @@ server-packets:
         write: ShortAdd
       - name: value
         write: BYTEAdd
-
-
+  - message: gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
+    type: VARIABLE_SHORT
+    opcode: 105
+    structure:
+      - name: x
+        write: ByteNeg
+      - name: z
+        write: ByteNeg
+      - name: payload
+        write: BYTES
+  - message: gg.rsmod.game.message.impl.IfMoveSubMessage
+    type: FIXED
+    opcode: 110
+    structure:
+      - name: from
+        type: INT
+        order: LITTLE
+      - name: to
+        type: INT
+        order: LITTLE
 
 
 
@@ -181,3 +199,11 @@ client-packets:
       - name: height
         type: SHORT
         sign: UNSIGNED
+  - message: gg.rsmod.game.message.impl.MapBuildCompleteMessage
+    type: FIXED
+    opcode: 84
+    length: 0
+  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: LOGIN_STATISTICS
+    type: VARIABLE_BYTE
+    opcode: 28
+    ignore: true
