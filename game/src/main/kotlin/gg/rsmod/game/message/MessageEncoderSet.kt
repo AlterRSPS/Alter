@@ -30,9 +30,15 @@ class MessageEncoderSet {
         put(IfOpenSubEncoder(), IfOpenSubMessage::class.java)
         put(UpdateRunEnergyEncoder(), UpdateRunEnergyMessage::class.java)
         put(MessageGameEncoder(), MessageGameMessage::class.java)
-
-/*        put(VarpSmallEncoder(), VarpSmallMessage::class.java)
+        put(LoadEmptyFriendsListEncoder(), FriendListLoadedMessage::class.java)
+        put(MidiSongEncoder(), MidiSongMessage::class.java)
+        put(UpdateInvFullEncoder(), UpdateInvFullMessage::class.java)
+        put(UpdateRunWeightEncoder(), UpdateRunWeightMessage::class.java)
+        put(VarpSmallEncoder(), VarpSmallMessage::class.java)
         put(VarpLargeEncoder(), VarpLargeMessage::class.java)
+        put(UpdateStatEncoder(), UpdateStatMessage::class.java)
+/*
+
         put(OpenUrlEncoder(), OpenUrlMessage::class.java)
         put(IfCloseSubEncoder(), IfCloseSubMessage::class.java)
         put(IfSetEventsEncoder(), IfSetEventsMessage::class.java)
@@ -48,20 +54,17 @@ class MessageEncoderSet {
         put(LogoutFullEncoder(), LogoutFullMessage::class.java)
         put(UpdateStatEncoder(), UpdateStatMessage::class.java)
         put(SetMapFlagEncoder(), SetMapFlagMessage::class.java)
-        put(UpdateInvFullEncoder(), UpdateInvFullMessage::class.java)
         put(UpdateInvPartialEncoder(), UpdateInvPartialMessage::class.java)
         put(UpdateZonePartialFollowsEncoder(), UpdateZonePartialFollowsMessage::class.java)
         put(LodAddChangeEncoder(), LocAddChangeMessage::class.java)
         put(LocDelEncoder(), LocDelMessage::class.java)
         put(UpdateZonePartialEnclosedEncoder(), UpdateZonePartialEnclosedMessage::class.java)
-        put(UpdateRunWeightEncoder(), UpdateRunWeightMessage::class.java)
         put(ObjAddEncoder(), ObjAddMessage::class.java)
         put(ObjDelEncoder(), ObjDelMessage::class.java)
         put(ObjCountEncoder(), ObjCountMessage::class.java)
         put(MapProjAnimEncoder(), MapProjAnimMessage::class.java)
         put(SynthSoundEncoder(), SynthSoundMessage::class.java)
         put(SoundAreaEncoder(), SoundAreaMessage::class.java)
-        put(MidiSongEncoder(), MidiSongMessage::class.java)
         put(MidiJingleEncoder(), MidiJingleMessage::class.java)
         put(OnDialogAbortEncoder(), TriggerOnDialogAbortMessage::class.java)
         put(UpdateRebootTimerEncoder(), UpdateRebootTimerMessage::class.java)
@@ -71,7 +74,6 @@ class MessageEncoderSet {
         put(CameraResetEncoder(), CamResetMessage::class.java)
         put(LoadFriendListEncoder(), UpdateFriendListMessage::class.java)
         put(LoadIgnoreListEncoder(), UpdateIgnoreListMessage::class.java)
-        put(LoadEmptyFriendsListEncoder(), FriendListLoadedMessage::class.java)
 
         put(MessagePrivateReceiverEncoder(), MessagePrivateReceiverMessage::class.java)*/
     }

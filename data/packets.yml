@@ -24,6 +24,12 @@ server-packets:
         write: ShortAddLE
       - name: xteas
         write: BYTES
+  - message: gg.rsmod.game.message.impl.UpdateRunWeightMessage
+    type: FIXED
+    opcode: 5
+    structure:
+      - name: weight
+        write: SHORT
   - message: gg.rsmod.game.message.impl.RunClientScriptMessage
     type: VARIABLE_SHORT
     opcode: 18
@@ -34,6 +40,55 @@ server-packets:
         write: BYTES
       - name: id
         write: INT
+  - message: gg.rsmod.game.message.impl.VarpLargeMessage
+    type: FIXED
+    opcode: 26
+    structure:
+      - name: id
+        write: Short
+      - name: value
+        write: IntLE
+  - message: gg.rsmod.game.message.impl.MessageGameMessage
+    type: VARIABLE_BYTE
+    opcode: 32
+    structure:
+      - name: type
+        write: BYTE
+      - name: check_ignore
+        write: BYTE
+      - name: username
+        write: BYTES
+      - name: message
+        write: BYTES
+  - message: gg.rsmod.game.message.impl.UpdateStatMessage
+    type: FIXED
+    opcode: 37
+    structure:
+      - name: level
+        write: ByteSub
+      - name: skill
+        write: ByteSub
+      - name: xp
+        write: IntLE
+  - message: gg.rsmod.game.message.impl.MidiSongMessage
+    type: FIXED
+    opcode: 39
+    structure:
+      - name: id
+        write: Short
+  - message: gg.rsmod.game.message.impl.UpdateInvFullMessage
+    type: VARIABLE_SHORT
+    opcode: 44
+    structure:
+      - name: component_hash
+        type: INT
+      - name: container_key
+        type: SHORT
+      - name: item_count
+        type: SHORT
+      - name: items
+        sign: SIGNED
+        type: BYTES
   - message: gg.rsmod.game.message.impl.IfSetEventsMessage
     type: FIXED
     opcode: 46
@@ -52,14 +107,6 @@ server-packets:
     structure:
       - name: top
         write: ShortAddLE
-  - message: gg.rsmod.game.message.impl.IfSetTextMessage
-    type: VARIABLE_SHORT
-    opcode: 83
-    structure:
-      - name: text
-        write: BYTES
-      - name: hash
-        write: IntLE
   - message: gg.rsmod.game.message.impl.SetOpPlayerMessage
     type: VARIABLE_BYTE
     opcode: 56
@@ -72,12 +119,23 @@ server-packets:
       - name: index
         type: BYTE
         trans: SUBTRACT
+  - message: gg.rsmod.game.message.impl.FriendListLoadedMessage
+    type: VARIABLE_SHORT
+    opcode: 73
   - message: gg.rsmod.game.message.impl.UpdateRunEnergyMessage
     type: FIXED
     opcode: 75
     structure:
       - name: energy
         write: SHORT
+  - message: gg.rsmod.game.message.impl.IfSetTextMessage
+    type: VARIABLE_SHORT
+    opcode: 83
+    structure:
+      - name: text
+        write: BYTES
+      - name: hash
+        write: IntLE
   - message: gg.rsmod.game.message.impl.IfOpenSubMessage
     type: FIXED
     opcode: 89
@@ -89,18 +147,18 @@ server-packets:
       - name: overlay
         type: INT
         order: LITTLE
-  - message: gg.rsmod.game.message.impl.MessageGameMessage
-    type: VARIABLE_BYTE
-    opcode: 32
+  - message: gg.rsmod.game.message.impl.VarpSmallMessage
+    type: FIXED
+    opcode: 97
     structure:
-      - name: type
-        write: BYTE
-      - name: check_ignore
-        write: BYTE
-      - name: username
-        write: BYTES
-      - name: message
-        write: BYTES
+      - name: id
+        write: ShortAdd
+      - name: value
+        write: BYTEAdd
+
+
+
+
 
 client-packets:
   - message: gg.rsmod.game.message.impl.NoTimeoutMessage

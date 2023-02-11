@@ -36,24 +36,10 @@ class GameMessageEncoder(private val encoders: MessageEncoderSet, private val st
             return
         }
 
-        if (
-            msg is RebuildLoginMessage
-            || msg is RebuildNormalMessage
-            || msg is IfSetEventsMessage
-            || msg is RunClientScriptMessage
-            || msg is IfOpenTopMessage
-            || msg is IfSetTextMessage
-            || msg is SetOpPlayerMessage
-            || msg is IfOpenSubMessage
-            || msg is UpdateRunEnergyMessage
-            || msg is MessageGameMessage
-            ) {
-            println(msg)
-            val builder = GamePacketBuilder(structure.opcodes.first(), structure.type)
-            encoder.encode(msg, builder, structure)
-            out.add(builder.toGamePacket())
-        }
-
+        println(msg)
+        val builder = GamePacketBuilder(structure.opcodes.first(), structure.type)
+        encoder.encode(msg, builder, structure)
+        out.add(builder.toGamePacket())
     }
 
     companion object : KLogging()
