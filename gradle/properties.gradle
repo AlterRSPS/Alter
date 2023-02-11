@@ -8,7 +8,6 @@ ext {
     yamlVersion = '2.13.0'
     jacksonVersion = '2.13.0'
     reflectionsVersion = '0.9.11'
-    runeliteVersion = 'runelite-parent-1.9.10'
     commonsIoVersion = '2.4'
     bcryptVersion = '0.4'
     bouncycastleVersion = '1.54'

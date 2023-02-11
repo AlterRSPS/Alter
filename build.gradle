@@ -20,6 +20,8 @@ allprojects {
         jcenter()
         maven { url "https://repo.maven.apache.org/maven2" }
         maven { url 'https://jitpack.io' }
+        maven { url = uri("https://repo.runelite.net/") }
+
     }
 
     configurations {
@@ -43,7 +45,9 @@ allprojects {
 
         implementation "org.mindrot:jbcrypt:$bcryptVersion"
         implementation "com.google.code.gson:gson:$gsonVersion"
-        implementation "com.github.runelite:runelite:$runeliteVersion"
+
+        implementation 'net.runelite:cache-client:1.9.10'
+
         implementation "io.netty:netty-all:$nettyVersion"
         implementation 'org.apache.commons:commons-lang3:3.0'
 
