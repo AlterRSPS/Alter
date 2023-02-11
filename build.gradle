@@ -43,7 +43,7 @@ allprojects {
 
         implementation "org.mindrot:jbcrypt:$bcryptVersion"
         implementation "com.google.code.gson:gson:$gsonVersion"
-        implementation "com.github.runelite.runelite:cache:$runeliteVersion"
+        implementation "com.github.runelite:runelite:$runeliteVersion"
         implementation "io.netty:netty-all:$nettyVersion"
         implementation 'org.apache.commons:commons-lang3:3.0'
 
