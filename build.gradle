@@ -1,5 +1,5 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.4.21' apply(false)
+    id 'org.jetbrains.kotlin.jvm' version '1.4.21' apply(true)
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.31'
 }
 
@@ -46,7 +46,7 @@ allprojects {
         implementation "org.mindrot:jbcrypt:$bcryptVersion"
         implementation "com.google.code.gson:gson:$gsonVersion"
 
-        implementation 'net.runelite:cache-client:1.9.10'
+        implementation "com.github.runelite.runelite:cache:$runeliteVersion"
 
         implementation "io.netty:netty-all:$nettyVersion"
         implementation 'org.apache.commons:commons-lang3:3.0'

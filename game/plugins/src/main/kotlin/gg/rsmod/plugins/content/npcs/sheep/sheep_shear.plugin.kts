@@ -17,6 +17,10 @@ Sheep.SHEEP_NPCS.forEach { sheep ->
     }
 }
 
+on_item_on_npc(Items.BUCKET, Npcs.MAN_3108) {
+    player.message("meh")
+}
+
 suspend fun shear(it: QueueTask, p: Player, n: Npc) {
     val flee = world.percentChance(15.0)
 

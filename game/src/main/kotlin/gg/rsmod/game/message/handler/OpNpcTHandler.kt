@@ -3,9 +3,7 @@ package gg.rsmod.game.message.handler
 import gg.rsmod.game.message.MessageHandler
 import gg.rsmod.game.message.impl.OpNpcTMessage
 import gg.rsmod.game.model.World
-import gg.rsmod.game.model.attr.INTERACTING_COMPONENT_CHILD
-import gg.rsmod.game.model.attr.INTERACTING_COMPONENT_PARENT
-import gg.rsmod.game.model.attr.INTERACTING_NPC_ATTR
+import gg.rsmod.game.model.attr.*
 import gg.rsmod.game.model.entity.Client
 import gg.rsmod.game.model.entity.Entity
 import gg.rsmod.game.model.priv.Privilege
@@ -38,15 +36,30 @@ class OpNpcTHandler : MessageHandler<OpNpcTMessage> {
         client.interruptQueues()
         client.resetInteractions()
 
+        val npcIndex = message.npcIndex
+        val verify = message.verify
+        val itemSlot = message.componentSlot
+
         client.attr[INTERACTING_NPC_ATTR] = WeakReference(npc)
         client.attr[INTERACTING_COMPONENT_PARENT] = parent
         client.attr[INTERACTING_COMPONENT_CHILD] = child
-
-        // TODO: add verification of active spellbook add in 196
-        if (!world.plugins.executeSpellOnNpc(client, parent, child)) {
-            client.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
-            if (world.devContext.debugMagicSpells) {
-                client.writeMessage("Unhandled magic spell: [$parent, $child]")
+        /**
+         * @Cl0ud
+         * @since 2/13/2023 @TODO
+         * Will need to clean this out, just running out of time for today.
+         */
+        if (child == 0) {
+            if (!world.plugins.executeItemOnNpc(client, npc.id, verify)) {
+                if (world.devContext.debugItemActions) {
+                    client.writeMessage("Unhandled item on npc [ $verify on ${npc.id}] ] ")
+                }
+            }
+        } else {
+            if (!world.plugins.executeSpellOnNpc(client, parent, child)) {
+                client.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
+                if (world.devContext.debugMagicSpells) {
+                   client.writeMessage("Unhandled magic spell: [$parent, $child] out here")
+                }
             }
         }
     }
