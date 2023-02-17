@@ -26,15 +26,16 @@ class MessageDecoderSet {
      * Links [Message]s to their respective [MessageDecoder]s and [MessageHandler].
      */
     fun init(structures: MessageStructureSet) {
+        put(WindowStatusMessage::class.java, WindowStatusDecoder(), WindowStatusHandler(), structures)
+        put(MapBuildCompleteMessage::class.java, MapBuildCompleteDecoder(), MapBuildCompleteHandler(), structures)
+        put(IfButtonMessage::class.java, IfButton1Decoder(), IfButton1Handler(), structures)
         put(EventAppletFocusMessage::class.java, EventAppletFocusDecoder(), EventAppletFocusHandler(), structures)
+/*
         put(EventCameraPositionMessage::class.java, EventCameraPositionDecoder(), EventCameraPositionHandler(), structures)
         put(EventMouseIdleMessage::class.java, EventMouseIdleDecoder(), EventMouseIdleHandler(), structures)
         put(EventKeyboardMessage::class.java, EventKeyboardDecoder(), EventKeyboardHandler(), structures)
 
         put(DetectModifiedClientMessage::class.java, DetectModifiedClientDecoder(), DetectModifiedClientHandler(), structures)
-        put(WindowStatusMessage::class.java, WindowStatusDecoder(), WindowStatusHandler(), structures)
-
-        put(MapBuildCompleteMessage::class.java, MapBuildCompleteDecoder(), MapBuildCompleteHandler(), structures)
         put(MessagePublicMessage::class.java, MessagePublicDecoder(), MessagePublicHandler(), structures)
         put(UpdateAppearanceMessage::class.java, UpdateAppearanceDecoder(), UpdateAppearanceHandler(), structures)
         put(ClientCheatMessage::class.java, ClientCheatDecoder(), ClientCheatHandler(), structures)
@@ -46,7 +47,7 @@ class MessageDecoderSet {
         put(ClickWorldMapMessage::class.java, ClickWorldMapDecoder(), ClickWorldMapHandler(), structures)
 
         put(CloseModalMessage::class.java, CloseModalDecoder(), CloseMainComponentHandler(), structures)
-        put(IfButtonMessage::class.java, IfButton1Decoder(), IfButton1Handler(), structures)
+
 
         put(IfButtonTMessage::class.java, IfButtonTDecoder(), IfButtonTHandler(), structures)
 
@@ -109,7 +110,7 @@ class MessageDecoderSet {
         put(IgnoreListAddMessage::class.java, IgnoreListAddDecoder(), IgnoreListAddHandler(), structures)
         put(IgnoreListDeleteMessage::class.java, IgnoreListDeleteDecoder(), IgnoreListDeleteHandler(), structures)
 
-        put(MessagePrivateSenderMessage::class.java, MessagePrivateSenderDecoder(), MessagePrivateSenderHandler(), structures)
+        put(MessagePrivateSenderMessage::class.java, MessagePrivateSenderDecoder(), MessagePrivateSenderHandler(), structures)*/
 
     }
 

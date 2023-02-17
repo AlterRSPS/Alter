@@ -27,7 +27,7 @@ class NpcUpdateBlockSegment(private val npc: Npc, private val newAddition: Boole
                 forceFacePawn = true
             }
         }
-
+        mask = 0
         buf.put(DataType.BYTE, mask and 0xFF)
 
         blocks.updateBlockOrder.forEach { blockType ->
@@ -37,7 +37,7 @@ class NpcUpdateBlockSegment(private val npc: Npc, private val newAddition: Boole
                 else -> false
             }
             if (npc.hasBlock(blockType) || force) {
-                write(buf, blockType)
+                //write(buf, blockType)
             }
         }
     }

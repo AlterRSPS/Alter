@@ -40,8 +40,7 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 }
             }
         }
-
-        if (mask >= 0x100) {
+        if (mask >= 0xFF) {
             mask = mask or blocks.updateBlockExcessMask
             buf.put(DataType.BYTE, mask and 0xFF)
             buf.put(DataType.BYTE, mask shr 8)
@@ -227,7 +226,11 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 appBuf.put(DataType.BYTE, other.combatLevel)
                 appBuf.put(DataType.SHORT, 0)
                 appBuf.put(DataType.BYTE, 0)
-                appBuf.put(DataType.SHORT, 32768)
+                appBuf.put(DataType.SHORT, 0)
+                appBuf.putString("")
+                appBuf.putString("")
+                appBuf.putString("")
+                appBuf.put(DataType.BYTE, other.appearance.gender.id)
 
                 val structure = blocks.updateBlocks[blockType]!!.values
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, appBuf.byteBuf.readableBytes())
