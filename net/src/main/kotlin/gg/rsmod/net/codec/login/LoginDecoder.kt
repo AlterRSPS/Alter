@@ -80,6 +80,7 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
     private fun decodePayload(ctx: ChannelHandlerContext, buf: ByteBuf, out: MutableList<Any>) {
         if (buf.readableBytes() >= payloadLength) {
             buf.markReaderIndex()
+            buf.readUnsignedByte() // The byte that you commented out.
 
             val secureBuf: ByteBuf = if (rsaExponent != null && rsaModulus != null) {
                 val secureBufLength = buf.readUnsignedShort()
