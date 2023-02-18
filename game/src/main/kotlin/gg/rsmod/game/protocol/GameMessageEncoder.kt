@@ -36,7 +36,6 @@ class GameMessageEncoder(private val encoders: MessageEncoderSet, private val st
             return
         }
 
-        println(msg)
         val builder = GamePacketBuilder(structure.opcodes.first(), structure.type)
         encoder.encode(msg, builder, structure)
         out.add(builder.toGamePacket())
