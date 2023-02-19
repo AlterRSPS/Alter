@@ -14,6 +14,7 @@ server-packets:
         write: ShortAddLE
       - name: xteas
         write: BYTES
+
   - message: gg.rsmod.game.message.impl.RebuildNormalMessage
     type: VARIABLE_SHORT
     opcode: 0
@@ -24,12 +25,14 @@ server-packets:
         write: ShortAddLE
       - name: xteas
         write: BYTES
+
   - message: gg.rsmod.game.message.impl.UpdateRunWeightMessage
     type: FIXED
-    opcode: 5
+    opcode: 75
     structure:
       - name: weight
         write: SHORT
+
   - message: gg.rsmod.game.message.impl.RunClientScriptMessage
     type: VARIABLE_SHORT
     opcode: 18
@@ -40,6 +43,7 @@ server-packets:
         write: BYTES
       - name: id
         write: INT
+
   - message: gg.rsmod.game.message.impl.VarpLargeMessage
     type: FIXED
     opcode: 26
@@ -89,6 +93,7 @@ server-packets:
       - name: items
         sign: SIGNED
         type: BYTES
+
   - message: gg.rsmod.game.message.impl.IfSetEventsMessage
     type: FIXED
     opcode: 46
@@ -128,6 +133,7 @@ server-packets:
     structure:
       - name: energy
         write: SHORT
+
   - message: gg.rsmod.game.message.impl.IfSetTextMessage
     type: VARIABLE_SHORT
     opcode: 83
@@ -135,18 +141,21 @@ server-packets:
       - name: text
         write: BYTES
       - name: hash
-        write: IntLE
+        write: IntME
+
   - message: gg.rsmod.game.message.impl.IfOpenSubMessage
     type: FIXED
     opcode: 89
     structure:
       - name: component
         type: SHORT
+        order: LITTLE
       - name: type
         type: BYTE
+        trans: ADD
       - name: overlay
-        type: INT
-        order: LITTLE
+        write: intime
+
   - message: gg.rsmod.game.message.impl.VarpSmallMessage
     type: FIXED
     opcode: 97
