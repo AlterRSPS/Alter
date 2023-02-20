@@ -30,6 +30,8 @@ class MessageDecoderSet {
         put(MapBuildCompleteMessage::class.java, MapBuildCompleteDecoder(), MapBuildCompleteHandler(), structures)
         put(IfButtonMessage::class.java, IfButton1Decoder(), IfButton1Handler(), structures)
         put(EventAppletFocusMessage::class.java, EventAppletFocusDecoder(), EventAppletFocusHandler(), structures)
+        put(MoveGameClickMessage::class.java, MoveGameClickDecoder(), ClickMapHandler(), structures)
+
 /*
         put(EventCameraPositionMessage::class.java, EventCameraPositionDecoder(), EventCameraPositionHandler(), structures)
         put(EventMouseIdleMessage::class.java, EventMouseIdleDecoder(), EventMouseIdleHandler(), structures)
@@ -41,7 +43,6 @@ class MessageDecoderSet {
         put(ClientCheatMessage::class.java, ClientCheatDecoder(), ClientCheatHandler(), structures)
         put(ClanJoinChatLeaveChatMessage::class.java, ClanJoinChatLeaveChatDecoder(), ClanJoinChatLeaveHandler(), structures)
 
-        put(MoveGameClickMessage::class.java, MoveGameClickDecoder(), ClickMapHandler(), structures)
         put(MoveMinimapClickMessage::class.java, MoveMinimapClickDecoder(), ClickMinimapHandler(), structures)
         put(TeleportMessage::class.java, TeleportDecoder(), TeleportHandler(), structures)
         put(ClickWorldMapMessage::class.java, ClickWorldMapDecoder(), ClickWorldMapHandler(), structures)

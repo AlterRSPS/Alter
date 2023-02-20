@@ -40,6 +40,7 @@ players:
         - name: recolourAmount
           type: BYTE
           trans: SUBTRACT
+
     - block: APPEARANCE
       bit: 0x4
       structure:
@@ -50,6 +51,7 @@ players:
           type: BYTES
           trans: ADD
           order: REVERSED
+
     - block: PUBLIC_CHAT
       bit: 0x8
       structure:
@@ -69,20 +71,24 @@ players:
           trans: SUBTRACT
         - name: compressed_data
           type: BYTES
-          order: REVERSED
+          #order: REVERSED
+
     - block: TEMP_MOVEMENT
       bit: 0x4000
       structure:
         - name: type
           type: BYTE
           trans: ADD
+
     - block: CONTEXT_MENU
       bit: 0x1000
+
     - block: FACE_TILE
       bit: 0x80
       structure:
         - name: degrees
           type: SHORT
+
     - block: GFX
       bit: 0x800
       structure:
@@ -92,6 +98,7 @@ players:
           order: LITTLE
         - name: settings
           type: INT
+
     - block: FORCE_CHAT
       bit: 0x1
     - block: ANIMATION

@@ -8,13 +8,16 @@ package gg.rsmod.game.model.region.update
  */
 enum class EntityUpdateType(val id: Int) {
     MAP_ANIM(id = 0), // MAP_ANIM
-    UPDATE_GROUND_ITEM(id = 1), // OBJ_COUNT
+    UNKNOWN(id = 1), // PREFETCH_GAMEOBJECTS
     SPAWN_PROJECTILE(id = 2), //  MAPPROJ_ANIM
-    UNKNOWN(id = 3), // PREFETCH_GAMEOBJECTS
-    SPAWN_OBJECT(id = 4), // LOC_ADD_CHANGE
-    REMOVE_GROUND_ITEM(id = 5), // OBJ_DEL
-    REMOVE_OBJECT(id = 6), // LOC_DEL
-    PLAY_TILE_SOUND(id = 7), // AREA_SOUND
-    SPAWN_GROUND_ITEM(id = 8), // OBJ_ADD
-    ANIMATE_OBJECT(id = 9), // LOC_ANIM
+    OBJ_DEL(id = 3),
+    UPDATE_GROUND_ITEM(id = 4), // OBJ_COUNT
+    ANIMATE_OBJECT(id = 5), // LOC_ANIM
+    SPAWN_OBJECT(id = 6), // LOC_ADD_CHANGE
+    REMOVE_OBJECT(id = 7), // LOC_DEL
+    MAP_ANIM_NEW(id = 8),
+    REMOVE_GROUND_ITEM(id = 9), // OBJ_DEL
+    SPAWN_GROUND_ITEM(id = 10), // OBJ_ADD
+    PLAY_TILE_SOUND(id = 11), // AREA_SOUND
+    OBJ_COUNT_2(id = 12)
 }
