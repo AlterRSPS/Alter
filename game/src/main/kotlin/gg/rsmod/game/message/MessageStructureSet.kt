@@ -73,22 +73,19 @@ class MessageStructureSet {
                 val packetStructure = if (values.containsKey("structure")) values["structure"] as ArrayList<*> else null
                 val packetValues = Object2ObjectLinkedOpenHashMap<String, MessageValue>()
                 packetStructure?.forEach { structure ->
+
                     val structValues = structure as LinkedHashMap<*, *>
                     if (!structValues.containsKey("write")) {
                         val name = structValues["name"] as String?
 
                         val order = if (structValues.containsKey("order")) DataOrder.valueOf(structValues["order"] as String) else DataOrder.BIG
                         val transform = if (structValues.containsKey("trans")) DataTransformation.valueOf(structValues["trans"] as String) else DataTransformation.NONE
-                        try {
+
                             val type = DataType.valueOf(structValues["type"] as String)
                             val signature =
                                 (if (structValues.containsKey("sign")) DataSignature.valueOf((structValues["sign"] as String).toUpperCase()) else DataSignature.SIGNED).also {
                                     packetValues[name] = MessageValue(id = name.toString(), order = order, transformation = transform, type = type, signature = it)
                                 }
-                        } catch (e: IllegalArgumentException) {
-                            println("$className = $e")
-                        }
-
                     } else {
                         // Default values
                         val name = structValues["name"] as String

@@ -81,8 +81,10 @@ on_login {
     player.sendRunEnergy(player.runEnergy.toInt())
     player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
 
-    player.social.pushFriends(player)
-    player.social.pushIgnores(player)
+    /**
+ * @TODO REV 211.... */
+//    player.social.pushFriends(player)
+//    player.social.pushIgnores(player)
 }
 
 

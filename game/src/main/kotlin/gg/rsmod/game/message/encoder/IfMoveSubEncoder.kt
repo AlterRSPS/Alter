@@ -9,8 +9,12 @@ import gg.rsmod.game.message.impl.IfMoveSubMessage
 class IfMoveSubEncoder : MessageEncoder<IfMoveSubMessage>() {
 
     override fun extract(message: IfMoveSubMessage, key: String): Number = when (key) {
-        "from" -> message.from
-        "to" -> message.to
+        "from" -> message.from.also{
+            println("from: ${message.from}")
+        }
+        "to" -> message.to.also{
+            println("to: ${message.to}")
+        }
         else -> throw Exception("Unhandled value key.")
     }
 

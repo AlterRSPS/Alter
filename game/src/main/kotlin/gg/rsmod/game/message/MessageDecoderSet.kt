@@ -32,7 +32,6 @@ class MessageDecoderSet {
         put(EventAppletFocusMessage::class.java, EventAppletFocusDecoder(), EventAppletFocusHandler(), structures)
         put(MoveGameClickMessage::class.java, MoveGameClickDecoder(), ClickMapHandler(), structures)
 
-/*
         put(EventCameraPositionMessage::class.java, EventCameraPositionDecoder(), EventCameraPositionHandler(), structures)
         put(EventMouseIdleMessage::class.java, EventMouseIdleDecoder(), EventMouseIdleHandler(), structures)
         put(EventKeyboardMessage::class.java, EventKeyboardDecoder(), EventKeyboardHandler(), structures)
@@ -41,7 +40,7 @@ class MessageDecoderSet {
         put(MessagePublicMessage::class.java, MessagePublicDecoder(), MessagePublicHandler(), structures)
         put(UpdateAppearanceMessage::class.java, UpdateAppearanceDecoder(), UpdateAppearanceHandler(), structures)
         put(ClientCheatMessage::class.java, ClientCheatDecoder(), ClientCheatHandler(), structures)
-        put(ClanJoinChatLeaveChatMessage::class.java, ClanJoinChatLeaveChatDecoder(), ClanJoinChatLeaveHandler(), structures)
+        //put(ClanJoinChatLeaveChatMessage::class.java, ClanJoinChatLeaveChatDecoder(), ClanJoinChatLeaveHandler(), structures)
 
         put(MoveMinimapClickMessage::class.java, MoveMinimapClickDecoder(), ClickMinimapHandler(), structures)
         put(TeleportMessage::class.java, TeleportDecoder(), TeleportHandler(), structures)
@@ -106,12 +105,11 @@ class MessageDecoderSet {
         put(OpPlayer8Message::class.java, OpPlayer8Decoder(), OpPlayer8Handler(), structures)
         put(OpPlayerTMessage::class.java, OpPlayerTDecoder(), OpPlayerTHandler(), structures)
 
-        put(FriendListAddMessage::class.java, FriendListAddDecoder(), FriendListAddHandler(), structures)
-        put(FriendListDeleteMessage::class.java, FriendListDeleteDecoder(), FriendListDeleteHandler(), structures)
-        put(IgnoreListAddMessage::class.java, IgnoreListAddDecoder(), IgnoreListAddHandler(), structures)
-        put(IgnoreListDeleteMessage::class.java, IgnoreListDeleteDecoder(), IgnoreListDeleteHandler(), structures)
-
-        put(MessagePrivateSenderMessage::class.java, MessagePrivateSenderDecoder(), MessagePrivateSenderHandler(), structures)*/
+        //put(FriendListAddMessage::class.java, FriendListAddDecoder(), FriendListAddHandler(), structures)
+        //put(FriendListDeleteMessage::class.java, FriendListDeleteDecoder(), FriendListDeleteHandler(), structures)
+        //put(IgnoreListAddMessage::class.java, IgnoreListAddDecoder(), IgnoreListAddHandler(), structures)
+        //put(IgnoreListDeleteMessage::class.java, IgnoreListDeleteDecoder(), IgnoreListDeleteHandler(), structures)
+        //put(MessagePrivateSenderMessage::class.java, MessagePrivateSenderDecoder(), MessagePrivateSenderHandler(), structures)
 
     }
 
