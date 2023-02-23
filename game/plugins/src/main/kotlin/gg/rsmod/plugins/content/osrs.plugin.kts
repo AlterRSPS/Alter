@@ -53,9 +53,17 @@ on_login {
     val memberRecurring = 0 // no subs system support as of now
     val noLinkedEmail = 0 // set to 1 disables inbox button??
     player.runClientScript(2498, if(player.hasMembers()) 1 else 0, memberRecurring, noLinkedEmail)
-
+    player.setInterfaceEvents(interfaceId = 149, component = 0, range = 0 .. 27,
+        setting = arrayOf(
+            InterfaceEvent.BUTTON1, InterfaceEvent.BUTTON2, InterfaceEvent.BUTTON3, InterfaceEvent.BUTTON4, InterfaceEvent.BUTTON5,
+            InterfaceEvent.BUTTON6, InterfaceEvent.BUTTON7, InterfaceEvent.BUTTON8,
+            InterfaceEvent.BUTTON9, InterfaceEvent.BUTTON10, InterfaceEvent.OPOBJT, InterfaceEvent.OPNPCT,
+            InterfaceEvent.OPLOCT, InterfaceEvent.OPPLAYERT, InterfaceEvent.OPHELDT, InterfaceEvent.DRAG_TARGET,
+            InterfaceEvent.DRAG_DEPTH1,
+        )
+    )
     // Interface-related logic.
-    player.setInterfaceEvents(interfaceId = 149, component = 0, range = 0..27, setting = 3407068)
+    //player.setInterfaceEvents(interfaceId = 149, component = 0, range = 0..27, setting = 3407068)
     player.openDefaultInterfaces()
     // Inform the client whether or not we have a display name.
     val displayName = player.username.isNotBlank()

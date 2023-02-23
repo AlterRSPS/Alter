@@ -103,11 +103,11 @@ server-packets:
     opcode: 46
     structure:
       - name: hash
-        write: IntLE
+        write: IntME
       - name: to
         write: Short
       - name: setting
-        write: Int
+        type: INT
       - name: from
         write: ShortLE
 
