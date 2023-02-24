@@ -177,9 +177,9 @@ server-packets:
     type: VARIABLE_SHORT
     opcode: 105
     structure:
-      - name: x
-        write: ByteNeg
       - name: z
+        write: ByteNeg
+      - name: x
         write: ByteNeg
       - name: payload
         write: BYTES
@@ -191,7 +191,7 @@ server-packets:
       - name: from
         write: IntIME
       - name: to
-        write: IntIME
+        write: IntME
 
   - message: gg.rsmod.game.message.impl.IfCloseSubMessage
     type: FIXED
@@ -342,15 +342,17 @@ server-packets:
 
   - message: gg.rsmod.game.message.impl.ObjDelMessage
     type: FIXED
-    opcode: 10
+    opcode: 24
     structure:
       - name: tile
-        type: BYTE
-      - name: unknown
         type: BYTE
         trans: ADD
       - name: item
         type: SHORT
+        order: LITTLE
+      - name: amount
+        type: INT
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.LocDelMessage
     type: FIXED
@@ -967,11 +969,11 @@ client-packets:
       - name: height
         type: BYTE
         trans: NEGATE
-      - name: z
+      - name: x
         type: SHORT
         trans: ADD
         order: LITTLE
-      - name: x
+      - name: z
         type: SHORT
         trans: ADD
       - name: unknown
