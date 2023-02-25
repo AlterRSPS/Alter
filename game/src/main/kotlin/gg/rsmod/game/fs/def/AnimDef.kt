@@ -83,6 +83,24 @@ class AnimDef(id: Int) : Definition(id) {
                     buf.readMedium()
                 }
             }
+            14 -> buf.readInt()
+            15 -> {
+                val count = buf.readUnsignedShort()
+                for (i in 0 until count) {
+                    buf.readUnsignedShort()
+                    buf.readMedium()
+                }
+            }
+            16 -> {
+                buf.readUnsignedShort()
+                buf.readUnsignedShort()
+            }
+            17 -> {
+                val count = buf.readUnsignedByte()
+                for (i in 0 until count) {
+                    buf.readUnsignedByte()
+                }
+            }
         }
     }
 }

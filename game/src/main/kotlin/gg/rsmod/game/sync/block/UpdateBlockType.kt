@@ -17,5 +17,6 @@ enum class UpdateBlockType {
     OVERRIDE_LEVEL,
     FORCE_CHAT,
     APPLY_TINT,
+    TEMP_MOVEMENT,
     NAME_CHANGE;
 }

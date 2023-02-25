@@ -1,5 +1,5 @@
 # Alter
-[![revision: 205][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/sAzCuuwkpN) ![](https://tokei.rs/b1/github/AlterRSPS/Alter)
+[![revision: 211][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/sAzCuuwkpN) ![](https://tokei.rs/b1/github/AlterRSPS/Alter)
 
 **Alter** is a modified version of [RSMod](https://github.com/Tomm0017/rsmod) a highly flexible user-friendly game server for use with the OSRS client. Implemented in a modular way,
 the framework allows developers to make and create any sort of plugin they wish without having to modify the core game module.
@@ -9,7 +9,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 - You can report them by creating Issue on [GitHub](https://github.com/AlterRSPS/Alter/issues) or in Alter's [Discord Server](https://discord.gg/kdhBuRaduw)
 
 ### Installation:
-First download: [2022-06-08-rev205.tar.gz](https://archive.runestats.com/osrs/2022-06-08-rev205.tar.gz)
+First download: [2023-02-08-rev211.tar.gz](https://archive.runestats.com/osrs/2023-02-08-rev211.tar.gz)
 Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed. 
 * Firstly open up Intellij, (If you already have a project open, either do File -> Close, or File -> New -> Project from Version Control)
   ![tutor1](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor1.png)
@@ -44,6 +44,6 @@ Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#sect
 ### Some info:
 * Original project founder: [Tomm0017](https://github.com/Tomm0017)
 
-[patch]: https://oldschool.runescape.wiki/w/Update:Revenant_Caves_%26_Deadman_Changes
-[rev-badge]: https://img.shields.io/badge/Revision-205-blueviolet
+[patch]: https://oldschool.runescape.wiki/w/Update:More_Poll_78_Changes!
+[rev-badge]: https://img.shields.io/badge/Revision-211-blueviolet
 [license-badge]: https://img.shields.io/badge/license-ISC-informational

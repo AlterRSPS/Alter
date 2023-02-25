@@ -105,6 +105,14 @@ fun Player.setInterfaceEvents(interfaceId: Int, component: Int, from: Int, to: I
 fun Player.setInterfaceEvents(interfaceId: Int, component: Int, range: IntRange, setting: Int) {
     write(IfSetEventsMessage(hash = ((interfaceId shl 16) or component), fromChild = range.first, toChild = range.last, setting = setting))
 }
+fun Player.setInterfaceEvents(interfaceId: Int, component: Int, range: IntRange, vararg setting: InterfaceEvent) {
+    val list = arrayListOf<Int>()
+    setting.forEach {
+        list.add(it.flag)
+    }
+    val settings = list.reduce(Int::or)
+    write(IfSetEventsMessage(hash = ((interfaceId shl 16) or component), fromChild = range.first, toChild = range.last, setting = settings))
+}
 
 fun Player.setComponentText(interfaceId: Int, component: Int, text: String) {
     write(IfSetTextMessage(interfaceId, component, text))
