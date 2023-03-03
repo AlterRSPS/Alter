@@ -4,9 +4,14 @@ name: "Spirit angler headband"
 examine: "This will help with fishing."
 tradeable: false
 weight: 0.5
+tradeable_on_ge: false
+cost: 120
+lowalch: 48
+highalch: 72
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

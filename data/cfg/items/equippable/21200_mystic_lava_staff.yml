@@ -1,35 +1,33 @@
 ---
 id: 21200
 name: "Mystic lava staff"
-examine: "It's a slightly magical stick."
-tradeable: true
-weight: 2.0
+examine: "It's a slightly magical but highly beautiful stick."
+tradeable: false
+weight: 2.267
+tradeable_on_ge: false
+cost: 45005
+lowalch: 18002
+highalch: 27003
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 18
+  equipSlot: "body"
+  weaponType: -1
   attackSpeed: 5
   attackStab: 10
   attackSlash: -1
   attackCrush: 40
-  attackMagic: 10
+  attackMagic: 14
   attackRanged: 0
   defenceStab: 2
   defenceSlash: 3
   defenceCrush: 1
-  defenceMagic: 10
+  defenceMagic: 14
   defenceRanged: 0
   meleeStrength: 50
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "magic"
     level: 40

@@ -3,7 +3,12 @@ id: 12773
 name: "Volcanic abyssal whip"
 examine: "A weapon from the volcanic abyss."
 tradeable: false
-weight: 0.45
+weight: 0.453
+tradeable_on_ge: false
+cost: 120001
+lowalch: 48000
+highalch: 72000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 82
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 1660
-  - 1660
-  - 1660
-  - 1660
-  - 1661
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 70

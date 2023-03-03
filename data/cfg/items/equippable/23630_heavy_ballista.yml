@@ -3,7 +3,12 @@ id: 23630
 name: "Heavy ballista"
 examine: "A powerful weapon forged from the wreckage of an airship."
 tradeable: false
-weight: 0.0
+weight: 6.0
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"

@@ -4,12 +4,17 @@ name: "Enchanted emerald sickle (b)"
 examine: "It's a blessed and enchanted silver sickle with an emerald recessed into\
   \ it."
 tradeable: false
-weight: 1.5
+weight: 1.587
+tradeable_on_ge: false
+cost: 250
+lowalch: 100
+highalch: 150
+buy_limit: null
 equipment:
   prayer: 5
   equipSlot: "weapon"
-  weaponType: -1
-  attackSpeed: 4
+  weaponType: 9
+  attackSpeed: 5
   attackStab: 0
   attackSlash: 0
   attackCrush: 0

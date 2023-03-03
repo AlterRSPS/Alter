@@ -131,7 +131,7 @@ class ItemMetadataService : Service {
         "thieving", "theiving" -> 17
         "slayer" -> 18
         "farming" -> 19
-        "runecrafting" -> 20
+        "runecrafting", "runecraft" -> 20
         "hunter" -> 21
         "construction", "contruction" -> 22
         "combat" -> 3
@@ -203,7 +203,13 @@ class ItemMetadataService : Service {
         val examine: String? = null,
         val tradeable: Boolean = false,
         val weight: Double = 0.0,
+        val tradeable_on_ge: Boolean = false,
+        val cost: Int = 0,
+        val lowalch: Int = 0,
+        val highalch: Int = 0,
+        val buy_limit: Int? = null,
         val equipment: Equipment? = null
+
     )
 
     private data class EquipmentSlots(val slot: Int, val secondary: Int)

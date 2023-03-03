@@ -4,10 +4,15 @@ name: "Anger sword"
 examine: "A heavy duty sword."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 26
+lowalch: 10
+highalch: 15
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 2
   attackSlash: 2

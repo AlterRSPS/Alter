@@ -3,11 +3,16 @@ id: 21028
 name: "Dragon harpoon"
 examine: "A very powerful harpoon."
 tradeable: true
-weight: 3.0
+weight: 2.267
+tradeable_on_ge: true
+cost: 55000
+lowalch: 22000
+highalch: 33000
+buy_limit: 5
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 17
+  weaponType: 8337
   attackSpeed: 5
   attackStab: 38
   attackSlash: 32
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 42
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 60

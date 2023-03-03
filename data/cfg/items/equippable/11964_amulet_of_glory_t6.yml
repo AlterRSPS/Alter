@@ -4,6 +4,11 @@ name: "Amulet of glory (t6)"
 examine: "A very powerful dragonstone amulet."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 17625
+lowalch: 7050
+highalch: 10575
+buy_limit: 5
 equipment:
   prayer: 3
   equipSlot: "neck"

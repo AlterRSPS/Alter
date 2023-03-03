@@ -4,6 +4,11 @@ name: "Crossbow"
 examine: "This fires crossbow bolts."
 tradeable: true
 weight: 8.0
+tradeable_on_ge: true
+cost: 70
+lowalch: 28
+highalch: 42
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 4591
-  - 823
-  - 4226
-  - 4227
-  - 821
-  - 822
-  - 4228
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 1

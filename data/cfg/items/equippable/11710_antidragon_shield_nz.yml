@@ -1,9 +1,14 @@
 ---
 id: 11710
 name: "Anti-dragon shield (nz)"
-examine: "This provides partial protection from dragonbreath attacks."
-tradeable: true
+examine: "For use in the Nightmare Zone."
+tradeable: false
 weight: 5.443
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "shield"

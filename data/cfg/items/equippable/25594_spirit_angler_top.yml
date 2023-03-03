@@ -4,6 +4,11 @@ name: "Spirit angler top"
 examine: "This will help with fishing."
 tradeable: false
 weight: 1.0
+tradeable_on_ge: false
+cost: 120
+lowalch: 48
+highalch: 72
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

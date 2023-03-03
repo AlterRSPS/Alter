@@ -4,6 +4,11 @@ name: "Ardougne knight platebody"
 examine: "A platebody worn by the Knights of Ardougne."
 tradeable: false
 weight: 9.979
+tradeable_on_ge: false
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

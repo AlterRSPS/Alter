@@ -4,10 +4,15 @@ name: "Verac's flail 100"
 examine: "Verac the Defiled's flail."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 160000
+lowalch: 64000
+highalch: 96000
+buy_limit: null
 equipment:
   prayer: 6
   equipSlot: "2h"
-  weaponType: 16
+  weaponType: 8337
   attackSpeed: 5
   attackStab: 68
   attackSlash: -2
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 72
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 2061
-  - 823
-  - 2060
-  - 2060
-  - 2060
-  - 2060
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 70

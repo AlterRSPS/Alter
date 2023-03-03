@@ -4,10 +4,15 @@ name: "Egg whisk"
 examine: "A large whisk of death."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 50
+lowalch: 20
+highalch: 30
+buy_limit: 50
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 5
   attackSlash: 3

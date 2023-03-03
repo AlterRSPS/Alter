@@ -3,7 +3,12 @@ id: 19722
 name: "Dragon defender (t)"
 examine: "A defensive weapon trimmed with gold."
 tradeable: false
-weight: 0.4
+weight: 0.453
+tradeable_on_ge: false
+cost: 68007
+lowalch: 27202
+highalch: 40804
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "shield"

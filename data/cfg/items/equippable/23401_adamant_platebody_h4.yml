@@ -4,9 +4,14 @@ name: "Adamant platebody (h4)"
 examine: "Adamant platebody with a heraldic design."
 tradeable: true
 weight: 11.339
+tradeable_on_ge: true
+cost: 16640
+lowalch: 6656
+highalch: 9984
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -3,7 +3,12 @@ id: 13070
 name: "Achievement diary hood"
 examine: "Achievement diary cape hood."
 tradeable: false
-weight: 0.0
+weight: 0.453
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "head"

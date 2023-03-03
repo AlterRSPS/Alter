@@ -4,9 +4,14 @@ name: "Binding necklace"
 examine: "A necklace embedded with mystical power."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 1425
+lowalch: 570
+highalch: 855
+buy_limit: 10000
 equipment:
   prayer: 0
-  equipSlot: "neck"
+  equipSlot: "2h"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -4,11 +4,16 @@ name: "Adamant spear(p+)"
 examine: "A poisoned adamantite tipped spear."
 tradeable: true
 weight: 2.721
+tradeable_on_ge: true
+cost: 2080
+lowalch: 832
+highalch: 1248
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
-  attackSpeed: 5
+  weaponType: 15
+  attackSpeed: 4
   attackStab: 24
   attackSlash: 24
   attackCrush: 24

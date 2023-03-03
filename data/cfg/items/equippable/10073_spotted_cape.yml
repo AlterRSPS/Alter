@@ -2,8 +2,13 @@
 id: 10073
 name: "Spotted cape"
 examine: "A surprisingly aerodynamic cape."
-tradeable: true
-weight: 0.4
+tradeable: false
+weight: -2.2
+tradeable_on_ge: false
+cost: 400
+lowalch: 160
+highalch: 240
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "cape"

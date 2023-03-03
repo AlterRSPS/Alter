@@ -4,10 +4,15 @@ name: "White scimitar"
 examine: "A vicious, curved sword."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 768
+lowalch: 307
+highalch: 460
+buy_limit: 125
 equipment:
   prayer: 1
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 9
   attackSpeed: 4
   attackStab: 4
   attackSlash: 19

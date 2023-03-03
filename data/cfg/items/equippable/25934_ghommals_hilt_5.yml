@@ -4,6 +4,11 @@ name: "Ghommal's hilt 5"
 examine: "A sublime artifact."
 tradeable: false
 weight: 0.001
+tradeable_on_ge: false
+cost: 0
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "shield"

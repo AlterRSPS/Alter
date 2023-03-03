@@ -3,10 +3,15 @@ id: 12201
 name: "Ancient stole"
 examine: "An Ancient stole."
 tradeable: true
-weight: 0.0
+weight: 0.002
+tradeable_on_ge: true
+cost: 2500
+lowalch: 1000
+highalch: 1500
+buy_limit: 8
 equipment:
   prayer: 10
-  equipSlot: "neck"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

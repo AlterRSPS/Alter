@@ -4,6 +4,11 @@ name: "Blue skirt"
 examine: "Leg covering favoured by women and wizards."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 2
+lowalch: 0
+highalch: 1
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "legs"

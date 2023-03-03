@@ -4,9 +4,14 @@ name: "Guthan's helm"
 examine: "Guthan the Infested's helm."
 tradeable: true
 weight: 2.721
+tradeable_on_ge: true
+cost: 103000
+lowalch: 41200
+highalch: 61800
+buy_limit: 15
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "2h"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -2,8 +2,13 @@
 id: 20425
 name: "Mystic robe top"
 examine: "The upper half of a magical robe."
-tradeable: true
-weight: 2.7
+tradeable: false
+weight: 2.721
+tradeable_on_ge: false
+cost: 10
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

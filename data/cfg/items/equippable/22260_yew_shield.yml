@@ -3,7 +3,12 @@ id: 22260
 name: "Yew shield"
 examine: "A solid yew shield."
 tradeable: true
-weight: 3.1
+weight: 3.175
+tradeable_on_ge: true
+cost: 640
+lowalch: 256
+highalch: 384
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "shield"

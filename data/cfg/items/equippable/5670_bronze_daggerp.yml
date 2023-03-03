@@ -4,10 +4,15 @@ name: "Bronze dagger(p+)"
 examine: "This dagger is poisoned."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 10
+lowalch: 4
+highalch: 6
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 4
   attackSlash: 2

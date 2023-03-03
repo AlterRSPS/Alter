@@ -3,7 +3,12 @@ id: 12255
 name: "Armadyl robe legs"
 examine: "Leggings from the Armadyl Vestments."
 tradeable: true
-weight: 2.0
+weight: 2.7
+tradeable_on_ge: true
+cost: 7000
+lowalch: 2800
+highalch: 4200
+buy_limit: 8
 equipment:
   prayer: 5
   equipSlot: "legs"

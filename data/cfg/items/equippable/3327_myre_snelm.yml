@@ -4,9 +4,14 @@ name: "Myre snelm"
 examine: "A marshy coloured snail shell helmet."
 tradeable: true
 weight: 2.0
+tradeable_on_ge: true
+cost: 300
+lowalch: 120
+highalch: 180
+buy_limit: 150
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

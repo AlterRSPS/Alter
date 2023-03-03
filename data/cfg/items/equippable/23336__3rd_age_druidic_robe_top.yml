@@ -4,6 +4,11 @@ name: "3rd age druidic robe top"
 examine: "A fabulously ancient woven robe top as worn by the druids of old."
 tradeable: true
 weight: 1.5
+tradeable_on_ge: true
+cost: 200000
+lowalch: 80000
+highalch: 120000
+buy_limit: 4
 equipment:
   prayer: 8
   equipSlot: "body"
@@ -24,7 +29,7 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: "defence"
-    level: 65
   - skill: "prayer"
+    level: 65
+  - skill: "defence"
     level: 65

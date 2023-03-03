@@ -4,10 +4,15 @@ name: "Zamorakian spear"
 examine: "An evil spear."
 tradeable: true
 weight: 3.0
+tradeable_on_ge: true
+cost: 100005
+lowalch: 40002
+highalch: 60003
+buy_limit: 8
 equipment:
   prayer: 2
-  equipSlot: "2h"
-  weaponType: 15
+  equipSlot: "neck"
+  weaponType: -1
   attackSpeed: 4
   attackStab: 85
   attackSlash: 65
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 75
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 1713
-  - 1702
-  - 1703
-  - 1704
-  - 1706
-  - 1705
-  - 1707
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 70

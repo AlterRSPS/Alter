@@ -4,10 +4,15 @@ name: "Undead chicken"
 examine: "It looks at you with beady eyes."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 100
+lowalch: 40
+highalch: 60
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100

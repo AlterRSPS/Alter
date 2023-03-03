@@ -4,10 +4,15 @@ name: "Rune claws"
 examine: "A set of fighting claws."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 12000
+lowalch: 4800
+highalch: 7200
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 4
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 26
   attackSlash: 38
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 39
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 40

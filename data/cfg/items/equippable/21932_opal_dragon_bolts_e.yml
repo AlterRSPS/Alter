@@ -4,9 +4,14 @@ name: "Opal dragon bolts (e)"
 examine: "Enchanted Dragon crossbow bolts, tipped with opal."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 580
+lowalch: 232
+highalch: 348
+buy_limit: 11000
 equipment:
   prayer: 0
-  equipSlot: "ammo"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

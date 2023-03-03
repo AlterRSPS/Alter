@@ -1,13 +1,18 @@
 ---
 id: 20405
 name: "Abyssal whip"
-examine: "A weapon from the abyss."
-tradeable: true
+examine: "A weapon from the Abyss."
+tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 750
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 20
   attackSpeed: 4
   attackStab: 0
   attackSlash: 82

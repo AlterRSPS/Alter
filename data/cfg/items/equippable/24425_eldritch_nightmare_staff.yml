@@ -5,10 +5,15 @@ examine: "An ancient staff corrupted by darkness. An eldritch orb has been added
   \ it."
 tradeable: false
 weight: 1.6
+tradeable_on_ge: false
+cost: 4600000
+lowalch: 1840000
+highalch: 2760000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 12
+  equipSlot: "2h"
+  weaponType: -1
   attackSpeed: 5
   attackStab: 0
   attackSlash: 0
@@ -23,9 +28,16 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 15
-  renderAnimations: null
+  renderAnimations:
+  - 4193
+  - 4194
+  - 4194
+  - 4194
+  - 4194
+  - 4194
+  - 7274
   skillReqs:
-  - skill: "hitpoints"
-    level: 50
   - skill: "magic"
     level: 75
+  - skill: "hitpoints"
+    level: 50

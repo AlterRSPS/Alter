@@ -4,6 +4,11 @@ name: "Dragonstone platelegs"
 examine: "A stylish pair of rune platelegs inlaid with dragonstones."
 tradeable: true
 weight: 9.071
+tradeable_on_ge: true
+cost: 64000
+lowalch: 25600
+highalch: 38400
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"

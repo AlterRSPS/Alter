@@ -4,6 +4,11 @@ name: "Samurai gloves"
 examine: "Armoured gloves of the Samurai."
 tradeable: true
 weight: 0.4
+tradeable_on_ge: true
+cost: 3200
+lowalch: 1280
+highalch: 1920
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "hands"
@@ -23,4 +28,6 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null
-  skillReqs: null
+  skillReqs:
+  - skill: "defence"
+    level: 35

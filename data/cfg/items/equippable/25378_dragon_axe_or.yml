@@ -4,6 +4,11 @@ name: "Dragon axe (or)"
 examine: "A very powerful axe in the colours of the Trailblazer League."
 tradeable: false
 weight: 1.36
+tradeable_on_ge: false
+cost: 55000
+lowalch: 22000
+highalch: 33000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"

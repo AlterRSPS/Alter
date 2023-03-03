@@ -4,6 +4,11 @@ name: "Long kebbit bolts"
 examine: "Bolts made from the spikes of a razor-backed kebbit."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 31
+lowalch: 12
+highalch: 18
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

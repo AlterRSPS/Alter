@@ -4,6 +4,11 @@ name: "Green d'hide shield"
 examine: "A solid maple shield covered in green dragon leather."
 tradeable: true
 weight: 8.0
+tradeable_on_ge: true
+cost: 5500
+lowalch: 2200
+highalch: 3300
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "shield"

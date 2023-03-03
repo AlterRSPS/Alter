@@ -3,7 +3,12 @@ id: 22628
 name: "Statius's platebody"
 examine: "A powerful platebody."
 tradeable: true
-weight: 9.9
+weight: 9.979
+tradeable_on_ge: false
+cost: 500000
+lowalch: 200000
+highalch: 300000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

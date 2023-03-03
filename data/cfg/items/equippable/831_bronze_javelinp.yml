@@ -4,6 +4,11 @@ name: "Bronze javelin(p)"
 examine: "A bronze tipped javelin."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 4
+lowalch: 1
+highalch: 2
+buy_limit: 7000
 equipment:
   prayer: 0
   equipSlot: "ammo"

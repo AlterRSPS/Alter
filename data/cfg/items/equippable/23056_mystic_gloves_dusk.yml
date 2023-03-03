@@ -4,6 +4,11 @@ name: "Mystic gloves (dusk)"
 examine: "Dusky magical gloves."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "hands"
@@ -23,4 +28,8 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null
-  skillReqs: null
+  skillReqs:
+  - skill: "magic"
+    level: 40
+  - skill: "defence"
+    level: 20

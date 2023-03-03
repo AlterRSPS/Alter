@@ -1,9 +1,14 @@
 ---
 id: 21760
 name: "Kharedst's memoirs"
-examine: "The memoirs of a young Heir."
+examine: "The memoirs of a former ruler, written by his young heir."
 tradeable: false
 weight: 0.2
+tradeable_on_ge: false
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: null
 equipment:
   prayer: 1
   equipSlot: "shield"

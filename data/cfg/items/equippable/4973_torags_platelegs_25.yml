@@ -4,6 +4,11 @@ name: "Torag's platelegs 25"
 examine: "Torag the Corrupted's plate leg armour."
 tradeable: false
 weight: 9.071
+tradeable_on_ge: false
+cost: 275000
+lowalch: 110000
+highalch: 165000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 85
   defenceSlash: 82
   defenceCrush: 83

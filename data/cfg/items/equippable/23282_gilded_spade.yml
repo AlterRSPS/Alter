@@ -4,10 +4,15 @@ name: "Gilded spade"
 examine: "Oh, I'm a gold digger?"
 tradeable: true
 weight: 3.0
+tradeable_on_ge: true
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 18
+  weaponType: 8337
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100

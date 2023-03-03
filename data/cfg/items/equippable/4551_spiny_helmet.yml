@@ -4,9 +4,14 @@ name: "Spiny helmet"
 examine: "You don't want to wear it inside-out."
 tradeable: true
 weight: 2.267
+tradeable_on_ge: true
+cost: 650
+lowalch: 260
+highalch: 390
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

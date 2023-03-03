@@ -4,6 +4,11 @@ name: "Unlit bug lantern"
 examine: "A lantern to aid attacking Harpie bugs."
 tradeable: true
 weight: 2.267
+tradeable_on_ge: true
+cost: 130
+lowalch: 52
+highalch: 78
+buy_limit: 40
 equipment:
   prayer: 0
   equipSlot: "shield"

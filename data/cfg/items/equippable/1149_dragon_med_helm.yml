@@ -4,6 +4,11 @@ name: "Dragon med helm"
 examine: "Makes the wearer pretty intimidating."
 tradeable: true
 weight: 1.36
+tradeable_on_ge: true
+cost: 100000
+lowalch: 40000
+highalch: 60000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "head"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -3
-  attackRanged: -1
+  attackRanged: 0
   defenceStab: 33
   defenceSlash: 35
   defenceCrush: 32

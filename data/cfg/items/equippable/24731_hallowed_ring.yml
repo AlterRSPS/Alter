@@ -4,6 +4,11 @@ name: "Hallowed ring"
 examine: "A ring which prevents damage from traps in the Hallowed Sepulchre."
 tradeable: false
 weight: 0.004
+tradeable_on_ge: false
+cost: 250
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "ring"

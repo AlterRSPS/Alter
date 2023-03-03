@@ -4,10 +4,15 @@ name: "Torag's hammers"
 examine: "Torag the Corrupted's twin hammers."
 tradeable: true
 weight: 3.628
+tradeable_on_ge: true
+cost: 160000
+lowalch: 64000
+highalch: 96000
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 2
+  weaponType: -1
   attackSpeed: 5
   attackStab: -4
   attackSlash: -4
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 72
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 70

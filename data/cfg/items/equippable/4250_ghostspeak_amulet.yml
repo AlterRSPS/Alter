@@ -1,12 +1,17 @@
 ---
 id: 4250
 name: "Ghostspeak amulet"
-examine: "It lets me talk to ghosts."
+examine: "The amulet of ghostspeak glows green from the crone's enchantment."
 tradeable: false
 weight: 0.01
+tradeable_on_ge: false
+cost: 35
+lowalch: 14
+highalch: 21
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "neck"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

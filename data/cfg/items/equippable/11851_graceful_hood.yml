@@ -3,10 +3,15 @@ id: 11851
 name: "Graceful hood"
 examine: "A sign of your grace."
 tradeable: false
-weight: 0.0
+weight: -3.0
+tradeable_on_ge: false
+cost: 35
+lowalch: 14
+highalch: 21
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

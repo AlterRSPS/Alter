@@ -1,9 +1,14 @@
 ---
 id: 12797
 name: "Dragon pickaxe"
-examine: "If rocks could feel fear, they'd fear this."
-tradeable: true
+examine: "If rocks could feel fear, they'd fear this while admiring its beauty."
+tradeable: false
 weight: 2.4
+tradeable_on_ge: false
+cost: 97960
+lowalch: 39184
+highalch: 58776
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 42
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 60

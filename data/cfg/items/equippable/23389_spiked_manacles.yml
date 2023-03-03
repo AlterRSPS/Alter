@@ -5,9 +5,14 @@ examine: "Some very spikey metal bands, better make sure I don't cut myself whil
   \ walking."
 tradeable: true
 weight: 3.0
+tradeable_on_ge: true
+cost: 2500
+lowalch: 1000
+highalch: 1500
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "feet"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

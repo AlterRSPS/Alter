@@ -248,7 +248,7 @@ server-packets:
 
   - message: gg.rsmod.game.message.impl.SoundAreaMessage
     type: FIXED
-    opcode: 86
+    opcode: 55
     structure:
       - name: sound
         type: SHORT
@@ -969,11 +969,11 @@ client-packets:
       - name: height
         type: BYTE
         trans: NEGATE
-      - name: x
+      - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
-      - name: z
+      - name: x
         type: SHORT
         trans: ADD
       - name: unknown

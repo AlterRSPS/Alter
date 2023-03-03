@@ -3,7 +3,12 @@ id: 20272
 name: "Cabbage round shield"
 examine: "An adamant shield shaped like a cabbage."
 tradeable: true
-weight: 4.0
+weight: 4.535
+tradeable_on_ge: true
+cost: 3000
+lowalch: 1200
+highalch: 1800
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "shield"
@@ -23,4 +28,6 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null
-  skillReqs: null
+  skillReqs:
+  - skill: "defence"
+    level: 30

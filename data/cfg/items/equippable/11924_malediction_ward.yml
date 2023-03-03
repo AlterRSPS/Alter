@@ -3,7 +3,12 @@ id: 11924
 name: "Malediction ward"
 examine: "An ancient, evil shield forged by Volcanic heat."
 tradeable: true
-weight: 3.0
+weight: 3.628
+tradeable_on_ge: true
+cost: 45000
+lowalch: 18000
+highalch: 27000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "shield"

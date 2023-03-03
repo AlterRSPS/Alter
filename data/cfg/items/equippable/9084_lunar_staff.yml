@@ -4,10 +4,15 @@ name: "Lunar staff"
 examine: "A Moonclan staff."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 3
   equipSlot: "weapon"
-  weaponType: 18
+  weaponType: 13
   attackSpeed: 5
   attackStab: 3
   attackSlash: 2
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 15
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "magic"
     level: 65

@@ -4,6 +4,11 @@ name: "Salve amulet (e)"
 examine: "Increases the wearer's Strength and accuracy by 20% when fighting the undead."
 tradeable: false
 weight: 0.007
+tradeable_on_ge: false
+cost: 300
+lowalch: 120
+highalch: 180
+buy_limit: null
 equipment:
   prayer: 3
   equipSlot: "neck"

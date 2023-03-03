@@ -4,10 +4,15 @@ name: "Steel dagger(p++)"
 examine: "The blade has been poisoned."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 125
+lowalch: 50
+highalch: 75
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 17
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 8
   attackSlash: 4
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 7
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 5

@@ -4,6 +4,11 @@ name: "Inoculation bracelet"
 examine: "It eases diseases!"
 tradeable: true
 weight: 0.25
+tradeable_on_ge: true
+cost: 2560
+lowalch: 1024
+highalch: 1536
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "hands"

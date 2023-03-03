@@ -4,6 +4,11 @@ name: "Rune knife(p++)"
 examine: "A finely balanced throwing knife."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 166
+lowalch: 66
+highalch: 99
+buy_limit: 7000
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 24
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 40

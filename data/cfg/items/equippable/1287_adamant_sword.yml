@@ -4,10 +4,15 @@ name: "Adamant sword"
 examine: "A razor sharp sword."
 tradeable: true
 weight: 2.041
+tradeable_on_ge: true
+cost: 2080
+lowalch: 832
+highalch: 1248
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 23
   attackSlash: 18

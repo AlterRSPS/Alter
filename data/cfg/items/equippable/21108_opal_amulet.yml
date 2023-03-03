@@ -3,7 +3,12 @@ id: 21108
 name: "Opal amulet"
 examine: "I wonder if I can get this enchanted."
 tradeable: true
-weight: 0.0
+weight: 0.007
+tradeable_on_ge: true
+cost: 900
+lowalch: 360
+highalch: 540
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "neck"

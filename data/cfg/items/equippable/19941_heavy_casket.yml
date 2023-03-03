@@ -4,10 +4,15 @@ name: "Heavy casket"
 examine: "Full to the brim with loot... Where's that key gone?"
 tradeable: false
 weight: 15.0
+tradeable_on_ge: false
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 0
+  weaponType: 8337
   attackSpeed: 6
   attackStab: -4
   attackSlash: -4
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 9
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 4193
-  - 4194
-  - 4194
-  - 4194
-  - 4194
-  - 4194
-  - 4194
+  renderAnimations: null
   skillReqs: null

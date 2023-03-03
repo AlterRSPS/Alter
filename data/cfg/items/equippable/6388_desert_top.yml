@@ -1,9 +1,14 @@
 ---
 id: 6388
 name: "Desert top"
-examine: "A bit itchy."
+examine: "Good for those cold desert nights."
 tradeable: true
 weight: 0.005
+tradeable_on_ge: true
+cost: 35
+lowalch: 14
+highalch: 21
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "body"

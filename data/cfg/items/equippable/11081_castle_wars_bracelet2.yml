@@ -4,6 +4,11 @@ name: "Castle wars bracelet(2)"
 examine: "Must be worn as you enter the game to receive the bonus for that game."
 tradeable: true
 weight: 0.25
+tradeable_on_ge: false
+cost: 1675
+lowalch: 670
+highalch: 1005
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "hands"

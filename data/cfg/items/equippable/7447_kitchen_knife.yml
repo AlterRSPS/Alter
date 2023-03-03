@@ -4,10 +4,15 @@ name: "Kitchen knife"
 examine: "A sharp, dependable knife, for filleting meat."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 8000
+lowalch: 3200
+highalch: 4800
+buy_limit: 50
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 25
   attackSlash: 12
@@ -23,4 +28,6 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null
-  skillReqs: null
+  skillReqs:
+  - skill: "attack"
+    level: 40

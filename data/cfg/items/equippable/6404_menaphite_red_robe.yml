@@ -4,6 +4,11 @@ name: "Menaphite red robe"
 examine: "A cool light Menaphite robe."
 tradeable: true
 weight: 0.005
+tradeable_on_ge: true
+cost: 40
+lowalch: 16
+highalch: 24
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "legs"

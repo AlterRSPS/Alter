@@ -4,10 +4,15 @@ name: "Birthday balloons"
 examine: "Don't let them touch the floor!"
 tradeable: false
 weight: 0.0
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 0
+  weaponType: 8337
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: -10
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 7538
-  - 7539
-  - 7539
-  - 7539
-  - 7539
-  - 7539
-  - 824
+  renderAnimations: null
   skillReqs: null

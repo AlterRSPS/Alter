@@ -3,7 +3,12 @@ id: 13380
 name: "Shayzien greaves (5)"
 examine: "Dress like a tier 5 Shayzien soldier."
 tradeable: false
-weight: 9.0
+weight: 9.071
+tradeable_on_ge: false
+cost: 75
+lowalch: 30
+highalch: 45
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -20
-  attackRanged: -5
+  attackRanged: 6
   defenceStab: 23
   defenceSlash: 22
   defenceCrush: 21

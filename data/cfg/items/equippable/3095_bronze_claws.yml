@@ -4,10 +4,15 @@ name: "Bronze claws"
 examine: "A set of fighting claws."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 15
+lowalch: 6
+highalch: 9
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 3
   attackSlash: 4

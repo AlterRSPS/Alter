@@ -4,6 +4,11 @@ name: "Amethyst dart(p)"
 examine: "A deadly poisoned dart with an amethyst tip."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 400
+lowalch: 160
+highalch: 240
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "weapon"

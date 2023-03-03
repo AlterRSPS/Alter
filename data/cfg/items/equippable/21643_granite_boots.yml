@@ -3,7 +3,12 @@ id: 21643
 name: "Granite boots"
 examine: "These will protect my feet, but are a bit heavy."
 tradeable: true
-weight: 2.0
+weight: 2.721
+tradeable_on_ge: true
+cost: 12500
+lowalch: 5000
+highalch: 7500
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "feet"

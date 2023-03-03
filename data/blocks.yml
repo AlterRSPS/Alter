@@ -101,6 +101,7 @@ players:
 
     - block: FORCE_CHAT
       bit: 0x1
+
     - block: ANIMATION
       bit: 0x2
       structure:
@@ -111,6 +112,7 @@ players:
         - name: delay
           type: BYTE
           trans: SUBTRACT
+
     - block: HITMARK
       bit: 0x20
       structure:
@@ -126,6 +128,7 @@ players:
         - name: hitbar_to_percentage
           type: BYTE
           trans: ADD
+
     - block: FORCE_MOVEMENT
       bit: 0x100
       structure:
@@ -151,12 +154,14 @@ players:
           type: SHORT
           trans: ADD
           order: LITTLE
+
     - block: MOVEMENT
       bit: 0x200
       structure:
         - name: type
           type: BYTE
           trans: SUBTRACT
+
     - block: FACE_PAWN
       bit: 0x10
       structure:

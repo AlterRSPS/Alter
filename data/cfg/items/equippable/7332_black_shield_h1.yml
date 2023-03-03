@@ -4,6 +4,11 @@ name: "Black shield (h1)"
 examine: "A shield with a heraldic design"
 tradeable: true
 weight: 5.443
+tradeable_on_ge: true
+cost: 1632
+lowalch: 652
+highalch: 979
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "shield"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -8
-  attackRanged: -2
+  attackRanged: -3
   defenceStab: 17
   defenceSlash: 19
   defenceCrush: 18

@@ -4,6 +4,11 @@ name: "Banner"
 examine: "A banner with a picture of the Dorgeshuun brooch."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"

@@ -4,6 +4,11 @@ name: "Scythe of vitur"
 examine: "A powerful scythe."
 tradeable: false
 weight: 3.175
+tradeable_on_ge: false
+cost: 4000000
+lowalch: 1600000
+highalch: 2400000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 75
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 75

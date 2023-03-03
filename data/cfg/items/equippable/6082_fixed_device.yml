@@ -1,9 +1,14 @@
 ---
-id: 6082 # @TODO
+id: 6082
 name: "Fixed device"
 examine: "A device for firing dye."
 tradeable: false
 weight: 4.0
+tradeable_on_ge: false
+cost: 150
+lowalch: 60
+highalch: 90
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-    - 2316
-    - 2321
-    - 2317
-    - 2318
-    - 2319
-    - 2320
-    - 2322
+  renderAnimations: null
   skillReqs: null

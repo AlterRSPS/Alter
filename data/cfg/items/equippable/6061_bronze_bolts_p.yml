@@ -4,9 +4,14 @@ name: "Bronze bolts (p+)"
 examine: "Some poisoned bronze bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: 11000
 equipment:
   prayer: 0
-  equipSlot: "ammo"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

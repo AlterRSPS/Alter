@@ -3,7 +3,12 @@ id: 10352
 name: "3rd age kiteshield"
 examine: "Fabulously ancient armour beaten from magical silver."
 tradeable: true
-weight: 2.0
+weight: 2.721
+tradeable_on_ge: true
+cost: 180000
+lowalch: 72000
+highalch: 108000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "shield"

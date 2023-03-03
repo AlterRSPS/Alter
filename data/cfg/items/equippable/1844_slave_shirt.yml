@@ -4,6 +4,11 @@ name: "Slave shirt"
 examine: "A filthy, smelly, flea infested shirt."
 tradeable: false
 weight: 0.907
+tradeable_on_ge: false
+cost: 40
+lowalch: 16
+highalch: 24
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

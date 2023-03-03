@@ -3,11 +3,16 @@ id: 20254
 name: "Hosidius banner"
 examine: "A banner made of redwood bearing the Hosidius sigil."
 tradeable: true
-weight: 2.0
+weight: 2.267
+tradeable_on_ge: true
+cost: 70
+lowalch: 28
+highalch: 42
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 5
   attackStab: 12
   attackSlash: 12

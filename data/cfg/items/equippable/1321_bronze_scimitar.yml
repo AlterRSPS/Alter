@@ -4,6 +4,11 @@ name: "Bronze scimitar"
 examine: "A vicious, curved sword."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 32
+lowalch: 12
+highalch: 19
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 6
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 1

@@ -4,6 +4,11 @@ name: "Desert top"
 examine: "A bit itchy."
 tradeable: true
 weight: 0.005
+tradeable_on_ge: true
+cost: 15
+lowalch: 6
+highalch: 9
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "body"

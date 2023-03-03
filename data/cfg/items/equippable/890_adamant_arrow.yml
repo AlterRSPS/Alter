@@ -4,6 +4,11 @@ name: "Adamant arrow"
 examine: "Arrows with adamant heads."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 80
+lowalch: 32
+highalch: 48
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

@@ -4,6 +4,11 @@ name: "Open fish sack barrel"
 examine: "There's something fishy about this..."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "cape"

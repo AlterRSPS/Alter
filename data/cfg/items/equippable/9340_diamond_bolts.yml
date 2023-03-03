@@ -4,6 +4,11 @@ name: "Diamond bolts"
 examine: "Diamond tipped Adamantite crossbow bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 192
+lowalch: 76
+highalch: 115
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

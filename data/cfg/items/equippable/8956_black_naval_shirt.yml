@@ -4,6 +4,11 @@ name: "Black naval shirt"
 examine: "...You can sail the seven seas..."
 tradeable: false
 weight: 0.003
+tradeable_on_ge: false
+cost: 100
+lowalch: 40
+highalch: 60
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

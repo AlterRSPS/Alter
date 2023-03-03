@@ -4,11 +4,16 @@ name: "Black salamander"
 examine: "Slightly slimy and somewhat menacing."
 tradeable: true
 weight: 4.0
+tradeable_on_ge: true
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "2h"
+  equipSlot: "body"
   weaponType: -1
-  attackSpeed: 0
+  attackSpeed: 5
   attackStab: 0
   attackSlash: 59
   attackCrush: 0

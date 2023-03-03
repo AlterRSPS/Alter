@@ -4,10 +4,15 @@ name: "Corrupted bow (perfected)"
 examine: "A powerful bow formed from corrupted crystal and wood."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 3
-  equipSlot: "2h"
-  weaponType: 3
+  equipSlot: "weapon"
+  weaponType: 9
   attackSpeed: 5
   attackStab: 0
   attackSlash: 0

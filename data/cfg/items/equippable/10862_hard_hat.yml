@@ -4,9 +4,14 @@ name: "Hard hat"
 examine: "Can't get any safer than this."
 tradeable: false
 weight: 2.0
+tradeable_on_ge: false
+cost: 100
+lowalch: 40
+highalch: 60
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

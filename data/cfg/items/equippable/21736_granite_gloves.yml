@@ -4,6 +4,11 @@ name: "Granite gloves"
 examine: "Never take these for granite."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 34000
+lowalch: 13600
+highalch: 20400
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "hands"

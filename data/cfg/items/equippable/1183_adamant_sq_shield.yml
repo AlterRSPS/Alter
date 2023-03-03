@@ -4,6 +4,11 @@ name: "Adamant sq shield"
 examine: "A medium square shield."
 tradeable: true
 weight: 4.082
+tradeable_on_ge: true
+cost: 3840
+lowalch: 1536
+highalch: 2304
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "shield"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -6
-  attackRanged: -2
+  attackRanged: 0
   defenceStab: 24
   defenceSlash: 26
   defenceCrush: 22

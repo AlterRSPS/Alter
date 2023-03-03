@@ -4,6 +4,11 @@ name: "Mystic gloves (light)"
 examine: "Bright magical gloves."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "hands"

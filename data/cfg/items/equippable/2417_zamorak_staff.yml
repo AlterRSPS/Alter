@@ -4,10 +4,15 @@ name: "Zamorak staff"
 examine: "A magical staff imbued with the power of Zamorak."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 80000
+lowalch: 32000
+highalch: 48000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 18
+  weaponType: 13
   attackSpeed: 5
   attackStab: -1
   attackSlash: -1
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 2
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "magic"
     level: 60

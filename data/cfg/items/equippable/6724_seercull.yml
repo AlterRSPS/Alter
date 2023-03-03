@@ -4,6 +4,11 @@ name: "Seercull"
 examine: "An ancient Fremennik bow that was once used to battle the Moon Clan."
 tradeable: true
 weight: 1.36
+tradeable_on_ge: true
+cost: 8000
+lowalch: 3200
+highalch: 4800
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "2h"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 50

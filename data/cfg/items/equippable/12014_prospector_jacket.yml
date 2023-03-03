@@ -3,7 +3,12 @@ id: 12014
 name: "Prospector jacket"
 examine: "Helps you when you're mining."
 tradeable: false
-weight: 1.5
+weight: 1.36
+tradeable_on_ge: false
+cost: 60
+lowalch: 24
+highalch: 36
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

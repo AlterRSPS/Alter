@@ -4,7 +4,12 @@ name: "Ava's assembler"
 examine: "A superior bagged chicken empowered by Vorkath, ready to serve you, magnet\
   \ in claw."
 tradeable: false
-weight: 5.0
+weight: 5.896
+tradeable_on_ge: false
+cost: 51000
+lowalch: 20400
+highalch: 30600
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "cape"

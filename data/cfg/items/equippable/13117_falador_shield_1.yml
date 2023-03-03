@@ -3,7 +3,12 @@ id: 13117
 name: "Falador shield 1"
 examine: "A shield from Falador."
 tradeable: false
-weight: 5.0
+weight: 5.443
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 1
   equipSlot: "shield"

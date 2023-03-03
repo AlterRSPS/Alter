@@ -4,10 +4,15 @@ name: "Enchanted hat"
 examine: "A three pointed hat of magic."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 15000
+lowalch: 6000
+highalch: 9000
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "hat"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 0
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 3677
+  - 823
+  - 3680
+  - 3680
+  - 3680
+  - 3680
+  - 824
   skillReqs:
   - skill: "defence"
     level: 20

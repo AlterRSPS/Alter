@@ -4,11 +4,16 @@ name: "Iron spear(p+)"
 examine: "A poisoned iron tipped spear."
 tradeable: true
 weight: 2.267
+tradeable_on_ge: true
+cost: 91
+lowalch: 36
+highalch: 54
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
-  attackSpeed: 5
+  weaponType: 15
+  attackSpeed: 4
   attackStab: 8
   attackSlash: 8
   attackCrush: 8

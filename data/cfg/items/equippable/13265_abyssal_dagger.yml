@@ -3,11 +3,16 @@ id: 13265
 name: "Abyssal dagger"
 examine: "Something sharp from the body of a defeated Abyssal Sire."
 tradeable: true
-weight: 0.0
+weight: 0.453
+tradeable_on_ge: true
+cost: 115001
+lowalch: 46000
+highalch: 69000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 75
   attackSlash: 40

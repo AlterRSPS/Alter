@@ -3,11 +3,16 @@ id: 21793
 name: "Imbued guthix cape"
 examine: "A cape from the almighty god Guthix, imbued with great power."
 tradeable: false
-weight: 0.4
+weight: 0.453
+tradeable_on_ge: false
+cost: 80000
+lowalch: 32000
+highalch: 48000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "cape"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 14
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 2
-  renderAnimations: null
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
   skillReqs:
   - skill: "magic"
     level: 50

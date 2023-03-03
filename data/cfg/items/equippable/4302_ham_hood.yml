@@ -4,6 +4,11 @@ name: "Ham hood"
 examine: "Light-weight head protection and eye shield."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 75
+lowalch: 30
+highalch: 45
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "head"

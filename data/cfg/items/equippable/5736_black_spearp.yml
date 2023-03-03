@@ -4,11 +4,16 @@ name: "Black spear(p++)"
 examine: "A poisoned black tipped spear."
 tradeable: true
 weight: 2.267
+tradeable_on_ge: true
+cost: 750
+lowalch: 300
+highalch: 450
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
-  attackSpeed: 5
+  weaponType: 15
+  attackSpeed: 4
   attackStab: 15
   attackSlash: 15
   attackCrush: 15

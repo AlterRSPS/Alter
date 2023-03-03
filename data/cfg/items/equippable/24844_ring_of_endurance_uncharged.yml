@@ -4,6 +4,11 @@ name: "Ring of endurance (uncharged)"
 examine: "I wonder if this ring helps with..."
 tradeable: true
 weight: 0.006
+tradeable_on_ge: true
+cost: 64000
+lowalch: 25600
+highalch: 38400
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "ring"

@@ -3,10 +3,15 @@ id: 20562
 name: "Mystic hat"
 examine: "A magical hat."
 tradeable: true
-weight: 0.4
+weight: 0.453
+tradeable_on_ge: false
+cost: 10
+lowalch: 4
+highalch: 6
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

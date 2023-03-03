@@ -4,10 +4,15 @@ name: "Barb-tail harpoon"
 examine: "A mighty Hunter weapon. One previous owner."
 tradeable: true
 weight: 1.36
+tradeable_on_ge: true
+cost: 36
+lowalch: 14
+highalch: 21
+buy_limit: 40
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 17
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 9
   attackSlash: 4
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 6
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs: null

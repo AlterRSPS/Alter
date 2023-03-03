@@ -4,10 +4,15 @@ name: "Bandos godsword"
 examine: "A brutally heavy sword."
 tradeable: true
 weight: 10.0
+tradeable_on_ge: true
+cost: 1250000
+lowalch: 500000
+highalch: 750000
+buy_limit: 8
 equipment:
   prayer: 8
-  equipSlot: "2h"
-  weaponType: 10
+  equipSlot: "legs"
+  weaponType: -1
   attackSpeed: 6
   attackStab: 0
   attackSlash: 132
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 132
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 7053
-  - 7044
-  - 7052
-  - 7052
-  - 7048
-  - 7047
-  - 7043
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 75

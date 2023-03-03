@@ -4,10 +4,15 @@ name: "Dragon 2h sword"
 examine: "A two-handed Dragon Sword."
 tradeable: true
 weight: 3.628
+tradeable_on_ge: false
+cost: 50
+lowalch: 20
+highalch: 30
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 7
   attackStab: -4
   attackSlash: 92

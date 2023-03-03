@@ -3,10 +3,15 @@ id: 19943
 name: "Arceuus scarf"
 examine: "A blue scarf adorned with a dark crystal."
 tradeable: true
-weight: 0.0
+weight: 0.5
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "neck"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

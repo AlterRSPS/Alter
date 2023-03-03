@@ -1,9 +1,14 @@
 ---
 id: 6752
 name: "Black desert robe"
-examine: "A desert robe stained black with mushroom ink."
+examine: "A desert robe stained black."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "legs"

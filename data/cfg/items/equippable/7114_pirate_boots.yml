@@ -4,6 +4,11 @@ name: "Pirate boots"
 examine: "Not for land lubbers."
 tradeable: true
 weight: 4.0
+tradeable_on_ge: true
+cost: 350
+lowalch: 140
+highalch: 210
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "feet"

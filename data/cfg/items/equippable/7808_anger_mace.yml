@@ -4,10 +4,15 @@ name: "Anger mace"
 examine: "A heavy duty mace."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 18
+lowalch: 7
+highalch: 10
+buy_limit: null
 equipment:
   prayer: 1
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 5
   attackStab: 2
   attackSlash: 2

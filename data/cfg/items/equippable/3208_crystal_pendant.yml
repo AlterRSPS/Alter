@@ -4,6 +4,11 @@ name: "Crystal pendant"
 examine: "Lord Iorwerth's crystal pendant."
 tradeable: false
 weight: 0.005
+tradeable_on_ge: false
+cost: 10
+lowalch: 4
+highalch: 6
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "neck"

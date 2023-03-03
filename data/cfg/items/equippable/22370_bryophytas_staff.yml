@@ -4,10 +4,15 @@ name: "Bryophyta's staff"
 examine: "It's a slightly more magical stick. All natural, of course."
 tradeable: false
 weight: 1.5
+tradeable_on_ge: false
+cost: 65000
+lowalch: 26000
+highalch: 39000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 13
   attackSpeed: 5
   attackStab: 10
   attackSlash: -1

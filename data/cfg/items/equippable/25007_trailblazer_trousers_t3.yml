@@ -4,9 +4,14 @@ name: "Trailblazer trousers (t3)"
 examine: "The trousers of a trailblazer relic hunter."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 150000
+lowalch: 60000
+highalch: 90000
+buy_limit: 5
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

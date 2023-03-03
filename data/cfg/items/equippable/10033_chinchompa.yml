@@ -4,11 +4,16 @@ name: "Chinchompa"
 examine: "Handle with care."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 140
+lowalch: 56
+highalch: 84
+buy_limit: 7000
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 7
-  attackSpeed: 5
+  weaponType: 8337
+  attackSpeed: 4
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 3175
-  - 3177
-  - 3177
-  - 3177
-  - 3177
-  - 3177
-  - 3178
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 45

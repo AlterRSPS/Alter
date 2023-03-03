@@ -3,10 +3,15 @@ id: 12199
 name: "Ancient crozier"
 examine: "An Ancient crozier."
 tradeable: true
-weight: 2.0
+weight: 0.005
+tradeable_on_ge: true
+cost: 5000
+lowalch: 2000
+highalch: 3000
+buy_limit: 8
 equipment:
   prayer: 6
-  equipSlot: "weapon"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 5
   attackStab: 7

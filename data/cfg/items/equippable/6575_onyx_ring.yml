@@ -4,9 +4,14 @@ name: "Onyx ring"
 examine: "A valuable ring."
 tradeable: true
 weight: 0.006
+tradeable_on_ge: true
+cost: 201000
+lowalch: 80400
+highalch: 120600
+buy_limit: 10000
 equipment:
   prayer: 0
-  equipSlot: "ring"
+  equipSlot: "weapon"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

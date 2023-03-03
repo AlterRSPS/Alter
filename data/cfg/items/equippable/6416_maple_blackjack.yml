@@ -4,10 +4,15 @@ name: "Maple blackjack"
 examine: "A solid bit of maple."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 1200
+lowalch: 480
+highalch: 720
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

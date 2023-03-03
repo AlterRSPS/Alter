@@ -4,10 +4,15 @@ name: "Corrupted staff (basic)"
 examine: "A basic staff of corrupted crystal."
 tradeable: false
 weight: 1.36
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 1
   equipSlot: "2h"
-  weaponType: 23
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

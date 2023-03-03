@@ -4,10 +4,15 @@ name: "Cleaver"
 examine: "An effective tool for chopping tough meat."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 25600
+lowalch: 10240
+highalch: 15360
+buy_limit: 50
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 9
   attackSpeed: 4
   attackStab: 7
   attackSlash: 45

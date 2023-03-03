@@ -4,6 +4,11 @@ name: "Granite legs"
 examine: "These look pretty heavy."
 tradeable: true
 weight: 15.875
+tradeable_on_ge: true
+cost: 66000
+lowalch: 26400
+highalch: 39600
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "legs"

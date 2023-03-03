@@ -4,10 +4,15 @@ name: "Saradomin sword"
 examine: "The incredible blade of an Icyene."
 tradeable: true
 weight: 3.0
+tradeable_on_ge: true
+cost: 130000
+lowalch: 52000
+highalch: 78000
+buy_limit: 8
 equipment:
   prayer: 2
   equipSlot: "2h"
-  weaponType: 10
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 82
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 82
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 7053
-  - 7044
-  - 7052
-  - 7049
-  - 7048
-  - 7047
-  - 7043
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 70

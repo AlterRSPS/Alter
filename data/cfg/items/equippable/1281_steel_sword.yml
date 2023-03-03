@@ -4,14 +4,19 @@ name: "Steel sword"
 examine: "A razor sharp sword."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 325
+lowalch: 130
+highalch: 195
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 11
   attackSlash: 8
-  attackCrush: 2
+  attackCrush: -2
   attackMagic: 0
   attackRanged: 0
   defenceStab: 0

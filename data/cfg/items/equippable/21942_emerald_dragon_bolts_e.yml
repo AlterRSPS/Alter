@@ -4,9 +4,14 @@ name: "Emerald dragon bolts (e)"
 examine: "Enchanted Dragon crossbow bolts, tipped with emerald."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 830
+lowalch: 332
+highalch: 498
+buy_limit: 11000
 equipment:
   prayer: 0
-  equipSlot: "ammo"
+  equipSlot: "2h"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

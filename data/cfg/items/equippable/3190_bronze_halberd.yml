@@ -4,10 +4,15 @@ name: "Bronze halberd"
 examine: "A bronze halberd."
 tradeable: true
 weight: 3.175
+tradeable_on_ge: true
+cost: 80
+lowalch: 32
+highalch: 48
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 12
+  weaponType: 8337
   attackSpeed: 7
   attackStab: 7
   attackSlash: 8
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 8
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 1

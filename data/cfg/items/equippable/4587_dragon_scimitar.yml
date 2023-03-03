@@ -4,6 +4,11 @@ name: "Dragon scimitar"
 examine: "A vicious, curved sword."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 100000
+lowalch: 40000
+highalch: 60000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 66
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 60

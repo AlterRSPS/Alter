@@ -4,6 +4,11 @@ name: "Adamant brutal"
 examine: "Blunt adamantite arrow... ouch."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 95
+lowalch: 38
+highalch: 57
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

@@ -4,9 +4,14 @@ name: "Morrigan's throwing axe"
 examine: "A vicious throwing axe."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 4000
+lowalch: 1600
+highalch: 2400
+buy_limit: 100
 equipment:
   prayer: 0
-  equipSlot: "weapon"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 5
   attackStab: 0

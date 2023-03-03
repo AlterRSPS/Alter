@@ -3,7 +3,12 @@ id: 21345
 name: "Superior mining gloves"
 examine: "These will help me mine Mithril, Adamantite and Runite."
 tradeable: false
-weight: 0.2
+weight: 0.226
+tradeable_on_ge: false
+cost: 120
+lowalch: 48
+highalch: 72
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "hands"

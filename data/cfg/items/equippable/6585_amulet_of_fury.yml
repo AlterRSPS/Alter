@@ -4,9 +4,14 @@ name: "Amulet of fury"
 examine: "A very powerful onyx amulet."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 202000
+lowalch: 80800
+highalch: 121200
+buy_limit: 8
 equipment:
   prayer: 5
-  equipSlot: "neck"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 10

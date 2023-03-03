@@ -4,9 +4,14 @@ name: "Wrath tiara"
 examine: "A tiara infused with the properties of wrath."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 500
+lowalch: 200
+highalch: 300
+buy_limit: 40
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

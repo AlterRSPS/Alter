@@ -4,10 +4,15 @@ name: "Wooden sword"
 examine: "A less-than razor sharp sword."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 4
   attackSlash: 3

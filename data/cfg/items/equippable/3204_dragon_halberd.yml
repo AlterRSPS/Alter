@@ -4,10 +4,15 @@ name: "Dragon halberd"
 examine: "A dragon halberd."
 tradeable: true
 weight: 3.175
+tradeable_on_ge: true
+cost: 250000
+lowalch: 100000
+highalch: 150000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 12
+  weaponType: 8337
   attackSpeed: 7
   attackStab: 70
   attackSlash: 95
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 89
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 60

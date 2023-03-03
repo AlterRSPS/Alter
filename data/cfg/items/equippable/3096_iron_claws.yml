@@ -4,10 +4,15 @@ name: "Iron claws"
 examine: "A set of fighting claws."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 50
+lowalch: 20
+highalch: 30
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 4
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 4
   attackSlash: 6
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 7
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 1

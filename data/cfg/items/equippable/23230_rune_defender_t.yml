@@ -4,6 +4,11 @@ name: "Rune defender (t)"
 examine: "A defensive weapon trimmed with gold."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 65004
+lowalch: 26001
+highalch: 39002
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "shield"

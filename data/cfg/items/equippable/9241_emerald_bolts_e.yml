@@ -4,6 +4,11 @@ name: "Emerald bolts (e)"
 examine: "Enchanted Emerald tipped Mithril Crossbow Bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 59
+lowalch: 23
+highalch: 35
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

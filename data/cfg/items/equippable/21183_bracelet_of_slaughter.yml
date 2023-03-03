@@ -3,7 +3,12 @@ id: 21183
 name: "Bracelet of slaughter"
 examine: "Occasionally prevents slayer kill count being decremented."
 tradeable: true
-weight: 0.0
+weight: 0.25
+tradeable_on_ge: true
+cost: 2500
+lowalch: 1000
+highalch: 1500
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "hands"

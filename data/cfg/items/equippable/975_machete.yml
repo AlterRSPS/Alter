@@ -1,13 +1,18 @@
 ---
 id: 975
 name: "Machete"
-examine: "A jungle specific slashing device."
+examine: "A jungle-specific slashing device."
 tradeable: true
 weight: 1.36
+tradeable_on_ge: true
+cost: 40
+lowalch: 16
+highalch: 24
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 9
   attackSpeed: 5
   attackStab: 0
   attackSlash: 6

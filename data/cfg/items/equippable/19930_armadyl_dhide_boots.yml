@@ -3,10 +3,15 @@ id: 19930
 name: "Armadyl d'hide boots"
 examine: "Armadyl blessed dragonhide boots."
 tradeable: true
-weight: 1.0
+weight: 1.4
+tradeable_on_ge: true
+cost: 9300
+lowalch: 3720
+highalch: 5580
+buy_limit: 8
 equipment:
   prayer: 1
-  equipSlot: "feet"
+  equipSlot: "neck"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

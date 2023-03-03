@@ -4,6 +4,11 @@ name: "Rune platebody (h1)"
 examine: "Provides excellent protection with a heraldic design."
 tradeable: true
 weight: 9.979
+tradeable_on_ge: true
+cost: 65000
+lowalch: 26000
+highalch: 39000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "body"

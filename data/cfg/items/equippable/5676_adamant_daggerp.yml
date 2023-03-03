@@ -4,10 +4,15 @@ name: "Adamant dagger(p+)"
 examine: "A very dangerous poisoned dagger."
 tradeable: true
 weight: 0.51
+tradeable_on_ge: true
+cost: 800
+lowalch: 320
+highalch: 480
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 15
   attackSlash: 8

@@ -4,10 +4,15 @@ name: "Vyre noble coat tails"
 examine: "Lets you dress like a vampyre noble."
 tradeable: false
 weight: 0.907
+tradeable_on_ge: false
+cost: 5000
+lowalch: 2000
+highalch: 3000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "legs"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 23
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0

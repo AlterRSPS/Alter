@@ -4,6 +4,11 @@ name: "Team-27 cape"
 examine: "Ooohhh look at the pretty colours..."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 50
+lowalch: 20
+highalch: 30
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "cape"

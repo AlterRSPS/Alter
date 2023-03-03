@@ -3,7 +3,12 @@ id: 4708
 name: "Ahrim's hood"
 examine: "Ahrim the Blighted's leather hood."
 tradeable: true
-weight: 0.9
+weight: 0.907
+tradeable_on_ge: true
+cost: 13000
+lowalch: 5200
+highalch: 7800
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "head"

@@ -4,10 +4,15 @@ name: "3rd age druidic staff"
 examine: "A fabulously ancient gnarled staff as used by the druids of old."
 tradeable: true
 weight: 2.0
+tradeable_on_ge: true
+cost: 200000
+lowalch: 80000
+highalch: 120000
+buy_limit: 8
 equipment:
   prayer: 6
-  equipSlot: "weapon"
-  weaponType: 12
+  equipSlot: "legs"
+  weaponType: -1
   attackSpeed: 5
   attackStab: 7
   attackSlash: -1
@@ -24,7 +29,7 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: "attack"
-    level: 65
   - skill: "prayer"
+    level: 65
+  - skill: "attack"
     level: 65

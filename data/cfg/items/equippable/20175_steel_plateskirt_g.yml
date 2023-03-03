@@ -3,7 +3,12 @@ id: 20175
 name: "Steel plateskirt (g)"
 examine: "Steel plateskirt with gold trim."
 tradeable: true
-weight: 8.0
+weight: 8.164
+tradeable_on_ge: true
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "legs"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 17
   defenceSlash: 16
   defenceCrush: 15

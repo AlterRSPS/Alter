@@ -4,6 +4,11 @@ name: "Spiky vambraces"
 examine: "Attack at your own risk."
 tradeable: true
 weight: 0.226
+tradeable_on_ge: true
+cost: 160
+lowalch: 64
+highalch: 96
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "hands"

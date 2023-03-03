@@ -3,11 +3,16 @@ id: 11706
 name: "Beach boxing gloves"
 examine: "For play-fighting."
 tradeable: false
-weight: 0.0
+weight: 0.453
+tradeable_on_ge: false
+cost: 50
+lowalch: 20
+highalch: 30
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 0
+  equipSlot: "2h"
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 3677
-  - 823
-  - 3680
-  - 3680
-  - 3680
-  - 3680
-  - 824
+  renderAnimations: null
   skillReqs: null

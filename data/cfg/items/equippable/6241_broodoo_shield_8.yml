@@ -4,6 +4,11 @@ name: "Broodoo shield (8)"
 examine: "A scary broodoo shield."
 tradeable: true
 weight: 5.443
+tradeable_on_ge: false
+cost: 3000
+lowalch: 1200
+highalch: 1800
+buy_limit: null
 equipment:
   prayer: 5
   equipSlot: "shield"

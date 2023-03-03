@@ -4,6 +4,11 @@ name: "Bandos chestplate"
 examine: "A sturdy chestplate."
 tradeable: true
 weight: 12.0
+tradeable_on_ge: true
+cost: 290010
+lowalch: 116004
+highalch: 174006
+buy_limit: 8
 equipment:
   prayer: 1
   equipSlot: "body"

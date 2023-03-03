@@ -3,10 +3,15 @@ id: 4224
 name: "New crystal shield"
 examine: "A nice sturdy crystal shield."
 tradeable: true
-weight: 2.7
+weight: 2.721
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "shield"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

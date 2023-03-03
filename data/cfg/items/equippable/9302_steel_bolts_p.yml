@@ -4,6 +4,11 @@ name: "Steel bolts (p++)"
 examine: "Super poisoned steel bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 8
+lowalch: 3
+highalch: 4
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

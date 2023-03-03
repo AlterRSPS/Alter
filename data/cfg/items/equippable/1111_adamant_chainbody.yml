@@ -4,6 +4,11 @@ name: "Adamant chainbody"
 examine: "A series of connected metal rings."
 tradeable: true
 weight: 7.711
+tradeable_on_ge: true
+cost: 4800
+lowalch: 1920
+highalch: 2880
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "body"

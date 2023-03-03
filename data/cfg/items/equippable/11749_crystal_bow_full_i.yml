@@ -2,12 +2,17 @@
 id: 11749
 name: "Crystal bow full (i)"
 examine: "A nice sturdy magical bow."
-tradeable: true
-weight: 2.0
+tradeable: false
+weight: 1.814
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "2h"
-  weaponType: 3
+  equipSlot: "hat"
+  weaponType: -1
   attackSpeed: 5
   attackStab: 0
   attackSlash: 0
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 70
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "agility"
     level: 50

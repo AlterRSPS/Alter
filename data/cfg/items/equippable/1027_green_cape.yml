@@ -4,6 +4,11 @@ name: "Green cape"
 examine: "A thick green cape."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 32
+lowalch: 12
+highalch: 19
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "cape"

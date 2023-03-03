@@ -4,6 +4,11 @@ name: "Frog-leather body"
 examine: "Armour made out of frog hide."
 tradeable: true
 weight: 5.0
+tradeable_on_ge: true
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "body"

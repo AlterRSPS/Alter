@@ -3,7 +3,12 @@ id: 12416
 name: "Dragon plateskirt (g)"
 examine: "Heavy protective legwear with a gold trim."
 tradeable: false
-weight: 9.0
+weight: 9.071
+tradeable_on_ge: false
+cost: 270000
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 68
   defenceSlash: 66
   defenceCrush: 63

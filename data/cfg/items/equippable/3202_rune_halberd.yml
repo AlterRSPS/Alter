@@ -4,10 +4,15 @@ name: "Rune halberd"
 examine: "A rune halberd."
 tradeable: true
 weight: 3.175
+tradeable_on_ge: true
+cost: 64000
+lowalch: 25600
+highalch: 38400
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 12
+  weaponType: 8337
   attackSpeed: 7
   attackStab: 48
   attackSlash: 67
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 68
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 40

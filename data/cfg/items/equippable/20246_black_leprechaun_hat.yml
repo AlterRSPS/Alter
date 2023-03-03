@@ -4,10 +4,15 @@ name: "Black leprechaun hat"
 examine: "Try as they will, and try as they might, who steals me gold won't live through\
   \ the night."
 tradeable: true
-weight: 2.0
+weight: 2.267
+tradeable_on_ge: true
+cost: 5000
+lowalch: 2000
+highalch: 3000
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

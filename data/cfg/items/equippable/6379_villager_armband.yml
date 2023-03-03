@@ -4,6 +4,11 @@ name: "Villager armband"
 examine: "A white armband, as worn by the Tai Bwo Wannai locals."
 tradeable: true
 weight: 0.68
+tradeable_on_ge: true
+cost: 150
+lowalch: 60
+highalch: 90
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "hands"

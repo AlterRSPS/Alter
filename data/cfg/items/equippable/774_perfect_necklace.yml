@@ -4,9 +4,14 @@ name: "'perfect' necklace"
 examine: "A perfect ruby necklace."
 tradeable: false
 weight: 0.01
+tradeable_on_ge: false
+cost: 2175
+lowalch: 870
+highalch: 1305
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "neck"
+  equipSlot: "hands"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -3,7 +3,12 @@ id: 12295
 name: "Mithril plateskirt (t)"
 examine: "Mithril plateskirt with trim."
 tradeable: true
-weight: 7.0
+weight: 7.257
+tradeable_on_ge: true
+cost: 2600
+lowalch: 1040
+highalch: 1560
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "legs"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 24
   defenceSlash: 22
   defenceCrush: 20

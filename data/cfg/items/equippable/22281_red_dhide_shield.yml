@@ -4,6 +4,11 @@ name: "Red d'hide shield"
 examine: "A solid magic wood shield covered in red dragon leather."
 tradeable: true
 weight: 8.0
+tradeable_on_ge: true
+cost: 11000
+lowalch: 4400
+highalch: 6600
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "shield"

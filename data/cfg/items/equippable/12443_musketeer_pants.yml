@@ -3,7 +3,12 @@ id: 12443
 name: "Musketeer pants"
 examine: "One for all!"
 tradeable: true
-weight: 1.0
+weight: 1.814
+tradeable_on_ge: true
+cost: 1870
+lowalch: 748
+highalch: 1122
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "legs"

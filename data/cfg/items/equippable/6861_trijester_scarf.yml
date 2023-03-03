@@ -4,9 +4,14 @@ name: "Tri-jester scarf"
 examine: "A woolly jester scarf."
 tradeable: false
 weight: 0.25
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "neck"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

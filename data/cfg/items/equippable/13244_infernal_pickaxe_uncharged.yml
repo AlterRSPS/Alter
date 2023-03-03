@@ -3,11 +3,16 @@ id: 13244
 name: "Infernal pickaxe (uncharged)"
 examine: "A very powerful, fiery pickaxe."
 tradeable: false
-weight: 2.0
+weight: 2.4
+tradeable_on_ge: false
+cost: 99800
+lowalch: 39920
+highalch: 59880
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 11
   attackSpeed: 5
   attackStab: 38
   attackSlash: -2

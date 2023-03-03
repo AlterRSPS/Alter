@@ -3,7 +3,12 @@ id: 13237
 name: "Pegasian boots"
 examine: "A pair of upgraded ranger boots."
 tradeable: true
-weight: 1.0
+weight: 1.814
+tradeable_on_ge: true
+cost: 75000
+lowalch: 30000
+highalch: 45000
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "feet"

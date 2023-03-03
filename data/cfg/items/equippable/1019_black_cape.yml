@@ -3,7 +3,12 @@ id: 1019
 name: "Black cape"
 examine: "A warm black cape."
 tradeable: true
-weight: 0.0
+weight: 0.453
+tradeable_on_ge: true
+cost: 7
+lowalch: 2
+highalch: 4
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "cape"

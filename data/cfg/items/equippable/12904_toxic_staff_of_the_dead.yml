@@ -3,11 +3,16 @@ id: 12904
 name: "Toxic staff of the dead"
 examine: "A ghastly weapon with evil origins, with a toxic fang attached."
 tradeable: false
-weight: 1.0
+weight: 1.5
+tradeable_on_ge: false
+cost: 1000006
+lowalch: 400002
+highalch: 600003
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 21
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 55
   attackSlash: 70
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 72
   rangedStrength: 0
   magicDamage: 15
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "magic"
     level: 75

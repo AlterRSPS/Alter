@@ -3,10 +3,15 @@ id: 19532
 name: "Zenyte bracelet"
 examine: "A fiery glow emanates from this bracelet."
 tradeable: true
-weight: 0.0
+weight: 0.25
+tradeable_on_ge: true
+cost: 201000
+lowalch: 80400
+highalch: 120600
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "hands"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

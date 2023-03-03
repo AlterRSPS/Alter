@@ -1,9 +1,14 @@
 ---
 id: 2405
 name: "Carnillean armour"
-examine: "Decorative armour; an heirloom of the Carnillean family."
+examine: "An heirloom of the Carnillean family."
 tradeable: false
 weight: 9.071
+tradeable_on_ge: false
+cost: 65
+lowalch: 26
+highalch: 39
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

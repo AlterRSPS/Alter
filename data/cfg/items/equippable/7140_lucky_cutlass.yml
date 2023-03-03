@@ -4,10 +4,15 @@ name: "Lucky cutlass"
 examine: "Feels quite lucky."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 2560
+lowalch: 1024
+highalch: 1536
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 9
   attackSpeed: 4
   attackStab: 5
   attackSlash: 20

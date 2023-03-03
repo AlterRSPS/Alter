@@ -4,10 +4,15 @@ name: "Diving apparatus"
 examine: "I'll need a helmet to make this work."
 tradeable: false
 weight: 10.0
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "cape"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 1
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,5 +27,12 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
   skillReqs: null

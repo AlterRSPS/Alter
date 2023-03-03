@@ -3,17 +3,22 @@ id: 11894
 name: "Decorative armour"
 examine: "Very decorative armour."
 tradeable: false
-weight: 9.05
+weight: 9.071
+tradeable_on_ge: false
+cost: 2600
+lowalch: 1040
+highalch: 1560
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "hands"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 24
   defenceSlash: 22
   defenceCrush: 20

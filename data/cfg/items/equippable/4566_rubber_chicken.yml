@@ -4,10 +4,15 @@ name: "Rubber chicken"
 examine: "Perhaps not the most powerful weapon in Gielinor."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100

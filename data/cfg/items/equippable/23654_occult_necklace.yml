@@ -4,6 +4,11 @@ name: "Occult necklace"
 examine: "A smokey evil embodies this amulet."
 tradeable: false
 weight: 0.005
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 2
   equipSlot: "neck"

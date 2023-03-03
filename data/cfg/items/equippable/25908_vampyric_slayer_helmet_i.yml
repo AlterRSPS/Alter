@@ -1,12 +1,17 @@
 ---
 id: 25908
 name: "Vampyric slayer helmet (i)"
-examine: "You don't want to wear it inside-out."
+examine: "You really don't want to wear it inside-out."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 90000
+lowalch: 36000
+highalch: 54000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

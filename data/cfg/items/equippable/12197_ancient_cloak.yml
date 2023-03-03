@@ -3,10 +3,15 @@ id: 12197
 name: "Ancient cloak"
 examine: "An Ancient cloak."
 tradeable: true
-weight: 1.0
+weight: 0.003
+tradeable_on_ge: true
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: 8
 equipment:
   prayer: 3
-  equipSlot: "cape"
+  equipSlot: "nohair"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -4,10 +4,15 @@ name: "Barrelchest anchor"
 examine: "This is likely to put my back out..."
 tradeable: false
 weight: 30.0
+tradeable_on_ge: false
+cost: 230000
+lowalch: 92000
+highalch: 138000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 6
   attackStab: -2
   attackSlash: 10

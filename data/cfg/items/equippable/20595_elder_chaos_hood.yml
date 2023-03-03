@@ -3,10 +3,15 @@ id: 20595
 name: "Elder chaos hood"
 examine: "The hood worn by the dangerous elder druids."
 tradeable: true
-weight: 0.1
+weight: 0.18
+tradeable_on_ge: true
+cost: 500
+lowalch: 200
+highalch: 300
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

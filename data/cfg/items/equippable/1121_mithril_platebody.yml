@@ -3,7 +3,12 @@ id: 1121
 name: "Mithril platebody"
 examine: "Provides excellent protection."
 tradeable: true
-weight: 8.0
+weight: 8.618
+tradeable_on_ge: true
+cost: 5200
+lowalch: 2080
+highalch: 3120
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "body"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -30
-  attackRanged: -10
+  attackRanged: -15
   defenceStab: 46
   defenceSlash: 44
   defenceCrush: 38

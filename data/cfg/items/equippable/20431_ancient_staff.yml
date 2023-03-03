@@ -4,10 +4,15 @@ name: "Ancient staff"
 examine: "A magical staff of ancient origin..."
 tradeable: true
 weight: 2.267
+tradeable_on_ge: false
+cost: 40
+lowalch: 16
+highalch: 24
+buy_limit: null
 equipment:
   prayer: -1
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 13
   attackSpeed: 4
   attackStab: 10
   attackSlash: -1

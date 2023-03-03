@@ -4,9 +4,14 @@ name: "Penance skirt (l)"
 examine: "A skirt made from the skin of a Penance Ranger."
 tradeable: false
 weight: 3.0
+tradeable_on_ge: false
+cost: 65004
+lowalch: 26001
+highalch: 39002
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

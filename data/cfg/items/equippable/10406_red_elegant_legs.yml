@@ -4,9 +4,14 @@ name: "Red elegant legs"
 examine: "A rather elegant pair of men's red pantaloons."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

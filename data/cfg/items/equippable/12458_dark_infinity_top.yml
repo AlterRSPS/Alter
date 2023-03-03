@@ -3,7 +3,12 @@ id: 12458
 name: "Dark infinity top"
 examine: "Mystical robes with a dark recolour."
 tradeable: false
-weight: 2.0
+weight: 2.267
+tradeable_on_ge: false
+cost: 140000
+lowalch: 56000
+highalch: 84000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

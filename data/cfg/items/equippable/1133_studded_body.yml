@@ -4,6 +4,11 @@ name: "Studded body"
 examine: "Those studs should provide a bit more protection."
 tradeable: true
 weight: 5.443
+tradeable_on_ge: true
+cost: 850
+lowalch: 340
+highalch: 510
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "body"

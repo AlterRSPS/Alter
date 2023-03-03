@@ -4,6 +4,11 @@ name: "Phoenix necklace"
 examine: "In case of emergency, wear necklace."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 4050
+lowalch: 1620
+highalch: 2430
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "neck"

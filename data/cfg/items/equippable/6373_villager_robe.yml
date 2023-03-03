@@ -4,6 +4,11 @@ name: "Villager robe"
 examine: "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
 tradeable: true
 weight: 2.0
+tradeable_on_ge: true
+cost: 250
+lowalch: 100
+highalch: 150
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "legs"

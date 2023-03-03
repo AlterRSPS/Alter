@@ -4,10 +4,15 @@ name: "Dragon knife(p)"
 examine: "A finely balanced and powerful throwing knife."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 166
+lowalch: 66
+highalch: 99
+buy_limit: 7000
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 19
   attackSpeed: 3
   attackStab: 0
   attackSlash: 0
@@ -23,4 +28,6 @@ equipment:
   rangedStrength: 30
   magicDamage: 0
   renderAnimations: null
-  skillReqs: null
+  skillReqs:
+  - skill: "ranged"
+    level: 60

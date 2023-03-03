@@ -4,10 +4,15 @@ name: "Longbow"
 examine: "A nice sturdy bow."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 80
+lowalch: 32
+highalch: 48
+buy_limit: 18000
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 3
   attackSpeed: 6
   attackStab: 0
   attackSlash: 0

@@ -4,10 +4,15 @@ name: "Imbued tephra"
 examine: "This is refined, imbued, and ready to go."
 tradeable: false
 weight: 0.0
+tradeable_on_ge: false
+cost: 100
+lowalch: 40
+highalch: 60
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 50
+  equipSlot: "cape"
+  weaponType: -1
   attackSpeed: 3
   attackStab: 0
   attackSlash: 0

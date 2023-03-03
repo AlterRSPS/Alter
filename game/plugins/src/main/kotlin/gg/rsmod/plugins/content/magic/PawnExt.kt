@@ -32,34 +32,34 @@ fun Pawn.prepareForTeleport() {
 }
 
 fun Pawn.teleport(endTile: Tile, type: TeleportType) {
-    lock = LockState.FULL_WITH_DAMAGE_IMMUNITY
+      lock = LockState.FULL_WITH_DAMAGE_IMMUNITY
 
-    queue(TaskPriority.STRONG) {
-        prepareForTeleport()
+      queue(TaskPriority.STRONG) {
+          prepareForTeleport()
 
-        animate(type.animation)
-        type.graphic?.let {
-            graphic(it)
-        }
+          animate(type.animation)
+          type.graphic?.let {
+              graphic(it)
+          }
 
-        wait(type.teleportDelay)
+          wait(type.teleportDelay)
 
-        moveTo(endTile)
+          moveTo(endTile)
 
-        type.endAnimation?.let {
-            animate(it)
-        }
+          type.endAnimation?.let {
+              animate(it)
+          }
 
-        type.endGraphic?.let {
-            graphic(it)
-        }
+          type.endGraphic?.let {
+              graphic(it)
+          }
 
-        type.endAnimation?.let {
-            val def = world.definitions.get(AnimDef::class.java, it)
-            wait(def.cycleLength)
-        }
+          type.endAnimation?.let {
+              val def = world.definitions.get(AnimDef::class.java, it)
+              wait(def.cycleLength)
+          }
 
-        animate(-1)
-        unlock()
-    }
+          animate(-1)
+          unlock()
+      }
 }

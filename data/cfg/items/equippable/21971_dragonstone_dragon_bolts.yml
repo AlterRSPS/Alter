@@ -4,6 +4,11 @@ name: "Dragonstone dragon bolts"
 examine: "Dragon crossbow bolts, tipped with dragonstone. Double dragon!"
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 995
+lowalch: 398
+highalch: 597
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

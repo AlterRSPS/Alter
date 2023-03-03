@@ -4,6 +4,11 @@ name: "Sapphire bolts"
 examine: "Sapphire tipped Mithril crossbow bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 37
+lowalch: 14
+highalch: 22
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

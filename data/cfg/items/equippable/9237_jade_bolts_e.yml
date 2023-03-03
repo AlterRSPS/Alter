@@ -4,6 +4,11 @@ name: "Jade bolts (e)"
 examine: "Enchanted Jade tipped Blurite Crossbow Bolts."
 tradeable: false
 weight: 0.0
+tradeable_on_ge: false
+cost: 13
+lowalch: 5
+highalch: 7
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "ammo"

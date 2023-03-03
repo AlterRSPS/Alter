@@ -4,10 +4,15 @@ name: "Yew longbow"
 examine: "A nice sturdy bow made out of yew."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 1280
+lowalch: 512
+highalch: 768
+buy_limit: 18000
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 3
   attackSpeed: 6
   attackStab: 0
   attackSlash: 0
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
   skillReqs:
   - skill: "ranged"
     level: 40

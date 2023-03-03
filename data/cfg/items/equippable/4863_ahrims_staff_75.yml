@@ -4,9 +4,14 @@ name: "Ahrim's staff 75"
 examine: "Ahrim the Blighted's quarterstaff."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 85000
+lowalch: 34000
+highalch: 51000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 6
   attackStab: 12

@@ -1,9 +1,14 @@
 ---
 id: 6750
 name: "Black desert shirt"
-examine: "A desert shirt stained black with mushroom ink."
+examine: "A desert shirt stained black."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 40
+lowalch: 16
+highalch: 24
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "body"

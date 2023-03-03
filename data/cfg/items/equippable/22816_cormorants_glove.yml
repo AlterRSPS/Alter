@@ -3,11 +3,16 @@ id: 22816
 name: "Cormorant's glove"
 examine: "A very large, single leather glove."
 tradeable: false
-weight: 1.8
+weight: 0.907
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
@@ -24,7 +29,7 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: null
-    level: 0
-  - skill: null
-    level: 0
+  - skill: "hunter"
+    level: 35
+  - skill: "fishing"
+    level: 43

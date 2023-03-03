@@ -3,11 +3,16 @@ id: 20056
 name: "Ale of the gods"
 examine: "Ale of the gods."
 tradeable: true
-weight: 0.0
+weight: 0.06
+tradeable_on_ge: true
+cost: 850
+lowalch: 340
+highalch: 510
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 0
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 3040
-  - 2769
-  - 2769
-  - 2769
-  - 2769
-  - 2769
-  - 2769
+  renderAnimations: null
   skillReqs: null

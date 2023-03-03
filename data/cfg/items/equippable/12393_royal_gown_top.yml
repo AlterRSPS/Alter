@@ -3,7 +3,12 @@ id: 12393
 name: "Royal gown top"
 examine: "Feeling distinctly ornate."
 tradeable: true
-weight: 1.0
+weight: 1.36
+tradeable_on_ge: true
+cost: 5000
+lowalch: 2000
+highalch: 3000
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "body"

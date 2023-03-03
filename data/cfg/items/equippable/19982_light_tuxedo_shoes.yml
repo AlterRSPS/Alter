@@ -3,7 +3,12 @@ id: 19982
 name: "Light tuxedo shoes"
 examine: "Light shoes to match your light tuxedo."
 tradeable: true
-weight: 0.0
+weight: 0.5
+tradeable_on_ge: true
+cost: 3000
+lowalch: 1200
+highalch: 1800
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "feet"

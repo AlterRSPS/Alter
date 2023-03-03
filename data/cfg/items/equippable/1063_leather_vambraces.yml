@@ -4,6 +4,11 @@ name: "Leather vambraces"
 examine: "Better than no armour!"
 tradeable: true
 weight: 0.226
+tradeable_on_ge: true
+cost: 18
+lowalch: 7
+highalch: 10
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "hands"

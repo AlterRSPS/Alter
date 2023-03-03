@@ -3,10 +3,15 @@ id: 12601
 name: "Ring of the gods"
 examine: "An ancient ring said to bring you closer to the Gods."
 tradeable: true
-weight: 0.0
+weight: 0.3
+tradeable_on_ge: true
+cost: 50000
+lowalch: 20000
+highalch: 30000
+buy_limit: 8
 equipment:
   prayer: 4
-  equipSlot: "ring"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

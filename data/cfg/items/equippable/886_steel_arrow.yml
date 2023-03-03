@@ -4,6 +4,11 @@ name: "Steel arrow"
 examine: "Arrows with steel heads."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 12
+lowalch: 4
+highalch: 7
+buy_limit: 7000
 equipment:
   prayer: 0
   equipSlot: "ammo"

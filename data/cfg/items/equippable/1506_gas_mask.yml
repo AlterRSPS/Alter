@@ -4,9 +4,14 @@ name: "Gas mask"
 examine: "Stops me from breathing nasty stuff!"
 tradeable: false
 weight: 0.255
+tradeable_on_ge: false
+cost: 2
+lowalch: 0
+highalch: 1
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

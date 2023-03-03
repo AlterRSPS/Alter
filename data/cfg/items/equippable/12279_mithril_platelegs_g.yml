@@ -3,17 +3,22 @@ id: 12279
 name: "Mithril platelegs (g)"
 examine: "Mithril platelegs with gold trim."
 tradeable: true
-weight: 7.7
+weight: 7.711
+tradeable_on_ge: true
+cost: 2600
+lowalch: 1040
+highalch: 1560
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "nohair"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 24
   defenceSlash: 22
   defenceCrush: 20

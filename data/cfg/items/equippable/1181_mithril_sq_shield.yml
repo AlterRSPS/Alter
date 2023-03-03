@@ -4,6 +4,11 @@ name: "Mithril sq shield"
 examine: "A medium square shield."
 tradeable: true
 weight: 3.175
+tradeable_on_ge: true
+cost: 1560
+lowalch: 624
+highalch: 936
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "shield"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -6
-  attackRanged: -2
+  attackRanged: 0
   defenceStab: 17
   defenceSlash: 19
   defenceCrush: 15

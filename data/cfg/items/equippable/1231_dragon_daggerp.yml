@@ -4,10 +4,15 @@ name: "Dragon dagger(p)"
 examine: "A powerful dagger."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 24000
+lowalch: 9600
+highalch: 14400
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 17
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 40
   attackSlash: 25
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 40
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 60

@@ -4,10 +4,15 @@ name: "Frying pan"
 examine: "Looks like it's non-stick too!"
 tradeable: true
 weight: 1.587
+tradeable_on_ge: true
+cost: 1660
+lowalch: 664
+highalch: 996
+buy_limit: 50
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 6
   attackStab: -4
   attackSlash: -4

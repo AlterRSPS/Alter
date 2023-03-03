@@ -4,10 +4,15 @@ name: "Void knight mace (l)"
 examine: "A mace used by the order of the Void Knights."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 12000
+lowalch: 4800
+highalch: 7200
+buy_limit: null
 equipment:
   prayer: 6
   equipSlot: "weapon"
-  weaponType: 12
+  weaponType: 13
   attackSpeed: 5
   attackStab: 22
   attackSlash: 0
@@ -28,13 +33,13 @@ equipment:
     level: 42
   - skill: "strength"
     level: 42
-  - skill: "defence"
-    level: 42
   - skill: "hitpoints"
     level: 42
   - skill: "ranged"
     level: 42
-  - skill: "prayer"
-    level: 22
   - skill: "magic"
     level: 42
+  - skill: "defence"
+    level: 42
+  - skill: "prayer"
+    level: 22

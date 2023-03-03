@@ -4,9 +4,14 @@ name: "White elegant blouse"
 examine: "A well made elegant ladies' white blouse."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "hat"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -4,9 +4,14 @@ name: "Elemental shield"
 examine: "A magic shield."
 tradeable: true
 weight: 0.226
+tradeable_on_ge: true
+cost: 20
+lowalch: 8
+highalch: 12
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "shield"
+  equipSlot: "hands"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

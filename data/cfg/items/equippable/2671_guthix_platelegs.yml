@@ -4,6 +4,11 @@ name: "Guthix platelegs"
 examine: "Rune plate legs in the colours of Guthix."
 tradeable: true
 weight: 9.071
+tradeable_on_ge: true
+cost: 64000
+lowalch: 25600
+highalch: 38400
+buy_limit: 8
 equipment:
   prayer: 1
   equipSlot: "legs"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 51
   defenceSlash: 49
   defenceCrush: 47

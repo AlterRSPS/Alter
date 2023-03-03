@@ -3,11 +3,16 @@ id: 25044
 name: "Trailblazer rune trophy"
 examine: "A Rune trophy for competing in Leagues II - Trailblazer."
 tradeable: false
-weight: 15.0
+weight: 1.5
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 18
+  weaponType: 8337
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100

@@ -4,9 +4,14 @@ name: "Twisted hat (t3)"
 examine: "The headgear of a twisted relic hunter."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 100000
+lowalch: 40000
+highalch: 60000
+buy_limit: 5
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "ring"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

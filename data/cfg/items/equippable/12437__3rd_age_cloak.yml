@@ -3,7 +3,12 @@ id: 12437
 name: "3rd age cloak"
 examine: "A beautiful cloak woven by ancient tailors."
 tradeable: true
-weight: 3.0
+weight: 0.005
+tradeable_on_ge: true
+cost: 85000
+lowalch: 34000
+highalch: 51000
+buy_limit: 8
 equipment:
   prayer: 5
   equipSlot: "cape"

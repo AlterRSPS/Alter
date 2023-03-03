@@ -4,9 +4,14 @@ name: "Earmuffs"
 examine: "These will protect my ears from loud noise."
 tradeable: true
 weight: 0.113
+tradeable_on_ge: true
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -3,17 +3,22 @@ id: 12484
 name: "Bandos plateskirt"
 examine: "Rune plateskirt in the colours of Bandos."
 tradeable: true
-weight: 9.0
+weight: 9.071
+tradeable_on_ge: true
+cost: 64000
+lowalch: 25600
+highalch: 38400
+buy_limit: 8
 equipment:
   prayer: 1
-  equipSlot: "legs"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 12
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 51
   defenceSlash: 49
   defenceCrush: 47
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
   skillReqs:
-  - skill: "attack"
+  - skill: "defence"
     level: 40

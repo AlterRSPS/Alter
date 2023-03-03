@@ -4,10 +4,15 @@ name: "Bronze knife(p++)"
 examine: "A finely balanced throwing knife."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: 7000
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 19
   attackSpeed: 3
   attackStab: 0
   attackSlash: 0

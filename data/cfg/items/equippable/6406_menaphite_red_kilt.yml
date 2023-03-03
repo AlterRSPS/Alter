@@ -4,6 +4,11 @@ name: "Menaphite red kilt"
 examine: "Look at those nobbily knees."
 tradeable: true
 weight: 0.005
+tradeable_on_ge: true
+cost: 20
+lowalch: 8
+highalch: 12
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "legs"

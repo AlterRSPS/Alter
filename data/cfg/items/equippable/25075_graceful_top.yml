@@ -4,6 +4,11 @@ name: "Graceful top"
 examine: "A sign of your grace while trailblazing."
 tradeable: false
 weight: 0.9
+tradeable_on_ge: false
+cost: 55
+lowalch: 22
+highalch: 33
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

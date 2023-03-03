@@ -4,9 +4,14 @@ name: "Crystal crown"
 examine: "A crown fit for the most wealthy of elves."
 tradeable: false
 weight: 0.3
+tradeable_on_ge: false
+cost: 250000000
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

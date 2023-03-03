@@ -4,9 +4,14 @@ name: "Diamond dragon bolts"
 examine: "Dragon crossbow bolts, tipped with diamond."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 850
+lowalch: 340
+highalch: 510
+buy_limit: 11000
 equipment:
   prayer: 0
-  equipSlot: "ammo"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

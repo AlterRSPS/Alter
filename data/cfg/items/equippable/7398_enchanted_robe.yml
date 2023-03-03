@@ -4,9 +4,14 @@ name: "Enchanted robe"
 examine: "Enchanted Wizards robes."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 80000
+lowalch: 32000
+highalch: 48000
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "2h"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

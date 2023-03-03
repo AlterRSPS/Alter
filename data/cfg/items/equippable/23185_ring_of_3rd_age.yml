@@ -5,6 +5,11 @@ examine: "Makes you look like something really old, for those moments when you w
   \ that."
 tradeable: true
 weight: 0.005
+tradeable_on_ge: true
+cost: 12000
+lowalch: 4800
+highalch: 7200
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "ring"

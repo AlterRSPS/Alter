@@ -4,10 +4,15 @@ name: "Hallowed hammer"
 examine: "Removes the chance of bending nails within the Hallowed Sepulchre."
 tradeable: false
 weight: 0.02
+tradeable_on_ge: false
+cost: 100
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 18
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

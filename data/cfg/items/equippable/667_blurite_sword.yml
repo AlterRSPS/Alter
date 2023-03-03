@@ -4,10 +4,15 @@ name: "Blurite sword"
 examine: "A Faladian Knight's sword."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 9
   attackSpeed: 5
   attackStab: 9
   attackSlash: 14
