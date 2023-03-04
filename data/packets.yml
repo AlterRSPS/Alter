@@ -466,11 +466,12 @@ server-packets:
     type: FIXED
     opcode: 88
     structure:
-      - name: hash
-        write: IntME
       - name: anim
         type: SHORT
         order: LITTLE
+      - name: hash
+        type: INT
+        order: MIDDLE
 
   - message: gg.rsmod.game.message.impl.IfSetModelMessage
     type: FIXED

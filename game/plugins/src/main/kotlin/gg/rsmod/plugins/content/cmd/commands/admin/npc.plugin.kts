@@ -8,5 +8,6 @@ on_command("npc", Privilege.ADMIN_POWER, description = "Spawn Npc") {
         val npc = Npc(id, player.tile, world)
         player.message("NPC: $id , on x:${player.tile.x} z:${player.tile.z}");
         world.spawn(npc)
+
     }
 }

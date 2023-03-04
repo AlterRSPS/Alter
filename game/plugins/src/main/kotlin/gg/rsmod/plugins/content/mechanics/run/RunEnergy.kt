@@ -44,7 +44,7 @@ object RunEnergy {
                 if (p.runEnergy <= 0) {
                     p.varps.setState(RUN_ENABLED_VARP, 0)
                 }
-                p.sendRunEnergy(p.runEnergy.toInt())
+                p.sendRunEnergy(p.runEnergy.toInt() * 100)
             }
         } else if (p.runEnergy < 100.0 && p.lock.canRestoreRunEnergy()) {
             var recovery = (8.0 + (p.getSkills().getCurrentLevel(Skills.AGILITY) / 6.0)) / 100.0
@@ -52,17 +52,17 @@ object RunEnergy {
                 recovery *= 1.3
             }
             p.runEnergy = Math.min(100.0, (p.runEnergy + recovery))
-            p.sendRunEnergy(p.runEnergy.toInt())
+            p.sendRunEnergy(p.runEnergy.toInt() * 100)
         }
     }
 
     private fun isWearingFullGrace(p: Player): Boolean =
-            p.equipment[EquipmentType.HEAD.id]?.id ?: -1 in GRACEFUL_HOODS &&
-                    p.equipment[EquipmentType.CAPE.id]?.id ?: -1 in GRACEFUL_CAPE &&
-                    p.equipment[EquipmentType.CHEST.id]?.id ?: -1 in GRACEFUL_TOP &&
-                    p.equipment[EquipmentType.LEGS.id]?.id ?: -1 in GRACEFUL_LEGS &&
-                    p.equipment[EquipmentType.GLOVES.id]?.id ?: -1 in GRACEFUL_GLOVES &&
-                    p.equipment[EquipmentType.BOOTS.id]?.id ?: -1 in GRACEFUL_BOOTS
+        (p.equipment[EquipmentType.HEAD.id]?.id ?: -1) in GRACEFUL_HOODS &&
+                (p.equipment[EquipmentType.CAPE.id]?.id ?: -1) in GRACEFUL_CAPE &&
+                (p.equipment[EquipmentType.CHEST.id]?.id ?: -1) in GRACEFUL_TOP &&
+                (p.equipment[EquipmentType.LEGS.id]?.id ?: -1) in GRACEFUL_LEGS &&
+                (p.equipment[EquipmentType.GLOVES.id]?.id ?: -1) in GRACEFUL_GLOVES &&
+                (p.equipment[EquipmentType.BOOTS.id]?.id ?: -1) in GRACEFUL_BOOTS
 
     private val GRACEFUL_HOODS = intArrayOf(11850, 13579, 13591, 13603, 13615, 13627, 13667, 21061)
 

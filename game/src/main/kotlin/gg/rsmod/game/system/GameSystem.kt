@@ -57,6 +57,7 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
             next.handler.handle(client, world, next.message)
         }
     }
+
     var allowed = listOf(
         IfOpenTopMessage::class,
         IfOpenSubMessage::class,
@@ -65,8 +66,12 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
         RebuildNormalMessage::class
     )
 
+    var disabled = listOf(
+        UpdateZonePartialEnclosedMessage::class
+    )
+
     fun write(message: Message) {
-        //if (message::class !in allowed) return
+        if (message::class in disabled) return
         channel.write(message)
     }
 

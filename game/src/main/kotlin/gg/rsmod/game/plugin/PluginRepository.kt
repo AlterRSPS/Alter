@@ -987,6 +987,14 @@ class PluginRepository(val world: World) {
         equipItemPlugins[item] = plugin
         pluginCount++
     }
+    fun bindBeforeEquipItem(item: Int, plugin: Plugin.() -> Unit) {
+        if (equipItemPlugins.containsKey(item)) {
+            logger.error("Before Equip item already bound to a plugin: [item=$item]")
+            throw IllegalStateException("Before Equip item already bound to a plugin: [item=$item]")
+        }
+        equipItemPlugins[item] = plugin
+        pluginCount++
+    }
 
     fun executeEquipItem(p: Player, item: Int): Boolean {
         val plugin = equipItemPlugins[item]

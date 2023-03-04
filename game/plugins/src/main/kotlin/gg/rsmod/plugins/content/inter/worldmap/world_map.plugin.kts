@@ -5,7 +5,7 @@ import gg.rsmod.plugins.content.inter.worldmap.WorldMap.WORLD_MAP_FULLSCREEN_INT
 import gg.rsmod.plugins.content.inter.worldmap.WorldMap.LAST_TILE
 import gg.rsmod.plugins.content.inter.worldmap.WorldMap.UPDATE_TIMER
 
-on_button(interfaceId = 160, component = 48) {
+on_button(interfaceId = 160, component = 53) {
     if (!player.lock.canInterfaceInteract()) {
         return@on_button
     }
