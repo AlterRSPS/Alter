@@ -185,8 +185,8 @@ npcs:
     - HITMARK
     - FORCE_CHAT
     - APPLY_TINT
-    - APPEARANCE
     - GFX
+    - APPEARANCE
 
   blocks:
     - block: APPLY_TINT
@@ -251,6 +251,8 @@ npcs:
         - name: z
           type: SHORT
           trans: ADD
+        - name: instant_turn
+          type: BYTE
 
     - block: ANIMATION
       bit: 0x40

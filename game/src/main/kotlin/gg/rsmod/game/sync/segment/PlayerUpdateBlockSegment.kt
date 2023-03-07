@@ -312,7 +312,7 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
             UpdateBlockType.FACE_PAWN -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, other.blockBuffer.facePawnIndex)
-                buf.put(structure[1].type, structure[1].order, structure[1].transformation, other.blockBuffer.facePawnIndex shl 16)
+                buf.put(structure[1].type, structure[1].order, structure[1].transformation, other.blockBuffer.facePawnIndex shr 16)
             }
 
             UpdateBlockType.ANIMATION -> {

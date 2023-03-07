@@ -71,6 +71,7 @@ class NpcUpdateBlockSegment(private val npc: Npc, private val newAddition: Boole
                 val z = npc.blockBuffer.faceDegrees and 0xFFFF
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, x)
                 buf.put(structure[1].type, structure[1].order, structure[1].transformation, z)
+                buf.put(structure[2].type, structure[2].order, structure[2].transformation, 0) // This one is for the instant value. @TODO Will add later
             }
 
             UpdateBlockType.ANIMATION -> {

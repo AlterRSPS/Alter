@@ -554,7 +554,7 @@ abstract class Pawn(val world: World) : Entity() {
     fun facePawn(pawn: Pawn) {
         blockBuffer.faceDegrees = 0
 
-        val index = if (pawn.entityType.isPlayer) pawn.index + 65535 /*32768*/ else pawn.index
+        val index = if (pawn.entityType.isPlayer) pawn.index + 65536 else pawn.index
         if (blockBuffer.facePawnIndex != index) {
             blockBuffer.faceDegrees = 0
             blockBuffer.facePawnIndex = index
