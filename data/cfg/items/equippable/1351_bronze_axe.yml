@@ -4,6 +4,11 @@ name: "Bronze axe"
 examine: "A woodcutter's axe."
 tradeable: true
 weight: 1.36
+tradeable_on_ge: true
+cost: 16
+lowalch: 6
+highalch: 9
+buy_limit: 40
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 5
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 1

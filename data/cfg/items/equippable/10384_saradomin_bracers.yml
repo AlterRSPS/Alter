@@ -4,6 +4,11 @@ name: "Saradomin bracers"
 examine: "Saradomin blessed dragonhide vambraces."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 4000
+lowalch: 1600
+highalch: 2400
+buy_limit: 8
 equipment:
   prayer: 1
   equipSlot: "hands"

@@ -4,6 +4,11 @@ name: "Staff"
 examine: "It's a slightly magical stick."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 15
+lowalch: 6
+highalch: 9
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"

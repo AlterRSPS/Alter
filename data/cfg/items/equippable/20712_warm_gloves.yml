@@ -3,7 +3,12 @@ id: 20712
 name: "Warm gloves"
 examine: "Possibly fireproof. Possibly."
 tradeable: false
-weight: 0.45
+weight: 0.453
+tradeable_on_ge: false
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "hands"

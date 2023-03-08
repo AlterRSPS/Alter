@@ -4,9 +4,14 @@ name: "Red gloves"
 examine: "These will keep my hands warm!"
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 500
+lowalch: 200
+highalch: 300
+buy_limit: 150
 equipment:
   prayer: 0
-  equipSlot: "hands"
+  equipSlot: "feet"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

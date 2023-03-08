@@ -4,6 +4,11 @@ name: "Ruby necklace"
 examine: "I wonder if this is valuable."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 2175
+lowalch: 870
+highalch: 1305
+buy_limit: 18000
 equipment:
   prayer: 0
   equipSlot: "neck"

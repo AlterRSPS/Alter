@@ -4,10 +4,15 @@ name: "Villager hat"
 examine: "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: 150
 equipment:
   prayer: 0
-  equipSlot: "hat"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 18
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,5 +27,12 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
   skillReqs: null

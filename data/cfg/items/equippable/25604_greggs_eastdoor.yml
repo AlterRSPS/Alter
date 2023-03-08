@@ -4,11 +4,16 @@ name: "Gregg's eastdoor"
 examine: "Hold the door!"
 tradeable: false
 weight: 0.1
+tradeable_on_ge: false
+cost: 0
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 18
-  attackSpeed: 6
+  weaponType: 8337
+  attackSpeed: 7
   attackStab: -100
   attackSlash: -100
   attackCrush: -50

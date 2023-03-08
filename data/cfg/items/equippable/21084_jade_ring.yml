@@ -3,7 +3,12 @@ id: 21084
 name: "Jade ring"
 examine: "A valuable ring."
 tradeable: true
-weight: 0.0
+weight: 0.006
+tradeable_on_ge: true
+cost: 1275
+lowalch: 510
+highalch: 765
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "ring"

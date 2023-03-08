@@ -3,7 +3,12 @@ id: 22272
 name: "Snakeskin shield"
 examine: "A solid willow shield covered in snakeskin leather."
 tradeable: true
-weight: 7.0
+weight: 8.0
+tradeable_on_ge: true
+cost: 920
+lowalch: 368
+highalch: 552
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "shield"

@@ -4,9 +4,14 @@ name: "Snakeskin boots"
 examine: "Made from snakes."
 tradeable: true
 weight: 0.34
+tradeable_on_ge: true
+cost: 250
+lowalch: 100
+highalch: 150
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "feet"
+  equipSlot: "2h"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

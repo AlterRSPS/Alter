@@ -4,11 +4,16 @@ name: "Bronze mace"
 examine: "A spiky mace."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 18
+lowalch: 7
+highalch: 10
+buy_limit: 125
 equipment:
   prayer: 1
   equipSlot: "weapon"
   weaponType: -1
-  attackSpeed: 5
+  attackSpeed: 4
   attackStab: 1
   attackSlash: -2
   attackCrush: 6

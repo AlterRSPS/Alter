@@ -1,9 +1,14 @@
 ---
 id: 4151
 name: "Abyssal whip"
-examine: "A weapon from the abyss."
+examine: "A weapon from the Abyss."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 120001
+lowalch: 48000
+highalch: 72000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 82
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 1660
-  - 1660
-  - 1660
-  - 1660
-  - 1661
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 70

@@ -4,6 +4,11 @@ name: "Spined chaps"
 examine: "Stylish leg armour for rangers with a lingering smell of raw fish..."
 tradeable: true
 weight: 5.443
+tradeable_on_ge: true
+cost: 3900
+lowalch: 1560
+highalch: 2340
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "legs"

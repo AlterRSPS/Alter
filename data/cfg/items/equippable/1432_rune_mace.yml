@@ -4,11 +4,16 @@ name: "Rune mace"
 examine: "A spiky mace."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 14400
+lowalch: 5760
+highalch: 8640
+buy_limit: 70
 equipment:
   prayer: 4
   equipSlot: "weapon"
-  weaponType: -1
-  attackSpeed: 5
+  weaponType: 8337
+  attackSpeed: 4
   attackStab: 20
   attackSlash: -2
   attackCrush: 39

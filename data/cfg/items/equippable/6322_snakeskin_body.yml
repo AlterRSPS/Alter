@@ -4,6 +4,11 @@ name: "Snakeskin body"
 examine: "Made from 100% real snakeskin."
 tradeable: true
 weight: 6.803
+tradeable_on_ge: true
+cost: 1250
+lowalch: 500
+highalch: 750
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "body"

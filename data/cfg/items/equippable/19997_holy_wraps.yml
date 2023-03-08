@@ -3,7 +3,12 @@ id: 19997
 name: "Holy wraps"
 examine: "Holy handwear!"
 tradeable: true
-weight: 0.0
+weight: 0.5
+tradeable_on_ge: true
+cost: 9600
+lowalch: 3840
+highalch: 5760
+buy_limit: 4
 equipment:
   prayer: 3
   equipSlot: "hands"

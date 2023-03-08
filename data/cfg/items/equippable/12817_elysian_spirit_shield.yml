@@ -4,6 +4,11 @@ name: "Elysian spirit shield"
 examine: "An ethereal shield with an elysian sigil attached to it."
 tradeable: true
 weight: 2.0
+tradeable_on_ge: true
+cost: 2000000
+lowalch: 800000
+highalch: 1200000
+buy_limit: 8
 equipment:
   prayer: 3
   equipSlot: "shield"

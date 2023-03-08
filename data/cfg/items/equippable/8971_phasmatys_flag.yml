@@ -4,10 +4,15 @@ name: "Phasmatys flag"
 examine: "The flag of The Phasmatys Pride."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 600
+lowalch: 240
+highalch: 360
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

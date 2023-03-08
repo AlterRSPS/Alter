@@ -4,10 +4,15 @@ name: "Dorgeshuun crossbow"
 examine: "This fires crossbow bolts."
 tradeable: true
 weight: 2.267
+tradeable_on_ge: true
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 5
+  equipSlot: "ammo"
+  weaponType: -1
   attackSpeed: 5
   attackStab: 0
   attackSlash: 0
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 4591
-  - 823
-  - 4226
-  - 4227
-  - 821
-  - 822
-  - 4228
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 28

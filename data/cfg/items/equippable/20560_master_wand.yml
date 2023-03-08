@@ -4,10 +4,15 @@ name: "Master wand"
 examine: "A master level wand."
 tradeable: true
 weight: 0.198
+tradeable_on_ge: false
+cost: 50
+lowalch: 20
+highalch: 30
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 13
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
@@ -24,5 +29,5 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: "ranged"
+  - skill: "magic"
     level: 60

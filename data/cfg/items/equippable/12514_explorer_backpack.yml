@@ -4,9 +4,14 @@ name: "Explorer backpack"
 examine: "I'm the Backpack loaded up with things and knick knacks too."
 tradeable: true
 weight: 2.0
+tradeable_on_ge: true
+cost: 1550
+lowalch: 620
+highalch: 930
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "cape"
+  equipSlot: "ring"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

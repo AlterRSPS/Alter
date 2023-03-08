@@ -4,10 +4,15 @@ name: "Crystal halberd"
 examine: "A nice sturdy pike."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 300000
+lowalch: 120000
+highalch: 180000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 12
+  weaponType: 8337
   attackSpeed: 7
   attackStab: 85
   attackSlash: 110
@@ -26,7 +31,7 @@ equipment:
   skillReqs:
   - skill: "attack"
     level: 70
-  - skill: "strength"
-    level: 35
   - skill: "agility"
     level: 50
+  - skill: "strength"
+    level: 35

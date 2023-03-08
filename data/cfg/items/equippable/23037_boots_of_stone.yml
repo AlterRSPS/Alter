@@ -4,6 +4,11 @@ name: "Boots of stone"
 examine: "A pair of heat resistant boots with rocky soles."
 tradeable: true
 weight: 3.175
+tradeable_on_ge: true
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "feet"
@@ -24,5 +29,5 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: null
-    level: 0
+  - skill: "slayer"
+    level: 44

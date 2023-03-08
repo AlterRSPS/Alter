@@ -4,10 +4,15 @@ name: "Bronze warhammer"
 examine: "I don't think it's intended for joinery."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 47
+lowalch: 18
+highalch: 28
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 6
   attackStab: -4
   attackSlash: -4

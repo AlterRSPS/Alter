@@ -4,9 +4,14 @@ name: "Snakeskin bandana"
 examine: "Lightweight head protection."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 300
+lowalch: 120
+highalch: 180
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "head"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

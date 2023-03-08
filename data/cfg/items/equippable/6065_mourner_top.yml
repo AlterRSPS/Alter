@@ -4,9 +4,14 @@ name: "Mourner top"
 examine: "A thick heavy leather top."
 tradeable: false
 weight: 2.721
+tradeable_on_ge: false
+cost: 150
+lowalch: 60
+highalch: 90
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

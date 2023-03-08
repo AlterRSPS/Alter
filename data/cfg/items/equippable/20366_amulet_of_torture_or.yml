@@ -3,7 +3,12 @@ id: 20366
 name: "Amulet of torture (or)"
 examine: "A deep sense of torture burns within this powerful amulet."
 tradeable: false
-weight: 0.0
+weight: 0.01
+tradeable_on_ge: false
+cost: 202000
+lowalch: 80800
+highalch: 121200
+buy_limit: null
 equipment:
   prayer: 2
   equipSlot: "neck"

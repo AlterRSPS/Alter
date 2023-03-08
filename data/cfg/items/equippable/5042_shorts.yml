@@ -4,6 +4,11 @@ name: "Shorts"
 examine: "These look great, on dwarves!"
 tradeable: true
 weight: 0.1
+tradeable_on_ge: true
+cost: 280
+lowalch: 112
+highalch: 168
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "legs"

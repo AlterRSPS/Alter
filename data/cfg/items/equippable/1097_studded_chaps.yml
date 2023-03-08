@@ -4,6 +4,11 @@ name: "Studded chaps"
 examine: "Those studs should provide a bit more protection."
 tradeable: true
 weight: 4.535
+tradeable_on_ge: true
+cost: 750
+lowalch: 300
+highalch: 450
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "legs"

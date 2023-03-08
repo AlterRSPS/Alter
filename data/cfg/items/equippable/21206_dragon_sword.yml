@@ -3,10 +3,15 @@ id: 21206
 name: "Dragon sword"
 examine: "A razor sharp sword."
 tradeable: true
-weight: 1.0
+weight: 1.814
+tradeable_on_ge: false
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 4
   attackStab: 65

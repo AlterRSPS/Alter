@@ -4,9 +4,14 @@ name: "Adamant claws"
 examine: "A set of fighting claws."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 1200
+lowalch: 480
+highalch: 720
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "2h"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 4
   attackStab: 18

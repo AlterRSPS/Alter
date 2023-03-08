@@ -4,10 +4,15 @@ name: "Victor's cape (1)"
 examine: "Shows your prowess in Last Man Standing."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 4
+lowalch: 1
+highalch: 2
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "cape"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 11
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0

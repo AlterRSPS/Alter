@@ -4,6 +4,11 @@ name: "Bronze platelegs"
 examine: "These look pretty heavy."
 tradeable: true
 weight: 9.071
+tradeable_on_ge: true
+cost: 80
+lowalch: 32
+highalch: 48
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "legs"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 8
   defenceSlash: 7
   defenceCrush: 6

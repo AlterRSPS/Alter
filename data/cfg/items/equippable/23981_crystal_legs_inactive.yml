@@ -4,9 +4,14 @@ name: "Crystal legs (inactive)"
 examine: "A bright, shiny set of leg armour."
 tradeable: false
 weight: 1.0
+tradeable_on_ge: false
+cost: 1000000
+lowalch: 400000
+highalch: 600000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

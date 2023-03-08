@@ -4,13 +4,18 @@ name: "Decorative sword"
 examine: "A very decorative sword."
 tradeable: false
 weight: 1.587
+tradeable_on_ge: false
+cost: 500
+lowalch: 200
+highalch: 300
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 9
   attackSpeed: 5
-  attackStab: 9
-  attackSlash: 14
+  attackStab: 13
+  attackSlash: 18
   attackCrush: -2
   attackMagic: 0
   attackRanged: 0

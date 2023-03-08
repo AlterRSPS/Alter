@@ -2,8 +2,13 @@
 id: 20423
 name: "Black d'hide body"
 examine: "Made from 100% real dragonhide."
-tradeable: true
+tradeable: false
 weight: 6.803
+tradeable_on_ge: false
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"
@@ -14,11 +19,11 @@ equipment:
   attackCrush: 0
   attackMagic: -15
   attackRanged: 30
-  defenceStab: 55
-  defenceSlash: 47
-  defenceCrush: 60
-  defenceMagic: 50
-  defenceRanged: 55
+  defenceStab: 30
+  defenceSlash: 38
+  defenceCrush: 45
+  defenceMagic: 45
+  defenceRanged: 50
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0

@@ -4,9 +4,14 @@ name: "Mind tiara"
 examine: "A tiara infused with the properties of the mind."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 100
+lowalch: 40
+highalch: 60
+buy_limit: 40
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "2h"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

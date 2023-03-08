@@ -4,6 +4,11 @@ name: "Fremennik brown cloak"
 examine: "The latest fashion in Rellekka."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 250
+lowalch: 100
+highalch: 150
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "cape"

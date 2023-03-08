@@ -4,6 +4,11 @@ name: "Ham gloves"
 examine: "HAM gloves as worn by the Humans Against Monsters group."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 75
+lowalch: 30
+highalch: 45
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "hands"

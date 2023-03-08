@@ -4,6 +4,11 @@ name: "Leather cowl"
 examine: "Better than no armour!"
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 24
+lowalch: 9
+highalch: 14
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "head"

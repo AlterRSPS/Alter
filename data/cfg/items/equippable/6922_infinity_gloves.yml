@@ -4,6 +4,11 @@ name: "Infinity gloves"
 examine: "Mystical gloves."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 12000
+lowalch: 4800
+highalch: 7200
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "hands"

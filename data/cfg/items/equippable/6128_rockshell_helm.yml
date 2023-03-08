@@ -4,9 +4,14 @@ name: "Rock-shell helm"
 examine: "Protective headwear made from crabs. Better than that sounds."
 tradeable: true
 weight: 2.721
+tradeable_on_ge: true
+cost: 35200
+lowalch: 14080
+highalch: 21120
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "head"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

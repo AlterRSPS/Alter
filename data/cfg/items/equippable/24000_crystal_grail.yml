@@ -4,10 +4,15 @@ name: "Crystal grail"
 examine: "Smells of victory."
 tradeable: true
 weight: 0.001
+tradeable_on_ge: true
+cost: 30000
+lowalch: 12000
+highalch: 18000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 50
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

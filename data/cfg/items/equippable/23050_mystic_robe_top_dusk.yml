@@ -4,6 +4,11 @@ name: "Mystic robe top (dusk)"
 examine: "The upper half of a dusky magical robe."
 tradeable: true
 weight: 2.721
+tradeable_on_ge: true
+cost: 120000
+lowalch: 48000
+highalch: 72000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "body"
@@ -23,4 +28,8 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null
-  skillReqs: null
+  skillReqs:
+  - skill: "magic"
+    level: 40
+  - skill: "defence"
+    level: 20

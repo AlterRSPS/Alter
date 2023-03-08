@@ -2,8 +2,13 @@
 id: 20598
 name: "Ahrim's robetop"
 examine: "Ahrim the Blighted's armoured robe top."
-tradeable: true
+tradeable: false
 weight: 4.535
+tradeable_on_ge: false
+cost: 50
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

@@ -2,12 +2,17 @@
 id: 20408
 name: "Dark bow"
 examine: "A bow from a darker dimension."
-tradeable: true
+tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 50
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 3
   attackSpeed: 9
   attackStab: 0
   attackSlash: 0

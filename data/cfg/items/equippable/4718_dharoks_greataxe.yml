@@ -4,10 +4,15 @@ name: "Dharok's greataxe"
 examine: "Dharok the Wretched's greataxe."
 tradeable: true
 weight: 3.175
+tradeable_on_ge: true
+cost: 208000
+lowalch: 83200
+highalch: 124800
+buy_limit: 15
 equipment:
   prayer: 0
-  equipSlot: "2h"
-  weaponType: 1
+  equipSlot: "head"
+  weaponType: -1
   attackSpeed: 7
   attackStab: -4
   attackSlash: 103
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 105
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 2065
-  - 823
-  - 2064
-  - 2064
-  - 2064
-  - 2064
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 70

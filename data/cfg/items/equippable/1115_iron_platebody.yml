@@ -4,6 +4,11 @@ name: "Iron platebody"
 examine: "Provides excellent protection."
 tradeable: true
 weight: 9.979
+tradeable_on_ge: true
+cost: 560
+lowalch: 224
+highalch: 336
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "body"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -30
-  attackRanged: -10
+  attackRanged: -15
   defenceStab: 21
   defenceSlash: 20
   defenceCrush: 12

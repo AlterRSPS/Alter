@@ -3,7 +3,12 @@ id: 22656
 name: "Zuriel's robe bottom"
 examine: "A powerful robe bottom."
 tradeable: true
-weight: 5.4
+weight: 5.443
+tradeable_on_ge: false
+cost: 500000
+lowalch: 200000
+highalch: 300000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"

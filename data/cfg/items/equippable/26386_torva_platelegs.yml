@@ -3,7 +3,12 @@ id: 26386
 name: "Torva platelegs"
 examine: "An ancient warrior's platelegs."
 tradeable: true
-weight: 9
+weight: 9.071
+tradeable_on_ge: true
+cost: 400000
+lowalch: 160000
+highalch: 240000
+buy_limit: null
 equipment:
   prayer: 1
   equipSlot: "legs"
@@ -12,14 +17,14 @@ equipment:
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
-  attackMagic: -21
-  attackRanged: -8
-  defenceStab: 112
-  defenceSlash: 100
-  defenceCrush: 95
-  defenceMagic: -5
-  defenceRanged: 125
-  meleeStrength: 2
+  attackMagic: -24
+  attackRanged: -11
+  defenceStab: 87
+  defenceSlash: 78
+  defenceCrush: 79
+  defenceMagic: -9
+  defenceRanged: 102
+  meleeStrength: 4
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null

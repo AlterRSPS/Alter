@@ -4,10 +4,15 @@ name: "Darklight"
 examine: "The magical sword 'Silverlight', enhanced with the blood of Agrith-Naar."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 500
+lowalch: 200
+highalch: 300
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 9
+  equipSlot: "head"
+  weaponType: -1
   attackSpeed: 5
   attackStab: 10
   attackSlash: 16
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 13
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs: null

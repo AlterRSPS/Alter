@@ -4,9 +4,14 @@ name: "Guthix halo"
 examine: "Halo with the protection of Guthix."
 tradeable: false
 weight: 0.3
+tradeable_on_ge: false
+cost: 150000
+lowalch: 60000
+highalch: 90000
+buy_limit: null
 equipment:
   prayer: 3
-  equipSlot: "hat"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

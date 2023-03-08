@@ -4,6 +4,11 @@ name: "Splitbark body"
 examine: "Provides good protection."
 tradeable: true
 weight: 4.535
+tradeable_on_ge: true
+cost: 45000
+lowalch: 18000
+highalch: 27000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "body"

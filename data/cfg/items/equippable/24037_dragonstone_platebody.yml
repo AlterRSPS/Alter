@@ -4,9 +4,14 @@ name: "Dragonstone platebody"
 examine: "A stylish rune platebody inlaid with dragonstones."
 tradeable: true
 weight: 9.979
+tradeable_on_ge: true
+cost: 65000
+lowalch: 26000
+highalch: 39000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "feet"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

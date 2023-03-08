@@ -3,11 +3,16 @@ id: 9179
 name: "Steel crossbow"
 examine: "A steel crossbow."
 tradeable: true
-weight: 4.0
+weight: 5.0
+tradeable_on_ge: true
+cost: 360
+lowalch: 144
+highalch: 216
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 5
   attackSpeed: 6
   attackStab: 0
   attackSlash: 0

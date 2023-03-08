@@ -4,9 +4,14 @@ name: "3rd age druidic cloak"
 examine: "A fabulously ancient vine cloak as worn by the druids of old."
 tradeable: true
 weight: 0.4
+tradeable_on_ge: true
+cost: 200000
+lowalch: 80000
+highalch: 120000
+buy_limit: 8
 equipment:
   prayer: 3
-  equipSlot: "cape"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
@@ -24,7 +29,7 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: "defence"
-    level: 65
   - skill: "prayer"
+    level: 65
+  - skill: "defence"
     level: 65

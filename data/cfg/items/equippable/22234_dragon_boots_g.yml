@@ -4,6 +4,11 @@ name: "Dragon boots (g)"
 examine: "These fancy boots will protect my feet."
 tradeable: false
 weight: 1.0
+tradeable_on_ge: false
+cost: 20000
+lowalch: 8000
+highalch: 12000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "feet"
@@ -24,5 +29,5 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: "attack"
+  - skill: "defence"
     level: 60

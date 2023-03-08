@@ -4,9 +4,14 @@ name: "Red partyhat"
 examine: "A nice hat from a cracker."
 tradeable: true
 weight: 0.056
+tradeable_on_ge: true
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: 5
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

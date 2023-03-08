@@ -1,9 +1,14 @@
 ---
 id: 11138
 name: "Karamja gloves 2"
-examine: "A pair of green Karamja gloves."
+examine: "A pair of gloves from Karamja."
 tradeable: false
 weight: 0.226
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "hands"

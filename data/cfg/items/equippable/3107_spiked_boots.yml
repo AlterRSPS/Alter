@@ -4,6 +4,11 @@ name: "Spiked boots"
 examine: "Climbing boots with spikes."
 tradeable: true
 weight: 0.34
+tradeable_on_ge: true
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "feet"

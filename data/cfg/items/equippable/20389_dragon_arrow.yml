@@ -2,8 +2,13 @@
 id: 20389
 name: "Dragon arrow"
 examine: "An arrow made using a dragon's talon."
-tradeable: true
+tradeable: false
 weight: 0.0
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "ammo"

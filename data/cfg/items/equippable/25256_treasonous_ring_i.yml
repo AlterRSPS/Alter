@@ -4,6 +4,11 @@ name: "Treasonous ring (i)"
 examine: "A razor sharp ring."
 tradeable: false
 weight: 0.4
+tradeable_on_ge: false
+cost: 50000
+lowalch: 20000
+highalch: 30000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "ring"

@@ -3,10 +3,15 @@ id: 11847
 name: "Black h'ween mask"
 examine: "Aaaarrrghhh, I'm an old-school monster!"
 tradeable: false
-weight: 0.0
+weight: 0.34
+tradeable_on_ge: false
+cost: 7
+lowalch: 2
+highalch: 4
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -4,6 +4,11 @@ name: "Spooky boots"
 examine: "A spooky pair of boots cut from a bedsheet!"
 tradeable: false
 weight: 0.1
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "feet"

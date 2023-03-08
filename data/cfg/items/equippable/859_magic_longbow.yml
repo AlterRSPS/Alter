@@ -4,9 +4,14 @@ name: "Magic longbow"
 examine: "A nice sturdy magical bow."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 2560
+lowalch: 1024
+highalch: 1536
+buy_limit: 18000
 equipment:
   prayer: 0
-  equipSlot: "2h"
+  equipSlot: "weapon"
   weaponType: -1
   attackSpeed: 6
   attackStab: 0

@@ -4,6 +4,11 @@ name: "Dragon crossbow"
 examine: "A dragon crossbow."
 tradeable: true
 weight: 6.0
+tradeable_on_ge: true
+cost: 54000
+lowalch: 21600
+highalch: 32400
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 4591
-  - 823
-  - 4226
-  - 4227
-  - 821
-  - 822
-  - 4228
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 64

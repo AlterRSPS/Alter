@@ -3,7 +3,12 @@ id: 6731
 name: "Seers ring"
 examine: "A mysterious ring that can fill the wearer with magical power..."
 tradeable: true
-weight: 0.0
+weight: 0.004
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "ring"

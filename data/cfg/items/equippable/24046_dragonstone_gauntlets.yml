@@ -4,6 +4,11 @@ name: "Dragonstone gauntlets"
 examine: "A stylish pair of rune gauntlets inlaid with dragonstones."
 tradeable: true
 weight: 0.226
+tradeable_on_ge: true
+cost: 12500
+lowalch: 5000
+highalch: 7500
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "hands"

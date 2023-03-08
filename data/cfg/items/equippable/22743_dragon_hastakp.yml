@@ -3,11 +3,16 @@ id: 22743
 name: "Dragon hasta(kp)"
 examine: "A karambwan poison-tipped, one-handed dragon hasta."
 tradeable: false
-weight: 2.2
+weight: 2.267
+tradeable_on_ge: false
+cost: 62400
+lowalch: 24960
+highalch: 37440
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 15
   attackSpeed: 4
   attackStab: 55
   attackSlash: 55
@@ -23,4 +28,6 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null
-  skillReqs: null
+  skillReqs:
+  - skill: "attack"
+    level: 60

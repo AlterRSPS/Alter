@@ -4,6 +4,11 @@ name: "Villager sandals"
 examine: "A brightly coloured pair of local sandals."
 tradeable: true
 weight: 0.68
+tradeable_on_ge: true
+cost: 100
+lowalch: 40
+highalch: 60
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "feet"

@@ -5,10 +5,15 @@ examine: "A sacred staff imbued with the might of Saradomin to smite his foes. I
   \ is currently uncharged."
 tradeable: false
 weight: 1.5
+tradeable_on_ge: false
+cost: 5000000
+lowalch: 2000000
+highalch: 3000000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 23
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

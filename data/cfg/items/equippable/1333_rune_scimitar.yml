@@ -4,6 +4,11 @@ name: "Rune scimitar"
 examine: "A vicious, curved sword."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 25600
+lowalch: 10240
+highalch: 15360
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 44
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 40

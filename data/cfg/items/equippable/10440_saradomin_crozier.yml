@@ -4,10 +4,15 @@ name: "Saradomin crozier"
 examine: "A Saradomin crozier."
 tradeable: true
 weight: 2.0
+tradeable_on_ge: true
+cost: 5000
+lowalch: 2000
+highalch: 3000
+buy_limit: 8
 equipment:
   prayer: 6
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 13
   attackSpeed: 5
   attackStab: 7
   attackSlash: -1

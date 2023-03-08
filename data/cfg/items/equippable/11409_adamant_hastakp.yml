@@ -4,11 +4,16 @@ name: "Adamant hasta(kp)"
 examine: "A karambwan poison-tipped, one-handed adamantite hasta."
 tradeable: false
 weight: 2.721
+tradeable_on_ge: false
+cost: 2080
+lowalch: 832
+highalch: 1248
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
-  attackSpeed: 5
+  weaponType: 15
+  attackSpeed: 4
   attackStab: 24
   attackSlash: 24
   attackCrush: 24

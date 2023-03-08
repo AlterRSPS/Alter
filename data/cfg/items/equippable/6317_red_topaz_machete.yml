@@ -4,6 +4,11 @@ name: "Red topaz machete"
 examine: "A jungle specific slashing device."
 tradeable: true
 weight: 1.36
+tradeable_on_ge: true
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -18,16 +23,9 @@ equipment:
   defenceSlash: 1
   defenceCrush: 1
   defenceMagic: 0
-  defenceRanged: 1
+  defenceRanged: 0
   meleeStrength: 10
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs: null

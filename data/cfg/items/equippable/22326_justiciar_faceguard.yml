@@ -3,10 +3,15 @@ id: 22326
 name: "Justiciar faceguard"
 examine: "A helm that once belonged to a Justiciar, a loyal zealot of Saradomin."
 tradeable: true
-weight: 2.7
+weight: 2.721
+tradeable_on_ge: true
+cost: 2000000
+lowalch: 800000
+highalch: 1200000
+buy_limit: 8
 equipment:
   prayer: 2
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

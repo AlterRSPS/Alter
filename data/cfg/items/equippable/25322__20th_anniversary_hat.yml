@@ -4,9 +4,14 @@ name: "20th anniversary hat"
 examine: "Celebrating the 20th Anniversary of RuneScape."
 tradeable: false
 weight: 0.907
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

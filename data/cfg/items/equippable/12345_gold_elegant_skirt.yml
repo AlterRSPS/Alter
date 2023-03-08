@@ -3,10 +3,15 @@ id: 12345
 name: "Gold elegant skirt"
 examine: "A rather elegant gold skirt."
 tradeable: true
-weight: 1.0
+weight: 0.1
+tradeable_on_ge: true
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "hands"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

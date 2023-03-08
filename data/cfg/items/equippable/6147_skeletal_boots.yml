@@ -4,9 +4,14 @@ name: "Skeletal boots"
 examine: "Some finely crafted Fremennik boots, made from the bones of a wallasalki."
 tradeable: true
 weight: 3.175
+tradeable_on_ge: true
+cost: 650
+lowalch: 260
+highalch: 390
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "feet"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

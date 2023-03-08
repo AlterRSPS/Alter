@@ -5,10 +5,15 @@ examine: "While this is equipped, you'll see an option for recruiting people int
   \ your clan."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 50
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

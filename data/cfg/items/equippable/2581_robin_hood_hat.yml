@@ -4,9 +4,14 @@ name: "Robin hood hat"
 examine: "Endorsed by Robin Hood."
 tradeable: true
 weight: 0.283
+tradeable_on_ge: true
+cost: 450
+lowalch: 180
+highalch: 270
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

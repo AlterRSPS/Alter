@@ -4,6 +4,11 @@ name: "Amulet of defence"
 examine: "An enchanted emerald amulet of protection."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 1275
+lowalch: 510
+highalch: 765
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "neck"

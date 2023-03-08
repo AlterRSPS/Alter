@@ -4,6 +4,11 @@ name: "Archers ring (i)"
 examine: "A fabled ring that improves the wearer's skill with a bow..."
 tradeable: false
 weight: 0.004
+tradeable_on_ge: false
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "ring"

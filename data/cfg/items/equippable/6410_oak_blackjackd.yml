@@ -4,10 +4,15 @@ name: "Oak blackjack(d)"
 examine: "A defensive blackjack."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 400
+lowalch: 160
+highalch: 240
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

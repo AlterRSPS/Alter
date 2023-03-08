@@ -4,6 +4,11 @@ name: "Mithril scimitar"
 examine: "A vicious, curved sword."
 tradeable: true
 weight: 1.587
+tradeable_on_ge: true
+cost: 1040
+lowalch: 416
+highalch: 624
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 20
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 20

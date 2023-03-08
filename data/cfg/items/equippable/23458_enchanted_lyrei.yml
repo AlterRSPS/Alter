@@ -4,10 +4,15 @@ name: "Enchanted lyre(i)"
 examine: "This will teleport me to the Fremennik province when I play it."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 50
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

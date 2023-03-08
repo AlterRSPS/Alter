@@ -4,9 +4,14 @@ name: "Abyssal bracelet(5)"
 examine: "Makes using the Abyss just slightly safer."
 tradeable: true
 weight: 0.25
+tradeable_on_ge: true
+cost: 4200
+lowalch: 1680
+highalch: 2520
+buy_limit: 10000
 equipment:
   prayer: 0
-  equipSlot: "hands"
+  equipSlot: "ammo"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

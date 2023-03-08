@@ -1,14 +1,19 @@
 ---
 id: 12848
 name: "Granite maul"
-examine: "Simplicity is the best weapon."
-tradeable: true
+examine: "Its power should not be taken for granited."
+tradeable: false
 weight: 4.535
+tradeable_on_ge: false
+cost: 50000
+lowalch: 20000
+highalch: 30000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 2
-  attackSpeed: 6
+  weaponType: 8337
+  attackSpeed: 7
   attackStab: 0
   attackSlash: 0
   attackCrush: 81
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 79
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 1662
-  - 823
-  - 1663
-  - 1663
-  - 1663
-  - 1663
-  - 1664
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 50

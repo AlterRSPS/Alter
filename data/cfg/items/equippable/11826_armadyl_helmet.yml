@@ -3,7 +3,12 @@ id: 11826
 name: "Armadyl helmet"
 examine: "A helmet of great craftsmanship."
 tradeable: true
-weight: 1.0
+weight: 0.5
+tradeable_on_ge: true
+cost: 289000
+lowalch: 115600
+highalch: 173400
+buy_limit: 8
 equipment:
   prayer: 1
   equipSlot: "head"

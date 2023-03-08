@@ -4,10 +4,15 @@ name: "Magic shortbow"
 examine: "Short and magical, but still effective."
 tradeable: true
 weight: 1.36
+tradeable_on_ge: false
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 3
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

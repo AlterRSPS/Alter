@@ -3,7 +3,12 @@ id: 1835
 name: "Desert robe"
 examine: "A cool, light desert robe."
 tradeable: true
-weight: 0.9
+weight: 0.907
+tradeable_on_ge: true
+cost: 40
+lowalch: 16
+highalch: 24
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "legs"

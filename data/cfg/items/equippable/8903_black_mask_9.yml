@@ -4,9 +4,14 @@ name: "Black mask (9)"
 examine: "A magic cave horror mask."
 tradeable: true
 weight: 10.0
+tradeable_on_ge: false
+cost: 3000
+lowalch: 1200
+highalch: 1800
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

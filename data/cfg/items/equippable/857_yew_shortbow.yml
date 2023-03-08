@@ -4,10 +4,15 @@ name: "Yew shortbow"
 examine: "A shortbow made out of yew, still effective."
 tradeable: true
 weight: 1.36
+tradeable_on_ge: true
+cost: 800
+lowalch: 320
+highalch: 480
+buy_limit: 18000
 equipment:
   prayer: 0
-  equipSlot: "2h"
-  weaponType: 3
+  equipSlot: "weapon"
+  weaponType: 19
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

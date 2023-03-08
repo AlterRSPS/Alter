@@ -4,6 +4,11 @@ name: "Tome of fire"
 examine: "An ancient tome containing the secrets of fire magic."
 tradeable: false
 weight: 1.0
+tradeable_on_ge: false
+cost: 20000
+lowalch: 8000
+highalch: 12000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "shield"

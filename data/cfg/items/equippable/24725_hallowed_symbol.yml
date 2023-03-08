@@ -4,10 +4,15 @@ name: "Hallowed symbol"
 examine: "Reduces the amount of vampyre dust to sacrifice within the Hallowed Sepulchre."
 tradeable: false
 weight: 0.007
+tradeable_on_ge: false
+cost: 100
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "neck"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 18
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0

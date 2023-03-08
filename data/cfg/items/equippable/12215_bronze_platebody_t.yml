@@ -3,7 +3,12 @@ id: 12215
 name: "Bronze platebody (t)"
 examine: "Bronze platebody with trim."
 tradeable: true
-weight: 9.5
+weight: 9.979
+tradeable_on_ge: true
+cost: 160
+lowalch: 64
+highalch: 96
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "body"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -30
-  attackRanged: -10
+  attackRanged: -15
   defenceStab: 15
   defenceSlash: 14
   defenceCrush: 9

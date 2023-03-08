@@ -3,9 +3,14 @@ id: 20997
 name: "Twisted bow"
 examine: "A mystical bow carved from the twisted remains of the Great Olm."
 tradeable: true
-weight: 1.8
+weight: 1.814
+tradeable_on_ge: true
+cost: 4000000
+lowalch: 1600000
+highalch: 2400000
+buy_limit: 8
 equipment:
-  prayer: 4
+  prayer: 0
   equipSlot: "2h"
   weaponType: 3
   attackSpeed: 6
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 20
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 75

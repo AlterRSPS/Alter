@@ -4,6 +4,11 @@ name: "Splitbark boots"
 examine: "Wooden foot protection."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 5000
+lowalch: 2000
+highalch: 3000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "feet"

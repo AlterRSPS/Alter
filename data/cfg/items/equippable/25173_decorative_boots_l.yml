@@ -4,6 +4,11 @@ name: "Decorative boots (l)"
 examine: "Very decorative boots."
 tradeable: false
 weight: 1.36
+tradeable_on_ge: false
+cost: 850
+lowalch: 340
+highalch: 510
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "feet"

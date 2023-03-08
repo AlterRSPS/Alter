@@ -3,10 +3,15 @@ id: 21898
 name: "Assembler max cape"
 examine: "The cape worn by only the most experienced players."
 tradeable: false
-weight: 0.4
+weight: 0.453
+tradeable_on_ge: false
+cost: 99000
+lowalch: 39600
+highalch: 59400
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "cape"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
@@ -58,15 +63,15 @@ equipment:
     level: 99
   - skill: "agility"
     level: 99
-  - skill: "theiving"
+  - skill: "thieving"
     level: 99
   - skill: "slayer"
     level: 99
   - skill: "farming"
     level: 99
-  - skill: "runecrafting"
+  - skill: "runecraft"
     level: 99
   - skill: "hunter"
     level: 99
-  - skill: "contruction"
+  - skill: "construction"
     level: 99

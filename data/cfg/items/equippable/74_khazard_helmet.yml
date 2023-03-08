@@ -4,6 +4,11 @@ name: "Khazard helmet"
 examine: "A helmet, as worn by the minions of General Khazard."
 tradeable: false
 weight: 2.721
+tradeable_on_ge: false
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "head"

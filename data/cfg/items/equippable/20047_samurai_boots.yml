@@ -3,7 +3,12 @@ id: 20047
 name: "Samurai boots"
 examine: "Armoured socks of the Samurai."
 tradeable: true
-weight: 0.9
+weight: 0.95
+tradeable_on_ge: true
+cost: 4500
+lowalch: 1800
+highalch: 2700
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "feet"
@@ -23,4 +28,6 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null
-  skillReqs: null
+  skillReqs:
+  - skill: "defence"
+    level: 35

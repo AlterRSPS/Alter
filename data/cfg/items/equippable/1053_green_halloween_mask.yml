@@ -3,10 +3,15 @@ id: 1053
 name: "Green halloween mask"
 examine: "Aaaarrrghhh ... I'm a monster."
 tradeable: true
-weight: 0.0
+weight: 0.34
+tradeable_on_ge: true
+cost: 15
+lowalch: 6
+highalch: 9
+buy_limit: 5
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

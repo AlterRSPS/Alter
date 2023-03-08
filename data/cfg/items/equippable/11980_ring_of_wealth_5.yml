@@ -3,7 +3,12 @@ id: 11980
 name: "Ring of wealth (5)"
 examine: "An enchanted ring with five teleport charges."
 tradeable: true
-weight: 0.0
+weight: 0.006
+tradeable_on_ge: true
+cost: 17625
+lowalch: 7050
+highalch: 10575
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "ring"

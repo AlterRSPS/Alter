@@ -4,6 +4,11 @@ name: "Tribal top"
 examine: "Local dress."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 300
+lowalch: 120
+highalch: 180
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "body"

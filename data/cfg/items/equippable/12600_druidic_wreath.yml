@@ -3,10 +3,15 @@ id: 12600
 name: "Druidic wreath"
 examine: "This one's more common than you'd expect."
 tradeable: false
-weight: 0.7
+weight: 0.32
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

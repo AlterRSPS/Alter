@@ -4,10 +4,15 @@ name: "Black mask (7) (i)"
 examine: "A magic cave horror mask."
 tradeable: false
 weight: 10.0
+tradeable_on_ge: false
+cost: 3000
+lowalch: 1200
+highalch: 1800
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 0
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
   skillReqs:
   - skill: "defence"
     level: 10

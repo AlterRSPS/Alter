@@ -3,17 +3,22 @@ id: 12291
 name: "Mithril kiteshield (t)"
 examine: "Mithril kiteshield with trim."
 tradeable: true
-weight: 4.5
+weight: 4.535
+tradeable_on_ge: true
+cost: 2210
+lowalch: 884
+highalch: 1326
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "shield"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 21
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -8
-  attackRanged: -2
+  attackRanged: -3
   defenceStab: 18
   defenceSlash: 22
   defenceCrush: 20
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
   skillReqs:
   - skill: "defence"
     level: 20

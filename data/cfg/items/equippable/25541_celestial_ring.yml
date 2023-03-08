@@ -5,6 +5,11 @@ examine: "A ring forged in the heart of a shooting star. It provides some useful
   \ boosts."
 tradeable: false
 weight: 0.006
+tradeable_on_ge: false
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "ring"

@@ -4,6 +4,11 @@ name: "Onyx bracelet"
 examine: "Yep, this is most definitely valuable!"
 tradeable: true
 weight: 0.25
+tradeable_on_ge: true
+cost: 201000
+lowalch: 80400
+highalch: 120600
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "hands"

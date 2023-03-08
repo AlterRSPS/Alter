@@ -3,7 +3,12 @@ id: 20834
 name: "Sack of presents"
 examine: "You too can look like Santa."
 tradeable: false
-weight: 0.0
+weight: 0.003
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "cape"

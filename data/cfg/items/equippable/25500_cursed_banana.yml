@@ -4,10 +4,15 @@ name: "Cursed banana"
 examine: "A cursed banana which forces the individual to take on monkey-like mannerisms."
 tradeable: false
 weight: 0.1
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 18
+  weaponType: 8337
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100

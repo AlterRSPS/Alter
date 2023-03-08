@@ -4,9 +4,14 @@ name: "Skills necklace"
 examine: "You will need to recharge the necklace at the Legends Guild."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 20200
+lowalch: 8080
+highalch: 12120
+buy_limit: 10000
 equipment:
   prayer: 0
-  equipSlot: "neck"
+  equipSlot: "weapon"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

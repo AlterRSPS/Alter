@@ -2,8 +2,13 @@
 id: 25975
 name: "Lightbearer"
 examine: "A heavy ring that glimmers with a strange power."
-tradeable: false
+tradeable: true
 weight: 0.05
+tradeable_on_ge: true
+cost: 1000000
+lowalch: 400000
+highalch: 600000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "ring"

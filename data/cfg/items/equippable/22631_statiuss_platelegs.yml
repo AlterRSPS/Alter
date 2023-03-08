@@ -3,10 +3,15 @@ id: 22631
 name: "Statius's platelegs"
 examine: "A powerful pair of platelegs."
 tradeable: true
-weight: 9.0
+weight: 9.071
+tradeable_on_ge: false
+cost: 500000
+lowalch: 200000
+highalch: 300000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 3

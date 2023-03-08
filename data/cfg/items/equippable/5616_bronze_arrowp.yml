@@ -4,6 +4,11 @@ name: "Bronze arrow(p+)"
 examine: "Venomous-looking arrows."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: 7000
 equipment:
   prayer: 0
   equipSlot: "ammo"

@@ -4,6 +4,11 @@ name: "Granite helm"
 examine: "A stone helmet."
 tradeable: true
 weight: 4.535
+tradeable_on_ge: true
+cost: 46000
+lowalch: 18400
+highalch: 27600
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "head"

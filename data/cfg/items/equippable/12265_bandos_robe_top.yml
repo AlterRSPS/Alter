@@ -3,7 +3,12 @@ id: 12265
 name: "Bandos robe top"
 examine: "Bandos Vestments."
 tradeable: true
-weight: 1.0
+weight: 1.8
+tradeable_on_ge: true
+cost: 7000
+lowalch: 2800
+highalch: 4200
+buy_limit: 8
 equipment:
   prayer: 6
   equipSlot: "body"

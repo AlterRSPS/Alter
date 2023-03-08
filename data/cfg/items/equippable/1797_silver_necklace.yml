@@ -1,9 +1,14 @@
 ---
 id: 1797
 name: "Silver necklace"
-examine: "Anna's shiny silver coated necklace."
+examine: "Anna's shiny silver coated necklace coated with a thin layer of flour."
 tradeable: false
 weight: 0.01
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "neck"

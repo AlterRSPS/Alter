@@ -3,11 +3,16 @@ id: 22647
 name: "Zuriel's staff"
 examine: "A powerful staff."
 tradeable: true
-weight: 2.2
+weight: 2.267
+tradeable_on_ge: true
+cost: 300000
+lowalch: 120000
+highalch: 180000
+buy_limit: 10
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 13
   attackSpeed: 5
   attackStab: 13
   attackSlash: -1

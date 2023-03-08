@@ -1,9 +1,14 @@
 ---
 id: 7803
 name: "Yin yang amulet"
-examine: "A non-magical copy of the make-over mage's amulet."
+examine: "A non-magical copy of the Makeover Mage's amulet."
 tradeable: false
 weight: 0.001
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "neck"

@@ -3,7 +3,12 @@ id: 19955
 name: "Shayzien scarf"
 examine: "A red scarf adorned with a skull."
 tradeable: true
-weight: 0.0
+weight: 0.5
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "neck"

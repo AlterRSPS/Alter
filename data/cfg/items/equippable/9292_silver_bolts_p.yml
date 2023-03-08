@@ -4,6 +4,11 @@ name: "Silver bolts (p)"
 examine: "Some poisoned silver bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 5
+lowalch: 2
+highalch: 3
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

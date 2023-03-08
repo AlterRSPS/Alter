@@ -4,10 +4,15 @@ name: "Bone dagger"
 examine: "A powerful dagger."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 5
   attackSlash: 3

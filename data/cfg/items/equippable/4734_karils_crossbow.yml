@@ -4,10 +4,15 @@ name: "Karil's crossbow"
 examine: "Karil the Tainted's repeating crossbow."
 tradeable: true
 weight: 3.628
+tradeable_on_ge: true
+cost: 160000
+lowalch: 64000
+highalch: 96000
+buy_limit: 15
 equipment:
   prayer: 0
-  equipSlot: "2h"
-  weaponType: 5
+  equipSlot: "legs"
+  weaponType: -1
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 2074
-  - 823
-  - 2076
-  - 2076
-  - 2076
-  - 2076
-  - 2077
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 70

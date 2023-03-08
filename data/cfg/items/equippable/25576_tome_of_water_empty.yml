@@ -4,6 +4,11 @@ name: "Tome of water (empty)"
 examine: "An ancient tome containing the secrets of water magic."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 19500
+lowalch: 7800
+highalch: 11700
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "shield"

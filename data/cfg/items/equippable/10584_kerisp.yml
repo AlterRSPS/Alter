@@ -4,10 +4,15 @@ name: "Keris(p++)"
 examine: "The twisted blade is covered with a nasty poison."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: null
 equipment:
   prayer: 2
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 40
   attackSlash: 20

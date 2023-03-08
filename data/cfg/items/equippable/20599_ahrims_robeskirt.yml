@@ -2,8 +2,13 @@
 id: 20599
 name: "Ahrim's robeskirt"
 examine: "Ahrim the Blighted's armoured robe skirt."
-tradeable: true
+tradeable: false
 weight: 11.339
+tradeable_on_ge: false
+cost: 50
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"

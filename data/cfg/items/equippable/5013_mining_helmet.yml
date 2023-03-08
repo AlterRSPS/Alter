@@ -1,12 +1,17 @@
 ---
 id: 5013
 name: "Mining helmet"
-examine: "A helmet with an unlit lamp on it."
-tradeable: true
-weight: 0.9
+examine: "A helmet with a lamp on it."
+tradeable: false
+weight: 0.907
+tradeable_on_ge: false
+cost: 600
+lowalch: 240
+highalch: 360
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

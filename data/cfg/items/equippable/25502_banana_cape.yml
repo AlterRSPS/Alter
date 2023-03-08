@@ -4,6 +4,11 @@ name: "Banana cape"
 examine: "The cape worn by master banana peelers."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 0
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "cape"

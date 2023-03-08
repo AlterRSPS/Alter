@@ -3,10 +3,15 @@ id: 12524
 name: "Black dragon mask"
 examine: "Do I look scary?"
 tradeable: true
-weight: 2.0
+weight: 2.267
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "hat"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

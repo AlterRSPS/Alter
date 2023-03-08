@@ -4,6 +4,11 @@ name: "Elven top"
 examine: "Clothing from the elven city of Prifddinas."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 5000
+lowalch: 2000
+highalch: 3000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

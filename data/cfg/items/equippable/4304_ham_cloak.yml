@@ -4,6 +4,11 @@ name: "Ham cloak"
 examine: "A HAM cape."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 75
+lowalch: 30
+highalch: 45
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "cape"
@@ -16,9 +21,9 @@ equipment:
   attackRanged: 0
   defenceStab: 0
   defenceSlash: 1
-  defenceCrush: 2
+  defenceCrush: 1
   defenceMagic: 0
-  defenceRanged: 1
+  defenceRanged: 2
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0

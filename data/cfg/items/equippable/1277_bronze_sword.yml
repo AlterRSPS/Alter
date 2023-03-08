@@ -4,10 +4,15 @@ name: "Bronze sword"
 examine: "A razor sharp sword."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 26
+lowalch: 10
+highalch: 15
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 17
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 4
   attackSlash: 3
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 5
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 1

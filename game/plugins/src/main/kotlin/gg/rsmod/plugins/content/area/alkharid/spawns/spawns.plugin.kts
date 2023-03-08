@@ -13,7 +13,7 @@ spawn_npc(Npcs.ALKHARID_WARRIOR, 3301, 3170, 0, 3, Direction.SOUTH)
 spawn_npc(Npcs.ALKHARID_WARRIOR, 3282, 3176, 0, 3, Direction.EAST)
 spawn_npc(Npcs.ALKHARID_WARRIOR, 3284, 3174, 0, 3, Direction.NORTH)
 spawn_npc(Npcs.ALKHARID_WARRIOR, 3284, 3170, 0, 3, Direction.NORTH)*/
-spawn_npc(Npcs.HASSAN, 3302, 3163, 0, 5, Direction.NORTH)
+    //spawn_npc(Npcs.HASSAN, 3302, 3163, 0, 5, Direction.NORTH)
 spawn_npc(Npcs.ZEKE, 3287, 3190, 0, 3, Direction.EAST)
 //spawn_npc(Npcs.MAN_3101, 3277, 3186, 0, 3, Direction.EAST)
 spawn_npc(Npcs.OSMAN_4286, 3286, 3180, 0, 0, Direction.NORTH)

@@ -4,6 +4,11 @@ name: "Crystal bow (perfected)"
 examine: "A powerful bow formed from crystal and wood."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 3
   equipSlot: "2h"

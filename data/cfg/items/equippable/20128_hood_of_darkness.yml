@@ -3,10 +3,15 @@ id: 20128
 name: "Hood of darkness"
 examine: "A dark power is woven into this hood."
 tradeable: true
-weight: 0.4
+weight: 0.453
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "2h"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
@@ -23,4 +28,8 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null
-  skillReqs: null
+  skillReqs:
+  - skill: "magic"
+    level: 40
+  - skill: "defence"
+    level: 20

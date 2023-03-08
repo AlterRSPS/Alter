@@ -4,10 +4,15 @@ name: "Noose wand"
 examine: "A noose on a stick."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 4
+lowalch: 1
+highalch: 2
+buy_limit: 40
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 15
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

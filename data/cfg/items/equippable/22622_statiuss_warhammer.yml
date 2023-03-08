@@ -3,11 +3,16 @@ id: 22622
 name: "Statius's warhammer"
 examine: "A powerful warhammer."
 tradeable: true
-weight: 1.8
+weight: 1.814
+tradeable_on_ge: true
+cost: 300000
+lowalch: 120000
+highalch: 180000
+buy_limit: 10
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 17
   attackSpeed: 5
   attackStab: -4
   attackSlash: -4

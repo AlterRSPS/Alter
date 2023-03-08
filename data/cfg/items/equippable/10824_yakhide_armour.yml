@@ -4,6 +4,11 @@ name: "Yak-hide armour"
 examine: "Leg protection, made from smelly yak-hide."
 tradeable: true
 weight: 2.721
+tradeable_on_ge: true
+cost: 500
+lowalch: 200
+highalch: 300
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "legs"

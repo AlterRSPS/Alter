@@ -4,10 +4,15 @@ name: "Skewer"
 examine: "Generally used for impaling fresh meat."
 tradeable: true
 weight: 2.041
+tradeable_on_ge: true
+cost: 3200
+lowalch: 1280
+highalch: 1920
+buy_limit: 50
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 9
   attackSpeed: 5
   attackStab: 20
   attackSlash: 29

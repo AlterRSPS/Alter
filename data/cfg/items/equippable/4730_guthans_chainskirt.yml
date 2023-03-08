@@ -4,16 +4,21 @@ name: "Guthan's chainskirt"
 examine: "Guthan the Infested's chainskirt."
 tradeable: true
 weight: 8.164
+tradeable_on_ge: true
+cost: 275000
+lowalch: 110000
+highalch: 165000
+buy_limit: 15
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -14
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 75
   defenceSlash: 72
   defenceCrush: 73

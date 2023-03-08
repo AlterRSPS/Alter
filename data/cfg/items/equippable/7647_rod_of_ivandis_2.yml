@@ -3,11 +3,16 @@ id: 7647
 name: "Rod of ivandis (2)"
 examine: "2! 2 charges left! Ha Ha Ha."
 tradeable: false
-weight: 2.0
+weight: 0.001
+tradeable_on_ge: false
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 13
   attackSpeed: 5
   attackStab: 0
   attackSlash: -1

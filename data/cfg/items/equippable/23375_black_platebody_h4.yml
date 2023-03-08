@@ -4,9 +4,14 @@ name: "Black platebody (h4)"
 examine: "Black plate body with a heraldic design."
 tradeable: true
 weight: 9.979
+tradeable_on_ge: true
+cost: 3840
+lowalch: 1536
+highalch: 2304
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "hat"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

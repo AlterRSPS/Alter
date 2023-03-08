@@ -4,10 +4,15 @@ name: "Banner"
 examine: "A banner with the symbol of Guthix."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

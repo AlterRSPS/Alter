@@ -3,17 +3,22 @@ id: 21892
 name: "Dragon platebody"
 examine: "Provides excellent protection."
 tradeable: true
-weight: 11.3
+weight: 11.339
+tradeable_on_ge: true
+cost: 2000000
+lowalch: 800000
+highalch: 1200000
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "weapon"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -30
-  attackRanged: -10
+  attackRanged: -15
   defenceStab: 109
   defenceSlash: 107
   defenceCrush: 97

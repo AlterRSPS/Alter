@@ -3,7 +3,12 @@ id: 1478
 name: "Amulet of accuracy"
 examine: "It increases my aim."
 tradeable: true
-weight: 0.0
+weight: 0.01
+tradeable_on_ge: true
+cost: 100
+lowalch: 40
+highalch: 60
+buy_limit: 5
 equipment:
   prayer: 0
   equipSlot: "neck"

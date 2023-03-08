@@ -4,9 +4,14 @@ name: "Fremennik kilt"
 examine: "A kilt worn by the mightiest of Fremennik warriors."
 tradeable: true
 weight: 3.0
+tradeable_on_ge: true
+cost: 60000
+lowalch: 24000
+highalch: 36000
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

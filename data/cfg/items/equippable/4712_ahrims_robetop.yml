@@ -4,9 +4,14 @@ name: "Ahrim's robetop"
 examine: "Ahrim the Blighted's armoured robe top."
 tradeable: true
 weight: 4.535
+tradeable_on_ge: true
+cost: 50000
+lowalch: 20000
+highalch: 30000
+buy_limit: 15
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

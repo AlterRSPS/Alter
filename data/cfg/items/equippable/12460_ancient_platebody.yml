@@ -1,19 +1,24 @@
 ---
 id: 12460
 name: "Ancient platebody"
-examine: "Rune platebody in the colours of Ancient."
+examine: "Rune platebody in the colours of a long-forgotten god."
 tradeable: true
-weight: 9.0
+weight: 9.979
+tradeable_on_ge: true
+cost: 65000
+lowalch: 26000
+highalch: 39000
+buy_limit: 8
 equipment:
   prayer: 1
-  equipSlot: "body"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -30
-  attackRanged: -10
+  attackRanged: -15
   defenceStab: 82
   defenceSlash: 80
   defenceCrush: 72
@@ -24,5 +29,5 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: "attack"
+  - skill: "defence"
     level: 40

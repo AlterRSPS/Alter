@@ -4,10 +4,15 @@ name: "Lucky shot flag"
 examine: "The flag of The Lucky Shot."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 400
+lowalch: 160
+highalch: 240
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

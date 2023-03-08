@@ -4,10 +4,15 @@ name: "Maple longbow"
 examine: "A nice sturdy bow made out of Maple."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 640
+lowalch: 256
+highalch: 384
+buy_limit: 18000
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 3
   attackSpeed: 6
   attackStab: 0
   attackSlash: 0
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
   skillReqs:
   - skill: "ranged"
     level: 30

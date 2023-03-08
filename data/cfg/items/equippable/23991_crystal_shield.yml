@@ -4,9 +4,14 @@ name: "Crystal shield"
 examine: "A nice sturdy crystal shield."
 tradeable: false
 weight: 2.721
+tradeable_on_ge: false
+cost: 300000
+lowalch: 120000
+highalch: 180000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "shield"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

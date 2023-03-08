@@ -4,6 +4,11 @@ name: "Chicken"
 examine: "He'd be easier to carry if I cooked and ate him first..."
 tradeable: false
 weight: 5.0
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "shield"

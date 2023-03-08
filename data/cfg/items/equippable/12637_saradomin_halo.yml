@@ -4,6 +4,11 @@ name: "Saradomin halo"
 examine: "Halo with the protection of Saradomin."
 tradeable: false
 weight: 0.3
+tradeable_on_ge: false
+cost: 150000
+lowalch: 60000
+highalch: 90000
+buy_limit: null
 equipment:
   prayer: 3
   equipSlot: "hat"

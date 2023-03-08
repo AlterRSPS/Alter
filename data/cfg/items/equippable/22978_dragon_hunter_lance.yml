@@ -3,11 +3,16 @@ id: 22978
 name: "Dragon hunter lance"
 examine: "A lance that is exceptionally good at killing dragons and their ilk."
 tradeable: true
-weight: 0.0
+weight: 3.0
+tradeable_on_ge: true
+cost: 300000
+lowalch: 120000
+highalch: 180000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 15
   attackSpeed: 4
   attackStab: 85
   attackSlash: 65
@@ -24,5 +29,5 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: null
-    level: 0
+  - skill: "attack"
+    level: 70

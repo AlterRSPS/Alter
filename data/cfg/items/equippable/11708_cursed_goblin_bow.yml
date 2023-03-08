@@ -3,12 +3,17 @@ id: 11708
 name: "Cursed goblin bow"
 examine: "A curse has been placed on this bow."
 tradeable: false
-weight: 2.0
+weight: 1.814
+tradeable_on_ge: false
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
   weaponType: 3
-  attackSpeed: 5
+  attackSpeed: 6
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs: null

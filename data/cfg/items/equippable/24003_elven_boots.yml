@@ -4,9 +4,14 @@ name: "Elven boots"
 examine: "Decorative elven boots."
 tradeable: true
 weight: 4.535
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "feet"
+  equipSlot: "ring"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

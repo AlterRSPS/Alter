@@ -3,7 +3,12 @@ id: 20014
 name: "3rd age pickaxe"
 examine: "A beautifully crafted pickaxe, shaped by ancient smiths."
 tradeable: true
-weight: 2.2
+weight: 2.4
+tradeable_on_ge: true
+cost: 97950
+lowalch: 39180
+highalch: 58770
+buy_limit: 40
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 42
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 65

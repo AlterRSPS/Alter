@@ -1,9 +1,14 @@
 ---
 id: 12006
 name: "Abyssal tentacle"
-examine: "A weapon from the abyss, embedded in a slimy tentacle."
+examine: "A weapon from the Abyss, embedded in a slimy tentacle."
 tradeable: false
-weight: 0.0
+weight: 0.453
+tradeable_on_ge: false
+cost: 289800
+lowalch: 115920
+highalch: 173880
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 86
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 1660
-  - 1660
-  - 1660
-  - 1660
-  - 1661
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 75

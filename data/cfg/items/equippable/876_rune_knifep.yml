@@ -4,9 +4,14 @@ name: "Rune knife(p)"
 examine: "A finely balanced throwing knife."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 166
+lowalch: 66
+highalch: 99
+buy_limit: 7000
 equipment:
   prayer: 0
-  equipSlot: "weapon"
+  equipSlot: "ammo"
   weaponType: -1
   attackSpeed: 3
   attackStab: 0

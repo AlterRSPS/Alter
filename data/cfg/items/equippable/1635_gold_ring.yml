@@ -4,6 +4,11 @@ name: "Gold ring"
 examine: "A valuable ring."
 tradeable: true
 weight: 0.004
+tradeable_on_ge: true
+cost: 350
+lowalch: 140
+highalch: 210
+buy_limit: 18000
 equipment:
   prayer: 0
   equipSlot: "ring"

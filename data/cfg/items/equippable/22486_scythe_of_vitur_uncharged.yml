@@ -4,10 +4,15 @@ name: "Scythe of vitur (uncharged)"
 examine: "A powerful scythe. It is currently uncharged."
 tradeable: true
 weight: 3.175
+tradeable_on_ge: true
+cost: 4000000
+lowalch: 1600000
+highalch: 2400000
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "2h"
-  weaponType: 14
+  equipSlot: "cape"
+  weaponType: -1
   attackSpeed: 5
   attackStab: 50
   attackSlash: 75
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 50
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 75

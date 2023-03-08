@@ -1,9 +1,14 @@
 ---
 id: 2669
 name: "Guthix platebody"
-examine: "Rune plate body in the colours of Guthix."
+examine: "Rune platebody in the colours of Guthix."
 tradeable: true
 weight: 9.979
+tradeable_on_ge: true
+cost: 65000
+lowalch: 26000
+highalch: 39000
+buy_limit: 8
 equipment:
   prayer: 1
   equipSlot: "body"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -30
-  attackRanged: -10
+  attackRanged: -15
   defenceStab: 82
   defenceSlash: 80
   defenceCrush: 72

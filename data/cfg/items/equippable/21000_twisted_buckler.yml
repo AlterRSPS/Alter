@@ -3,7 +3,12 @@ id: 21000
 name: "Twisted buckler"
 examine: "A buckler carved from the twisted remains of the Great Olm."
 tradeable: true
-weight: 4.5
+weight: 5.443
+tradeable_on_ge: true
+cost: 90000
+lowalch: 36000
+highalch: 54000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "shield"
@@ -20,7 +25,7 @@ equipment:
   defenceMagic: 26
   defenceRanged: 58
   meleeStrength: 0
-  rangedStrength: 0
+  rangedStrength: 10
   magicDamage: 0
   renderAnimations: null
   skillReqs:

@@ -4,10 +4,15 @@ name: "Rune warhammer"
 examine: "I don't think it's intended for joinery."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 41500
+lowalch: 16600
+highalch: 24900
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 6
   attackStab: -4
   attackSlash: -4
@@ -19,7 +24,7 @@ equipment:
   defenceCrush: 0
   defenceMagic: 0
   defenceRanged: 0
-  meleeStrength: 48
+  meleeStrength: 62
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null

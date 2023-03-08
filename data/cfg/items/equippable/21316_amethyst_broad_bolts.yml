@@ -4,6 +4,11 @@ name: "Amethyst broad bolts"
 examine: "Crossbow bolts with amethyst broad tips."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 240
+lowalch: 96
+highalch: 144
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

@@ -4,6 +4,11 @@ name: "Guthix stole"
 examine: "A Guthix stole."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 2500
+lowalch: 1000
+highalch: 1500
+buy_limit: 8
 equipment:
   prayer: 10
   equipSlot: "neck"

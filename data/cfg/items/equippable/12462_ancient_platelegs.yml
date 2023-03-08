@@ -1,19 +1,24 @@
 ---
 id: 12462
 name: "Ancient platelegs"
-examine: "Rune platelegs in the colours of Ancient."
+examine: "Rune platelegs in the colours of a long-forgotten god."
 tradeable: true
-weight: 9.5
+weight: 9.071
+tradeable_on_ge: true
+cost: 64000
+lowalch: 25600
+highalch: 38400
+buy_limit: 8
 equipment:
   prayer: 1
-  equipSlot: "legs"
+  equipSlot: "2h"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 51
   defenceSlash: 49
   defenceCrush: 47
@@ -24,5 +29,5 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: "attack"
+  - skill: "defence"
     level: 40

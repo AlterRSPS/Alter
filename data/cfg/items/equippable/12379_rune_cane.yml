@@ -3,11 +3,16 @@ id: 12379
 name: "Rune cane"
 examine: "A dragonstone topped cane."
 tradeable: true
-weight: 0.5
+weight: 1.814
+tradeable_on_ge: true
+cost: 14400
+lowalch: 5760
+highalch: 8640
+buy_limit: 4
 equipment:
   prayer: 4
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 5
   attackStab: 20
   attackSlash: -2

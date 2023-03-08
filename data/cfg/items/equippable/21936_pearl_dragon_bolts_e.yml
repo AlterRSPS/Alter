@@ -4,6 +4,11 @@ name: "Pearl dragon bolts (e)"
 examine: "Enchanted Dragon crossbow bolts, tipped with pearl."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 680
+lowalch: 272
+highalch: 408
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

@@ -4,6 +4,11 @@ name: "Adamant bolts (p+)"
 examine: "Some poisoned adamantite bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 58
+lowalch: 23
+highalch: 34
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

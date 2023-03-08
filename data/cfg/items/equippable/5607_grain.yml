@@ -4,6 +4,11 @@ name: "Grain"
 examine: "A sack full of grain."
 tradeable: false
 weight: 5.0
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "cape"

@@ -4,6 +4,11 @@ name: "Dragon chainbody"
 examine: "A series of connected metal rings."
 tradeable: true
 weight: 6.803
+tradeable_on_ge: true
+cost: 250000
+lowalch: 100000
+highalch: 150000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "body"

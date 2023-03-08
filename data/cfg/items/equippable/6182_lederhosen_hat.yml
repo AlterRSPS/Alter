@@ -4,9 +4,14 @@ name: "Lederhosen hat"
 examine: "A hat with a goat's hair attached."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -4,10 +4,15 @@ name: "Zamorak godsword (or)"
 examine: "An ornamented, terrifying, heavy sword."
 tradeable: false
 weight: 10.0
+tradeable_on_ge: false
+cost: 1250000
+lowalch: 500000
+highalch: 750000
+buy_limit: null
 equipment:
   prayer: 8
-  equipSlot: "2h"
-  weaponType: 10
+  equipSlot: "weapon"
+  weaponType: 17
   attackSpeed: 6
   attackStab: 0
   attackSlash: 132
@@ -23,13 +28,13 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations:
-  - 7053
-  - 7044
-  - 7052
-  - 7049
-  - 7048
-  - 7047
-  - 7043
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
   skillReqs:
   - skill: "attack"
     level: 75

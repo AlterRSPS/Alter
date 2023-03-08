@@ -4,6 +4,11 @@ name: "Infinity bottoms"
 examine: "Mystical robes."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 90000
+lowalch: 36000
+highalch: 54000
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "legs"

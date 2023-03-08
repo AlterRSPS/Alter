@@ -4,6 +4,11 @@ name: "Dragon bolts (p)"
 examine: "Some poisoned dragon bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 430
+lowalch: 172
+highalch: 258
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

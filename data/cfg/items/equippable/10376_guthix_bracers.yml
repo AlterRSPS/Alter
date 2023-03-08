@@ -4,6 +4,11 @@ name: "Guthix bracers"
 examine: "Guthix blessed dragonhide vambraces."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 6000
+lowalch: 2400
+highalch: 3600
+buy_limit: 8
 equipment:
   prayer: 1
   equipSlot: "hands"

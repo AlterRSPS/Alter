@@ -4,6 +4,11 @@ name: "Amethyst javelin(p++)"
 examine: "An amethyst tipped javelin."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 420
+lowalch: 168
+highalch: 252
+buy_limit: 7000
 equipment:
   prayer: 0
   equipSlot: "ammo"

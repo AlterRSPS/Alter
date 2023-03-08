@@ -3,11 +3,16 @@ id: 22288
 name: "Trident of the seas (e)"
 examine: "An enhanced weapon from the deep."
 tradeable: false
-weight: 1.0
+weight: 1.814
+tradeable_on_ge: false
+cost: 98500
+lowalch: 39400
+highalch: 59100
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 23
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "magic"
     level: 75

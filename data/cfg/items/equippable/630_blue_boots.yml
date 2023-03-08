@@ -4,6 +4,11 @@ name: "Blue boots"
 examine: "They're soft, silky and blue."
 tradeable: true
 weight: 0.34
+tradeable_on_ge: true
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "feet"

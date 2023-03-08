@@ -4,9 +4,14 @@ name: "Crystal body"
 examine: "Sturdier than it looks."
 tradeable: false
 weight: 2.0
+tradeable_on_ge: false
+cost: 1500000
+lowalch: 600000
+highalch: 900000
+buy_limit: null
 equipment:
   prayer: 3
-  equipSlot: "body"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

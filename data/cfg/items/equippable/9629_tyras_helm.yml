@@ -4,9 +4,14 @@ name: "Tyras helm"
 examine: "As used by King Tyras' personal guard."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 550
+lowalch: 220
+highalch: 330
+buy_limit: 150
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -4,9 +4,14 @@ name: "Dragon javelin(p+)"
 examine: "A dragon tipped javelin."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 450
+lowalch: 180
+highalch: 270
+buy_limit: 11000
 equipment:
   prayer: 0
-  equipSlot: "ammo"
+  equipSlot: "feet"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

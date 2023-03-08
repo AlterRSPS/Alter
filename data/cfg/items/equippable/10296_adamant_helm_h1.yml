@@ -4,6 +4,11 @@ name: "Adamant helm (h1)"
 examine: "An adamant helmet with a heraldic design."
 tradeable: true
 weight: 3.175
+tradeable_on_ge: true
+cost: 3520
+lowalch: 1408
+highalch: 2112
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "head"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -6
-  attackRanged: -2
+  attackRanged: -3
   defenceStab: 19
   defenceSlash: 21
   defenceCrush: 16

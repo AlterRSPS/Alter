@@ -3,10 +3,15 @@ id: 13344
 name: "Inverted santa hat"
 examine: "An inverted Santa hat worn by Santa's White Knight bodyguards."
 tradeable: false
-weight: 0.0
+weight: 0.113
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

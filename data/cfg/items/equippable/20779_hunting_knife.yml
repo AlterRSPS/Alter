@@ -3,11 +3,16 @@ id: 20779
 name: "Hunting knife"
 examine: "It's so stabby, do do do-do-do doooo."
 tradeable: false
-weight: 0.0
+weight: 0.453
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 2
+  weaponType: 8337
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: -10
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 2911
-  - 2912
-  - 7327
-  - 7327
-  - 7327
-  - 7327
-  - 2322
+  renderAnimations: null
   skillReqs: null

@@ -5,12 +5,25 @@ import gg.rsmod.game.model.attr.INTERACTING_SLOT_ATTR
 import gg.rsmod.game.model.priv.Privilege
 import java.lang.NullPointerException
 
+val itemListBySlot = hashMapOf<Int, Int>()
+
+on_world_init {
+    val itemEnum = world.definitions.get(EnumDef::class.java, 1124)
+    itemEnum.values.forEach { it ->
+        val item = it.value as Int
+        val slot = it.key as Int
+        itemListBySlot[slot] = item
+    }
+}
+
+
+
 on_command("tournament", Privilege.ADMIN_POWER) {
     Tournament_Supplies.open(player)
 }
 
 on_button(interfaceId = Tournament_Supplies.TOURNAMENT_SUPPLIES_INTERFACE, component = 4) {
-    val itemid = player.attr[INTERACTING_ITEM_ID]!!
+    val itemid = itemListBySlot[player.attr[INTERACTING_SLOT_ATTR]!!]!!
     val option = player.getInteractingOption()
     if (world.definitions.getCount(ItemDef::class.java) < itemid) {
         player.message("[Unhandled item] - $itemid")

@@ -3,7 +3,12 @@ id: 21301
 name: "Obsidian platebody"
 examine: "Provides excellent protection."
 tradeable: true
-weight: 9.0
+weight: 9.979
+tradeable_on_ge: true
+cost: 84000
+lowalch: 33600
+highalch: 50400
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "body"

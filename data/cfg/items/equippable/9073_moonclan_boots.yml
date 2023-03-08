@@ -4,6 +4,11 @@ name: "Moonclan boots"
 examine: "Groovy foot protection."
 tradeable: false
 weight: 0.907
+tradeable_on_ge: false
+cost: 900
+lowalch: 360
+highalch: 540
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "feet"

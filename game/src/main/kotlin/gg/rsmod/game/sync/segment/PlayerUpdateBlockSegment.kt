@@ -76,8 +76,8 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 buf.put(structure[1].type, structure[1].order, structure[1].transformation, chatMessage.icon)
                 buf.put(structure[2].type, structure[2].order, structure[2].transformation, if (chatMessage.type == ChatMessage.ChatType.AUTOCHAT) 1 else 0)
                 buf.put(structure[3].type, structure[3].order, structure[3].transformation, length + if(chatLength >= 0x80) 2 else 1)
-                buf.putBytesReverse(structure[4].transformation, compressed, length)
                 buf.putSmart(chatLength)
+                buf.putBytes(structure[4].transformation, compressed, 0, length)
 
                 /**
                  * @TODO Public Chat Seagment
@@ -306,7 +306,7 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
             UpdateBlockType.FACE_PAWN -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, other.blockBuffer.facePawnIndex)
-                //buf.put(structure[1].type, structure[1].order, structure[1].transformation, other.blockBuffer.facePawnIndex)
+                buf.put(structure[1].type, structure[1].order, structure[1].transformation, other.blockBuffer.facePawnIndex shr 16)
             }
 
             UpdateBlockType.ANIMATION -> {

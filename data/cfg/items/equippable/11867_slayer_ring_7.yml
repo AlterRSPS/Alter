@@ -3,7 +3,12 @@ id: 11867
 name: "Slayer ring (7)"
 examine: "A beautifully mounted Slayer gem."
 tradeable: false
-weight: 0.0
+weight: 0.01
+tradeable_on_ge: false
+cost: 990
+lowalch: 396
+highalch: 594
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "ring"

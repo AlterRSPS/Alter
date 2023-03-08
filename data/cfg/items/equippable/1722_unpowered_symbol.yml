@@ -4,6 +4,11 @@ name: "Unpowered symbol"
 examine: "An unblessed symbol of Zamorak."
 tradeable: true
 weight: 0.007
+tradeable_on_ge: true
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "neck"

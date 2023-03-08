@@ -4,6 +4,11 @@ name: "Steel gauntlets"
 examine: "My reward for assisting the Fitzharmon family."
 tradeable: false
 weight: 0.226
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "hands"

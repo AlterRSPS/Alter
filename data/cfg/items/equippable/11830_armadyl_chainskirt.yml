@@ -4,6 +4,11 @@ name: "Armadyl chainskirt"
 examine: "A chainskirt of great craftsmanship."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 289900
+lowalch: 115960
+highalch: 173940
+buy_limit: 8
 equipment:
   prayer: 1
   equipSlot: "legs"

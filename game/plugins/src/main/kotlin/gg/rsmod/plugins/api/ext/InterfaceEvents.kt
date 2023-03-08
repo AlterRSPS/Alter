@@ -4,6 +4,11 @@ import gg.rsmod.plugins.api.InterfaceDestination
 
 enum class InterfaceEvent (val flag: Int) {
     /**
+     * CLICKOP1 = Button1
+     * CLICKOP2 = Button2
+     */
+
+    /**
      * Enabled the component to be a "pause_button", clicking it sends {@link DialogueReader}.
      */
     PAUSE(1 shl 0),

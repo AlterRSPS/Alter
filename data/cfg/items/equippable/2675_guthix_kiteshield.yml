@@ -4,6 +4,11 @@ name: "Guthix kiteshield"
 examine: "Rune kiteshield in the colours of Guthix."
 tradeable: true
 weight: 5.443
+tradeable_on_ge: true
+cost: 54400
+lowalch: 21760
+highalch: 32640
+buy_limit: 8
 equipment:
   prayer: 1
   equipSlot: "shield"

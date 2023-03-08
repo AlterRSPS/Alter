@@ -4,9 +4,14 @@ name: "Ancestral hat"
 examine: "The hat of a powerful sorceress from a bygone era."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 50
+lowalch: 20
+highalch: 30
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

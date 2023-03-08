@@ -4,10 +4,15 @@ name: "Shadow sword"
 examine: "A shadow sword."
 tradeable: false
 weight: 3.628
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 10
+  weaponType: 8337
   attackSpeed: 6
   attackStab: -4
   attackSlash: 27
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 26
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 2561
-  - 823
-  - 2562
-  - 2562
-  - 2562
-  - 2562
-  - 2563
+  renderAnimations: null
   skillReqs: null

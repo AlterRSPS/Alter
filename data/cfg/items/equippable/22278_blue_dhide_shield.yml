@@ -4,6 +4,11 @@ name: "Blue d'hide shield"
 examine: "A solid yew shield covered in blue dragon leather."
 tradeable: true
 weight: 8.0
+tradeable_on_ge: true
+cost: 7500
+lowalch: 3000
+highalch: 4500
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "shield"

@@ -4,9 +4,14 @@ name: "Inquisitor's great helm"
 examine: "The great helmet of the turncloak justiciar."
 tradeable: true
 weight: 2.721
+tradeable_on_ge: true
+cost: 500000
+lowalch: 200000
+highalch: 300000
+buy_limit: 8
 equipment:
   prayer: 1
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: -2

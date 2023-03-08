@@ -4,10 +4,15 @@ name: "Crystal harpoon"
 examine: "A very powerful harpoon."
 tradeable: false
 weight: 0.907
+tradeable_on_ge: false
+cost: 520000
+lowalch: 208000
+highalch: 312000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 17
+  weaponType: 8337
   attackSpeed: 5
   attackStab: 38
   attackSlash: 32
@@ -26,7 +31,7 @@ equipment:
   skillReqs:
   - skill: "attack"
     level: 70
-  - skill: "fishing"
-    level: 71
   - skill: "agility"
     level: 50
+  - skill: "fishing"
+    level: 71

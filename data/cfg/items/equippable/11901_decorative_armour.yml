@@ -3,7 +3,12 @@ id: 11901
 name: "Decorative armour"
 examine: "Very decorative armour."
 tradeable: false
-weight: 8.155
+weight: 8.164
+tradeable_on_ge: false
+cost: 45000
+lowalch: 18000
+highalch: 27000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "cape"

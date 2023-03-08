@@ -1,9 +1,14 @@
 ---
 id: 24757
 name: "Graceful gloves"
-examine: "A sign of your grace."
+examine: "A sign of your grace under fire."
 tradeable: false
-weight: 0.1
+weight: -3.0
+tradeable_on_ge: false
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "hands"
