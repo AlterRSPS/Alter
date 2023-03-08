@@ -4,16 +4,21 @@ name: "Rune full helm (t)"
 examine: "Rune full helmet with trim."
 tradeable: true
 weight: 2.721
+tradeable_on_ge: true
+cost: 35200
+lowalch: 14080
+highalch: 21120
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -6
-  attackRanged: -2
+  attackRanged: -3
   defenceStab: 30
   defenceSlash: 32
   defenceCrush: 27

@@ -3,7 +3,12 @@ id: 12357
 name: "Katana"
 examine: "Created by Hattori Hanzo in the Eastern Lands."
 tradeable: true
-weight: 0.0
+weight: 0.453
+tradeable_on_ge: true
+cost: 24000
+lowalch: 9600
+highalch: 14400
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "2h"
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 40
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs: null

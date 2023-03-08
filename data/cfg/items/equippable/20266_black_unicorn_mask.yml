@@ -3,10 +3,15 @@ id: 20266
 name: "Black unicorn mask"
 examine: "Pointy shadows."
 tradeable: true
-weight: 0.0
+weight: 0.1
+tradeable_on_ge: true
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

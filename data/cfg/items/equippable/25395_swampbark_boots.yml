@@ -4,6 +4,11 @@ name: "Swampbark boots"
 examine: "Great foot protection."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "feet"
@@ -24,7 +29,7 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: "defence"
-    level: 50
   - skill: "magic"
+    level: 50
+  - skill: "defence"
     level: 50

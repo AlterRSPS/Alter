@@ -3,10 +3,15 @@ id: 19535
 name: "Zenyte necklace"
 examine: "A fiery glow emanates from this necklace."
 tradeable: true
-weight: 0.0
+weight: 0.01
+tradeable_on_ge: true
+cost: 202000
+lowalch: 80800
+highalch: 121200
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "neck"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -1,13 +1,18 @@
 ---
 id: 11140
 name: "Karamja gloves 3"
-examine: "A pair of dark green Karamja gloves."
+examine: "A pair of gloves from Karamja."
 tradeable: false
 weight: 0.226
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hands"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 3
   attackSpeed: 0
   attackStab: 1
   attackSlash: 1
@@ -22,5 +27,12 @@ equipment:
   meleeStrength: 1
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
   skillReqs: null

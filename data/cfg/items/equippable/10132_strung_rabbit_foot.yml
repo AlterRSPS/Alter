@@ -4,9 +4,14 @@ name: "Strung rabbit foot"
 examine: "Not so lucky for the rabbit."
 tradeable: true
 weight: 0.03
+tradeable_on_ge: true
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: 150
 equipment:
   prayer: 0
-  equipSlot: "neck"
+  equipSlot: "hat"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

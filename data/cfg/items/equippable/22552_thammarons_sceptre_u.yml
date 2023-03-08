@@ -3,16 +3,21 @@ id: 22552
 name: "Thammaron's sceptre (u)"
 examine: "A mighty sceptre used in long forgotten battles."
 tradeable: true
-weight: 0.1
+weight: 0.198
+tradeable_on_ge: true
+cost: 120000
+lowalch: 48000
+highalch: 72000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 18
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
-  attackMagic: 20
+  attackMagic: 15
   attackRanged: 0
   defenceStab: 0
   defenceSlash: 0
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "magic"
     level: 60

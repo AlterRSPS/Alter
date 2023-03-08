@@ -4,9 +4,14 @@ name: "Giant boot"
 examine: "Worn on head. Warning: Smelly."
 tradeable: true
 weight: 0.5
+tradeable_on_ge: true
+cost: 14000
+lowalch: 5600
+highalch: 8400
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

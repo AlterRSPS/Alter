@@ -4,6 +4,11 @@ name: "Graahk headdress"
 examine: "This should make me harder to spot in desert areas."
 tradeable: true
 weight: 0.226
+tradeable_on_ge: true
+cost: 750
+lowalch: 300
+highalch: 450
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "head"

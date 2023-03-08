@@ -4,16 +4,21 @@ name: "Steel heraldic helm"
 examine: "The colours represent a Jogre."
 tradeable: false
 weight: 2.721
+tradeable_on_ge: false
+cost: 600
+lowalch: 240
+highalch: 360
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "nohair"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 13
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -6
-  attackRanged: -2
+  attackRanged: -3
   defenceStab: 9
   defenceSlash: 10
   defenceCrush: 7
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
   skillReqs:
   - skill: "defence"
     level: 5

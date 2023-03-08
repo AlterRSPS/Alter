@@ -4,6 +4,11 @@ name: "Oak shortbow"
 examine: "A shortbow made out of oak, still effective."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 100
+lowalch: 40
+highalch: 60
+buy_limit: 18000
 equipment:
   prayer: 0
   equipSlot: "2h"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 5

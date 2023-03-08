@@ -4,6 +4,11 @@ name: "Gilded coif"
 examine: "Made with 100% golden dragonhide."
 tradeable: true
 weight: 0.9
+tradeable_on_ge: true
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "head"

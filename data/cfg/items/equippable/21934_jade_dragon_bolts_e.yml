@@ -4,6 +4,11 @@ name: "Jade dragon bolts (e)"
 examine: "Enchanted Dragon crossbow bolts, tipped with jade."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 630
+lowalch: 252
+highalch: 378
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

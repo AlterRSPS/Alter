@@ -4,10 +4,15 @@ name: "Kodai wand"
 examine: "A wand of an ancient Kodai mage."
 tradeable: false
 weight: 0.198
+tradeable_on_ge: false
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 12
+  weaponType: 13
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

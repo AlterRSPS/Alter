@@ -4,6 +4,11 @@ name: "Berserker necklace"
 examine: "Makes obsidian weapons even stronger!"
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 202000
+lowalch: 80800
+highalch: 121200
+buy_limit: 70
 equipment:
   prayer: 3
   equipSlot: "neck"

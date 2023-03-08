@@ -1,9 +1,14 @@
 ---
 id: 2406
 name: "Hazeel's mark"
-examine: "A sign of my commitment to Hazeel."
+examine: "A sign of commitment to Hazeel."
 tradeable: false
 weight: 0.012
+tradeable_on_ge: false
+cost: 5
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "neck"

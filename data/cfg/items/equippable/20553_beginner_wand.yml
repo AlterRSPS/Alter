@@ -4,9 +4,14 @@ name: "Beginner wand"
 examine: "A beginner level wand."
 tradeable: true
 weight: 0.283
+tradeable_on_ge: false
+cost: 10
+lowalch: 4
+highalch: 6
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
+  equipSlot: "hat"
   weaponType: -1
   attackSpeed: 4
   attackStab: 0

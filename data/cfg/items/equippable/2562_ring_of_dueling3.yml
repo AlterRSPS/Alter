@@ -4,9 +4,14 @@ name: "Ring of dueling(3)"
 examine: "An enchanted ring."
 tradeable: true
 weight: 0.006
+tradeable_on_ge: false
+cost: 1275
+lowalch: 510
+highalch: 765
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "ring"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

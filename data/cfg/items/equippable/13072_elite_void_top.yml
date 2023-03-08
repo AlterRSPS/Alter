@@ -3,7 +3,12 @@ id: 13072
 name: "Elite void top"
 examine: "Superior torso armour from the order of the Void Knights."
 tradeable: false
-weight: 6.0
+weight: 6.803
+tradeable_on_ge: false
+cost: 48500
+lowalch: 19400
+highalch: 29100
+buy_limit: null
 equipment:
   prayer: 3
   equipSlot: "body"
@@ -30,9 +35,11 @@ equipment:
     level: 42
   - skill: "hitpoints"
     level: 42
-  - skill: "range"
+  - skill: "ranged"
     level: 42
   - skill: "magic"
+    level: 42
+  - skill: "defence"
     level: 42
   - skill: "prayer"
     level: 22

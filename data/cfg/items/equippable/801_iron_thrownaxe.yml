@@ -4,6 +4,11 @@ name: "Iron thrownaxe"
 examine: "A finely balanced throwing axe."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 7
+lowalch: 2
+highalch: 4
+buy_limit: 7000
 equipment:
   prayer: 0
   equipSlot: "weapon"

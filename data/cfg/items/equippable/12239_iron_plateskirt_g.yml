@@ -3,7 +3,12 @@ id: 12239
 name: "Iron plateskirt (g)"
 examine: "Iron plateskirt with gold trim."
 tradeable: true
-weight: 8.0
+weight: 8.164
+tradeable_on_ge: true
+cost: 280
+lowalch: 112
+highalch: 168
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "legs"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 11
   defenceSlash: 10
   defenceCrush: 10

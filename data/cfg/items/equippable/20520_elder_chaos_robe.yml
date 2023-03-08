@@ -3,10 +3,15 @@ id: 20520
 name: "Elder chaos robe"
 examine: "The robes worn by the dangerous elder druids."
 tradeable: true
-weight: 0.1
+weight: 0.18
+tradeable_on_ge: true
+cost: 700
+lowalch: 280
+highalch: 420
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "hands"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -3,11 +3,16 @@ id: 20251
 name: "Arceuus banner"
 examine: "An ancient banner bearing the mark of the Arceuus Elders."
 tradeable: true
-weight: 2.0
+weight: 2.267
+tradeable_on_ge: true
+cost: 70
+lowalch: 28
+highalch: 42
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 5
   attackStab: 12
   attackSlash: 12
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 12
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 1421
-  - 1422
-  - 1423
-  - 1424
-  - 1425
-  - 1426
-  - 1427
+  renderAnimations: null
   skillReqs: null

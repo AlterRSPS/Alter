@@ -4,9 +4,14 @@ name: "Mystic robe bottom (dark)"
 examine: "The lower half of a dark magical robe."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 80000
+lowalch: 32000
+highalch: 48000
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

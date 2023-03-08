@@ -4,10 +4,15 @@ name: "Morrigan's javelin"
 examine: "A vicious javelin."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 4000
+lowalch: 1600
+highalch: 2400
+buy_limit: 100
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 19
   attackSpeed: 6
   attackStab: 0
   attackSlash: 0

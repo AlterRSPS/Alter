@@ -4,6 +4,11 @@ name: "Amulet of glory(4)"
 examine: "A dragonstone amulet with 4 magic charges."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 17625
+lowalch: 7050
+highalch: 10575
+buy_limit: 10000
 equipment:
   prayer: 3
   equipSlot: "neck"

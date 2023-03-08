@@ -4,6 +4,11 @@ name: "Mithril bolts (p++)"
 examine: "Super poisoned mithril bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 20
+lowalch: 8
+highalch: 12
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

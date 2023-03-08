@@ -4,6 +4,11 @@ name: "Broad bolts"
 examine: "Crossbow bolts with broad tips."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 55
+lowalch: 22
+highalch: 33
+buy_limit: 7000
 equipment:
   prayer: 0
   equipSlot: "ammo"

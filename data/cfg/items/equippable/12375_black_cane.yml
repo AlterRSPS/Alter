@@ -3,11 +3,16 @@ id: 12375
 name: "Black cane"
 examine: "A ruby topped cane."
 tradeable: true
-weight: 0.5
+weight: 1.814
+tradeable_on_ge: true
+cost: 600
+lowalch: 240
+highalch: 360
+buy_limit: 4
 equipment:
   prayer: 2
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 5
   attackStab: 8
   attackSlash: -2

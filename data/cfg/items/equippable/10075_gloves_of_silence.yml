@@ -4,6 +4,11 @@ name: "Gloves of silence"
 examine: "Made from dark kebbit fur, these are perfect for tasks of a stealthier nature."
 tradeable: true
 weight: 0.226
+tradeable_on_ge: true
+cost: 600
+lowalch: 240
+highalch: 360
+buy_limit: 8000
 equipment:
   prayer: 0
   equipSlot: "hands"

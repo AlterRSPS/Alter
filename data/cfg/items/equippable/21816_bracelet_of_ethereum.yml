@@ -3,7 +3,12 @@ id: 21816
 name: "Bracelet of ethereum"
 examine: "The bracelet glows with ethereal power."
 tradeable: false
-weight: 0.2
+weight: 0.25
+tradeable_on_ge: false
+cost: 75000
+lowalch: 30000
+highalch: 45000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "hands"

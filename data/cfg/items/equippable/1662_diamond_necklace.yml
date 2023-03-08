@@ -4,6 +4,11 @@ name: "Diamond necklace"
 examine: "I wonder if this is valuable."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 3675
+lowalch: 1470
+highalch: 2205
+buy_limit: 18000
 equipment:
   prayer: 0
   equipSlot: "neck"

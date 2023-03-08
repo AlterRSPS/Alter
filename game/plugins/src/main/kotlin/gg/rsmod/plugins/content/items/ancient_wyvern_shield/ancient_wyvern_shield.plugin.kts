@@ -1,5 +1,4 @@
 on_item_equip(Items.ANCIENT_WYVERN_SHIELD) {
-    player.graphic(-1)
     player.animate(3996)
     player.queue {
         wait(1)

@@ -3,11 +3,16 @@ id: 12954
 name: "Dragon defender"
 examine: "A defensive weapon."
 tradeable: false
-weight: 0.4
+weight: 0.453
+tradeable_on_ge: false
+cost: 68007
+lowalch: 27202
+highalch: 40804
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "shield"
-  weaponType: 0
+  equipSlot: "weapon"
+  weaponType: 2
   attackSpeed: 0
   attackStab: 25
   attackSlash: 24

@@ -3,7 +3,12 @@ id: 13243
 name: "Infernal pickaxe"
 examine: "A very powerful, fiery pickaxe."
 tradeable: false
-weight: 2.0
+weight: 2.4
+tradeable_on_ge: false
+cost: 99801
+lowalch: 39920
+highalch: 59880
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 42
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 60

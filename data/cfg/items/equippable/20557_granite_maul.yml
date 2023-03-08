@@ -2,13 +2,18 @@
 id: 20557
 name: "Granite maul"
 examine: "Simplicity is the best weapon."
-tradeable: true
+tradeable: false
 weight: 4.535
+tradeable_on_ge: false
+cost: 30
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
-  attackSpeed: 6
+  weaponType: 8337
+  attackSpeed: 7
   attackStab: 0
   attackSlash: 0
   attackCrush: 81

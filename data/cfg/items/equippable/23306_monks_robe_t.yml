@@ -4,9 +4,14 @@ name: "Monk's robe (t)"
 examine: "I feel the gods don't enjoy my materialistic obsessions."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 500
+lowalch: 200
+highalch: 300
+buy_limit: 4
 equipment:
   prayer: 5
-  equipSlot: "legs"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

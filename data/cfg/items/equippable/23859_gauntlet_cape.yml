@@ -4,10 +4,15 @@ name: "Gauntlet cape"
 examine: "Earned by only the most accomplished warriors of Prifddinas."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 20000
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "cape"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 12
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,5 +27,12 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 8009
+  - 8015
+  - 8011
+  - 8012
+  - 8014
+  - 8013
+  - 8016
   skillReqs: null

@@ -3,7 +3,12 @@ id: 4912
 name: "Guthan's warspear 50"
 examine: "Guthan the Infested's warspear."
 tradeable: false
-weight: 2.2
+weight: 2.267
+tradeable_on_ge: false
+cost: 100000
+lowalch: 40000
+highalch: 60000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 75
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 70

@@ -3,7 +3,12 @@ id: 22353
 name: "Eggshell platelegs"
 examine: "A chocolate shell reinforced with a thin layer of foil."
 tradeable: false
-weight: 0.0
+weight: 1.0
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"

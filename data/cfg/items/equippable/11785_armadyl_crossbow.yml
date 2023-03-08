@@ -4,10 +4,15 @@ name: "Armadyl crossbow"
 examine: "A weapon originally developed for Armadyl's forces."
 tradeable: true
 weight: 6.0
+tradeable_on_ge: true
+cost: 990000
+lowalch: 396000
+highalch: 594000
+buy_limit: 8
 equipment:
   prayer: 1
-  equipSlot: "weapon"
-  weaponType: 5
+  equipSlot: "hat"
+  weaponType: -1
   attackSpeed: 6
   attackStab: 0
   attackSlash: 0
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 4591
-  - 823
-  - 4226
-  - 4227
-  - 821
-  - 822
-  - 4228
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 70

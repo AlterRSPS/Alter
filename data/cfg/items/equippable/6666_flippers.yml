@@ -4,6 +4,11 @@ name: "Flippers"
 examine: "Strangely uncomfortable flippers."
 tradeable: false
 weight: 0.34
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "feet"

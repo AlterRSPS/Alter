@@ -3,7 +3,12 @@ id: 13610
 name: "Graceful legs"
 examine: "You have graceful legs. How nice."
 tradeable: false
-weight: 0.0
+weight: -6.0
+tradeable_on_ge: false
+cost: 60
+lowalch: 24
+highalch: 36
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"

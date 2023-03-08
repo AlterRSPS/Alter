@@ -1,16 +1,21 @@
 ---
 id: 25979
 name: "Keris partisan"
-examine: "null"
+examine: "A mystical-feeling polearm."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 60000
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 3
   equipSlot: "weapon"
-  weaponType: 2
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 58
-  attackSlash: 58
+  attackSlash: -2
   attackCrush: 57
   attackMagic: 2
   attackRanged: 0

@@ -4,6 +4,11 @@ name: "Twisted trousers (t2)"
 examine: "The trousers of a twisted relic hunter."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 5
 equipment:
   prayer: 0
   equipSlot: "legs"

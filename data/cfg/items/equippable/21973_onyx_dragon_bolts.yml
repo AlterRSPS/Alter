@@ -4,6 +4,11 @@ name: "Onyx dragon bolts"
 examine: "Dragon crossbow bolts, tipped with onyx."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 13900
+lowalch: 5560
+highalch: 8340
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

@@ -5,6 +5,11 @@ examine: "A very sturdy piece of armour with a lot of protection from crystallin
   \ creatures."
 tradeable: false
 weight: 9.979
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 5
   equipSlot: "body"

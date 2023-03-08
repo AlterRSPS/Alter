@@ -3,11 +3,16 @@ id: 22316
 name: "Prop sword"
 examine: "There's something strangely familiar about the sword."
 tradeable: false
-weight: 0.0
+weight: 0.453
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 2
+  equipSlot: "legs"
+  weaponType: -1
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: -10
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 7538
-  - 7539
-  - 7539
-  - 7539
-  - 7539
-  - 7539
-  - 824
+  renderAnimations: null
   skillReqs: null

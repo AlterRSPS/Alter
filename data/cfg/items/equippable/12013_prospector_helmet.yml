@@ -3,10 +3,15 @@ id: 12013
 name: "Prospector helmet"
 examine: "Helps you when you're mining."
 tradeable: false
-weight: 0.5
+weight: 0.907
+tradeable_on_ge: false
+cost: 40
+lowalch: 16
+highalch: 24
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

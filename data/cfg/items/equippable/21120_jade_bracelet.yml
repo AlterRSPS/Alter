@@ -3,7 +3,12 @@ id: 21120
 name: "Jade bracelet"
 examine: "I wonder if this is valuable."
 tradeable: true
-weight: 0.0
+weight: 0.25
+tradeable_on_ge: true
+cost: 1300
+lowalch: 520
+highalch: 780
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "hands"

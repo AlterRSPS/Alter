@@ -3,10 +3,15 @@ id: 12432
 name: "Top hat"
 examine: "Aint no rabbits in this hat."
 tradeable: true
-weight: 0.0
+weight: 1.36
+tradeable_on_ge: true
+cost: 1800
+lowalch: 720
+highalch: 1080
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

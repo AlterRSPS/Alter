@@ -4,10 +4,15 @@ name: "Corrupted halberd (perfected)"
 examine: "A wooden stick with a lot of corrupted on the end."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 3
   equipSlot: "2h"
-  weaponType: 12
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 166
   attackSlash: 166

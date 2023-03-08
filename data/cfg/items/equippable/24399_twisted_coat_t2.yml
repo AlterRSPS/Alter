@@ -4,9 +4,14 @@ name: "Twisted coat (t2)"
 examine: "The coat of a twisted relic hunter."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 5
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "ring"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

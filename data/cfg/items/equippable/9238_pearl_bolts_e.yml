@@ -4,6 +4,11 @@ name: "Pearl bolts (e)"
 examine: "Enchanted Pearl tipped Iron Crossbow Bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 15
+lowalch: 6
+highalch: 9
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

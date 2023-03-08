@@ -4,9 +4,14 @@ name: "Diamond bracelet"
 examine: "I wonder if this is valuable."
 tradeable: true
 weight: 0.25
+tradeable_on_ge: true
+cost: 3825
+lowalch: 1530
+highalch: 2295
+buy_limit: 10000
 equipment:
   prayer: 0
-  equipSlot: "hands"
+  equipSlot: "ammo"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

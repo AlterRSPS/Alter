@@ -4,10 +4,15 @@ name: "Bronze 2h sword"
 examine: "A two handed sword."
 tradeable: true
 weight: 3.628
+tradeable_on_ge: true
+cost: 80
+lowalch: 32
+highalch: 48
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 10
+  weaponType: 8337
   attackSpeed: 7
   attackStab: -4
   attackSlash: 9
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 10
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 2561
-  - 823
-  - 2562
-  - 2562
-  - 2562
-  - 2562
-  - 2563
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 1

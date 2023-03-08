@@ -4,9 +4,14 @@ name: "Crystal helm"
 examine: "This helmet shines bright, like a diamond."
 tradeable: false
 weight: 0.5
+tradeable_on_ge: false
+cost: 500000
+lowalch: 200000
+highalch: 300000
+buy_limit: null
 equipment:
   prayer: 2
-  equipSlot: "nohair"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

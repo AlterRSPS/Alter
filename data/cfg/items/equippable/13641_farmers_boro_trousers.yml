@@ -3,7 +3,12 @@ id: 13641
 name: "Farmer's boro trousers"
 examine: "This will help with farming."
 tradeable: false
-weight: 0.9
+weight: 0.907
+tradeable_on_ge: false
+cost: 50
+lowalch: 20
+highalch: 30
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"

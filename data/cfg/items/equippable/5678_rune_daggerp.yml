@@ -4,10 +4,15 @@ name: "Rune dagger(p+)"
 examine: "The blade is covered with a nasty poison."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 8000
+lowalch: 3200
+highalch: 4800
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 25
   attackSlash: 12

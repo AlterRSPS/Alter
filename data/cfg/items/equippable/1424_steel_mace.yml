@@ -4,11 +4,16 @@ name: "Steel mace"
 examine: "A spiky mace."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 225
+lowalch: 90
+highalch: 135
+buy_limit: 125
 equipment:
   prayer: 2
   equipSlot: "weapon"
   weaponType: -1
-  attackSpeed: 5
+  attackSpeed: 4
   attackStab: 7
   attackSlash: -2
   attackCrush: 13

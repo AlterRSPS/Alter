@@ -79,6 +79,8 @@ class ItemDef(override val id: Int) : Definition(id) {
             9 -> buf.readString()
             11 -> stacks = true
             12 -> cost = buf.readInt()
+            13 -> buf.readUnsignedByte()
+            14 -> buf.readUnsignedByte()
             16 -> members = true
             23 -> {
                 buf.readUnsignedShort()
@@ -116,6 +118,7 @@ class ItemDef(override val id: Int) : Definition(id) {
             }
             42 -> buf.readByte()
             65 -> grandExchange = true
+            75 -> buf.readShort()
             78 -> buf.readUnsignedShort()
             79 -> buf.readUnsignedShort()
             90 -> buf.readUnsignedShort()

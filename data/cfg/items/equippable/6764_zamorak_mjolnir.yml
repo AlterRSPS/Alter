@@ -4,10 +4,15 @@ name: "Zamorak mjolnir"
 examine: "A Zamorak Mjolnir."
 tradeable: true
 weight: 2.267
+tradeable_on_ge: true
+cost: 625
+lowalch: 250
+highalch: 375
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 6
   attackStab: 0
   attackSlash: 0

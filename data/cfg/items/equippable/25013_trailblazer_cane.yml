@@ -4,10 +4,15 @@ name: "Trailblazer cane"
 examine: "A cane of the trailblazer relic hunter."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 150000
+lowalch: 60000
+highalch: 90000
+buy_limit: 5
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 16
+  equipSlot: "shield"
+  weaponType: -1
   attackSpeed: 5
   attackStab: 0
   attackSlash: 0

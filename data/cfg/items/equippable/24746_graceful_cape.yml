@@ -4,6 +4,11 @@ name: "Graceful cape"
 examine: "A sign of your grace under fire."
 tradeable: false
 weight: 0.8
+tradeable_on_ge: false
+cost: 40
+lowalch: 16
+highalch: 24
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "cape"

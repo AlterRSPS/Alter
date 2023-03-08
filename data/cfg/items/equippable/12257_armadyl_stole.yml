@@ -3,7 +3,12 @@ id: 12257
 name: "Armadyl stole"
 examine: "An Armadyl stole."
 tradeable: true
-weight: 0.0
+weight: 0.01
+tradeable_on_ge: true
+cost: 2500
+lowalch: 1000
+highalch: 1500
+buy_limit: 8
 equipment:
   prayer: 10
   equipSlot: "neck"
@@ -25,4 +30,4 @@ equipment:
   renderAnimations: null
   skillReqs:
   - skill: "prayer"
-    level: 40
+    level: 60

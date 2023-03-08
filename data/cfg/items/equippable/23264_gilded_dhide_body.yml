@@ -4,6 +4,11 @@ name: "Gilded d'hide body"
 examine: "Made with 100% golden dragonhide."
 tradeable: true
 weight: 6.0
+tradeable_on_ge: true
+cost: 50000
+lowalch: 20000
+highalch: 30000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "body"
@@ -24,7 +29,7 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: "defence"
-    level: 40
   - skill: "ranged"
+    level: 40
+  - skill: "defence"
     level: 40

@@ -4,6 +4,11 @@ name: "Warrior helm"
 examine: "This helmet is worn by warriors."
 tradeable: true
 weight: 2.721
+tradeable_on_ge: true
+cost: 60000
+lowalch: 24000
+highalch: 36000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "head"

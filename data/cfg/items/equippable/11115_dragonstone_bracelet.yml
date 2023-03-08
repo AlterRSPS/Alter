@@ -4,6 +4,11 @@ name: "Dragonstone bracelet"
 examine: "I wonder if this is valuable."
 tradeable: true
 weight: 0.25
+tradeable_on_ge: true
+cost: 19125
+lowalch: 7650
+highalch: 11475
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "hands"

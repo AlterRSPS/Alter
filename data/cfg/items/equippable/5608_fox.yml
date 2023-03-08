@@ -4,10 +4,15 @@ name: "Fox"
 examine: "I don't think he likes being carried."
 tradeable: false
 weight: 5.0
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

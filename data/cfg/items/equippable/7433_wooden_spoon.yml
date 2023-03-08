@@ -4,10 +4,15 @@ name: "Wooden spoon"
 examine: "Spoooooon!"
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 35
+lowalch: 14
+highalch: 21
+buy_limit: 50
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 9
   attackSpeed: 5
   attackStab: 4
   attackSlash: 5

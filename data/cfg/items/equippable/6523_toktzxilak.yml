@@ -4,10 +4,15 @@ name: "Toktz-xil-ak"
 examine: "A razor sharp sword of obsidian."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 40000
+lowalch: 16000
+highalch: 24000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 47
   attackSlash: 38

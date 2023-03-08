@@ -4,6 +4,11 @@ name: "Bow of faerdhinen"
 examine: "A magical elven bow."
 tradeable: false
 weight: 1.5
+tradeable_on_ge: false
+cost: 5000000
+lowalch: 2000000
+highalch: 3000000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"

@@ -1,12 +1,17 @@
 ---
 id: 8949
 name: "Pirate bandana"
-examine: "Essential pirate wear."
-tradeable: true
-weight: 0.1
+examine: "A blue bandana."
+tradeable: false
+weight: 0.003
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "head"
+  equipSlot: "ammo"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

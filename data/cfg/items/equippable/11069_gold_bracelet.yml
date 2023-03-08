@@ -4,6 +4,11 @@ name: "Gold bracelet"
 examine: "I wonder if this is valuable."
 tradeable: true
 weight: 0.25
+tradeable_on_ge: true
+cost: 550
+lowalch: 220
+highalch: 330
+buy_limit: 18000
 equipment:
   prayer: 0
   equipSlot: "hands"

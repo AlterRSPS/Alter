@@ -4,10 +4,15 @@ name: "Large spade"
 examine: "Can you dig it?"
 tradeable: false
 weight: 3.0
+tradeable_on_ge: false
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 0
+  weaponType: 8337
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: -10
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 7053
-  - 7044
-  - 7052
-  - 7049
-  - 7048
-  - 7047
-  - 7043
+  renderAnimations: null
   skillReqs: null

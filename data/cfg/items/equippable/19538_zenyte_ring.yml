@@ -3,10 +3,15 @@ id: 19538
 name: "Zenyte ring"
 examine: "A fiery glow emanates from this ring."
 tradeable: true
-weight: 0.0
+weight: 0.006
+tradeable_on_ge: true
+cost: 201000
+lowalch: 80400
+highalch: 120600
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "ring"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -4,6 +4,11 @@ name: "Dragon defender (l)"
 examine: "A defensive weapon."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 68007
+lowalch: 27202
+highalch: 40804
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "shield"

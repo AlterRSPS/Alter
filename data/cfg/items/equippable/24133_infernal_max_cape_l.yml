@@ -4,6 +4,11 @@ name: "Infernal max cape (l)"
 examine: "The cape worn by only the most experienced players."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 99000
+lowalch: 39600
+highalch: 59400
+buy_limit: null
 equipment:
   prayer: 2
   equipSlot: "cape"
@@ -64,7 +69,7 @@ equipment:
     level: 99
   - skill: "farming"
     level: 99
-  - skill: "runecrafting"
+  - skill: "runecraft"
     level: 99
   - skill: "hunter"
     level: 99

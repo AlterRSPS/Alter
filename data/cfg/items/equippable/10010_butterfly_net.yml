@@ -4,10 +4,15 @@ name: "Butterfly net"
 examine: "For catching butterflies..."
 tradeable: true
 weight: 0.226
+tradeable_on_ge: true
+cost: 20
+lowalch: 8
+highalch: 12
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 2
+  equipSlot: "body"
+  weaponType: -1
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "hunter"
     level: 15

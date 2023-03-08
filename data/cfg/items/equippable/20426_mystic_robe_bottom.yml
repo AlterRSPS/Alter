@@ -2,8 +2,13 @@
 id: 20426
 name: "Mystic robe bottom"
 examine: "The lower half of a magical robe."
-tradeable: true
-weight: 1.8
+tradeable: false
+weight: 1.814
+tradeable_on_ge: false
+cost: 10
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"

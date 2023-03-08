@@ -4,10 +4,15 @@ name: "Toktz-mej-tal"
 examine: "A staff of obsidian."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 35000
+lowalch: 14000
+highalch: 21000
+buy_limit: 70
 equipment:
   prayer: 5
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 13
   attackSpeed: 6
   attackStab: 15
   attackSlash: -1

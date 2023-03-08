@@ -3,11 +3,16 @@ id: 22731
 name: "Dragon hasta"
 examine: "A one-handed dragon hasta."
 tradeable: true
-weight: 2.2
+weight: 2.267
+tradeable_on_ge: true
+cost: 62400
+lowalch: 24960
+highalch: 37440
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 15
   attackSpeed: 4
   attackStab: 55
   attackSlash: 55
@@ -24,5 +29,5 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: null
-    level: 0
+  - skill: "attack"
+    level: 60

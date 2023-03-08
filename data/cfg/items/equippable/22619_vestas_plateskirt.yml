@@ -3,11 +3,16 @@ id: 22619
 name: "Vesta's plateskirt"
 examine: "A powerful plateskirt."
 tradeable: true
-weight: 8.1
+weight: 8.164
+tradeable_on_ge: false
+cost: 500000
+lowalch: 200000
+highalch: 300000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "legs"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 3
   attackSpeed: 0
   attackStab: 3
   attackSlash: 5

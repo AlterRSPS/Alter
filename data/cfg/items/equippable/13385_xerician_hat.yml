@@ -3,10 +3,15 @@ id: 13385
 name: "Xerician hat"
 examine: "The forgotten magicks of Xeric imbue this garment with a little power."
 tradeable: true
-weight: 0.0
+weight: 0.2
+tradeable_on_ge: true
+cost: 60
+lowalch: 24
+highalch: 36
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

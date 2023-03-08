@@ -2,8 +2,13 @@
 id: 20578
 name: "Climbing boots"
 examine: "Boots made for climbing."
-tradeable: true
+tradeable: false
 weight: 0.34
+tradeable_on_ge: false
+cost: 250
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "feet"

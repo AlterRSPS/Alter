@@ -4,6 +4,11 @@ name: "Zamorak robe legs"
 examine: "Leggings from the Zamorak Vestments."
 tradeable: true
 weight: 2.7
+tradeable_on_ge: true
+cost: 7000
+lowalch: 2800
+highalch: 4200
+buy_limit: 8
 equipment:
   prayer: 5
   equipSlot: "legs"

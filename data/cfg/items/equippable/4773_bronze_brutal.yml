@@ -4,10 +4,15 @@ name: "Bronze brutal"
 examine: "Blunt bronze arrow... ouch."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 5
+lowalch: 2
+highalch: 3
+buy_limit: 11000
 equipment:
   prayer: 0
-  equipSlot: "ammo"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 5
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 11
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 2074
+  - 823
+  - 2076
+  - 2076
+  - 2076
+  - 2076
+  - 2077
   skillReqs:
   - skill: "ranged"
     level: 1

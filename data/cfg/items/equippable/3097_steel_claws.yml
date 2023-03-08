@@ -4,10 +4,15 @@ name: "Steel claws"
 examine: "A set of fighting claws."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 175
+lowalch: 70
+highalch: 105
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 8
   attackSlash: 11

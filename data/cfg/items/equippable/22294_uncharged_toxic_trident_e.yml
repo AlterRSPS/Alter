@@ -4,11 +4,16 @@ name: "Uncharged toxic trident (e)"
 examine: "It needs to be charged with death runes, chaos runes, fire runes and Zulrah's\
   \ scales."
 tradeable: true
-weight: 1.0
+weight: 1.814
+tradeable_on_ge: true
+cost: 108000
+lowalch: 43200
+highalch: 64800
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

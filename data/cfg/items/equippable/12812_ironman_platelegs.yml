@@ -3,7 +3,12 @@ id: 12812
 name: "Ironman platelegs"
 examine: "Take it off and what are you?"
 tradeable: false
-weight: 9.0
+weight: 4.535
+tradeable_on_ge: false
+cost: 0
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 11
   defenceSlash: 10
   defenceCrush: 10

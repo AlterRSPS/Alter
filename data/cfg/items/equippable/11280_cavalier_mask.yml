@@ -4,9 +4,14 @@ name: "Cavalier mask"
 examine: "I hope I don't meet any roundheads..."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: 150
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

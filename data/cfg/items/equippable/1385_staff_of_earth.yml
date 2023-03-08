@@ -4,6 +4,11 @@ name: "Staff of earth"
 examine: "A Magical staff."
 tradeable: true
 weight: 2.267
+tradeable_on_ge: true
+cost: 1500
+lowalch: 600
+highalch: 900
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"

@@ -4,10 +4,15 @@ name: "Toktz-xil-ek"
 examine: "A large knife of obsidian."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 25000
+lowalch: 10000
+highalch: 15000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 9
   attackSpeed: 4
   attackStab: 16
   attackSlash: 48

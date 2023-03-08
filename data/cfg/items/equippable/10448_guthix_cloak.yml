@@ -4,6 +4,11 @@ name: "Guthix cloak"
 examine: "A Guthix cloak."
 tradeable: true
 weight: 0.4
+tradeable_on_ge: true
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: 8
 equipment:
   prayer: 3
   equipSlot: "cape"

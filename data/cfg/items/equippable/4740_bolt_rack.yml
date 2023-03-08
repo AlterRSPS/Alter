@@ -4,9 +4,14 @@ name: "Bolt rack"
 examine: "Must need a special type of crossbow to use this."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 50
+lowalch: 20
+highalch: 30
+buy_limit: 11000
 equipment:
   prayer: 0
-  equipSlot: "ammo"
+  equipSlot: "nohair"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

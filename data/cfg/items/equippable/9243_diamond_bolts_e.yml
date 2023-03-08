@@ -4,6 +4,11 @@ name: "Diamond bolts (e)"
 examine: "Enchanted Diamond tipped Adamantite Crossbow Bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 211
+lowalch: 84
+highalch: 126
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

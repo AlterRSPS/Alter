@@ -4,6 +4,11 @@ name: "Ham shirt"
 examine: "The label says 'Vivid Crimson', but it looks pink to me!"
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 75
+lowalch: 30
+highalch: 45
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "body"

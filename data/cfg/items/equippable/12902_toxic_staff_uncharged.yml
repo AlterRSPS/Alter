@@ -3,11 +3,16 @@ id: 12902
 name: "Toxic staff (uncharged)"
 examine: "It needs to be charged with Zulrah's scales."
 tradeable: true
-weight: 1.0
+weight: 1.5
+tradeable_on_ge: true
+cost: 1000006
+lowalch: 400002
+highalch: 600003
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 0
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 55
   attackSlash: 70
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 72
   rangedStrength: 0
   magicDamage: 15
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "magic"
     level: 75

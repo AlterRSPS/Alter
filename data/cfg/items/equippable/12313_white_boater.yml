@@ -3,11 +3,16 @@ id: 12313
 name: "White boater"
 examine: "Stylish!"
 tradeable: true
-weight: 0.0
+weight: 0.01
+tradeable_on_ge: true
+cost: 225
+lowalch: 90
+highalch: 135
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "hat"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 19
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,5 +27,12 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 813
+  - 1209
+  - 1205
+  - 1206
+  - 1207
+  - 1208
+  - 1210
   skillReqs: null

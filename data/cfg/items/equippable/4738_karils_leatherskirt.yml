@@ -4,6 +4,11 @@ name: "Karil's leatherskirt"
 examine: "Karil the Tainted's leather skirt."
 tradeable: true
 weight: 5.443
+tradeable_on_ge: true
+cost: 47000
+lowalch: 18800
+highalch: 28200
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "legs"

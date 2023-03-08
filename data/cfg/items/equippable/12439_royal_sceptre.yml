@@ -3,11 +3,16 @@ id: 12439
 name: "Royal sceptre"
 examine: "I dub thee..."
 tradeable: true
-weight: 4.0
+weight: 4.535
+tradeable_on_ge: true
+cost: 5000
+lowalch: 2000
+highalch: 3000
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

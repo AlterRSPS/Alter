@@ -5,6 +5,11 @@ examine: "The most resilient set of leg armour with a lot of protection from cry
   \ creatures."
 tradeable: false
 weight: 9.071
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 4
   equipSlot: "legs"

@@ -4,6 +4,11 @@ name: "Harralander tar"
 examine: "A dark, thick, foul-smelling, tar-like substance."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

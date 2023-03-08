@@ -3,12 +3,17 @@ id: 1257
 name: "Mithril spear(p)"
 examine: "A poisoned mithril tipped spear."
 tradeable: true
-weight: 1.8
+weight: 1.814
+tradeable_on_ge: true
+cost: 845
+lowalch: 338
+highalch: 507
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
-  attackSpeed: 5
+  weaponType: 15
+  attackSpeed: 4
   attackStab: 17
   attackSlash: 17
   attackCrush: 17

@@ -3,7 +3,12 @@ id: 4223
 name: "Crystal bow 1/10"
 examine: "A nice sturdy magical bow."
 tradeable: false
-weight: 2.0
+weight: 1.814
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 52
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "agility"
     level: 50

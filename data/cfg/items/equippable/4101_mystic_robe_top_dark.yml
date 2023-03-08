@@ -4,9 +4,14 @@ name: "Mystic robe top (dark)"
 examine: "The upper half of a dark magical robe."
 tradeable: true
 weight: 2.721
+tradeable_on_ge: true
+cost: 120000
+lowalch: 48000
+highalch: 72000
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

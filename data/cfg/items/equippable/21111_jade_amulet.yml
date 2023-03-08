@@ -3,7 +3,12 @@ id: 21111
 name: "Jade amulet"
 examine: "I wonder if I can get this enchanted."
 tradeable: true
-weight: 0.0
+weight: 0.007
+tradeable_on_ge: true
+cost: 1050
+lowalch: 420
+highalch: 630
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "neck"

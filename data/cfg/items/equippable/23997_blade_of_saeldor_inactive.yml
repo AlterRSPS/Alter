@@ -4,10 +4,15 @@ name: "Blade of saeldor (inactive)"
 examine: "A magical elven sword."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 5000000
+lowalch: 2000000
+highalch: 3000000
+buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 9
+  equipSlot: "body"
+  weaponType: -1
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

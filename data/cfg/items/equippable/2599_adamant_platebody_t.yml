@@ -4,6 +4,11 @@ name: "Adamant platebody (t)"
 examine: "Adamant platebody with trim."
 tradeable: true
 weight: 11.339
+tradeable_on_ge: true
+cost: 16640
+lowalch: 6656
+highalch: 9984
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "body"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -30
-  attackRanged: -10
+  attackRanged: -15
   defenceStab: 65
   defenceSlash: 63
   defenceCrush: 55

@@ -1,9 +1,14 @@
 ---
 id: 22129
 name: "Adamant kiteshield"
-examine: "A large metal shield."
-tradeable: true
-weight: 5.896
+examine: "A shield with the symbol of Asgarnia."
+tradeable: false
+weight: 5.443
+tradeable_on_ge: false
+cost: 5440
+lowalch: 2176
+highalch: 3264
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "shield"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -8
-  attackRanged: -2
+  attackRanged: -3
   defenceStab: 27
   defenceSlash: 31
   defenceCrush: 29

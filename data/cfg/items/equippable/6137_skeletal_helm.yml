@@ -4,9 +4,14 @@ name: "Skeletal helm"
 examine: "Make your foes cower by wearing a skull as a helmet!"
 tradeable: true
 weight: 1.36
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

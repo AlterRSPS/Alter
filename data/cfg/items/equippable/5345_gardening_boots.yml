@@ -4,6 +4,11 @@ name: "Gardening boots"
 examine: "A pair of gardening boots."
 tradeable: true
 weight: 0.34
+tradeable_on_ge: true
+cost: 25
+lowalch: 10
+highalch: 15
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "feet"

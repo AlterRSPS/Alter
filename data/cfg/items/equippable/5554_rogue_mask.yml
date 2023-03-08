@@ -4,9 +4,14 @@ name: "Rogue mask"
 examine: "Black banded leather armour, a rogue's dream!"
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 375
+lowalch: 150
+highalch: 225
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
@@ -24,7 +29,7 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: "theiving"
+  - skill: "thieving"
     level: 50
   - skill: "agility"
     level: 50

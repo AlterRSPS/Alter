@@ -4,6 +4,11 @@ name: "Gilded d'hide chaps"
 examine: "Made with 100% golden dragonhide."
 tradeable: true
 weight: 5.0
+tradeable_on_ge: true
+cost: 40000
+lowalch: 16000
+highalch: 24000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "legs"

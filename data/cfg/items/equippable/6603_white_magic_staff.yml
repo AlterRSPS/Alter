@@ -4,10 +4,15 @@ name: "White magic staff"
 examine: "A Magical staff."
 tradeable: true
 weight: 2.267
+tradeable_on_ge: true
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: 125
 equipment:
   prayer: 1
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 13
   attackSpeed: 5
   attackStab: 2
   attackSlash: -1

@@ -4,10 +4,15 @@ name: "Crystal sceptre"
 examine: "A crystalline sceptre with some magical properties."
 tradeable: false
 weight: 0.003
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 18
+  weaponType: 8337
   attackSpeed: 5
   attackStab: 8
   attackSlash: 10

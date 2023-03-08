@@ -4,10 +4,15 @@ name: "Mystic boots"
 examine: "Magical boots."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "feet"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 3
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
   skillReqs:
   - skill: "magic"
     level: 40

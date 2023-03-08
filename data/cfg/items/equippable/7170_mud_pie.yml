@@ -4,10 +4,15 @@ name: "Mud pie"
 examine: "All the good of the earth."
 tradeable: true
 weight: 0.001
+tradeable_on_ge: true
+cost: 54
+lowalch: 21
+highalch: 32
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 19
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100

@@ -2,11 +2,16 @@
 id: 20407
 name: "Dragon dagger"
 examine: "A powerful dagger."
-tradeable: true
+tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 50
+lowalch: 20
+highalch: 30
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 4
   attackStab: 40

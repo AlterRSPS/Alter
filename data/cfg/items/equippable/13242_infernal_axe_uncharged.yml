@@ -3,11 +3,16 @@ id: 13242
 name: "Infernal axe (uncharged)"
 examine: "A very powerful, fiery hatchet."
 tradeable: false
-weight: 2.0
+weight: 1.814
+tradeable_on_ge: false
+cost: 99800
+lowalch: 39920
+highalch: 59880
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 1
   attackSpeed: 5
   attackStab: -2
   attackSlash: 38

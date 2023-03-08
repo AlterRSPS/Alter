@@ -4,6 +4,11 @@ name: "Priest gown"
 examine: "Bottom half of a priest suit."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 5
+lowalch: 2
+highalch: 3
+buy_limit: 150
 equipment:
   prayer: 3
   equipSlot: "legs"

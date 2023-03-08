@@ -4,7 +4,12 @@ name: "Justiciar chestguard"
 examine: "A Justiciar's chestguard. They once roamed the land casting judgements on\
   \ wrongdoers, their decisions were never questioned."
 tradeable: true
-weight: 9.9
+weight: 9.979
+tradeable_on_ge: true
+cost: 6000000
+lowalch: 2400000
+highalch: 3600000
+buy_limit: 8
 equipment:
   prayer: 4
   equipSlot: "body"

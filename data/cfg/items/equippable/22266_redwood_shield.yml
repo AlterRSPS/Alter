@@ -3,7 +3,12 @@ id: 22266
 name: "Redwood shield"
 examine: "A solid redwood shield."
 tradeable: true
-weight: 3.1
+weight: 3.175
+tradeable_on_ge: true
+cost: 1280
+lowalch: 512
+highalch: 768
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "shield"

@@ -4,6 +4,11 @@ name: "Shorts"
 examine: "Yellow shorts. Far too small for you."
 tradeable: true
 weight: 0.1
+tradeable_on_ge: true
+cost: 360
+lowalch: 144
+highalch: 216
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "legs"

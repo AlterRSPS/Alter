@@ -4,9 +4,14 @@ name: "Dragonstone bolts"
 examine: "Dragonstone tipped Runite crossbow bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 967
+lowalch: 386
+highalch: 580
+buy_limit: 11000
 equipment:
   prayer: 0
-  equipSlot: "ammo"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

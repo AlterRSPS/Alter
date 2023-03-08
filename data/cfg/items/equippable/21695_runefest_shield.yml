@@ -3,10 +3,15 @@ id: 21695
 name: "Runefest shield"
 examine: "Celebrating RuneFest 2017."
 tradeable: false
-weight: 0.4
+weight: 0.453
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "shield"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

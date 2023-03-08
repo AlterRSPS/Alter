@@ -4,9 +4,14 @@ name: "Pink hat"
 examine: "A silly pink pointed hat."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 160
+lowalch: 64
+highalch: 96
+buy_limit: 150
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

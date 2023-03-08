@@ -4,10 +4,15 @@ name: "Black sword"
 examine: "A razor sharp sword."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 624
+lowalch: 249
+highalch: 374
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 17
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 14
   attackSlash: 10
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 12
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 10

@@ -3,10 +3,15 @@ id: 19544
 name: "Tormented bracelet"
 examine: "A deep sense of torment burns within this powerful bracelet."
 tradeable: true
-weight: 0.0
+weight: 0.25
+tradeable_on_ge: true
+cost: 201000
+lowalch: 80400
+highalch: 120600
+buy_limit: 8
 equipment:
   prayer: 2
-  equipSlot: "hands"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

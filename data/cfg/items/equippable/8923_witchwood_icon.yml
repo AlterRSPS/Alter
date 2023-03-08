@@ -4,6 +4,11 @@ name: "Witchwood icon"
 examine: "A stick on a string... pure style."
 tradeable: false
 weight: 0.007
+tradeable_on_ge: false
+cost: 900
+lowalch: 360
+highalch: 540
+buy_limit: null
 equipment:
   prayer: 1
   equipSlot: "neck"

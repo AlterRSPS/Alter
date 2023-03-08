@@ -3,7 +3,12 @@ id: 7112
 name: "Pirate bandana"
 examine: "Essential pirate wear."
 tradeable: true
-weight: 0.1
+weight: 1.0
+tradeable_on_ge: true
+cost: 100
+lowalch: 40
+highalch: 60
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "head"

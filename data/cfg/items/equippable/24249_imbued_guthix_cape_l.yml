@@ -4,6 +4,11 @@ name: "Imbued guthix cape (l)"
 examine: "A cape from the almighty god Guthix, imbued with great power."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 80000
+lowalch: 32000
+highalch: 48000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "cape"

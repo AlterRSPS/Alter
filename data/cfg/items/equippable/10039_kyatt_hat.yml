@@ -4,6 +4,11 @@ name: "Kyatt hat"
 examine: "This should make me harder to spot in polar areas."
 tradeable: true
 weight: 0.226
+tradeable_on_ge: true
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "head"

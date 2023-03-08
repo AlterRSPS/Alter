@@ -3,10 +3,15 @@ id: 21298
 name: "Obsidian helmet"
 examine: "Provides excellent protection."
 tradeable: true
-weight: 3.0
+weight: 3.628
+tradeable_on_ge: true
+cost: 56320
+lowalch: 22528
+highalch: 33792
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

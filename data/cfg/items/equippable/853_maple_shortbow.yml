@@ -4,10 +4,15 @@ name: "Maple shortbow"
 examine: "A shortbow made out of Maple, still effective."
 tradeable: true
 weight: 1.36
+tradeable_on_ge: true
+cost: 400
+lowalch: 160
+highalch: 240
+buy_limit: 18000
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 3
+  weaponType: -1
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 30

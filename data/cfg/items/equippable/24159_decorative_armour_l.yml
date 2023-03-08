@@ -4,6 +4,11 @@ name: "Decorative armour (l)"
 examine: "Very decorative armour."
 tradeable: false
 weight: 9.071
+tradeable_on_ge: false
+cost: 6400
+lowalch: 2560
+highalch: 3840
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"

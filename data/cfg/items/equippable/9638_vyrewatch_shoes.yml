@@ -3,7 +3,12 @@ id: 9638
 name: "Vyrewatch shoes"
 examine: "Dress like the powerful vyrewatch!"
 tradeable: true
-weight: 0.9
+weight: 0.907
+tradeable_on_ge: true
+cost: 500
+lowalch: 200
+highalch: 300
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "feet"

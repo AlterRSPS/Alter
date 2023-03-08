@@ -4,9 +4,14 @@ name: "Iron brutal"
 examine: "Blunt iron arrow... ouch."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 10
+lowalch: 4
+highalch: 6
+buy_limit: 11000
 equipment:
   prayer: 0
-  equipSlot: "ammo"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -3,10 +3,15 @@ id: 4099
 name: "Mystic hat (dark)"
 examine: "A dark magical hat."
 tradeable: true
-weight: 0.4
+weight: 0.453
+tradeable_on_ge: true
+cost: 15000
+lowalch: 6000
+highalch: 9000
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

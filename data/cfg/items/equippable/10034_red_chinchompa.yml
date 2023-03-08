@@ -4,10 +4,15 @@ name: "Red chinchompa"
 examine: "Even more volatile than its vegetarian counterpart."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 160
+lowalch: 64
+highalch: 96
+buy_limit: 7000
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 7
+  equipSlot: "cape"
+  weaponType: -1
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 15
   magicDamage: 0
-  renderAnimations:
-  - 3175
-  - 3177
-  - 3177
-  - 3177
-  - 3177
-  - 3177
-  - 3178
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 55

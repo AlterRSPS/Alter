@@ -4,11 +4,16 @@ name: "Scythe"
 examine: "It's a Scythe."
 tradeable: false
 weight: 3.175
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
+  equipSlot: "2h"
   weaponType: 14
-  attackSpeed: 6
+  attackSpeed: 7
   attackStab: 3
   attackSlash: 8
   attackCrush: 3
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 10
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 847
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs: null

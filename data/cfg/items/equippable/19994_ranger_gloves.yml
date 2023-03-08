@@ -3,7 +3,12 @@ id: 19994
 name: "Ranger gloves"
 examine: "Lightweight gloves ideal for rangers."
 tradeable: true
-weight: 0.0
+weight: 0.226
+tradeable_on_ge: true
+cost: 3400
+lowalch: 1360
+highalch: 2040
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "hands"

@@ -4,6 +4,11 @@ name: "Skirt"
 examine: "A brown skirt. Size small!"
 tradeable: true
 weight: 0.08
+tradeable_on_ge: true
+cost: 350
+lowalch: 140
+highalch: 210
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "legs"

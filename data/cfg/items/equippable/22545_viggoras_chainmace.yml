@@ -5,10 +5,15 @@ examine: "An ancient chainmace with a peculiar mechanism that allows for varying
   \ styles."
 tradeable: false
 weight: 2.0
+tradeable_on_ge: false
+cost: 120000
+lowalch: 48000
+highalch: 72000
+buy_limit: null
 equipment:
   prayer: 2
   equipSlot: "weapon"
-  weaponType: 16
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 53
   attackSlash: -2
@@ -23,14 +28,7 @@ equipment:
   meleeStrength: 66
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 244
-  - 823
-  - 247
-  - 247
-  - 247
-  - 247
-  - 248
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 60

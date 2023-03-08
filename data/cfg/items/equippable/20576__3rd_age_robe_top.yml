@@ -4,6 +4,11 @@ name: "3rd age robe top"
 examine: "Fabulously ancient mage protection enchanted in the 3rd Age."
 tradeable: true
 weight: 2.7
+tradeable_on_ge: false
+cost: 40
+lowalch: 16
+highalch: 24
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "body"

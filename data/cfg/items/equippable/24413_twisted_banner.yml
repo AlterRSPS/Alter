@@ -4,10 +4,15 @@ name: "Twisted banner"
 examine: "A banner showcasing the colours of Leagues I - Twisted."
 tradeable: true
 weight: 2.267
+tradeable_on_ge: true
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: 5
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 18
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

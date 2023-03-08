@@ -4,6 +4,11 @@ name: "3rd age range coif"
 examine: "Fabulously ancient range protection crafted from white dragonhide."
 tradeable: true
 weight: 1.0
+tradeable_on_ge: true
+cost: 50400
+lowalch: 20160
+highalch: 30240
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "head"

@@ -3,11 +3,16 @@ id: 9176
 name: "Blurite crossbow"
 examine: "A blurite crossbow."
 tradeable: false
-weight: 2.0
+weight: 4.0
+tradeable_on_ge: false
+cost: 93
+lowalch: 37
+highalch: 55
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 5
   attackSpeed: 6
   attackStab: 0
   attackSlash: 0

@@ -4,11 +4,16 @@ name: "Holy water"
 examine: "A vial of holy water, good against certain demons."
 tradeable: false
 weight: 0.0
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
-  attackSpeed: 3
+  weaponType: 19
+  attackSpeed: 4
   attackStab: 0
   attackSlash: 0
   attackCrush: 0

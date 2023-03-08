@@ -3,7 +3,12 @@ id: 22498
 name: "Sinhaza shroud tier 3"
 examine: "A cape fit for those experienced in the Theatre."
 tradeable: false
-weight: 0.0
+weight: 0.453
+tradeable_on_ge: false
+cost: 10
+lowalch: 4
+highalch: 6
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "cape"

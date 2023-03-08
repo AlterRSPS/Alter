@@ -4,10 +4,15 @@ name: "Sarachnis cudgel"
 examine: "Not to be confused with a Sarachnis cuddle."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 120001
+lowalch: 48000
+highalch: 72000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 16
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 30
   attackSlash: 0

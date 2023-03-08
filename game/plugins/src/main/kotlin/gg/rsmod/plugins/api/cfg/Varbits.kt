@@ -83,6 +83,7 @@ object Varbits {
     const val URI_TRANSFORM_EMOTE_VARBIT = 5104
     const val SMOOTH_DANCE_EMOTE_VARBIT = 5597
     const val CRAZY_DANCE_EMOTE_VARBIT = 5598
+    const val PARTY_EMOTE_VARBIT = 6550
     const val PREMIER_SHIELD_EMOTE_VARBIT = 6041
     const val EXPLORE_VARBIT = 10115
     const val FLEX_EMOTE_VARBIT = 12062

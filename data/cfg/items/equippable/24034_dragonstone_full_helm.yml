@@ -4,9 +4,14 @@ name: "Dragonstone full helm"
 examine: "A stylish rune full helm inlaid with dragonstones."
 tradeable: true
 weight: 2.721
+tradeable_on_ge: true
+cost: 35200
+lowalch: 14080
+highalch: 21120
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

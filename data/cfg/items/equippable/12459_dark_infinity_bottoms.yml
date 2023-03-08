@@ -3,10 +3,15 @@ id: 12459
 name: "Dark infinity bottoms"
 examine: "Mystical robes with a dark recolour."
 tradeable: false
-weight: 0.0
+weight: 1.814
+tradeable_on_ge: false
+cost: 90000
+lowalch: 36000
+highalch: 54000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

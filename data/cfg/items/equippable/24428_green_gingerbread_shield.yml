@@ -3,7 +3,12 @@ id: 24428
 name: "Green gingerbread shield"
 examine: "A delicious looking Gingerbread Gnome."
 tradeable: false
-weight: 3.175
+weight: 1.0
+tradeable_on_ge: false
+cost: 0
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "shield"

@@ -4,6 +4,11 @@ name: "Woven top"
 examine: "Yellow top, too small for me."
 tradeable: true
 weight: 0.07
+tradeable_on_ge: true
+cost: 625
+lowalch: 250
+highalch: 375
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "body"

@@ -4,6 +4,11 @@ name: "Diamond amulet"
 examine: "I wonder if I can get this enchanted."
 tradeable: true
 weight: 0.007
+tradeable_on_ge: true
+cost: 3525
+lowalch: 1410
+highalch: 2115
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "neck"

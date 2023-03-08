@@ -4,10 +4,15 @@ name: "Trailblazer harpoon"
 examine: "A very powerful harpoon in the colours of the Trailblazer League."
 tradeable: false
 weight: 0.907
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 17
+  weaponType: 8337
   attackSpeed: 5
   attackStab: 38
   attackSlash: 32

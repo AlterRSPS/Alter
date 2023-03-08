@@ -4,6 +4,11 @@ name: "Pink robe top"
 examine: "The ultimate in gnome design, now in pink!"
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 180
+lowalch: 72
+highalch: 108
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "body"

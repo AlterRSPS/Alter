@@ -3,7 +3,12 @@ id: 6187
 name: "Princess skirt"
 examine: "Very posh!"
 tradeable: false
-weight: 2.0
+weight: 2.267
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "legs"

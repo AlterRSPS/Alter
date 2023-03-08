@@ -4,6 +4,11 @@ name: "3rd age plateskirt"
 examine: "Fabulously ancient armour beaten from magical silver."
 tradeable: true
 weight: 2.721
+tradeable_on_ge: true
+cost: 200000
+lowalch: 80000
+highalch: 120000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "legs"

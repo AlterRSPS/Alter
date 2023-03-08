@@ -54,16 +54,18 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
         if (buf.readableBytes() >= 3) {
             val size = buf.readUnsignedShort() // always 0
             if (buf.readableBytes() >= size) {
-                val revision = buf.readInt()
-                buf.skipBytes(Int.SIZE_BYTES) // always 1
 
+                val revision
+                    = buf.readInt()
+                buf.readInt() // always 1
+                buf.readUnsignedByte() // client type
                 /**
                  * login protocols see param4 sent before and inside the xtea buffer
                  * and clientType here is an addition since the inclusion of mobile;
                  * all of this is ignored by rsmod for now.
                  */
-                buf.skipBytes(Byte.SIZE_BYTES) // param4 is written as a signed byte
-                buf.readUnsignedByte().toInt() // client type
+                buf.readUnsignedByte() // param4 is written as a signed byte
+
                 if (revision == serverRevision) {
                     payloadLength = size - (Int.SIZE_BYTES + Int.SIZE_BYTES + Byte.SIZE_BYTES + Byte.SIZE_BYTES)
                     decodePayload(ctx, buf, out)
@@ -78,6 +80,7 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
     private fun decodePayload(ctx: ChannelHandlerContext, buf: ByteBuf, out: MutableList<Any>) {
         if (buf.readableBytes() >= payloadLength) {
             buf.markReaderIndex()
+            buf.readUnsignedByte() // The byte that you commented out.
 
             val secureBuf: ByteBuf = if (rsaExponent != null && rsaModulus != null) {
                 val secureBufLength = buf.readUnsignedShort()
@@ -97,7 +100,7 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
                 return
             }
 
-            val xteaKeys = IntArray(4) { secureBuf.readInt() }
+            val xteaKeys = IntArray(4) {secureBuf.readInt()}
             val reportedSeed = secureBuf.readLong()
 
             var authCode: Int = -1
@@ -144,45 +147,14 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
             xteaBuf.readString() // param9
             xteaBuf.skipBytes(Int.SIZE_BYTES) // param14
 
-            xteaBuf.skipBytes(Byte.SIZE_BYTES * 10)
-            xteaBuf.skipBytes(Short.SIZE_BYTES)
-            xteaBuf.skipBytes(Byte.SIZE_BYTES)
-            xteaBuf.skipBytes(Byte.SIZE_BYTES * 3)
-            xteaBuf.skipBytes(Short.SIZE_BYTES)
-            xteaBuf.readJagexString()
-            xteaBuf.readJagexString()
-            xteaBuf.readJagexString()
-            xteaBuf.readJagexString()
-            xteaBuf.skipBytes(Byte.SIZE_BYTES)
-            xteaBuf.skipBytes(Short.SIZE_BYTES)
-            xteaBuf.readJagexString()
-            xteaBuf.readJagexString()
-            xteaBuf.skipBytes(Byte.SIZE_BYTES * 2)
-            xteaBuf.skipBytes(Int.SIZE_BYTES * 3)
-            xteaBuf.skipBytes(Int.SIZE_BYTES)
-            xteaBuf.readJagexString()
+            xteaBuf.skipBytes(55) //platform info block size - rev 211
 
-            xteaBuf.skipBytes(Int.SIZE_BYTES * 3)
+            xteaBuf.skipBytes(Byte.SIZE_BYTES) // client type
+            xteaBuf.skipBytes(Int.SIZE_BYTES) // 0
 
+            /*
             val crcs = decodeCRCs(xteaBuf)
-
-            //for (i in crcs.indices) {
-            //    /**
-            //     * CRC for index 16 is always sent as 0 (at least on the
-            //     * Desktop client, need to look into mobile).
-            //     */
-            //    if (i == 16) {
-            //        continue
-            //    }
-            //    if (crcs[i] != cacheCrcs[i]) {
-            //        buf.resetReaderIndex()
-            //        buf.skipBytes(payloadLength)
-            //        logger.info { "User '$username' login request crc mismatch [requestCrc=${crcs.contentToString()}, cacheCrc=${cacheCrcs.contentToString()}]." }
-            //        ctx.writeResponse(LoginResultType.REVISION_MISMATCH)
-            //        return
-            //    }
-            //}
-
+            */
             logger.info { "User '$username' login request from ${ctx.channel()}." }
 
             val request = LoginRequest(channel = ctx.channel(), username = username,

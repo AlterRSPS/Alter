@@ -3,11 +3,16 @@ id: 23047
 name: "Mystic hat (dusk)"
 examine: "A dusky magical hat."
 tradeable: true
-weight: 0.4
+weight: 0.453
+tradeable_on_ge: true
+cost: 15000
+lowalch: 6000
+highalch: 9000
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "hat"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 11
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -23,4 +28,8 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null
-  skillReqs: null
+  skillReqs:
+  - skill: "magic"
+    level: 40
+  - skill: "defence"
+    level: 20

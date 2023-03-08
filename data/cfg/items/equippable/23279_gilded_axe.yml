@@ -4,6 +4,11 @@ name: "Gilded axe"
 examine: "A powerful axe."
 tradeable: true
 weight: 1.36
+tradeable_on_ge: true
+cost: 35000
+lowalch: 14000
+highalch: 21000
+buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -24,7 +29,7 @@ equipment:
   magicDamage: 0
   renderAnimations: null
   skillReqs:
-  - skill: "attack"
-    level: 40
   - skill: "woodcutting"
     level: 41
+  - skill: "attack"
+    level: 40

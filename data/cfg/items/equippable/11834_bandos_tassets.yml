@@ -4,6 +4,11 @@ name: "Bandos tassets"
 examine: "A sturdy pair of tassets."
 tradeable: true
 weight: 8.0
+tradeable_on_ge: true
+cost: 289910
+lowalch: 115964
+highalch: 173946
+buy_limit: 8
 equipment:
   prayer: 1
   equipSlot: "legs"

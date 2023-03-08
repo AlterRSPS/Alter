@@ -4,6 +4,11 @@ name: "Sapphire dragon bolts (e)"
 examine: "Enchanted Dragon crossbow bolts, tipped with sapphire."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 780
+lowalch: 312
+highalch: 468
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

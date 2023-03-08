@@ -4,6 +4,11 @@ name: "Anger battleaxe"
 examine: "A heavy duty axe."
 tradeable: false
 weight: 2.721
+tradeable_on_ge: false
+cost: 182
+lowalch: 72
+highalch: 109
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs: null

@@ -3,7 +3,12 @@ id: 21817
 name: "Bracelet of ethereum (uncharged)"
 examine: "The bracelet is dull and powerless."
 tradeable: true
-weight: 0.2
+weight: 0.25
+tradeable_on_ge: true
+cost: 72000
+lowalch: 28800
+highalch: 43200
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "hands"

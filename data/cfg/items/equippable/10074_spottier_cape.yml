@@ -2,8 +2,13 @@
 id: 10074
 name: "Spottier cape"
 examine: "A really surprisingly aerodynamic cape."
-tradeable: true
-weight: 0.4
+tradeable: false
+weight: -4.5
+tradeable_on_ge: false
+cost: 800
+lowalch: 320
+highalch: 480
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "cape"

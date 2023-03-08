@@ -3,11 +3,16 @@ id: 6527
 name: "Tzhaar-ket-em"
 examine: "A mace of obsidian."
 tradeable: true
-weight: 1.0
+weight: 1.814
+tradeable_on_ge: true
+cost: 30000
+lowalch: 12000
+highalch: 18000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 5
   attackStab: -4
   attackSlash: -4

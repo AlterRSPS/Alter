@@ -4,6 +4,11 @@ name: "Bracelet of clay"
 examine: "Now I can become a potter."
 tradeable: true
 weight: 0.25
+tradeable_on_ge: true
+cost: 1265
+lowalch: 506
+highalch: 759
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "hands"

@@ -3,7 +3,12 @@ id: 12831
 name: "Blessed spirit shield"
 examine: "An ethereal shield that has been blessed with holy powers."
 tradeable: true
-weight: 2.5
+weight: 2.0
+tradeable_on_ge: true
+cost: 1200000
+lowalch: 480000
+highalch: 720000
+buy_limit: 8
 equipment:
   prayer: 3
   equipSlot: "shield"

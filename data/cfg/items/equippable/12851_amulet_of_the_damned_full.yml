@@ -3,7 +3,12 @@ id: 12851
 name: "Amulet of the damned (full)"
 examine: "Heirloom of an ancient family of Morytania."
 tradeable: true
-weight: 0.0
+weight: 0.1
+tradeable_on_ge: true
+cost: 58001
+lowalch: 23200
+highalch: 34800
+buy_limit: 8
 equipment:
   prayer: 3
   equipSlot: "neck"

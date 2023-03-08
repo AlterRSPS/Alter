@@ -4,6 +4,11 @@ name: "Onyx bolts"
 examine: "Onyx tipped Runite crossbow bolts."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 13633
+lowalch: 5453
+highalch: 8179
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

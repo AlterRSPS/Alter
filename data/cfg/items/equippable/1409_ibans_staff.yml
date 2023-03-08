@@ -4,10 +4,15 @@ name: "Iban's staff"
 examine: "An ancient staff, formerly the property of Iban."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 42500
+lowalch: 17000
+highalch: 25500
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 18
+  weaponType: 13
   attackSpeed: 5
   attackStab: 10
   attackSlash: -1
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 50
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "magic"
     level: 50

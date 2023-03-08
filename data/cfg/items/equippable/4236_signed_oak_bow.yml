@@ -4,9 +4,14 @@ name: "Signed oak bow"
 examine: "This bow has been signed by Robin, Master Bowman."
 tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 160
+lowalch: 64
+highalch: 96
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "2h"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 6
   attackStab: 0

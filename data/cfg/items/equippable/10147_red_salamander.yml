@@ -4,11 +4,16 @@ name: "Red salamander"
 examine: "Slightly slimy but certainly striking."
 tradeable: true
 weight: 4.0
+tradeable_on_ge: true
+cost: 150
+lowalch: 60
+highalch: 90
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
-  attackSpeed: 0
+  weaponType: 6
+  attackSpeed: 5
   attackStab: 0
   attackSlash: 37
   attackCrush: 0

@@ -3,10 +3,15 @@ id: 19547
 name: "Necklace of anguish"
 examine: "A deep sense of anguish burns within this powerful necklace."
 tradeable: true
-weight: 0.0
+weight: 0.01
+tradeable_on_ge: true
+cost: 202000
+lowalch: 80800
+highalch: 121200
+buy_limit: 8
 equipment:
   prayer: 2
-  equipSlot: "neck"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -4,10 +4,15 @@ name: "Harry's cutlass"
 examine: "I hope he doesn't want it back."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 1040
+lowalch: 416
+highalch: 624
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 9
   attackSpeed: 4
   attackStab: 3
   attackSlash: 14

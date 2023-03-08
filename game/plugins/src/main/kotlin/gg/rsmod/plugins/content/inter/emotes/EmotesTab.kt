@@ -5,10 +5,7 @@ import gg.rsmod.game.model.queue.TaskPriority
 import gg.rsmod.plugins.api.EquipmentType
 import gg.rsmod.plugins.api.cfg.Items
 import gg.rsmod.plugins.api.cfg.Varbits
-import gg.rsmod.plugins.api.ext.getVarbit
-import gg.rsmod.plugins.api.ext.messageBox
-import gg.rsmod.plugins.api.ext.player
-import gg.rsmod.plugins.api.ext.setVarbit
+import gg.rsmod.plugins.api.ext.*
 import kotlinx.coroutines.channels.ticker
 
 /**
@@ -45,7 +42,8 @@ object EmotesTab {
         p.setVarbit(Varbits.PREMIER_SHIELD_EMOTE_VARBIT, 1)
         p.setVarbit(Varbits.EXPLORE_VARBIT, 1)
         p.setVarbit(Varbits.FLEX_EMOTE_VARBIT, 1)
-        p.setVarbit(Varbits.RELIC_UNLOCKED_EMOTE_VARBIT, 1)
+        p.setVarbit(Varbits.RELIC_UNLOCKED_EMOTE_VARBIT, 9)
+        p.setVarbit(Varbits.PARTY_EMOTE_VARBIT, 1)
     }
 
     fun performEmote(p: Player, emote: Emote) {
@@ -54,8 +52,10 @@ object EmotesTab {
             p.queue { messageBox(description) }
             return
         }
+
         /**
          * @author Jarafi
+         * If you move you get locked into uris form
          */
         if (emote == Emote.URI_TRANSFORM) {
             p.queue {
@@ -79,7 +79,6 @@ object EmotesTab {
         }
         /**
          * Thanks to @ClaroJack for the skill animation/gfx id's
-         * @TODO Need to lock the players state when he performs One of the max capes animation
          */
         if (emote == Emote.SKILLCAPE) {
             when(p.equipment[EquipmentType.CAPE.id]?.id) {
@@ -196,20 +195,25 @@ object EmotesTab {
                 }
             }
         }
+
+
+        if (emote == Emote.RELIC_UNLOCKED) {
+            p.queue(TaskPriority.STANDARD) {
+                p.graphic(-1)
+                p.graphic(emote.gfx, 100)
+                p.unlock()
+            }
+        }
         if (emote.anim != -1) {
             p.queue(TaskPriority.STANDARD) {
                 p.animate(-1)
-                p.lock()
-                p.stopMovement()
                 p.animate(emote.anim, 1)
                 p.unlock()
             }
         }
-        if (emote.gfx != -1) {
+        if (emote.gfx != -1 && emote != Emote.RELIC_UNLOCKED) {
             p.queue(TaskPriority.STANDARD) {
                 p.graphic(-1)
-                p.lock()
-                p.stopMovement()
                 p.graphic(emote.gfx)
                 p.unlock()
             }

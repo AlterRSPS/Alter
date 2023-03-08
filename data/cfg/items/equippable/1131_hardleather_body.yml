@@ -4,9 +4,14 @@ name: "Hardleather body"
 examine: "Harder than normal leather."
 tradeable: true
 weight: 3.628
+tradeable_on_ge: true
+cost: 170
+lowalch: 68
+highalch: 102
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "torso"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

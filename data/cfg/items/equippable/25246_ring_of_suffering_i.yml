@@ -4,6 +4,11 @@ name: "Ring of suffering (i)"
 examine: "An extremely deep sense of suffering burns within this powerful ring."
 tradeable: false
 weight: 0.006
+tradeable_on_ge: false
+cost: 201100
+lowalch: 80440
+highalch: 120660
+buy_limit: null
 equipment:
   prayer: 4
   equipSlot: "ring"

@@ -58,10 +58,11 @@ enum class Emote(val slot: Int, val anim: Int, val gfx: Int = -1,
     CRAZY_DANCE(slot = 47, anim = 7536, varbit = Varbits.CRAZY_DANCE_EMOTE_VARBIT),
     // bronze, silver, and gold shield, referencing the 3, 6, and 12 month packages from the Premier Club.
     PREMIER_SHIELD(slot = 48, anim = 7751, gfx = 1412, varbit = Varbits.PREMIER_SHIELD_EMOTE_VARBIT),
-    EXPLORE(slot = 49, anim = 7751, gfx = 1412, varbit = Varbits.EXPLORE_VARBIT), // @TODO
-    //https://oldschool.runescape.wiki/w/Relic_Unlock
-    RELIC_UNLOCKED(slot = 50, anim = 7751, gfx = 1412, varbit = Varbits.RELIC_UNLOCKED_EMOTE_VARBIT); // @TODO
-
+    EXPLORE(slot = 49, anim = 8541, varbit = Varbits.EXPLORE_VARBIT), // @TODO
+    // Twisted gfx: 1749 | TrailBlazer gfx: 1835
+    // Varbit: 11757 -> 3 for Twisted, 6 for trailblazer, 9 for shattered
+    RELIC_UNLOCKED(slot = 50, anim = 8524, gfx = 1835, varbit = Varbits.RELIC_UNLOCKED_EMOTE_VARBIT, requiredVarbitValue = 9), // @TODO unlockDescription = "You can't use that emote unless you have stored a tier 3 relichunter \n outfit on the outfitstand in your player owned house League Hall."
+    PARTY(slot = 51, anim = 10031, gfx = 2365, varbit = Varbits.PARTY_EMOTE_VARBIT);
     companion object {
         val values = enumValues<Emote>()
     }

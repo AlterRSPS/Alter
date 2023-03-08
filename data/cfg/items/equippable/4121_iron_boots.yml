@@ -4,6 +4,11 @@ name: "Iron boots"
 examine: "These will protect my feet."
 tradeable: true
 weight: 1.36
+tradeable_on_ge: true
+cost: 84
+lowalch: 33
+highalch: 50
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "feet"

@@ -4,6 +4,11 @@ name: "Desert legs"
 examine: "Better than factor 50 sun cream."
 tradeable: true
 weight: 0.005
+tradeable_on_ge: true
+cost: 25
+lowalch: 10
+highalch: 15
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "legs"

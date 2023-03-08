@@ -3,10 +3,15 @@ id: 22713
 name: "Star-face"
 examine: "Say hello to my little star."
 tradeable: false
-weight: 0.1
+weight: 0.113
+tradeable_on_ge: false
+cost: 0
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

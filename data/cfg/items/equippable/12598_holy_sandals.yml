@@ -3,7 +3,12 @@ id: 12598
 name: "Holy sandals"
 examine: "Holy footwear!"
 tradeable: true
-weight: 0.0
+weight: 0.5
+tradeable_on_ge: true
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: 4
 equipment:
   prayer: 3
   equipSlot: "feet"

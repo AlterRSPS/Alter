@@ -3,10 +3,15 @@ id: 21838
 name: "Shaman mask"
 examine: "The mask worn by ogre shamans."
 tradeable: true
-weight: 2.0
+weight: 2.721
+tradeable_on_ge: true
+cost: 8000
+lowalch: 3200
+highalch: 4800
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

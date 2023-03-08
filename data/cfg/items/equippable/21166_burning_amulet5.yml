@@ -3,7 +3,12 @@ id: 21166
 name: "Burning amulet(5)"
 examine: "Useful teleports around the wilderness."
 tradeable: true
-weight: 0.0
+weight: 0.007
+tradeable_on_ge: true
+cost: 1250
+lowalch: 500
+highalch: 750
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "neck"

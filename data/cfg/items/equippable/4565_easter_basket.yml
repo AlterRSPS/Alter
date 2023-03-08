@@ -4,10 +4,15 @@ name: "Easter basket"
 examine: "A holiday gift from the Easter Bunny."
 tradeable: false
 weight: 0.1
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 2
+  equipSlot: "body"
+  weaponType: -1
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: -10
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 1836
-  - 1836
-  - 1836
-  - 1836
-  - 1836
-  - 1836
-  - 1836
+  renderAnimations: null
   skillReqs: null

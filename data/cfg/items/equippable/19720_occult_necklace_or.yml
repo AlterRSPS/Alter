@@ -3,11 +3,16 @@ id: 19720
 name: "Occult necklace (or)"
 examine: "A smokey evil embodies this beautiful amulet."
 tradeable: false
-weight: 1.0
+weight: 0.005
+tradeable_on_ge: false
+cost: 45000
+lowalch: 18000
+highalch: 27000
+buy_limit: null
 equipment:
   prayer: 2
-  equipSlot: "neck"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 10
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 10
-  renderAnimations: null
+  renderAnimations:
+  - 7053
+  - 7044
+  - 7052
+  - 7049
+  - 7048
+  - 7047
+  - 7043
   skillReqs:
   - skill: "magic"
     level: 75

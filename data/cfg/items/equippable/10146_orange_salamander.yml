@@ -4,11 +4,16 @@ name: "Orange salamander"
 examine: "Slightly slimy but kind of cute."
 tradeable: true
 weight: 4.0
+tradeable_on_ge: true
+cost: 100
+lowalch: 40
+highalch: 60
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
-  attackSpeed: 0
+  weaponType: 6
+  attackSpeed: 5
   attackStab: 0
   attackSlash: 19
   attackCrush: 0

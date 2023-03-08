@@ -3,17 +3,22 @@ id: 20190
 name: "Steel plateskirt (t)"
 examine: "Steel plateskirt with trim."
 tradeable: true
-weight: 8.0
+weight: 8.164
+tradeable_on_ge: true
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -21
-  attackRanged: -7
+  attackRanged: -11
   defenceStab: 17
   defenceSlash: 16
   defenceCrush: 15

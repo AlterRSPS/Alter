@@ -4,6 +4,11 @@ name: "Topaz dragon bolts (e)"
 examine: "Enchanted Dragon crossbow bolts, tipped with red topaz."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 730
+lowalch: 292
+highalch: 438
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

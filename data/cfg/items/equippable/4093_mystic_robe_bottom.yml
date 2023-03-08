@@ -3,11 +3,16 @@ id: 4093
 name: "Mystic robe bottom"
 examine: "The lower half of a magical robe."
 tradeable: true
-weight: 1.8
+weight: 1.814
+tradeable_on_ge: true
+cost: 80000
+lowalch: 32000
+highalch: 48000
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "legs"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 3
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 808
+  - 823
+  - 819
+  - 820
+  - 821
+  - 822
+  - 824
   skillReqs:
   - skill: "magic"
     level: 40

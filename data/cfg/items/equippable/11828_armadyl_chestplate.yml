@@ -4,6 +4,11 @@ name: "Armadyl chestplate"
 examine: "Armour of great craftsmanship."
 tradeable: true
 weight: 4.0
+tradeable_on_ge: true
+cost: 290000
+lowalch: 116000
+highalch: 174000
+buy_limit: 8
 equipment:
   prayer: 1
   equipSlot: "body"

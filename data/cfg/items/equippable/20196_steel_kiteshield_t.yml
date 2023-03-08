@@ -3,7 +3,12 @@ id: 20196
 name: "Steel kiteshield (t)"
 examine: "Steel kiteshield with trim."
 tradeable: true
-weight: 5.0
+weight: 5.443
+tradeable_on_ge: true
+cost: 850
+lowalch: 340
+highalch: 510
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "shield"
@@ -13,7 +18,7 @@ equipment:
   attackSlash: 0
   attackCrush: 0
   attackMagic: -8
-  attackRanged: -2
+  attackRanged: -3
   defenceStab: 13
   defenceSlash: 15
   defenceCrush: 14

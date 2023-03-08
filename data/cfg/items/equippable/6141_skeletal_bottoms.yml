@@ -4,9 +4,14 @@ name: "Skeletal bottoms"
 examine: "A superior set of strengthened slacks for any self respecting seer."
 tradeable: true
 weight: 4.082
+tradeable_on_ge: true
+cost: 40000
+lowalch: 16000
+highalch: 24000
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "legs"
+  equipSlot: "hat"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

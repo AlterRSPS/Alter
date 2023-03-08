@@ -1,9 +1,14 @@
 ---
 id: 12767
 name: "Dark bow"
-examine: "A bow from a darker dimension."
-tradeable: true
+examine: "A bow from a darker dimension, painted yellow."
+tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 120002
+lowalch: 48000
+highalch: 72001
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 60

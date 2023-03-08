@@ -4,9 +4,14 @@ name: "Ancient mace"
 examine: "It has ancient goblin symbols on it."
 tradeable: true
 weight: 1.814
+tradeable_on_ge: true
+cost: 1000
+lowalch: null
+highalch: null
+buy_limit: 8
 equipment:
   prayer: 3
-  equipSlot: "weapon"
+  equipSlot: "neck"
   weaponType: -1
   attackSpeed: 5
   attackStab: 10

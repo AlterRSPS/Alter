@@ -4,6 +4,11 @@ name: "Dragon arrow(p++)"
 examine: "Venomous-looking arrows."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 800
+lowalch: 320
+highalch: 480
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

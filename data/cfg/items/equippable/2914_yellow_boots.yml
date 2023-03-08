@@ -4,9 +4,14 @@ name: "Yellow boots"
 examine: "Very stylish!"
 tradeable: true
 weight: 0.34
+tradeable_on_ge: true
+cost: 500
+lowalch: 200
+highalch: 300
+buy_limit: 150
 equipment:
   prayer: 0
-  equipSlot: "feet"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

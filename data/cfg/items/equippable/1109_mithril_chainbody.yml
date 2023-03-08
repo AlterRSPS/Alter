@@ -4,6 +4,11 @@ name: "Mithril chainbody"
 examine: "A series of connected metal rings."
 tradeable: true
 weight: 5.896
+tradeable_on_ge: true
+cost: 1950
+lowalch: 780
+highalch: 1170
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "body"

@@ -4,6 +4,11 @@ name: "Elven signet"
 examine: "A signet ring with some elven markings."
 tradeable: true
 weight: 0.006
+tradeable_on_ge: true
+cost: 30000
+lowalch: 12000
+highalch: 18000
+buy_limit: 5
 equipment:
   prayer: 0
   equipSlot: "ring"

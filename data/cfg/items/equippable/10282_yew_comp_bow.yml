@@ -4,10 +4,15 @@ name: "Yew comp bow"
 examine: "A powerful bow made from yew wood."
 tradeable: true
 weight: 1.8
+tradeable_on_ge: true
+cost: 1800
+lowalch: 720
+highalch: 1080
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 3
   attackSpeed: 5
   attackStab: 0
   attackSlash: 0

@@ -4,10 +4,15 @@ name: "Nightmare staff"
 examine: "An ancient staff corrupted by darkness."
 tradeable: true
 weight: 1.5
+tradeable_on_ge: true
+cost: 600000
+lowalch: 240000
+highalch: 360000
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 12
+  weaponType: 13
   attackSpeed: 5
   attackStab: 0
   attackSlash: 0
@@ -24,7 +29,7 @@ equipment:
   magicDamage: 15
   renderAnimations: null
   skillReqs:
-  - skill: "hitpoints"
-    level: 50
   - skill: "magic"
     level: 65
+  - skill: "hitpoints"
+    level: 50

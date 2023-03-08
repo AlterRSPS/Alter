@@ -4,6 +4,11 @@ name: "Brass necklace"
 examine: "I'd prefer a gold one."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "neck"

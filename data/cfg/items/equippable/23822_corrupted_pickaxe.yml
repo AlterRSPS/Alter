@@ -4,6 +4,11 @@ name: "Corrupted pickaxe"
 examine: "If rocks could feel fear, they'd fear this."
 tradeable: false
 weight: 1.36
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"

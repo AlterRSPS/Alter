@@ -3,11 +3,16 @@ id: 22516
 name: "Dawnbringer"
 examine: "A weapon of light to hold back the darkness."
 tradeable: true
-weight: 1.0
+weight: 1.5
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 23
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs: null

@@ -1,9 +1,14 @@
 ---
 id: 25738
 name: "Holy scythe of vitur (uncharged)"
-examine: "A powerful scythe cleansed in the light of Saradomin It is currently uncharged."
+examine: "A powerful scythe cleansed in the light of Saradomin. It is currently uncharged."
 tradeable: false
 weight: 3.175
+tradeable_on_ge: false
+cost: 4000000
+lowalch: 1600000
+highalch: 2400000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"

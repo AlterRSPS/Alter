@@ -4,11 +4,16 @@ name: "Fremennik blade"
 examine: "A sword used only by Fremennik warriors."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 5000
+lowalch: 2000
+highalch: 3000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
-  attackSpeed: 5
+  weaponType: 9
+  attackSpeed: 4
   attackStab: 6
   attackSlash: 29
   attackCrush: -2

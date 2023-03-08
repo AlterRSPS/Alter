@@ -4,6 +4,11 @@ name: "Vesta's blighted longsword"
 examine: "Blighted so it can fight only in the Wilderness on Target worlds."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 800000
+lowalch: 320000
+highalch: 480000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"

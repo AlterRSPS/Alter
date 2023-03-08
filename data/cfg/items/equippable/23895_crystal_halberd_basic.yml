@@ -4,10 +4,15 @@ name: "Crystal halberd (basic)"
 examine: "A wooden stick with some crystal on the end."
 tradeable: false
 weight: 1.814
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 1
-  equipSlot: "2h"
-  weaponType: 12
+  equipSlot: "ring"
+  weaponType: -1
   attackSpeed: 4
   attackStab: 68
   attackSlash: 68

@@ -4,9 +4,14 @@ name: "Skills necklace(1)"
 examine: "This will help me travel."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: false
+cost: 20200
+lowalch: 8080
+highalch: 12120
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "neck"
+  equipSlot: "weapon"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

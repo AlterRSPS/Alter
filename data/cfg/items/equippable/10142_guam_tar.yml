@@ -4,9 +4,14 @@ name: "Guam tar"
 examine: "A thick, foul-smelling, tar-like substance with a green tinge."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 3
+lowalch: 1
+highalch: 1
+buy_limit: 7000
 equipment:
   prayer: 0
-  equipSlot: "ammo"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

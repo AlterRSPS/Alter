@@ -4,6 +4,11 @@ name: "Thieving bag"
 examine: "A good place to store your stolen goods."
 tradeable: true
 weight: 0.435
+tradeable_on_ge: true
+cost: 1000
+lowalch: 400
+highalch: 600
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "cape"

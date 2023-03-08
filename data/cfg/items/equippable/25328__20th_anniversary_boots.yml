@@ -4,6 +4,11 @@ name: "20th anniversary boots"
 examine: "Celebrating the 20th Anniversary of RuneScape."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "feet"

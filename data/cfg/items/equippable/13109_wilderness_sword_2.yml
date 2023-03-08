@@ -3,11 +3,16 @@ id: 13109
 name: "Wilderness sword 2"
 examine: "A razor sharp sword."
 tradeable: false
-weight: 1.0
+weight: 1.814
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 0
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 11
   attackSlash: 8
@@ -22,12 +27,5 @@ equipment:
   meleeStrength: 12
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs: null

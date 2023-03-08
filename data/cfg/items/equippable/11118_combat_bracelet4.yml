@@ -4,6 +4,11 @@ name: "Combat bracelet(4)"
 examine: "A handy way to get around."
 tradeable: true
 weight: 0.25
+tradeable_on_ge: true
+cost: 21040
+lowalch: 8416
+highalch: 12624
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "hands"

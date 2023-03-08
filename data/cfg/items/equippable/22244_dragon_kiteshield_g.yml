@@ -3,17 +3,22 @@ id: 22244
 name: "Dragon kiteshield (g)"
 examine: "An ancient and powerful looking Dragon Kiteshield with a gold trim."
 tradeable: false
-weight: 6.8
+weight: 6.803
+tradeable_on_ge: false
+cost: 1600000
+lowalch: 640000
+highalch: 960000
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "shield"
+  equipSlot: "weapon"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -8
-  attackRanged: -2
+  attackRanged: -3
   defenceStab: 56
   defenceSlash: 60
   defenceCrush: 58

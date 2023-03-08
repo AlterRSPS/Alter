@@ -4,6 +4,11 @@ name: "Elder chaos top"
 examine: "The robes worn by the dangerous elder druids."
 tradeable: true
 weight: 0.2
+tradeable_on_ge: true
+cost: 800
+lowalch: 320
+highalch: 480
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "body"

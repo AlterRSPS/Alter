@@ -3,17 +3,22 @@ id: 12235
 name: "Iron platebody (g)"
 examine: "Iron platebody with gold trim."
 tradeable: true
-weight: 9.0
+weight: 9.979
+tradeable_on_ge: true
+cost: 560
+lowalch: 224
+highalch: 336
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "body"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 2
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
   attackCrush: 0
   attackMagic: -30
-  attackRanged: -10
+  attackRanged: -15
   defenceStab: 21
   defenceSlash: 20
   defenceCrush: 12
@@ -22,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 1662
+  - 823
+  - 1663
+  - 1663
+  - 1663
+  - 1663
+  - 1664
   skillReqs:
   - skill: "defence"
     level: 1

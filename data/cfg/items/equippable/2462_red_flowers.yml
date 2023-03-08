@@ -4,11 +4,16 @@ name: "Red flowers"
 examine: "A posy of flowers."
 tradeable: true
 weight: 0.028
+tradeable_on_ge: true
+cost: 100
+lowalch: 40
+highalch: 60
+buy_limit: 150
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
-  attackSpeed: 5
+  weaponType: 8337
+  attackSpeed: 4
   attackStab: -100
   attackSlash: -100
   attackCrush: -50

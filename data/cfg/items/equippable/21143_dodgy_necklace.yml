@@ -3,7 +3,12 @@ id: 21143
 name: "Dodgy necklace"
 examine: "Lets you get away with it - sometimes."
 tradeable: true
-weight: 0.0
+weight: 0.01
+tradeable_on_ge: true
+cost: 1050
+lowalch: 420
+highalch: 630
+buy_limit: 10000
 equipment:
   prayer: 0
   equipSlot: "neck"

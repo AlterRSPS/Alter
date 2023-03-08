@@ -4,6 +4,11 @@ name: "Iron gloves"
 examine: "A pair of gloves."
 tradeable: false
 weight: 0.226
+tradeable_on_ge: false
+cost: 250
+lowalch: 100
+highalch: 150
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "hands"

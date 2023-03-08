@@ -4,9 +4,14 @@ name: "Sandwich lady hat"
 examine: "A hat worn by a sandwich lady."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

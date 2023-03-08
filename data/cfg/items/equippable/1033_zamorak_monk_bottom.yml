@@ -4,9 +4,14 @@ name: "Zamorak monk bottom"
 examine: "A robe worn by worshippers of Zamorak."
 tradeable: true
 weight: 0.907
+tradeable_on_ge: true
+cost: 30
+lowalch: 12
+highalch: 18
+buy_limit: 15
 equipment:
   prayer: 3
-  equipSlot: "legs"
+  equipSlot: "hat"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

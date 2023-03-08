@@ -4,10 +4,15 @@ name: "Digsite pendant (5)"
 examine: "An enchanted necklace."
 tradeable: false
 weight: 0.01
+tradeable_on_ge: false
+cost: 2400
+lowalch: 960
+highalch: 1440
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "neck"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 10
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -22,5 +27,12 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+  - 7053
+  - 7044
+  - 7052
+  - 7052
+  - 7048
+  - 7047
+  - 7043
   skillReqs: null

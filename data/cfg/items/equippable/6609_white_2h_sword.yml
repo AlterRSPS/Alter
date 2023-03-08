@@ -4,10 +4,15 @@ name: "White 2h sword"
 examine: "A two handed sword."
 tradeable: true
 weight: 3.628
+tradeable_on_ge: true
+cost: 1920
+lowalch: 768
+highalch: 1152
+buy_limit: 125
 equipment:
   prayer: 1
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 7
   attackStab: -4
   attackSlash: 27

@@ -4,6 +4,11 @@ name: "Emerald necklace"
 examine: "I wonder if this is valuable."
 tradeable: true
 weight: 0.01
+tradeable_on_ge: true
+cost: 1425
+lowalch: 570
+highalch: 855
+buy_limit: 18000
 equipment:
   prayer: 0
   equipSlot: "neck"

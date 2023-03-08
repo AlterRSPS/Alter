@@ -1,9 +1,14 @@
 ---
 id: 746
 name: "Dark dagger"
-examine: "A black obsidian dagger, it has a strange aura about it."
+examine: "A black obsidian dagger. It has a strange aura about it."
 tradeable: false
 weight: 0.453
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"

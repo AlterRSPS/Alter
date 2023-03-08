@@ -3,10 +3,15 @@ id: 20131
 name: "Robe top of darkness"
 examine: "A dark power is woven into this robe top."
 tradeable: true
-weight: 2.7
+weight: 2.721
+tradeable_on_ge: true
+cost: 120000
+lowalch: 48000
+highalch: 72000
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "ring"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
@@ -23,4 +28,8 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations: null
-  skillReqs: null
+  skillReqs:
+  - skill: "magic"
+    level: 40
+  - skill: "defence"
+    level: 20

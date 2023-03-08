@@ -4,9 +4,14 @@ name: "Rock-shell gloves"
 examine: "Fremennik gloves stitched together from rock crab shell shards."
 tradeable: true
 weight: 3.175
+tradeable_on_ge: true
+cost: 650
+lowalch: 260
+highalch: 390
+buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "hands"
+  equipSlot: "hat"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

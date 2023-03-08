@@ -1,12 +1,17 @@
 ---
 id: 11721
 name: "Iron pickaxe (nz)"
-examine: "Used for mining."
-tradeable: true
+examine: "For use in the Nightmare Zone. Doesn't work for mining."
+tradeable: false
 weight: 2.267
+tradeable_on_ge: false
+cost: 0
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
+  equipSlot: "legs"
   weaponType: -1
   attackSpeed: 5
   attackStab: 5

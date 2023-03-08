@@ -1,13 +1,18 @@
 ---
 id: 6777
 name: "Rat pole"
-examine: "Empty: A pole for putting rats on.  With rats: A pole with rat(s) on it."
+examine: "A pole with four rats on it."
 tradeable: false
-weight: 2.2
+weight: 2.267
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 8337
   attackSpeed: 5
   attackStab: 0
   attackSlash: -1

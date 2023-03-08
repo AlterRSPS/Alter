@@ -5,10 +5,15 @@ examine: "An ancient staff corrupted by darkness. A volatile orb has been added 
   \ it."
 tradeable: false
 weight: 1.6
+tradeable_on_ge: false
+cost: 50
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 12
+  weaponType: 13
   attackSpeed: 5
   attackStab: 0
   attackSlash: 0

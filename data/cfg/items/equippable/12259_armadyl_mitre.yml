@@ -3,7 +3,12 @@ id: 12259
 name: "Armadyl mitre"
 examine: "An Armadyl mitre."
 tradeable: true
-weight: 0.0
+weight: 0.3
+tradeable_on_ge: true
+cost: 5000
+lowalch: 2000
+highalch: 3000
+buy_limit: 8
 equipment:
   prayer: 5
   equipSlot: "head"

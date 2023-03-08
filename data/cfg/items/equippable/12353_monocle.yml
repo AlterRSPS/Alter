@@ -3,10 +3,15 @@ id: 12353
 name: "Monocle"
 examine: "Hmm, shallow and pedantic."
 tradeable: true
-weight: 0.0
+weight: 0.001
+tradeable_on_ge: true
+cost: 1200
+lowalch: 480
+highalch: 720
+buy_limit: 4
 equipment:
   prayer: 0
-  equipSlot: "hat"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

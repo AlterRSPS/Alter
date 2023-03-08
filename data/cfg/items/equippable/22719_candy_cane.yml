@@ -3,11 +3,16 @@ id: 22719
 name: "Candy cane"
 examine: "Minty and refreshing, but not very effective as a weapon."
 tradeable: false
-weight: 0.5
+weight: 0.453
+tradeable_on_ge: false
+cost: 0
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100

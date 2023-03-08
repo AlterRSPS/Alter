@@ -3,7 +3,12 @@ id: 12261
 name: "Armadyl cloak"
 examine: "An Armadyl cloak."
 tradeable: true
-weight: 1.0
+weight: 0.4
+tradeable_on_ge: true
+cost: 2000
+lowalch: 800
+highalch: 1200
+buy_limit: 8
 equipment:
   prayer: 3
   equipSlot: "cape"

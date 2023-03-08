@@ -4,9 +4,14 @@ name: "Mystic boots (dark)"
 examine: "Dark magical boots."
 tradeable: true
 weight: 0.453
+tradeable_on_ge: true
+cost: 10000
+lowalch: 4000
+highalch: 6000
+buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "feet"
+  equipSlot: "shield"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

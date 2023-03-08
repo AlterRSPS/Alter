@@ -3,10 +3,15 @@ id: 13374
 name: "Shayzien helm (4)"
 examine: "Dress like a tier 4 Shayzien soldier."
 tradeable: false
-weight: 2.0
+weight: 2.721
+tradeable_on_ge: false
+cost: 60
+lowalch: 24
+highalch: 36
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -3,33 +3,31 @@ id: 20736
 name: "Dust battlestaff"
 examine: "It's a slightly magical stick."
 tradeable: true
-weight: 2.2
+weight: 2.267
+tradeable_on_ge: true
+cost: 15500
+lowalch: 6200
+highalch: 9300
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 18
+  weaponType: 13
   attackSpeed: 5
   attackStab: 7
   attackSlash: -1
   attackCrush: 28
-  attackMagic: 10
+  attackMagic: 12
   attackRanged: 0
   defenceStab: 2
   defenceSlash: 3
   defenceCrush: 1
-  defenceMagic: 10
+  defenceMagic: 12
   defenceRanged: 0
   meleeStrength: 35
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 30

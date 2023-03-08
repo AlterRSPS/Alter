@@ -1,9 +1,14 @@
 ---
 id: 10553
 name: "Penance gloves"
-examine: "These gloves seem unbelievably light!"
+examine: "These gloves seem unbelieveably light!"
 tradeable: false
-weight: 0.3
+weight: 0.34
+tradeable_on_ge: false
+cost: 65001
+lowalch: 26000
+highalch: 39000
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "hands"

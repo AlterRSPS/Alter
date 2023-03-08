@@ -3,11 +3,16 @@ id: 12389
 name: "Gilded scimitar"
 examine: "Rune scimitar with gold plate."
 tradeable: true
-weight: 1.8
+weight: 1.814
+tradeable_on_ge: true
+cost: 25600
+lowalch: 10240
+highalch: 15360
+buy_limit: 8
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 0
+  weaponType: 9
   attackSpeed: 4
   attackStab: 7
   attackSlash: 45
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 44
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 40

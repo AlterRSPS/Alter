@@ -3,11 +3,16 @@ id: 21649
 name: "Merfolk trident"
 examine: "An iron tipped trident."
 tradeable: true
-weight: 0.0
+weight: 0.907
+tradeable_on_ge: true
+cost: 400
+lowalch: 160
+highalch: 240
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 15
   attackSpeed: 5
   attackStab: 8
   attackSlash: 8

@@ -4,6 +4,11 @@ name: "Amulet of blood fury"
 examine: "A very powerful onyx amulet, imbued with blood magic."
 tradeable: false
 weight: 0.02
+tradeable_on_ge: false
+cost: 402000
+lowalch: 160800
+highalch: 241200
+buy_limit: null
 equipment:
   prayer: 5
   equipSlot: "neck"

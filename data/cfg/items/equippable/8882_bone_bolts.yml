@@ -4,6 +4,11 @@ name: "Bone bolts"
 examine: "Good if you have a bone crossbow!"
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 3
+lowalch: 1
+highalch: 1
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "ammo"

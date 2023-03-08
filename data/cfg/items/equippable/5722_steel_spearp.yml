@@ -4,11 +4,16 @@ name: "Steel spear(p++)"
 examine: "A poisoned steel tipped spear."
 tradeable: true
 weight: 2.267
+tradeable_on_ge: true
+cost: 325
+lowalch: 130
+highalch: 195
+buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
-  attackSpeed: 5
+  weaponType: 15
+  attackSpeed: 4
   attackStab: 12
   attackSlash: 12
   attackCrush: 12

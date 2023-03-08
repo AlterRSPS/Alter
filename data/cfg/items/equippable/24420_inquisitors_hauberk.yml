@@ -4,6 +4,11 @@ name: "Inquisitor's hauberk"
 examine: "The hauberk of the turncloak justiciar."
 tradeable: true
 weight: 9.979
+tradeable_on_ge: true
+cost: 1000000
+lowalch: 400000
+highalch: 600000
+buy_limit: 8
 equipment:
   prayer: 2
   equipSlot: "body"

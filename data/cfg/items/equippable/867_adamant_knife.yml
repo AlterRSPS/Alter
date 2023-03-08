@@ -4,10 +4,15 @@ name: "Adamant knife"
 examine: "A finely balanced throwing knife."
 tradeable: true
 weight: 0.0
+tradeable_on_ge: true
+cost: 66
+lowalch: 26
+highalch: 39
+buy_limit: 11000
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 19
+  weaponType: -1
   attackSpeed: 3
   attackStab: 0
   attackSlash: 0
@@ -22,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 14
   magicDamage: 0
-  renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 30

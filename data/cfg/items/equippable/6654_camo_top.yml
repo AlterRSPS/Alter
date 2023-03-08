@@ -4,9 +4,14 @@ name: "Camo top"
 examine: "Examine what?"
 tradeable: false
 weight: 2.721
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "hat"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

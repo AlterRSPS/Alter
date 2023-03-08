@@ -3,11 +3,16 @@ id: 20397
 name: "Spear"
 examine: "A large makeshift spear."
 tradeable: true
-weight: 3.0
+weight: 3.628
+tradeable_on_ge: false
+cost: 1
+lowalch: null
+highalch: null
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: -1
+  weaponType: 8337
   attackSpeed: 7
   attackStab: 22
   attackSlash: 18

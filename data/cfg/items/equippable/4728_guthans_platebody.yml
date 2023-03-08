@@ -1,9 +1,14 @@
 ---
 id: 4728
 name: "Guthan's platebody"
-examine: "Guthan the Infested's plate body armour."
+examine: "Guthan the Infested's platebody armour."
 tradeable: true
 weight: 9.979
+tradeable_on_ge: true
+cost: 280000
+lowalch: 112000
+highalch: 168000
+buy_limit: 15
 equipment:
   prayer: 0
   equipSlot: "body"

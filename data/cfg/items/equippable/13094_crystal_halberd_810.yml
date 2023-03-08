@@ -3,14 +3,19 @@ id: 13094
 name: "Crystal halberd 8/10"
 examine: "A nice sturdy pike."
 tradeable: false
-weight: 2.0
+weight: 1.814
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 0
+  weaponType: 8337
   attackSpeed: 7
-  attackStab: 85
-  attackSlash: 110
+  attackStab: 79
+  attackSlash: 102
   attackCrush: 5
   attackMagic: -4
   attackRanged: 0
@@ -19,17 +24,10 @@ equipment:
   defenceCrush: 5
   defenceMagic: 0
   defenceRanged: 0
-  meleeStrength: 118
+  meleeStrength: 108
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 813
-  - 1209
-  - 1205
-  - 1206
-  - 1207
-  - 1208
-  - 1210
+  renderAnimations: null
   skillReqs:
   - skill: "attack"
     level: 70

@@ -5,9 +5,14 @@ examine: "An ancient helmet of King Raedwald Indanorf. First discovered by Pikac
   \ Yip."
 tradeable: false
 weight: 1.0
+tradeable_on_ge: false
+cost: 1
+lowalch: 0
+highalch: 0
+buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

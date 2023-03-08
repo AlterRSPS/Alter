@@ -4,6 +4,11 @@ name: "Granite ring"
 examine: "A solid ring."
 tradeable: true
 weight: 3.0
+tradeable_on_ge: true
+cost: 15000
+lowalch: 6000
+highalch: 9000
+buy_limit: 70
 equipment:
   prayer: 0
   equipSlot: "ring"

@@ -52,17 +52,23 @@ on_login {
     player.attr[LAST_LOGIN_ATTR] = now.toString()
     val memberRecurring = 0 // no subs system support as of now
     val noLinkedEmail = 0 // set to 1 disables inbox button??
-    player.runClientScript(2498, if(player.hasMembers()) 1 else 0, memberRecurring, noLinkedEmail)
-
+    player.setInterfaceEvents(interfaceId = 149, component = 0, range = 0 .. 27,
+        setting = arrayOf(
+            InterfaceEvent.BUTTON1, InterfaceEvent.BUTTON2, InterfaceEvent.BUTTON3, InterfaceEvent.BUTTON4, InterfaceEvent.BUTTON5,
+            InterfaceEvent.BUTTON6, InterfaceEvent.BUTTON7, InterfaceEvent.BUTTON8,
+            InterfaceEvent.BUTTON9, InterfaceEvent.BUTTON10, InterfaceEvent.OPOBJT, InterfaceEvent.OPNPCT,
+            InterfaceEvent.OPLOCT, InterfaceEvent.OPPLAYERT, InterfaceEvent.OPHELDT, InterfaceEvent.DRAG_TARGET,
+            InterfaceEvent.DRAG_DEPTH1,
+        )
+    )
     // Interface-related logic.
-    player.setInterfaceEvents(interfaceId = 149, component = 0, range = 0..27, setting = 3407068)
+    //player.setInterfaceEvents(interfaceId = 149, component = 0, range = 0..27, setting = 3407068)
     player.openDefaultInterfaces()
     // Inform the client whether or not we have a display name.
     val displayName = player.username.isNotBlank()
-    player.runClientScript(1105, if (displayName) 1 else 0) // Has display name
-    player.runClientScript(423, player.username)
+    //player.runClientScript(1105, if (displayName) 1 else 0) // Has display name
+    //player.runClientScript(423, player.username)
     player.setVarbit(13027, player.combatLevel)
-    player.runClientScript(420)
     if (player.getVarp(1055) == 0 && displayName) {
         player.syncVarp(1055)
     }
@@ -81,8 +87,10 @@ on_login {
     player.sendRunEnergy(player.runEnergy.toInt())
     player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
 
-    player.social.pushFriends(player)
-    player.social.pushIgnores(player)
+    /**
+ * @TODO REV 211.... */
+//    player.social.pushFriends(player)
+//    player.social.pushIgnores(player)
 }
 
 

@@ -4,7 +4,12 @@ name: "Expert mining gloves"
 examine: "These will help me mine Silver, Coal, Gold, Mithril, Adamantite, Runite\
   \ and Amethyst."
 tradeable: false
-weight: 0.2
+weight: 0.226
+tradeable_on_ge: false
+cost: 120
+lowalch: 48
+highalch: 72
+buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "hands"
