@@ -9,14 +9,14 @@ Due to the plugin capabilities, even owners without programming experience can j
 - You can report them by creating Issue on [GitHub](https://github.com/AlterRSPS/Alter/issues) or in Alter's [Discord Server](https://discord.gg/kdhBuRaduw)
 
 ### Installation:
-First download: [2023-02-08-rev211.tar.gz](https://archive.runestats.com/osrs/2023-02-08-rev211.tar.gz)
+First download: [2023-03-01-rev211.tar.gz](https://archive.runestats.com/osrs/2023-03-01-rev211.tar.gz)
 Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed. 
 * Firstly open up Intellij, (If you already have a project open, either do File -> Close, or File -> New -> Project from Version Control)
   ![tutor1](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor1.png)
   ![tutor2](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tuor2.png)
 * Second paste `https://github.com/AlterRSPS/Alter` in URL Field and hit Clone.
 * Let the project fully load.
-* Now open the 2022-06-08-rev205.tar.gz and drag out Xteas.json and Cache folder and pull it to /Data/ Folder.
+* Now open the 2023-03-01-rev211.tar.gz and drag out Xteas.json and Cache folder and pull it to /Data/ Folder.
   ![tutor6](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor6.png)
   - Xtea.json has to be in same folder like: Data /`api.yml` , `blocks.yml` , etc..
 * Now click on Gradle word on right side.
@@ -29,7 +29,7 @@ Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#sect
 * Now the server is running.
   - DO NO CLOSE/TURN OFF THE SERVER YOU NEED IT TO BE RUNNING. CLIENT HAS TO VERIFY REVISIONS WHEN YOU OPEN THE CLIENT.
 * Now you need to go File -> New -> Project from Version Control
-* And now clone this: https://github.com/AlterRSPS/Runelite let it fully clone, and wait till Gradle finishes initializing.
+* And now clone this: https://github.com/AlterRSPS/devious-client-rsps let it fully clone, and wait till Gradle finishes initializing.
 * Now Click Add Configuration button on your right side. Click the plus icon -> select gradle -> In that long field bellow run enter:
   - `run --args="--developer-mode --debug --jav_config "https://raw.githubusercontent.com/AlterRSPS/Runelite/master/jav_config.ws"" -x checkStyleMain -x checkStyleTest -x test` hit apply and done.
 * Now you shouldnt see Add Configuration button and next in that same area there should be Green arrow. click that. Or just Shift + F10
@@ -38,6 +38,7 @@ Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#sect
   ![tutor8](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor8.png)
 * Disable/Enable the plugin and login into game and done enjoy making content or w.e you will do.
 
+* Will add MeteorLite soon, just need to create a good way to change Modulus/Codebase
 ### Credits:
 * Credits are given out to everyone who helped out with information or contributed in some form to the project. And can be found in: [Here](https://github.com/AlterRSPS)
 
