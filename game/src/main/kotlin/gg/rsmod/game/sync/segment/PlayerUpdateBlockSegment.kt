@@ -77,7 +77,8 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 buf.put(structure[2].type, structure[2].order, structure[2].transformation, if (chatMessage.type == ChatMessage.ChatType.AUTOCHAT) 1 else 0)
                 buf.put(structure[3].type, structure[3].order, structure[3].transformation, length + if(chatLength >= 0x80) 2 else 1)
                 buf.putSmart(chatLength)
-                buf.putBytes(structure[4].transformation, compressed, 0, length)
+                //buf.putBytes(structure[4].transformation, compressed, 0, length)
+                buf.putBytesReverse(structure[4].transformation, compressed, length)
 
                 /**
                  * @TODO Public Chat Seagment
