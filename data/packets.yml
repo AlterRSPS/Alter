@@ -1327,11 +1327,28 @@ client-packets:
     length: 7
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: OPOBJT
+  - message: gg.rsmod.game.message.impl.OpObjTMessage
     type: FIXED
     opcode: 7
     length: 15
-    ignore: true
+    structure:
+      - name: movement_type
+        type: BYTE
+        trans: NEGATE
+      - name: item
+        type: SHORT
+      - name: hash
+        type: INT
+        order: INVERSE_MIDDLE
+      - name: x
+        type: SHORT
+      - name: obj
+        type: SHORT
+      - name: z
+        type: SHORT
+        trans: ADD
+      - name: slot
+        type: SHORT
 #
 #  - message: gg.rsmod.game.message.impl.FriendListDeleteMessage
 #    type: VARIABLE_BYTE
@@ -1429,7 +1446,6 @@ client-packets:
       - name: toItem
         type: SHORT
         trans: ADD
-        order: LITTLE
       - name: fromSlot
         type: SHORT
         trans: ADD
