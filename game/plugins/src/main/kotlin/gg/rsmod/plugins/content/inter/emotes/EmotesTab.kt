@@ -6,7 +6,6 @@ import gg.rsmod.plugins.api.EquipmentType
 import gg.rsmod.plugins.api.cfg.Items
 import gg.rsmod.plugins.api.cfg.Varbits
 import gg.rsmod.plugins.api.ext.*
-import kotlinx.coroutines.channels.ticker
 
 /**
  * @author Tom <rspsmods@gmail.com>

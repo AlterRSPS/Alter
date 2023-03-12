@@ -13,20 +13,20 @@ run {
 }
 
 dependencies {
-    compile project(':util')
-    compile project(':net')
+    implementation project(':util')
+    implementation project(':net')
 
     runtimeClasspath project(":game:plugins")
 
-    compile "org.jetbrains.kotlin:kotlin-scripting-common:$kotlinVersion"
-    compile "org.jetbrains.kotlin:kotlin-script-runtime:$kotlinVersion"
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kcoroutineVersion"
+    implementation "org.jetbrains.kotlin:kotlin-scripting-common:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-script-runtime:$kotlinVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kcoroutineVersion"
 
-    compile "org.reflections:reflections:$reflectionsVersion"
-    compile "commons-io:commons-io:$commonsIoVersion"
+    implementation "org.reflections:reflections:$reflectionsVersion"
+    implementation "commons-io:commons-io:$commonsIoVersion"
 
-    compile "io.github.classgraph:classgraph:$classGraphVersion"
-    compile "it.unimi.dsi:fastutil:$fastUtilVersion"
+    implementation "io.github.classgraph:classgraph:$classGraphVersion"
+    implementation "it.unimi.dsi:fastutil:$fastUtilVersion"
 
     implementation "org.bouncycastle:bcprov-jdk15on:$bouncycastleVersion"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
