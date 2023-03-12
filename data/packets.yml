@@ -808,6 +808,16 @@ client-packets:
       - name: movement_type
         type: BYTE
 
+# Should implement it
+#  - message: gg.rsmod.game.message.impl.OpObj6Message
+#    type: FIXED
+#    opcode: 26
+#    length: 6
+#    structure:
+#      - name: item
+#      - name: x
+#      - name: z
+
   - message: gg.rsmod.game.message.impl.OpObjUMessage
     type: FIXED
     opcode: 38
@@ -993,7 +1003,7 @@ client-packets:
 
   - message: gg.rsmod.game.message.impl.OpLoc5Message
     type: FIXED
-    opcode: 65
+    opcode: 70
     length: 7
     structure:
       - name: movement_type

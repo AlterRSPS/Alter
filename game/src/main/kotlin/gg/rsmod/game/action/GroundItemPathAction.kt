@@ -44,13 +44,19 @@ object GroundItemPathAction {
         val item = p.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
         val opt = p.attr[INTERACTING_OPT_ATTR]!!
         if (p.tile.sameAs(item.tile) || p.tile.isNextTo(item.tile)) {
-            if (p.tile.isNextTo(item.tile)) {
-                p.faceTile(item.tile)
-                p.animate(832)
+            /**
+             * Need rewrite. @TODO
+             */
+            //if (p.tile.isNextTo(item.tile)) {
+            //    p.faceTile(item.tile)
+            //    p.animate(832)
+            //    handleAction(p, item, opt)
+            //} else if (p.tile.sameAs(item.tile)) {
+            //    handleAction(p, item, opt)
+            //}
+             if (p.tile.sameAs(item.tile)) {
                 handleAction(p, item, opt)
-            } else if (p.tile.sameAs(item.tile)) {
-                handleAction(p, item, opt)
-            }
+             }
         } else {
             p.walkTo(item.tile, MovementQueue.StepType.NORMAL)
             p.queue(TaskPriority.STANDARD) {
@@ -76,11 +82,17 @@ object GroundItemPathAction {
                 continue
             }
             if (p.tile.sameAs(item.tile) || p.tile.isNextTo(item.tile)) {
-                if (p.tile.isNextTo(item.tile)) {
-                    p.faceTile(item.tile)
-                    p.animate(832)
-                    handleAction(p, item, opt)
-                } else if (p.tile.sameAs(item.tile)) {
+                /**
+                 * Need rewrite. @TODO
+                 */
+//                if (p.tile.isNextTo(item.tile)) {
+//                    p.faceTile(item.tile)
+//                    p.animate(832)
+//                    handleAction(p, item, opt)
+//                } else if (p.tile.sameAs(item.tile)) {
+//                    handleAction(p, item, opt)
+//                }
+                if (p.tile.sameAs(item.tile)) {
                     handleAction(p, item, opt)
                 }
             } else {

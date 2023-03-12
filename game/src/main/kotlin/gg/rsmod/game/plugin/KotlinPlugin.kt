@@ -312,6 +312,8 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         r.bindGroundItem(item, slot + 1, logic)
     }
 
+
+
     /**
      * Invoke [logic] when an [item] is used on a [gg.rsmod.game.model.entity.GameObject]
      *

@@ -56,7 +56,7 @@ on_login {
         setting = arrayOf(
             InterfaceEvent.BUTTON1, InterfaceEvent.BUTTON2, InterfaceEvent.BUTTON3, InterfaceEvent.BUTTON4, InterfaceEvent.BUTTON5,
             InterfaceEvent.BUTTON6, InterfaceEvent.BUTTON7, InterfaceEvent.BUTTON8,
-            InterfaceEvent.BUTTON9, InterfaceEvent.BUTTON10, InterfaceEvent.OPOBJT, InterfaceEvent.OPNPCT,
+            InterfaceEvent.BUTTON9, InterfaceEvent.BUTTON10, InterfaceEvent.BUTTONT, InterfaceEvent.OPOBJT, InterfaceEvent.OPNPCT,
             InterfaceEvent.OPLOCT, InterfaceEvent.OPPLAYERT, InterfaceEvent.OPHELDT, InterfaceEvent.DRAG_TARGET,
             InterfaceEvent.DRAG_DEPTH1,
         )
