@@ -159,3 +159,7 @@ shadowDistTar {
 
 build.finalizedBy extractDependencies
 install.dependsOn build
+
+jar {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}
