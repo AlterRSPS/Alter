@@ -1,8 +1,7 @@
 package gg.rsmod.plugins.api.cfg
 
-/*
- * @author CloudS3c
- * Ty @z_kris
+/**
+ * @author @Z-Kris
  */
 object Sounds {
     const val PICKUP_ITEM_FROM_GROUND_SOUND = 2582
