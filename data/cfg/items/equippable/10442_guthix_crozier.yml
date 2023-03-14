@@ -27,14 +27,7 @@ equipment:
   meleeStrength: 32
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 2561
-  - 823
-  - 2562
-  - 2562
-  - 2562
-  - 2562
-  - 2563
+  renderAnimations: null
   skillReqs:
   - skill: "prayer"
     level: 60

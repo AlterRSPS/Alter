@@ -37,22 +37,22 @@ class ItemMetadataService : Service {
     fun loadAll(world: World) {
         val stopwatch = Stopwatch.createStarted().reset().start()
         val mapper = ObjectMapper(YAMLFactory())
-        Files.newBufferedReader(Paths.get("./data/cfg/items/_Items.yml")).use { reader ->
-            val data = mapper.readValue(reader, Array<Metadata>::class.java)
-            data.forEach { item ->
-                load(item, world)
+        try {
+            Files.newBufferedReader(Paths.get("./data/cfg/items/_Items.yml")).use { reader ->
+                val data = mapper.readValue(reader, Array<Metadata>::class.java)
+                data.forEach { item ->
+                    load(item, world)
+                }
             }
-        }
-        /**
-         * @TODO
-         * Problem with this one is that it wont throw if the path exists or not.
-         * Will do it abit later.
-         */
-        Paths.get("./data/cfg/items/equippable").toFile().walk().forEach {
-            if (it.isFile){
-                val data = mapper.readValue(it, Metadata()::class.java)
-                load(data, world)
+            var index = 0
+            Paths.get("./data/cfg/items/equippable").toFile().walk().forEach {
+                if (it.isFile){
+                    val data = mapper.readValue(it, Metadata()::class.java)
+                    load(data, world)
+                }
             }
+        } catch (e: Exception) {
+            throw e
         }
         ms = stopwatch.elapsed(TimeUnit.MILLISECONDS)
     }
@@ -77,7 +77,7 @@ class ItemMetadataService : Service {
                     def.weaponType = equipment.weaponType
                 }
 
-                def.renderAnimations = equipment.renderAnimations
+                def.renderAnimations = equipment.renderAnimations?.getAsArray()
                 if (slots != null) {
                     def.equipSlot = slots.slot
                     def.equipType = slots.secondary
@@ -89,6 +89,8 @@ class ItemMetadataService : Service {
                     }
                     def.skillReqs = reqs
                 }
+                def.equipSound = equipment.equipSound
+
                 def.bonuses = intArrayOf(
                     equipment.attackStab,
                     equipment.attackSlash,
@@ -209,13 +211,13 @@ class ItemMetadataService : Service {
         val highalch: Int = 0,
         val buy_limit: Int? = null,
         val equipment: Equipment? = null
-
     )
 
     private data class EquipmentSlots(val slot: Int, val secondary: Int)
 
     private data class Equipment(
         @JsonProperty("equip_slot") val equipSlot: String? = null,
+        @JsonProperty("equip_sound") val equipSound: Int = -1,
         @JsonProperty("weapon_type") val weaponType: Int = -1,
         @JsonProperty("attack_speed") val attackSpeed: Int = -1,
         @JsonProperty("attack_stab") val attackStab: Int = 0,
@@ -232,17 +234,16 @@ class ItemMetadataService : Service {
         @JsonProperty("ranged_strength") val rangedStrength: Int = 0,
         @JsonProperty("magic_damage") val magicDamage: Int = 0,
         @JsonProperty("prayer") val prayer: Int = 0,
-        @JsonProperty("render_animations") val renderAnimations: IntArray? = null,
+        @JsonProperty("render_animations") val renderAnimations: renderAnimations? = null,
         @JsonProperty("skill_reqs") val skillReqs: Array<SkillRequirement>? = null
     ) {
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false
-
             other as Equipment
-
             if (equipSlot != other.equipSlot) return false
+            if (equipSound != other.equipSound) return false
             if (weaponType != other.weaponType) return false
             if (attackSpeed != other.attackSpeed) return false
             if (attackStab != other.attackStab) return false
@@ -261,7 +262,6 @@ class ItemMetadataService : Service {
             if (prayer != other.prayer) return false
             if (renderAnimations != null) {
                 if (other.renderAnimations == null) return false
-                if (!renderAnimations.contentEquals(other.renderAnimations)) return false
             } else if (other.renderAnimations != null) return false
             if (skillReqs != null) {
                 if (other.skillReqs == null) return false
@@ -289,9 +289,40 @@ class ItemMetadataService : Service {
             result = 31 * result + rangedStrength
             result = 31 * result + magicDamage
             result = 31 * result + prayer
-            result = 31 * result + (renderAnimations?.contentHashCode() ?: 0)
+            result = 31 * result + (renderAnimations?.getAsArray().contentHashCode() ?: 0)
             result = 31 * result + (skillReqs?.contentHashCode() ?: 0)
             return result
+        }
+    }
+
+    /**
+     * Add later the missing ones for combat xd
+     * blockAnimation
+     * standAnimation
+     * walkAnimation
+     * runAnimation
+     * standTurnAnimation
+     * rotate90Animation
+     * rotate180Animation
+     * rotate270Animation
+     * accurateAnimation
+     * aggressiveAnimation
+     * controlledAnimation
+     * defensiveAnimation
+     */
+    private data class renderAnimations (
+        @JsonProperty("standAnimId") val standAnimId: Int = 0 ,
+        @JsonProperty("turnOnSpotAnim") val turnOnSpotAnim: Int = 0 ,
+        @JsonProperty("walkForwardAnimId") val walkForwardAnimId: Int = 0 ,
+        @JsonProperty("walkBackwardsAnimId") val walkBackwardsAnimId: Int = 0 ,
+        @JsonProperty("walkLeftAnimId") val walkLeftAnimId: Int = 0 ,
+        @JsonProperty("walkRightAnimId") val walkRightAnimId: Int = 0 ,
+        @JsonProperty("runAnimId") val runAnimId: Int = 0 ,
+
+    ) {
+        fun getAsArray(): IntArray {
+            val renderAnimList = listOf(standAnimId, turnOnSpotAnim, walkForwardAnimId, walkBackwardsAnimId, walkLeftAnimId, walkRightAnimId, runAnimId)
+            return renderAnimList.toIntArray()
         }
     }
 

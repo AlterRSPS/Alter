@@ -53,6 +53,8 @@ class ItemDef(override val id: Int) : Definition(id) {
     var weaponType = -1
     var renderAnimations: IntArray? = null
     var skillReqs: Byte2ByteOpenHashMap? = null
+    var equipSound = 0
+
     lateinit var bonuses: IntArray
 
     val stackable: Boolean

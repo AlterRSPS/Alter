@@ -28,13 +28,13 @@ equipment:
   rangedStrength: 0
   magicDamage: 0
   renderAnimations:
-  - 808
-  - 823
-  - 819
-  - 820
-  - 821
-  - 822
-  - 824
+    standAnimId: 3040
+    turnOnSpotAnim: 3040
+    walkForwardAnimId: 3039
+    walkBackwardsAnimId: 3039
+    walkLeftAnimId: 3039
+    walkRightAnimId: 3039
+    runAnimId: 3039
   skillReqs:
-  - skill: "attack"
-    level: 20
+    - skill: "attack"
+      level: 20

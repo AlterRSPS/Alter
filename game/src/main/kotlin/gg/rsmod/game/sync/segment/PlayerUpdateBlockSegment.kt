@@ -213,7 +213,12 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                         if (weapon != null) {
                             val def = weapon.getDef(other.world.definitions)
                             def.renderAnimations?.forEachIndexed { index, anim ->
-                                animations[index] = anim
+                                var ani = anim
+                                if (anim == 0) {
+                                    ani = animations[index]
+                                }
+                                animations[index] = ani
+                                println(animations.joinToString())
                             }
                         }
 
@@ -225,8 +230,8 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
 
                 appBuf.putString(other.username)
                 appBuf.put(DataType.BYTE, other.combatLevel)
-                appBuf.put(DataType.SHORT, 0)
-                appBuf.put(DataType.BYTE, 0)
+                appBuf.put(DataType.SHORT, 0) // skillLevel
+                appBuf.put(DataType.BYTE, 0) // isHidden
                 appBuf.put(DataType.SHORT, 0)
                 appBuf.putString("")
                 appBuf.putString("")
