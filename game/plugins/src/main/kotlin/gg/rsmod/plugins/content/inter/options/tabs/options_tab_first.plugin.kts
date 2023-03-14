@@ -21,14 +21,14 @@ on_login {
     //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 25, range = 1..5, setting = 2)
     //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 115, range = 0..3, setting = 2)
 
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 55, range = 0..21, setting = InterfaceEvent.BUTTON1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 84, range = 1..3, setting = InterfaceEvent.BUTTON1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 69, range = 0..21, setting = InterfaceEvent.BUTTON1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 82, range = 1..4, setting = InterfaceEvent.BUTTON1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 81, range = 1..5, setting = InterfaceEvent.BUTTON1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 83, range = 1..5, setting = InterfaceEvent.BUTTON1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 41, range = 0..21, setting = InterfaceEvent.BUTTON1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 23, range =  0..21, setting = InterfaceEvent.BUTTON1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 55, range = 0..21, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 84, range = 1..3, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 69, range = 0..21, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 82, range = 1..4, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 81, range = 1..5, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 83, range = 1..5, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 41, range = 0..21, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 23, range =  0..21, setting = InterfaceEvent.ClickOp1)
 }
 
 

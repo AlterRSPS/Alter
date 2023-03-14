@@ -2,11 +2,9 @@ package gg.rsmod.plugins.content.cmd.commands.admin
 
 import gg.rsmod.game.model.priv.Privilege
 import gg.rsmod.plugins.content.magic.TeleportType
+import gg.rsmod.plugins.content.magic.canTeleport
 import gg.rsmod.plugins.content.magic.teleport
 
-private val SOUNDAREA_ID = 200
-private val SOUNDAREA_RADIUS = 10
-private val SOUNDAREA_VOLUME = 1
 
 on_command("home", Privilege.ADMIN_POWER, description = "Teleports you home") {
     val home = world.gameContext.home
@@ -14,8 +12,8 @@ on_command("home", Privilege.ADMIN_POWER, description = "Teleports you home") {
 }
 on_command("edge", Privilege.ADMIN_POWER, description = "Teleports you to Edgeville") {
     player.moveTo(Tile(x = 3087, z = 3499, height = 0))
-    world.spawn(AreaSound(player.tile, SOUNDAREA_ID, SOUNDAREA_RADIUS, SOUNDAREA_VOLUME))
 }
+
 on_command("varrock", Privilege.ADMIN_POWER, description = "Teleports you to Varrock") {
     player.moveTo(Tile(x = 3211, z = 3424, height = 0))
 }

@@ -3,14 +3,6 @@ package gg.rsmod.plugins.content.mechanics.equipment
 import gg.rsmod.plugins.api.EquipmentType.Companion.EQUIPMENT_INTERFACE_ID
 import gg.rsmod.game.action.EquipAction
 
-/**
- * @TODO next =>
- * This actually varies by item and needs to be worked into a proper implementation
- * accounting for such.
- *
- */
-val EQUIP_ITEM_SOUND = 2238
-
 fun bind_unequip(equipment: EquipmentType, child: Int) {
     on_button(interfaceId = EQUIPMENT_INTERFACE_ID, component = child) {
         val opt = player.getInteractingOption()
@@ -39,7 +31,6 @@ fun bind_unequip(equipment: EquipmentType, child: Int) {
 
 for (equipment in EquipmentType.values) {
     on_equip_to_slot(equipment.id) {
-        player.playSound(EQUIP_ITEM_SOUND)
         if (equipment == EquipmentType.WEAPON) {
             player.sendWeaponComponentInformation()
         }

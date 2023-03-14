@@ -27,14 +27,7 @@ equipment:
   meleeStrength: 3
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 6604
-  - 6611
-  - 6607
-  - 6608
-  - 6610
-  - 6609
-  - 6603
+  renderAnimations: null
   skillReqs:
   - skill: "defence"
     level: 55

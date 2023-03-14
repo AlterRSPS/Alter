@@ -77,7 +77,8 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 buf.put(structure[2].type, structure[2].order, structure[2].transformation, if (chatMessage.type == ChatMessage.ChatType.AUTOCHAT) 1 else 0)
                 buf.put(structure[3].type, structure[3].order, structure[3].transformation, length + if(chatLength >= 0x80) 2 else 1)
                 buf.putSmart(chatLength)
-                buf.putBytes(structure[4].transformation, compressed, 0, length)
+                //buf.putBytes(structure[4].transformation, compressed, 0, length)
+                buf.putBytesReverse(structure[4].transformation, compressed, length)
 
                 /**
                  * @TODO Public Chat Seagment
@@ -212,7 +213,12 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                         if (weapon != null) {
                             val def = weapon.getDef(other.world.definitions)
                             def.renderAnimations?.forEachIndexed { index, anim ->
-                                animations[index] = anim
+                                var ani = anim
+                                if (anim == 0) {
+                                    ani = animations[index]
+                                }
+                                animations[index] = ani
+                                println(animations.joinToString())
                             }
                         }
 
@@ -224,8 +230,8 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
 
                 appBuf.putString(other.username)
                 appBuf.put(DataType.BYTE, other.combatLevel)
-                appBuf.put(DataType.SHORT, 0)
-                appBuf.put(DataType.BYTE, 0)
+                appBuf.put(DataType.SHORT, 0) // skillLevel
+                appBuf.put(DataType.BYTE, 0) // isHidden
                 appBuf.put(DataType.SHORT, 0)
                 appBuf.putString("")
                 appBuf.putString("")

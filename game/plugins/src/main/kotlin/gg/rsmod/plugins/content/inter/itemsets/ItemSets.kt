@@ -16,7 +16,7 @@ object ItemSets {
         p.openInterface(ITEMSETS_INTERFACE, InterfaceDestination.MAIN_SCREEN)
         p.openInterface(ITEMSETS_INVENTORY, InterfaceDestination.TAB_AREA)
 
-        p.setInterfaceEvents(ITEMSETS_INTERFACE, component = 2, range = 0..105, setting = arrayOf(InterfaceEvent.BUTTON1,InterfaceEvent.BUTTON10))
-        p.setInterfaceEvents(ITEMSETS_INVENTORY, component = 0, range = 0..27, setting = arrayOf(InterfaceEvent.BUTTON1,InterfaceEvent.BUTTON10))
+        p.setInterfaceEvents(ITEMSETS_INTERFACE, component = 2, range = 0..105, setting = arrayOf(InterfaceEvent.ClickOp1,InterfaceEvent.ClickOp10))
+        p.setInterfaceEvents(ITEMSETS_INVENTORY, component = 0, range = 0..27, setting = arrayOf(InterfaceEvent.ClickOp1,InterfaceEvent.ClickOp10))
     }
 }

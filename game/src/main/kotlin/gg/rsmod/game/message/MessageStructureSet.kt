@@ -77,15 +77,12 @@ class MessageStructureSet {
                     val structValues = structure as LinkedHashMap<*, *>
                     if (!structValues.containsKey("write")) {
                         val name = structValues["name"] as String?
-
                         val order = if (structValues.containsKey("order")) DataOrder.valueOf(structValues["order"] as String) else DataOrder.BIG
                         val transform = if (structValues.containsKey("trans")) DataTransformation.valueOf(structValues["trans"] as String) else DataTransformation.NONE
-
-                            val type = DataType.valueOf(structValues["type"] as String)
-                            val signature =
-                                (if (structValues.containsKey("sign")) DataSignature.valueOf((structValues["sign"] as String).toUpperCase()) else DataSignature.SIGNED).also {
-                                    packetValues[name] = MessageValue(id = name.toString(), order = order, transformation = transform, type = type, signature = it)
-                                }
+                         val type = DataType.valueOf(structValues["type"] as String)
+                         val signature = (if (structValues.containsKey("sign")) DataSignature.valueOf((structValues["sign"] as String).toUpperCase()) else DataSignature.SIGNED).also {
+                                 packetValues[name] = MessageValue(id = name.toString(), order = order, transformation = transform, type = type, signature = it)
+                             }
                     } else {
                         // Default values
                         val name = structValues["name"] as String

@@ -15,7 +15,9 @@ PickpocketNpc.values.forEach { pickpocketNpc ->
         }
     }
 }
-
+/**
+ * @TODO When pickpocketing on "You attempt to pickpocket the Man... The npc faces the player. It should not do that.
+ */
 suspend fun QueueTask.pickpocket(npcId: Int, npc: PickpocketNpc) {
     val playerThievingLvl = player.getSkills().getCurrentLevel(Skills.THIEVING)
     val npcName = npc.npcName ?: world.definitions.get(NpcDef::class.java, npcId).name
@@ -42,7 +44,6 @@ suspend fun QueueTask.pickpocket(npcId: Int, npc: PickpocketNpc) {
     player.lock = LockState.NONE
 
     if (getPickpocketSuccess(playerThievingLvl, npc, player)) {
-
         player.message("...and you succeed!")
         val reward = npc.rewardSet.getRandom()
         player.inventory.add(reward)

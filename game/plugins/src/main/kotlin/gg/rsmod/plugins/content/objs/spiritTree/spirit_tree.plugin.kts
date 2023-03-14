@@ -8,6 +8,10 @@ on_login {
     player.setVarp(111, 9)//Quest Tree Gnome Village
     player.setVarp(150, 160)//Quest The Grand Tree
     player.setVarbit(598, 2)
+    player.playJingle(22)
+
+
+
 }
 
 TALKING_TREES.forEach { treeTalk ->
