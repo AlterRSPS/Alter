@@ -218,7 +218,6 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                                     ani = animations[index]
                                 }
                                 animations[index] = ani
-                                println(animations.joinToString())
                             }
                         }
 
