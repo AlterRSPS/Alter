@@ -9,7 +9,7 @@ cost: 1000
 lowalch: 400
 highalch: 600
 buy_limit: null
-equipSound: 822
+equip_sound: 2247
 equipment:
   prayer: 0
   equipSlot: "weapon"
