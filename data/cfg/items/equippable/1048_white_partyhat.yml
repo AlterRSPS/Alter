@@ -11,7 +11,7 @@ highalch: 0
 buy_limit: 5
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "hat"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

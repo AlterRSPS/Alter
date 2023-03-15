@@ -11,8 +11,8 @@ highalch: 3000000
 buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "legs"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 9
   attackSpeed: 4
   attackStab: 55
   attackSlash: 94

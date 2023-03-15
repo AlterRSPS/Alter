@@ -27,5 +27,12 @@ equipment:
   meleeStrength: 105
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 2065
+    turnOnSpotAnim: 823
+    walkForwardAnimId: 2064
+    walkBackwardsAnimId: 2064
+    walkLeftAnimId: 2064
+    walkRightAnimId: 2064
+    runAnimId: 824
   skillReqs: null

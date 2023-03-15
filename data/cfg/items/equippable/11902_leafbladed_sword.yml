@@ -11,8 +11,8 @@ highalch: 40800
 buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "cape"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 17
   attackSpeed: 4
   attackStab: 67
   attackSlash: 62
@@ -27,7 +27,14 @@ equipment:
   meleeStrength: 50
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 808
+    turnOnSpotAnim: 823
+    walkForwardAnimId: 819
+    walkBackwardsAnimId: 820
+    walkLeftAnimId: 821
+    walkRightAnimId: 822
+    runAnimId: 824
   skillReqs:
   - skill: "attack"
     level: 50

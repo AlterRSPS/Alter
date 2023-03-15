@@ -12,7 +12,7 @@ buy_limit: 125
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 15
+  weaponType: -1
   attackSpeed: 4
   attackStab: 5
   attackSlash: 5

@@ -11,7 +11,7 @@ highalch: 5580
 buy_limit: 8
 equipment:
   prayer: 1
-  equipSlot: "hands"
+  equipSlot: "feet"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

@@ -11,7 +11,7 @@ highalch: 72000
 buy_limit: 70
 equipment:
   prayer: 0
-  equipSlot: "ring"
+  equipSlot: "body"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

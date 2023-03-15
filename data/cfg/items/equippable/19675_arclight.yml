@@ -28,7 +28,14 @@ equipment:
   meleeStrength: 8
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 809
+    turnOnSpotAnim: 823
+    walkForwardAnimId: 819
+    walkBackwardsAnimId: 820
+    walkLeftAnimId: 821
+    walkRightAnimId: 822
+    runAnimId: 824
   skillReqs:
   - skill: "attack"
     level: 75

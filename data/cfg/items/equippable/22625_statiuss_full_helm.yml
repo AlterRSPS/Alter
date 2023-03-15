@@ -11,8 +11,8 @@ highalch: 150000
 buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "weapon"
-  weaponType: 12
+  equipSlot: "head"
+  weaponType: -1
   attackSpeed: 0
   attackStab: 3
   attackSlash: 3

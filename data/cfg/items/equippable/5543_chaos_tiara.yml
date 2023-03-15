@@ -11,7 +11,7 @@ highalch: 60
 buy_limit: 40
 equipment:
   prayer: 0
-  equipSlot: "2h"
+  equipSlot: "hat"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

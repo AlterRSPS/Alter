@@ -11,7 +11,7 @@ highalch: 450
 buy_limit: 8
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "2h"
   weaponType: -1
   attackSpeed: 4
   attackStab: 15

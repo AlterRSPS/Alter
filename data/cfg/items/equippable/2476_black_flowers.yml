@@ -11,8 +11,8 @@ highalch: 60
 buy_limit: 150
 equipment:
   prayer: 0
-  equipSlot: "legs"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 2
   attackSpeed: 4
   attackStab: -100
   attackSlash: -100
@@ -27,5 +27,12 @@ equipment:
   meleeStrength: -10
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 808
+    turnOnSpotAnim: 823
+    walkForwardAnimId: 819
+    walkBackwardsAnimId: 820
+    walkLeftAnimId: 821
+    walkRightAnimId: 822
+    runAnimId: 824
   skillReqs: null

@@ -12,7 +12,7 @@ buy_limit: null
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 8337
+  weaponType: 18
   attackSpeed: 7
   attackStab: -100
   attackSlash: -100

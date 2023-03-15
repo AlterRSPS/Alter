@@ -12,7 +12,7 @@ buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "weapon"
-  weaponType: 8337
+  weaponType: -1
   attackSpeed: 5
   attackStab: 12
   attackSlash: 12
@@ -27,5 +27,12 @@ equipment:
   meleeStrength: 12
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 1421
+    turnOnSpotAnim: 1422
+    walkForwardAnimId: 1423
+    walkBackwardsAnimId: 1424
+    walkLeftAnimId: 1425
+    walkRightAnimId: 1426
+    runAnimId: 1427
   skillReqs: null

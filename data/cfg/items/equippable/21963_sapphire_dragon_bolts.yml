@@ -11,7 +11,7 @@ highalch: 450
 buy_limit: 11000
 equipment:
   prayer: 0
-  equipSlot: "nohair"
+  equipSlot: "ammo"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0

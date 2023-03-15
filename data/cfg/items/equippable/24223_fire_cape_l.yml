@@ -11,7 +11,7 @@ highalch: 39003
 buy_limit: null
 equipment:
   prayer: 2
-  equipSlot: "hands"
+  equipSlot: "cape"
   weaponType: -1
   attackSpeed: 0
   attackStab: 1

@@ -609,9 +609,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun on_anim_by_npc(anim: Int, plugin: Plugin.() -> Unit) {
         //@TODO
     }
-
-
-
+    // Add wrapText() {  "<col=colorHex> String </col>"   }
 
     fun get_all_commands(): ArrayList<String> {
         return r.get_all_commands()

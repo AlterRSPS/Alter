@@ -11,8 +11,8 @@ highalch: 0
 buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "cape"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 8337
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0

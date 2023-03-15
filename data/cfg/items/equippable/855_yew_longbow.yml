@@ -12,7 +12,7 @@ buy_limit: 18000
 equipment:
   prayer: 0
   equipSlot: "2h"
-  weaponType: 3
+  weaponType: -1
   attackSpeed: 6
   attackStab: 0
   attackSlash: 0

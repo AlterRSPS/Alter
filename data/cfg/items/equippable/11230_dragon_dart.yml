@@ -11,8 +11,8 @@ highalch: 300
 buy_limit: 11000
 equipment:
   prayer: 0
-  equipSlot: "2h"
-  weaponType: 10
+  equipSlot: "weapon"
+  weaponType: 19
   attackSpeed: 3
   attackStab: 0
   attackSlash: 0
@@ -27,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 35
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 808
+    turnOnSpotAnim: 823
+    walkForwardAnimId: 819
+    walkBackwardsAnimId: 820
+    walkLeftAnimId: 821
+    walkRightAnimId: 822
+    runAnimId: 824
   skillReqs:
   - skill: "ranged"
     level: 60

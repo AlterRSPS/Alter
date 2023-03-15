@@ -11,8 +11,8 @@ highalch: 60000
 buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "ring"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 9
   attackSpeed: 4
   attackStab: 8
   attackSlash: 67
@@ -27,7 +27,14 @@ equipment:
   meleeStrength: 66
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 808
+    turnOnSpotAnim: 823
+    walkForwardAnimId: 819
+    walkBackwardsAnimId: 820
+    walkLeftAnimId: 821
+    walkRightAnimId: 822
+    runAnimId: 824
   skillReqs:
   - skill: "attack"
     level: 60

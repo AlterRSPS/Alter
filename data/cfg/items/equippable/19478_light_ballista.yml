@@ -27,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 7220
+    turnOnSpotAnim: 7223
+    walkForwardAnimId: 7223
+    walkBackwardsAnimId: 7223
+    walkLeftAnimId: 7223
+    walkRightAnimId: 7223
+    runAnimId: 7221
   skillReqs:
   - skill: "ranged"
     level: 65

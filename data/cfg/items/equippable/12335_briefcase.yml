@@ -12,7 +12,7 @@ buy_limit: 4
 equipment:
   prayer: 0
   equipSlot: "shield"
-  weaponType: -1
+  weaponType: 0
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0
@@ -27,5 +27,12 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 808
+    turnOnSpotAnim: 823
+    walkForwardAnimId: 1660
+    walkBackwardsAnimId: 1660
+    walkLeftAnimId: 1660
+    walkRightAnimId: 1660
+    runAnimId: 1661
   skillReqs: null

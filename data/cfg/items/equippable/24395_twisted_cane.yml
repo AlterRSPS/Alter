@@ -11,8 +11,8 @@ highalch: 600
 buy_limit: 10
 equipment:
   prayer: 0
-  equipSlot: "ring"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 16
   attackSpeed: 5
   attackStab: 0
   attackSlash: 0

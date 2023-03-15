@@ -11,7 +11,7 @@ highalch: 120
 buy_limit: 125
 equipment:
   prayer: 0
-  equipSlot: "body"
+  equipSlot: "2h"
   weaponType: -1
   attackSpeed: 5
   attackStab: 0

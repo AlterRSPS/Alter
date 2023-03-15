@@ -11,8 +11,8 @@ highalch: 600
 buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "ring"
-  weaponType: -1
+  equipSlot: "weapon"
+  weaponType: 15
   attackSpeed: 4
   attackStab: 0
   attackSlash: 0
@@ -27,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 6604
+    turnOnSpotAnim: 6611
+    walkForwardAnimId: 6607
+    walkBackwardsAnimId: 6608
+    walkLeftAnimId: 6610
+    walkRightAnimId: 6609
+    runAnimId: 6603
   skillReqs:
   - skill: "hunter"
     level: 17

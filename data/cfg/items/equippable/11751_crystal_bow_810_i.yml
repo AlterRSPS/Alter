@@ -11,8 +11,8 @@ highalch: 0
 buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "nohair"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 3
   attackSpeed: 5
   attackStab: 0
   attackSlash: 0
@@ -27,7 +27,14 @@ equipment:
   meleeStrength: 0
   rangedStrength: 70
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 808
+    turnOnSpotAnim: 823
+    walkForwardAnimId: 819
+    walkBackwardsAnimId: 820
+    walkLeftAnimId: 821
+    walkRightAnimId: 822
+    runAnimId: 824
   skillReqs:
   - skill: "agility"
     level: 50

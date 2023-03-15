@@ -11,8 +11,8 @@ highalch: 240
 buy_limit: 7000
 equipment:
   prayer: 0
-  equipSlot: "2h"
-  weaponType: 3
+  equipSlot: "ammo"
+  weaponType: -1
   attackSpeed: 0
   attackStab: 0
   attackSlash: 0

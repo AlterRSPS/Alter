@@ -11,8 +11,8 @@ highalch: 96000
 buy_limit: 15
 equipment:
   prayer: 6
-  equipSlot: "body"
-  weaponType: -1
+  equipSlot: "2h"
+  weaponType: 16
   attackSpeed: 5
   attackStab: 68
   attackSlash: -2
@@ -27,7 +27,14 @@ equipment:
   meleeStrength: 72
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 2061
+    turnOnSpotAnim: 823
+    walkForwardAnimId: 2060
+    walkBackwardsAnimId: 2060
+    walkLeftAnimId: 2060
+    walkRightAnimId: 2060
+    runAnimId: 824
   skillReqs:
   - skill: "attack"
     level: 70

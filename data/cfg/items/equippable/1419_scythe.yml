@@ -11,7 +11,7 @@ highalch: 0
 buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "2h"
+  equipSlot: "weapon"
   weaponType: 14
   attackSpeed: 7
   attackStab: 3
@@ -27,5 +27,12 @@ equipment:
   meleeStrength: 10
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  renderAnimations:
+    standAnimId: 847
+    turnOnSpotAnim: 823
+    walkForwardAnimId: 819
+    walkBackwardsAnimId: 820
+    walkLeftAnimId: 821
+    walkRightAnimId: 822
+    runAnimId: 824
   skillReqs: null

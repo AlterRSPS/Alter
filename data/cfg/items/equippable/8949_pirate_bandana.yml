@@ -11,7 +11,7 @@ highalch: null
 buy_limit: null
 equipment:
   prayer: 0
-  equipSlot: "ammo"
+  equipSlot: "head"
   weaponType: -1
   attackSpeed: 0
   attackStab: 0
