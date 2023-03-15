@@ -11,8 +11,9 @@ highalch: 750000
 buy_limit: 8
 equipment:
   prayer: 8
-  equipSlot: "body"
-  weaponType: -1
+  equipSlot: "2h"
+  equipSound: 2248
+  weaponType: 10
   attackSpeed: 6
   attackStab: 0
   attackSlash: 132
@@ -27,7 +28,7 @@ equipment:
   meleeStrength: 132
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations: null
+  render_animations: null
   skillReqs:
   - skill: "attack"
     level: 75

@@ -27,14 +27,7 @@ equipment:
   meleeStrength: 0
   rangedStrength: 11
   magicDamage: 0
-  renderAnimations:
-  - 2074
-  - 823
-  - 2076
-  - 2076
-  - 2076
-  - 2076
-  - 2077
+  renderAnimations: null
   skillReqs:
   - skill: "ranged"
     level: 1

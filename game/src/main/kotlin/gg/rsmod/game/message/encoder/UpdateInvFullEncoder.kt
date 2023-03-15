@@ -31,12 +31,12 @@ class UpdateInvFullEncoder : MessageEncoder<UpdateInvFullMessage>() {
                 if (item != null && item.amount != 0) {
                     buf.put(DataType.BYTE, Math.min(255, item.amount))
                     if (item.amount >= 255) {
-                        buf.put(DataType.INT, item.amount)
+                        buf.put(DataType.INT, DataOrder.LITTLE, item.amount)
                     }
-                    buf.put(DataType.SHORT, DataTransformation.ADD, item.id + 1)
+                    buf.put(DataType.SHORT, DataOrder.LITTLE, item.id + 1)
                 } else {
                     buf.put(DataType.BYTE, 0)
-                    buf.put(DataType.SHORT, DataTransformation.ADD, 0)
+                    buf.put(DataType.SHORT, DataOrder.LITTLE, 0)
                 }
             }
             val data = ByteArray(buf.byteBuf.readableBytes())

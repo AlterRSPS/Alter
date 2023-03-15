@@ -27,12 +27,5 @@ equipment:
   meleeStrength: 0
   rangedStrength: 0
   magicDamage: 0
-  renderAnimations:
-  - 8009
-  - 8015
-  - 8011
-  - 8012
-  - 8014
-  - 8013
-  - 8016
+  renderAnimations: null
   skillReqs: null

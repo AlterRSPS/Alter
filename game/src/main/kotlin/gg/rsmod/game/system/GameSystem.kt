@@ -59,6 +59,7 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
     }
 
     fun write(message: Message) {
+        //println(message);
         channel.write(message)
     }
 

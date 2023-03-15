@@ -206,7 +206,7 @@ object EquipAction {
                     }
                     onItemUnequip(p, equipmentId, slot)
                 }
-
+                p.playSound(def.equipSound)
                 p.equipment[equipSlot] = newEquippedItem
                 plugins.executeEquipSlot(p, equipSlot)
                 plugins.executeEquipItem(p, newEquippedItem.id)

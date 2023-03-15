@@ -54,11 +54,10 @@ on_login {
     val noLinkedEmail = 0 // set to 1 disables inbox button??
     player.setInterfaceEvents(interfaceId = 149, component = 0, range = 0 .. 27,
         setting = arrayOf(
-            InterfaceEvent.BUTTON1, InterfaceEvent.BUTTON2, InterfaceEvent.BUTTON3, InterfaceEvent.BUTTON4, InterfaceEvent.BUTTON5,
-            InterfaceEvent.BUTTON6, InterfaceEvent.BUTTON7, InterfaceEvent.BUTTON8,
-            InterfaceEvent.BUTTON9, InterfaceEvent.BUTTON10, InterfaceEvent.OPOBJT, InterfaceEvent.OPNPCT,
-            InterfaceEvent.OPLOCT, InterfaceEvent.OPPLAYERT, InterfaceEvent.OPHELDT, InterfaceEvent.DRAG_TARGET,
-            InterfaceEvent.DRAG_DEPTH1,
+            InterfaceEvent.ClickOp2, InterfaceEvent.ClickOp3, InterfaceEvent.ClickOp4, InterfaceEvent.ClickOp6,
+            InterfaceEvent.ClickOp7, InterfaceEvent.ClickOp10, InterfaceEvent.UseOnGroundItem, InterfaceEvent.UseOnNpc, InterfaceEvent.UseOnObject,
+            InterfaceEvent.UseOnPlayer, InterfaceEvent.UseOnInventory, InterfaceEvent.UseOnComponent, InterfaceEvent.DRAG_DEPTH1, InterfaceEvent.DragTargetable,
+            InterfaceEvent.ComponentTargetable
         )
     )
     // Interface-related logic.
