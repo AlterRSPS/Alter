@@ -1,6 +1,7 @@
 /* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
 package gg.rsmod.plugins.api.cfg
 
+
 object Items {
 
     const val DWARF_REMAINS = 0

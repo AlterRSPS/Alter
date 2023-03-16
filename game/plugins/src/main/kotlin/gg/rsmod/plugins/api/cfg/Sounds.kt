@@ -38,6 +38,7 @@ object Sounds {
     axe (wc): 2229
     swords (scim, 2h etc): 2248
     bows / arrows: 2244
+
     bolts: 2235
     mace / flail: 2246
     pickaxe / battleaxe / dh axe: 2232

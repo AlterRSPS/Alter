@@ -10127,3 +10127,4 @@ object Npcs {
     const val GREATER_SKELETON_HELLHOUND_12108 = 12108
     /* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
 }
+

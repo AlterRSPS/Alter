@@ -2,6 +2,7 @@ package gg.rsmod.plugins.api.cfg
 
 /**
  * @author @Z-Kris
+ *
  */
 object Animation {
     const val RESET_CHARACTER = -1

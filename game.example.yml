@@ -2,7 +2,7 @@
 # You want to edit these to fit your game.
 name: "Alter"
 game-port: 43594
-revision: 211
+revision: 212
 
 # The coordinates for the home location.
 home-x: 3218
@@ -44,7 +44,7 @@ services:
   - class: gg.rsmod.game.service.game.DumpEntityIdService
     cache-path: "./data/cache/"
     output-path: "./game/plugins/src/main/kotlin/gg/rsmod/plugins/api/cfg/"
-    dump: true # Should keep in mind that this can fail. (Aka. On crash fuck up any of the dumping into files
+    dump: false # Should keep in mind that this can fail. (Aka. On crash fuck up any of the dumping into files
 
   - class: gg.rsmod.game.service.rsa.RsaService
 

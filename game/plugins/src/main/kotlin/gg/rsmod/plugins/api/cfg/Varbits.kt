@@ -1,5 +1,6 @@
 package gg.rsmod.plugins.api.cfg
 
+
 object Varbits {
     const val ALL_SETTINGS_TAB = 9656
     const val ACTIVITIES_HITSPLAT_TINTING = 10236

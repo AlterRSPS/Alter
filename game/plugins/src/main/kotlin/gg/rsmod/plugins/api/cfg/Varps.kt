@@ -1,5 +1,6 @@
 package gg.rsmod.plugins.api.cfg
 
+
 object Varps {
 
     // Audio

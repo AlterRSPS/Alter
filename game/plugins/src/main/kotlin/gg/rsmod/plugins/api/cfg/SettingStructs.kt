@@ -1,6 +1,7 @@
 /* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
 package gg.rsmod.plugins.api.cfg
 
+
 object SettingStructs {
     const val SHOW_BOSS_HEALTH_OVERLAY_STRUCT_ID = 3002
     const val DATA_ORBS_REGENERATION_INDICATORS_STRUCT_ID = 3009
