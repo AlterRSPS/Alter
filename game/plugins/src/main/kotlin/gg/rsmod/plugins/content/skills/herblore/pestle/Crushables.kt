@@ -35,7 +35,7 @@ enum class Crushables(val itemIn: Int, val itemOut: Int, val message: String = "
     RUNE(Items.RUNE_SHARDS, Items.RUNE_DUST),
     KARAMBWANJI_RAW(Items.RAW_KARAMBWANJI, Items.KARAMBWANJI_PASTE),
     KARAMBWANJI_COOKED(Items.KARAMBWANJI, Items.KARAMBWANJI_PASTE_3156),
-    BLACK_SHROOMS(Items.BLACK_MUSHROOM, Items.BLACK_MUSHROOM_INK),
+    //BLACK_SHROOMS(Items.BLACK_MUSHROOM, Items.BLACK_MUSHROOM_INK),
 
     LAVA(Items.LAVA_SCALE, Items.LAVA_SCALE_SHARD); // special case creates multiple amount
 

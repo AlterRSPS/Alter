@@ -3,7 +3,7 @@ package gg.rsmod.plugins.content.area.lumbridge.chat
 // Hans
 spawn_npc(Npcs.HANS, x = 3221, z = 3219, direction = Direction.EAST)
 
-spawn_npc(Npcs.LUMBRIDGE_GUIDE_306, x = 3238, z = 3220, direction = Direction.WEST)
+//spawn_npc(Npcs.LUMBRIDGE_GUIDE_306, x = 3238, z = 3220, direction = Direction.WEST)
 spawn_npc(Npcs.FATHER_AERECK, 3243,3206,0,3)
 spawn_npc(Npcs.HATIUS_COSAINTUS, 3233,3215,0,1)
 spawn_npc(Npcs.IRON_MAN_TUTOR, 3229,3228,0,1)

@@ -23,7 +23,7 @@ enum class Attached(val id: Int, val toolRequired: Int = -1, val firstMaterial: 
     BLURITE_CROSSBOW(id = Items.BLURITE_CROSSBOW, firstMaterial = Items.BLURITE_CROSSBOW_U, secondMaterial = Items.CROSSBOW_STRING, level = 24, animation = 6672, fletchingXP = 16.0),
     IRON_CROSSBOW(id = Items.IRON_CROSSBOW, firstMaterial = Items.IRON_CROSSBOW_U, secondMaterial = Items.CROSSBOW_STRING, level = 39, animation = 6673, fletchingXP = 22.0),
     STEEL_CROSSBOW(id = Items.STEEL_CROSSBOW, firstMaterial = Items.STEEL_CROSSBOW_U, secondMaterial = Items.CROSSBOW_STRING, level = 46, animation = 6674, fletchingXP = 27.0),
-    MITH_CROSSBOW(id = Items.MITH_CROSSBOW, firstMaterial = Items.MITHRIL_CROSSBOW_U, secondMaterial = Items.CROSSBOW_STRING, level = 54, animation = 6675, fletchingXP = 32.0),
+    //MITH_CROSSBOW(id = Items.MITH_CROSSBOW, firstMaterial = Items.MITHRIL_CROSSBOW_U, secondMaterial = Items.CROSSBOW_STRING, level = 54, animation = 6675, fletchingXP = 32.0),
     ADAMANT_CROSSBOW(id = Items.ADAMANT_CROSSBOW, firstMaterial = Items.ADAMANT_CROSSBOW_U, secondMaterial = Items.CROSSBOW_STRING, level = 61, animation = 6676, fletchingXP = 41.0),
     RUNE_CROSSBOW(id = Items.RUNE_CROSSBOW, firstMaterial = Items.RUNITE_CROSSBOW_U, secondMaterial = Items.CROSSBOW_STRING, level = 69, animation = 6677, fletchingXP = 50.0),
     DRAGON_CROSSBOW(id = Items.DRAGON_CROSSBOW, firstMaterial = Items.DRAGON_CROSSBOW_U, secondMaterial = Items.CROSSBOW_STRING, level = 78, animation = 6677, fletchingXP = 70.0),

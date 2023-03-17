@@ -37,7 +37,7 @@ on_timer(Prayers.PRAYER_DRAIN) {
 /**
  * Toggle quick-prayers.
  */
-on_button(interfaceId = 160, component = 15) {
+on_button(interfaceId = 160, component = 19) {
     val opt = player.getInteractingOption()
     Prayers.toggleQuickPrayers(player, opt)
 }
