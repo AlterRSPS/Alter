@@ -71,7 +71,6 @@ players:
         - name: compressed_data
           type: BYTES
           trans: ADD
-          #order: REVERSED
 
     - block: TEMP_MOVEMENT
       bit: 0x4000

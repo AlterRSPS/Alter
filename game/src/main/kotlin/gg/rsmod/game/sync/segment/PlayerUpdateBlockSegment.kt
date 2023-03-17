@@ -68,26 +68,15 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
             UpdateBlockType.PUBLIC_CHAT -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
                 val chatMessage = other.blockBuffer.publicChat
+                if (chatMessage.text.length >= 80) return
                 val compressed = ByteArray(256)
-                val length = other.world.huffman.compress(chatMessage.text, compressed)
-                val chatLength = chatMessage.text.length
-
+                compressed[0] = chatMessage.text.length.toByte()
+                val compressedLength = other.world.huffman.compress(chatMessage.text, compressed, 1)
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, (chatMessage.color.id shl 8) or chatMessage.effect.id)
                 buf.put(structure[1].type, structure[1].order, structure[1].transformation, chatMessage.icon)
                 buf.put(structure[2].type, structure[2].order, structure[2].transformation, if (chatMessage.type == ChatMessage.ChatType.AUTOCHAT) 1 else 0)
-                buf.put(structure[3].type, structure[3].order, structure[3].transformation, length + if(chatLength >= 0x80) 2 else 1)
-                buf.putSmart(chatLength)
-                //buf.putBytes(structure[4].transformation, compressed, 0, length)
-                buf.putBytesReverse(structure[4].transformation, compressed, length)
-
-                /**
-                 * @TODO Public Chat Seagment
-                 */
-                // NOTE(Tom): seems that they don't use reverse bytes as they once use to.
-                // If they do at some point read reverse bytes, we can add support for it.
-                // To fix the issues that would arise, simply write the smart after the bytes.
-                // buf.putBytesReverse(structure[4].transformation, compressed, length)
-                // buf.putSmart(chatMessage.text.length)
+                buf.put(structure[3].type, structure[3].order, structure[3].transformation, compressedLength)
+                buf.putBytesReverse(structure[4].transformation, compressed, compressedLength)
             }
 
             UpdateBlockType.FORCE_CHAT -> {

@@ -1836,6 +1836,7 @@ object Animation {
     const val ZYGOMITE_ATTACK = 3326
     const val ZYGOMITE_DEATH = 3327
     const val ZYGOMITE_HIT = 3325
+    const val LIFT_TROPHY = 8537
     // const val 31773 = 31773
     // const val 31774 = 31774
     // const val 31775 = 31775

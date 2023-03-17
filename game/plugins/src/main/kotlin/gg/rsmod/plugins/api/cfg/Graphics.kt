@@ -689,5 +689,5 @@ object Graphics {
     const val DIVINE_EFFECT = 65532
     const val SAFETY_FIRST_SHIELD = 65533
     const val COCKROACH_PROJECTILE = 65534
-
+    const val ADAMANT_TROPHY_SPARK_FROM_EMOTE = 1757
 }

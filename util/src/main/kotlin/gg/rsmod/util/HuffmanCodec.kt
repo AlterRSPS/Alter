@@ -86,12 +86,11 @@ class HuffmanCodec(private val sizes: ByteArray) {
 
     }
 
-    fun compress(text: String, output: ByteArray): Int {
+    fun compress(text: String, output: ByteArray, offset: Int = 0): Int {
         var key = 0
-
         val input = text.toByteArray()
 
-        var bitpos = 0
+        var bitpos = offset * 8
         for (pos in 0 until text.length) {
             val data = input[pos].toInt() and 255
             val size = sizes[data]
