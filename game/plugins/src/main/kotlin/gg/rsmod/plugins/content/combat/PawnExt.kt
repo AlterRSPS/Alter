@@ -5,6 +5,7 @@ import gg.rsmod.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import gg.rsmod.game.model.combat.CombatClass
 import gg.rsmod.game.model.combat.PawnHit
 import gg.rsmod.game.model.entity.Pawn
+import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.entity.Projectile
 import gg.rsmod.game.model.queue.QueueTask
 import gg.rsmod.game.model.timer.ACTIVE_COMBAT_TIMER
@@ -46,7 +47,12 @@ fun Pawn.dealHit(target: Pawn, formula: CombatFormula, delay: Int, onHit: (PawnH
 
 fun Pawn.dealHit(target: Pawn, maxHit: Int, landHit: Boolean, delay: Int, onHit: (PawnHit) -> Unit = {}): PawnHit {
     val hit = if (landHit) {
-        target.hit(damage = world.random(maxHit), delay = delay)
+        val hit = world.random(maxHit)
+        if (hit == maxHit && this@dealHit is Player) {
+            target.hit(damage = hit, type = HitType.MAX_HIT, delay = delay) // maxhit type
+        } else {
+            target.hit(damage = hit, delay = delay)
+        }
     } else {
         target.hit(damage = 0, type = HitType.BLOCK, delay = delay)
     }

@@ -6,15 +6,10 @@ import gg.rsmod.game.event.Event
 import gg.rsmod.game.fs.def.ItemDef
 import gg.rsmod.game.fs.def.NpcDef
 import gg.rsmod.game.fs.def.ObjectDef
-import gg.rsmod.game.model.Direction
-import gg.rsmod.game.model.Tile
-import gg.rsmod.game.model.World
+import gg.rsmod.game.model.*
 import gg.rsmod.game.model.combat.NpcCombatDef
 import gg.rsmod.game.model.container.key.ContainerKey
-import gg.rsmod.game.model.entity.DynamicObject
-import gg.rsmod.game.model.entity.GroundItem
-import gg.rsmod.game.model.entity.Npc
-import gg.rsmod.game.model.entity.Player
+import gg.rsmod.game.model.entity.*
 import gg.rsmod.game.model.shop.PurchasePolicy
 import gg.rsmod.game.model.shop.Shop
 import gg.rsmod.game.model.shop.ShopCurrency
@@ -511,8 +506,9 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     /**
      * Invoke [logic] when attacking with that weapon.
      */
-    fun set_weapon_combat_logic(item: Int, logic: (Plugin).() -> Unit) = r.setWeaponCombat(item, logic)
-
+    fun set_weapon_combat_logic(item: Int, logic: (Plugin).() -> Unit) {
+        r.setWeaponCombat(item, logic)
+    }
     /**
      * Invoke [logic] when [item] is removed from equipment.
      */
@@ -610,6 +606,11 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         //@TODO
     }
     // Add wrapText() {  "<col=colorHex> String </col>"   }
+
+    fun getNpcFromTile(tile: Tile): Npc? {
+        val chunk = world.chunks.get(tile)
+        return chunk?.getEntities<Npc>(tile, EntityType.NPC)?.firstOrNull()
+    }
 
     fun get_all_commands(): ArrayList<String> {
         return r.get_all_commands()

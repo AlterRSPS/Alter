@@ -13,7 +13,7 @@ equipment:
   prayer: 0
   equipSlot: "2h"
   weaponType: 14
-  attackSpeed: 5
+  attackSpeed: 1
   attackStab: 50
   attackSlash: 75
   attackCrush: 10
