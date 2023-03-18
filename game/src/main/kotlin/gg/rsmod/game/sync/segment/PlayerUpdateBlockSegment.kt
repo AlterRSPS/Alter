@@ -65,6 +65,8 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
         val blocks = other.world.playerUpdateBlocks
 
         when (blockType) {
+
+
             UpdateBlockType.PUBLIC_CHAT -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
                 val chatMessage = other.blockBuffer.publicChat
@@ -327,13 +329,13 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
             }
 
             UpdateBlockType.APPLY_TINT -> {
-                //val structure = blocks.updateBlocks[blockType]!!.values
-                //buf.put(structure[0].type, structure[0].order, structure[0].transformation, 0) // recolourStartCycle
-                //buf.put(structure[1].type, structure[1].order, structure[1].transformation, 0) // recolourEndCycle
-                //buf.put(structure[2].type, structure[2].order, structure[2].transformation, 0) // recolourHue
-                //buf.put(structure[3].type, structure[3].order, structure[3].transformation, 0) // recolourSaturation
-                //buf.put(structure[4].type, structure[4].order, structure[4].transformation, 0) // recolourLuminance
-                //buf.put(structure[5].type, structure[5].order, structure[5].transformation, 0) // recolourAmount
+                val structure = blocks.updateBlocks[blockType]!!.values
+                buf.put(structure[0].type, structure[0].order, structure[0].transformation, other.blockBuffer.recolourStartCycle) // recolourStartCycle
+                buf.put(structure[1].type, structure[1].order, structure[1].transformation, other.blockBuffer.recolourEndCycle) // recolourEndCycle
+                buf.put(structure[2].type, structure[2].order, structure[2].transformation, other.blockBuffer.recolourHue) // recolourHue
+                buf.put(structure[3].type, structure[3].order, structure[3].transformation, other.blockBuffer.recolourSaturation) // recolourSaturation
+                buf.put(structure[4].type, structure[4].order, structure[4].transformation, other.blockBuffer.recolourLuminance) // recolourLuminance
+                buf.put(structure[5].type, structure[5].order, structure[5].transformation, other.blockBuffer.recolourOpacity) // recolourAmount
             }
 
             UpdateBlockType.NAME_CHANGE -> {

@@ -28,7 +28,22 @@ class NpcUpdateBlockSegment(private val npc: Npc, private val newAddition: Boole
             }
         }
 
-        buf.put(DataType.BYTE, mask and 0xFF)
+        val firstExtensionBit = 0x8 // update this
+        val secondExtensionBit = 0x1000 // update this
+
+        if (mask and 0xFF.inv() != 0) {
+            mask = mask or firstExtensionBit
+        }
+        if (mask and 0xFFFF.inv() != 0) {
+            mask = mask or secondExtensionBit
+        }
+        buf.put(DataType.BYTE, mask)
+        if (mask and firstExtensionBit != 0) {
+            buf.put(DataType.BYTE, mask ushr 8)
+        }
+        if (mask and secondExtensionBit != 0) {
+            buf.put(DataType.BYTE, mask ushr 16)
+        }
 
         blocks.updateBlockOrder.forEach { blockType ->
             val force = when (blockType) {
@@ -46,19 +61,24 @@ class NpcUpdateBlockSegment(private val npc: Npc, private val newAddition: Boole
         val blocks = npc.world.npcUpdateBlocks
         when (blockType) {
             UpdateBlockType.APPLY_TINT -> {
-                //val structure = blocks.updateBlocks[blockType]!!.values
-                //buf.put(structure[0].type, structure[0].order, structure[0].transformation, 0) // recolourStartCycle
-                //buf.put(structure[1].type, structure[1].order, structure[1].transformation, 0) // recolourEndCycle
-                //buf.put(structure[2].type, structure[2].order, structure[2].transformation, 0) // recolourHue
-                //buf.put(structure[3].type, structure[3].order, structure[3].transformation, 0) // recolourSaturation
-                //buf.put(structure[4].type, structure[4].order, structure[4].transformation, 0) // recolourLuminance
-                //buf.put(structure[5].type, structure[5].order, structure[5].transformation, 0) // recolourAmount
+                val structure = blocks.updateBlocks[blockType]!!.values
+                buf.put(structure[0].type, structure[0].order, structure[0].transformation, npc.blockBuffer.recolourStartCycle) // recolourStartCycle
+                buf.put(structure[1].type, structure[1].order, structure[1].transformation, npc.blockBuffer.recolourEndCycle) // recolourEndCycle
+                buf.put(structure[2].type, structure[2].order, structure[2].transformation, npc.blockBuffer.recolourHue) // recolourHue
+                buf.put(structure[3].type, structure[3].order, structure[3].transformation, npc.blockBuffer.recolourSaturation) // recolourSaturation
+                buf.put(structure[4].type, structure[4].order, structure[4].transformation, npc.blockBuffer.recolourLuminance) // recolourLuminance
+                buf.put(structure[5].type, structure[5].order, structure[5].transformation, npc.blockBuffer.recolourOpacity) // recolourAmount
             }
 
             UpdateBlockType.OVERRIDE_LEVEL -> {
-                //val structure = blocks.updateBlocks[blockType]!!.values
-                //buf.put(structure[0].type, structure[0].order, structure[0].transformation, 120)
+                val structure = blocks.updateBlocks[blockType]!!.values
+                buf.put(structure[0].type, structure[0].order, structure[0].transformation, npc.blockBuffer.overrideLevel)
             }
+
+            UpdateBlockType.NAME_CHANGE -> {
+                buf.putString(npc.blockBuffer.TempName)
+            }
+
             UpdateBlockType.FACE_PAWN -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, npc.blockBuffer.facePawnIndex)

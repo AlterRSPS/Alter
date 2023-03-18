@@ -514,6 +514,34 @@ abstract class Pawn(val world: World) : Entity() {
         addBlock(UpdateBlockType.GFX)
     }
 
+    fun applyTint(hue: Int = 0, saturation: Int = 0, luminance: Int = 0, opacity: Int = 0, delay: Int = 0, duration: Int = 0) {
+        blockBuffer.recolourStartCycle = delay
+        blockBuffer.recolourEndCycle = duration
+        blockBuffer.recolourHue = hue
+        blockBuffer.recolourSaturation = saturation
+        blockBuffer.recolourLuminance = luminance
+        blockBuffer.recolourOpacity = opacity
+        addBlock(UpdateBlockType.APPLY_TINT)
+    }
+
+    fun overrideLevel(level: Int) {
+        if (entityType.isPlayer) {
+            println("overrideLevel can't be applied to a player")
+            return
+        }
+        blockBuffer.overrideLevel = level
+        addBlock(UpdateBlockType.OVERRIDE_LEVEL)
+    }
+
+    fun setTempName(name: String) {
+        if (entityType.isPlayer) {
+            println("overrideLevel can't be applied to a player")
+            return
+        }
+        blockBuffer.TempName = name
+        addBlock(UpdateBlockType.NAME_CHANGE)
+    }
+
     fun graphic(graphic: Graphic) {
         graphic(graphic.id, graphic.height, graphic.delay)
     }

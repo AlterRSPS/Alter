@@ -20,23 +20,22 @@ players:
 
   blocks:
     - block: APPLY_TINT
-      bit: 0x400
+      bit: 0x800
       structure:
         - name: recolourStartCycle
           type: SHORT
-          order: LITTLE
         - name: recolourEndCycle
           type: SHORT
-          trans: ADD
+          order: LITTLE
         - name: recolourHue
           type: BYTE
-          trans: NEGATE
+          sign: SIGNED
+          trans: ADD
         - name: recolourSaturation
           type: BYTE
-          trans: ADD
         - name: recolourLuminance
           type: BYTE
-          trans: SUBTRACT
+          trans: NEGATE
         - name: recolourAmount
           type: BYTE
           trans: SUBTRACT
@@ -187,6 +186,7 @@ npcs:
     - FACE_TILE
 
   blocks:
+
     - block: APPLY_TINT
       bit: 0x8000
       structure:
@@ -203,8 +203,8 @@ npcs:
           sign: SIGNED
         - name: recolourLuminance
           type: BYTE
-          sign: SIGNED
           trans: NEGATE
+          sign: SIGNED
         - name: recolourAmount
           type: BYTE
 
@@ -216,9 +216,6 @@ npcs:
 
     - block: NAME_CHANGE
       bit: 0x100
-      structure:
-        - name: name
-          type: BYTES
 
     - block: OVERRIDE_LEVEL
       bit: 0x200
@@ -288,7 +285,7 @@ npcs:
           trans: ADD
 
     - block: FORCE_MOVEMENT
-      bit: 0x100
+      bit: 0x400
       structure:
         - name: src_x
           type: BYTE
