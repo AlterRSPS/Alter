@@ -55,7 +55,7 @@ WaterContainers.values().forEach {
  * of player and queues it for removal after 300 cycles (~3minutes)
  * also prevents from dropping item from inventory, but could be done here
  */
-can_drop_item(Items.SINK) {
+canDropItem(Items.SINK) {
     val obj = DynamicObject(Objs.TOY_SINK, 10, 3, player.tile.transform(0,1))
     world.spawn(obj)
     player.world.queue {

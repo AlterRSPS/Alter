@@ -390,15 +390,7 @@ class PluginRepository(val world: World) {
      */
     internal val services = mutableListOf<Service>()
 
-    /**
-     * A map of [Plugins] that are listening to start fishing bind
-     */
-    internal val onStartFishingPlugins = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
-
-    /**
-     * A map of [Plugins] that are listening for fish to be caught.
-     */
-    internal val onCatchFishPlugins = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
+    internal val onAnimList = hashMapOf<Int, Plugin.() -> Unit>()
 
     /**
      * Holds all container keys set from plugins for this [PluginRepository].
@@ -1330,6 +1322,20 @@ class PluginRepository(val world: World) {
         globalGroundItemPickUp.forEach { plugin ->
             p.executePlugin(plugin)
         }
+    }
+
+    fun bindOnAnimation(anim: Int, plugin: Plugin.() -> Unit) {
+        if (onAnimList.containsKey(anim)) {
+            throw java.lang.IllegalStateException("$anim is already bound to a plugin.")
+        }
+        onAnimList[anim] = plugin
+        pluginCount++
+    }
+
+    fun executeOnAnimation(p: Player, anim: Int): Boolean {
+        val plugin = onAnimList[anim] ?: return false
+        p.executePlugin(plugin)
+        return true
     }
 
     fun get_all_commands(): ArrayList<String> {

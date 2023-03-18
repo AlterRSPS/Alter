@@ -36,6 +36,7 @@ on_login {
 
     /**
      * Still don't know which one of this triggers it, but one of them fixes the chatbox username
+     * Ok turns out we send out PlayerUpdate either too late or too soon. Will need to inspect it one day @TODO
      */
     val someRandomVarps = listOf(18,20,21,23,25,46,153,168,169,281,300,849,850,851,852,853,854,855,856,872)
     val someRandomVarbits = listOf(5411,5412,4137,3216,10066,1782,2885,3638,3713,6363,8354,5605,5607,3924,5102,1303,4609,4702)

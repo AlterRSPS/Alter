@@ -19,6 +19,11 @@ class UpdateBlockBuffer {
     var facePawnIndex = -1
 
     var animation = 0
+
+
+    /**
+     * StartDelay
+     */
     var animationDelay = 0
 
     var graphicId = 0

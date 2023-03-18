@@ -39,10 +39,6 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     private lateinit var properties: MutableMap<String, Any>
 
-    fun getSpawns(): MutableList<GroundItem> {
-        return r.itemSpawns
-    }
-
     /**
      * Get property associated with [key] casted as [T].
      */
@@ -563,49 +559,33 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
 
     /**
      * Invoke [logic] when the the option in index [option] is clicked on a [GroundItem].
-     *
      * String option method should be used over this method whenever possible.
      */
     fun on_ground_item_option(item: Int, option: Int, logic: (Plugin).() -> Unit) = r.bindGroundItem(item, option, logic)
 
     /**
      * Set the condition of whether [item] can be picked up as a ground item.
-     *
      * @return false if the item can not be picked up.
      */
-    fun set_ground_item_condition(item: Int, plugin: Plugin.() -> Boolean) = r.setGroundItemPickupCondition(item, plugin)
+    fun setGroundItemCondition(item: Int, plugin: Plugin.() -> Boolean) = r.setGroundItemPickupCondition(item, plugin)
 
     /**
      * Invoke [plugin] when a spell is used on an item.
      */
-    fun on_spell_on_item(fromInterface: Int, fromComponent: Int, toInterface: Int, toComponent: Int, plugin: Plugin.() -> Unit) = r.bindSpellOnItem((fromInterface shl 16) or fromComponent, (toInterface shl 16) or toComponent, plugin)
+    fun onSpellOnItem(fromInterface: Int, fromComponent: Int, toInterface: Int, toComponent: Int, plugin: Plugin.() -> Unit) = r.bindSpellOnItem((fromInterface shl 16) or fromComponent, (toInterface shl 16) or toComponent, plugin)
 
     /**
      * Returns true if the item can be dropped on the floor via the 'drop' menu
      * option - return false otherwise.
      */
-    fun can_drop_item(item: Int, plugin: (Plugin).() -> Boolean) = r.bindCanItemDrop(item, plugin)
+    fun canDropItem(item: Int, plugin: (Plugin).() -> Boolean) = r.bindCanItemDrop(item, plugin)
 
     /**
      * Invoke [plugin] when [item] is used on [npc].
      */
-    fun on_item_on_npc(item: Int, npc: Int, plugin: Plugin.() -> Unit) = r.bindItemOnNpc(npc = npc, item = item, plugin = plugin)
+    fun onItemOnNpc(item: Int, npc: Int, plugin: Plugin.() -> Unit) = r.bindItemOnNpc(npc = npc, item = item, plugin = plugin)
 
-    /**
-     * tmrw:
-     * redo the items,
-     * and write when player does animation execute the plugin ->
-     * on_anim_by_player() {
-     *  player.gfx // .sound            = >("")
-     * }
-     */
-    fun on_anim_by_player(animid: Int, plugin: Plugin.() -> Unit) {
-        //@TODO
-    }
-    fun on_anim_by_npc(anim: Int, plugin: Plugin.() -> Unit) {
-        //@TODO
-    }
-    // Add wrapText() {  "<col=colorHex> String </col>"   }
+    fun onAnim(animid: Int, plugin: Plugin.() -> Unit) = r.bindOnAnimation(animid, plugin)
 
     fun getNpcFromTile(tile: Tile): Npc? {
         val chunk = world.chunks.get(tile)

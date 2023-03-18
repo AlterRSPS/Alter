@@ -31,7 +31,6 @@ class NpcSynchronizationTask(private val worldNpcs: Array<Npc?>) : Synchronizati
         }
 
         if (maskBuf.byteBuf.writerIndex() > 0) {
-            //buf.putBits(15, 0x7FFF)
             buf.putBits(16, 0xFFFF)
         }
 

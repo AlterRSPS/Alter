@@ -58,8 +58,8 @@ arrayOf(Items.LOOTING_BAG, Items.LOOTING_BAG_22586).forEach { bag ->
         settings(player)
     }
 
-    can_drop_item(bag) {
-        val slot = player.attr[INTERACTING_ITEM_SLOT] ?: return@can_drop_item false
+    canDropItem(bag) {
+        val slot = player.attr[INTERACTING_ITEM_SLOT] ?: return@canDropItem false
 
         player.queue {
             val container = player.containers[CONTAINER_KEY]
@@ -68,7 +68,7 @@ arrayOf(Items.LOOTING_BAG, Items.LOOTING_BAG_22586).forEach { bag ->
                 player.inventory.remove(item = bag, amount = 1, beginSlot = slot)
             }
         }
-        return@can_drop_item false
+        return@canDropItem false
     }
 }
 

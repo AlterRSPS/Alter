@@ -492,6 +492,10 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     fun animate(id: Int, delay: Int = 0) {
+        if (this is Player) {
+            world.plugins.executeOnAnimation(this, id)
+        }
+
         animateSend(-1, 0)
         animateSend(id, delay)
     }
@@ -500,10 +504,15 @@ abstract class Pawn(val world: World) : Entity() {
         graphicSend(id, height, delay)
     }
 
-
-    fun animateSend(id: Int, delay: Int = 0) {
+    /**
+     * @disablePlayersClicks For how long to disable the players [GameClicks]
+     */
+    fun animateSend(id: Int, startDelay: Int = 0, DisablePlayerTicks: Int = 0) {
         blockBuffer.animation = id
-        blockBuffer.animationDelay = delay
+        blockBuffer.animationDelay = startDelay
+        if (this is Player) {
+            world.plugins.onAnimList[id]
+        }
         addBlock(UpdateBlockType.ANIMATION)
     }
 
