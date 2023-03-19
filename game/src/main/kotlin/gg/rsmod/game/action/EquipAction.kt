@@ -206,7 +206,13 @@ object EquipAction {
                     }
                     onItemUnequip(p, equipmentId, slot)
                 }
-                p.writeMessage("Playing equip Sound: ${def.equipSound} from item: ${def.id}")
+
+                /**
+                 * Will need to check out why equipSound gets turned into 0 from -1
+                 */
+                if (def.equipSound == 0) {
+                    def.equipSound = -1
+                }
                 p.playSound(def.equipSound)
                 p.equipment[equipSlot] = newEquippedItem
                 plugins.executeEquipSlot(p, equipSlot)
