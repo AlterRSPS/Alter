@@ -287,27 +287,12 @@ class ItemMetadataService : Service {
             result = 31 * result + rangedStrength
             result = 31 * result + magicDamage
             result = 31 * result + prayer
-            result = 31 * result + (renderAnimations?.getAsArray().contentHashCode() ?: 0)
+            result = 31 * result + (renderAnimations?.getAsArray().contentHashCode())
             result = 31 * result + (skillReqs?.contentHashCode() ?: 0)
             return result
         }
     }
 
-    /**
-     * Add later the missing ones for combat xd
-     * blockAnimation
-     * standAnimation
-     * walkAnimation
-     * runAnimation
-     * standTurnAnimation
-     * rotate90Animation
-     * rotate180Animation
-     * rotate270Animation
-     * accurateAnimation
-     * aggressiveAnimation
-     * controlledAnimation
-     * defensiveAnimation
-     */
     private data class renderAnimations (
         @JsonProperty("standAnimId") val standAnimId: Int = 0 ,
         @JsonProperty("turnOnSpotAnim") val turnOnSpotAnim: Int = 0 ,
