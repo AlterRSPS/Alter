@@ -49,7 +49,7 @@ fun Pawn.dealHit(target: Pawn, maxHit: Int, landHit: Boolean, delay: Int, onHit:
     val hit = if (landHit) {
         val hit = world.random(maxHit)
         if (hit == maxHit && this@dealHit is Player) {
-            target.hit(damage = hit, type = HitType.MAX_HIT, delay = delay) // maxhit type
+            target.hit(damage = hit, type = HitType.HIT_MAX, delay = delay) // maxhit type
         } else {
             target.hit(damage = hit, delay = delay)
         }
