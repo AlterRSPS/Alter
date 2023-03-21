@@ -533,40 +533,46 @@ server-packets:
         type: SHORT
         order: LITTLE
 
-#    - message: gg.rsmod.game.message.impl.UpdateFriendListMessage
-#       type: VARIABLE_SHORT
-#       opcode: 73
-#          structure:
-#          - name: online
-#          - name: username
-#          - name: previousUsername
-#          - name: world
-#          - name: clanRank
-#          - name: rights
-
-#    - message: gg.rsmod.game.message.impl.UpdateIgnoreListMessage
-#     type: VARIABLE_SHORT
-#     opcode: 8
-#        structure:
-#        - name: online
+#  - message: gg.rsmod.game.message.impl.UpdateFriendListMessage
+#    type: VARIABLE_SHORT
+#    opcode: 90
+#    structure:
+#      - name: online
 #        write: BYTE
-#        - name: username
+#      - name: username
 #        write: BYTES
-#        - name: previousUsername
+#      - name: previousUsername
+#        write: BYTES
+#      - name: world
+#        write: SHORT
+#      - name: clanRank
+#        write: BYTE
+#      - name: rights
+#        write: BYTE
+#
+#  - message: gg.rsmod.game.message.impl.UpdateIgnoreListMessage
+#    type: VARIABLE_SHORT
+#    opcode: 23
+#    structure:
+#      - name: online
+#        write: BYTE
+#      - name: username
+#        write: BYTES
+#      - name: previousUsername
 #        write: BYTES
 #
-#    - message: gg.rsmod.game.message.impl.MessagePrivateReceiverMessage
-#     type: VARIABLE_SHORT
-#     opcode: 95
-#        structure:
-#        - name: target
+#  - message: gg.rsmod.game.message.impl.MessagePrivateReceiverMessage
+#    type: VARIABLE_SHORT
+#    opcode: 45
+#    structure:
+#      - name: target
 #        write: BYTES
-#        - name: unknown
+#      - name: unknown
 #        write: SHORT
 #        sign: UNSIGNED
-#        - name: unknown2
+#      - name: unknown2
 #        write: MEDIUM
-#        - name: rights
+#      - name: rights
 #        write: BYTE
 #        sign: UNSIGNED
 
@@ -580,14 +586,6 @@ client-packets:
       - name: data
         type: INT
         order: LITTLE
-
-  # Debricated
-  - message: gg.rsmod.game.message.impl.OpLocUMessage
-    type: FIXED
-    opcode: 248
-    length: 15
-    ignore: true
-
 
   - message: gg.rsmod.game.message.impl.IfButtonDMessage
     type: FIXED
@@ -614,20 +612,6 @@ client-packets:
       - name: src_slot
         type: SHORT
         order: LITTLE
-
-  # Debricated
-  - message: gg.rsmod.game.message.impl.OpHeldDMessage
-    type: FIXED
-    opcode: 241
-    length: 9
-    ignore: TRUE
-
-  # Remove
-  - message: gg.rsmod.game.message.impl.OpHeldUMessage
-    type: FIXED
-    opcode: 242
-    length: 16
-    ignore: true
 
   - message: gg.rsmod.game.message.impl.OpNpcTMessage
     type: FIXED
@@ -663,12 +647,18 @@ client-packets:
         trans: SUBTRACT
       - name: item
         type: SHORT
-      - name: component_hash
-        type: INT
-        order: MIDDLE
       - name: npc_index
         type: SHORT
         order: LITTLE
+      - name: component_hash
+        type: INT
+        order: MIDDLE
+
+  - message: gg.rsmod.game.message.impl.OpLocUMessage
+    type: FIXED
+    opcode: 3
+    length: 15
+    ignore: true
 
   - message: gg.rsmod.game.message.impl.OpNpc1Message
     type: FIXED
@@ -1062,49 +1052,6 @@ client-packets:
       - name: id
         type: SHORT
         order: LITTLE
-  # REMOVED
-  - message: gg.rsmod.game.message.impl.OpHeld1Message
-    type: FIXED
-    opcode: 238
-    length: 8
-    ignore: true
-
-  # REMOVED
-  - message: gg.rsmod.game.message.impl.OpHeld2Message
-    type: FIXED
-    opcode: 239
-    ignore: true
-    length: 8
-
-  # REMOVED
-  - message: gg.rsmod.game.message.impl.OpHeld3Message
-    type: FIXED
-    opcode: 240
-    length: 8
-
-  - message: gg.rsmod.game.message.impl.OpHeld4Message
-    type: FIXED
-    opcode: 243
-    length: 8
-    ignore: true
-
-  - message: gg.rsmod.game.message.impl.OpHeld5Message
-    type: FIXED
-    opcode: 244
-    length: 8
-    ignore: true
-
-  - message: gg.rsmod.game.message.impl.OpHeld6Message
-    type: FIXED
-    opcode: 245
-    length: 2
-    ignore: true
-
-  - message: gg.rsmod.game.message.impl.OpHeldTMessage
-    type: FIXED
-    opcode: 246
-    length: 14
-    ignore: true
 
   - message: gg.rsmod.game.message.impl.CloseModalMessage
     type: FIXED
@@ -1228,6 +1175,7 @@ client-packets:
     structure:
       - name: state
         type: BYTE
+
   # SINCE IGNORED I DID NOT MATCH DEOB
   - message: gg.rsmod.game.message.impl.EventKeyboardMessage
     type: VARIABLE_SHORT
