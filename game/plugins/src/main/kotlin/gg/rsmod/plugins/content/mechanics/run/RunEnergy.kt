@@ -44,7 +44,7 @@ object RunEnergy {
                 if (p.runEnergy <= 0) {
                     p.varps.setState(RUN_ENABLED_VARP, 0)
                 }
-                p.sendRunEnergy(p.runEnergy.toInt() * 100)
+                p.sendRunEnergy(p.runEnergy.toInt())
             }
         } else if (p.runEnergy < 100.0 && p.lock.canRestoreRunEnergy()) {
             var recovery = (8.0 + (p.getSkills().getCurrentLevel(Skills.AGILITY) / 6.0)) / 100.0
@@ -52,7 +52,7 @@ object RunEnergy {
                 recovery *= 1.3
             }
             p.runEnergy = Math.min(100.0, (p.runEnergy + recovery))
-            p.sendRunEnergy(p.runEnergy.toInt() * 100)
+            p.sendRunEnergy(p.runEnergy.toInt())
         }
     }
 
