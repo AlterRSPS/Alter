@@ -51,9 +51,3 @@ services:
   - class: gg.rsmod.game.service.GameService
 
   - class: gg.rsmod.game.service.login.LoginService
-
-  - class: gg.rsmod.plugins.service.restapi.RestApiService
-    origin: "*"
-    methods: "GET, POST"
-    headers: "X-PINGOTHER, Content-Type"
-    auth: false
