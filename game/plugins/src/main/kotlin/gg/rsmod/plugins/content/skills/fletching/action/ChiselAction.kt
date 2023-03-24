@@ -17,12 +17,12 @@ class ChiselAction(private val defs: DefinitionSet) {
     /**
      * A map of chiseled ids to their item names
      */
-    private val chiseledNames = Chiseled.chiseledDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.toLowerCase() }
+    private val chiseledNames = Chiseled.chiseledDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
 
     /**
      * A map of unchiseled item ids to their item names
      */
-    private val unchiseledNames = Chiseled.chiseledDefinitions.values.associate { it.unchiseled to defs.get(ItemDef::class.java, it.unchiseled).name.toLowerCase() }
+    private val unchiseledNames = Chiseled.chiseledDefinitions.values.associate { it.unchiseled to defs.get(ItemDef::class.java, it.unchiseled).name.lowercase() }
 
     /**
      * Handles the chiseling of a chiseled

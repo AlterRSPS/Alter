@@ -99,7 +99,7 @@ enum class Stall(val stalls: IntArray, private val levelRequired: Int, val xp: D
 					Misc.getIndefiniteArticle(
 						item.getName(
 							player.world.definitions,
-						).toLowerCase()
+						).lowercase()
 					)
 				}."
 				player.addXp(Skills.THIEVING, xp)

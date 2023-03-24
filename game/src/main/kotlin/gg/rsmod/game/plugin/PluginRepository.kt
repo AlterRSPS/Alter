@@ -378,7 +378,7 @@ class PluginRepository(val world: World) {
     /**
      * A map of [NpcCombatDef]s that have been set by [KotlinPlugin]s.
      */
-    internal val npcCombatDefs = Int2ObjectOpenHashMap<NpcCombatDef>()
+    val npcCombatDefs = Int2ObjectOpenHashMap<NpcCombatDef>()
 
     /**
      * Holds all valid shops set from plugins for this [PluginRepository].
@@ -836,8 +836,8 @@ class PluginRepository(val world: World) {
     }
 
     fun bindCommand(command: String, powerRequired: String? = null, description: String? = null, plugin: Plugin.() -> Unit) {
-        val cmd = command.toLowerCase()
-        val desc = description.toString().toLowerCase()
+        val cmd = command.lowercase()
+        val desc = description.toString().lowercase()
         if (commandPlugins.containsKey(cmd)) {
             logger.error("Command is already bound to a plugin: $cmd")
             throw IllegalStateException("Command is already bound to a plugin: $cmd")
@@ -849,7 +849,7 @@ class PluginRepository(val world: World) {
 
     fun bindCommands(plugin: Plugin.() -> Unit, powerRequired: String? = null, vararg commands: String) {
         for (command in commands) {
-            val cmd = command.toLowerCase()
+            val cmd = command.lowercase()
             if (commandPlugins.containsKey(cmd)) {
                 logger.error("Command is already bound to a plugin: $cmd")
                 throw IllegalStateException("Command is already bound to a plugin: $cmd")
@@ -865,7 +865,7 @@ class PluginRepository(val world: World) {
             val powerRequired = commandPair.first
             val plugin = commandPair.second
 
-            if (powerRequired != null && !p.privilege.powers.contains(powerRequired.toLowerCase())) {
+            if (powerRequired != null && !p.privilege.powers.contains(powerRequired.lowercase())) {
                 return false
             }
 

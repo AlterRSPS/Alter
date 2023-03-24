@@ -27,11 +27,6 @@ import gg.rsmod.plugins.service.marketvalue.ItemMarketValueService
 import gg.rsmod.util.BitManipulation
 
 /**
- * The interface key used by inventory overlays
- */
-const val INVENTORY_INTERFACE_KEY = 93
-
-/**
  * The id of the script used to initialise the interface overlay options. The 'big' variant of this script
  * is used as it supports up to eight options rather than five.
  *
@@ -567,7 +562,6 @@ fun Player.calculateAndSetCombatLevel(): Boolean {
     val magic = getSkills().getBaseLevel(Skills.MAGIC)
 
     val base = Ints.max(strength + attack, magic * 2, ranged * 2)
-
     combatLevel = ((base * 1.3 + defence + hitpoints + prayer / 2) / 4).toInt()
 
     val changed = combatLevel != old

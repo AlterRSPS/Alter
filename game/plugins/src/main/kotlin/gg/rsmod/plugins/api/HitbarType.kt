@@ -2,6 +2,7 @@ package gg.rsmod.plugins.api
 
 /**
  * @author Tom <rspsmods@gmail.com>
+ * https://osrs-docs.com/docs/packets/outgoing/updating/masks/hit/
  */
 enum class HitbarType(val id: Int, val pixelsWide: Int) {
     NORMAL(id = 0, pixelsWide = 30),

@@ -36,7 +36,7 @@ on_equipment_option(Items.SHATTERED_CANE, "Fragment Emote") {
         player.queue {
             player.lock()
             player.graphic(2020, 92)
-            player.animate(8524)
+            player.animate(8524, 60)
             player.playSound(4215, 100,8)
             player.playSound(4211, 100,44)
             player.playSound(4213, 100,80)
@@ -50,7 +50,7 @@ fun doEmote(player: Player, gfx: Int) {
     player.queue {
         player.lock()
         player.graphic(gfx, 0)
-        player.animate(9208)
+        player.animate(9208, 60)
         player.playSound(2344, 100,116)
         player.playSound(2330, 100,241)
         player.playSound(2331, 100,273)

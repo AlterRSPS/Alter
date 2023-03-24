@@ -242,10 +242,10 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      * Returns true if that option found for that object.
      */
     fun if_obj_has_option(obj: Int, option: String) : Boolean {
-        val opt = option.toLowerCase()
+        val opt = option.lowercase()
         val def = world.definitions.get(ObjectDef::class.java, obj)
         val slot = def.options.indexOfFirst {
-            it?.toLowerCase() == opt
+            it?.lowercase() == opt
         }
         if (slot == -1) {
             return false
@@ -257,10 +257,10 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      * Checks if a [NPC] has [option]
      */
     fun if_npc_has_option(npc: Int, option: String) : Boolean {
-        val opt = option.toLowerCase()
+        val opt = option.lowercase()
         val def = world.definitions.get(NpcDef::class.java, npc)
         val slot = def.options.indexOfFirst {
-            it?.toLowerCase() == opt
+            it?.lowercase() == opt
         }
         if (slot == -1) {
             return false
@@ -279,9 +279,9 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      * specify this value.
      */
     fun on_npc_option(npc: Int, option: String, lineOfSightDistance: Int = -1, logic: (Plugin).() -> Unit) {
-        val opt = option.toLowerCase()
+        val opt = option.lowercase()
         val def = world.definitions.get(NpcDef::class.java, npc)
-        val slot = def.options.indexOfFirst { it?.toLowerCase() == opt }
+        val slot = def.options.indexOfFirst { it?.lowercase() == opt }
 
         check(slot != -1) { "Option \"$option\" not found for npc $npc [options=${def.options.filterNotNull().filter { it.isNotBlank() }}]" }
 
@@ -294,9 +294,9 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      * This method should be used over the option-int variant whenever possible.
      */
     fun on_ground_item_option(item: Int, option: String, logic: (Plugin).() -> Unit) {
-        val opt = option.toLowerCase()
+        val opt = option.lowercase()
         val def = world.definitions.get(ItemDef::class.java, item)
-        val slot = def.groundMenu.indexOfFirst { it?.toLowerCase() == opt }
+        val slot = def.groundMenu.indexOfFirst { it?.lowercase() == opt }
 
         check(slot != -1) { "Option \"$option\" not found for ground item $item [options=${def.groundMenu.filterNotNull().filter { it.isNotBlank() }}]" }
 
@@ -500,11 +500,12 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun on_item_equip(item: Int, logic: (Plugin).() -> Unit) = r.bindEquipItem(item, logic)
 
     /**
-     * Invoke [logic] when attacking with that weapon.
+     * Invoke [logic] when attacking with that [item].
      */
-    fun set_weapon_combat_logic(item: Int, logic: (Plugin).() -> Unit) {
+    fun set_item_combat_logic(item: Int, logic: (Plugin).() -> Unit) {
         r.setWeaponCombat(item, logic)
     }
+
     /**
      * Invoke [logic] when [item] is removed from equipment.
      */
@@ -587,6 +588,22 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
 
     fun onAnim(animid: Int, plugin: Plugin.() -> Unit) = r.bindOnAnimation(animid, plugin)
 
+    /**
+     * Execute a plugin when a player gets a specific drop.
+     */
+    //fun onDrop()
+
+    fun GetItemDef(id: Int): ItemDef? {
+        return world.definitions.getNullable(ItemDef::class.java, id)
+    }
+
+    fun getNpcCombatDef(npc: Int): NpcCombatDef? {
+        return world.plugins.npcCombatDefs.getOrDefault(npc, null)
+    }
+
+    /**
+     * @TODO check efficiency
+     */
     fun getNpcFromTile(tile: Tile): Npc? {
         val chunk = world.chunks.get(tile)
         return chunk?.getEntities<Npc>(tile, EntityType.NPC)?.firstOrNull()

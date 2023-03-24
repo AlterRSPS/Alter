@@ -13,7 +13,7 @@ INGREDIENTS.forEach { ingredient ->
 
 fun checkIngredients(player: Player): Boolean {
     val defs = world.definitions
-    val names = INGREDIENTS.associate { it to defs.get(ItemDef::class.java, it).name.toLowerCase() }
+    val names = INGREDIENTS.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
 
     val missing = arrayListOf<Int>()
     INGREDIENTS.forEach { ingredient ->

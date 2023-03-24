@@ -18,17 +18,17 @@ class FeatherAction(private val defs: DefinitionSet) {
     /**
      * A map of feathered items to their item names
      */
-    private val itemNames = Feathered.featheredDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.toLowerCase() }
+    private val itemNames = Feathered.featheredDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
 
     /**
      * A map of the unfeathered items to their item names
      */
-    private val unfeatheredNames = Feathered.featheredDefinitions.values.associate { it.unfeathered to defs.get(ItemDef::class.java, it.unfeathered).name.toLowerCase() }
+    private val unfeatheredNames = Feathered.featheredDefinitions.values.associate { it.unfeathered to defs.get(ItemDef::class.java, it.unfeathered).name.lowercase() }
 
     /**
      * A map of feathers to their item names
      */
-    private val featherNames = Feathered.feathers.associate { it to defs.get(ItemDef::class.java, it).name.toLowerCase() }
+    private val featherNames = Feathered.feathers.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
 
     /**
      * Handles the attachment of feathers to a item

@@ -64,7 +64,7 @@ object Foods {
 
         when (food) {
             else -> {
-                p.message("You eat the ${foodName.toLowerCase()}.")
+                p.message("You eat the ${foodName.lowercase()}.")
                 if (p.getSkills().getCurrentLevel(Skills.HITPOINTS) > oldHp) {
                     p.message("It heals some health.")
                 }

@@ -11,8 +11,8 @@ on_command("getitemstype", Privilege.DEV_POWER, description = "Get items type") 
 
         for (i in 0 until world.definitions.getCount(ItemDef::class.java)) {
             val def = world.definitions.get(ItemDef::class.java, Item(i).toUnnoted(world.definitions).id)
-            val items_name = def.name?.toLowerCase()
-            val items_examine = def.examine?.toLowerCase()
+            val items_name = def.name.lowercase()
+            //val items_examine = def.examine?.lowercase()
             if (!def.isPlaceholder && items_name != "null") {
                 if (def.equipSlot.equals(item_name)) {
                     items_list.add(def.id)

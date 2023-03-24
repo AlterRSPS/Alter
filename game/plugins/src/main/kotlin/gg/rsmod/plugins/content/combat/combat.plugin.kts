@@ -86,6 +86,13 @@ suspend fun cycle(it: QueueTask): Boolean {
 
     pawn.stopMovement()
 
+    //if (pawn is Player && pawn.getEquipment(EquipmentType.WEAPON) != null && world.plugins.executeWeaponCombatLogic(pawn, pawn.getEquipment(EquipmentType.WEAPON)!!.id)) else
+
+    /**
+     * @TODO Need to inspect if the hits arent doubled,
+     * with spec weaps also.
+     * Continue on 03/22/2023
+     */
     if (Combat.isAttackDelayReady(pawn)) {
         if (Combat.canAttack(pawn, target, strategy)) {
             if (pawn is Player && AttackTab.isSpecialEnabled(pawn) && pawn.getEquipment(EquipmentType.WEAPON) != null) {
@@ -95,11 +102,17 @@ suspend fun cycle(it: QueueTask): Boolean {
                     return true
                 }
                 pawn.message("You don't have enough power left.")
-            } else {
-            if (pawn is Player && pawn.getEquipment(EquipmentType.WEAPON) != null && world.plugins.executeWeaponCombatLogic(pawn, pawn.getEquipment(EquipmentType.WEAPON)!!.id)) else
-                strategy.attack(pawn, target)
-                Combat.postAttack(pawn, target)
             }
+
+            if (pawn is Player) {
+                pawn.equipment.rawItems.forEach {
+                    it?.let {
+                        world.plugins.executeWeaponCombatLogic(pawn, it.id)
+                    }
+                }
+            }
+            strategy.attack(pawn, target)
+            Combat.postAttack(pawn, target)
         } else {
             Combat.reset(pawn)
             return false

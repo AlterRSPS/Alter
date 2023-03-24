@@ -17,12 +17,12 @@ class SmeltingAction(private val defs: DefinitionSet) {
     /**
      * A map of bar ids to their item names
      */
-    private val barNames = Bar.values.associate { it.id to  defs.get(ItemDef::class.java, it.id).name.toLowerCase() }
+    private val barNames = Bar.values.associate { it.id to  defs.get(ItemDef::class.java, it.id).name.lowercase() }
 
     /**
      * A map of ore ids to their item names
      */
-    private val oreNames = Bar.values.map { Pair(it.primaryOre, it.secondaryOre) }.flatMap { it.toList() }.distinct().associate { it to  defs.get(ItemDef::class.java, it).name.toLowerCase() }
+    private val oreNames = Bar.values.map { Pair(it.primaryOre, it.secondaryOre) }.flatMap { it.toList() }.distinct().associate { it to  defs.get(ItemDef::class.java, it).name.lowercase() }
 
     /**
      * Handles the smelting of a bar

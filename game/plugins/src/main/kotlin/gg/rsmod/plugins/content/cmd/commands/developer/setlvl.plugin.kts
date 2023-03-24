@@ -10,7 +10,7 @@ on_command("setlvl", Privilege.DEV_POWER, description = "Set your level") {
         try {
             skill = values[0].toInt()
         } catch (e: NumberFormatException) {
-            var name = values[0].toLowerCase()
+            var name = values[0].lowercase()
             when (name) {
                 "con" -> name = "construction"
                 "hp" -> name = "hitpoints"

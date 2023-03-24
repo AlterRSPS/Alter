@@ -21,7 +21,7 @@
 //        p.playSound(3598) // need to find the real prospecting sound.. this one is placeholder
 //        p.filterableMessage("You examine the rock for ores...")
 //        it.wait(4)
-//        p.filterableMessage("This rock contains ${ore.name.toLowerCase()}")
+//        p.filterableMessage("This rock contains ${ore.name.lowercase()}")
 //    }
 //
 //    suspend fun mineOre(it: QueueTask, obj: GameObject, ore: OreType, emptyOreId: Int) {

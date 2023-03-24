@@ -13,6 +13,7 @@ import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.queue.QueueTask
 import gg.rsmod.game.model.timer.ACTIVE_COMBAT_TIMER
 import gg.rsmod.game.model.timer.ATTACK_DELAY
+import gg.rsmod.game.sync.block.UpdateBlockType
 import gg.rsmod.plugins.api.*
 import gg.rsmod.plugins.api.ext.*
 import gg.rsmod.plugins.content.combat.strategy.CombatStrategy
@@ -72,8 +73,10 @@ object Combat {
             return
         }
 
-        val blockAnimation = CombatConfigs.getBlockAnimation(target)
-        target.animate(blockAnimation)
+        if (!pawn.hasBlock(UpdateBlockType.ANIMATION)) {
+            val blockAnimation = CombatConfigs.getBlockAnimation(target)
+            target.animate(blockAnimation)
+        }
 
         if (target.lock.canAttack()) {
             if (target.entityType.isNpc) {

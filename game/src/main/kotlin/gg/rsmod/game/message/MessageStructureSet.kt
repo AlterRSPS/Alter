@@ -95,7 +95,7 @@ class MessageStructureSet {
                          * Will be removed
                          *
                          */
-                        when (write.toLowerCase()) {
+                        when (write.lowercase()) {
                             "byte" -> {
                                 type = DataType.BYTE
                                 signature = DataSignature.UNSIGNED

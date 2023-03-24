@@ -8,7 +8,7 @@ HAY_OBJECTS.forEach { hay ->
         val obj = player.getInteractingGameObj()
         val name = obj.getDef(world.definitions).name
         player.queue {
-            search(this, player, name.toLowerCase())
+            search(this, player, name.lowercase())
         }
     }
 }

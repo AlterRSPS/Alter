@@ -18,12 +18,12 @@ class WhittlingAction(private val defs: DefinitionSet) {
     /**
      * A map of log ids to their item names
      */
-    private val logNames = Log.logDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.toLowerCase() }
+    private val logNames = Log.logDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
 
     /**
      * A map of fletchable item ids to their item names
      */
-    private val whittleNames = Log.logDefinitions.flatMap { it.value.values }.distinct().associate { it.id to defs.get(ItemDef::class.java, it.id).name.toLowerCase() }
+    private val whittleNames = Log.logDefinitions.flatMap { it.value.values }.distinct().associate { it.id to defs.get(ItemDef::class.java, it.id).name.lowercase() }
 
     /**
      * Handles the whittling of a log

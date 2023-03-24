@@ -152,14 +152,35 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
             xteaBuf.skipBytes(Byte.SIZE_BYTES) // client type
             xteaBuf.skipBytes(Int.SIZE_BYTES) // 0
 
-            /*
             val crcs = decodeCRCs(xteaBuf)
-            */
+
+            for (i in crcs.indices) {
+                println("$i ${crcs[i]}")
+
+
+                /**
+                 * CRC for index 16 is always sent as 0 (at least on the
+                 * Desktop client, need to look into mobile).
+                 */
+                if (i == 16) {
+                    continue
+                }
+//                if (!cacheCrcs.contains(crcs[i])) {
+//                    buf.resetReaderIndex()
+//                    buf.skipBytes(payloadLength)
+//                    logger.info { "User '$username' login request crc mismatch [requestCrc=${crcs.contentToString()}, cacheCrc=${cacheCrcs.contentToString()}]." }
+//                    println("$i : ${crcs[i]}  != ${cacheCrcs[i]}")
+//
+//                    ctx.writeResponse(LoginResultType.REVISION_MISMATCH)
+//                    return
+//                }
+            }
+
             logger.info { "User '$username' login request from ${ctx.channel()}." }
 
             val request = LoginRequest(channel = ctx.channel(), username = username,
                 password = password ?: "", revision = serverRevision, xteaKeys = xteaKeys,
-                resizableClient = clientResizable, auth = authCode, uuid = "".toUpperCase(), clientWidth = clientWidth, clientHeight = clientHeight,
+                resizableClient = clientResizable, auth = authCode, uuid = "".lowercase(), clientWidth = clientWidth, clientHeight = clientHeight,
                 reconnecting = reconnecting)
             out.add(request)
         }
@@ -177,10 +198,10 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
         val crcs = IntArray(cacheCrcs.size)
         for(i in CRCorder.indices){
             when(val idx = CRCorder[i]){
-                7,2 -> crcs[idx] = xteaBuf.readIntIME()
-                14,17,8,19,4,3 -> crcs[idx] = xteaBuf.readIntME()
-                6,20,18,16,12,9,10 -> crcs[idx] = xteaBuf.readIntLE()
-                15,1,0,5,13,11 -> crcs[idx] = xteaBuf.readInt()
+                9,17,10,13,6,12,5,8,1 -> crcs[idx] = xteaBuf.readIntME()
+                20,11,3,15,19 -> crcs[idx] = xteaBuf.readIntLE()
+                18,4,7 -> crcs[idx] = xteaBuf.readInt()
+                0,2,14 -> crcs[idx] = xteaBuf.readIntIME()
             }
         }
 
@@ -195,9 +216,7 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
         private const val LOGIN_OPCODE = 16
         private const val RECONNECT_OPCODE = 18
         private val CRCorder = intArrayOf(
-            6,15,14,7,20,
-            17,8,18,2,16,
-            12,9,1,0,10,5,
-            19,4,3,13,11)
+            9,20,17,10,13,6,12,18,11,5,3,4,0,2,14,15,19,8,1,7
+        )
     }
 }

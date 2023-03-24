@@ -17,17 +17,17 @@ class TipAction(private val defs: DefinitionSet) {
     /**
      * A map of the completed items to their item names
      */
-    private val itemNames = Tipped.tippedDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.toLowerCase() }
+    private val itemNames = Tipped.tippedDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
 
     /**
      * A map of tipped item bases to their item names
      */
-    private val baseNames = Tipped.tippedDefinitions.values.associate { it.base to defs.get(ItemDef::class.java, it.base).name.toLowerCase() }
+    private val baseNames = Tipped.tippedDefinitions.values.associate { it.base to defs.get(ItemDef::class.java, it.base).name.lowercase() }
 
     /**
      * A map of item tips to their item names
      */
-    private val tipNames = Tipped.tippedDefinitions.values.associate { it.tip to defs.get(ItemDef::class.java, it.tip).name.toLowerCase() }
+    private val tipNames = Tipped.tippedDefinitions.values.associate { it.tip to defs.get(ItemDef::class.java, it.tip).name.lowercase() }
 
     /**
      * Handles the tipping of an item

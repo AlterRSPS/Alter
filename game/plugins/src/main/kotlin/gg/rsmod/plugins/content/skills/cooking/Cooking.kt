@@ -16,10 +16,10 @@ import gg.rsmod.plugins.content.skills.cooking.data.CookingObj
 
 class Cooking(private val defs: DefinitionSet) {
 
-    val foodNames = CookingFood.values.associate { it.raw_item to defs.get(ItemDef::class.java, it.raw_item).name.toLowerCase() }
-    val cookedFoodNames = CookingFood.values.associate { it.cooked_item to defs.get(ItemDef::class.java, it.cooked_item).name.toLowerCase() }
+    val foodNames = CookingFood.values.associate { it.raw_item to defs.get(ItemDef::class.java, it.raw_item).name.lowercase() }
+    val cookedFoodNames = CookingFood.values.associate { it.cooked_item to defs.get(ItemDef::class.java, it.cooked_item).name.lowercase() }
 
-    val ingredientNames = CookingIngredient.values.associate { it.result to defs.get(ItemDef::class.java, it.result).name.toLowerCase() }
+    val ingredientNames = CookingIngredient.values.associate { it.result to defs.get(ItemDef::class.java, it.result).name.lowercase() }
 
     suspend fun cook(task: QueueTask, food: CookingFood, amount: Int, obj: CookingObj, forceBurn: Boolean = false) {
         val player = task.player

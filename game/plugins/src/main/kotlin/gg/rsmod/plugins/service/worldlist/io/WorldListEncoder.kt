@@ -35,11 +35,12 @@ class WorldListEncoder : MessageToMessageEncoder<List<WorldEntry>>() {
         // The outgoing HTTP Response
         val response = DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, buf)
 
+        // @TODO
         // Set the response headers
-        val headers = response.headers()
-        headers.set(CONTENT_TYPE, LIST_CONTENT_TYPE)
-        headers.set(HttpHeaders.Names.CONTENT_LENGTH, buf.readableBytes())
-        headers.set(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE)
+        //val headers = response.headers()
+        //headers.set(CONTENT_TYPE, LIST_CONTENT_TYPE)
+        //headers.set(HttpHeaders.Names.CONTENT_LENGTH, buf.readableBytes())
+        //headers.set(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE)
 
         // Add the outgoing message
         out.add(response)
