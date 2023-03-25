@@ -46,36 +46,6 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun <T> getProperty(key: String): T? = properties[key] as? T?
 
     /**
-     * Set the [PluginMetadata] for this plugin.
-     */
-    fun load_metadata(metadata: PluginMetadata) {
-        checkNotNull(metadata.propertyFileName) { "Property file name must be set in order to load metadata." }
-
-        val file = METADATA_PATH.resolve("${metadata.propertyFileName}.json")
-        val gson = GsonBuilder()
-                .setPrettyPrinting()
-                .disableHtmlEscaping()
-                .create()
-
-        if (!Files.exists(file)) {
-            Files.createDirectories(METADATA_PATH)
-            Files.newBufferedWriter(file).use { writer ->
-                gson.toJson(metadata, PluginMetadata::class.java, writer)
-            }
-        }
-
-        Files.newBufferedReader(file).use { reader ->
-            val data = gson.fromJson(reader, PluginMetadata::class.java)
-            if (data.properties.isNotEmpty()) {
-                properties = mutableMapOf()
-                data.properties.forEach { key, value ->
-                    properties[key] = if (value is Double) value.toInt() else value
-                }
-            }
-        }
-    }
-
-    /**
      * Load [service] on plugin start-up.
      */
     fun load_service(service: Service) {
@@ -503,7 +473,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      * Invoke [logic] when attacking with that [item].
      */
     fun set_item_combat_logic(item: Int, logic: (Plugin).() -> Unit) {
-        r.setWeaponCombat(item, logic)
+        r.setItemCombatLogic(item, logic)
     }
 
     /**
