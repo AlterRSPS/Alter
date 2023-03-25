@@ -317,7 +317,7 @@ class ItemMetadataService : Service {
             result = 31 * result + rangedStrength
             result = 31 * result + magicDamage
             result = 31 * result + prayer
-            result = 31 * result + (renderAnimations?.getAsArray().contentHashCode() ?: 0)
+            result = 31 * result + (renderAnimations?.getAsArray().contentHashCode())
             result = 31 * result + (skillReqs?.contentHashCode() ?: 0)
             return result
         }

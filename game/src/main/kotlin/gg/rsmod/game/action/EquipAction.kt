@@ -201,6 +201,7 @@ object EquipAction {
                     }
                     onItemUnequip(p, equipmentId, slot)
                 }
+
                 if (def.equipSound != null) {
                     p.playSound(def.equipSound!!)
                 }
