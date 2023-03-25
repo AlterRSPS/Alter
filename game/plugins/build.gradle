@@ -6,6 +6,7 @@ dependencies {
     implementation project(':game')
     implementation project(':net')
     implementation project(':util')
+    implementation "org.jetbrains.kotlin:kotlin-script-runtime:1.7.20"
 }
 
 dokka {
