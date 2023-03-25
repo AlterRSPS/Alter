@@ -38,7 +38,7 @@ class SmithingData(private val defs: DefinitionSet) {
     /**
      * A map of producible items to their names
      */
-    private val itemNames = levelReqsEnum.values.map { it.key }.associate { it to defs.get(ItemDef::class.java, it).name.toLowerCase() }
+    private val itemNames = levelReqsEnum.values.map { it.key }.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
 
     /**
      * Maps an item id to the meta data required to craft it

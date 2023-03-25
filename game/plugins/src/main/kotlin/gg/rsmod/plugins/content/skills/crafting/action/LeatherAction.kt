@@ -15,8 +15,8 @@ import gg.rsmod.plugins.content.skills.crafting.data.Leathers
 
 class LeatherAction(private val defs: DefinitionSet) {
 
-    private val leatherNames = Leathers.leatherDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.toLowerCase() }
-    private val leatherItemNames = Leathers.leatherDefinitions.flatMap { it.value.values }.distinct().associate { it.id to defs.get(ItemDef::class.java, it.id).name.toLowerCase() }
+    private val leatherNames = Leathers.leatherDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val leatherItemNames = Leathers.leatherDefinitions.flatMap { it.value.values }.distinct().associate { it.id to defs.get(ItemDef::class.java, it.id).name.lowercase() }
 
     suspend fun leathers(task: QueueTask, leathers: Int, leatherItem: LeatherItem, amount: Int) {
         if (!canLeather(task, leathers, leatherItem))

@@ -9,12 +9,12 @@ val leatherDefs = Leathers.leatherDefinitions
 val leatherAction = LeatherAction(world.definitions)
 
 leatherDefs.keys.forEach { leathers ->
-    on_item_on_item(item1 = Items.NEEDLE, item2 = leathers) { craftLeather(player, leathers) }
+//    on_item_on_item(item1 = Items.NEEDLE, item2 = leathers) { craftLeather(player, leathers) }
 }
-fun craftLeather(player: Player, leatherItem: Int) {
-    val craftables = leatherDefs[leatherItem]?.values?.map { craftable -> craftable.id }?.toIntArray() ?: return
-    player.queue { produceItemBox(*craftables, type = 12, logic = ::leather) }
-}
+//fun craftLeather(player: Player, leatherItem: Int) {
+//    val craftables = leatherDefs[leatherItem]?.values?.map { craftable -> craftable.id }?.toIntArray() ?: return
+//    player.queue { produceItemBox(*craftables, type = 12, logic = ::leather) }
+//}
 
 fun leather(player: Player, item: Int, amount: Int) {
     val leatherItem = if(leatherDefs.containsKey(player.attr[INTERACTING_ITEM_ID])){

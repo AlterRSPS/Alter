@@ -178,7 +178,7 @@ class PluginRepository(val world: World) {
     /**
      * A map of plugins that maps weapon combat logic.
      */
-    private val weaponCombatLogic = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
+    private val itemCombatLogic = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
 
     /**
      * A map of plugins that are executed when a player un-equips an item.
@@ -378,7 +378,7 @@ class PluginRepository(val world: World) {
     /**
      * A map of [NpcCombatDef]s that have been set by [KotlinPlugin]s.
      */
-    internal val npcCombatDefs = Int2ObjectOpenHashMap<NpcCombatDef>()
+    val npcCombatDefs = Int2ObjectOpenHashMap<NpcCombatDef>()
 
     /**
      * Holds all valid shops set from plugins for this [PluginRepository].
@@ -836,8 +836,8 @@ class PluginRepository(val world: World) {
     }
 
     fun bindCommand(command: String, powerRequired: String? = null, description: String? = null, plugin: Plugin.() -> Unit) {
-        val cmd = command.toLowerCase()
-        val desc = description.toString().toLowerCase()
+        val cmd = command.lowercase()
+        val desc = description.toString().lowercase()
         if (commandPlugins.containsKey(cmd)) {
             logger.error("Command is already bound to a plugin: $cmd")
             throw IllegalStateException("Command is already bound to a plugin: $cmd")
@@ -849,7 +849,7 @@ class PluginRepository(val world: World) {
 
     fun bindCommands(plugin: Plugin.() -> Unit, powerRequired: String? = null, vararg commands: String) {
         for (command in commands) {
-            val cmd = command.toLowerCase()
+            val cmd = command.lowercase()
             if (commandPlugins.containsKey(cmd)) {
                 logger.error("Command is already bound to a plugin: $cmd")
                 throw IllegalStateException("Command is already bound to a plugin: $cmd")
@@ -865,7 +865,7 @@ class PluginRepository(val world: World) {
             val powerRequired = commandPair.first
             val plugin = commandPair.second
 
-            if (powerRequired != null && !p.privilege.powers.contains(powerRequired.toLowerCase())) {
+            if (powerRequired != null && !p.privilege.powers.contains(powerRequired.lowercase())) {
                 return false
             }
 
@@ -1006,20 +1006,29 @@ class PluginRepository(val world: World) {
         pluginCount++
     }
 
-    fun setWeaponCombat(item: Int, plugin: Plugin.() -> Unit) {
-        if (weaponCombatLogic.containsKey(item)) {
+    fun setItemCombatLogic(item: Int, plugin: Plugin.() -> Unit) {
+        if (itemCombatLogic.containsKey(item)) {
             logger.error("Weapon logic already bound to a plugin: [item=$item]")
             throw IllegalStateException("Weapon logic already bound to a plugin: [item=$item]")
         }
-        weaponCombatLogic[item] = plugin
+        itemCombatLogic[item] = plugin
         pluginCount++
     }
 
-    fun executeWeaponCombatLogic(p: Player, item: Int): Boolean {
-        val plugin = weaponCombatLogic[item]
+    fun executeItemCombatLogic(p: Player, item: Int): Boolean {
+        val plugin = itemCombatLogic[item]
         if (plugin != null) {
             p.executePlugin(plugin)
             return true
+        }
+        return false
+    }
+
+    fun hasExecItemCmbtLogic(p: Player): Boolean {
+        p.equipment.rawItems.forEach {
+            if (itemCombatLogic.contains(it?.id)) {
+                return true
+            }
         }
         return false
     }

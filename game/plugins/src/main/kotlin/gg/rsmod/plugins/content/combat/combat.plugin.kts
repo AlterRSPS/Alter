@@ -86,6 +86,8 @@ suspend fun cycle(it: QueueTask): Boolean {
 
     pawn.stopMovement()
 
+    //if (pawn is Player && pawn.getEquipment(EquipmentType.WEAPON) != null && world.plugins.executeWeaponCombatLogic(pawn, pawn.getEquipment(EquipmentType.WEAPON)!!.id)) else
+
     if (Combat.isAttackDelayReady(pawn)) {
         if (Combat.canAttack(pawn, target, strategy)) {
             if (pawn is Player && AttackTab.isSpecialEnabled(pawn) && pawn.getEquipment(EquipmentType.WEAPON) != null) {
@@ -95,8 +97,18 @@ suspend fun cycle(it: QueueTask): Boolean {
                     return true
                 }
                 pawn.message("You don't have enough power left.")
+            }
+
+            if (pawn is Player && world.plugins.hasExecItemCmbtLogic(pawn)) {
+                pawn.equipment.rawItems.forEach {
+                    it?.let {
+                        world.plugins.executeItemCombatLogic(pawn, it.id)
+                    }
+                }
             } else {
-            if (pawn is Player && pawn.getEquipment(EquipmentType.WEAPON) != null && world.plugins.executeWeaponCombatLogic(pawn, pawn.getEquipment(EquipmentType.WEAPON)!!.id)) else
+                if (pawn is Player) {
+                    pawn.message("No logic.")
+                }
                 strategy.attack(pawn, target)
                 Combat.postAttack(pawn, target)
             }
@@ -107,3 +119,4 @@ suspend fun cycle(it: QueueTask): Boolean {
     }
     return true
 }
+

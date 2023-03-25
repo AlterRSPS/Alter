@@ -23,7 +23,7 @@ object Bury {
         val boneName = p.world.definitions.get(ItemDef::class.java, bones.id).name
         when(bones){
             else -> {
-                p.message("You bury a ${boneName.toLowerCase()}")
+                p.message("You bury a ${boneName.lowercase()}")
             }
         }
     }

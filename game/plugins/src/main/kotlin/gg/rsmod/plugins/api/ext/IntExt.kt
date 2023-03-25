@@ -62,14 +62,14 @@ fun Int.toItem(): Item = Item(this)
 
 fun Int.getItemName(definitions: DefinitionSet, lowercase: Boolean = false): String {
     return if(lowercase)
-        definitions.get(ItemDef::class.java, this).name.toLowerCase()
+        definitions.get(ItemDef::class.java, this).name.lowercase()
     else
         definitions.get(ItemDef::class.java, this).name
 }
 
 fun Int.getObjName(definitions: DefinitionSet, lowercase: Boolean = false): String {
     return if(lowercase)
-        definitions.get(ObjectDef::class.java, this).name.toLowerCase()
+        definitions.get(ObjectDef::class.java, this).name.lowercase()
     else
         definitions.get(ObjectDef::class.java, this).name
 }

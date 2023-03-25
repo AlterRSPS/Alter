@@ -17,12 +17,12 @@ class AttachAction(private val defs: DefinitionSet) {
     /**
      * A map of attached items to their item names
      */
-    private val itemNames = Attached.attachedDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.toLowerCase() }
+    private val itemNames = Attached.attachedDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
 
     /**
      * A map of material ids to their item names
      */
-    private val materialNames = Attached.attachedDefinitions.values.flatMap { listOf(it.firstMaterial, it.secondMaterial) }.associate { it to defs.get(ItemDef::class.java, it).name.toLowerCase() }
+    private val materialNames = Attached.attachedDefinitions.values.flatMap { listOf(it.firstMaterial, it.secondMaterial) }.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
 
     /**
      * Handles the attachment of item one to item two
@@ -95,7 +95,7 @@ class AttachAction(private val defs: DefinitionSet) {
 
         if (attached.toolRequired >= 0 && !inventory.contains(attached.toolRequired)) {
             if(sendMessageBox)
-                task.messageBox("You need a ${defs.get(ItemDef::class.java, attached.toolRequired).name.toLowerCase()} to attach ${materialNames[attached.firstMaterial]} and ${materialNames[attached.secondMaterial]}")
+                task.messageBox("You need a ${defs.get(ItemDef::class.java, attached.toolRequired).name.lowercase()} to attach ${materialNames[attached.firstMaterial]} and ${materialNames[attached.secondMaterial]}")
             return false
         }
 

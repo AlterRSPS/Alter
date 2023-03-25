@@ -27,7 +27,7 @@ object Offer {
         }
         when(bones){
             else -> {
-                p.message("You offer the ${boneName.toLowerCase()} to Gilded altar")
+                p.message("You offer the ${boneName.lowercase()} to Gilded altar")
             }
         }
     }

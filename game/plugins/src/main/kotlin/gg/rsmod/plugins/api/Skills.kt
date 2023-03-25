@@ -48,7 +48,7 @@ object Skills {
 
     fun getSkillForName(world: World, maxSkills: Int, skillName: String): Int {
         for (i in 0 until maxSkills) {
-            if (getSkillName(world, i).toLowerCase() == skillName) {
+            if (getSkillName(world, i).lowercase() == skillName) {
                 return i
             }
         }

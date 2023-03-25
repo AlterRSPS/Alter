@@ -67,7 +67,7 @@ fun fillPouch(player: Player, pouch: EssencePouch) {
     if (def != null) {
 
         if (!inventory.contains(def.id)) {
-            player.message("You can only put ${def.name.toLowerCase()} in the pouch.")
+            player.message("You can only put ${def.name.lowercase()} in the pouch.")
             return
         }
 
@@ -134,7 +134,7 @@ fun checkPouch(player: Player) {
         return
     }
 
-    val name = world.definitions.get(ItemDef::class.java, item).name.toLowerCase()
+    val name = world.definitions.get(ItemDef::class.java, item).name.lowercase()
     val multiple = count > 1
 
     player.message("There ${count.toLiteral()?.pluralPrefix(count)} ${name.pluralSuffix(count)} in this pouch.")

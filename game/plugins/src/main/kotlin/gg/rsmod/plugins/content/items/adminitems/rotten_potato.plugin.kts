@@ -19,7 +19,7 @@ var input: String = ""
 //                var result = value.toInt() + 1
 //                var args = Array<String>(0)
 //                args[0] = result.toString()
-//                val handled = world.plugins.executeCommand(player, input.toLowerCase(), result.to)
+//                val handled = world.plugins.executeCommand(player, input.lowercase(), result.to)
 //
 //            }
 //

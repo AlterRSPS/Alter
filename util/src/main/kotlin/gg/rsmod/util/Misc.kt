@@ -74,7 +74,7 @@ object Misc {
     }
 
     fun getIndefiniteArticle(word: String): String {
-        val first = word.toLowerCase().first()
+        val first = word.lowercase().first()
         val vowel = first == 'a' || first == 'e' || first == 'i' || first == 'o' || first == 'u'
         val numeric = word.first().equals(Regex(".*[0-9].*"))
         val special = listOf("bolts", "arrows", "coins", "vambraces", "chaps", "grapes", "silk", "bread", "grey wolf fur", "spice").filter { it in word }

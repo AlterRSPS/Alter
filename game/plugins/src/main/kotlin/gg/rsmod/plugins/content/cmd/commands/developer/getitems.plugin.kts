@@ -9,11 +9,10 @@ on_command("getitems", Privilege.DEV_POWER) {
     tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::itemsn hat </col>") { values ->
         var items_list = mutableListOf<Int>()
         var item_name = values[0].toString() // Search trough and if it matches in examine / name add to array and spawn all to bank | $ For spaces
-
         for (i in 0 until world.definitions.getCount(ItemDef::class.java)) {
             val def = world.definitions.get(ItemDef::class.java, Item(i).toUnnoted(world.definitions).id)
-            val items_name = def.name?.toLowerCase()
-            val items_examine = def.examine?.toLowerCase()
+            val items_name = def.name.lowercase()
+            val items_examine = def.examine?.lowercase()
             if (!def.isPlaceholder && items_name != "null") {
                 if (items_name.contains(item_name, ignoreCase = true)) { // <- Why doesnt this one need a null check? D:
                     items_list.add(def.id)

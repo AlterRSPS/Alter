@@ -196,24 +196,16 @@ object EquipAction {
                     val transaction = p.inventory.add(equipment.id, equipment.amount, beginSlot = if (initialSlot != -1) initialSlot else 0)
                     transaction.items.firstOrNull()?.item?.copyAttr(equipment)
                     initialSlot = -1
-
-                    /*
-                     * The item in equipSlot will be removed afterwards, so don't
-                     * remove it here!
-                     */
                     if (slot != equipSlot) {
                         p.equipment[slot] = null
                     }
                     onItemUnequip(p, equipmentId, slot)
                 }
 
-                /**
-                 * Will need to check out why equipSound gets turned into 0 from -1
-                 */
-                if (def.equipSound == 0) {
-                    def.equipSound = -1
+                if (def.equipSound != null) {
+                    p.playSound(def.equipSound!!)
                 }
-                p.playSound(def.equipSound)
+
                 p.equipment[equipSlot] = newEquippedItem
                 plugins.executeEquipSlot(p, equipSlot)
                 plugins.executeEquipItem(p, newEquippedItem.id)

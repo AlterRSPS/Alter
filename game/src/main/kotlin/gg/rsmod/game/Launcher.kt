@@ -13,7 +13,6 @@ object Launcher {
                packets = Paths.get("./data", "packets.yml"),
                blocks = Paths.get("./data", "blocks.yml"),
                devProps = Paths.get("./dev-settings.yml"),
-               args = args
        )
    }
 }

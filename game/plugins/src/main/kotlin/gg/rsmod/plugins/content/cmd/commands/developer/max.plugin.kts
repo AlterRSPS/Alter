@@ -28,7 +28,7 @@ on_command("max", Privilege.DEV_POWER, description = "Max hit") {
             }
             else -> throw IllegalStateException("Unhandled combat class: ${CombatConfigs.getCombatClass(player)} for $player")
         }
-        val name = combatClass.name.toLowerCase().capitalize()
+        val name = combatClass.name.lowercase()
         val message = """<col=178000>$name:</col>   Max hit=<col=801700>$max</col>   Accuracy=<col=801700>${(accuracy * 100).toInt()}%</col> [${String.format("%.6f", accuracy)}]"""
         player.message(message)
     }

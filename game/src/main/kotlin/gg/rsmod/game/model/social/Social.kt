@@ -15,6 +15,9 @@ class Social {
      * TODO Add support for old display name if current isn't previous/original one
      */
     fun pushFriends(player: Player) {
+        if (friends.isEmpty()) {
+            friends.add("TEMP_FIX_DONT_REMOVE")
+        }
         val world = player.world
 
         if (friends.isEmpty()) {

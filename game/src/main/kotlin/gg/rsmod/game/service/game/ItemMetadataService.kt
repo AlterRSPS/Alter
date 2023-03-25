@@ -3,6 +3,7 @@ package gg.rsmod.game.service.game
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
 import com.google.common.base.Stopwatch
 import gg.rsmod.game.Server
 import gg.rsmod.game.fs.def.ItemDef
@@ -11,6 +12,8 @@ import gg.rsmod.game.service.Service
 import gg.rsmod.util.ServerProperties
 import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
 import mu.KLogging
+import net.runelite.cache.util.Namer
+import org.yaml.snakeyaml.LoaderOptions
 import java.io.*
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -33,27 +36,54 @@ class ItemMetadataService : Service {
     override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
         loadAll(world)
     }
+
     var ms: Long = 0
     fun loadAll(world: World) {
         val stopwatch = Stopwatch.createStarted().reset().start()
-        val mapper = ObjectMapper(YAMLFactory())
+        val loaderOptions = LoaderOptions()
+
+        loaderOptions.codePointLimit = 10 * 1024 * 1024 // 10 MB
+
+        val yamlFactory = YAMLFactory.builder()
+            .loaderOptions(loaderOptions)
+            .build()
+        val mapper = YAMLMapper(yamlFactory)
+
+
+        val path = Paths.get("./data/cfg/items")
+
         try {
-            Files.newBufferedReader(Paths.get("./data/cfg/items/_Items.yml")).use { reader ->
+            Files.newBufferedReader(path.resolve("_Items.yml")).use { reader ->
                 val data = mapper.readValue(reader, Array<Metadata>::class.java)
                 data.forEach { item ->
                     load(item, world)
                 }
             }
-            Paths.get("./data/cfg/items/equippable").toFile().walk().forEach {
-                if (it.isFile){
-                    val data = mapper.readValue(it, Metadata()::class.java)
-                    load(data, world)
-                }
+
+            Files.walk(path.resolve("equippable")).parallel().filter { it.toFile().isFile }.forEach {
+                val data = mapper.readValue(it.toFile(), Metadata::class.java)
+                load(data, world)
             }
         } catch (e: Exception) {
             throw e
         }
         ms = stopwatch.elapsed(TimeUnit.MILLISECONDS)
+    }
+
+
+    /**
+     * Continue later. @TODO -> Removal of all default 0's
+     */
+    private fun newData(item: Metadata) {
+        val mapper: ObjectMapper = YAMLMapper()
+        if (item.id == 35) {
+            if (item.equipment != null) {
+                val namer = Namer()
+                val name = namer.name(item.name, item.id).lowercase()
+                //val file: File = File("./data/cfg/newItems/equipable/", "${item.id}_$name.yml")
+                println(item)
+            }
+        }
     }
 
     private fun load(item: Metadata, world: World) {
@@ -215,7 +245,7 @@ class ItemMetadataService : Service {
 
     private data class Equipment(
         @JsonProperty("equip_slot") val equipSlot: String? = null,
-        @JsonProperty("equip_sound") val equipSound: Int = -1,
+        @JsonProperty("equip_sound") val equipSound: Int? = -1,
         @JsonProperty("weapon_type") val weaponType: Int = -1,
         @JsonProperty("attack_speed") val attackSpeed: Int = -1,
         @JsonProperty("attack_stab") val attackStab: Int = 0,
