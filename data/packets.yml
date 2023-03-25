@@ -647,8 +647,8 @@ client-packets:
         trans: SUBTRACT
       - name: component_hash
         type: INT
-        order: INVERSE_MIDDLE
-  #TODO
+        order: MIDDLE
+
   - message: gg.rsmod.game.message.impl.OpNpcUMessage
     type: FIXED
     opcode: 76
@@ -1457,7 +1457,7 @@ client-packets:
         order: LITTLE
       - name: from_component_hash
         type: INT
-        order: LITTLE
+        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpPlayer5Message
     type: FIXED
