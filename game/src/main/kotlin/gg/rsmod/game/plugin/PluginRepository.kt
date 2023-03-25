@@ -178,7 +178,7 @@ class PluginRepository(val world: World) {
     /**
      * A map of plugins that maps weapon combat logic.
      */
-    private val weaponCombatLogic = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
+    private val itemCombatLogic = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
 
     /**
      * A map of plugins that are executed when a player un-equips an item.
@@ -1006,20 +1006,29 @@ class PluginRepository(val world: World) {
         pluginCount++
     }
 
-    fun setWeaponCombat(item: Int, plugin: Plugin.() -> Unit) {
-        if (weaponCombatLogic.containsKey(item)) {
+    fun setItemCombatLogic(item: Int, plugin: Plugin.() -> Unit) {
+        if (itemCombatLogic.containsKey(item)) {
             logger.error("Weapon logic already bound to a plugin: [item=$item]")
             throw IllegalStateException("Weapon logic already bound to a plugin: [item=$item]")
         }
-        weaponCombatLogic[item] = plugin
+        itemCombatLogic[item] = plugin
         pluginCount++
     }
 
-    fun executeWeaponCombatLogic(p: Player, item: Int): Boolean {
-        val plugin = weaponCombatLogic[item]
+    fun executeItemCombatLogic(p: Player, item: Int): Boolean {
+        val plugin = itemCombatLogic[item]
         if (plugin != null) {
             p.executePlugin(plugin)
             return true
+        }
+        return false
+    }
+
+    fun hasExecItemCmbtLogic(p: Player): Boolean {
+        p.equipment.rawItems.forEach {
+            if (itemCombatLogic.contains(it?.id)) {
+                return true
+            }
         }
         return false
     }
