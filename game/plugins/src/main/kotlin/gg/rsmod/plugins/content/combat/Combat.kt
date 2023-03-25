@@ -72,10 +72,9 @@ object Combat {
         if (target.isDead()) {
             return
         }
-
+        /* Don't override the animation if one is already set. @Z-Kris */
         if (!pawn.hasBlock(UpdateBlockType.ANIMATION)) {
-            val blockAnimation = CombatConfigs.getBlockAnimation(target)
-            target.animate(blockAnimation)
+            target.animate(CombatConfigs.getBlockAnimation(target))
         }
 
         if (target.lock.canAttack()) {
