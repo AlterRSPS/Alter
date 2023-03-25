@@ -21,18 +21,6 @@ val changesBeforeStick: Int
 val resetStickDelay: Int
     get() = getProperty<Int>(RESET_STICK_DELAY_TAG)!!
 
-load_metadata {
-    propertyFileName = "doors"
-
-    author = "Tomm"
-    name = "General Doors"
-    description = "Handle the opening and closing of general doors."
-
-    properties(
-            CHANGES_BEFORE_STICK_TAG to 5,
-            RESET_STICK_DELAY_TAG to 25
-    )
-}
 
 load_service(DoorService())
 
