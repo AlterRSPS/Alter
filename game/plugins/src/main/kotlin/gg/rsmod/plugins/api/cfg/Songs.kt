@@ -1,4 +1,4 @@
-package gg.rsmod.plugins.content.music
+package gg.rsmod.plugins.api.cfg
 
 /**
  * ordinal tracks the client-side enum slot from 0 - 648
