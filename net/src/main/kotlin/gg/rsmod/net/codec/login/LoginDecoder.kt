@@ -152,29 +152,30 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
             xteaBuf.skipBytes(Byte.SIZE_BYTES) // client type
             xteaBuf.skipBytes(Int.SIZE_BYTES) // 0
 
-            val crcs = decodeCRCs(xteaBuf)
 
-            for (i in crcs.indices) {
-                println("$i ${crcs[i]}")
-
-
-                /**
-                 * CRC for index 16 is always sent as 0 (at least on the
-                 * Desktop client, need to look into mobile).
-                 */
-                if (i == 16) {
-                    continue
-                }
-//                if (!cacheCrcs.contains(crcs[i])) {
-//                    buf.resetReaderIndex()
-//                    buf.skipBytes(payloadLength)
-//                    logger.info { "User '$username' login request crc mismatch [requestCrc=${crcs.contentToString()}, cacheCrc=${cacheCrcs.contentToString()}]." }
-//                    println("$i : ${crcs[i]}  != ${cacheCrcs[i]}")
-//
-//                    ctx.writeResponse(LoginResultType.REVISION_MISMATCH)
-//                    return
+            /**
+             * For now ignored since 1) Busy with other stuff. 2) Not that important.
+             */
+//            val crcs = decodeCRCs(xteaBuf)
+//            for (i in crcs.indices) {
+//                println("$i ${crcs[i]}")
+//                /**
+//                 * CRC for index 16 is always sent as 0 (at least on the
+//                 * Desktop client, need to look into mobile).
+//                 */
+//                if (i == 16) {
+//                    continue
 //                }
-            }
+////                if (!cacheCrcs.contains(crcs[i])) {
+////                    buf.resetReaderIndex()
+////                    buf.skipBytes(payloadLength)
+////                    logger.info { "User '$username' login request crc mismatch [requestCrc=${crcs.contentToString()}, cacheCrc=${cacheCrcs.contentToString()}]." }
+////                    println("$i : ${crcs[i]}  != ${cacheCrcs[i]}")
+////
+////                    ctx.writeResponse(LoginResultType.REVISION_MISMATCH)
+////                    return
+////                }
+//            }
 
             logger.info { "User '$username' login request from ${ctx.channel()}." }
 
