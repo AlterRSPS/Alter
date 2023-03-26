@@ -144,17 +144,17 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      * [player]'s view point.
      *
      * Npcs can change their appearance for each player depending on their
-     * [NpcDef.transforms] and [NpcDef.varp]/[NpcDef.varbit].
+     * [NpcDef.transforms] and [NpcDef.transformVarp]/[NpcDef.transformVarbit].
      */
     fun getTransform(player: Player): Int {
-        if (def.varbit != -1) {
-            val varbitDef = world.definitions.get(VarbitDef::class.java, def.varbit)
+        if (def.transformVarbit != -1) {
+            val varbitDef = world.definitions.get(VarbitDef::class.java, def.transformVarbit)
             val state = player.varps.getBit(varbitDef.varp, varbitDef.startBit, varbitDef.endBit)
             return def.transforms!![state]
         }
 
-        if (def.varp != -1) {
-            val state = player.varps.getState(def.varp)
+        if (def.transformVarp != -1) {
+            val state = player.varps.getState(def.transformVarp)
             return def.transforms!![state]
         }
 

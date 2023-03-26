@@ -2,6 +2,7 @@ package gg.rsmod.game.fs.def
 
 import gg.rsmod.game.fs.Definition
 import io.netty.buffer.ByteBuf
+import java.lang.IllegalStateException
 
 /**
  * @author Tom <rspsmods@gmail.com>

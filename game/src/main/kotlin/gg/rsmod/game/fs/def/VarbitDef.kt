@@ -2,6 +2,7 @@ package gg.rsmod.game.fs.def
 
 import gg.rsmod.game.fs.Definition
 import io.netty.buffer.ByteBuf
+import java.lang.IllegalStateException
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -19,6 +20,7 @@ class VarbitDef(override val id: Int) : Definition(id) {
                 startBit = buf.readUnsignedByte().toInt()
                 endBit = buf.readUnsignedByte().toInt()
             }
+            else -> throw IllegalStateException("Unknown opcode: $opcode in VarbitDef")
         }
     }
 }

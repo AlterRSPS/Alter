@@ -185,7 +185,7 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                     transmog -> {
                         val def = other.world.definitions.get(NpcDef::class.java, other.getTransmogId())
                         val animations = arrayOf(def.standAnim, def.walkAnim, def.walkAnim, def.rotateLeftAnim,
-                                def.rotateRightAnim, def.rotate180Anim, def.walkAnim)
+                                def.rotateRightAnim, def.rotateBackAnim, def.walkAnim)
 
                         animations.forEach { anim ->
                             appBuf.put(DataType.SHORT, anim)

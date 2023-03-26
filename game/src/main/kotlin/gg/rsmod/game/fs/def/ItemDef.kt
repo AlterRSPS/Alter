@@ -5,6 +5,7 @@ import gg.rsmod.util.io.BufferUtils.readString
 import io.netty.buffer.ByteBuf
 import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import java.lang.IllegalStateException
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -12,6 +13,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 class ItemDef(override val id: Int) : Definition(id) {
 
     var name = ""
+    var model = -1
     var stacks = false
     var cost = 0
     var members = false
@@ -21,8 +23,12 @@ class ItemDef(override val id: Int) : Definition(id) {
     /**
      * The item can be traded through the grand exchange.
      */
-    var grandExchange = false
+    var isTradable = false
+    var dropOptionIndex = -2
     var teamCape = 0
+    var ambient = 0
+    var contrast = 0
+
     /**
      * When an item is noted or unnoted (and has a noted variant), this will
      * represent the other item id. For example, item definition [4151] will
@@ -36,7 +42,8 @@ class ItemDef(override val id: Int) : Definition(id) {
     var noteTemplateId = 0
     var placeholderLink = 0
     var placeholderTemplate = 0
-
+    var notedId = -1
+    var unnotedId = -1
     val params = Int2ObjectOpenHashMap<Any>()
     var category = -1
     var zoom2d = 0
@@ -55,6 +62,9 @@ class ItemDef(override val id: Int) : Definition(id) {
     var skillReqs: Byte2ByteOpenHashMap? = null
     var equipSound: Int? = -1
 
+    var femaleModel1 = 0
+    var wearPos3 = -1
+
     lateinit var bonuses: IntArray
 
     val stackable: Boolean
@@ -71,7 +81,7 @@ class ItemDef(override val id: Int) : Definition(id) {
 
     override fun decode(buf: ByteBuf, opcode: Int) {
         when (opcode) {
-            1 -> buf.readUnsignedShort()
+            1 -> model = buf.readUnsignedShort()
             2 -> name = buf.readString()
             4 -> zoom2d = buf.readUnsignedShort()
             5 -> buf.readUnsignedShort()
@@ -89,11 +99,14 @@ class ItemDef(override val id: Int) : Definition(id) {
                 buf.readUnsignedByte()
             }
             24 -> buf.readUnsignedShort()
+
             25 -> {
                 buf.readUnsignedShort()
                 buf.readUnsignedByte()
             }
-            26 -> buf.readUnsignedShort()
+            26 -> femaleModel1 = buf.readUnsignedShort()
+            27 -> wearPos3 = buf.readByte().toInt()
+
             in 30 until 35 -> {
                 groundMenu[opcode - 30] = buf.readString()
                 if (groundMenu[opcode - 30]!!.equals("null", true)
@@ -118,8 +131,8 @@ class ItemDef(override val id: Int) : Definition(id) {
                     buf.readUnsignedShort()
                 }
             }
-            42 -> buf.readByte()
-            65 -> grandExchange = true
+            42 -> dropOptionIndex = buf.readByte().toInt()
+            65 -> isTradable = true
             75 -> buf.readShort()
             78 -> buf.readUnsignedShort()
             79 -> buf.readUnsignedShort()
@@ -138,11 +151,11 @@ class ItemDef(override val id: Int) : Definition(id) {
             110 -> buf.readUnsignedShort()
             111 -> buf.readUnsignedShort()
             112 -> buf.readUnsignedShort()
-            113 -> buf.readByte()
-            114 -> buf.readByte()
+            113 -> ambient = buf.readByte().toInt()
+            114 -> contrast = buf.readByte().toInt() * 5
             115 -> teamCape = buf.readUnsignedByte().toInt()
-            139 -> buf.readUnsignedShort()
-            140 -> buf.readUnsignedShort()
+            139 -> unnotedId = buf.readUnsignedShort()
+            140 -> notedId = buf.readUnsignedShort()
             148 -> placeholderLink = buf.readUnsignedShort()
             149 -> placeholderTemplate = buf.readUnsignedShort()
             249 -> {
@@ -154,6 +167,7 @@ class ItemDef(override val id: Int) : Definition(id) {
                     equipmentMenu[i] = option
                 }
             }
+            else -> throw IllegalStateException("Unknown opcode: $opcode in ItemDef")
         }
     }
 }

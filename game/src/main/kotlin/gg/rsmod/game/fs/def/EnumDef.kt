@@ -4,6 +4,7 @@ import gg.rsmod.game.fs.Definition
 import gg.rsmod.util.io.BufferUtils.readString
 import io.netty.buffer.ByteBuf
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import java.lang.IllegalStateException
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -37,6 +38,7 @@ class EnumDef(override val id: Int) : Definition(id) {
                     }
                 }
             }
+            else -> throw IllegalStateException("Unknown opcode: $opcode in EnumDef")
         }
     }
 

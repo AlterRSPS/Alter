@@ -5,6 +5,7 @@ import gg.rsmod.game.model.entity.GameObject
 import gg.rsmod.util.io.BufferUtils.readString
 import io.netty.buffer.ByteBuf
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import java.lang.IllegalStateException
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -15,19 +16,28 @@ class ObjectDef(override val id: Int) : Definition(id) {
     var width = 1
     var length = 1
     var solid = true
-    var impenetrable = true
-    var interactive = false
+    var blockProjectile = true
+    var interactType = false
+    var contouredGround: Int = -1
+    var nonFlatShading = false
+    var clippedModel = false
     var obstructive = false
+    var hollow = false
+    var supportItems = -1
     var clipMask = 0
     var varbit = -1
     var varp = -1
     var animation = -1
+    var clipType = 2
     var rotated = false
+    var clipped = true
     var category = -1
     val options: Array<String?> = Array(5) { "" }
     var transforms: Array<Int>? = null
     val params = Int2ObjectOpenHashMap<Any>()
     var examine: String? = null
+    var mapIconId = -1
+    var aBoolean3429 = true
 
     fun getRotatedWidth(obj: GameObject): Int = when {
         (obj.rot and 0x1) == 1 -> length
@@ -58,15 +68,17 @@ class ObjectDef(override val id: Int) : Definition(id) {
             14 -> width = buf.readUnsignedByte().toInt()
             15 -> length = buf.readUnsignedByte().toInt()
             17 -> solid = false // interact type = 0
-            18 -> impenetrable = false
-            19 -> interactive = buf.readUnsignedByte().toInt() == 1
+            18 -> blockProjectile = false
+            19 -> interactType = buf.readUnsignedByte().toInt() == 1
+            21 -> contouredGround = 0
+            22 -> nonFlatShading = true
+            23 -> clippedModel = true
             24 -> {
                 animation = buf.readUnsignedShort()
-                if (animation == 65535) {
-                    animation = -1
-                }
+                if (animation == 65535) animation = -1
+
             }
-            27 -> { } // interact type = 1
+            27 -> clipType = 1
             28 -> buf.readUnsignedByte()
             29 -> buf.readByte()
             in 30 until 35 -> {
@@ -93,6 +105,7 @@ class ObjectDef(override val id: Int) : Definition(id) {
             }
             61 -> category = buf.readUnsignedShort()
             62 -> rotated = true
+            64 -> clipped = false
             65 -> buf.readUnsignedShort()
             66 -> buf.readUnsignedShort()
             67 -> buf.readUnsignedShort()
@@ -102,17 +115,14 @@ class ObjectDef(override val id: Int) : Definition(id) {
             71 -> buf.readShort()
             72 -> buf.readShort()
             73 -> obstructive = true
-            75 -> buf.readUnsignedByte()
+            74 -> hollow = true
+            75 -> supportItems = buf.readUnsignedByte().toInt()
             77, 92 -> {
                 varbit = buf.readUnsignedShort()
-                if (varbit == 65535) {
-                    varbit = -1
-                }
+                if (varbit == 65535) varbit = -1
 
                 varp = buf.readUnsignedShort()
-                if (varp == 65535) {
-                    varp = -1
-                }
+                if (varp == 65535) varp = -1
 
                 var terminatingTransform = -1
                 if (opcode == 92) {
@@ -148,9 +158,11 @@ class ObjectDef(override val id: Int) : Definition(id) {
                     buf.readUnsignedShort()
                 }
             }
-            81 -> buf.readUnsignedByte()
-            82 -> buf.readUnsignedShort()
+            81 -> contouredGround = buf.readUnsignedByte() * 256
+            82 -> mapIconId = buf.readUnsignedShort()
+            89 -> aBoolean3429 = false
             249 -> params.putAll(readParams(buf))
+            else -> throw IllegalStateException("Unknown opcode: $opcode in ObjectDef")
         }
     }
 }

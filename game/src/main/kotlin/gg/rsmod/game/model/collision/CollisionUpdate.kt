@@ -67,7 +67,7 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
             val height = tile.height
             var width = def.width
             var length = def.length
-            val impenetrable = def.impenetrable
+            val impenetrable = def.blockProjectile
             val orientation = obj.rot
 
             if (orientation == 1 || orientation == 3) {
@@ -76,7 +76,7 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
             }
 
             if (type == ObjectType.FLOOR_DECORATION.value) {
-                if (def.interactive && def.solid) {
+                if (def.interactType && def.solid) {
                     putTile(Tile(x, z, height), impenetrable, *Direction.NESW)
                 }
             } else if (type >= ObjectType.DIAGONAL_WALL.value && type < ObjectType.FLOOR_DECORATION.value) {
@@ -95,7 +95,7 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
         }
 
         private fun unwalkable(def: ObjectDef, type: Int): Boolean {
-            val isSolidFloorDecoration = type == ObjectType.FLOOR_DECORATION.value && def.interactive
+            val isSolidFloorDecoration = type == ObjectType.FLOOR_DECORATION.value && def.interactType
             val isRoof = type > ObjectType.DIAGONAL_INTERACTABLE.value && type < ObjectType.FLOOR_DECORATION.value && def.solid
             val isWall = (type >= ObjectType.LENGTHWISE_WALL.value && type <= ObjectType.RECTANGULAR_CORNER.value || type == ObjectType.DIAGONAL_WALL.value) && def.solid
             val isSolidInteractable = (type == ObjectType.DIAGONAL_INTERACTABLE.value || type == ObjectType.INTERACTABLE.value) && def.solid
