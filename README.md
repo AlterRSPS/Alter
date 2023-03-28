@@ -10,7 +10,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 
 #### Setting up the server:
 * ### First of all Download:
-* [2023-03-09-rev212.tar.gz](https://archive.runestats.com/osrs/2023-03-09-rev212.tar.gz) , And make sure you're using correct Java Version.
+* [2023-03-22-rev212.tar.gz](https://archive.runestats.com/osrs/2023-03-22-rev212.tar.gz) , And make sure you're using correct Java Version.
 * Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed.
 * Secondly open Intellij, (If you already have a project open, either do `File -> Close`, or `File -> New -> Project from Version Control`)
 * If you decided to use `Close method` you will see this window, click on `Get from VCS`
