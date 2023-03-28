@@ -11,7 +11,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 #### Setting up the server:
 * ### First of all Download:
 * [2023-03-22-rev212.tar.gz](https://archive.runestats.com/osrs/2023-03-22-rev212.tar.gz) , And make sure you're using correct Java Version.
-* Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed.
+* Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o).
 * Secondly open Intellij, (If you already have a project open, either do `File -> Close`, or `File -> New -> Project from Version Control`)
 * If you decided to use `Close method` you will see this window, click on `Get from VCS`
   ![tutor1](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor1.png)
