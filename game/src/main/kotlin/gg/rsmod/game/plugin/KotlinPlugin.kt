@@ -37,7 +37,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      * A map of properties that will be copied from the [PluginMetadata] and
      * exposed to the plugin.
      */
-    private lateinit var properties: MutableMap<String, Any>
+    private var properties = HashMap<String, Any>()
 
     /**
      * Get property associated with [key] casted as [T].
