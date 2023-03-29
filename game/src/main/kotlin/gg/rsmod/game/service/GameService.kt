@@ -274,13 +274,12 @@ class GameService : Service {
              * U: used memory, in megabytes
              * R: reserved memory, in megabytes
              * M: max memory available, in megabytes
-             * @TODO For now disabled since it spams the Terminal too much
              */
-            //logger.info("[Cycle time: {}ms] [Entities: {}p / {}n] [Map: {}c / {}r / {}i] [Queues: {}p / {}n / {}w] [Mem usage: U={}MB / R={}MB / M={}MB].",
-            //        cycleTime / TICKS_PER_DEBUG_LOG, world.players.count(), world.npcs.count(),
-            //        world.chunks.getActiveChunkCount(), world.chunks.getActiveRegionCount(), world.instanceAllocator.activeMapCount,
-            //        totalPlayerQueues, totalNpcQueues, totalWorldQueues,
-            //        (totalMemory - freeMemory) / (1024 * 1024), totalMemory / (1024 * 1024), maxMemory / (1024 * 1024))
+            logger.info("[Cycle time: {}ms] [Entities: {}p / {}n] [Map: {}c / {}r / {}i] [Queues: {}p / {}n / {}w] [Mem usage: U={}MB / R={}MB / M={}MB].",
+                    cycleTime / TICKS_PER_DEBUG_LOG, world.players.count(), world.npcs.count(),
+                    world.chunks.getActiveChunkCount(), world.chunks.getActiveRegionCount(), world.instanceAllocator.activeMapCount,
+                    totalPlayerQueues, totalNpcQueues, totalWorldQueues,
+                    (totalMemory - freeMemory) / (1024 * 1024), totalMemory / (1024 * 1024), maxMemory / (1024 * 1024))
             debugTick = 0
             cycleTime = 0
         }
@@ -294,9 +293,9 @@ class GameService : Service {
              * as well as how long each [gg.rsmod.game.model.entity.Player] took
              * to process this cycle.
              */
-            //logger.error { "Cycle took longer than expected: ${(-freeTime) + world.gameContext.cycleTime}ms / ${world.gameContext.cycleTime}ms!" }
-            //logger.error { taskTimes.toList().sortedByDescending { (_, value) -> value }.toMap() }
-            //logger.error { playerTimes.toList().sortedByDescending { (_, value) -> value }.toMap() }
+            logger.error { "Cycle took longer than expected: ${(-freeTime) + world.gameContext.cycleTime}ms / ${world.gameContext.cycleTime}ms!" }
+            logger.error { taskTimes.toList().sortedByDescending { (_, value) -> value }.toMap() }
+            logger.error { playerTimes.toList().sortedByDescending { (_, value) -> value }.toMap() }
         }
     }
 
