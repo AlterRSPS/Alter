@@ -1,3 +1,5 @@
+@file:Suppress("INTEGER_OVERFLOW")
+
 package gg.rsmod.util.io
 
 import java.nio.ByteBuffer
