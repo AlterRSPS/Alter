@@ -567,8 +567,8 @@ fun Player.calculateAndSetCombatLevel(): Boolean {
     val changed = combatLevel != old
     runClientScript(3954, 46661634, 46661635, combatLevel)
     if (changed) {
-        runClientScript(389, combatLevel)
         sendCombatLevelText()
+        runClientScript(389)
         addBlock(UpdateBlockType.APPEARANCE)
         return true
     }
