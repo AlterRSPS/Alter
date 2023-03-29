@@ -20,6 +20,7 @@ import com.google.common.base.Preconditions
 import gg.rsmod.util.DataConstants
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
+import java.lang.IllegalStateException
 
 /**
  * A class which assists in creating a [GamePacket].
@@ -165,6 +166,7 @@ class GamePacketBuilder {
                         buffer.writeByte((longValue shr 24).toByte().toInt())
                         buffer.writeByte((longValue shr 16).toByte().toInt())
                     }
+                    else -> throw IllegalStateException("Unknown DataType: $type.")
                 }
             }
             DataOrder.INVERSE_MIDDLE -> {
@@ -184,9 +186,10 @@ class GamePacketBuilder {
                         buffer.writeByte(longValue.toByte().toInt())
                         buffer.writeByte((longValue shr 8).toByte().toInt())
                     }
+                    else -> throw IllegalStateException("Unknown DataType: $type.")
                 }
             }
-            else -> throw IllegalArgumentException("Unknown order.")
+            else -> throw IllegalArgumentException("Unknown order $order.")
         }
     }
 
