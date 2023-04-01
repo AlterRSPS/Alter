@@ -535,7 +535,7 @@ abstract class Pawn(val world: World) : Entity() {
 
     fun overrideLevel(level: Int) {
         if (entityType.isPlayer) {
-            println("overrideLevel can't be applied to a player")
+            println("Can't override level for a player")
             return
         }
         blockBuffer.overrideLevel = level
@@ -544,7 +544,7 @@ abstract class Pawn(val world: World) : Entity() {
 
     fun setTempName(name: String) {
         if (entityType.isPlayer) {
-            println("overrideLevel can't be applied to a player")
+            println("TempName can't be applied to a player")
             return
         }
         blockBuffer.TempName = name

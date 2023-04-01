@@ -1,7 +1,6 @@
 package gg.rsmod.util.concurrency
 
 import mu.KLogging
-import org.slf4j.Marker
 import java.util.concurrent.Phaser
 
 object PhasedTask : KLogging() {
