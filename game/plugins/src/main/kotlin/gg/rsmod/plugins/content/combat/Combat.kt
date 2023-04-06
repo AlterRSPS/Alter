@@ -33,9 +33,7 @@ object Combat {
     val DAMAGE_DEAL_MULTIPLIER = AttributeKey<Double>()
     val DAMAGE_TAKE_MULTIPLIER = AttributeKey<Double>()
     val BOLT_ENCHANTMENT_EFFECT = AttributeKey<Boolean>()
-
     const val PRIORITY_PID_VARP = 1075
-
     const val SELECTED_AUTOCAST_VARBIT = 276
     const val DEFENSIVE_MAGIC_CAST_VARBIT = 2668
 
@@ -72,6 +70,7 @@ object Combat {
         if (target.isDead()) {
             return
         }
+
         /* Don't override the animation if one is already set. @Z-Kris */
         if (!pawn.hasBlock(UpdateBlockType.ANIMATION)) {
             target.animate(CombatConfigs.getBlockAnimation(target))

@@ -21,10 +21,8 @@ import gg.rsmod.game.model.queue.QueueTaskSet
 import gg.rsmod.game.model.queue.TaskPriority
 import gg.rsmod.game.model.queue.impl.PawnQueueTaskSet
 import gg.rsmod.game.model.region.Chunk
-import gg.rsmod.game.model.timer.FROZEN_TIMER
+import gg.rsmod.game.model.timer.*
 import gg.rsmod.game.model.timer.RESET_PAWN_FACING_TIMER
-import gg.rsmod.game.model.timer.STUN_TIMER
-import gg.rsmod.game.model.timer.TimerMap
 import gg.rsmod.game.plugin.Plugin
 import gg.rsmod.game.service.log.LoggerService
 import gg.rsmod.game.sync.block.UpdateBlockBuffer

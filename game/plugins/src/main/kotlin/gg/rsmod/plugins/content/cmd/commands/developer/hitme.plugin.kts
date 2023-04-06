@@ -10,7 +10,7 @@ on_command("hitme", Privilege.DEV_POWER, description = "Hitsplash by id and amou
         if(hitType?.name ?: "INVALID" == "INVALID"){
             throw IllegalArgumentException()
         }
-        val damage = if(values.size==2 && values[1].matches(Regex("-?\\d+"))) values[1].toInt() else 0
+        val damage = if(values.size == 2 && values[1].matches(Regex("-?\\d+"))) values[1].toInt() else 0
         player.message("${hitType!!.name} hit for $damage")
         player.hit(damage, hitType)
     }

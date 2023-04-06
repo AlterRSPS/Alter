@@ -9,17 +9,17 @@ val stairs = arrayOf(
 )
 
 stairs.forEach { stairs ->
-    if (if_obj_has_option(obj = stairs, option = "climb")) {
+    if (objHasOption(obj = stairs, option = "climb")) {
         on_obj_option(obj = stairs, option = "climb") {
             climbstairs(player)
         }
     }
-    if (if_obj_has_option(obj = stairs, option = "climb-up")) {
+    if (objHasOption(obj = stairs, option = "climb-up")) {
         on_obj_option(obj = stairs, option = "climb-up") {
             climbupstairs(player)
         }
     }
-    if (if_obj_has_option(obj = stairs, option = "climb-down")) {
+    if (objHasOption(obj = stairs, option = "climb-down")) {
         on_obj_option(obj = stairs, option = "climb-down") {
             climbdownstairs(player)
         }
@@ -38,17 +38,17 @@ val ladders = arrayOf(
 )
 
 ladders.forEach { ladder ->
-    if (if_obj_has_option(obj = ladder, option = "climb")) {
+    if (objHasOption(obj = ladder, option = "climb")) {
         on_obj_option(obj = ladder, option = "climb") {
             climbladder(player)
         }
     }
-    if (if_obj_has_option(obj = ladder, option = "climb-up")) {
+    if (objHasOption(obj = ladder, option = "climb-up")) {
         on_obj_option(obj = ladder, option = "climb-up") {
             climbupladder(player)
         }
     }
-    if (if_obj_has_option(obj = ladder, option = "climb-down")) {
+    if (objHasOption(obj = ladder, option = "climb-down")) {
         on_obj_option(obj = ladder, option = "climb-down") {
             climbdownladder(player)
         }

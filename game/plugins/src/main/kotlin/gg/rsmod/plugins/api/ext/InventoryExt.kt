@@ -145,7 +145,6 @@ fun Player.replaceItemWithItemAndSkillRequirement(oldItem: Int, newItem: Int, re
         container.replace(oldItem, newItem, slot)
 }
 
-// replace and remove another
 fun Player.replaceItemAndRemoveAnother(oldItem: Int, newItem: Int, otherItem: Item, container: ItemContainer = inventory): Boolean {
     return container.replaceAndRemoveAnother(oldItem, newItem, otherItem, -1, -1)
 }

@@ -261,10 +261,10 @@ object MeleeCombatFormula : CombatFormula {
     }
 
     private fun getEquipmentMultiplier(player: Player): Double = when {
-        player.hasEquipped(EquipmentType.AMULET, Items.SALVE_AMULET) -> 7.0 / 6.0
-        player.hasEquipped(EquipmentType.AMULET, Items.SALVE_AMULET_E) -> 1.2
+        player.hasEquipped(EquipmentType.AMULET, Items.SALVE_AMULET) -> 7.0 / 6.0 // These should only apply if the target is undead..
+        player.hasEquipped(EquipmentType.AMULET, Items.SALVE_AMULET_E) -> 1.2 // These should only apply if the target is undead..
         // TODO: this should only apply when target is slayer task?
-        player.hasEquipped(EquipmentType.HEAD, *BLACK_MASKS) || player.hasEquipped(EquipmentType.HEAD, *BLACK_MASKS_I) -> 7.0 / 6.0
+        player.hasEquipped(EquipmentType.HEAD, *BLACK_MASKS) || player.hasEquipped(EquipmentType.HEAD, *BLACK_MASKS_I) -> 7.0 / 6.0 // This should only apply if you have the target || his category as a Slayer Task
         else -> 1.0
     }
 

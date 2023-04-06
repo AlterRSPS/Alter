@@ -23,7 +23,7 @@ class OpNpcTHandler : MessageHandler<OpNpcTMessage> {
             return
         }
 
-        log(client, "Spell on npc: npc=%d. index=%d, component=[%d:%d], movement=%d", npc.id, message.npcIndex, parent, child, message.movementType)
+        log(client, "Spell/Item on npc: npc=%d. index=%d, component=[%d:%d], movement=%d", npc.id, message.npcIndex, parent, child, message.movementType)
 
         client.interruptQueues()
         client.resetInteractions()
@@ -31,7 +31,7 @@ class OpNpcTHandler : MessageHandler<OpNpcTMessage> {
         if (message.movementType == 1 && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             client.moveTo(world.findRandomTileAround(npc.tile, 1) ?: npc.tile)
         }
-
+        client.walkTo(world.findRandomTileAround(npc.tile, 1) ?: npc.tile)
         client.closeInterfaceModal()
         client.interruptQueues()
         client.resetInteractions()
@@ -43,22 +43,36 @@ class OpNpcTHandler : MessageHandler<OpNpcTMessage> {
         client.attr[INTERACTING_NPC_ATTR] = WeakReference(npc)
         client.attr[INTERACTING_COMPONENT_PARENT] = parent
         client.attr[INTERACTING_COMPONENT_CHILD] = child
+
+
+        when (parent) {
+            InterfaceDestination. -> {
+
+            }
+
+
+        }
+
+
         /**
          * @Cl0ud
          * @since 2/13/2023 @TODO
          * Will need to clean this out, just running out of time for today.
+         * -> Should first come to
          */
         if (child == 0) {
             if (!world.plugins.executeItemOnNpc(client, npc.id, verify)) {
                 if (world.devContext.debugItemActions) {
                     client.writeMessage("Unhandled item on npc [ $verify on ${npc.id}] ] ")
                 }
+            } else if (!world.plugins.executeItemOnNpc(client, verify)){
+                client.writeMessage("Nothing interesting happens.")
             }
         } else {
             if (!world.plugins.executeSpellOnNpc(client, parent, child)) {
                 client.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
                 if (world.devContext.debugMagicSpells) {
-                   client.writeMessage("Unhandled magic spell: [$parent, $child] out here")
+                    client.writeMessage("Unhandled magic spell: [$parent, $child] out here")
                 }
             }
         }

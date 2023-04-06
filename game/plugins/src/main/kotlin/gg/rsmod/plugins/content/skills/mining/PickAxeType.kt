@@ -2,6 +2,7 @@ package gg.rsmod.plugins.content.skills.mining
 
 import gg.rsmod.plugins.api.cfg.Animation
 import gg.rsmod.plugins.api.cfg.Items
+
 /**
  * @author Fritz <frikkipafi@gmail.com>
  * @CloudS3c = Just need to find the correct anims

@@ -4,15 +4,15 @@ spawn_npc(Npcs.AUBURY_11435, 3253, 3402, 0, 2)
 
 arrayOf(Npcs.AUBURY_11434, Npcs.AUBURY_11435, Npcs.AUBURY).forEach { aubury ->
 
-    if (if_npc_has_option(npc = aubury, option = "trade")) {
+    if (npcHasOption(npc = aubury, option = "trade")) {
         on_npc_option(npc = aubury, option = "trade") { open_shop(player) }
     }
 
-    if (if_npc_has_option(npc = aubury, option = "talk-to")) {
+    if (npcHasOption(npc = aubury, option = "talk-to")) {
         on_npc_option(npc = aubury, option = "talk-to", lineOfSightDistance = 1) { player.queue { dialog() } }
     }
 
-    if (if_npc_has_option(npc = aubury, option = "teleport")) {
+    if (npcHasOption(npc = aubury, option = "teleport")) {
         on_npc_option(npc = aubury, option = "teleport", lineOfSightDistance = 1) {
             player.queue {
                 val npc = player.getInteractingNpc()
