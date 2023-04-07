@@ -562,7 +562,7 @@ abstract class Pawn(val world: World) : Entity() {
         faceTile(Tile(direction.getDeltaX(), direction.getDeltaZ()))
     }
 
-    fun faceTile(face: Tile, width: Int = 1, length: Int = 1) {
+    fun faceTile(face: Tile, width: Int = 1, length: Int = 1, instant: Int = 0) {
         if (entityType.isPlayer) {
             val srcX = tile.x * 64
             val srcZ = tile.z * 64
@@ -580,6 +580,7 @@ abstract class Pawn(val world: World) : Entity() {
             val faceX = (face.x shl 1) + 1
             val faceZ = (face.z shl 1) + 1
             blockBuffer.faceDegrees = (faceX shl 16) or faceZ
+            blockBuffer.faceInstant = instant
         }
 
         blockBuffer.facePawnIndex = -1
