@@ -45,20 +45,21 @@ class OpNpcTHandler : MessageHandler<OpNpcTMessage> {
         client.attr[INTERACTING_COMPONENT_CHILD] = child
 
 
-        when (parent) {
-            InterfaceDestination. -> {
-
-            }
-
-
-        }
+//        when (parent) {
+//            InterfaceDestination. -> {
+//
+//            }
+//
+//
+//        }
 
 
         /**
-         * @Cl0ud
-         * @since 2/13/2023 @TODO
-         * Will need to clean this out, just running out of time for today.
-         * -> Should first come to
+         *
+         * @TODO
+         * 1) Need to fix path
+         * 2) Switch between Parent interface, so we will actually need to seperate the API from game since we will
+         * use it's interface destinations for these cases.
          */
         if (child == 0) {
             if (!world.plugins.executeItemOnNpc(client, npc.id, verify)) {

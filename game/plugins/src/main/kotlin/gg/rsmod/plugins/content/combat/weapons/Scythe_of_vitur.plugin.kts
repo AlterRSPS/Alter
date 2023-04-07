@@ -11,7 +11,7 @@ import gg.rsmod.plugins.content.combat.getCombatTarget
 set_item_combat_logic(Items.SCYTHE_OF_VITUR_UNCHARGED) {
     val target = player.getTarget()
     println(target)
-    var gfx: Int = 0
+    var gfx: Int
     target?.let {
         when(player.lastFacingDirection) {
             Direction.WEST -> gfx = Graphics.DRAGON_HALBERD_SPECIAL_EAST

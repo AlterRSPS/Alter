@@ -62,14 +62,10 @@ object Foods {
             p.timers[POTION_DELAY] = 3
         }
 
-        when (food) {
-            else -> {
-                p.message("You eat the ${foodName.lowercase()}.")
-                if (p.getSkills().getCurrentLevel(Skills.HITPOINTS) > oldHp) {
-                    p.message("It heals some health.")
-                }
+
+        p.message("You eat the ${foodName.lowercase()}.")
+            if (p.getSkills().getCurrentLevel(Skills.HITPOINTS) > oldHp) {
+                p.message("It heals some health.")
             }
         }
-    }
-
 }

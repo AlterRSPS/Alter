@@ -22,6 +22,14 @@ class IfButtonTHandler : MessageHandler<IfButtonTMessage> {
         val toSlot = message.toSlot
         val toItemId = message.toItem
 
+        /**
+         * @TODO
+         * So switch by component 149 (Parent) Will be for Inventory.
+         * SpellBook 161 (Parent)
+         *
+         * So we can switch by Parent and determine if it's item on item or spell on item
+         */
+
         val fromItem = client.inventory[fromSlot] ?: return
         val toItem = client.inventory[toSlot] ?: return
 
@@ -34,7 +42,7 @@ class IfButtonTHandler : MessageHandler<IfButtonTMessage> {
             return
         }
 
-        log(client, "Item on item: from_component=[%d,%d], to_component=[%d,%d], from_item=%d, from_slot=%d, to_item=%d, to_slot=%d",
+        log(client, "ButtonT: from_component=[%d,%d], to_component=[%d,%d], from_item=%d, from_slot=%d, to_item=%d, to_slot=%d",
             fromInterfaceId, fromComponent, toInterfaceId, toComponent, fromItem.id, fromSlot, toItem.id, toSlot)
 
         client.attr[INTERACTING_ITEM] = WeakReference(fromItem)

@@ -470,7 +470,8 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
 
     /**
      * Invoke [logic] when attacking with that [item].
-     * @TODO Add check if dealhit was done. -> If u have {BERSERKER_RING} and weap without overrides it wont execute or just split weapons and items :shrug:
+     * @TODO
+     * Add check if dealhit was done. -> If u have {BERSERKER_RING} and weap without overrides it wont execute or just split weapons and items
      */
     fun set_item_combat_logic(item: Int, logic: (Plugin).() -> Unit) {
         r.setItemCombatLogic(item, logic)
@@ -560,6 +561,11 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
 
     fun getNpcCombatDef(npc: Int): NpcCombatDef? {
         return world.plugins.npcCombatDefs.getOrDefault(npc, null)
+    }
+
+    fun getNpcFromTile(tile: Tile): Npc? {
+        val chunk = world.chunks.get(tile)
+        return chunk?.getEntities<Npc>(tile, EntityType.NPC)?.firstOrNull()
     }
 
     fun get_all_commands(): ArrayList<String> {

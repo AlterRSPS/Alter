@@ -1,5 +1,5 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.6.0' apply(false)
+    id 'org.jetbrains.kotlin.jvm' version '1.8.0' apply(false)
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.31'
 }
 
@@ -64,6 +64,7 @@ allprojects {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         kotlinOptions {
             jvmTarget = jvmVersion
+            languageVersion = 1.8
         }
     }
 }

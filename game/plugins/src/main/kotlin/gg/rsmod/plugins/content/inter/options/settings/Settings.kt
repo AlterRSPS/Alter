@@ -20,7 +20,7 @@ class Settings(private val world: World) {
     fun initializeCategories() {
         val categories = EnumDefinitions(SETTINGS_ENUM_ID, world).get()
 
-        categories?.getValues()?.forEach { (k, v) ->
+        categories?.getValues()?.forEach { (_, v) ->
             val struct = StructDefinitions(v as Int, world).get()
             CATEGORIES.add(SettingCategory(struct, world).initialize())
         }

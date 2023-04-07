@@ -4,7 +4,6 @@ import gg.rsmod.plugins.api.cfg.Npcs
 
 
 private val teaseableNpcs = arrayOf(Npcs.SPINED_LARUPIA,Npcs.HORNED_GRAAHK)
-
 teaseableNpcs.forEach { npcId ->
     on_npc_option(npc = npcId, option = "tease") {
         val npc = player.getInteractingNpc()
@@ -18,6 +17,8 @@ teaseableNpcs.forEach { npcId ->
         player.queue {
             player.animate(893) //tease anim
             val npc = player.getInteractingNpc()
-            npc.attack(player)}
+            npc.attack(player)
+        }
     }
 }
+

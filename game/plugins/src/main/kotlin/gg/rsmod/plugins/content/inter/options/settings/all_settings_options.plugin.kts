@@ -7,6 +7,7 @@ import gg.rsmod.plugins.content.inter.options.Settings
 import gg.rsmod.plugins.content.inter.options.settings.Setting
 import gg.rsmod.plugins.content.inter.options.settings.SettingType
 import gg.rsmod.plugins.content.inter.options.settings.SettingVariables
+import java.lang.IllegalStateException
 
 fun bind_all_setting(child: Int, plugin: Plugin.() -> Unit) {
     on_button(interfaceId = OptionsTab.ALL_SETTINGS_INTERFACE_ID, component = child) {
@@ -38,6 +39,8 @@ bind_all_setting(Settings.CLICK) {
         SettingType.KEYBIND -> {
             dropdown(player, setting)
         }
+        else -> throw IllegalStateException("Unknown SettingType: ${setting?.getType()}")
+
     }
 }
 
