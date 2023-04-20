@@ -61,9 +61,28 @@ class ItemDef(override val id: Int) : Definition(id) {
     var renderAnimations: IntArray? = null
     var skillReqs: Byte2ByteOpenHashMap? = null
     var equipSound: Int? = -1
-
     var femaleModel1 = 0
-    var wearPos3 = -1
+    var xan2d = 0
+    var yan2d = 0
+    var zan2d = 0
+    var xOffset2d = 0
+    var yOffset2d = 0
+    var unknown1: String = ""
+    var wearPos1: Int = -1
+    var wearPos2: Int = -1
+    var wearPos3: Int = -1
+
+    /**
+     * @TODO
+     */
+//    var maleModel0 =
+//    var maleModel1 =
+//
+//
+//    var maleOffset =
+//    var femaleModel0 =
+//    var femaleOffset: Int;
+
 
     lateinit var bonuses: IntArray
 
@@ -84,25 +103,37 @@ class ItemDef(override val id: Int) : Definition(id) {
             1 -> model = buf.readUnsignedShort()
             2 -> name = buf.readString()
             4 -> zoom2d = buf.readUnsignedShort()
-            5 -> buf.readUnsignedShort()
-            6 -> buf.readUnsignedShort()
-            7 -> buf.readUnsignedShort()
-            8 -> buf.readUnsignedShort()
-            9 -> buf.readString()
+            5 -> xan2d = buf.readUnsignedShort()
+            6 -> yan2d = buf.readUnsignedShort()
+            7 -> {
+                xOffset2d = buf.readUnsignedShort()
+                if (xOffset2d > 32767) {
+                    xOffset2d -= 65536
+                }
+            }
+            8 -> {
+                yOffset2d = buf.readUnsignedShort()
+                if (yOffset2d > 32767) {
+                    yOffset2d -= 65536
+                }
+            }
+            9 -> {
+                unknown1 = buf.readString()
+            }
             11 -> stacks = true
             12 -> cost = buf.readInt()
-            13 -> buf.readUnsignedByte()
-            14 -> buf.readUnsignedByte()
+            13 -> wearPos1 = buf.readUnsignedByte().toInt()
+            14 -> wearPos2 = buf.readUnsignedByte().toInt()
             16 -> members = true
             23 -> {
-                buf.readUnsignedShort()
-                buf.readUnsignedByte()
+                /* maleModel0 = */ buf.readUnsignedShort()
+                /* maleOffset = */ buf.readUnsignedByte()
             }
-            24 -> buf.readUnsignedShort()
+            24 -> /* maleModel1 = */ buf.readUnsignedShort()
 
             25 -> {
-                buf.readUnsignedShort()
-                buf.readUnsignedByte()
+                /* femaleModel0 = */ buf.readUnsignedShort()
+                /* femaleOffset = */ buf.readUnsignedByte()
             }
             26 -> femaleModel1 = buf.readUnsignedShort()
             27 -> wearPos3 = buf.readByte().toInt()

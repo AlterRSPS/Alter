@@ -4,7 +4,7 @@ import gg.rsmod.game.model.World
 import gg.rsmod.game.model.collision.ObjectType
 import gg.rsmod.game.model.entity.DynamicObject
 import gg.rsmod.game.model.entity.GameObject
-import gg.rsmod.plugins.content.inter.options.settings.Settings
+import gg.rsmod.plugins.content.interfaces.options.settings.Settings
 
 fun World.openDoor(obj: GameObject, opened: Int = obj.id + 1, invertRot: Boolean = false, invertTransform: Boolean = false): GameObject {
     val oldRot = obj.rot

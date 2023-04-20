@@ -21,7 +21,7 @@ import gg.rsmod.plugins.content.combat.strategy.MagicCombatStrategy
 import gg.rsmod.plugins.content.combat.strategy.MeleeCombatStrategy
 import gg.rsmod.plugins.content.combat.strategy.RangedCombatStrategy
 import gg.rsmod.plugins.content.combat.strategy.magic.CombatSpell
-import gg.rsmod.plugins.content.inter.attack.AttackTab
+import gg.rsmod.plugins.content.interfaces.attack.AttackTab
 import java.lang.ref.WeakReference
 
 /**
@@ -82,7 +82,7 @@ object Combat {
                     target.attack(pawn)
                 }
             } else if (target is Player) {
-                if (target.getVarp(AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn) {
+                if (target.getVarp(gg.rsmod.plugins.content.interfaces.attack.AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn) {
                     target.attack(pawn)
                 }
             }

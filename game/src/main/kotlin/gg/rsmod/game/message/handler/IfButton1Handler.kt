@@ -21,7 +21,7 @@ class IfButton1Handler : MessageHandler<IfButtonMessage> {
 
         val interfaceId = message.hash shr 16
         val component = message.hash and 0xFFFF
-        val option = message.option + 1
+        val option = message.option
         if (!client.interfaces.isVisible(interfaceId)) {
             return
         }

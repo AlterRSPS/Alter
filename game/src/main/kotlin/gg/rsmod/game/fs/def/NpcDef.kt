@@ -40,6 +40,17 @@ class NpcDef(override val id: Int) : Definition(id) {
     var interactable = true
     var clickable = true
     var isPet = false
+    var runAnimation = -1
+
+    var runRotate180Animation = -1
+    var runRotateLeftAnimation = -1
+    var runRotateRightAnimation = -1
+    var crawlAnimation = -1
+    var crawlRotate180Animation = -1
+    var crawlRotateLeftAnimation = -1
+    var crawlRotateRightAnimation = -1
+
+
     var options: Array<String?> = Array(5) { "" }
 
     var recolorSrc : Array<Int> = emptyArray<Int>()
@@ -163,19 +174,19 @@ class NpcDef(override val id: Int) : Definition(id) {
             107 -> interactable = false
             109 -> clickable = false
             111 -> isPet = true
-            114 -> buf.readUnsignedShort()
+            114 -> runAnimation = buf.readUnsignedShort()
             115 -> {
-                buf.readUnsignedShort()
-                buf.readUnsignedShort()
-                buf.readUnsignedShort()
-                buf.readUnsignedShort()
+                runAnimation = buf.readUnsignedShort()
+                runRotate180Animation = buf.readUnsignedShort()
+                runRotateLeftAnimation = buf.readUnsignedShort()
+                runRotateRightAnimation = buf.readUnsignedShort()
             }
-            116 -> buf.readUnsignedShort()
+            116 -> crawlAnimation = buf.readUnsignedShort()
             117 -> {
-                buf.readUnsignedShort()
-                buf.readUnsignedShort()
-                buf.readUnsignedShort()
-                buf.readUnsignedShort()
+                crawlAnimation = buf.readUnsignedShort()
+                crawlRotate180Animation = buf.readUnsignedShort()
+                crawlRotateLeftAnimation = buf.readUnsignedShort()
+                crawlRotateRightAnimation = buf.readUnsignedShort()
             }
             249 -> params.putAll(readParams(buf))
             else -> throw IllegalStateException("Unknown opcode: $opcode in NpcDef")

@@ -1,6 +1,6 @@
 package gg.rsmod.plugins.content.area.world_chats.bank_tutor
 
-import gg.rsmod.plugins.content.inter.bank.openBank
+import gg.rsmod.plugins.content.interfaces.bank.openBank
 
 spawn_npc(Npcs.BANKER_TUTOR, x = 3208, z = 3222, height = 2, direction = Direction.SOUTH)
 

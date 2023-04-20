@@ -65,8 +65,11 @@ allprojects {
         kotlinOptions {
             jvmTarget = jvmVersion
             languageVersion = 1.8
+            kotlinOptions.freeCompilerArgs += "-Xallow-any-scripts-in-source-roots"
         }
     }
+
+
 }
 
 task packageServer(type: Zip) {

@@ -1,6 +1,6 @@
 package gg.rsmod.plugins.content.area.world_chats.banker
 
-import gg.rsmod.plugins.content.inter.bank.openBank
+import gg.rsmod.plugins.content.interfaces.bank.openBank
 
 
 arrayOf(Npcs.BANKER_2897, Npcs.BANKER_2898, Npcs.BANKER_1633, Npcs.BANKER_1634, Npcs.BANKER_1613, Npcs.BANKER_1618).forEach { banker ->
