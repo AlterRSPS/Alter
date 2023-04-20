@@ -1,6 +1,6 @@
 package gg.rsmod.plugins.content.npcs.banker
 
-import gg.rsmod.plugins.content.inter.bank.openBank
+import gg.rsmod.plugins.content.interfaces.bank.openBank
 
 arrayOf(Npcs.BANKER_1479, Npcs.BANKER_1480).forEach { banker ->
     on_npc_option(npc = banker, option = "talk-to", lineOfSightDistance = 2) {

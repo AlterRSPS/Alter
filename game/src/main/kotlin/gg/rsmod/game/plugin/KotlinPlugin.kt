@@ -1,8 +1,8 @@
 package gg.rsmod.game.plugin
 
-import com.google.gson.GsonBuilder
 import gg.rsmod.game.Server
 import gg.rsmod.game.event.Event
+import gg.rsmod.game.fs.Definition
 import gg.rsmod.game.fs.def.ItemDef
 import gg.rsmod.game.fs.def.NpcDef
 import gg.rsmod.game.fs.def.ObjectDef
@@ -17,8 +17,7 @@ import gg.rsmod.game.model.shop.StockType
 import gg.rsmod.game.model.timer.TimerKey
 import gg.rsmod.game.service.Service
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import java.nio.file.Files
-import java.nio.file.Paths
+import kotlin.reflect.KClass
 import kotlin.script.experimental.annotations.KotlinScript
 
 /**
@@ -170,13 +169,10 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun on_item_option(item: Int, option: String, logic: (Plugin).() -> Unit) {
         val opt = option.lowercase()
         val def = world.definitions.get(ItemDef::class.java, item)
-        val slot = def.inventoryMenu.indexOfFirst { it?.lowercase() == opt }
-
-        check(slot != -1) { "Option \"$option\" not found for item $item [options=${def.inventoryMenu.filterNotNull().filter { it.isNotBlank() }}]" }
-
-        r.bindItem(item, slot + 1, logic)
+        val option = def.inventoryMenu.indexOfFirst { it?.lowercase() == opt }
+        check(option != -1) { "Option \"$option\" not found for item $item [options=${def.inventoryMenu.filterNotNull().filter { it.isNotBlank() }}]" }
+        r.bindItem(item, option + 1, logic)
     }
-
     /**
      * Invoke [logic] when the [option] option is clicked on an equipment
      * [gg.rsmod.game.model.item.Item].
@@ -207,35 +203,35 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         r.bindObject(obj, slot + 1, lineOfSightDistance, logic)
     }
 
-    /**
-     * Checks if a [obj] has [option]
-     * Returns true if that option found for that object.
-     */
-    fun if_obj_has_option(obj: Int, option: String) : Boolean {
-        val opt = option.lowercase()
-        val def = world.definitions.get(ObjectDef::class.java, obj)
-        val slot = def.options.indexOfFirst {
-            it?.lowercase() == opt
+    fun itemHasGroundOption(item: Int, option: String) : Boolean {
+        val slot =  world.definitions.get(ItemDef::class.java, item).inventoryMenu.indexOfFirst {
+            it?.lowercase() == option.lowercase()
         }
-        if (slot == -1) {
-            return false
+        return slot != -1
+    }
+
+    fun itemHasInventoryOption(item: Int, option: String) : Boolean {
+        val slot =  world.definitions.get(ItemDef::class.java, item).inventoryMenu.indexOfFirst {
+            it?.lowercase() == option.lowercase()
         }
-        return true
+        return slot != -1
+    }
+
+    fun objHasOption(obj: Int, option: String) : Boolean {
+        val slot =  world.definitions.get(ObjectDef::class.java, obj).options.indexOfFirst {
+            it?.lowercase() == option.lowercase()
+        }
+        return slot != -1
     }
 
     /**
      * Checks if a [NPC] has [option]
      */
-    fun if_npc_has_option(npc: Int, option: String) : Boolean {
-        val opt = option.lowercase()
-        val def = world.definitions.get(NpcDef::class.java, npc)
-        val slot = def.options.indexOfFirst {
-            it?.lowercase() == opt
+    fun npcHasOption(npc: Int, option: String) : Boolean {
+        val slot =  world.definitions.get(NpcDef::class.java, npc).options.indexOfFirst {
+            it?.lowercase() == option.lowercase()
         }
-        if (slot == -1) {
-            return false
-        }
-        return true
+        return slot != -1
     }
 
     /**
@@ -471,7 +467,8 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
 
     /**
      * Invoke [logic] when attacking with that [item].
-     * @TODO Add check if dealhit was done. -> If u have {BERSERKER_RING} and weap without overrides it wont execute or just split weapons and items :shrug:
+     * @TODO
+     * Add check if dealhit was done. -> If u have {BERSERKER_RING} and weap without overrides it wont execute or just split weapons and items
      */
     fun set_item_combat_logic(item: Int, logic: (Plugin).() -> Unit) {
         r.setItemCombatLogic(item, logic)
@@ -557,24 +554,12 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     fun onItemOnNpc(item: Int, npc: Int, plugin: Plugin.() -> Unit) = r.bindItemOnNpc(npc = npc, item = item, plugin = plugin)
 
-    fun onAnim(animid: Int, plugin: Plugin.() -> Unit) = r.bindOnAnimation(animid, plugin)
-
-    /**
-     * Execute a plugin when a player gets a specific drop.
-     */
-    //fun onDrop()
-
-    fun GetItemDef(id: Int): ItemDef? {
-        return world.definitions.getNullable(ItemDef::class.java, id)
-    }
+    fun onAnimation(animid: Int, plugin: Plugin.() -> Unit) = r.bindOnAnimation(animid, plugin)
 
     fun getNpcCombatDef(npc: Int): NpcCombatDef? {
         return world.plugins.npcCombatDefs.getOrDefault(npc, null)
     }
 
-    /**
-     * @TODO check efficiency
-     */
     fun getNpcFromTile(tile: Tile): Npc? {
         val chunk = world.chunks.get(tile)
         return chunk?.getEntities<Npc>(tile, EntityType.NPC)?.firstOrNull()
@@ -586,5 +571,13 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
 
     fun get_all_shops(): Object2ObjectOpenHashMap<String, Shop> {
         return r.shops
+    }
+
+
+    fun <T : Definition> getDefs(type: KClass<out T>, id: Int): T {
+        return world.definitions.get(type.java, id)
+    }
+    fun <T : Definition> getDefsNullable(type: KClass<out T>, id: Int): T? {
+        return world.definitions.getNullable(type.java, id)
     }
 }

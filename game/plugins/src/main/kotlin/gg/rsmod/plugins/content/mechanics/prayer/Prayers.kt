@@ -269,5 +269,5 @@ object Prayers {
         }
     }
 
-    private fun calculateDrainRate(p: Player): Int = Prayer.values.filter { isActive(p, it) }.sumBy { it.drainEffect }
+    private fun calculateDrainRate(p: Player): Int = Prayer.values.filter { isActive(p, it) }.sumOf { it.drainEffect }
 }

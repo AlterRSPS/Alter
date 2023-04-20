@@ -3,10 +3,9 @@ package gg.rsmod.plugins.content.mechanics.inventory
 import gg.rsmod.game.action.EquipAction
 import gg.rsmod.game.model.attr.*
 
-on_button(InterfaceDestination.INVENTORY.interfaceId/* Inventory interface ID */, 0) {
+on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
     val slot: Int? = player.attr[INTERACTING_SLOT_ATTR]
     val option = player.attr[INTERACTING_OPT_ATTR]
-
     if (slot != null) {
         if (slot < 0 || slot >= player.inventory.capacity) {
             return@on_button
@@ -18,9 +17,9 @@ on_button(InterfaceDestination.INVENTORY.interfaceId/* Inventory interface ID */
         player.attr[INTERACTING_ITEM_SLOT] = slot
 
         when(option) {
-            7 -> {
+            6 -> {
                 if (world.plugins.canDropItem(player, item.id)) {
-                    if (!world.plugins.executeItem(player, item.id, option-1)) {
+                    if (!world.plugins.executeItem(player, item.id, option)) {
                             val remove = player.inventory.remove(item, assureFullRemoval = false, beginSlot = slot)
                             if (remove.completed > 0) {
                                 val floor = GroundItem(item.id, remove.completed, player.tile, player)
@@ -32,19 +31,19 @@ on_button(InterfaceDestination.INVENTORY.interfaceId/* Inventory interface ID */
                         }
                     }
             }
-            3 -> {
+            2 -> {
                 val result = EquipAction.equip(player, item, slot)
                 if (result == EquipAction.Result.UNHANDLED && world.devContext.debugItemActions) {
-                    player.message("Unhandled item action: [item=${item.id}, slot=${slot}, option=$option]")
+                    player.message("[2] Unhandled item action: [item=${item.id}, slot=${slot}, option=$option]")
                 }
             }
-            10 -> {
+            9 -> {
                 world.sendExamine(player, item.id, ExamineEntityType.ITEM)
             }
             else -> {
                 if (option != null) {
-                    if (!world.plugins.executeItem(player, item.id, option-1) && world.devContext.debugItemActions) {
-                        player.message("Unhandled item action: [item=${item.id}, slot=${slot}, option=${option-1}]")
+                    if (!world.plugins.executeItem(player, item.id, option) && world.devContext.debugItemActions) {
+                        player.message("[else] Unhandled item action: [item=${item.id}, slot=${slot}, option=${option}]")
                     }
                 }
             }

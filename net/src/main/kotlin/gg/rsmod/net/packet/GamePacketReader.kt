@@ -21,6 +21,7 @@ import gg.rsmod.util.DataConstants
 import gg.rsmod.util.io.BufferUtils.readJagexString
 import gg.rsmod.util.io.BufferUtils.readString
 import io.netty.buffer.ByteBuf
+import java.lang.IllegalStateException
 
 /**
  * A utility class for reading [GamePacket]s.
@@ -204,6 +205,7 @@ class GamePacketReader(packet: GamePacket) {
                     longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 24).toLong()
                     longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 16).toLong()
                 }
+                else -> throw IllegalStateException("Unknown $type")
             }
         } else if (order == DataOrder.INVERSE_MIDDLE) {
             if (transformation != DataTransformation.NONE) {
@@ -225,6 +227,8 @@ class GamePacketReader(packet: GamePacket) {
                     longValue = longValue or (buffer.readByte().toInt() and 0xFF).toLong()
                     longValue = longValue or (buffer.readByte().toInt() and 0xFF shl 8).toLong()
                 }
+                else -> throw IllegalStateException("Unknown $type")
+
             }
         } else {
             throw IllegalArgumentException("Unknown order.")

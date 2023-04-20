@@ -21,7 +21,7 @@ import gg.rsmod.plugins.content.combat.strategy.MagicCombatStrategy
 import gg.rsmod.plugins.content.combat.strategy.MeleeCombatStrategy
 import gg.rsmod.plugins.content.combat.strategy.RangedCombatStrategy
 import gg.rsmod.plugins.content.combat.strategy.magic.CombatSpell
-import gg.rsmod.plugins.content.inter.attack.AttackTab
+import gg.rsmod.plugins.content.interfaces.attack.AttackTab
 import java.lang.ref.WeakReference
 
 /**
@@ -33,9 +33,7 @@ object Combat {
     val DAMAGE_DEAL_MULTIPLIER = AttributeKey<Double>()
     val DAMAGE_TAKE_MULTIPLIER = AttributeKey<Double>()
     val BOLT_ENCHANTMENT_EFFECT = AttributeKey<Boolean>()
-
     const val PRIORITY_PID_VARP = 1075
-
     const val SELECTED_AUTOCAST_VARBIT = 276
     const val DEFENSIVE_MAGIC_CAST_VARBIT = 2668
 
@@ -72,6 +70,7 @@ object Combat {
         if (target.isDead()) {
             return
         }
+
         /* Don't override the animation if one is already set. @Z-Kris */
         if (!pawn.hasBlock(UpdateBlockType.ANIMATION)) {
             target.animate(CombatConfigs.getBlockAnimation(target))
@@ -83,7 +82,7 @@ object Combat {
                     target.attack(pawn)
                 }
             } else if (target is Player) {
-                if (target.getVarp(AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn) {
+                if (target.getVarp(gg.rsmod.plugins.content.interfaces.attack.AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn) {
                     target.attack(pawn)
                 }
             }

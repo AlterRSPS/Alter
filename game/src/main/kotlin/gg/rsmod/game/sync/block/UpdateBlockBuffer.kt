@@ -16,6 +16,8 @@ class UpdateBlockBuffer {
     lateinit var publicChat: ChatMessage
 
     var faceDegrees = 0
+    var faceInstant = 0
+
     var facePawnIndex = -1
 
     var animation = 0

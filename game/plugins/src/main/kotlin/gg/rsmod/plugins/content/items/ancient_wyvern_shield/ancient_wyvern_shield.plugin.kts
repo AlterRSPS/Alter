@@ -43,9 +43,3 @@ arrayOf(Items.WYVERN_VISAGE, Items.ELEMENTAL_SHIELD).forEach { item ->
         }
     }
 }
-
-fun check_level(Level_req:Int, Skill:Skills, player:Player) {
-    player.message("")
-
-}
-

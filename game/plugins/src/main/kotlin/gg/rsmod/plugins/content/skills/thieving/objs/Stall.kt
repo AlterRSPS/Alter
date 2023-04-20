@@ -5,6 +5,7 @@ import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.item.Item
 import gg.rsmod.plugins.api.Skills
 import gg.rsmod.plugins.api.cfg.Items
+
 import gg.rsmod.plugins.api.cfg.Objs
 import gg.rsmod.plugins.api.ext.*
 import gg.rsmod.plugins.content.skills.thieving.objs.StallRewards.bakers_stall_steals

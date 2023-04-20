@@ -135,7 +135,6 @@ fun checkPouch(player: Player) {
     }
 
     val name = world.definitions.get(ItemDef::class.java, item).name.lowercase()
-    val multiple = count > 1
 
     player.message("There ${count.toLiteral()?.pluralPrefix(count)} ${name.pluralSuffix(count)} in this pouch.")
 }

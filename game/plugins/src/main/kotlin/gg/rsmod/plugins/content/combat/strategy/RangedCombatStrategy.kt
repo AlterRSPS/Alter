@@ -146,7 +146,8 @@ object RangedCombatStrategy : CombatStrategy {
         val maxHit = formula.getMaxHit(pawn, target)
         val landHit = accuracy >= world.randomDouble()
         val hitDelay = getHitDelay(pawn.getCentreTile(), target.tile.transform(target.getSize() / 2, target.getSize() / 2))
-        val damage = pawn.dealHit(target = target, maxHit = maxHit, landHit = landHit, delay = hitDelay, onHit = ammoDropAction).hit.hitmarks.sumBy { it.damage }
+        val damage =
+            pawn.dealHit(target = target, maxHit = maxHit, landHit = landHit, delay = hitDelay, onHit = ammoDropAction).hit.hitmarks.sumOf { it.damage }
 
         if (damage > 0 && pawn.entityType.isPlayer) {
             addCombatXp(pawn as Player, target, damage)

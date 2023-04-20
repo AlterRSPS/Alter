@@ -5,6 +5,7 @@ import gg.rsmod.game.fs.def.ItemDef
 import gg.rsmod.game.model.queue.QueueTask
 import gg.rsmod.plugins.api.Skills
 import gg.rsmod.plugins.api.cfg.Items
+
 import gg.rsmod.plugins.api.ext.*
 import gg.rsmod.plugins.content.skills.fletching.data.Feathered
 
@@ -28,7 +29,7 @@ class FeatherAction(private val defs: DefinitionSet) {
     /**
      * A map of feathers to their item names
      */
-    private val featherNames = Feathered.feathers.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    //private val featherNames = Feathered.feathers.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
 
     /**
      * Handles the attachment of feathers to a item
@@ -91,7 +92,7 @@ class FeatherAction(private val defs: DefinitionSet) {
         val inventory = player.inventory
         if (inventory.getItemCount(feathered.unfeathered) < 1 || inventory.getItemCount(feather) < feathered.amount) {
             if(sendMessageBox)
-                task.messageBox("You need 1 ${unfeatheredNames[feathered.unfeathered]} and ${feathered.amount} ${featherNames[feather]} to make a ${itemNames[feathered.id]}")
+                task.messageBox("You need 1 ${unfeatheredNames[feathered.unfeathered]} and ${feathered.amount} to make a ${itemNames[feathered.id]}")
             return false
         }
 

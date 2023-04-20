@@ -42,6 +42,7 @@ set_combat_def(Npcs.KING_BLACK_DRAGON) {
     }
 
     slayerData {
+        levelRequirement = 50
         xp = 258.0
     }
 }

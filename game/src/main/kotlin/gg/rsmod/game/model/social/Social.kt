@@ -12,7 +12,11 @@ class Social {
     private val ignores = mutableListOf<String>()
 
     /**
-     * TODO Add support for old display name if current isn't previous/original one
+     * @TODO
+     * Add support for old display name current isn't
+     * Need to create actl tutorial island for it -> So that player starts without a name then he can choose w.e he wants
+     * And it does exist: displayName shit actl we can make it into String Array
+     * [0] = Current one, And move [0] => [1] When user changes name, Just need verification on how many users does Gagex store.
      */
     fun pushFriends(player: Player) {
         if (friends.isEmpty()) {

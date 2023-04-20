@@ -5,7 +5,7 @@ import gg.rsmod.game.model.entity.Pawn
 import gg.rsmod.game.model.entity.Player
 import gg.rsmod.plugins.api.EquipmentType
 import gg.rsmod.plugins.api.ext.getEquipment
-import gg.rsmod.plugins.content.inter.attack.AttackTab
+import gg.rsmod.plugins.content.interfaces.attack.AttackTab
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -20,11 +20,11 @@ object SpecialAttacks {
         val weaponItem = player.getEquipment(EquipmentType.WEAPON) ?: return false
         val special = attacks[weaponItem.id] ?: return false
 
-        if (AttackTab.getEnergy(player) < special.energyRequired) {
+        if (gg.rsmod.plugins.content.interfaces.attack.AttackTab.getEnergy(player) < special.energyRequired) {
             return false
         }
         
-        AttackTab.setEnergy(player, AttackTab.getEnergy(player) - special.energyRequired)
+        gg.rsmod.plugins.content.interfaces.attack.AttackTab.setEnergy(player, gg.rsmod.plugins.content.interfaces.attack.AttackTab.getEnergy(player) - special.energyRequired)
 
         val combatContext = CombatContext(world, player)
         target?.let { combatContext.target = it }

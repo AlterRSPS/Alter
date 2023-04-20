@@ -1323,6 +1323,27 @@ class PluginRepository(val world: World) {
         return true
     }
 
+    private final val ItemOnNpcGlobal = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
+
+    /**
+     *  Will execute if the item was used on any Npc
+     */
+    fun bindItemOnNpcGlobal(item: Int, plugin: Plugin.() -> Unit) {
+        if (ItemOnNpcGlobal.containsKey(item)) {
+            val error = IllegalStateException("Item on npc global is already bound to a plugin: item=$item")
+            logger.error(error) {}
+            throw error
+        }
+        ItemOnNpcGlobal[item] = plugin
+        pluginCount++
+    }
+
+    fun executeItemOnNpc(p: Player, item: Int): Boolean {
+        val plugin = ItemOnNpcGlobal[item] ?: return false
+        p.executePlugin(plugin)
+        return true
+    }
+
     fun bindGlobalGroundItemPickUp(plugin: Plugin.() -> Unit) {
         globalGroundItemPickUp.add(plugin)
     }

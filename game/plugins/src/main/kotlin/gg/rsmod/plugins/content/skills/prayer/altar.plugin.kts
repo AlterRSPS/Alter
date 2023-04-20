@@ -29,7 +29,7 @@ val altars = arrayOf(
 
 altars.forEach { obj ->
     arrayOf("Pray", "Pray-at").forEach {
-        if (if_obj_has_option(obj, it)) {
+        if (objHasOption(obj, it)) {
             on_obj_option(obj, it) {
                 pray(player)
             }

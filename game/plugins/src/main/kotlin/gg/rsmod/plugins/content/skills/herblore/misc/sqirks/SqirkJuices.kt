@@ -5,6 +5,7 @@ import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.item.Item
 import gg.rsmod.plugins.api.Skills
 import gg.rsmod.plugins.api.cfg.Items
+
 import gg.rsmod.plugins.api.ext.message
 
 enum class SqirkJuices(val sqirks: Item, val juice: Int, val cookingXpAwarded: Double, val thieveBoost: Int, val runBoostPercent: Double) {
