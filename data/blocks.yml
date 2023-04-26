@@ -1,22 +1,23 @@
 players:
 
-  updating-opcode: 36
-  excess-mask: 0x2
+  updating-opcode: 24
+  excess-mask-8: 0x8
+  excess-mask-16: 0x4000
 
   order:
-    - GFX
     - APPEARANCE
-    - FORCE_MOVEMENT
-    - HITMARK
-    - MOVEMENT
-    - PUBLIC_CHAT
-    - TEMP_MOVEMENT
     - ANIMATION
-    - APPLY_TINT
-    - FACE_TILE
-    - FORCE_CHAT
-    - CONTEXT_MENU
     - FACE_PAWN
+    - FORCE_CHAT
+    - FACE_TILE
+    - HITMARK
+    - PUBLIC_CHAT
+    - MOVEMENT
+    - FORCE_MOVEMENT
+    - TEMP_MOVEMENT
+    - CONTEXT_MENU
+    - APPLY_TINT
+    - GFX
 
   blocks:
     - block: APPLY_TINT
@@ -41,14 +42,13 @@ players:
           trans: SUBTRACT
 
     - block: APPEARANCE
-      bit: 0x40
+      bit: 0x2
       structure:
         - name: length
           type: BYTE
+          trans: ADD
         - name: buffer
           type: BYTES
-          trans: ADD
-          sign: SIGNED
 
     - block: PUBLIC_CHAT
       bit: 0x1
@@ -82,14 +82,13 @@ players:
       bit: 0x400
 
     - block: FACE_TILE
-      bit: 0x80
+      bit: 0x1
       structure:
         - name: degrees
           type: SHORT
-          trans: ADD
 
     - block: GFX
-      bit: 0x2000
+      bit: 0x10000
       structure:
         - name: gfx
           type: SHORT
@@ -99,13 +98,14 @@ players:
           order: LITTLE
 
     - block: FORCE_CHAT
-      bit: 0x20
+      bit: 0x80
 
     - block: ANIMATION
       bit: 0x10
       structure:
         - name: animation
           type: SHORT
+          trans: ADD
         - name: delay
           type: BYTE
           trans: NEGATE
@@ -115,7 +115,6 @@ players:
       structure:
         - name: hitmarks
           type: BYTE
-          trans: SUBTRACT
         - name: hitbars
           type: BYTE
           trans: ADD
@@ -124,49 +123,49 @@ players:
           trans: SUBTRACT
         - name: hitbar_to_percentage
           type: BYTE
-          trans: SUBTRACT
+          trans: NEGATE
 
     - block: FORCE_MOVEMENT
-      bit: 0x1000
+      bit: 0x400
       structure:
         - name: src_x
           type: BYTE
-          trans: ADD
         - name: src_z
           type: BYTE
-          trans: ADD
+          trans: SUBTRACT
         - name: dst_x
           type: BYTE
-          trans: ADD
+          trans: NEGATE
         - name: dst_z
           type: BYTE
           trans: NEGATE
         - name: client_delay
           type: SHORT
-        - name: client_duration
-          type: SHORT
           trans: ADD
           order: LITTLE
+        - name: client_duration
+          type: SHORT
         - name: direction_angle
           type: SHORT
           order: LITTLE
+          trans: ADD
 
     - block: MOVEMENT
-      bit: 0x100
+      bit: 0x800
       structure:
         - name: type
           type: BYTE
-          trans: SUBTRACT
 
     - block: FACE_PAWN
-      bit: 0x8
+      bit: 0x4
       structure:
         - name: pawn_index
           type: SHORT
+          trans: ADD
           order: LITTLE
         - name: pawn_index_shift
           type: BYTE
-          trans: NEGATE
+          trans: ADD
 
 npcs:
   updating-opcode: 100
