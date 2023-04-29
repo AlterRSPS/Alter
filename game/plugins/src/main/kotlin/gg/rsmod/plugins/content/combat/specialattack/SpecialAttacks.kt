@@ -12,19 +12,22 @@ import gg.rsmod.plugins.content.interfaces.attack.AttackTab
  */
 object SpecialAttacks {
 
-    fun register(weapon: Int, energy: Int, attack: CombatContext.() -> Unit) {
-        attacks[weapon] = SpecialAttack(energy, attack)
+    fun register(item: Int, energy: Int, executeOnSpecBar: Boolean = false, attack: CombatContext.() -> Unit) {
+        attacks[item] = SpecialAttack(energy, executeOnSpecBar, attack)
     }
 
+    fun executeOnEnable(item: Int) = attacks[item]!!.executeOnSpecBar
+
     fun execute(player: Player, target: Pawn?, world: World): Boolean {
+
         val weaponItem = player.getEquipment(EquipmentType.WEAPON) ?: return false
         val special = attacks[weaponItem.id] ?: return false
 
-        if (gg.rsmod.plugins.content.interfaces.attack.AttackTab.getEnergy(player) < special.energyRequired) {
+        if (AttackTab.getEnergy(player) < special.energyRequired) {
             return false
         }
-        
-        gg.rsmod.plugins.content.interfaces.attack.AttackTab.setEnergy(player, gg.rsmod.plugins.content.interfaces.attack.AttackTab.getEnergy(player) - special.energyRequired)
+
+        AttackTab.setEnergy(player, AttackTab.getEnergy(player) - special.energyRequired)
 
         val combatContext = CombatContext(world, player)
         target?.let { combatContext.target = it }

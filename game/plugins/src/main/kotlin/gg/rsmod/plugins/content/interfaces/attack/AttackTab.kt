@@ -24,23 +24,23 @@ object AttackTab {
 
     fun setEnergy(p: Player, amount: Int) {
         check(amount in 0..100)
-        p.setVarp(gg.rsmod.plugins.content.interfaces.attack.AttackTab.SPECIAL_ATTACK_ENERGY_VARP, amount * 10)
+        p.setVarp(SPECIAL_ATTACK_ENERGY_VARP, amount * 10)
     }
 
     fun restoreEnergy(p: Player)
     {
-        var newEnergy = p.getVarp(gg.rsmod.plugins.content.interfaces.attack.AttackTab.SPECIAL_ATTACK_ENERGY_VARP) + 100
+        var newEnergy = p.getVarp(SPECIAL_ATTACK_ENERGY_VARP) + 100
         if (newEnergy > 1000) newEnergy = 1000
-        p.setVarp(gg.rsmod.plugins.content.interfaces.attack.AttackTab.SPECIAL_ATTACK_ENERGY_VARP, newEnergy)
+        p.setVarp(SPECIAL_ATTACK_ENERGY_VARP, newEnergy)
     }
 
-    fun getEnergy(p: Player): Int = p.getVarp(gg.rsmod.plugins.content.interfaces.attack.AttackTab.SPECIAL_ATTACK_ENERGY_VARP) / 10
+    fun getEnergy(p: Player): Int = p.getVarp(SPECIAL_ATTACK_ENERGY_VARP) / 10
 
     fun disableSpecial(p: Player) {
-        p.setVarp(gg.rsmod.plugins.content.interfaces.attack.AttackTab.SPECIAL_ATTACK_VARP, 0)
+        p.setVarp(SPECIAL_ATTACK_VARP, 0)
     }
 
-    fun isSpecialEnabled(p: Player): Boolean = p.getVarp(gg.rsmod.plugins.content.interfaces.attack.AttackTab.SPECIAL_ATTACK_VARP) == 1
+    fun isSpecialEnabled(p: Player): Boolean = p.getVarp(SPECIAL_ATTACK_VARP) == 1
 
-    fun resetRestorationTimer(player: Player) = player.timers.set(gg.rsmod.plugins.content.interfaces.attack.AttackTab.SPEC_RESTORE, 30.secondsToTicks())
+    fun resetRestorationTimer(player: Player) = player.timers.set(SPEC_RESTORE, 30.secondsToTicks())
 }
