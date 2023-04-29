@@ -6,7 +6,6 @@ import gg.rsmod.plugins.content.interfaces.attack.AttackTab.DISABLE_AUTO_RETALIA
 import gg.rsmod.plugins.content.interfaces.attack.AttackTab.SPECIAL_ATTACK_VARP
 import gg.rsmod.plugins.content.interfaces.attack.AttackTab.setEnergy
 import gg.rsmod.game.model.attr.NEW_ACCOUNT_ATTR
-import gg.rsmod.plugins.content.combat.specialattack.SpecialAttack
 import gg.rsmod.plugins.content.combat.specialattack.SpecialAttacks
 
 /**
