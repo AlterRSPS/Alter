@@ -21,25 +21,24 @@ players:
 
   blocks:
     - block: APPLY_TINT
-      bit: 0x800
+      bit: 0x8000
       structure:
         - name: recolourStartCycle
           type: SHORT
+          trans: ADD
+          order: LITTLE
         - name: recolourEndCycle
           type: SHORT
-          order: LITTLE
         - name: recolourHue
           type: BYTE
-          sign: SIGNED
-          trans: ADD
         - name: recolourSaturation
           type: BYTE
         - name: recolourLuminance
           type: BYTE
-          trans: NEGATE
+          trans: ADD
         - name: recolourAmount
           type: BYTE
-          trans: SUBTRACT
+          trans: NEGATE
 
     - block: APPEARANCE
       bit: 0x2
@@ -51,7 +50,7 @@ players:
           type: BYTES
 
     - block: PUBLIC_CHAT
-      bit: 0x1
+      bit: 0x20
       structure:
         - name: effects
           type: SHORT
@@ -59,27 +58,24 @@ players:
         - name: icon
           sign: UNSIGNED
           type: BYTE
-          trans: SUBTRACT
         - name: auto
           sign: UNSIGNED
           type: BYTE
           trans: NEGATE
         - name: compressed_length
           type: BYTE
-          trans: NEGATE
+          trans: ADD
         - name: compressed_data
           type: BYTES
-          trans: ADD
 
     - block: TEMP_MOVEMENT
-      bit: 0x4000
+      bit: 0x800
       structure:
         - name: type
           type: BYTE
-          trans: ADD
 
     - block: CONTEXT_MENU
-      bit: 0x400
+      bit: 0x2000
 
     - block: FACE_TILE
       bit: 0x1
@@ -93,9 +89,9 @@ players:
         - name: gfx
           type: SHORT
           trans: ADD
+          order: LITTLE
         - name: settings
           type: INT
-          order: LITTLE
 
     - block: FORCE_CHAT
       bit: 0x80
@@ -111,7 +107,7 @@ players:
           trans: NEGATE
 
     - block: HITMARK
-      bit: 0x4
+      bit: 0x40
       structure:
         - name: hitmarks
           type: BYTE
@@ -168,8 +164,8 @@ players:
           trans: ADD
 
 npcs:
-  updating-opcode: 100
-  large-updating-opcode: 101
+  updating-opcode: 37
+  large-updating-opcode: 61
 
   order:
     - ANIMATION
