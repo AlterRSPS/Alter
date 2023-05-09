@@ -1,5 +1,5 @@
 # Alter
-[![revision: 212][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/sAzCuuwkpN) ![jdk-badge] ![](https://tokei.rs/b1/github/AlterRSPS/Alter)
+[![revision: 213][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/sAzCuuwkpN) ![jdk-badge] ![](https://tokei.rs/b1/github/AlterRSPS/Alter)
 
 **Alter** is a modified version of [RSMod](https://github.com/Tomm0017/rsmod) a highly flexible user-friendly game server for use with the OSRS client. Implemented in a modular way,
 the framework allows developers to make and create any sort of plugin they wish without having to modify the core game module.
@@ -10,7 +10,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 
 #### Setting up the server:
 * ### First of all Download:
-* [2023-03-22-rev212.tar.gz](https://archive.runestats.com/osrs/2023-03-22-rev212.tar.gz) , And make sure you're using correct Java Version.
+* [2023-05-03-rev213.tar.gz](https://archive.runestats.com/osrs/2023-05-03-rev213.tar.gz) , And make sure you're using correct Java Version.
 * Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o).
 * Secondly open Intellij, (If you already have a project open, either do `File -> Close`, or `File -> New -> Project from Version Control`)
 * If you decided to use `Close method` you will see this window, click on `Get from VCS`
@@ -18,7 +18,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Second paste `https://github.com/AlterRSPS/Alter` in URL Field and hit Clone. </br>
   ![tutor2](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tuor2.png)
 * Hit `Clone` and Let the project fully load.
-* Now open the `2023-03-09-rev212.tar.gz` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
+* Now open the `2023-05-03-rev213.tar.gz` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
   ![tutor6](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor6.png)
 - Xtea.json has to be in same folder like: Data /`api.yml` , `blocks.yml` , etc..
 * Now click on `Gradle` button on right side. </br>
@@ -32,10 +32,11 @@ Due to the plugin capabilities, even owners without programming experience can j
   ![tutor8](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Alter_Successfully_initialized.png)
 * If you only see `Alter Loaded up in x ms.` you messed up somewhere.
 * You can connect what ever client you want (ofc it has to follow OSRS protocols.)
-* ### Some clients that can be connected to Alter Server:
-* [MeteorLite](https://github.com/AlterRSPS/meteor-client)
-* [MeteorMobile](https://github.com/MeteorLite/meteor-mobile) => Will create a fork for it later. For RSPS connection and README tutorial how to set it up for yourself later.
-* [DeviousClient](https://github.com/AlterRSPS/devious-client-rsps)
+* ### Some clients that can be used to connected to Alter Server:
+* [MeteorLite](https://github.com/MeteorLite/meteor-client)
+  * Simply run it, and you will have Private Server Plugin which is pretty easy to use.
+  * If you will need help with it, come to their discord server [MeteorLiteDiscord](https://discord.com/invite/Y85d6NH6z3)
+
 * ### Tools:
 * [CS2 Editor](https://github.com/blurite/cs2-editor), Big thanks to [Blurite Team](https://github.com/blurite) for maintaining such good tool.
 * [Z-Kris's Event Inspector](https://media.z-kris.com/runelite-event-inspector-client.jar) , Want to dump osrs data easily? or see hows what being sent? Use this RL Client it's pretty easy to use.
