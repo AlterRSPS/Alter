@@ -16,7 +16,7 @@ server-packets:
         type: SHORT
         order: LITTLE
       - name: xteas
-        write: BYTES
+        type: BYTES
 
   - message: gg.rsmod.game.message.impl.RebuildNormalMessage
     type: VARIABLE_SHORT
@@ -29,32 +29,32 @@ server-packets:
         type: SHORT
         order: LITTLE
       - name: xteas
-        write: BYTES
+        type: BYTES
 
   - message: gg.rsmod.game.message.impl.UpdateRunWeightMessage
     type: FIXED
     opcode: 82
     structure:
       - name: weight
-        write: SHORT
+        type: SHORT
 
   - message: gg.rsmod.game.message.impl.RunClientScriptMessage
     type: VARIABLE_SHORT
     opcode: 13
     structure:
       - name: types
-        write: BYTES
+        type: BYTES
       - name: args
-        write: BYTES
+        type: BYTES
       - name: id
-        write: INT
+        type: INT
 
   - message: gg.rsmod.game.message.impl.VarpLargeMessage
     type: FIXED
     opcode: 17
     structure:
       - name: value
-        write: INT
+        type: INT
       - name: id
         type: SHORT
         trans: ADD
@@ -64,24 +64,27 @@ server-packets:
     opcode: 48
     structure:
       - name: type
-        write: BYTE
+        type: BYTE
       - name: check_ignore
-        write: BYTE
+        type: BYTE
       - name: username
-        write: BYTES
+        type: BYTES
       - name: message
-        write: BYTES
+        type: BYTES
 
   - message: gg.rsmod.game.message.impl.UpdateStatMessage
     type: FIXED
     opcode: 14
     structure:
       - name: skill
-        write: ByteSub
+        type: BYTE
+        trans: SUBTRACT
       - name: level
-        write: ByteSub
+        type: BYTE
+        trans: SUBTRACT
       - name: xp
-        write: IntLE
+        type: INT
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.MidiSongMessage
     type: FIXED
@@ -153,16 +156,17 @@ server-packets:
     opcode: 56
     structure:
       - name: energy
-        write: SHORT
+        type: SHORT
 
   - message: gg.rsmod.game.message.impl.IfSetTextMessage
     type: VARIABLE_SHORT
     opcode: 57
     structure:
       - name: text
-        write: BYTES
+        type: BYTES
       - name: hash
-        write: IntIME
+        type: INT
+        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.IfOpenSubMessage
     type: FIXED
@@ -193,22 +197,22 @@ server-packets:
     opcode: 92
     structure:
       - name: z
-        write: Byte
+        type: BYTE
         trans: NEGATE
       - name: x
-        write: Byte
+        type: BYTE
       - name: payload
-        write: BYTES
+        type: BYTES
 
   - message: gg.rsmod.game.message.impl.IfMoveSubMessage
     type: FIXED
     opcode: 50
     structure:
       - name: from
-        write: INT
+        type: INT
         order: INVERSE_MIDDLE
       - name: to
-        write: INT
+        type: INT
         order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.IfCloseSubMessage
@@ -216,12 +220,12 @@ server-packets:
     opcode: 16
     structure:
       - name: hash
-        write: INT
-    # @TODO
+        type: INT
+
   - message: gg.rsmod.game.message.impl.CamResetMessage
     type: FIXED
     opcode: 32
-    # @TODO
+
   - message: gg.rsmod.game.message.impl.CamShakeMessage
     type: FIXED
     opcode: 71
@@ -335,9 +339,11 @@ server-packets:
     opcode: 26
     structure:
       - name: z
-        write: ByteSub
+        type: BYTE
+        trans: SUBTRACT
       - name: x
-        write: ByteNeg
+        type: BYTE
+        trans: NEGATE
 
   - message: gg.rsmod.game.message.impl.LocAddChangeMessage
     type: FIXED
@@ -432,7 +438,7 @@ server-packets:
     opcode: 60
     structure:
       - name: url
-        write: BYTES
+        type: BYTES
 
   - message: gg.rsmod.game.message.impl.IfSetHideMessage
     type: FIXED
@@ -449,9 +455,11 @@ server-packets:
     opcode: 80
     structure:
       - name: hash
-        write: IntIME
+        type: INT
+        order: INVERSE_MIDDLE
       - name: amount
-        write: IntLE
+        type: INT
+        order: LITTLE
       - name: item
         type: SHORT
         trans: ADD
@@ -462,9 +470,12 @@ server-packets:
     opcode: 51
     structure:
       - name: npc
-        write: ShortAddLE
+        type: SHORT
+        trans: ADD
+        order: LITTLE
       - name: hash
-        write: IntME
+        type: INT
+        order: MIDDLE
 
 
   - message: gg.rsmod.game.message.impl.IfSetPlayerHeadMessage
@@ -472,16 +483,20 @@ server-packets:
     opcode: 2
     structure:
       - name: hash
-        write: IntLE
+        type: INT
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.IfSetAnimMessage
     type: FIXED
     opcode: 58
     structure:
       - name: anim
-        write: ShortAddLE
+        type: SHORT
+        trans: ADD
+        order: LITTLE
       - name: hash
-        write: IntIME
+        type: INT
+        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.IfSetModelMessage
     type: FIXED
@@ -498,9 +513,9 @@ server-packets:
     opcode: 25
     structure:
       - name: x
-        write: BYTE
+        type: BYTE
       - name: z
-        write: BYTE
+        type: BYTE
 
   - message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
     type: VARIABLE_SHORT
@@ -989,7 +1004,7 @@ client-packets:
 
   - message: gg.rsmod.game.message.impl.OpLoc4Message
     type: FIXED
-    opcode: 11
+    opcode: 94
     length: 7
     structure:
       - name: x
