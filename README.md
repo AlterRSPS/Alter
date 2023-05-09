@@ -48,7 +48,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 ### Some info:
 * Original project founder: [Tomm0017](https://github.com/Tomm0017)
 
-[patch]: https://oldschool.runescape.wiki/w/Update:More_Poll_78_Changes!
-[rev-badge]: https://img.shields.io/badge/Revision-212-blueviolet
+[patch]: https://oldschool.runescape.wiki/w/Update:Points-Based_Combat_Achievements
+[rev-badge]: https://img.shields.io/badge/Revision-213-blueviolet
 [license-badge]: https://img.shields.io/badge/license-ISC-informational
 [jdk-badge]: https://img.shields.io/badge/JDK-11-blue
