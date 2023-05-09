@@ -166,7 +166,7 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 44) {
 
 // deposit
 on_button(interfaceId = INV_INTERFACE_ID, component = INV_INTERFACE_CHILD) p@{
-    val opt = player.getInteractingOption()
+    val opt = player.getInteractingOption()+1
     val slot = player.getInteractingSlot()
 
     val item = player.inventory[slot] ?: return@p
@@ -224,7 +224,7 @@ on_button(interfaceId = INV_INTERFACE_ID, component = INV_INTERFACE_CHILD) p@{
 
 // withdraw
 on_button(interfaceId = BANK_INTERFACE_ID, component = BANK_MAINTAB_COMPONENT) p@{
-    val opt = player.getInteractingOption()
+    val opt = player.getInteractingOption()+1
     val slot = player.getInteractingSlot()
 
     val item = player.bank[slot] ?: return@p
