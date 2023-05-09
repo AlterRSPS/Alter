@@ -166,6 +166,8 @@ players:
 npcs:
   updating-opcode: 37
   large-updating-opcode: 61
+  excess-mask-8: 0x80
+  excess-mask-16: 0x100
 
   order:
     - ANIMATION
