@@ -275,11 +275,11 @@ class GameService : Service {
              * R: reserved memory, in megabytes
              * M: max memory available, in megabytes
              */
-            logger.info("[Cycle time: {}ms] [Entities: {}p / {}n] [Map: {}c / {}r / {}i] [Queues: {}p / {}n / {}w] [Mem usage: U={}MB / R={}MB / M={}MB].",
-                    cycleTime / TICKS_PER_DEBUG_LOG, world.players.count(), world.npcs.count(),
-                    world.chunks.getActiveChunkCount(), world.chunks.getActiveRegionCount(), world.instanceAllocator.activeMapCount,
-                    totalPlayerQueues, totalNpcQueues, totalWorldQueues,
-                    (totalMemory - freeMemory) / (1024 * 1024), totalMemory / (1024 * 1024), maxMemory / (1024 * 1024))
+            //logger.info("[Cycle time: {}ms] [Entities: {}p / {}n] [Map: {}c / {}r / {}i] [Queues: {}p / {}n / {}w] [Mem usage: U={}MB / R={}MB / M={}MB].",
+            //        cycleTime / TICKS_PER_DEBUG_LOG, world.players.count(), world.npcs.count(),
+            //        world.chunks.getActiveChunkCount(), world.chunks.getActiveRegionCount(), world.instanceAllocator.activeMapCount,
+            //        totalPlayerQueues, totalNpcQueues, totalWorldQueues,
+            //        (totalMemory - freeMemory) / (1024 * 1024), totalMemory / (1024 * 1024), maxMemory / (1024 * 1024))
             debugTick = 0
             cycleTime = 0
         }
