@@ -183,7 +183,7 @@ server-packets:
     opcode: 85
     structure:
       - name: value
-        write: Byte
+        type: BYTE
         trans: NEGATE
       - name: id
         type: SHORT
