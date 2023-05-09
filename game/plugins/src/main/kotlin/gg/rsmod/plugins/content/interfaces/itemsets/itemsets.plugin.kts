@@ -46,8 +46,8 @@ on_world_init {
 
 
 on_button(ItemSets.ITEMSETS_INTERFACE, 2) {
-    val Item = slotList[player.attr[INTERACTING_SLOT_ATTR]!!]//player.attr[INTERACTING_ITEM_ID]!!
-    if (player.attr[INTERACTING_OPT_ATTR]!! == 1) {
+    val Item = slotList[player.attr[INTERACTING_SLOT_ATTR]!!]
+    if (player.attr[INTERACTING_OPT_ATTR]!! == 0) {
         var missing: Int = 0
         val message: StringBuilder = StringBuilder()
         if (itemlist[Item] != null) {
@@ -81,7 +81,7 @@ on_button(ItemSets.ITEMSETS_INTERFACE, 2) {
 }
 
 on_button(ItemSets.ITEMSETS_INVENTORY, 0) {
-    if (player.attr[INTERACTING_OPT_ATTR]!! == 1) {
+    if (player.attr[INTERACTING_OPT_ATTR]!! == 0) {
         val slot = player.attr[INTERACTING_SLOT_ATTR]!!
         val sitem = player.inventory[slot]!!.id
         if (itemlist[sitem] != null) {

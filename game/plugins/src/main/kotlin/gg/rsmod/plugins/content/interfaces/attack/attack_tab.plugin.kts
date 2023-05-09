@@ -6,6 +6,7 @@ import gg.rsmod.plugins.content.interfaces.attack.AttackTab.DISABLE_AUTO_RETALIA
 import gg.rsmod.plugins.content.interfaces.attack.AttackTab.SPECIAL_ATTACK_VARP
 import gg.rsmod.plugins.content.interfaces.attack.AttackTab.setEnergy
 import gg.rsmod.game.model.attr.NEW_ACCOUNT_ATTR
+import gg.rsmod.plugins.content.combat.specialattack.SpecialAttacks
 
 /**
  * First log-in logic (when accounts have just been made).
@@ -14,13 +15,13 @@ on_login {
     if (player.attr.getOrDefault(NEW_ACCOUNT_ATTR, false)) {
         setEnergy(player, 100)
     }
-    gg.rsmod.plugins.content.interfaces.attack.AttackTab.resetRestorationTimer(player)
+    AttackTab.resetRestorationTimer(player)
 }
 
-on_timer(gg.rsmod.plugins.content.interfaces.attack.AttackTab.SPEC_RESTORE)
+on_timer(AttackTab.SPEC_RESTORE)
 {
-    gg.rsmod.plugins.content.interfaces.attack.AttackTab.restoreEnergy(player)
-    gg.rsmod.plugins.content.interfaces.attack.AttackTab.resetRestorationTimer(player)
+    AttackTab.restoreEnergy(player)
+    AttackTab.resetRestorationTimer(player)
 }
 
 /**
@@ -53,7 +54,13 @@ on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 30) {
  * Toggle special attack.
  */
 on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 36) {
-    player.toggleVarp(SPECIAL_ATTACK_VARP)
+    if (SpecialAttacks.executeOnEnable(player.equipment[EquipmentType.WEAPON.id]!!.id)) {
+        if (!SpecialAttacks.execute(player,null, world)) {
+            player.message("You don't have enough power left.")
+        }
+    } else {
+        player.toggleVarp(SPECIAL_ATTACK_VARP)
+    }
 }
 
 /**
