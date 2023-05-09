@@ -139,11 +139,6 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 appBuf.put(DataType.BYTE, other.appearance.gender.id)
                 appBuf.put(DataType.BYTE, other.skullIcon)
                 appBuf.put(DataType.BYTE, other.prayerIcon)
-
-                println("Gender: ${other.appearance.gender.id}")
-                println("SkullIcon: ${other.skullIcon}")
-                println("PrayerIcon: ${other.prayerIcon}")
-
                 val transmog = other.getTransmogId() >= 0
 
                 if (!transmog) {
@@ -213,7 +208,6 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
 
                 for (i in 0 until 5) {
                     val color = Math.max(0, other.appearance.colors[i])
-                    print("$color,")
                     appBuf.put(DataType.BYTE, color)
                 }
 
@@ -286,7 +280,6 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
             }
 
             UpdateBlockType.HITMARK -> {
-                println("Hitmark")
                 val structure = blocks.updateBlocks[blockType]!!.values
 
                 val hitmarkCountStructure = structure[0]
