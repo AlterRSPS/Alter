@@ -16,7 +16,12 @@ object SpecialAttacks {
         attacks[item] = SpecialAttack(energy, executeOnSpecBar, attack)
     }
 
-    fun executeOnEnable(item: Int) = attacks[item]!!.executeOnSpecBar
+    fun executeOnEnable(item: Int) : Boolean {
+        if (attacks.containsKey(item)) {
+            return attacks[item]!!.executeOnSpecBar
+        }
+        return false
+    }
 
     fun execute(player: Player, target: Pawn?, world: World): Boolean {
 
@@ -35,6 +40,5 @@ object SpecialAttacks {
 
         return true
     }
-
-    private val attacks = mutableMapOf<Int, SpecialAttack>()
+    val attacks = mutableMapOf<Int, SpecialAttack>()
 }

@@ -39,7 +39,7 @@ on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 12) {
     player.setVarp(ATTACK_STYLE_VARP, 2)
 }
 
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 16) {
+on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 16)  {
     player.setVarp(ATTACK_STYLE_VARP, 3)
 }
 
@@ -54,7 +54,8 @@ on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 30) {
  * Toggle special attack.
  */
 on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 36) {
-    if (SpecialAttacks.executeOnEnable(player.equipment[EquipmentType.WEAPON.id]!!.id)) {
+    val weaponId = player.equipment[EquipmentType.WEAPON.id]!!.id
+    if (SpecialAttacks.executeOnEnable(weaponId)) {
         if (!SpecialAttacks.execute(player,null, world)) {
             player.message("You don't have enough power left.")
         }
