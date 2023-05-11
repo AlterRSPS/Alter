@@ -24,7 +24,7 @@ object RunEnergy {
     const val RUN_ENABLED_VARP = Varps.RUN_MODE_VARP
 
     fun toggle(p: Player) {
-        if (p.runEnergy >= 1.0) {
+        if (p.runEnergy >= 100.0) {
             p.toggleVarp(RUN_ENABLED_VARP)
         } else {
             p.setVarp(RUN_ENABLED_VARP, 0)
@@ -36,7 +36,7 @@ object RunEnergy {
         if (p.isRunning() && p.hasMoveDestination()) {
             if (!p.hasStorageBit(INFINITE_VARS_STORAGE, InfiniteVarsType.RUN)) {
                 val weight = Math.max(0.0, p.weight)
-                var decrement = (Math.min(weight, 64.0) / 100.0) + 0.64
+                var decrement = (Math.min(weight, 6400.0) / 10000.0) + 64.0
                 if (p.timers.has(STAMINA_BOOST)) {
                     decrement *= 0.3
                 }
@@ -46,12 +46,12 @@ object RunEnergy {
                 }
                 p.sendRunEnergy(p.runEnergy.toInt())
             }
-        } else if (p.runEnergy < 100.0 && p.lock.canRestoreRunEnergy()) {
-            var recovery = (8.0 + (p.getSkills().getCurrentLevel(Skills.AGILITY) / 6.0)) / 100.0
+        } else if (p.runEnergy < 10000.0 && p.lock.canRestoreRunEnergy()) {
+            var recovery = (800.0 + (p.getSkills().getCurrentLevel(Skills.AGILITY)*100 / 600.0)) / 10000.0
             if (isWearingFullGrace(p)) {
-                recovery *= 1.3
+                recovery *= 130
             }
-            p.runEnergy = Math.min(100.0, (p.runEnergy + recovery))
+            p.runEnergy = Math.min(10000.0, (p.runEnergy + recovery))
             p.sendRunEnergy(p.runEnergy.toInt())
         }
     }

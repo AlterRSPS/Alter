@@ -189,7 +189,7 @@ open class Player(world: World) : Pawn(world) {
 
     var skullIcon = -1
 
-    var runEnergy = 100.0
+    var runEnergy = 10000.00 // 100.0
 
     /**
      * The current combat level. This must be set externally by a login plugin
