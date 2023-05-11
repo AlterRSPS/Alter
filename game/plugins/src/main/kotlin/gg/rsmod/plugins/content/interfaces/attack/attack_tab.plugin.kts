@@ -50,6 +50,19 @@ on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 30) {
     player.toggleVarp(DISABLE_AUTO_RETALIATE_VARP)
 }
 
+
+on_button(interfaceId = 160, component = 35) {
+    val weaponId = player.equipment[EquipmentType.WEAPON.id]!!.id
+    if (SpecialAttacks.executeOnEnable(weaponId)) {
+        if (!SpecialAttacks.execute(player,null, world)) {
+            player.message("You don't have enough power left.")
+        }
+    } else {
+        player.toggleVarp(SPECIAL_ATTACK_VARP)
+    }
+}
+
+
 /**
  * Toggle special attack.
  */
