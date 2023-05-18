@@ -11,14 +11,24 @@ on_button(interfaceId = 160, component = 53) {
     }
 
     if (!player.isInterfaceVisible(WORLD_MAP_INTERFACE_ID)) {
+        /**
+         * @TODO All options were now swapped from 2 to 1's
+         */
         val opt = player.getInteractingOption()
         player.sendWorldMapTile()
-        player.openInterface(interfaceId = WORLD_MAP_INTERFACE_ID, dest = InterfaceDestination.WORLD_MAP, fullscreen = opt != 2)
+        player.playSound(Sounds.INTERFACE_SELECT1, 100)
+
         if (opt != 2) {
-            player.openInterface(interfaceId = WORLD_MAP_FULLSCREEN_INTERFACE_ID, dest = InterfaceDestination.WORLD_MAP_FULL, fullscreen = true)
+            player.openInterface(interfaceId = WORLD_MAP_INTERFACE_ID, dest = InterfaceDestination.WORLD_MAP, fullscreen = false)
+            player.setInterfaceEvents(interfaceId = WORLD_MAP_INTERFACE_ID, component = 21, range = 0..4, setting = InterfaceEvent.ClickOp1)
+        } else {
+            player.queue {
+                player.animate(Animation.LOOK_AT_MINIMAP_WHEN_FULLSCREEN)
+                wait (1)
+                player.message("Fullscreen minimap was temporarily disabled.")
+                player.animate(Animation.CLOSE_MINIMAP_FULLSCREEN)
+            }
         }
-        player.animate(Animation.LOOK_AT_MINIMAP_WHEN_FULLSCREEN)
-        player.setInterfaceEvents(interfaceId = WORLD_MAP_INTERFACE_ID, component = 20, range = 0..4, setting = 2)
         player.timers[UPDATE_TIMER] = 1
     } else {
         player.closeInterface(WORLD_MAP_INTERFACE_ID)
