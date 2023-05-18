@@ -7,8 +7,8 @@ import gg.rsmod.game.model.bits.BitStorage
  */
 object OptionsTab {
 
-    const val OPTIONS_INTERFACE_ID = 116
-    const val OPTIONS_TAB_SELECTED_VARBIT = 9683
+    const val SETTINGS_INTERFACE_TAB = 116
+    const val SETTINGS_TAB_SELECTED_VARBIT = 9683
     const val ALL_SETTINGS_BUTTON_ID = 75
     const val ALL_SETTINGS_INTERFACE_ID = 134
 
