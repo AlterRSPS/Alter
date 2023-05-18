@@ -34,19 +34,6 @@ on_login {
     player.sendWeaponComponentInformation()
     player.sendCombatLevelText()
 
-    /**
-     * Still don't know which one of this triggers it, but one of them fixes the chatbox username
-     * Ok turns out we send out PlayerUpdate either too late or too soon. Will need to inspect it one day @TODO
-     */
-    val someRandomVarps = listOf(18,20,21,23,25,46,153,168,169,281,300,849,850,851,852,853,854,855,856,872)
-    val someRandomVarbits = listOf(5411,5412,4137,3216,10066,1782,2885,3638,3713,6363,8354,5605,5607,3924,5102,1303,4609,4702)
-    someRandomVarbits.forEach {
-        player.setVarbit(it, 0)
-    }
-    someRandomVarps.forEach {
-        player.setVarp(it, 0)
-    }
-
     val now = System.currentTimeMillis()
     val last = player.attr.getOrDefault(LAST_LOGIN_ATTR, now.toString()).toLong()
     val time_lapsed = now - last
@@ -66,17 +53,17 @@ on_login {
     player.openDefaultInterfaces()
     // Inform the client whether or not we have a display name.
     val displayName = player.username.isNotBlank()
-    //player.runClientScript(1105, if (displayName) 1 else 0) // Has display name
-    //player.runClientScript(423, player.username)
     player.setVarbit(13027, player.combatLevel)
+    player.setVarbit(8119, 1)
     if (player.getVarp(1055) == 0 && displayName) {
         player.syncVarp(1055)
     }
-    player.setVarbit(8119, 1) // Has display name
+
 
     // Sync attack priority options.
     player.syncVarp(Varps.NPC_ATTACK_PRIORITY_VARP)
     player.syncVarp(Varps.PLAYER_ATTACK_PRIORITY_VARP)
+
 
     // Send player interaction options.
     player.sendOption("Follow", 3)

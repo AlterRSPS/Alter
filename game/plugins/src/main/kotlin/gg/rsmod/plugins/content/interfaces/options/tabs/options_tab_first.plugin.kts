@@ -4,15 +4,15 @@ import gg.rsmod.game.model.interf.DisplayMode
 import gg.rsmod.plugins.content.interfaces.options.OptionsTab
 
 fun bind_setting(child: Int, plugin: Plugin.() -> Unit) {
-    on_button(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = child) {
+    on_button(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = child) {
         plugin(this)
     }
 }
 
 
 on_login {
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 6, range = 1..4, setting = 2) // Player option priority
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 7, range = 1..4, setting = 2) // Npc option priority
+    player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 6, range = 1..4, setting = 2) // Player option priority
+    player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 7, range = 1..4, setting = 2) // Npc option priority
     //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 40, range = 0..4, setting = 2)
     //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 42, range = 0..4, setting = 2)
     //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 44, range = 0..4, setting = 2)
@@ -21,14 +21,14 @@ on_login {
     //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 25, range = 1..5, setting = 2)
     //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 115, range = 0..3, setting = 2)
 
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 55, range = 0..21, setting = InterfaceEvent.ClickOp1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 84, range = 1..3, setting = InterfaceEvent.ClickOp1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 69, range = 0..21, setting = InterfaceEvent.ClickOp1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 82, range = 1..4, setting = InterfaceEvent.ClickOp1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 81, range = 1..5, setting = InterfaceEvent.ClickOp1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 83, range = 1..5, setting = InterfaceEvent.ClickOp1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 41, range = 0..21, setting = InterfaceEvent.ClickOp1)
-    player.setInterfaceEvents(interfaceId = OptionsTab.OPTIONS_INTERFACE_ID, component = 23, range =  0..21, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 55, range = 0..21, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 84, range = 1..3, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 69, range = 0..21, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 82, range = 1..4, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 81, range = 1..5, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 83, range = 1..5, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 41, range = 0..21, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 23, range =  0..21, setting = InterfaceEvent.ClickOp1)
 }
 
 
@@ -138,29 +138,29 @@ bind_setting(child = OptionsTab.ALL_SETTINGS_BUTTON_ID) {
     player.setInterfaceEvents(interfaceId = OptionsTab.ALL_SETTINGS_INTERFACE_ID, component = 28, range = 0..41, setting = 2)
 }
 
-on_button(OptionsTab.OPTIONS_INTERFACE_ID, 5) {
+on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 5) {
     player.toggleVarbit(Varbits.PK_PREVENT_SKULL)
 }
 
-on_button(OptionsTab.OPTIONS_INTERFACE_ID, 87) {
+on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 87) {
     player.toggleVarbit(Varbits.DISABLE_ZOOM)
 }
 
-on_button(OptionsTab.OPTIONS_INTERFACE_ID, 30) {
+on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 30) {
     if(player.getVarp(Varps.MUTE_MUSIC) == 0) {
         player.setVarp(Varps.MUTE_MUSIC, 25)
     } else if (player.getVarp(Varps.MUTE_MUSIC) == 25) {
         player.setVarp(Varps.MUTE_MUSIC, 0)
     }
 }
-on_button(OptionsTab.OPTIONS_INTERFACE_ID, 44) {
+on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 44) {
     if(player.getVarp(Varps.MUTE_SOUND_EFFECTS) == 0) {
         player.setVarp(Varps.MUTE_SOUND_EFFECTS, 25)
     } else if (player.getVarp(Varps.MUTE_SOUND_EFFECTS) == 25) {
         player.setVarp(Varps.MUTE_SOUND_EFFECTS, 0)
     }
 }
-on_button(OptionsTab.OPTIONS_INTERFACE_ID, 58) {
+on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 58) {
     if(player.getVarp(Varps.MUTE_AREA_SOUND) == 0) {
         player.setVarp(Varps.MUTE_AREA_SOUND, 25)
     } else if (player.getVarp(Varps.MUTE_AREA_SOUND) == 25) {
@@ -168,12 +168,37 @@ on_button(OptionsTab.OPTIONS_INTERFACE_ID, 58) {
     }
 }
 
-on_button(OptionsTab.OPTIONS_INTERFACE_ID, 106) {
+
+/**
+ * @TODO
+ * If you have the sliders on -> and login it wont start playing the sound till u open the sound settings interface.
+ */
+
+on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 106) {
     player.setVarbit(Varbits.SETTINGS_TAB_FOCUS, 0)
 }
-on_button(OptionsTab.OPTIONS_INTERFACE_ID, 111) {
+on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 111) {
     player.setVarbit(Varbits.SETTINGS_TAB_FOCUS, 1)
 }
-on_button(OptionsTab.OPTIONS_INTERFACE_ID, 112) {
+on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 112) {
     player.setVarbit(Varbits.SETTINGS_TAB_FOCUS, 2)
+}
+
+on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 41) {
+    val slider = player.getInteractingSlot()
+    println(slider);
+    player.playSound(Sounds.INTERFACE_SELECT1,100)
+    player.setVarp(Varps.MUSIC_VOLUME_VARP, slider * 5)
+}
+
+on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 55) {
+    val slider = player.getInteractingSlot()
+    player.playSound(Sounds.INTERFACE_SELECT1,100)
+    player.setVarp(Varps.AUDIO_SOUND_EFFECT_VOLUME, slider * 5)
+}
+
+on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 69) {
+    val slider = player.getInteractingSlot()
+    player.playSound(Sounds.INTERFACE_SELECT1,100)
+    player.setVarp(Varps.AUDIO_AREA_SOUND_VOLUME, slider * 5)
 }
