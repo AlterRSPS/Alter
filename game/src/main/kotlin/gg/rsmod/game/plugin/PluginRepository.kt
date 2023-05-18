@@ -429,6 +429,7 @@ class PluginRepository(val world: World) {
                 val pluginClass = p.loadClass(KotlinPlugin::class.java)
                 val constructor = pluginClass.getConstructor(PluginRepository::class.java, World::class.java, Server::class.java)
                 constructor.newInstance(this, world, server)
+                pluginCount++
             }
         }
     }
@@ -461,6 +462,7 @@ class PluginRepository(val world: World) {
                 val pluginClass = p.loadClass(KotlinPlugin::class.java)
                 val constructor = pluginClass.getConstructor(PluginRepository::class.java, World::class.java, Server::class.java)
                 constructor.newInstance(this, world, server)
+                pluginCount++
             }
         }
     }
@@ -551,7 +553,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Npc is already bound to a combat plugin: $npc")
         }
         npcCombatPlugins[npc] = plugin
-        pluginCount++
     }
 
     fun executeNpcCombat(n: Npc): Boolean {
@@ -613,7 +614,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Spell is already bound to a plugin: [$parent, $child]")
         }
         spellOnNpcPlugins[hash] = plugin
-        pluginCount++
     }
 
     fun executeSpellOnNpc(p: Player, parent: Int, child: Int): Boolean {
@@ -637,7 +637,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Spell is already bound to a plugin: [$parent, $child]")
         }
         spellOnPlayerPlugins[hash] = plugin
-        pluginCount++
     }
 
     fun bindWindowStatus(plugin: Plugin.() -> Unit) {
@@ -691,8 +690,6 @@ class PluginRepository(val world: World) {
             newList.add(plugin)
             eventPlugins[event] = newList
         }
-
-        pluginCount++
     }
 
     fun <T : Event> executeEvent(p: Pawn, event: T) {
@@ -705,7 +702,6 @@ class PluginRepository(val world: World) {
 
     fun bindLogin(plugin: Plugin.() -> Unit) {
         loginPlugins.add(plugin)
-        pluginCount++
     }
 
     fun executeLogin(p: Player) {
@@ -714,7 +710,6 @@ class PluginRepository(val world: World) {
 
     fun bindLogout(plugin: Plugin.() -> Unit) {
         logoutPlugins.add(plugin)
-        pluginCount++
     }
 
     fun executeLogout(p: Player) {
@@ -751,7 +746,6 @@ class PluginRepository(val world: World) {
 
     fun bindGlobalNpcSpawn(plugin: Plugin.() -> Unit) {
         globalNpcSpawnPlugins.add(plugin)
-        pluginCount++
     }
 
     fun bindNpcSpawn(npc: Int, plugin: Plugin.() -> Unit) {
@@ -761,7 +755,6 @@ class PluginRepository(val world: World) {
         } else {
             npcSpawnPlugins[npc] = arrayListOf(plugin)
         }
-        pluginCount++
     }
 
     fun executeNpcSpawn(n: Npc) {
@@ -778,7 +771,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Timer key is already bound to a plugin: $key")
         }
         timerPlugins[key] = plugin
-        pluginCount++
     }
 
     fun executeTimer(pawn: Pawn, key: TimerKey): Boolean {
@@ -805,7 +797,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Component id is already bound to a plugin: $interfaceId")
         }
         interfaceOpenPlugins[interfaceId] = plugin
-        pluginCount++
     }
 
     fun executeInterfaceOpen(p: Player, interfaceId: Int): Boolean {
@@ -823,7 +814,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Component id is already bound to a plugin: $interfaceId")
         }
         interfaceClosePlugins[interfaceId] = plugin
-        pluginCount++
     }
 
     fun executeInterfaceClose(p: Player, interfaceId: Int): Boolean {
@@ -844,7 +834,6 @@ class PluginRepository(val world: World) {
         }
         commandPlugins[cmd] = Pair(powerRequired, plugin)
         commandDescription[cmd] = desc
-        pluginCount++
     }
 
     fun bindCommands(plugin: Plugin.() -> Unit, powerRequired: String? = null, vararg commands: String) {
@@ -855,7 +844,6 @@ class PluginRepository(val world: World) {
                 throw IllegalStateException("Command is already bound to a plugin: $cmd")
             }
             commandPlugins[cmd] = Pair(powerRequired, plugin)
-            pluginCount++
         }
     }
 
@@ -888,7 +876,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Button hash already bound to a plugin: [parent=$parent, child=$child]")
         }
         buttonPlugins[hash] = plugin
-        pluginCount++
     }
 
     fun executeButton(p: Player, parent: Int, child: Int): Boolean {
@@ -908,7 +895,6 @@ class PluginRepository(val world: World) {
             return
         }
         equipmentOptionPlugins[hash] = plugin
-        pluginCount++
     }
 
     fun executeEquipmentOption(p: Player, item: Int, option: Int): Boolean {
@@ -920,7 +906,6 @@ class PluginRepository(val world: World) {
 
     fun bindEquipSlot(equipSlot: Int, plugin: Plugin.() -> Unit) {
         equipSlotPlugins.put(equipSlot, plugin)
-        pluginCount++
     }
 
     fun executeEquipSlot(p: Player, equipSlot: Int): Boolean {
@@ -934,7 +919,6 @@ class PluginRepository(val world: World) {
 
     fun bindUnequipSlot(equipSlot: Int, plugin: Plugin.() -> Unit) {
         unequipSlotPlugins.put(equipSlot, plugin)
-        pluginCount++
     }
 
     fun executeUnequipSlot(p: Player, equipSlot: Int): Boolean {
@@ -952,7 +936,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Equip item requirement already bound to a plugin: [item=$item]")
         }
         equipItemRequirementPlugins[item] = plugin
-        pluginCount++
     }
 
     fun executeEquipItemRequirement(p: Player, item: Int): Boolean {
@@ -977,7 +960,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Equip item already bound to a plugin: [item=$item]")
         }
         equipItemPlugins[item] = plugin
-        pluginCount++
     }
     fun bindBeforeEquipItem(item: Int, plugin: Plugin.() -> Unit) {
         if (equipItemPlugins.containsKey(item)) {
@@ -985,7 +967,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Before Equip item already bound to a plugin: [item=$item]")
         }
         equipItemPlugins[item] = plugin
-        pluginCount++
     }
 
     fun executeEquipItem(p: Player, item: Int): Boolean {
@@ -1003,7 +984,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Unequip item already bound to a plugin: [item=$item]")
         }
         unequipItemPlugins[item] = plugin
-        pluginCount++
     }
 
     fun setItemCombatLogic(item: Int, plugin: Plugin.() -> Unit) {
@@ -1012,7 +992,6 @@ class PluginRepository(val world: World) {
             throw IllegalStateException("Weapon logic already bound to a plugin: [item=$item]")
         }
         itemCombatLogic[item] = plugin
-        pluginCount++
     }
 
     fun executeItemCombatLogic(p: Player, item: Int): Boolean {
@@ -1058,7 +1037,6 @@ class PluginRepository(val world: World) {
         } else {
             enterRegionPlugins[regionId] = arrayListOf(plugin)
         }
-        pluginCount++
     }
 
     fun executeRegionEnter(p: Player, regionId: Int) {
@@ -1072,7 +1050,6 @@ class PluginRepository(val world: World) {
         } else {
             exitRegionPlugins[regionId] = arrayListOf(plugin)
         }
-        pluginCount++
     }
 
     fun executeRegionExit(p: Player, regionId: Int) {
@@ -1086,7 +1063,6 @@ class PluginRepository(val world: World) {
         } else {
             enterChunkPlugins[chunkHash] = arrayListOf(plugin)
         }
-        pluginCount++
     }
 
     fun executeChunkEnter(p: Player, chunkHash: Int) {
@@ -1100,7 +1076,6 @@ class PluginRepository(val world: World) {
         } else {
             exitChunkPlugins[chunkHash] = arrayListOf(plugin)
         }
-        pluginCount++
     }
 
     fun executeChunkExit(p: Player, chunkHash: Int) {
@@ -1115,7 +1090,6 @@ class PluginRepository(val world: World) {
         }
         optMap[opt] = plugin
         itemPlugins[id] = optMap
-        pluginCount++
     }
 
     fun executeItem(p: Player, id: Int, opt: Int): Boolean {
@@ -1133,7 +1107,6 @@ class PluginRepository(val world: World) {
         }
         optMap[opt] = plugin
         groundItemPlugins[id] = optMap
-        pluginCount++
     }
 
     fun executeGroundItem(p: Player, id: Int, opt: Int): Boolean {
@@ -1150,7 +1123,6 @@ class PluginRepository(val world: World) {
             throw error
         }
         groundItemPickupConditions[item] = plugin
-        pluginCount++
     }
 
     fun canPickupGroundItem(p: Player, item: Int): Boolean {
@@ -1188,7 +1160,6 @@ class PluginRepository(val world: World) {
 
         plugins[obj] = plugin
         itemOnObjectPlugins[item] = plugins
-        pluginCount++
     }
 
     fun executeItemOnObject(p: Player, obj: Int, item: Int): Boolean {
@@ -1210,7 +1181,6 @@ class PluginRepository(val world: World) {
         }
 
         itemOnItemPlugins[hash] = plugin
-        pluginCount++
     }
 
     fun executeItemOnItem(p: Player, item1: Int, item2: Int): Boolean {
@@ -1231,7 +1201,6 @@ class PluginRepository(val world: World) {
             throw error
         }
         itemOnGroundItemPlugins[hash] = plugin
-        pluginCount++
     }
 
     fun executeItemOnGroundItem(p: Player, invItem: Int, groundItem: Int): Boolean {
@@ -1249,7 +1218,6 @@ class PluginRepository(val world: World) {
             throw exception
         }
         spellOnItemPlugins[hash] = plugin
-        pluginCount++
     }
 
     fun executeSpellOnItem(p: Player, fromComponentHash: Int, toComponentHash: Int): Boolean {
@@ -1272,7 +1240,6 @@ class PluginRepository(val world: World) {
 
         optMap[opt] = plugin
         objectPlugins[obj] = optMap
-        pluginCount++
     }
 
     fun executeObject(p: Player, id: Int, opt: Int): Boolean {
@@ -1295,7 +1262,6 @@ class PluginRepository(val world: World) {
 
         optMap[opt] = plugin
         npcPlugins[npc] = optMap
-        pluginCount++
     }
 
     fun executeNpc(p: Player, id: Int, opt: Int): Boolean {
@@ -1313,7 +1279,6 @@ class PluginRepository(val world: World) {
             throw error
         }
         itemOnNpcPlugins[hash] = plugin
-        pluginCount++
     }
 
     fun executeItemOnNpc(p: Player, npc: Int, item: Int): Boolean {
@@ -1335,7 +1300,6 @@ class PluginRepository(val world: World) {
             throw error
         }
         ItemOnNpcGlobal[item] = plugin
-        pluginCount++
     }
 
     fun executeItemOnNpc(p: Player, item: Int): Boolean {
@@ -1359,7 +1323,6 @@ class PluginRepository(val world: World) {
             throw java.lang.IllegalStateException("$anim is already bound to a plugin.")
         }
         onAnimList[anim] = plugin
-        pluginCount++
     }
 
     fun executeOnAnimation(p: Player, anim: Int): Boolean {
