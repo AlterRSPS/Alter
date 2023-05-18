@@ -1532,3 +1532,13 @@ client-packets:
     type: VARIABLE_BYTE
     opcode: 88
     ignore: true
+
+  - message: gg.rsmod.game.message.impl.IgnoreMessage # SteamClient's Packet
+    type: VARIABLE_BYTE
+    opcode: 30
+    ignore: true
+
+  - message: gg.rsmod.game.message.impl.IgnoreMessage # SteamClient's Packet
+    type: VARIABLE_BYTE
+    opcode: 17
+    ignore: true

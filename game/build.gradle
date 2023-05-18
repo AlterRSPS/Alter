@@ -91,7 +91,7 @@ tasks.register("install") {
             workingDir = rootProject.projectDir
             classpath = sourceSets.main.runtimeClasspath
             main = "gg.rsmod.game.service.rsa.RsaService"
-            args = [ "16", "2048", "./data/rsa/key.pem" ] // radix, bitcount, rsa pem file
+            args = [ "16", "1024", "./data/rsa/key.pem" ] // radix, bitcount, rsa pem file
         }
     }
 }
