@@ -1,9 +1,5 @@
 package gg.rsmod.plugins.content.interfaces.options
 
-import gg.rsmod.plugins.content.interfaces.options.OptionsTab.OPTIONS_INTERFACE_ID
-import gg.rsmod.plugins.content.interfaces.options.OptionsTab.HOUSE_OPT_BUTTON_ID
-import gg.rsmod.plugins.content.interfaces.options.OptionsTab.HOUSE_OPT_INTERFACE_ID
-
 //on_button(interfaceId = OPTIONS_INTERFACE_ID, component = HOUSE_OPT_BUTTON_ID) {
 //    /**
 //     Teleport inside + doors: varp 1047
