@@ -23,7 +23,7 @@ enum class InterfaceDestination(val interfaceId: Int, val fixedChildId: Int, val
     MUSIC(interfaceId = 239, fixedChildId = 92, resizeChildId = 88, resizeListChildId = 85, fullscreenChildId = 28),
     PRIVATE_CHAT(interfaceId = 163, fixedChildId = 35, resizeChildId = 91, resizeListChildId = 88, fullscreenChildId = 30),
     MINI_MAP(interfaceId = 160, fixedChildId = 24, resizeChildId = 32, resizeListChildId = 90, fullscreenChildId = 31),
-    MAIN_SCREEN(interfaceId = -1, fixedChildId = 9, resizeChildId = 16, resizeListChildId = 16, fullscreenChildId = 13, clickThrough = false), // @TODO This could be wrong
+    MAIN_SCREEN(interfaceId = -1, fixedChildId = 9, resizeChildId = 16, resizeListChildId = 16, fullscreenChildId = 13, clickThrough = false),
     TAB_AREA(interfaceId = -1, fixedChildId = 77, resizeChildId = 73, resizeListChildId = 70, clickThrough = false),
     WALKABLE(interfaceId = -1, fixedChildId = 9, resizeChildId = 3, resizeListChildId = 3),
     WORLD_MAP(interfaceId = -1, fixedChildId = 41, resizeChildId = 17, resizeListChildId = 15, fullscreenChildId = 36),

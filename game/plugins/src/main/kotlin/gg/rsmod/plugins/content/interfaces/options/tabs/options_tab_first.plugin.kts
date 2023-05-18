@@ -13,14 +13,6 @@ fun bind_setting(child: Int, plugin: Plugin.() -> Unit) {
 on_login {
     player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 6, range = 1..4, setting = 2) // Player option priority
     player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 7, range = 1..4, setting = 2) // Npc option priority
-    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 40, range = 0..4, setting = 2)
-    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 42, range = 0..4, setting = 2)
-    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 44, range = 0..4, setting = 2)
-    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 35, range = 1..4, setting = 2)
-    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 36, range = 1..4, setting = 2)
-    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 25, range = 1..5, setting = 2)
-    //player.setInterfaceEvents(interfaceId = OPTIONS_INTERFACE_ID, component = 115, range = 0..3, setting = 2)
-
     player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 55, range = 0..21, setting = InterfaceEvent.ClickOp1)
     player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 84, range = 1..3, setting = InterfaceEvent.ClickOp1)
     player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 69, range = 0..21, setting = InterfaceEvent.ClickOp1)
@@ -186,7 +178,6 @@ on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 112) {
 
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 41) {
     val slider = player.getInteractingSlot()
-    println(slider);
     player.playSound(Sounds.INTERFACE_SELECT1,100)
     player.setVarp(Varps.MUSIC_VOLUME_VARP, slider * 5)
 }
