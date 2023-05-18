@@ -34,22 +34,10 @@ class IfButtonDHandler : MessageHandler<IfButtonDMessage> {
         client.attr[OTHER_ITEM_SLOT_ATTR] = toSlot
         client.attr[INTERACTING_COMPONENT_CHILD] = fromComponent
 
-        /**
-         * @TODO
-         * Temp. Solution
-         */
-        if (toInterfaceId != 149) {
-            val swapped = world.plugins.executeComponentToComponentItemSwap(client, fromInterfaceId, fromComponent, toInterfaceId, toComponent)
-            if (!swapped && world.devContext.debugButtons) {
-                client.writeMessage("[IfButtonDHandler] Unhandled component to component swap: [from_item=$fromItemId, to_item=$toItemId, from_slot=$fromSlot, to_slot=$toSlot, " +
-                        "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]")
-            }
-        } else {
-            val swapped = world.plugins.executeComponentItemSwap(client, toInterfaceId, toComponent)
-            if (!swapped && world.devContext.debugButtons) {
-                client.writeMessage("[IfButtonDHandler] Unhandled component to component swap: [from_item=$fromItemId, to_item=$toItemId, from_slot=$fromSlot, to_slot=$toSlot, " +
-                        "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]")
-            }
+        val swapped = world.plugins.executeComponentToComponentItemSwap(client, fromInterfaceId, fromComponent, toInterfaceId, toComponent)
+        if (!swapped && world.devContext.debugButtons) {
+            client.writeMessage("[IfButtonDHandler] Unhandled component to component swap: [from_item=$fromItemId, to_item=$toItemId, from_slot=$fromSlot, to_slot=$toSlot, " +
+                    "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]")
         }
     }
 }
