@@ -601,7 +601,7 @@ client-packets:
     structure:
       - name: data
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.IfButtonDMessage
     type: FIXED
@@ -622,7 +622,7 @@ client-packets:
         trans: ADD
       - name: src_component_hash
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
       - name: src_item
         type: SHORT
 
@@ -636,7 +636,7 @@ client-packets:
         trans: ADD
       - name: component_hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
       - name: npc_index
         type: SHORT
         order: LITTLE
@@ -666,7 +666,7 @@ client-packets:
         order: LITTLE
       - name: component_hash
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
 
   - message: gg.rsmod.game.message.impl.OpLocUMessage
     type: FIXED
@@ -819,15 +819,15 @@ client-packets:
         type: SHORT
         order: LITTLE
 
-# Should implement it
-#  - message: gg.rsmod.game.message.impl.OpObj6Message
-#    type: FIXED
-#    opcode: 26
-#    length: 6
-#    structure:
-#      - name: item
-#      - name: x
-#      - name: z
+  # Should implement it
+  #  - message: gg.rsmod.game.message.impl.OpObj6Message
+  #    type: FIXED
+  #    opcode: 26
+  #    length: 6
+  #    structure:
+  #      - name: item
+  #      - name: x
+  #      - name: z
 
   # @TODO Later
   - message: gg.rsmod.game.message.impl.OpObjUMessage
@@ -837,7 +837,7 @@ client-packets:
     structure:
       - name: component_hash
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
       - name: movement_type
         type: BYTE
         trans: NEGATE
@@ -935,7 +935,7 @@ client-packets:
     structure:
       - name: unknown
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
       - name: x
         type: SHORT
         trans: ADD
@@ -1061,7 +1061,7 @@ client-packets:
     structure:
       - name: hash
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
       - name: slot
         type: SHORT
         order: LITTLE
@@ -1090,14 +1090,14 @@ client-packets:
     opcode: 56
     length: 0
 
-#  - message: gg.rsmod.game.message.impl.ClanJoinChatLeaveChatMessage
-#    type: VARIABLE_BYTE
-#    opcode: 68
-#    structure:
-#      - name: name
-#        type: BYTE
-#        sign: UNSIGNED
-#
+  #  - message: gg.rsmod.game.message.impl.ClanJoinChatLeaveChatMessage
+  #    type: VARIABLE_BYTE
+  #    opcode: 68
+  #    structure:
+  #      - name: name
+  #        type: BYTE
+  #        sign: UNSIGNED
+  #
   - message: gg.rsmod.game.message.impl.EventCameraPositionMessage
     type: FIXED
     opcode: 77
@@ -1218,7 +1218,7 @@ client-packets:
         sign: UNSIGNED
       - name: last_key_press
         type: MEDIUM
-        order: MIDDLE
+        order: INVERSE_MIDDLE
         sign: UNSIGNED
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: CLAN_KICKUSER
@@ -1259,13 +1259,13 @@ client-packets:
         type: SHORT
         order: LITTLE
 
-#  - message: gg.rsmod.game.message.impl.IgnoreListDeleteMessage
-#    type: VARIABLE_BYTE
-#    opcode: 86
-#    length: -1
-#    structure:
-#      - name: name
-#        type: STRING
+  #  - message: gg.rsmod.game.message.impl.IgnoreListDeleteMessage
+  #    type: VARIABLE_BYTE
+  #    opcode: 86
+  #    length: -1
+  #    structure:
+  #      - name: name
+  #        type: STRING
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: FREECAM_EXIT
     type: FIXED
@@ -1330,20 +1330,20 @@ client-packets:
         order: LITTLE
       - name: hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
       - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
 
-#  - message: gg.rsmod.game.message.impl.FriendListDeleteMessage
-#    type: VARIABLE_BYTE
-#    opcode: 43
-#    length: -1
-#    structure:
-#      - name: name
-#        type: STRING
-#
+  #  - message: gg.rsmod.game.message.impl.FriendListDeleteMessage
+  #    type: VARIABLE_BYTE
+  #    opcode: 43
+  #    length: -1
+  #    structure:
+  #      - name: name
+  #        type: STRING
+  #
   - message: gg.rsmod.game.message.impl.OpPlayerTMessage
     type: FIXED
     opcode: 47
@@ -1435,14 +1435,14 @@ client-packets:
         type: SHORT
       - name: from_component_hash
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
       - name: fromSlot
         type: SHORT
         trans: ADD
         order: LITTLE
       - name: to_component_hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
       - name: fromItem
         type: SHORT
         trans: ADD
@@ -1458,20 +1458,20 @@ client-packets:
       - name: index
         type: SHORT
 
-#  - message: gg.rsmod.game.message.impl.FriendListAddMessage
-#    type: VARIABLE_BYTE
-#    opcode: 50
-#    length: -1
-#    structure:
-#      - name: name
-#        type: STRING
-#
-#  - message: gg.rsmod.game.message.impl.IgnoreListAddMessage
-#    type: VARIABLE_BYTE
-#    opcode: 11
-#    structure:
-#      - name: name
-#        type: STRING
+  #  - message: gg.rsmod.game.message.impl.FriendListAddMessage
+  #    type: VARIABLE_BYTE
+  #    opcode: 50
+  #    length: -1
+  #    structure:
+  #      - name: name
+  #        type: STRING
+  #
+  #  - message: gg.rsmod.game.message.impl.IgnoreListAddMessage
+  #    type: VARIABLE_BYTE
+  #    opcode: 11
+  #    structure:
+  #      - name: name
+  #        type: STRING
 
   - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: REFLECTION_CHECK_REPLY
     type: VARIABLE_BYTE
@@ -1489,7 +1489,7 @@ client-packets:
         trans: ADD
       - name: hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
       - name: slot
         type: SHORT
         trans: ADD
