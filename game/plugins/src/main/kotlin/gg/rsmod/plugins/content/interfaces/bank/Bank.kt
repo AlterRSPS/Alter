@@ -4,6 +4,7 @@ import gg.rsmod.game.model.World
 import gg.rsmod.game.model.container.ItemContainer
 import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.item.Item
+import gg.rsmod.plugins.api.BonusSlot
 import gg.rsmod.plugins.api.InterfaceDestination
 import gg.rsmod.plugins.api.ext.*
 import gg.rsmod.plugins.content.interfaces.bank.BankTabs.SELECTED_TAB_VARBIT
@@ -135,8 +136,35 @@ object Bank {
         p.setInterfaceUnderlay(-1, -2)
         p.openInterface(BANK_INTERFACE_ID, InterfaceDestination.MAIN_SCREEN)
         p.openInterface(INV_INTERFACE_ID, InterfaceDestination.TAB_AREA)
-
+        p.setVarp(262, -1)
         p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 9, text = p.bank.capacity.toString())
+        p.runClientScript(1495, "Non-members' capacity: 400<br>Become a member for 400 more.<br>A banker can sell you up to 360 more.<br>+20 for your PIN.<br>Set an Authenticator for 20 more.", 786439, 786549)
+
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 89, text = "Stab: ${p.getBonus(BonusSlot.ATTACK_STAB)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 90, text = "Slash: ${p.getBonus(BonusSlot.ATTACK_SLASH)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 91, text = "Crush: ${p.getBonus(BonusSlot.ATTACK_CRUSH)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 92, text = "Magic: ${p.getBonus(BonusSlot.ATTACK_MAGIC)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 93, text = "Range: ${p.getBonus(BonusSlot.ATTACK_RANGED)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 122, text = "Base: ") // Default weapon speed
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 123, text = "Actual: ") // If it's bow or w.e get Rapid speed
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 95, text = "Stab: ${p.getBonus(BonusSlot.DEFENCE_STAB)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 96, text = "Slash: ${p.getBonus(BonusSlot.DEFENCE_SLASH)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 97, text = "Crush: ${p.getBonus(BonusSlot.DEFENCE_CRUSH)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 99, text = "Range: ${p.getBonus(BonusSlot.DEFENCE_RANGED)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 98, text = "Magic: ${p.getBonus(BonusSlot.DEFENCE_MAGIC)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 101, text = "Melee STR: ")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 102, text = "Ranged STR: ")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 103, text = "Magic DMG: +0.0%")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 104, text = "Prayer: ")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 106, text = "Undead: ")
+
+        p.runClientScript(7065, 786549, 786538, "Increases your effective accuracy and damage against undead creatures. For multi-target Ranged and Magic attacks, this applies only to the primary target. It does not stack with the Slayer multiplier.")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 107, text = "Slayer: ")
+
+        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 19, 0..27, InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp2,
+            InterfaceEvent.ClickOp3, InterfaceEvent.ClickOp4, InterfaceEvent.ClickOp10
+        )
+
 
         p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 13, range = 0..815, setting = 1312766)
         p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 13, range = 825..833, setting = 2)
@@ -149,6 +177,7 @@ object Bank {
         p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 5, range = 0..27, setting = 1180674)
         p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 47, range = 1..816, setting = 2)
         p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 50, range = 0..3, setting = 2)
+
 
         p.setVarbit(BANK_YOUR_LOOT_VARBIT, 0)
     }
