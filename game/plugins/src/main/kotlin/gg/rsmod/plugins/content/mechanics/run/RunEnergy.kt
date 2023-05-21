@@ -6,8 +6,10 @@ import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.timer.TimerKey
 import gg.rsmod.plugins.api.EquipmentType
 import gg.rsmod.plugins.api.Skills
-import gg.rsmod.plugins.api.cfg.Varps
+import gg.rsmod.plugins.api.cfg.Varp
 import gg.rsmod.plugins.api.ext.*
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -21,7 +23,7 @@ object RunEnergy {
      */
     val STAMINA_BOOST = TimerKey("stamina_boost", tickOffline = false)
 
-    const val RUN_ENABLED_VARP = Varps.RUN_MODE_VARP
+    const val RUN_ENABLED_VARP = Varp.RUN_MODE_VARP
 
     fun toggle(p: Player) {
         if (p.runEnergy >= 100.0) {
@@ -35,12 +37,12 @@ object RunEnergy {
     fun drain(p: Player) {
         if (p.isRunning() && p.hasMoveDestination()) {
             if (!p.hasStorageBit(INFINITE_VARS_STORAGE, InfiniteVarsType.RUN)) {
-                val weight = Math.max(0.0, p.weight)
-                var decrement = (Math.min(weight, 6400.0) / 10000.0) + 64.0
+                val weight = max(0.0, p.weight)
+                var decrement = (min(weight, 6400.0) / 10000.0) + 64.0
                 if (p.timers.has(STAMINA_BOOST)) {
                     decrement *= 0.3
                 }
-                p.runEnergy = Math.max(0.0, (p.runEnergy - decrement))
+                p.runEnergy = max(0.0, (p.runEnergy - decrement))
                 if (p.runEnergy <= 0) {
                     p.varps.setState(RUN_ENABLED_VARP, 0)
                 }
@@ -51,7 +53,7 @@ object RunEnergy {
             if (isWearingFullGrace(p)) {
                 recovery *= 130
             }
-            p.runEnergy = Math.min(10000.0, (p.runEnergy + recovery))
+            p.runEnergy = min(10000.0, (p.runEnergy + 500))
             p.sendRunEnergy(p.runEnergy.toInt())
         }
     }
