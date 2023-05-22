@@ -9,7 +9,6 @@ fun bind_setting(child: Int, plugin: Plugin.() -> Unit) {
     }
 }
 
-
 on_login {
     player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 6, range = 1..4, setting = 2) // Player option priority
     player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 7, range = 1..4, setting = 2) // Npc option priority
@@ -23,28 +22,28 @@ on_login {
     player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 23, range =  0..21, setting = InterfaceEvent.ClickOp1)
 }
 
-
 /**
  * Changing display modes (fixed, resizable).
  */
 set_window_status_logic {
     val change = player.attr[DISPLAY_MODE_CHANGE_ATTR]
     val mode = when (change) {
-        2 -> if (player.getVarbit(Varbits.SIDESTONES_ARRAGEMENT_VARBIT) == 1) DisplayMode.RESIZABLE_LIST else DisplayMode.RESIZABLE_NORMAL
+        2 -> if (player.getVarbit(Varbit.SIDESTONES_ARRAGEMENT_VARBIT) == 1) DisplayMode.RESIZABLE_LIST else DisplayMode.RESIZABLE_NORMAL
         else -> DisplayMode.FIXED
     }
     player.toggleDisplayInterface(mode)
 }
+
 bind_setting(child = 84) {
     //val slot = player.getInteractingSlot()
     val slot = player.attr[INTERACTING_SLOT_ATTR]!!
     val mode = when (slot) {
         2 -> {
-            player.setVarbit(Varbits.SIDESTONES_ARRAGEMENT_VARBIT, 0)
+            player.setVarbit(Varbit.SIDESTONES_ARRAGEMENT_VARBIT, 0)
             DisplayMode.RESIZABLE_NORMAL
         }
         3 -> {
-            player.setVarbit(Varbits.SIDESTONES_ARRAGEMENT_VARBIT, 1)
+            player.setVarbit(Varbit.SIDESTONES_ARRAGEMENT_VARBIT, 1)
             DisplayMode.RESIZABLE_LIST
         }
         else -> DisplayMode.FIXED
@@ -56,11 +55,11 @@ bind_setting(child = 84) {
 
 bind_setting(child = 81) {
     val slot = player.attr[INTERACTING_SLOT_ATTR]!!.toInt()-1
-    player.setVarp(Varps.PLAYER_ATTACK_PRIORITY_VARP, slot)
+    player.setVarp(Varp.PLAYER_ATTACK_PRIORITY_VARP, slot)
 }
 bind_setting(child = 82) {
     val slot = player.attr[INTERACTING_SLOT_ATTR]!!.toInt()-1
-    player.setVarp(Varps.NPC_ATTACK_PRIORITY_VARP, slot)
+    player.setVarp(Varp.NPC_ATTACK_PRIORITY_VARP, slot)
 }
 
 
@@ -79,10 +78,10 @@ bind_setting(child = OptionsTab.BOND_BUTTON_ID) {
     }
 }
 on_button(65, 90) {
-    player.setVarbit(Varbits.BOND_INTERFACE_FOCUS_TAB, 0)
+    player.setVarbit(Varbit.BOND_INTERFACE_FOCUS_TAB, 0)
 }
 on_button(65, 89) {
-    player.setVarbit(Varbits.BOND_INTERFACE_FOCUS_TAB, 1)
+    player.setVarbit(Varbit.BOND_INTERFACE_FOCUS_TAB, 1)
 }
 
 val withDrawFromPouch = setOf(103, 99, 95, 110)
@@ -96,13 +95,13 @@ withDrawFromPouch.forEach {
  * Toggle run mode
  */
 bind_setting(child = OptionsTab.RUN_MODE_BUTTON_ID) {
-    player.toggleVarp(Varps.RUN_MODE_VARP)
+    player.toggleVarp(Varp.RUN_MODE_VARP)
 }
 /**
  * Accept aid toggle.
  */
 bind_setting(child = OptionsTab.ACCEPT_AID_BUTTON_ID) {
-    player.toggleVarbit(Varbits.ACCEPT_AID_VARBIT)
+    player.toggleVarbit(Varbit.ACCEPT_AID_VARBIT)
 }
 
 /**
@@ -131,65 +130,61 @@ bind_setting(child = OptionsTab.ALL_SETTINGS_BUTTON_ID) {
 }
 
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 5) {
-    player.toggleVarbit(Varbits.PK_PREVENT_SKULL)
+    player.toggleVarbit(Varbit.PK_PREVENT_SKULL)
 }
 
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 87) {
-    player.toggleVarbit(Varbits.DISABLE_ZOOM)
+    player.toggleVarbit(Varbit.DISABLE_ZOOM)
 }
 
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 30) {
-    if(player.getVarp(Varps.MUTE_MUSIC) == 0) {
-        player.setVarp(Varps.MUTE_MUSIC, 25)
-    } else if (player.getVarp(Varps.MUTE_MUSIC) == 25) {
-        player.setVarp(Varps.MUTE_MUSIC, 0)
+    if (player.getVarp(Varp.AUDIO_MUSIC_VOLUME) == 0) {
+        player.setVarp(Varp.AUDIO_MUSIC_VOLUME, player.getVarbit(Varbit.MUSIC_SLIDER_POSITION_LOCK))
+    } else {
+        player.setVarbit(Varbit.MUSIC_SLIDER_POSITION_LOCK, player.getVarp(Varp.AUDIO_MUSIC_VOLUME))
+        player.setVarp(Varp.AUDIO_MUSIC_VOLUME, 0)
     }
 }
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 44) {
-    if(player.getVarp(Varps.MUTE_SOUND_EFFECTS) == 0) {
-        player.setVarp(Varps.MUTE_SOUND_EFFECTS, 25)
-    } else if (player.getVarp(Varps.MUTE_SOUND_EFFECTS) == 25) {
-        player.setVarp(Varps.MUTE_SOUND_EFFECTS, 0)
+    if (player.getVarp(Varp.AUDIO_SOUND_EFFECT_VOLUME) == 0) {
+        player.setVarp(Varp.AUDIO_SOUND_EFFECT_VOLUME, player.getVarbit(Varbit.AUDIO_SOUND_SLIDER_POSITION_LOCK))
+    } else {
+        player.setVarbit(Varbit.AUDIO_SOUND_SLIDER_POSITION_LOCK, player.getVarp(Varp.AUDIO_SOUND_EFFECT_VOLUME))
+        player.setVarp(Varp.AUDIO_SOUND_EFFECT_VOLUME, 0)
     }
 }
+
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 58) {
-    if(player.getVarp(Varps.MUTE_AREA_SOUND) == 0) {
-        player.setVarp(Varps.MUTE_AREA_SOUND, 25)
-    } else if (player.getVarp(Varps.MUTE_AREA_SOUND) == 25) {
-        player.setVarp(Varps.MUTE_AREA_SOUND, 0)
+    if (player.getVarp(Varp.AUDIO_AREA_SOUND_VOLUME) == 0) {
+        player.setVarp(Varp.AUDIO_AREA_SOUND_VOLUME, player.getVarbit(Varbit.AREA_SOUND_SLIDER_POSITION_LOCK))
+    } else {
+        player.setVarbit(Varbit.AREA_SOUND_SLIDER_POSITION_LOCK, player.getVarp(Varp.AUDIO_AREA_SOUND_VOLUME))
+        player.setVarp(Varp.AUDIO_AREA_SOUND_VOLUME, 0)
     }
 }
 
-
-/**
- * @TODO
- * If you have the sliders on -> and login it wont start playing the sound till u open the sound settings interface.
- */
 
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 106) {
-    player.setVarbit(Varbits.SETTINGS_TAB_FOCUS, 0)
+    player.setVarbit(Varbit.SETTINGS_TAB_FOCUS, 0)
 }
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 111) {
-    player.setVarbit(Varbits.SETTINGS_TAB_FOCUS, 1)
+    player.setVarbit(Varbit.SETTINGS_TAB_FOCUS, 1)
 }
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 112) {
-    player.setVarbit(Varbits.SETTINGS_TAB_FOCUS, 2)
+    player.setVarbit(Varbit.SETTINGS_TAB_FOCUS, 2)
 }
 
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 41) {
-    val slider = player.getInteractingSlot()
-    player.playSound(Sounds.INTERFACE_SELECT1,100)
-    player.setVarp(Varps.MUSIC_VOLUME_VARP, slider * 5)
+    player.playSound(Sound.INTERFACE_SELECT1,100)
+    player.setVarp(Varp.AUDIO_MUSIC_VOLUME, player.getInteractingSlot() * 5)
 }
 
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 55) {
-    val slider = player.getInteractingSlot()
-    player.playSound(Sounds.INTERFACE_SELECT1,100)
-    player.setVarp(Varps.AUDIO_SOUND_EFFECT_VOLUME, slider * 5)
+    player.playSound(Sound.INTERFACE_SELECT1,100)
+    player.setVarp(Varp.AUDIO_SOUND_EFFECT_VOLUME, player.getInteractingSlot() * 5)
 }
 
 on_button(OptionsTab.SETTINGS_INTERFACE_TAB, 69) {
-    val slider = player.getInteractingSlot()
-    player.playSound(Sounds.INTERFACE_SELECT1,100)
-    player.setVarp(Varps.AUDIO_AREA_SOUND_VOLUME, slider * 5)
+    player.playSound(Sound.INTERFACE_SELECT1,100)
+    player.setVarp(Varp.AUDIO_AREA_SOUND_VOLUME, player.getInteractingSlot() * 5)
 }

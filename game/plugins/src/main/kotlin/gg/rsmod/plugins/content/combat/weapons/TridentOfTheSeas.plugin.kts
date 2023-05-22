@@ -2,7 +2,6 @@ package gg.rsmod.plugins.content.combat.weapons
 
 import gg.rsmod.plugins.content.combat.createProjectile
 import gg.rsmod.plugins.content.combat.dealHit
-import gg.rsmod.plugins.content.combat.formula.MagicCombatFormula
 
 
 /**
@@ -15,7 +14,7 @@ set_item_combat_logic(Items.TRIDENT_OF_THE_SEAS) {
         player.graphic(Graphics.CAST_SEAS_TRIDENT, 92, 0)
         player.createProjectile(it, 1253, ProjectileType.MAGIC, 15)
         player.dealHit(target = it, maxHit = 90, landHit = true, delay = 1)
-        player.playSound(Sounds.CONTACT_DARKNESS_IMPACT)
+        player.playSound(Sound.CONTACT_DARKNESS_IMPACT)
     }
 }
 

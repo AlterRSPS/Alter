@@ -1,7 +1,6 @@
 package gg.rsmod.plugins.content.interfaces.worldmap
 
 import gg.rsmod.plugins.content.interfaces.worldmap.WorldMap.WORLD_MAP_INTERFACE_ID
-import gg.rsmod.plugins.content.interfaces.worldmap.WorldMap.WORLD_MAP_FULLSCREEN_INTERFACE_ID
 import gg.rsmod.plugins.content.interfaces.worldmap.WorldMap.LAST_TILE
 import gg.rsmod.plugins.content.interfaces.worldmap.WorldMap.UPDATE_TIMER
 
@@ -16,7 +15,7 @@ on_button(interfaceId = 160, component = 53) {
          */
         val opt = player.getInteractingOption()
         player.sendWorldMapTile()
-        player.playSound(Sounds.INTERFACE_SELECT1, 100)
+        player.playSound(Sound.INTERFACE_SELECT1, 100)
 
         if (opt != 2) {
             player.openInterface(interfaceId = WORLD_MAP_INTERFACE_ID, dest = InterfaceDestination.WORLD_MAP, fullscreen = false)

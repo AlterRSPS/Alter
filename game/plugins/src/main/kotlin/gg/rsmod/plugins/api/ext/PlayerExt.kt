@@ -20,9 +20,9 @@ import gg.rsmod.game.model.item.Item
 import gg.rsmod.game.model.timer.SKULL_ICON_DURATION_TIMER
 import gg.rsmod.game.sync.block.UpdateBlockType
 import gg.rsmod.plugins.api.*
-import gg.rsmod.plugins.api.cfg.Varbits
-import gg.rsmod.plugins.api.cfg.Varps
-import gg.rsmod.plugins.api.cfg.Songs
+import gg.rsmod.plugins.api.cfg.Varbit
+import gg.rsmod.plugins.api.cfg.Varp
+import gg.rsmod.plugins.api.cfg.Song
 import gg.rsmod.plugins.service.marketvalue.ItemMarketValueService
 import gg.rsmod.util.BitManipulation
 
@@ -383,7 +383,7 @@ fun Player.playSound(id: Int, volume: Int = 1, delay: Int = 0) {
 
 fun Player.playSong(id: Int) {
     write(MidiSongMessage(id))
-    setComponentText(interfaceId = 239, component = 6, text = Songs.getTitle(id))
+    setComponentText(interfaceId = 239, component = 6, text = Song.getTitle(id))
 }
 
 fun Player.playJingle(id: Int) {
@@ -493,15 +493,15 @@ fun Player.heal(amount: Int, capValue: Int = 0) {
 
 fun Player.getTarget(): Pawn? = attr[COMBAT_TARGET_FOCUS_ATTR]?.get()
 
-fun Player.hasSpellbook(book: Spellbook): Boolean = getVarbit(Varbits.PLAYER_SPELL_BOOK) == book.id
+fun Player.hasSpellbook(book: Spellbook): Boolean = getVarbit(Varbit.PLAYER_SPELL_BOOK) == book.id
 
-fun Player.getSpellbook(): Spellbook = Spellbook.values.first { getVarbit(Varbits.PLAYER_SPELL_BOOK) == it.id }
+fun Player.getSpellbook(): Spellbook = Spellbook.values.first { getVarbit(Varbit.PLAYER_SPELL_BOOK) == it.id }
 
-fun Player.setSpellbook(book: Spellbook) = setVarbit(Varbits.PLAYER_SPELL_BOOK, book.id)
+fun Player.setSpellbook(book: Spellbook) = setVarbit(Varbit.PLAYER_SPELL_BOOK, book.id)
 
-fun Player.getWeaponType(): Int = getVarbit(Varbits.WEAPON_TYPE_VARBIT)
+fun Player.getWeaponType(): Int = getVarbit(Varbit.WEAPON_TYPE_VARBIT)
 
-fun Player.getAttackStyle(): Int = getVarp(Varps.WEAPON_ATTACK_STYLE)
+fun Player.getAttackStyle(): Int = getVarp(Varp.WEAPON_ATTACK_STYLE)
 
 fun Player.hasWeaponType(type: WeaponType, vararg others: WeaponType): Boolean = getWeaponType() == type.id || others.isNotEmpty() && getWeaponType() in others.map { it.id }
 
@@ -633,3 +633,7 @@ fun Player.getRangedStrengthBonus(): Int = equipmentBonuses[11]
 fun Player.getMagicDamageBonus(): Int = equipmentBonuses[12]
 
 fun Player.getPrayerBonus(): Int = equipmentBonuses[13]
+
+fun Player.format_bonus_with_sign(value: Int): String {
+     return if (value < 0) value.toString() else "+$value"
+}
