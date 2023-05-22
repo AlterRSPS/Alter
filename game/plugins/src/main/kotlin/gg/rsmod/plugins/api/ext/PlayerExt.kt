@@ -68,6 +68,17 @@ fun Player.message(message: String, type: ChatMessageType = ChatMessageType.CONS
     write(MessageGameMessage(type = type.id, message = message, username = username))
 }
 
+/**
+ * Print message in Servers Terminal and send message if player has reqPrivilege
+ */
+fun Player.printAndMessageIfHasPower(message: String, privilege: String) {
+    if (isPrivilegeEligible(privilege)) {
+        message(message)
+    }
+    println(message)
+}
+
+
 fun Player.nothingMessage(){
     message(Entity.NOTHING_INTERESTING_HAPPENS)
 }
