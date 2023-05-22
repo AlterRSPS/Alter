@@ -15,9 +15,14 @@ object EquipmentStats {
 
     private val MAGE_ELITE_VOID = intArrayOf(Items.VOID_MAGE_HELM, Items.ELITE_VOID_TOP, Items.ELITE_VOID_ROBE, Items.VOID_KNIGHT_GLOVES)
 
-    private fun formatBonus(p: Player, slot: BonusSlot): String = formatBonus(p.getBonus(slot))
 
-    private fun formatBonus(bonus: Int): String = if (bonus < 0) bonus.toString() else "+$bonus"
+    /**
+     * @TODO
+     * Need to move these two methods [formatBonus, formatBonus] outside for reuse.
+     */
+    fun formatBonus(p: Player, slot: BonusSlot): String = formatBonus(p.getBonus(slot))
+
+    fun formatBonus(bonus: Int): String = if (bonus < 0) bonus.toString() else "+$bonus"
 
     private fun formatBonus(bonus: Double): String {
         val format = String.format("%.1f", bonus)
@@ -29,6 +34,10 @@ object EquipmentStats {
         var undeadBonus = 0.0
         var slayerBonus = 0.0
 
+
+        /**
+         * Magic and other bonuses belong inside Player class
+         */
         var magicDamageBonus = p.getMagicDamageBonus().toDouble()
 
         if (p.hasEquipped(MAGE_ELITE_VOID)) {

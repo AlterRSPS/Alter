@@ -377,3 +377,55 @@ on_component_to_component_item_swap(
         container.dirty = true
     }
 }
+
+bind_unequip(EquipmentType.HEAD, 76)
+bind_unequip(EquipmentType.CAPE, 77)
+bind_unequip(EquipmentType.AMULET, 78)
+bind_unequip(EquipmentType.AMMO, 86)
+bind_unequip(EquipmentType.WEAPON, 79)
+bind_unequip(EquipmentType.CHEST, 80)
+bind_unequip(EquipmentType.SHIELD, 81)
+bind_unequip(EquipmentType.LEGS, 82)
+bind_unequip(EquipmentType.GLOVES, 83)
+bind_unequip(EquipmentType.BOOTS, 84)
+bind_unequip(EquipmentType.RING, 85)
+
+fun bind_unequip(equipment: EquipmentType, component: Int) {
+    on_button(interfaceId = BANK_INTERFACE_ID, component = component) {
+        val opt = player.getInteractingOption()
+        if (opt == 0) {
+            EquipAction.unequip(player, equipment.id)
+            player.calculateBonuses()
+            Bank.sendBonuses(player)
+        } else if (opt == 9) {
+            val item = player.equipment[equipment.id] ?: return@on_button
+            world.sendExamine(player, item.id, ExamineEntityType.ITEM)
+        } else {
+            val item = player.equipment[equipment.id] ?: return@on_button
+            if (!world.plugins.executeItem(player, item.id, opt)) {
+                val slot = player.getInteractingSlot()
+                if (world.devContext.debugButtons) {
+                    player.message("Unhandled button action: [component=[${BANK_INTERFACE_ID}:$component], option=$opt, slot=$slot, item=${item.id}]")
+                }
+            }
+        }
+    }
+}
+
+
+on_button(interfaceId = INV_INTERFACE_ID, component = 4) {
+    val slot = player.getInteractingSlot()
+    val opt = player.getInteractingOption()
+    val item = player.inventory[slot] ?: return@on_button
+    if (opt == 0) {
+        val result = EquipAction.equip(player, item, inventorySlot = slot)
+        if (result == EquipAction.Result.SUCCESS) {
+            player.calculateBonuses()
+            Bank.sendBonuses(player)
+        } else if (result == EquipAction.Result.UNHANDLED) {
+            player.message("You can't equip that.")
+        }
+    } else if (opt == 9) {
+        world.sendExamine(player, item.id, ExamineEntityType.ITEM)
+    }
+}

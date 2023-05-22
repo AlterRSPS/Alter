@@ -8,6 +8,7 @@ import gg.rsmod.plugins.api.BonusSlot
 import gg.rsmod.plugins.api.InterfaceDestination
 import gg.rsmod.plugins.api.ext.*
 import gg.rsmod.plugins.content.interfaces.bank.BankTabs.SELECTED_TAB_VARBIT
+import gg.rsmod.plugins.content.interfaces.equipstats.EquipmentStats
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -139,49 +140,45 @@ object Bank {
         p.setVarp(262, -1)
         p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 9, text = p.bank.capacity.toString())
         p.runClientScript(1495, "Non-members' capacity: 400<br>Become a member for 400 more.<br>A banker can sell you up to 360 more.<br>+20 for your PIN.<br>Set an Authenticator for 20 more.", 786439, 786549)
-
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 89, text = "Stab: ${p.getBonus(BonusSlot.ATTACK_STAB)}")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 90, text = "Slash: ${p.getBonus(BonusSlot.ATTACK_SLASH)}")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 91, text = "Crush: ${p.getBonus(BonusSlot.ATTACK_CRUSH)}")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 92, text = "Magic: ${p.getBonus(BonusSlot.ATTACK_MAGIC)}")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 93, text = "Range: ${p.getBonus(BonusSlot.ATTACK_RANGED)}")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 122, text = "Base: ") // Default weapon speed
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 123, text = "Actual: ") // If it's bow or w.e get Rapid speed
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 95, text = "Stab: ${p.getBonus(BonusSlot.DEFENCE_STAB)}")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 96, text = "Slash: ${p.getBonus(BonusSlot.DEFENCE_SLASH)}")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 97, text = "Crush: ${p.getBonus(BonusSlot.DEFENCE_CRUSH)}")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 99, text = "Range: ${p.getBonus(BonusSlot.DEFENCE_RANGED)}")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 98, text = "Magic: ${p.getBonus(BonusSlot.DEFENCE_MAGIC)}")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 101, text = "Melee STR: ")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 102, text = "Ranged STR: ")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 103, text = "Magic DMG: +0.0%")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 104, text = "Prayer: ")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 106, text = "Undead: ")
-
-        p.runClientScript(7065, 786549, 786538, "Increases your effective accuracy and damage against undead creatures. For multi-target Ranged and Magic attacks, this applies only to the primary target. It does not stack with the Slayer multiplier.")
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 107, text = "Slayer: ")
-
-        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 19, 0..27, InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp2,
-            InterfaceEvent.ClickOp3, InterfaceEvent.ClickOp4, InterfaceEvent.ClickOp10
-        )
-
-
-        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 13, range = 0..815, setting = 1312766)
-        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 13, range = 825..833, setting = 2)
-        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 13, range = 834..843, setting = 1048576)
-        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 11, range = 10..10, setting = 1048706)
-        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 11, range = 11..19, setting = 1179842)
-        p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 3, range = 0..27, setting = 1181694)
-        p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 14, range = 0..27, setting = 1054)
-        p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 20, range = 0..27, setting = 1054)
-        p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 5, range = 0..27, setting = 1180674)
-        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 47, range = 1..816, setting = 2)
-        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 50, range = 0..3, setting = 2)
-
-
+        sendBonuses(p)
+        // ^ This we can make method.
+        p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 3, 0..27,  InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp2, InterfaceEvent.ClickOp3, InterfaceEvent.ClickOp4, InterfaceEvent.ClickOp5, InterfaceEvent.ClickOp6, InterfaceEvent.ClickOp7, InterfaceEvent.ClickOp8, InterfaceEvent.ClickOp9, InterfaceEvent.ClickOp10, InterfaceEvent.DRAG_DEPTH1, InterfaceEvent.DragTargetable)
+        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 47, 1..1200, InterfaceEvent.ClickOp1)
+        p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 19, 0..27, InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp2, InterfaceEvent.ClickOp3, InterfaceEvent.ClickOp4, InterfaceEvent.ClickOp10)
+        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 13, 0..1199, InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp2, InterfaceEvent.ClickOp3, InterfaceEvent.ClickOp4, InterfaceEvent.ClickOp5, InterfaceEvent.ClickOp6, InterfaceEvent.ClickOp7, InterfaceEvent.ClickOp8, InterfaceEvent.ClickOp9, InterfaceEvent.ClickOp10, InterfaceEvent.DRAG_DEPTH2, InterfaceEvent.DragTargetable)
+        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, 13, 1218..1227, InterfaceEvent.DragTargetable)
+        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, 11, 10..10, InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp7, InterfaceEvent.DragTargetable)
+        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, 11, 11..19, InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp6, InterfaceEvent.ClickOp7, InterfaceEvent.DRAG_DEPTH1, InterfaceEvent.DragTargetable)
+        p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, 4, 0..27, InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp10, InterfaceEvent.DRAG_DEPTH1, InterfaceEvent.DragTargetable)
+        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 50, 0..3, InterfaceEvent.ClickOp1)
+        p.setInterfaceEvents(interfaceId = INV_INTERFACE_ID, component = 13, 0..27, InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp2, InterfaceEvent.ClickOp3, InterfaceEvent.ClickOp4, InterfaceEvent.ClickOp10)
         p.setVarbit(BANK_YOUR_LOOT_VARBIT, 0)
     }
-
+    fun sendBonuses(p: Player) {
+        /**
+         * @TODO Include set bonus desc
+         * Since my account is banned rn can't retrieve how it actl looks if they set the desc when you equip one piece of the set or if the desc gets set when you wear full set. :Shrug:
+         */
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 89, text = "Stab: ${EquipmentStats.formatBonus(p, BonusSlot.ATTACK_STAB)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 90, text = "Slash: ${EquipmentStats.formatBonus(p, BonusSlot.ATTACK_SLASH)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 91, text = "Crush: ${EquipmentStats.formatBonus(p, BonusSlot.ATTACK_CRUSH)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 92, text = "Magic: ${EquipmentStats.formatBonus(p, BonusSlot.ATTACK_MAGIC)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 93, text = "Range: ${EquipmentStats.formatBonus(p, BonusSlot.ATTACK_RANGED)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 122, text = "Base: 2.4s") // @TODO Normal Weapon Attack speed
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 123, text = "Actual: 2.4s") // @TODO Attack speed with rapid and etc.
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 95, text = "Stab: ${EquipmentStats.formatBonus(p, BonusSlot.DEFENCE_STAB)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 96, text = "Slash: ${EquipmentStats.formatBonus(p, BonusSlot.DEFENCE_SLASH)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 97, text = "Crush: ${EquipmentStats.formatBonus(p, BonusSlot.DEFENCE_CRUSH)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 99, text = "Range: ${EquipmentStats.formatBonus(p, BonusSlot.DEFENCE_RANGED)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 98, text = "Magic: ${EquipmentStats.formatBonus(p, BonusSlot.DEFENCE_MAGIC)}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 101, text = "Melee STR: ${EquipmentStats.formatBonus(p.getStrengthBonus())}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 102, text = "Ranged STR: ${EquipmentStats.formatBonus(p.getRangedStrengthBonus())}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 103, text = "Magic DMG: ${EquipmentStats.formatBonus(p.getMagicDamageBonus()).toDouble()}%")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 104, text = "Prayer: ${EquipmentStats.formatBonus(p.getPrayerBonus())}")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 106, text = "Undead: 0%") // @TODO
+        p.runClientScript(7065, 786549, 786538, "Increases your effective accuracy and damage against undead creatures. For multi-target Ranged and Magic attacks, this applies only to the primary target. It does not stack with the Slayer multiplier.")
+        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 107, text = "Slayer: 0%") // @TODO
+    }
     fun ItemContainer.removePlaceholder(world: World, item: Item): Int {
         val def = item.toUnnoted(world.definitions).getDef(world.definitions)
         val slot = if (def.placeholderLink > 0) indexOfFirst { it?.id == def.placeholderLink && it.amount == -2 } else -1
