@@ -55,11 +55,11 @@ fun bind_unequip(equipment: EquipmentType, component: Int) {
     on_button(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, component = component) {
         val opt = player.getInteractingOption()
 
-        if (opt == 1) {
+        if (opt == 0) {
             EquipAction.unequip(player, equipment.id)
             player.calculateBonuses()
             sendBonuses(player)
-        } else if (opt == 10) {
+        } else if (opt == 9) {
             val item = player.equipment[equipment.id] ?: return@on_button
             world.sendExamine(player, item.id, ExamineEntityType.ITEM)
         } else {
