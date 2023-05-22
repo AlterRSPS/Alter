@@ -82,7 +82,7 @@ class ItemContainer(val definitions: DefinitionSet, val key: ContainerKey) : Ite
      */
     fun getLastFreeSlot(): Int {
         var lastEmpty = -1;
-        for (index in items.indices.reversed()) {
+        for (index in items.indices) {
             if (items[index] == null)
                 lastEmpty = index
             else
