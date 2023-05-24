@@ -41,44 +41,43 @@ internal fun getBar(name: String) : Bar? {
  * @param bar   The bar type
  * @return      The type, as a string
  */
-internal fun typeForChild(child: Int, bar: Bar) : String? = when {
-    bar == Bar.LOVAKITE -> shayzien.getValue(child)
-    child == 9 -> "${bar.prefix} dagger"
-    child == 10 -> "${bar.prefix} sword"
-    child == 11 -> "${bar.prefix} scimitar"
-    child == 12 -> "${bar.prefix} longsword"
-    child == 13 -> "${bar.prefix} 2h sword"
-    child == 14 -> "${bar.prefix} axe"
-    child == 15 -> "${bar.prefix} mace"
-    child == 16 -> "${bar.prefix} warhammer"
-    child == 17 -> "${bar.prefix} battleaxe"
-    child == 18 -> "${bar.prefix} claws"
-    child == 19 -> "${bar.prefix} chainbody"
-    child == 20 -> "${bar.prefix} platelegs"
-    child == 21 -> "${bar.prefix} plateskirt"
-    child == 22 -> "${bar.prefix} platebody"
-    child == 23 -> "${bar.prefix} nails"
-    child == 24 -> "${bar.prefix} med helm"
-    child == 25 -> "${bar.prefix} full helm"
-    child == 26 -> "${bar.prefix} sq shield"
-    child == 27 -> "${bar.prefix} kiteshield"
-    child == 28 -> when (bar) {
+internal fun typeForChild(child: Int, bar: Bar): String? = when (child) {
+    9 -> "${bar.prefix} dagger"
+    10 -> "${bar.prefix} sword"
+    11 -> "${bar.prefix} scimitar"
+    12 -> "${bar.prefix} longsword"
+    13 -> "${bar.prefix} 2h sword"
+    14 -> "${bar.prefix} axe"
+    15 -> "${bar.prefix} mace"
+    16 -> "${bar.prefix} warhammer"
+    17 -> "${bar.prefix} battleaxe"
+    18 -> "${bar.prefix} claws"
+    19 -> "${bar.prefix} chainbody"
+    20 -> "${bar.prefix} platelegs"
+    21 -> "${bar.prefix} plateskirt"
+    22 -> "${bar.prefix} platebody"
+    23 -> "${bar.prefix} nails"
+    24 -> "${bar.prefix} med helm"
+    25 -> "${bar.prefix} full helm"
+    26 -> "${bar.prefix} sq shield"
+    27 -> "${bar.prefix} kiteshield"
+    28 -> when (bar) {
         Bar.IRON -> "lantern frame"
         Bar.STEEL -> "lantern (unf)"
         else -> null
     }
-    child == 29 -> "${bar.prefix} dart tip"
-    child == 30 -> "${bar.prefix} arrowtips"
-    child == 31 -> "${bar.prefix} knife"
-    child == 32 -> when (bar) {
+    29 -> "${bar.prefix} dart tip"
+    30 -> "${bar.prefix} arrowtips"
+    31 -> "${bar.prefix} knife"
+    32 -> when (bar) {
         Bar.BRONZE -> "wire"
         Bar.IRON -> "spit"
         Bar.STEEL -> "studs"
         Bar.MITHRIL -> "grapple tip"
         else -> null
     }
-    child == 33 -> "${bar.prefix} bolts (unf)"
-    child == 34 -> "${bar.prefix} limbs"
-    child == 35 -> "${bar.prefix} javelin heads"
+    33 -> "${bar.prefix} bolts (unf)"
+    34 -> "${bar.prefix} limbs"
+    35 -> "${bar.prefix} javelin heads"
     else -> null
 }
