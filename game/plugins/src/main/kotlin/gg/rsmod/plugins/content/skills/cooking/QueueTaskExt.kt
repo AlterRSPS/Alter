@@ -26,7 +26,7 @@ suspend fun QueueTask.cookingMessageBox(vararg items: Int, title: String = "What
 
     player.sendTempVarbit(5983, 1)
     player.runClientScript(2379)
-    player.openInterface(parent = 162, child = 561, interfaceId = 270)
+    player.openInterface(parent = 162, child = 559, interfaceId = 270, isModal = true)
     player.setInterfaceEvents(interfaceId = 270, component = 14, range = (1..10), setting = 1)
     player.setInterfaceEvents(interfaceId = 270, component = 15, range = (1..10), setting = 1)
     player.runClientScript(2046, 6, "$title${nameArray.joinToString("")}", maxItems, *itemArray, maxItems)
