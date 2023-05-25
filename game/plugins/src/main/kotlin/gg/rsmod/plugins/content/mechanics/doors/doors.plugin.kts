@@ -27,24 +27,30 @@ load_service(DoorService())
 on_world_init {
     world.getService(DoorService::class.java)!!.let { service ->
         service.doors.forEach { door ->
+
+
             on_obj_option(obj = door.opened, option = "close") {
                 val obj = player.getInteractingGameObj()
-                if (!is_stuck(world, obj)) {
+                //if (!is_stuck(world, obj)) {
                     val newDoor = world.closeDoor(obj, closed = door.closed, invertTransform = obj.type == ObjectType.DIAGONAL_WALL.value)
                     copy_stick_vars(obj, newDoor)
-                    add_stick_var(world, newDoor)
+                    //add_stick_var(world, newDoor)
                     player.playSound(Sound.CLOSE_DOOR_SFX)
-                } else {
-                    player.message("The door seems to be stuck.")
-                    player.playSound(Sound.STUCK_DOOR_SFX)
-                }
+                //} else {
+                //    player.message("The door seems to be stuck.")
+                //    player.playSound(Sound.STUCK_DOOR_SFX)
+               // }
             }
 
             on_obj_option(obj = door.closed, option = "open") {
                 val obj = player.getInteractingGameObj()
                 val newDoor = world.openDoor(obj, opened = door.opened, invertTransform = obj.type == ObjectType.DIAGONAL_WALL.value)
                 copy_stick_vars(obj, newDoor)
-                add_stick_var(world, newDoor)
+                /**
+                 * @TODO
+                 * getResetStickDelay() -> Lateint property has not been initialized
+                 */
+                //add_stick_var(world, newDoor)
                 player.playSound(Sound.OPEN_DOOR_SFX)
             }
         }
