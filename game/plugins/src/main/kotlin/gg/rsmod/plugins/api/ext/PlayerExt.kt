@@ -8,6 +8,7 @@ import gg.rsmod.game.model.World
 import gg.rsmod.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import gg.rsmod.game.model.attr.CURRENT_SHOP_ATTR
 import gg.rsmod.game.model.attr.PROTECT_ITEM_ATTR
+import gg.rsmod.game.model.attr.CHANGE_LOGGING
 import gg.rsmod.game.model.bits.BitStorage
 import gg.rsmod.game.model.bits.StorageBits
 import gg.rsmod.game.model.container.ContainerStackType
@@ -393,6 +394,9 @@ fun Player.playJingle(id: Int) {
 fun Player.getVarp(id: Int): Int = varps.getState(id)
 
 fun Player.setVarp(id: Int, value: Int) {
+    if (attr.has(CHANGE_LOGGING) && getVarp(id) != value) {
+        message("Varp: $id was changed from: ${getVarp(id)} to $value")
+    }
     varps.setState(id, value)
 }
 
@@ -422,6 +426,9 @@ fun Player.decrementVarbit(id: Int, amount: Int = 1): Int {
 }
 
 fun Player.setVarbit(id: Int, value: Int) {
+    if (attr.has(CHANGE_LOGGING) && getVarbit(id) != value) {
+        message("Varbit: $id was changed from: ${getVarbit(id)} to $value")
+    }
     val def = world.definitions.get(VarbitDef::class.java, id)
     varps.setBit(def.varp, def.startBit, def.endBit, value)
 }
@@ -438,6 +445,9 @@ fun Player.sendTempVarbit(id: Int, value: Int) {
 }
 
 fun Player.toggleVarbit(id: Int) {
+    if (attr.has(CHANGE_LOGGING)) {
+        message("Varbit toggle: $id was changed from: ${getVarbit(id)} to ${getVarbit(id) xor 1}")
+    }
     val def = world.definitions.get(VarbitDef::class.java, id)
     varps.setBit(def.varp, def.startBit, def.endBit, getVarbit(id) xor 1)
 }

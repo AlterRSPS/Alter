@@ -227,3 +227,5 @@ val LEVEL_UP_INCREMENT = AttributeKey<Int>()
  * The previous skill XP of the latest level up.
  */
 val LEVEL_UP_OLD_XP = AttributeKey<Double>()
+
+val CHANGE_LOGGING = AttributeKey<Boolean>()
