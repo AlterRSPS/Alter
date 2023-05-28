@@ -47,7 +47,6 @@ class ItemDef(override val id: Int) : Definition(id) {
     val params = Int2ObjectOpenHashMap<Any>()
     var category = -1
     var zoom2d = 0
-
     /**
      * Custom metadata.
      */
@@ -71,18 +70,28 @@ class ItemDef(override val id: Int) : Definition(id) {
     var wearPos1: Int = -1
     var wearPos2: Int = -1
     var wearPos3: Int = -1
+    var maleModel0: Int = 0
+    var maleOffset: Int = 0
+    var maleModel1: Int = 0
 
-    /**
-     * @TODO
-     */
-//    var maleModel0 =
-//    var maleModel1 =
-//
-//
-//    var maleOffset =
-//    var femaleModel0 =
-//    var femaleOffset: Int;
+    var recolorSrc: IntArray = IntArray(0)
+    var recolorDest: IntArray = IntArray(0)
+    var retextureSrc: IntArray = IntArray(0)
+    var retextureDest: IntArray = IntArray(0)
 
+    var maleModel2: Int = 0
+    var femaleModel2: Int = 0
+    var maleHeadModel0: Int = 0
+    var femaleHeadModel0: Int = 0
+    var maleHeadModel1: Int = 0
+    var femaleHeadModel1: Int = 0
+    var countItem: IntArray = IntArray(0)
+    var countCo: IntArray = IntArray(0)
+    var resizeX: Int = 128
+    var resizeY: Int = 128
+    var resizeZ: Int = 128
+    var femaleModel0 = 0
+    var femaleOffset: Int = 0
 
     lateinit var bonuses: IntArray
 
@@ -105,39 +114,25 @@ class ItemDef(override val id: Int) : Definition(id) {
             4 -> zoom2d = buf.readUnsignedShort()
             5 -> xan2d = buf.readUnsignedShort()
             6 -> yan2d = buf.readUnsignedShort()
-            7 -> {
-                xOffset2d = buf.readUnsignedShort()
-                if (xOffset2d > 32767) {
-                    xOffset2d -= 65536
-                }
-            }
-            8 -> {
-                yOffset2d = buf.readUnsignedShort()
-                if (yOffset2d > 32767) {
-                    yOffset2d -= 65536
-                }
-            }
-            9 -> {
-                unknown1 = buf.readString()
-            }
+            7 -> xOffset2d = buf.readUnsignedShort()
+            8 -> yOffset2d = buf.readUnsignedShort()
+            9 -> unknown1 = buf.readString()
             11 -> stacks = true
             12 -> cost = buf.readInt()
             13 -> wearPos1 = buf.readUnsignedByte().toInt()
             14 -> wearPos2 = buf.readUnsignedByte().toInt()
             16 -> members = true
             23 -> {
-                /* maleModel0 = */ buf.readUnsignedShort()
-                /* maleOffset = */ buf.readUnsignedByte()
+                maleModel0 = buf.readUnsignedShort()
+                maleOffset = buf.readUnsignedByte().toInt()
             }
-            24 -> /* maleModel1 = */ buf.readUnsignedShort()
-
+            24 -> maleModel1 = buf.readUnsignedShort()
             25 -> {
-                /* femaleModel0 = */ buf.readUnsignedShort()
-                /* femaleOffset = */ buf.readUnsignedByte()
+                 femaleModel0 = buf.readUnsignedShort()
+                 femaleOffset = buf.readUnsignedByte().toInt()
             }
             26 -> femaleModel1 = buf.readUnsignedShort()
             27 -> wearPos3 = buf.readByte().toInt()
-
             in 30 until 35 -> {
                 groundMenu[opcode - 30] = buf.readString()
                 if (groundMenu[opcode - 30]!!.equals("null", true)
@@ -146,42 +141,50 @@ class ItemDef(override val id: Int) : Definition(id) {
                 }
             }
             in 35 until 40 -> inventoryMenu[opcode - 35] = buf.readString()
-            40 -> {
-                val count = buf.readUnsignedByte()
-
-                for (i in 0 until count) {
-                    buf.readUnsignedShort()
-                    buf.readUnsignedShort()
+            40,41 -> {
+                val count = buf.readUnsignedByte().toInt()
+                val src = IntArray(count)
+                val dest = IntArray(count)
+                repeat(count) {
+                    src[it] = buf.readUnsignedShort()
+                    src[it] = buf.readUnsignedShort()
                 }
-            }
-            41 -> {
-                val count = buf.readUnsignedByte()
-
-                for (i in 0 until count) {
-                    buf.readUnsignedShort()
-                    buf.readUnsignedShort()
+                if (opcode == 40) {
+                    recolorSrc = src
+                    recolorDest = dest
+                } else {
+                    retextureSrc = src
+                    retextureDest = dest
                 }
             }
             42 -> dropOptionIndex = buf.readByte().toInt()
             65 -> isTradable = true
-            75 -> buf.readShort()
-            78 -> buf.readUnsignedShort()
-            79 -> buf.readUnsignedShort()
-            90 -> buf.readUnsignedShort()
-            91 -> buf.readUnsignedShort()
-            92 -> buf.readUnsignedShort()
-            93 -> buf.readUnsignedShort()
-            94 -> category = buf.readUnsignedShort()
-            95 -> buf.readUnsignedShort()
+            75 -> weight = buf.readShort().toDouble()
+            78 -> maleModel2 = buf.readUnsignedShort()
+            79 -> femaleModel2 = buf.readUnsignedShort()
+            90 -> maleHeadModel0 = buf.readUnsignedShort()
+            91 -> femaleHeadModel0 = buf.readUnsignedShort()
+            92 -> maleHeadModel1 = buf.readUnsignedShort()
+            93 -> femaleHeadModel1 = buf.readUnsignedShort()
+            94 -> {
+                category = buf.readUnsignedShort()
+            }
+            95 -> zan2d = buf.readUnsignedShort()
             97 -> noteLinkId = buf.readUnsignedShort()
             98 -> noteTemplateId = buf.readUnsignedShort()
             in 100 until 110 -> {
-                buf.readUnsignedShort()
-                buf.readUnsignedShort()
+                if (countItem.isEmpty()) {
+                    countItem = IntArray(10)
+                    countCo = IntArray(10)
+                }
+                val index = opcode - 100
+                countItem[index] = buf.readUnsignedShort()
+                countCo[index] = buf.readUnsignedShort()
             }
-            110 -> buf.readUnsignedShort()
-            111 -> buf.readUnsignedShort()
-            112 -> buf.readUnsignedShort()
+
+            110 -> resizeX = buf.readUnsignedShort()
+            111 -> resizeY = buf.readUnsignedShort()
+            112 -> resizeZ = buf.readUnsignedShort()
             113 -> ambient = buf.readByte().toInt()
             114 -> contrast = buf.readByte().toInt() * 5
             115 -> teamCape = buf.readUnsignedByte().toInt()
