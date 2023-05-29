@@ -68,7 +68,7 @@ internal fun typeForChild(child: Int, bar: Bar): String? = when (child) {
     }
     29 -> "${bar.prefix} dart tip"
     30 -> "${bar.prefix} arrowtips"
-    31 -> "${bar.prefix} knife"
+    31 -> "${bar.prefix} Knives"
     32 -> when (bar) {
         Bar.BRONZE -> "wire"
         Bar.IRON -> "spit"
@@ -76,8 +76,8 @@ internal fun typeForChild(child: Int, bar: Bar): String? = when (child) {
         Bar.MITHRIL -> "grapple tip"
         else -> null
     }
-    33 -> "${bar.prefix} bolts (unf)"
-    34 -> "${bar.prefix} limbs"
-    35 -> "${bar.prefix} javelin heads"
+    34 -> "${bar.prefix} bolts (unf)"
+    35 -> "${bar.prefix} limbs"
+    33 -> "${bar.prefix} javelin heads"
     else -> null
 }

@@ -161,11 +161,11 @@ smithingInterfaceComponents.forEach { child ->
 
                 // The number of items to smith
                 val amount = when (player.attr[INTERACTING_OPT_ATTR]) {
-                    1 -> 1
-                    2 -> 5
-                    3 -> 10
-                    4 -> inputInt("Enter amount:")
-                    5 -> player.inventory.capacity
+                    0 -> 1
+                    1 -> 5
+                    2 -> 10
+                    3 -> inputInt("Enter amount:")
+                    4 -> player.inventory.capacity
                     else -> {
                         world.sendExamine(player, item.id, ExamineEntityType.ITEM)
                         return@queue
