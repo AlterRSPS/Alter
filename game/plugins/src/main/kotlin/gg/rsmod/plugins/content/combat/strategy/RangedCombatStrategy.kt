@@ -4,10 +4,7 @@ import gg.rsmod.game.model.Tile
 import gg.rsmod.game.model.combat.AttackStyle
 import gg.rsmod.game.model.combat.PawnHit
 import gg.rsmod.game.model.combat.XpMode
-import gg.rsmod.game.model.entity.GroundItem
-import gg.rsmod.game.model.entity.Npc
-import gg.rsmod.game.model.entity.Pawn
-import gg.rsmod.game.model.entity.Player
+import gg.rsmod.game.model.entity.*
 import gg.rsmod.plugins.api.EquipmentType
 import gg.rsmod.plugins.api.Skills
 import gg.rsmod.plugins.api.WeaponType

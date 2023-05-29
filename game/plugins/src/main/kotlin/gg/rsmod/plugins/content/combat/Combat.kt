@@ -73,10 +73,22 @@ object Combat {
             return
         }
 
-        /* Don't override the animation if one is already set. @Z-Kris */
-        if (!pawn.hasBlock(UpdateBlockType.ANIMATION)) {
+        /*
+         * Don't override the animation if one is already set. @Z-Kris
+         */
+        if (!target.hasBlock(UpdateBlockType.ANIMATION)) {
             target.animate(CombatConfigs.getBlockAnimation(target))
+            if (target is Npc) {
+                val npcDefs = target.combatDef
+                if (npcDefs.defaultBlockSoundArea) {
+                    target.world.spawn(AreaSound(target.tile, npcDefs.defaultBlockSound, npcDefs.defaultBlockSoundRadius, npcDefs.defaultBlockSoundVolume))
+                } else {
+                    (pawn as Player).playSound(npcDefs.defaultBlockSound, npcDefs.defaultBlockSoundVolume)
+                }
+            }
         }
+
+
 
         if (target.lock.canAttack()) {
             if (target.entityType.isNpc) {
@@ -84,7 +96,7 @@ object Combat {
                     target.attack(pawn)
                 }
             } else if (target is Player) {
-                if (target.getVarp(gg.rsmod.plugins.content.interfaces.attack.AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn) {
+                if (target.getVarp(AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn) {
                     target.attack(pawn)
                 }
             }
