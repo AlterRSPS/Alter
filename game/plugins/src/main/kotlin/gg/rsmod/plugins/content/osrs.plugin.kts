@@ -60,6 +60,7 @@ on_login {
         message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
         //player.social.pushFriends(player)
         //player.social.pushIgnores(player)
+        setVarbit(Varbit.ESC_CLOSES_CURRENT_INTERFACE,1)
         }
     }
 
