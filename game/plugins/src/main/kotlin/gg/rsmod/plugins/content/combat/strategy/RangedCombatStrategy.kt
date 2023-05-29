@@ -12,10 +12,7 @@ import gg.rsmod.plugins.api.EquipmentType
 import gg.rsmod.plugins.api.Skills
 import gg.rsmod.plugins.api.WeaponType
 import gg.rsmod.plugins.api.cfg.Items
-import gg.rsmod.plugins.api.ext.getEquipment
-import gg.rsmod.plugins.api.ext.hasEquipped
-import gg.rsmod.plugins.api.ext.hasWeaponType
-import gg.rsmod.plugins.api.ext.message
+import gg.rsmod.plugins.api.ext.*
 import gg.rsmod.plugins.content.combat.Combat
 import gg.rsmod.plugins.content.combat.CombatConfigs
 import gg.rsmod.plugins.content.combat.createProjectile
@@ -88,7 +85,23 @@ object RangedCombatStrategy : CombatStrategy {
         val world = pawn.world
 
         val animation = CombatConfigs.getAttackAnimation(pawn)
-
+        /**
+         * @TODO Refactor
+         */
+        if (target is Player) {
+            when (pawn) {
+                is Npc -> {
+                    CombatConfigs.getCombatDef(pawn)!!.let {
+                        if (it.defaultAttackSoundArea) {
+                            world.spawn(AreaSound(pawn.tile, it.defaultAttackSound, it.defaultAttackSoundRadius, it.defaultAttackSoundVolume))
+                        } else {
+                            target.playSound(pawn.combatDef.defaultAttackSound, pawn.combatDef.defaultAttackSoundVolume)
+                        }
+                    }
+                }
+                // @TODO later for player block sound.
+            }
+        }
         /*
          * A list of actions that will be executed upon this hit dealing damage
          * to the [target].

@@ -1,13 +1,14 @@
 package gg.rsmod.plugins.content.combat.strategy
 
 import gg.rsmod.game.model.combat.XpMode
+import gg.rsmod.game.model.entity.AreaSound
 import gg.rsmod.game.model.entity.Npc
 import gg.rsmod.game.model.entity.Pawn
 import gg.rsmod.game.model.entity.Player
 import gg.rsmod.plugins.api.Skills
 import gg.rsmod.plugins.api.WeaponType
 import gg.rsmod.plugins.api.ext.hasWeaponType
-import gg.rsmod.plugins.api.ext.message
+import gg.rsmod.plugins.api.ext.playSound
 import gg.rsmod.plugins.content.combat.Combat
 import gg.rsmod.plugins.content.combat.CombatConfigs
 import gg.rsmod.plugins.content.combat.dealHit
@@ -33,10 +34,24 @@ object MeleeCombatStrategy : CombatStrategy {
 
     override fun attack(pawn: Pawn, target: Pawn) {
         val world = pawn.world
-
         val animation = CombatConfigs.getAttackAnimation(pawn)
         pawn.animate(animation)
-        // @TODO
+        if (target is Player) {
+            when (pawn) {
+                is Npc -> {
+                    CombatConfigs.getCombatDef(pawn)!!.let {
+                        if (it.defaultAttackSoundArea) {
+                            world.spawn(AreaSound(pawn.tile, it.defaultAttackSound, it.defaultAttackSoundRadius, it.defaultAttackSoundVolume))
+                        } else {
+                            target.playSound(pawn.combatDef.defaultAttackSound, pawn.combatDef.defaultAttackSoundVolume)
+                        }
+                    }
+                }
+                is Player -> {
+                    // @TODO Later
+                }
+            }
+        }
         val formula = MeleeCombatFormula
         val accuracy = formula.getAccuracy(pawn, target)
         val maxHit = formula.getMaxHit(pawn, target)

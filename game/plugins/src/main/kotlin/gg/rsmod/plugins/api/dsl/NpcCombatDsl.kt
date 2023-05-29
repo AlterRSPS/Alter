@@ -39,6 +39,10 @@ object NpcCombatDsl {
             combatBuilder.setPoisonChance(builder.poisonChance)
             combatBuilder.setVenomChance(builder.venomChance)
         }
+        //fun drops(init: WeightedTable.WeightedTableBuilder.() -> Unit) {
+        //    val builder = WeightedTable.WeightedTableBuilder(combatBuilder)
+        //    init(builder)
+        //}
 
         fun aggro(init: AggressivenessBuilder.() -> Unit) {
             val builder = AggressivenessBuilder()
@@ -87,10 +91,32 @@ object NpcCombatDsl {
             combatBuilder.setDeathAnimation(*builder.getDeathList().toIntArray())
         }
 
+        fun sound(init: SoundBuilder.() -> Unit) {
+            val builder = SoundBuilder()
+            init(builder)
+
+            combatBuilder.setDefaultAttackSound(builder.attackSound)
+            combatBuilder.setAttackSoundArea(builder.attackArea)
+            combatBuilder.setAttackSoundRadius(builder.attackRadius)
+            combatBuilder.setAttackSoundVolume(builder.attackVolume)
+
+            combatBuilder.setDefaultBlockSound(builder.blockSound)
+            combatBuilder.setBlockSoundArea(builder.blockArea)
+            combatBuilder.setBlockSoundRadius(builder.blockRadius)
+            combatBuilder.setBlockSoundVolume(builder.blockVolume)
+
+            combatBuilder.setDefaultDeathSound(builder.deathSound)
+            combatBuilder.setDeathSoundArea(builder.deathArea)
+            combatBuilder.setDeathSoundRadius(builder.deathRadius)
+            combatBuilder.setDeathSoundVolume(builder.deathVolume)
+        }
+
         fun slayerData(init: SlayerBuilder.() -> Unit) {
             val builder = SlayerBuilder()
             init(builder)
-
+            /**
+             * @TODO Forgot if it's true or not but => Theres some monsters that can only be attacked on task.
+             */
             combatBuilder.setSlayerParams(builder.levelRequirement, builder.xp)
         }
     }
@@ -106,7 +132,7 @@ object NpcCombatDsl {
          * The delay to wait to respawn the npc after death, in cycles.
          * If npc should not respawn, this value should be set to 0.
          */
-        var respawnDelay = -1
+        var respawnDelay: Int = -1
 
         /**
          * The chance of inflicting poison on damage. Value should vary from
@@ -121,6 +147,13 @@ object NpcCombatDsl {
          * meaning the npc will always inflict venom on damage.
          */
         var venomChance = -1.0
+
+        /**
+         * @TODO
+         * Not added yet, need more info.
+         * Cannons => If it's immune to cannonBalls or the cannonball ignores these npcs.
+         * Thralls => If it's immune to thralls damage or thralls don't attack.
+         */
     }
 
     @CombatDslMarker
@@ -334,4 +367,38 @@ object NpcCombatDsl {
             }
         }
     }
+
+    @CombatDslMarker
+    class SoundBuilder {
+        var attackSound = -1
+        var attackArea: Boolean = false
+        var attackVolume: Int = 50
+        var attackRadius: Int = 0
+            set(value) {
+                check(attackArea) { "Can't assign attackRadius when attackArea is false." }
+                field = value
+            }
+
+        var blockSound = -1
+        var blockArea: Boolean = false
+        var blockVolume: Int = 50
+        var blockRadius: Int = 0
+            set(value) {
+                check(blockArea) { "Can't assign blockRadius when blockArea is false." }
+                field = value
+            }
+
+
+        var deathSound = -1
+        var deathArea: Boolean = false
+        var deathVolume: Int = 50
+
+        var deathRadius: Int = 0
+            set(value) {
+                check(deathArea) { "Can't assign deathRadius when deathArea is false." }
+                field = value
+            }
+
+    }
 }
+
