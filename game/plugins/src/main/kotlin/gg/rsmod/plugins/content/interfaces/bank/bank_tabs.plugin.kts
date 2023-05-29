@@ -3,10 +3,9 @@ package gg.rsmod.plugins.content.interfaces.bank
 import gg.rsmod.game.model.attr.INTERACTING_COMPONENT_CHILD
 import gg.rsmod.game.model.attr.INTERACTING_ITEM_SLOT
 import gg.rsmod.game.model.attr.OTHER_ITEM_SLOT_ATTR
+import gg.rsmod.game.model.priv.Privilege
 import gg.rsmod.plugins.content.interfaces.bank.Bank.BANK_INTERFACE_ID
 import gg.rsmod.plugins.content.interfaces.bank.Bank.BANK_MAINTAB_COMPONENT
-import gg.rsmod.plugins.content.interfaces.bank.Bank.INV_INTERFACE_CHILD
-import gg.rsmod.plugins.content.interfaces.bank.Bank.INV_INTERFACE_ID
 import gg.rsmod.plugins.content.interfaces.bank.Bank.REARRANGE_MODE_VARBIT
 import gg.rsmod.plugins.content.interfaces.bank.Bank.insert
 import gg.rsmod.plugins.content.interfaces.bank.BankTabs.BANK_TABLIST_ID
@@ -20,11 +19,29 @@ import gg.rsmod.plugins.content.interfaces.bank.BankTabs.startPoint
 
 /**
  * Handles setting the current selected tab varbit on tab selection.
+ *
+ * When you take out to inv from bank -> It leaves empty gaps -> But when you put everything via Bank All -> The empty gaps get subtracted.
  */
 on_button(BANK_INTERFACE_ID, BANK_TABLIST_ID){
     val dstTab = player.getInteractingSlot()-10
-    if(dstTab <= numTabsUnlocked(player))
-        player.setVarbit(SELECTED_TAB_VARBIT, dstTab)
+    val opt = player.getInteractingOption()
+    when (opt) {
+        0 -> {
+            if(dstTab <= numTabsUnlocked(player))
+            player.setVarbit(SELECTED_TAB_VARBIT, dstTab)
+        }
+        5 -> {
+            player.message("Not implemented [Bank1]")
+        }
+        6 -> {
+            // @TODO Remove placeholders for that tab
+            // If no placeholders Text: You don't have any placeholders to release. else Nothing xd
+            player.message("Not implemented [Bank2]")
+        }
+        else -> {
+            player.printAndMessageIfHasPower(("Unknown option from component: [$BANK_INTERFACE_ID:$BANK_TABLIST_ID]: $opt"), Privilege.ADMIN_POWER)
+        }
+    }
 }
 
 on_button(BANK_INTERFACE_ID, 113) {
