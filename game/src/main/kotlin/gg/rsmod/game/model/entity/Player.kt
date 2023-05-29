@@ -466,8 +466,8 @@ open class Player(world: World) : Pawn(world) {
     }
 
     fun calculateWeight() {
-        val inventoryWeight = inventory.filterNotNull().sumByDouble { it.getDef(world.definitions).weight }
-        val equipmentWeight = equipment.filterNotNull().sumByDouble { it.getDef(world.definitions).weight }
+        val inventoryWeight = inventory.filterNotNull().sumOf { it.getDef(world.definitions).weight }
+        val equipmentWeight = equipment.filterNotNull().sumOf { it.getDef(world.definitions).weight }
         this.weight = inventoryWeight + equipmentWeight
         write(UpdateRunWeightMessage(this.weight.toInt()))
     }

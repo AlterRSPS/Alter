@@ -505,7 +505,7 @@ abstract class Pawn(val world: World) : Entity() {
     /**
      * @disablePlayersClicks For how long to disable the players [GameClicks]
      */
-    fun animateSend(id: Int, startDelay: Int = 0, DisablePlayerTicks: Int = 0) {
+    fun animateSend(id: Int, startDelay: Int = 0) {
         blockBuffer.animation = id
         blockBuffer.animationDelay = startDelay
         if (this is Player) {

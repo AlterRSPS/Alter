@@ -52,7 +52,7 @@ class MessageStructureSet {
         packets.forEach { packet ->
             val values = packet as LinkedHashMap<*, *>
             val className = values["message"] as String
-            val packetType = if (values.containsKey("type")) PacketType.valueOf((values["type"] as String).toUpperCase()) else PacketType.FIXED
+            val packetType = if (values.containsKey("type")) PacketType.valueOf((values["type"] as String).uppercase()) else PacketType.FIXED
             val clazz = Class.forName(className)
             val packetLength = values["length"] as? Int ?: 0
             val ignore = values["ignore"] as? Boolean ?: false
@@ -74,7 +74,7 @@ class MessageStructureSet {
                     val order = if (structValues.containsKey("order")) DataOrder.valueOf(structValues["order"] as String) else DataOrder.BIG
                     val transform = if (structValues.containsKey("trans")) DataTransformation.valueOf(structValues["trans"] as String) else DataTransformation.NONE
                     val type = DataType.valueOf(structValues["type"] as String)
-                    val signature = if (structValues.containsKey("sign")) DataSignature.valueOf((structValues["sign"] as String).toUpperCase()) else DataSignature.SIGNED
+                    val signature = if (structValues.containsKey("sign")) DataSignature.valueOf((structValues["sign"] as String).uppercase()) else DataSignature.SIGNED
                     packetValues[name] = MessageValue(id = name, order = order, transformation = transform, type = type,
                         signature = signature)
                 }
