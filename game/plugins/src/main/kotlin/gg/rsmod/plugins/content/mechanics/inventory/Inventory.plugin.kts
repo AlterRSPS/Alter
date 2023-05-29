@@ -34,7 +34,7 @@ on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
             2 -> {
                 val result = EquipAction.equip(player, item, slot)
                 if (result == EquipAction.Result.UNHANDLED && world.devContext.debugItemActions) {
-                    player.message("[2] Unhandled item action: [item=${item.id}, slot=${slot}, option=$option]")
+                    player.message("Unhandled item action: [item=${item.id}, slot=${slot}, option=$option]")
                 }
             }
             9 -> {
@@ -43,7 +43,7 @@ on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
             else -> {
                 if (option != null) {
                     if (!world.plugins.executeItem(player, item.id, option) && world.devContext.debugItemActions) {
-                        player.message("[else] Unhandled item action: [item=${item.id}, slot=${slot}, option=${option}]")
+                        player.message("Unhandled item action: [item=${item.id}, slot=${slot}, option=${option}]")
                     }
                 }
             }

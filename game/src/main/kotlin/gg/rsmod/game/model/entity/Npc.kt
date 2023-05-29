@@ -6,10 +6,8 @@ import gg.rsmod.game.fs.def.VarbitDef
 import gg.rsmod.game.model.EntityType
 import gg.rsmod.game.model.Tile
 import gg.rsmod.game.model.World
-import gg.rsmod.game.model.combat.AttackStyle
-import gg.rsmod.game.model.combat.CombatClass
-import gg.rsmod.game.model.combat.CombatStyle
-import gg.rsmod.game.model.combat.NpcCombatDef
+import gg.rsmod.game.model.combat.*
+import gg.rsmod.game.model.weightedTableBuilder.tableDrops
 import gg.rsmod.game.sync.block.UpdateBlockType
 
 /**
@@ -108,6 +106,9 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
     val species: Set<Any>
         get() = combatDef.species
 
+    val dropTable: Set<tableDrops>?
+        get() = combatDef.drops
+
     override val entityType: EntityType = EntityType.NPC
 
     override fun isRunning(): Boolean = false
@@ -118,8 +119,8 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
 
     override fun getMaxHp(): Int = combatDef.hitpoints
 
-    override fun setCurrentHp(level: Int) {
-        this.hitpoints = level
+    override fun setCurrentHp(health: Int) {
+        this.hitpoints = health
     }
 
     override fun addBlock(block: UpdateBlockType) {

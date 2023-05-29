@@ -82,6 +82,32 @@ class ItemContainer(val definitions: DefinitionSet, val key: ContainerKey) : Ite
      */
     fun getLastFreeSlot(): Int {
         var lastEmpty = -1;
+        for (index in items.indices) {
+            if (items[index] == null)
+                lastEmpty = index
+            else
+                break
+        }
+        return lastEmpty
+    }
+
+
+    /**
+     * @TODO Refactor.
+     */
+    fun getLastFreeSlot(startIndex: Int): Int {
+        var lastEmpty = -1
+        items.indices.reversed().forEach {
+            if (it > startIndex) {
+                if (items[it] == null) {
+                    lastEmpty = it
+                }
+            }
+        }
+        return lastEmpty
+    }
+    fun getLastFreeSlotReversed(): Int {
+        var lastEmpty = -1;
         for (index in items.indices.reversed()) {
             if (items[index] == null)
                 lastEmpty = index
@@ -593,6 +619,49 @@ class ItemContainer(val definitions: DefinitionSet, val key: ContainerKey) : Ite
             set(i, newItems[i])
         }
     }
+
+//    fun shift(from: Int): Int {
+//        println("[$from] Before: ")
+//        items.forEachIndexed { index, it ->
+//            if (index < 20)
+//            println("$index = $it")
+//        }
+//        val copyOfItems = items
+//        var index = from
+//        while (copyOfItems[index] == null) {
+//            index++
+//        }
+//        println("After: ")
+//        copyOfItems.copyOfRange(index, capacity).forEachIndexed { i, it ->
+//            if (i < 20) {
+//                println("$i = $it")
+//            }
+//            set(i, it)
+//        }
+//        return index - from
+//    }
+//
+//    fun shiftV2(from: Int): Int {
+//        var nextNonNullIndex = from
+//        while (nextNonNullIndex < items.size && items[nextNonNullIndex] == null) {
+//            nextNonNullIndex++
+//        }
+//
+//        if (nextNonNullIndex >= items.size) {
+//            // No non-null value found after the given index
+//            return nextNonNullIndex
+//        }
+//
+//        val shiftAmount = nextNonNullIndex - from
+//        for (i in from until items.size - shiftAmount) {
+//            items[i] = items[i + shiftAmount]
+//        }
+//
+//        for (i in items.size - shiftAmount until items.size) {
+//            items[i] = null
+//        }
+//        return nextNonNullIndex
+//    }
 
     operator fun get(index: Int): Item? = items[index]
 

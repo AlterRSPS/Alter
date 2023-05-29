@@ -3,7 +3,7 @@ package gg.rsmod.plugins.api.cfg
 /**
  * ordinal tracks the client-side enum slot from 0 - 648
  */
-enum class Songs(val title: String, val id: Int) {
+enum class Song(val title: String, val id: Int) {
     SCAPE_ORIGINAL("Scape Original", 400),
     SCAPE_MAIN("Scape Main", 0),
     GROUND_SCAPE("Scape Ground", 466),

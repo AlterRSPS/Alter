@@ -50,7 +50,6 @@ class NpcDef(override val id: Int) : Definition(id) {
     var crawlRotateLeftAnimation = -1
     var crawlRotateRightAnimation = -1
 
-
     var options: Array<String?> = Array(5) { "" }
 
     var recolorSrc : Array<Int> = emptyArray<Int>()

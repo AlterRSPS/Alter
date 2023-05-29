@@ -8,6 +8,7 @@ import gg.rsmod.game.model.World
 import gg.rsmod.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import gg.rsmod.game.model.attr.CURRENT_SHOP_ATTR
 import gg.rsmod.game.model.attr.PROTECT_ITEM_ATTR
+import gg.rsmod.game.model.attr.CHANGE_LOGGING
 import gg.rsmod.game.model.bits.BitStorage
 import gg.rsmod.game.model.bits.StorageBits
 import gg.rsmod.game.model.container.ContainerStackType
@@ -20,9 +21,9 @@ import gg.rsmod.game.model.item.Item
 import gg.rsmod.game.model.timer.SKULL_ICON_DURATION_TIMER
 import gg.rsmod.game.sync.block.UpdateBlockType
 import gg.rsmod.plugins.api.*
-import gg.rsmod.plugins.api.cfg.Varbits
-import gg.rsmod.plugins.api.cfg.Varps
-import gg.rsmod.plugins.api.cfg.Songs
+import gg.rsmod.plugins.api.cfg.Varbit
+import gg.rsmod.plugins.api.cfg.Varp
+import gg.rsmod.plugins.api.cfg.Song
 import gg.rsmod.plugins.service.marketvalue.ItemMarketValueService
 import gg.rsmod.util.BitManipulation
 
@@ -67,6 +68,17 @@ fun Player.openShop(shopId: Int) {
 fun Player.message(message: String, type: ChatMessageType = ChatMessageType.CONSOLE, username: String? = null) {
     write(MessageGameMessage(type = type.id, message = message, username = username))
 }
+
+/**
+ * Print message in Servers Terminal and send message if player has reqPrivilege
+ */
+fun Player.printAndMessageIfHasPower(message: String, privilege: String) {
+    if (isPrivilegeEligible(privilege)) {
+        message(message)
+    }
+    println(message)
+}
+
 
 fun Player.nothingMessage(){
     message(Entity.NOTHING_INTERESTING_HAPPENS)
@@ -372,7 +384,7 @@ fun Player.playSound(id: Int, volume: Int = 1, delay: Int = 0) {
 
 fun Player.playSong(id: Int) {
     write(MidiSongMessage(id))
-    setComponentText(interfaceId = 239, component = 6, text = Songs.getTitle(id))
+    setComponentText(interfaceId = 239, component = 6, text = Song.getTitle(id))
 }
 
 fun Player.playJingle(id: Int) {
@@ -382,6 +394,9 @@ fun Player.playJingle(id: Int) {
 fun Player.getVarp(id: Int): Int = varps.getState(id)
 
 fun Player.setVarp(id: Int, value: Int) {
+    if (attr.has(CHANGE_LOGGING) && getVarp(id) != value) {
+        message("Varp: $id was changed from: ${getVarp(id)} to $value")
+    }
     varps.setState(id, value)
 }
 
@@ -411,6 +426,9 @@ fun Player.decrementVarbit(id: Int, amount: Int = 1): Int {
 }
 
 fun Player.setVarbit(id: Int, value: Int) {
+    if (attr.has(CHANGE_LOGGING) && getVarbit(id) != value) {
+        message("Varbit: $id was changed from: ${getVarbit(id)} to $value")
+    }
     val def = world.definitions.get(VarbitDef::class.java, id)
     varps.setBit(def.varp, def.startBit, def.endBit, value)
 }
@@ -427,6 +445,9 @@ fun Player.sendTempVarbit(id: Int, value: Int) {
 }
 
 fun Player.toggleVarbit(id: Int) {
+    if (attr.has(CHANGE_LOGGING)) {
+        message("Varbit toggle: $id was changed from: ${getVarbit(id)} to ${getVarbit(id) xor 1}")
+    }
     val def = world.definitions.get(VarbitDef::class.java, id)
     varps.setBit(def.varp, def.startBit, def.endBit, getVarbit(id) xor 1)
 }
@@ -482,15 +503,15 @@ fun Player.heal(amount: Int, capValue: Int = 0) {
 
 fun Player.getTarget(): Pawn? = attr[COMBAT_TARGET_FOCUS_ATTR]?.get()
 
-fun Player.hasSpellbook(book: Spellbook): Boolean = getVarbit(Varbits.PLAYER_SPELL_BOOK) == book.id
+fun Player.hasSpellbook(book: Spellbook): Boolean = getVarbit(Varbit.PLAYER_SPELL_BOOK) == book.id
 
-fun Player.getSpellbook(): Spellbook = Spellbook.values.first { getVarbit(Varbits.PLAYER_SPELL_BOOK) == it.id }
+fun Player.getSpellbook(): Spellbook = Spellbook.values.first { getVarbit(Varbit.PLAYER_SPELL_BOOK) == it.id }
 
-fun Player.setSpellbook(book: Spellbook) = setVarbit(Varbits.PLAYER_SPELL_BOOK, book.id)
+fun Player.setSpellbook(book: Spellbook) = setVarbit(Varbit.PLAYER_SPELL_BOOK, book.id)
 
-fun Player.getWeaponType(): Int = getVarbit(Varbits.WEAPON_TYPE_VARBIT)
+fun Player.getWeaponType(): Int = getVarbit(Varbit.WEAPON_TYPE_VARBIT)
 
-fun Player.getAttackStyle(): Int = getVarp(Varps.WEAPON_ATTACK_STYLE)
+fun Player.getAttackStyle(): Int = getVarp(Varp.WEAPON_ATTACK_STYLE)
 
 fun Player.hasWeaponType(type: WeaponType, vararg others: WeaponType): Boolean = getWeaponType() == type.id || others.isNotEmpty() && getWeaponType() in others.map { it.id }
 
@@ -622,3 +643,7 @@ fun Player.getRangedStrengthBonus(): Int = equipmentBonuses[11]
 fun Player.getMagicDamageBonus(): Int = equipmentBonuses[12]
 
 fun Player.getPrayerBonus(): Int = equipmentBonuses[13]
+
+fun Player.format_bonus_with_sign(value: Int): String {
+     return if (value < 0) value.toString() else "+$value"
+}

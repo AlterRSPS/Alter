@@ -3,7 +3,7 @@ package gg.rsmod.plugins.api.cfg
 /**
  * @author @Z-Kris
  */
-object Graphics {
+object Graphic {
     const val CHROMATIC_DRAGON_DRAGONFIRE = 1
     const val BANANA_CAPE_EMOTE = 2
     const val IRON_ARROW_PROJECTILE = 9

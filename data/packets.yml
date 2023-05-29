@@ -359,7 +359,7 @@ server-packets:
         trans: NEGATE
       - name: id
         type: SHORT
-        trans: ADD
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.ObjDelMessage
     type: FIXED
@@ -744,90 +744,108 @@ client-packets:
 
   - message: gg.rsmod.game.message.impl.OpObj1Message
     type: FIXED
-    opcode: 10
+    opcode: 81
     length: 7
     structure:
-      - name: x
-        type: SHORT
-        order: LITTLE
-      - name: movement_type
-        type: BYTE
-        trans: ADD
-      - name: z
-        type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: item
         type: SHORT
         trans: ADD
+        order: LITTLE
+      - name: z
+        type: SHORT
+      - name: movement_type
+        type: BYTE
+        trams: ADD
+      - name: x
+        type: SHORT
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpObj2Message
     type: FIXED
-    opcode: 39
+    opcode: 33
     length: 7
     structure:
-      - name: x
-        type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: z
         type: SHORT
-        order: LITTLE
+        trans: ADD
       - name: item
         type: SHORT
         trans: ADD
         order: LITTLE
       - name: movement_type
         type: BYTE
-        trans: SUBTRACT
+      - name: x
+        type: SHORT
+        trans: ADD
+        order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpObj3Message
     type: FIXED
-    opcode: 44
+    opcode: 28
     length: 7
     structure:
       - name: x
+        type: SHORT
+        trans: ADD
+      - name: movement_type
+        type: BYTE
+      - name: item
+        type: SHORT
+        trans: ADD
+        order: LITTLE
+      - name: z
+        type: SHORT
+        trans: ADD
+
+  - message: gg.rsmod.game.message.impl.OpObj4Message
+    type: FIXED
+    opcode: 94
+    length: 7
+    structure:
+      - name: x
+        type: SHORT
+        trans: ADD
+      - name: movement_type
+        type: BYTE
+        trans: ADD
+      - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
       - name: item
         type: SHORT
         order: LITTLE
+
+  - message: gg.rsmod.game.message.impl.OpObj5Message
+    type: FIXED
+    opcode: 19
+    length: 7
+    structure:
       - name: z
         type: SHORT
-        trans: ADD
         order: LITTLE
       - name: movement_type
         type: BYTE
         trans: NEGATE
-
-  - message: gg.rsmod.game.message.impl.OpObj4Message
-    type: FIXED
-    opcode: 48
-    length: 7
-    structure:
-      - name: item
-        type: SHORT
-        trans: ADD
-      - name: movement_type
-        type: BYTE
-        trans: ADD
-      - name: z
-        type: SHORT
-        trans: ADD
       - name: x
+        type: SHORT
+      - name: item
         type: SHORT
         order: LITTLE
 
-  # Should implement it
-  #  - message: gg.rsmod.game.message.impl.OpObj6Message
-  #    type: FIXED
-  #    opcode: 26
-  #    length: 6
-  #    structure:
-  #      - name: item
-  #      - name: x
-  #      - name: z
+  - message: gg.rsmod.game.message.impl.OpObj6Message
+    type: FIXED
+    opcode: 78
+    length: 6
+    structure:
+      - name: z
+        type: SHORT
+      - name: item
+        type: SHORT
+        order: LITTLE
+      - name: x
+        type: SHORT
+        order: LITTLE
 
   # @TODO Later
   - message: gg.rsmod.game.message.impl.OpObjUMessage
@@ -949,65 +967,69 @@ client-packets:
 
   - message: gg.rsmod.game.message.impl.OpLoc1Message
     type: FIXED
-    opcode: 81
+    opcode: 10
     length: 7
     structure:
-      - name: id
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-      - name: z
-        type: SHORT
-      - name: movement_type
-        type: BYTE
-        trans: ADD
       - name: x
         type: SHORT
         order: LITTLE
+      - name: movement_type
+        type: BYTE
+        trans: ADD
+      - name: z
+        type: SHORT
+        trans: ADD
+        order: LITTLE
+      - name: id
+        type: SHORT
+        trans: ADD
 
   - message: gg.rsmod.game.message.impl.OpLoc2Message
     type: FIXED
-    opcode: 33
+    opcode: 39
     length: 7
     structure:
-      - name: z
+      - name: x
         type: SHORT
         trans: ADD
+        order: LITTLE
+      - name: z
+        type: SHORT
+        order: LITTLE
       - name: id
         type: SHORT
         trans: ADD
         order: LITTLE
       - name: movement_type
         type: BYTE
-      - name: x
-        type: SHORT
-        trans: ADD
-        order: LITTLE
+        trans: SUBTRACT
 
   - message: gg.rsmod.game.message.impl.OpLoc3Message
     type: FIXED
-    opcode: 28
+    opcode: 44
     length: 7
     structure:
       - name: x
         type: SHORT
         trans: ADD
-      - name: movement_type
-        type: BYTE
+        order: LITTLE
       - name: id
         type: SHORT
-        trans: ADD
         order: LITTLE
       - name: z
         type: SHORT
         trans: ADD
+        order: LITTLE
+      - name: movement_type
+        type: BYTE
+        trans: NEGATE
 
   - message: gg.rsmod.game.message.impl.OpLoc4Message
     type: FIXED
-    opcode: 94
+    opcode: 48
     length: 7
     structure:
-      - name: x
+      - name: id
         type: SHORT
         trans: ADD
       - name: movement_type
@@ -1016,26 +1038,28 @@ client-packets:
       - name: z
         type: SHORT
         trans: ADD
-        order: LITTLE
-      - name: id
+      - name: x
         type: SHORT
         order: LITTLE
 
   - message: gg.rsmod.game.message.impl.OpLoc5Message
     type: FIXED
-    opcode: 19
+    opcode: 72
     length: 7
     structure:
-      - name: z
-        type: SHORT
-        order: LITTLE
       - name: movement_type
         type: BYTE
         trans: NEGATE
-      - name: x
-        type: SHORT
       - name: id
         type: SHORT
+        trans: ADD
+        order: LITTLE
+      - name: x
+        type: SHORT
+        trans: ADD
+      - name: z
+        type: SHORT
+        trans: ADD
         order: LITTLE
 
     # @Done

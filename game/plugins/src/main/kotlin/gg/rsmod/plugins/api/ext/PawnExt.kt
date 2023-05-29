@@ -40,7 +40,7 @@ fun Pawn.hit(damage: Int, type: HitType = if (damage == 0) HitType.BLOCK else Hi
     val hit = Hit.Builder()
             .setDamageDelay(delay)
             .addHit(damage = damage, type = type.id)
-            .setHitbarMaxPercentage(HitbarType.ORANGE.pixelsWide) /** Hmm */
+            .setHitbarMaxPercentage(HitbarType.NORMAL.pixelsWide)
             .build()
     addHit(hit)
     return hit

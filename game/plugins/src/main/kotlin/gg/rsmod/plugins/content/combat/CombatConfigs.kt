@@ -1,9 +1,6 @@
 package gg.rsmod.plugins.content.combat
 
-import gg.rsmod.game.model.combat.AttackStyle
-import gg.rsmod.game.model.combat.CombatClass
-import gg.rsmod.game.model.combat.CombatStyle
-import gg.rsmod.game.model.combat.XpMode
+import gg.rsmod.game.model.combat.*
 import gg.rsmod.game.model.entity.Npc
 import gg.rsmod.game.model.entity.Pawn
 import gg.rsmod.game.model.entity.Player
@@ -88,6 +85,14 @@ object CombatConfigs {
         }
 
         throw IllegalArgumentException("Invalid pawn type.")
+    }
+
+
+    fun getCombatDef(pawn: Pawn) : NpcCombatDef? {
+        if (pawn is Npc) {
+            return pawn.combatDef
+        }
+        return null
     }
 
     fun getAttackAnimation(pawn: Pawn): Int {

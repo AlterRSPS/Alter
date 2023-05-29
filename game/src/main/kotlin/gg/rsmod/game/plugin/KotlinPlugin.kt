@@ -573,6 +573,21 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         return r.shops
     }
 
+    /**
+     * Returns how many times @param from to @param range contains.
+     * ex: @param value = 5
+     * ex: @param range = 0..90
+     * @return returns 18
+     */
+    fun every(value: Int, range: Int, from: Int = 0): Int {
+        var times = 0
+        for (index in from until range) {
+            if (index % value == 0) {
+                times++
+            }
+        }
+        return times
+    }
 
     fun <T : Definition> getDefs(type: KClass<out T>, id: Int): T {
         return world.definitions.get(type.java, id)

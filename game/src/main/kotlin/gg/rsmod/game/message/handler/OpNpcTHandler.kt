@@ -35,27 +35,14 @@ class OpNpcTHandler : MessageHandler<OpNpcTMessage> {
         client.closeInterfaceModal()
         client.interruptQueues()
         client.resetInteractions()
-
-        val npcIndex = message.npcIndex
         val verify = message.verify
-        val itemSlot = message.componentSlot
 
         client.attr[INTERACTING_NPC_ATTR] = WeakReference(npc)
         client.attr[INTERACTING_COMPONENT_PARENT] = parent
         client.attr[INTERACTING_COMPONENT_CHILD] = child
 
 
-//        when (parent) {
-//            InterfaceDestination. -> {
-//
-//            }
-//
-//
-//        }
-
-
         /**
-         *
          * @TODO
          * 1) Need to fix path
          * 2) Switch between Parent interface, so we will actually need to seperate the API from game since we will

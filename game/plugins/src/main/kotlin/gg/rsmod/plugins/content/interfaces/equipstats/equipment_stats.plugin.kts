@@ -55,11 +55,11 @@ fun bind_unequip(equipment: EquipmentType, component: Int) {
     on_button(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, component = component) {
         val opt = player.getInteractingOption()
 
-        if (opt == 1) {
+        if (opt == 0) {
             EquipAction.unequip(player, equipment.id)
             player.calculateBonuses()
             sendBonuses(player)
-        } else if (opt == 10) {
+        } else if (opt == 9) {
             val item = player.equipment[equipment.id] ?: return@on_button
             world.sendExamine(player, item.id, ExamineEntityType.ITEM)
         } else {
@@ -79,7 +79,7 @@ on_button(interfaceId = EQUIPMENTSTATS_TAB_INTERFACE_ID, component = 0) {
     val opt = player.getInteractingOption()
     val item = player.inventory[slot] ?: return@on_button
 
-    if (opt == 1) {
+    if (opt == 0) {
         val result = EquipAction.equip(player, item, inventorySlot = slot)
         if (result == EquipAction.Result.SUCCESS) {
             player.calculateBonuses()
@@ -87,7 +87,7 @@ on_button(interfaceId = EQUIPMENTSTATS_TAB_INTERFACE_ID, component = 0) {
         } else if (result == EquipAction.Result.UNHANDLED) {
             player.message("You can't equip that.")
         }
-    } else if (opt == 10) {
+    } else if (opt == 9) {
         world.sendExamine(player, item.id, ExamineEntityType.ITEM)
     }
 }

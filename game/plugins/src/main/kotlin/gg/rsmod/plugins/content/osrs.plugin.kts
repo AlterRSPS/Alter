@@ -1,6 +1,5 @@
 package gg.rsmod.plugins.content
 
-import gg.rsmod.game.model.attr.LAST_LOGIN_ATTR
 import gg.rsmod.plugins.content.Osrs_plugin.OSRSInterfaces.openDefaultInterfaces
 
 /**
@@ -25,60 +24,45 @@ set_menu_open_check {
  * Execute when a player logs in.
  */
 on_login {
-    // Skill-related logic.
-    player.calculateAndSetCombatLevel()
-    if (player.getSkills().getBaseLevel(Skills.HITPOINTS) < 10) {
-        player.getSkills().setBaseLevel(Skills.HITPOINTS, 10)
-    }
-    player.calculateAndSetCombatLevel()
-    player.sendWeaponComponentInformation()
-    player.sendCombatLevelText()
-
-    val now = System.currentTimeMillis()
-    val last = player.attr.getOrDefault(LAST_LOGIN_ATTR, now.toString()).toLong()
-    val time_lapsed = now - last
-    player.attr[LAST_LOGIN_ATTR] = now.toString()
-    val memberRecurring = 0 // no subs system support as of now
-    val noLinkedEmail = 0 // set to 1 disables inbox button??
-    player.setInterfaceEvents(interfaceId = 149, component = 0, range = 0 .. 27,
-        setting = arrayOf(
-            InterfaceEvent.ClickOp2, InterfaceEvent.ClickOp3, InterfaceEvent.ClickOp4, InterfaceEvent.ClickOp6,
-            InterfaceEvent.ClickOp7, InterfaceEvent.ClickOp10, InterfaceEvent.UseOnGroundItem, InterfaceEvent.UseOnNpc, InterfaceEvent.UseOnObject,
-            InterfaceEvent.UseOnPlayer, InterfaceEvent.UseOnInventory, InterfaceEvent.UseOnComponent, InterfaceEvent.DRAG_DEPTH1, InterfaceEvent.DragTargetable,
-            InterfaceEvent.ComponentTargetable
+    with (player) {
+        // Skill-related logic.
+        calculateAndSetCombatLevel()
+        if (getSkills().getBaseLevel(Skills.HITPOINTS) < 10) {
+            getSkills().setBaseLevel(Skills.HITPOINTS, 10)
+        }
+        calculateAndSetCombatLevel()
+        sendWeaponComponentInformation()
+        sendCombatLevelText()
+        setInterfaceEvents(interfaceId = 149, component = 0, range = 0 .. 27,
+            setting = arrayOf(
+                InterfaceEvent.ClickOp2, InterfaceEvent.ClickOp3, InterfaceEvent.ClickOp4, InterfaceEvent.ClickOp6,
+                InterfaceEvent.ClickOp7, InterfaceEvent.ClickOp10, InterfaceEvent.UseOnGroundItem, InterfaceEvent.UseOnNpc, InterfaceEvent.UseOnObject,
+                InterfaceEvent.UseOnPlayer, InterfaceEvent.UseOnInventory, InterfaceEvent.UseOnComponent, InterfaceEvent.DRAG_DEPTH1, InterfaceEvent.DragTargetable,
+                InterfaceEvent.ComponentTargetable
+            )
         )
-    )
-    // Interface-related logic.
-    //player.setInterfaceEvents(interfaceId = 149, component = 0, range = 0..27, setting = 3407068)
-    player.openDefaultInterfaces()
-    // Inform the client whether or not we have a display name.
-    val displayName = player.username.isNotBlank()
-    player.setVarbit(13027, player.combatLevel)
-    player.setVarbit(8119, 1)
-    if (player.getVarp(1055) == 0 && displayName) {
-        player.syncVarp(1055)
+        openDefaultInterfaces()
+        setVarbit(Varbit.COMBAT_LEVEL_VARBIT, combatLevel)
+        setVarbit(Varbit.CHATBOX_UNLOCKED, 1)
+        runClientScript(5840)
+        if (getVarp(Varp.PLAYER_HAS_DISPLAY_NAME) == 0 && username.isNotBlank()) {
+            syncVarp(Varp.PLAYER_HAS_DISPLAY_NAME)
+        }
+        // Sync attack priority options.
+        syncVarp(Varp.NPC_ATTACK_PRIORITY_VARP)
+        syncVarp(Varp.PLAYER_ATTACK_PRIORITY_VARP)
+        // Send player interaction options.
+        sendOption("Follow", 3)
+        sendOption("Trade with", 4)
+        sendOption("Report", 5)
+        // Game-related logic.
+        sendRunEnergy(player.runEnergy.toInt())
+        message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
+        //player.social.pushFriends(player)
+        //player.social.pushIgnores(player)
+        setVarbit(Varbit.ESC_CLOSES_CURRENT_INTERFACE,1)
+        }
     }
-
-
-    // Sync attack priority options.
-    player.syncVarp(Varps.NPC_ATTACK_PRIORITY_VARP)
-    player.syncVarp(Varps.PLAYER_ATTACK_PRIORITY_VARP)
-
-
-    // Send player interaction options.
-    player.sendOption("Follow", 3)
-    player.sendOption("Trade with", 4)
-    player.sendOption("Report", 5)
-
-    // Game-related logic.
-    player.sendRunEnergy(player.runEnergy.toInt())
-    player.message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
-
-    /**
- * @TODO REV 211.... */
-//    player.social.pushFriends(player)
-//    player.social.pushIgnores(player)
-}
 
 
 
@@ -92,12 +76,12 @@ object OSRSInterfaces {
 
     fun openModals(player: Player, fullscreen: Boolean = false) {
         InterfaceDestination.getModals().forEach { pane ->
-            if (pane == InterfaceDestination.XP_COUNTER && player.getVarbit(Varbits.XP_DROPS_VISIBLE_VARBIT) == 0) {
+            if (pane == InterfaceDestination.XP_COUNTER && player.getVarbit(Varbit.XP_DROPS_VISIBLE_VARBIT) == 0) {
                 return@forEach
-            } else if (pane == InterfaceDestination.MINI_MAP && player.getVarbit(Varbits.HIDE_DATA_ORBS_VARBIT) == 1) {
+            } else if (pane == InterfaceDestination.MINI_MAP && player.getVarbit(Varbit.HIDE_DATA_ORBS_VARBIT) == 1) {
                 return@forEach
             } else if (pane == InterfaceDestination.QUEST_ROOT) {
-                when (player.getVarbit(Varbits.PLAYER_SUMMARY_FOCUS_TAB)) {
+                when (player.getVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB)) {
                     0 -> {
                         player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 712, 1)
                     }
@@ -140,17 +124,17 @@ on_button(InterfaceDestination.QUEST_ROOT.interfaceId, 3) {
 
     // Quest Tab
     on_button(InterfaceDestination.QUEST_ROOT.interfaceId,8) {
-        player.setVarbit(Varbits.PLAYER_SUMMARY_FOCUS_TAB, 1)
+        player.setVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB, 1)
         player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 399, 1)
     }
 
     on_button(InterfaceDestination.QUEST_ROOT.interfaceId,13) {
-        player.setVarbit(Varbits.PLAYER_SUMMARY_FOCUS_TAB, 2)
+        player.setVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB, 2)
         player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 259, 1)
     }
 
     on_button(InterfaceDestination.QUEST_ROOT.interfaceId,18) {
-        player.setVarbit(Varbits.PLAYER_SUMMARY_FOCUS_TAB, 3)
+        player.setVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB, 3)
         player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 245, 1)
     }
     on_button(245, 20) {

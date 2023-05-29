@@ -27,25 +27,31 @@ load_service(DoorService())
 on_world_init {
     world.getService(DoorService::class.java)!!.let { service ->
         service.doors.forEach { door ->
+
+
             on_obj_option(obj = door.opened, option = "close") {
                 val obj = player.getInteractingGameObj()
-                if (!is_stuck(world, obj)) {
+                //if (!is_stuck(world, obj)) {
                     val newDoor = world.closeDoor(obj, closed = door.closed, invertTransform = obj.type == ObjectType.DIAGONAL_WALL.value)
                     copy_stick_vars(obj, newDoor)
-                    add_stick_var(world, newDoor)
-                    player.playSound(Sounds.CLOSE_DOOR_SFX)
-                } else {
-                    player.message("The door seems to be stuck.")
-                    player.playSound(Sounds.STUCK_DOOR_SFX)
-                }
+                    //add_stick_var(world, newDoor)
+                    player.playSound(Sound.CLOSE_DOOR_SFX)
+                //} else {
+                //    player.message("The door seems to be stuck.")
+                //    player.playSound(Sound.STUCK_DOOR_SFX)
+               // }
             }
 
             on_obj_option(obj = door.closed, option = "open") {
                 val obj = player.getInteractingGameObj()
                 val newDoor = world.openDoor(obj, opened = door.opened, invertTransform = obj.type == ObjectType.DIAGONAL_WALL.value)
                 copy_stick_vars(obj, newDoor)
-                add_stick_var(world, newDoor)
-                player.playSound(Sounds.OPEN_DOOR_SFX)
+                /**
+                 * @TODO
+                 * getResetStickDelay() -> Lateint property has not been initialized
+                 */
+                //add_stick_var(world, newDoor)
+                player.playSound(Sound.OPEN_DOOR_SFX)
             }
         }
 
@@ -84,7 +90,7 @@ fun handle_double_doors(p: Player, obj: GameObject, doors: DoubleDoorSet, open: 
 
     if (!open && (is_stuck(world, obj) || is_stuck(world, otherDoor))) {
         p.message("The door seems to be stuck.")
-        p.playSound(Sounds.STUCK_DOOR_SFX)
+        p.playSound(Sound.STUCK_DOOR_SFX)
         return
     }
 
@@ -95,7 +101,7 @@ fun handle_double_doors(p: Player, obj: GameObject, doors: DoubleDoorSet, open: 
         add_stick_var(world, door1)
         copy_stick_vars(obj, door2)
         add_stick_var(world, door2)
-        p.playSound(Sounds.OPEN_DOOR_SFX)
+        p.playSound(Sound.OPEN_DOOR_SFX)
     } else {
         val door1 = world.closeDoor(obj, closed = if (left) doors.closed.left else doors.closed.right, invertRot = left, invertTransform = left)
         val door2 = world.closeDoor(otherDoor, closed = if (left) doors.closed.right else doors.closed.left, invertRot = right, invertTransform = right)
@@ -103,7 +109,7 @@ fun handle_double_doors(p: Player, obj: GameObject, doors: DoubleDoorSet, open: 
         add_stick_var(world, door1)
         copy_stick_vars(obj, door2)
         add_stick_var(world, door2)
-        p.playSound(Sounds.CLOSE_DOOR_SFX)
+        p.playSound(Sound.CLOSE_DOOR_SFX)
     }
 }
 

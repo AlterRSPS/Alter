@@ -1,3 +1,5 @@
+import gg.rsmod.plugins.api.cfg.Animation
+import gg.rsmod.plugins.api.cfg.Sound
 import kotlin.math.ceil
 
 /**
@@ -11,7 +13,7 @@ listOf(Items.DWARVEN_ROCK_CAKE, Items.DWARVEN_ROCK_CAKE_7510).forEach {
             this.player.filterableMessage("Ow! You nearly broke a tooth!")
             this.player.filterableMessage("The rock cake resists all attempts to eat it.")
             this.player.animate(Animation.CONSUME)
-            this.player.playSound(Sounds.EAT_ROCKCAKE)
+            this.player.playSound(Sound.EAT_ROCKCAKE)
             if (this.player.getCurrentHp() - 1 != 0) {
                 this.player.hit(1)
             } else {
@@ -24,7 +26,7 @@ listOf(Items.DWARVEN_ROCK_CAKE, Items.DWARVEN_ROCK_CAKE_7510).forEach {
             this.player.filterableMessage("You bite hard into the rock cake to guzzle it down.")
             this.player.filterableMessage("OW! A terrible shock jars through your skull.")
             this.player.animate(Animation.CONSUME)
-            this.player.playSound(Sounds.EAT_ROCKCAKE)
+            this.player.playSound(Sound.EAT_ROCKCAKE)
             val incomingDamage = when (player.getCurrentHp()) {
                 2 -> 1
                 1 -> 0

@@ -30,29 +30,33 @@ class OpLoc1Handler : MessageHandler<OpLoc1Message> {
         if (!tile.viewableFrom(client.tile, Player.TILE_VIEW_DISTANCE)) {
             return
         }
-
-        if (!client.lock.canGroundItemInteract()) {
+        /*
+         * If player can't move, we don't do anything.
+         */
+        if (!client.lock.canMove()) {
             return
         }
-
-        log(client, "Ground Item action 1: item=%d, x=%d, z=%d, movement=%d", message.item, message.x, message.z, message.movementType)
 
         /*
          * Get the region chunk that the object would belong to.
          */
         val chunk = world.chunks.getOrCreate(tile)
-        val item = chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull { it.item == message.item && it.canBeViewedBy(client) } ?: return
+        val obj = chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull { it.id == message.id } ?: return
 
-        if (message.movementType == 1 && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
-            client.moveTo(item.tile)
-        }
+        log(client, "Object action 1: id=%d, x=%d, z=%d, movement=%d", message.id, message.x, message.z, message.movementType)
 
+        client.stopMovement()
         client.closeInterfaceModal()
         client.interruptQueues()
         client.resetInteractions()
 
+        if (message.movementType == 1 && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
+            val def = obj.getDef(world.definitions)
+            client.moveTo(world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.width, centreLength = def.length) ?: obj.tile)
+        }
+
         client.attr[INTERACTING_OPT_ATTR] = 1
-        client.attr[INTERACTING_GROUNDITEM_ATTR] = WeakReference(item)
-        client.executePlugin(GroundItemPathAction.walkPlugin)
+        client.attr[INTERACTING_OBJ_ATTR] = WeakReference(obj)
+        client.executePlugin(ObjectPathAction.objectInteractPlugin)
     }
 }

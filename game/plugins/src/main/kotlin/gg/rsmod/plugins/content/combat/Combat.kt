@@ -2,11 +2,13 @@ package gg.rsmod.plugins.content.combat
 
 import gg.rsmod.game.action.PawnPathAction
 import gg.rsmod.game.model.Tile
+import gg.rsmod.game.model.World
 import gg.rsmod.game.model.attr.AttributeKey
 import gg.rsmod.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import gg.rsmod.game.model.attr.LAST_HIT_ATTR
 import gg.rsmod.game.model.attr.LAST_HIT_BY_ATTR
 import gg.rsmod.game.model.combat.CombatClass
+import gg.rsmod.game.model.entity.AreaSound
 import gg.rsmod.game.model.entity.Npc
 import gg.rsmod.game.model.entity.Pawn
 import gg.rsmod.game.model.entity.Player
@@ -71,10 +73,22 @@ object Combat {
             return
         }
 
-        /* Don't override the animation if one is already set. @Z-Kris */
-        if (!pawn.hasBlock(UpdateBlockType.ANIMATION)) {
+        /*
+         * Don't override the animation if one is already set. @Z-Kris
+         */
+        if (!target.hasBlock(UpdateBlockType.ANIMATION)) {
             target.animate(CombatConfigs.getBlockAnimation(target))
+            if (target is Npc) {
+                val npcDefs = target.combatDef
+                if (npcDefs.defaultBlockSoundArea) {
+                    target.world.spawn(AreaSound(target.tile, npcDefs.defaultBlockSound, npcDefs.defaultBlockSoundRadius, npcDefs.defaultBlockSoundVolume))
+                } else {
+                    (pawn as Player).playSound(npcDefs.defaultBlockSound, npcDefs.defaultBlockSoundVolume)
+                }
+            }
         }
+
+
 
         if (target.lock.canAttack()) {
             if (target.entityType.isNpc) {
@@ -82,7 +96,7 @@ object Combat {
                     target.attack(pawn)
                 }
             } else if (target is Player) {
-                if (target.getVarp(gg.rsmod.plugins.content.interfaces.attack.AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn) {
+                if (target.getVarp(AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn) {
                     target.attack(pawn)
                 }
             }

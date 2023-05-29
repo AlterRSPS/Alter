@@ -5,6 +5,7 @@ import gg.rsmod.game.model.ChatMessage
 import gg.rsmod.game.model.Tile
 import gg.rsmod.game.model.appearance.Gender
 import gg.rsmod.game.model.entity.Player
+import gg.rsmod.game.model.item.Item
 import gg.rsmod.game.sync.SynchronizationSegment
 import gg.rsmod.game.sync.block.UpdateBlockType
 import gg.rsmod.net.packet.*
@@ -140,60 +141,31 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 appBuf.put(DataType.BYTE, other.skullIcon)
                 appBuf.put(DataType.BYTE, other.prayerIcon)
                 val transmog = other.getTransmogId() >= 0
-
                 if (!transmog) {
                     val translation = arrayOf(-1, -1, -1, -1, 2, -1, 3, 5, 0, 4, 6, 1)
-
-                    val arms = 6
-                    val hair = 8
-                    val beard = 11
-
+                    val skippedSlots = BooleanArray(12)
                     for (i in 0 until 12) {
-                        if (i == beard && other.appearance.gender == Gender.FEMALE) {
+                        val item = other.equipment[i] ?: continue
+                        val itemDef = (Item(item.id)).getDef(other.world.definitions)
+                        val wearpos2 = itemDef.wearPos2
+                        if (wearpos2 != -1) skippedSlots[wearpos2] = true
+                        val wearpos3 = itemDef.wearPos3
+                        if (wearpos3 != -1) skippedSlots[wearpos3] = true
+                    }
+                    for (i in 0 until 12) {
+                        if (skippedSlots[i]) {
                             appBuf.put(DataType.BYTE, 0)
                             continue
                         }
-
-                        if (i == beard) {
-                            val item = other.equipment[0]
-                            if (item != null) {
-                                val equipType = item.getDef(other.world.definitions).equipType
-                                if (equipType == beard) {
-                                    appBuf.put(DataType.BYTE, 0)
-                                    continue
-                                }
-                            }
-                        }
-
-                        if (i == arms) {
-                            val item = other.equipment[4]
-                            if (item != null) {
-                                if (item.getDef(other.world.definitions).equipType == arms) {
-                                    appBuf.put(DataType.BYTE, 0)
-                                    continue
-                                }
-                            }
-                        }
-                        if (i == hair) {
-                            val item = other.equipment[0]
-                            if (item != null) {
-                                val equipType = item.getDef(other.world.definitions).equipType
-                                if (equipType == hair || equipType == beard) {
-                                    appBuf.put(DataType.BYTE, 0)
-                                    continue
-                                }
-                            }
-                        }
-
                         val item = other.equipment[i]
-                        if (item != null) {
-                            appBuf.put(DataType.SHORT, 0x200 + item.id)
-                        } else {
+                        if (item == null) {
                             if (translation[i] == -1) {
                                 appBuf.put(DataType.BYTE, 0)
                             } else {
                                 appBuf.put(DataType.SHORT, 0x100 + other.appearance.getLook(translation[i]))
                             }
+                        } else {
+                            appBuf.put(DataType.SHORT, 0x200 + item.id)
                         }
                     }
                 } else {

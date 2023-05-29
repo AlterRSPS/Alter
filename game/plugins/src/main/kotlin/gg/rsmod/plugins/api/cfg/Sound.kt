@@ -3,7 +3,7 @@ package gg.rsmod.plugins.api.cfg
 /**
  * @author @Z-Kris
  */
-object Sounds {
+object Sound {
     const val PICKUP_ITEM_FROM_GROUND_SOUND = 2582
     const val EATING = 2393
     const val DRINKING_POTION = 2401
