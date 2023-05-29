@@ -74,29 +74,26 @@ object Bank {
                         p.bank[i] = Item(def.placeholderLink, -2)
                     }
                 } else {
-                    var itemsTab: Int = -1
-                    if (oldItemArray != null) {
-                        itemsTab = getTabByItem(p, item.id, oldItemArray)
-                    }
-
-                    val tabed = oldItemArray?.filter { it.tabId == itemsTab }
-                    if (tabed!![0].item!!.id == item.id && tabed[0].item!!.amount == 0) {
-                        val tabVarbit = BANK_TAB_ROOT_VARBIT + itemsTab
-
-                        val remove = from.shiftV2(tabed[0].slot)
-                        val setVarsValue = p.getVarbit(tabVarbit)
-
-                        if (itemsTab != 0) {
-                            p.setVarbit(tabVarbit, setVarsValue - remove)
-                            if (setVarsValue == 0) {
-                                BankTabs.shiftTabs(p, itemsTab)
-                                p.setVarbit(SELECTED_TAB_VARBIT, 0)
-                            }
-                        }
-                    }
-
-
-
+//                    var itemsTab: Int = -1
+//                    if (oldItemArray != null) {
+//                        itemsTab = getTabByItem(p, item.id, oldItemArray)
+//                    }
+//
+//                    val tabed = oldItemArray?.filter { it.tabId == itemsTab }
+//                    if (tabed!![0].item!!.id == item.id && tabed[0].item!!.amount == 0) {
+//                        val tabVarbit = BANK_TAB_ROOT_VARBIT + itemsTab
+//
+//                        val remove = from.shiftV2(tabed[0].slot)
+//                        val setVarsValue = p.getVarbit(tabVarbit)
+//
+//                        if (itemsTab != 0) {
+//                            p.setVarbit(tabVarbit, setVarsValue - remove)
+//                            if (setVarsValue == 0) {
+//                                BankTabs.shiftTabs(p, itemsTab)
+//                                p.setVarbit(SELECTED_TAB_VARBIT, 0)
+//                            }
+//                        }
+//                    }
                 }
             }
         }
