@@ -9,6 +9,7 @@ description = 'Alter Game'
 mainClassName = 'gg.rsmod.game.Launcher'
 
 run {
+    standardInput = System.in
     workingDir = rootProject.projectDir
 }
 

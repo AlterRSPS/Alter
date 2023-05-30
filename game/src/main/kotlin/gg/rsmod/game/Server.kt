@@ -209,6 +209,14 @@ class Server {
         logger.info("Now listening for incoming connections on port $port...")
         System.gc()
 
+        var input: String?
+        do {
+            print("Server: ")
+            input = readlnOrNull()
+            println(input)
+        } while (input != "exit")
+
+
         return world
     }
 
