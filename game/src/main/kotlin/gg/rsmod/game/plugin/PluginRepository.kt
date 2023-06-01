@@ -392,6 +392,10 @@ class PluginRepository(val world: World) {
 
     internal val onAnimList = hashMapOf<Int, Plugin.() -> Unit>()
 
+    internal val terminalCommands = hashMapOf<String, Pair<String?, Plugin.() -> Unit>>()
+
+
+
     /**
      * Holds all container keys set from plugins for this [PluginRepository].
      */
@@ -1349,6 +1353,26 @@ class PluginRepository(val world: World) {
        }
        return ""
    }
+
+    fun bindTerminalCommand(command: String, description: String? = null, plugin: Plugin.() -> Unit) {
+        if (terminalCommands.containsKey(command)) {
+            throw IllegalStateException("Terminal Command $command is already bound to a plugin.")
+        }
+        terminalCommands[command] = Pair(description, plugin)
+    }
+
+    fun executeTerminalCommand(command: String, args: Array<String>? = null): Boolean {
+        val commandPair = terminalCommands[command] ?: return false
+        val plugin = commandPair.second
+        if (args != null) {
+            world.attr.put(COMMAND_ARGS_ATTR, args)
+        } else {
+            world.attr.put(COMMAND_ARGS_ATTR, emptyArray())
+        }
+
+        world.executePlugin(world, plugin)
+        return true
+    }
 
     companion object : KLogging()
 }

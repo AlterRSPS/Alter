@@ -595,4 +595,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun <T : Definition> getDefsNullable(type: KClass<out T>, id: Int): T? {
         return world.definitions.getNullable(type.java, id)
     }
+
+    fun on_terminal_command(command: String, description: String? = null, plugin: Plugin.() -> Unit) = r.bindTerminalCommand(command = command, description = description, plugin = plugin)
+
 }

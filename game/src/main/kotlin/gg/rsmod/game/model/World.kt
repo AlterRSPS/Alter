@@ -11,6 +11,7 @@ import gg.rsmod.game.fs.def.ObjectDef
 import gg.rsmod.game.message.impl.LogoutFullMessage
 import gg.rsmod.game.message.impl.UpdateRebootTimerMessage
 import gg.rsmod.game.model.attr.AttributeMap
+import gg.rsmod.game.model.attr.TERMINAL_ARGS
 import gg.rsmod.game.model.collision.CollisionManager
 import gg.rsmod.game.model.combat.NpcCombatDef
 import gg.rsmod.game.model.entity.*
@@ -640,6 +641,10 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      */
     internal fun bindServices(server: Server) {
         services.forEach { it.bindNet(server, this) }
+    }
+
+    fun getTerminalArgs() : Array<String>? {
+        return this.attr[TERMINAL_ARGS]
     }
 
     companion object : KLogging() {

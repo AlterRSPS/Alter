@@ -229,3 +229,5 @@ val LEVEL_UP_INCREMENT = AttributeKey<Int>()
 val LEVEL_UP_OLD_XP = AttributeKey<Double>()
 
 val CHANGE_LOGGING = AttributeKey<Boolean>()
+
+var TERMINAL_ARGS = AttributeKey<Array<String>>()

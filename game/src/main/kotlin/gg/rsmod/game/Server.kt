@@ -22,6 +22,8 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.text.DecimalFormat
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import java.util.concurrent.TimeUnit
 
 /**
@@ -204,17 +206,28 @@ class Server {
          * Bind the game port.
          */
         val port = gameProperties.getOrDefault("game-port", 43594)
-        bootstrap.bind(InetSocketAddress(port)).sync().awaitUninterruptibly()
-
+        val serverChannel = bootstrap.bind(InetSocketAddress(port)).sync()
+        serverChannel.awaitUninterruptibly()
         logger.info("Now listening for incoming connections on port $port...")
         System.gc()
+        logger.info("For commands, type `help` or `?` ")
 
         var input: String?
         do {
-            print("Server: ")
             input = readlnOrNull()
-            println(input)
-        } while (input != "exit")
+            val name = gameProperties.getOrDefault("name", "Alter")
+            if (input == null) {
+                break
+            }
+            print("\u001B[32m$name\u001B[0m@Live:~$ ")
+            val values = input.split(" ")
+            val args = if (values.size > 1) values.slice(1 until values.size).filter { it.isNotEmpty() }.toTypedArray() else null
+            val currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
+
+            println("[ \u001B[32mCOMMAND\u001B[0m ] [ $currentTime ]: $input")
+            world.plugins.executeTerminalCommand(values[0], args)
+
+        } while (serverChannel.channel().isActive)
 
 
         return world
