@@ -1,18 +1,10 @@
 package gg.rsmod.game.message.handler
 
-import gg.rsmod.game.action.EquipAction
 import gg.rsmod.game.message.MessageHandler
 import gg.rsmod.game.message.impl.IfButtonMessage
-import gg.rsmod.game.model.ExamineEntityType
 import gg.rsmod.game.model.World
 import gg.rsmod.game.model.attr.*
 import gg.rsmod.game.model.entity.Client
-import gg.rsmod.game.model.entity.GroundItem
-import gg.rsmod.game.model.item.Item
-import gg.rsmod.game.service.game.ItemMetadataService
-import gg.rsmod.game.service.log.LoggerService
-import java.lang.ref.WeakReference
-
 /**
  * @author Tom <rspsmods@gmail.com>
  */

@@ -1,18 +1,15 @@
 package gg.rsmod.game.message.handler
 
-import gg.rsmod.game.action.GroundItemPathAction
 import gg.rsmod.game.action.ObjectPathAction
 import gg.rsmod.game.message.MessageHandler
 import gg.rsmod.game.message.impl.OpLoc1Message
 import gg.rsmod.game.model.EntityType
 import gg.rsmod.game.model.Tile
 import gg.rsmod.game.model.World
-import gg.rsmod.game.model.attr.INTERACTING_GROUNDITEM_ATTR
 import gg.rsmod.game.model.attr.INTERACTING_OBJ_ATTR
 import gg.rsmod.game.model.attr.INTERACTING_OPT_ATTR
 import gg.rsmod.game.model.entity.Client
 import gg.rsmod.game.model.entity.GameObject
-import gg.rsmod.game.model.entity.GroundItem
 import gg.rsmod.game.model.entity.Player
 import gg.rsmod.game.model.priv.Privilege
 import java.lang.ref.WeakReference
