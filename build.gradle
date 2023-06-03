@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.8.0' apply(false)
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.31'
@@ -61,7 +63,7 @@ allprojects {
         }
     }
 
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    tasks.withType(KotlinCompile).configureEach {
         kotlinOptions {
             jvmTarget = jvmVersion
             languageVersion = 1.8
@@ -73,7 +75,7 @@ allprojects {
 }
 
 task packageServer(type: Zip) {
-    archiveFileName = "Alter.zip"
+    archiveFileName = "game-${project.version}.zip"
     destinationDirectory = file('.')
 
     from('./') {
@@ -102,23 +104,28 @@ task packageServer(type: Zip) {
         exclude 'xteas'
         exclude 'xteas.json'
     }
-
-    from('game/') {
-        into 'game'
+    from('game-api/') {
+        into '/game-api'
+        include 'src/main/kotlin/org/alter/api/**'
+    }
+    from('game-server/') {
+        into 'game-server'
 
         exclude 'build'
         exclude 'out'
-        exclude 'plugins'
         exclude 'src/main/java'
         exclude 'src/test/java'
     }
 
-    from('game/plugins') {
-        into 'game/plugins'
+    from('/game-plugins') {
+        into '/game-plugins'
+        //include 'game-api/src/main/kotlin/org/alter/api/api/**'
+        include 'src/main/kotlin/org/alter/plugins/content/osrs.kts'
+        include 'src/main/kotlin/org/alter/service/**'
 
-        include 'src/main/kotlin/gg/rsmod/plugins/api/**'
-        include 'src/main/kotlin/gg/rsmod/plugins/content/osrs.kts'
-        include 'src/main/kotlin/gg/rsmod/plugins/service/**'
+        //include 'src/main/kotlin/gg/rsmod/plugins/api/**'
+        //include 'src/main/kotlin/gg/rsmod/plugins/content/osrs.kts'
+        //include 'src/main/kotlin/gg/rsmod/plugins/service/**'
     }
 
     from('net/') {

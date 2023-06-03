@@ -1,0 +1,7 @@
+dependencies {
+    implementation project(':game-server')
+    implementation project(':net')
+    implementation project(':util')
+    implementation project(':game-api')
+    implementation "org.jetbrains.kotlin:kotlin-script-runtime:1.7.20"
+}

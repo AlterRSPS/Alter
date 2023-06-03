@@ -1,0 +1,68 @@
+package org.alter.game.message.handler
+
+import org.alter.game.message.MessageHandler
+import org.alter.game.message.impl.OpNpcTMessage
+import org.alter.game.model.World
+import org.alter.game.model.attr.*
+import org.alter.game.model.entity.Client
+import org.alter.game.model.entity.Entity
+import org.alter.game.model.priv.Privilege
+import java.lang.ref.WeakReference
+
+/**
+ * @author Tom <rspsmods@gmail.com>
+ */
+class OpNpcTHandler : MessageHandler<OpNpcTMessage> {
+
+    override fun handle(client: Client, world: World, message: OpNpcTMessage) {
+        val npc = world.npcs[message.npcIndex] ?: return
+        val parent = message.componentHash shr 16
+        val child = message.componentHash and 0xFFFF
+
+        if (!client.lock.canNpcInteract()) {
+            return
+        }
+
+        log(client, "Spell/Item on npc: npc=%d. index=%d, component=[%d:%d], movement=%d", npc.id, message.npcIndex, parent, child, message.movementType)
+
+        client.interruptQueues()
+        client.resetInteractions()
+
+        if (message.movementType == 1 && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
+            client.moveTo(world.findRandomTileAround(npc.tile, 1) ?: npc.tile)
+        }
+        client.walkTo(world.findRandomTileAround(npc.tile, 1) ?: npc.tile)
+        client.closeInterfaceModal()
+        client.interruptQueues()
+        client.resetInteractions()
+        val verify = message.verify
+
+        client.attr[INTERACTING_NPC_ATTR] = WeakReference(npc)
+        client.attr[INTERACTING_COMPONENT_PARENT] = parent
+        client.attr[INTERACTING_COMPONENT_CHILD] = child
+
+
+        /**
+         * @TODO
+         * 1) Need to fix path
+         * 2) Switch between Parent interface, so we will actually need to seperate the API from game since we will
+         * use it's interface destinations for these cases.
+         */
+        if (child == 0) {
+            if (!world.plugins.executeItemOnNpc(client, npc.id, verify)) {
+                if (world.devContext.debugItemActions) {
+                    client.writeMessage("Unhandled item on npc [ $verify on ${npc.id}] ] ")
+                }
+            } else if (!world.plugins.executeItemOnNpc(client, verify)){
+                client.writeMessage("Nothing interesting happens.")
+            }
+        } else {
+            if (!world.plugins.executeSpellOnNpc(client, parent, child)) {
+                client.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
+                if (world.devContext.debugMagicSpells) {
+                    client.writeMessage("Unhandled magic spell: [$parent, $child] out here")
+                }
+            }
+        }
+    }
+}
