@@ -1,9 +1,7 @@
 rootProject.name = 'org.alter'
 include ':util'
 include ':net'
-include ':game'
-include ':game:plugins'
-include 'game-plugins'
-include 'game-api'
-include 'game-server'
+include ':game-plugins'
+include ':game-api'
+include ':game-server'
 
