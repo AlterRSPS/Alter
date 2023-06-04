@@ -3,7 +3,6 @@ package org.alter.plugins.content.area.alkharid.chat
 import org.alter.api.ext.chatNpc
 import org.alter.api.ext.player
 import org.alter.game.model.queue.QueueTask
-import org.alter.game.plugin.KotlinPlugin
 
 spawn_npc(Npcs.ELLIS, 3273, 3192, 0, 4, Direction.EAST)
 

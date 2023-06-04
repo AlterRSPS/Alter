@@ -40,7 +40,7 @@ on_login {
                 InterfaceEvent.ComponentTargetable
             )
         )
-        openDefaultInterfaces()
+        //openDefaultInterfaces()
         setVarbit(Varbit.COMBAT_LEVEL_VARBIT, combatLevel)
         setVarbit(Varbit.CHATBOX_UNLOCKED, 1)
         runClientScript(5840)

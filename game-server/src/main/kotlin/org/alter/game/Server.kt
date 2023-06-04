@@ -224,7 +224,7 @@ class Server {
 
         var input: String?
         do {
-            input = readlnOrNull()
+            input = readLine() /** @TODO Don't know but readlnOrNull() shows that it does not exist. */
             val name = gameProperties.getOrDefault("name", "Alter")
             if (input == null) {
                 break

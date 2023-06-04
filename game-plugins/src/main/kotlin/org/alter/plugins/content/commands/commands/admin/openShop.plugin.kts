@@ -1,11 +1,13 @@
 import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.commands.Commands_plugin
+import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
 val OpenShopCommands = listOf("openshop", "shop", "store")
+
 OpenShopCommands.forEach {
     on_command(it, Privilege.ADMIN_POWER, description = "Open shop , use: ::listshop for shop id's") {
         val args = player.getCommandArgs()
-        gg.rsmod.plugins.content.commands.Commands_plugin.Command.tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::openshop Gem Trader.</col>") {
+        tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::openshop Gem Trader.</col>") {
             try {
                 player.openShop(args[0].toInt())
             } catch (e: NumberFormatException) {

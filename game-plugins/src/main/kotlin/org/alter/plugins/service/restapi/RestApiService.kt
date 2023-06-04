@@ -9,16 +9,16 @@ import gg.rsmod.util.ServerProperties
 import spark.Spark.stop
 
 class RestApiService : Service {
-    override fun init(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
         CorsRoute(serviceProperties.getOrDefault("origin", "*"), serviceProperties.getOrDefault("methods", "GET, POST"), serviceProperties.getOrDefault("headers", "X-PINGOTHER, Content-Type"))
         RestApiRoutes().init(world, serviceProperties.getOrDefault("auth", false))
     }
 
-    override fun postLoad(server: org.alter.game.Server, world: World) {}
+    override fun postLoad(server: Server, world: World) {}
 
-    override fun bindNet(server: org.alter.game.Server, world: World) {}
+    override fun bindNet(server: Server, world: World) {}
 
-    override fun terminate(server: org.alter.game.Server, world: World) {
+    override fun terminate(server: Server, world: World) {
         stop()
     }
 

@@ -52,7 +52,7 @@ class WorldListService : Service {
      * @param world             The game world instance
      * @param serviceProperties The properties for this server
      */
-    override fun init(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
         port = serviceProperties.getOrDefault("port", 80)
         path = Paths.get(serviceProperties.getOrDefault("config-path", "./data/cfg/world.json"))
 
@@ -80,7 +80,7 @@ class WorldListService : Service {
      * @param server    The [Server] context
      * @param world     The [World] instance
      */
-    override fun bindNet(server: org.alter.game.Server, world: World) {
+    override fun bindNet(server: Server, world: World) {
 
         // The inbound channel handler for the world list protocol
         val handler = WorldListChannelHandler(listOf(worldEntry))
@@ -98,7 +98,7 @@ class WorldListService : Service {
      * @param server    The [Server] instance
      * @param world     The [World] instance
      */
-    override fun postLoad(server: org.alter.game.Server, world: World) {
+    override fun postLoad(server: Server, world: World) {
         val plugins = world.plugins
         plugins.bindLogin(incrementPlayerCount)
         plugins.bindLogout(decrementPlayerCount)
@@ -110,7 +110,7 @@ class WorldListService : Service {
      * @param server    The [Server] instance
      * @param world     The [World] instance
      */
-    override fun terminate(server: org.alter.game.Server, world: World) {
+    override fun terminate(server: Server, world: World) {
         channelFuture.channel().close().syncUninterruptibly()
     }
 

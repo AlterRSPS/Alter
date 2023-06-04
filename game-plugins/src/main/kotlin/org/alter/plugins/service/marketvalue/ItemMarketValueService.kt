@@ -15,7 +15,7 @@ class ItemMarketValueService : Service {
 
     private val values = Int2IntOpenHashMap()
 
-    override fun init(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
         val items = world.definitions.getCount(ItemDef::class.java)
         for (i in 0 until items) {
             val def = world.definitions.getNullable(ItemDef::class.java, i) ?: continue
@@ -30,13 +30,13 @@ class ItemMarketValueService : Service {
         logger.info("Loaded {} item values.", values.size)
     }
 
-    override fun postLoad(server: org.alter.game.Server, world: World) {
+    override fun postLoad(server: Server, world: World) {
     }
 
-    override fun bindNet(server: org.alter.game.Server, world: World) {
+    override fun bindNet(server: Server, world: World) {
     }
 
-    override fun terminate(server: org.alter.game.Server, world: World) {
+    override fun terminate(server: Server, world: World) {
     }
 
     fun get(item: Int): Int {

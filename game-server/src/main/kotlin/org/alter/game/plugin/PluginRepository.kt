@@ -427,6 +427,9 @@ class PluginRepository(val world: World) {
      * Scan our local package to find any and all [KotlinPlugin]s.
      */
     private fun scanPackageForPlugins(server: Server, world: World) {
+        /**
+         * There are two Mains?
+         */
         ClassGraph().enableAllInfo().whitelistModules().scan().use { result ->
             val plugins = result.getSubclasses(KotlinPlugin::class.java.name).directOnly()
             plugins.forEach { p ->
