@@ -40,7 +40,7 @@ on_login {
                 InterfaceEvent.ComponentTargetable
             )
         )
-        //openDefaultInterfaces()
+        player.openDefaultInterfaces()
         setVarbit(Varbit.COMBAT_LEVEL_VARBIT, combatLevel)
         setVarbit(Varbit.CHATBOX_UNLOCKED, 1)
         runClientScript(5840)
@@ -65,7 +65,6 @@ on_login {
 
 
 
-object OSRSInterfaces {
     fun Player.openDefaultInterfaces() {
         openOverlayInterface(interfaces.displayMode)
         openModals(this)
@@ -113,7 +112,6 @@ object OSRSInterfaces {
             player.openInterface(pane.interfaceId, pane, fullscreen)
         }
     }
-}
 
 // Character summary
 on_button(InterfaceDestination.QUEST_ROOT.interfaceId, 3) {
