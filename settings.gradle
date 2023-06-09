@@ -1,7 +1,0 @@
-rootProject.name = 'org.alter'
-include ':util'
-include ':net'
-include ':game-plugins'
-include ':game-api'
-include ':game-server'
-
