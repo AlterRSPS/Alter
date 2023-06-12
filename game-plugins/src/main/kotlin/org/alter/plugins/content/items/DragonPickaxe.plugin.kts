@@ -12,5 +12,4 @@ SpecialAttacks.register(Items.DRAGON_PICKAXE, 100, true) {
     player.getSkills().alterCurrentLevel(Skills.MINING, +3, 120)
     player.forceChat("Smashing!")
     player.animate(Animation.DRAGON_PICKAXE_SPECIAL)
-    // @TODO Add special attacks sound.
 }
