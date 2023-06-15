@@ -1,16 +1,14 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
+    kotlin("jvm") version "1.8.21"
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
-    idea
 }
 
 allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
-    group = "alter"
+    group = "Alter"
     version = "0.0.4"
 
     repositories {
@@ -24,24 +22,23 @@ allprojects {
     val lib = rootProject.project.libs
     dependencies {
         implementation(lib.fastutil)
-        implementation(lib.spark.core)
-        implementation(lib.kotlin.stdlib.jdk8)
-        implementation(lib.slf4j.api)
-        implementation(lib.log4j.slf4j.impl)
-        implementation(lib.kotlin.logging)
-        implementation(lib.jackson.dataformat.yaml)
-        implementation(lib.jackson.dataformat.toml)
-        implementation(lib.jackson.databind)
+        implementation(lib.kotlin-stdlib)
+        implementation(lib.log4j)
+        implementation(lib.kotlin-logging)
+        implementation(lib.jackson)
+        implementation(lib.jackson-dataformat-yaml)
+        implementation(lib.jackson-dataformat-toml)
+        implementation(lib.jackson-module)
         implementation(lib.json)
         implementation(lib.jbcrypt)
         implementation(lib.gson)
-        implementation(lib.cache)
-        implementation(lib.netty.all)
-        implementation(lib.kotlinx.serialization.core)
+        implementation(lib.RLCache)
+        implementation(lib.netty-all)
+        implementation(lib.commons)
+        implementation(lib.spark)
+        testImplementation(lib.kotlin)
         testImplementation(lib.junit)
-        testImplementation(lib.kotlin.test.junit)
     }
-
     idea {
         module {
             inheritOutputDirs = false
@@ -50,47 +47,33 @@ allprojects {
         }
     }
 
-    tasks.compileJava {
-        sourceCompatibility = JavaVersion.VERSION_17.toString()
-        targetCompatibility = JavaVersion.VERSION_17.toString()
-    }
-
-    tasks.withType<KotlinCompile>().all {
+    tasks.withType(KotlinCompile).configureEach {
         kotlinOptions {
-            languageVersion = "1.8"
-            jvmTarget = "17"
-            freeCompilerArgs = listOf(
-                "-Xallow-any-scripts-in-source-roots" ,
-                "-Xjvm-default=all",
-                "-Xbackend-threads=4")
+            jvmTarget = jvmVersion
+            languageVersion = 1.8
+            kotlinOptions.freeCompilerArgs += "-Xallow-any-scripts-in-source-roots"
         }
     }
 
-}
-tasks.register<Zip>("packageServer") {
-    archiveFileName.set("Alter.zip")
-    destinationDirectory.set(file("."))
 
+}
+
+tasks.register<Zip>("packageServer") {
+    archiveFileName.set("game-${project.version}.zip")
+    destinationDirectory.set(file("."))
     from("./") {
         include("gradlew")
         include("gradlew.bat")
-
         include("build.gradle.kts")
         include("settings.gradle.kts")
-
         include("LICENSE")
         include("README.md")
-
-        include("management-interface")
-
         include("first-launch-template")
-        rename("first-launch-template", "first-launch")
+        rename ("first-launch-template", "first-launch")
     }
-
-    from ("gradle/") {
-        into ("gradle")
+    from("gradle/") {
+        into("gradle")
     }
-
     from("data/") {
         into("data")
         exclude("cache")
@@ -99,46 +82,36 @@ tasks.register<Zip>("packageServer") {
         exclude("xteas")
         exclude("xteas.json")
     }
-
-    from("game/") {
-        into("game")
-
+    from("game-api/") {
+        into("/game-api")
+        include("src/main/kotlin/org/alter/api/**")
+    }
+    from("game-server/") {
+        into("game-server")
         exclude("build")
         exclude("out")
-        exclude("plugins")
         exclude("src/main/java")
         exclude("src/test/java")
     }
 
-    from("game/plugins") {
-        into("game/plugins")
-
-        include("src/main/kotlin/alter/plugins/api/**")
-        include("src/main/kotlin/alter/plugins/content/osrs.kts")
-        include("src/main/kotlin/alter/plugins/service/**")
+    from("/game-plugins") {
+        into("/game-plugins")
+        exclude("build")
+        exclude("out")
+        exclude("src/main/java")
+        exclude("src/test/java")
+        include ("src/main/kotlin/org/alter/plugins/content/**")
+        include ("src/main/kotlin/org/alter/service/**")
     }
-
     from("net/") {
         into("net")
-
         exclude("build")
         exclude("out")
         exclude("src/main/java")
         exclude("src/test/java")
     }
-
-    from("tools/") {
-        into("tools")
-
-        exclude("build")
-        exclude("out")
-        exclude("src/main/java")
-        exclude("src/test/java")
-    }
-
     from("util/") {
         into("util")
-
         exclude("build")
         exclude("out")
         exclude("src/main/java")
@@ -146,15 +119,27 @@ tasks.register<Zip>("packageServer") {
     }
 }
 
-tasks.register<Zip>("packageLibs"){
+tasks.register<Zip>("packageLibs") {
     archiveFileName.set("Alter-libs.zip")
-    destinationDirectory.set(file('.'))
-
+    destinationDirectory.set(file("."))
     from("game/build/libs/") {
         rename("game-${project.version}.jar", "game.jar")
     }
-
     from("game/plugins/build/libs/") {
         rename("plugins-${project.version}.jar", "plugins.jar")
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        languageVersion = "2.0"
+        jvmTarget = "11"
+
+
+        freeCompilerArgs = listOf(
+            "-Xallow-any-scripts-in-source-roots",
+            "-Xjvm-default=all",
+            "-Xbackend-threads=4"
+        )
     }
 }

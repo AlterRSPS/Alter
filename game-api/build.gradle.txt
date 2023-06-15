@@ -2,6 +2,7 @@
 plugins {
     id 'org.jetbrains.dokka' version '0.9.18'
 }
+
 dependencies {
     implementation project(path: ':game-server')
     implementation project(path: ':util')
