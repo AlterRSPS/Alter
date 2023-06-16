@@ -1,6 +1,9 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     application
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
 }
 description = "Alter Game"
 
@@ -92,3 +95,86 @@ tasks.register("install") {
     }
 }
 
+task<Copy>("extractDependencies") {
+    from(zipTree("build/distributions/game-server-${project.version}.zip")) {
+        include("game-${project.version}/lib/*")
+        eachFile {
+            path = name
+        }
+        includeEmptyDirs = false
+    }
+    into("build/deps")
+}
+
+task<JavaExec>("ktlint") {
+    group = "verification"
+    description = "Check Kotlin code style."
+    classpath = configurations["ktlint"]
+    setMain("com.github.shyiko.ktlint.Main")
+    args("src/**/*.kt")
+}
+
+tasks.register<Copy>("applicationDistribution") {
+    from("$rootDir/data/") {
+        into("bin/data/")
+        include("**")
+        exclude("saves/*")
+    }
+}
+
+tasks.named<Copy>("applicationDistribution") {
+    from("$rootDir") {
+        into("bin")
+        include("/game-plugins/*")
+        include("game.example.yml")
+        rename("game.example.yml", "game.yml")
+    }
+}
+
+
+tasks.named<Zip>("shadowDistZip") {
+    from("$rootDir/data/") {
+        into("game-shadow-${project.version}/bin/data/")
+        include("**")
+        exclude("saves/*")
+    }
+
+    from("$rootDir") {
+        into("game-shadow-${project.version}/bin/")
+        include("/game-plugins/*")
+        include("game.example.yml")
+        rename("game.example.yml", "game.yml")
+    }
+}
+
+
+tasks.register<Tar>("myShadowDistTar") {
+    archiveFileName.set("game-shadow-${project.version}.tar")
+    destinationDirectory.set(file("build/distributions/"))
+
+    from("$rootDir/data/") {
+        into("game-shadow-${project.version}/bin/data/")
+        include("**")
+        exclude("saves/*")
+    }
+
+    from("$rootDir") {
+        into("game-shadow-${project.version}/bin/")
+        include("/game-plugins/*")
+        include("game.example.yml")
+        rename("game.example.yml", "game.yml")
+    }
+}
+
+
+tasks.named("build") {
+    finalizedBy("extractDependencies")
+}
+
+tasks.named("install") {
+    dependsOn("build")
+}
+
+tasks.named<Jar>("jar") {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
