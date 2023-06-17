@@ -31,23 +31,23 @@ privileges:
 # Game services
 # You can pick and choose which services you want to run.
 services:
-  - class: org.alter.game.service.serializer.json.JsonPlayerSerializer
+  - class: gg.rsmod.game.service.serializer.json.JsonPlayerSerializer
 
-  - class: org.alter.game.service.xtea.XteaKeyService
+  - class: gg.rsmod.game.service.xtea.XteaKeyService
 
-  - class: org.alter.game.service.game.ItemMetadataService
+  - class: gg.rsmod.game.service.game.ItemMetadataService
 
-  - class: org.alter.game.service.game.NpcMetadataService
+  - class: gg.rsmod.game.service.game.NpcMetadataService
 
-  - class: org.alter.game.service.game.ObjectMetadataService
+  - class: gg.rsmod.game.service.game.ObjectMetadataService
 
-  - class: org.alter.game.service.game.DumpEntityIdService
-    cache-path: "../data/cache/"
-    output-path: "../game/plugins/src/main/kotlin/gg/rsmod/plugins/api/cfg/"
+  - class: gg.rsmod.game.service.game.DumpEntityIdService
+    cache-path: "./data/cache/"
+    output-path: "./game/plugins/src/main/kotlin/gg/rsmod/plugins/api/cfg/"
     dump: false # Should keep in mind that this can fail. (Aka. On crash fuck up any of the dumping into files
 
-  - class: org.alter.game.service.rsa.RsaService
+  - class: gg.rsmod.game.service.rsa.RsaService
 
-  - class: org.alter.game.service.GameService
+  - class: gg.rsmod.game.service.GameService
 
-  - class: org.alter.game.service.login.LoginService
+  - class: gg.rsmod.game.service.login.LoginService
