@@ -3,7 +3,7 @@
 
 server-packets:
 
-  - message: gg.rsmod.game.message.impl.RebuildLoginMessage
+  - message: org.alter.game.message.impl.RebuildLoginMessage
     type: VARIABLE_SHORT
     opcode: 0
     structure:
@@ -18,7 +18,7 @@ server-packets:
       - name: xteas
         type: BYTES
 
-  - message: gg.rsmod.game.message.impl.RebuildNormalMessage
+  - message: org.alter.game.message.impl.RebuildNormalMessage
     type: VARIABLE_SHORT
     opcode: 0
     structure:
@@ -31,14 +31,14 @@ server-packets:
       - name: xteas
         type: BYTES
 
-  - message: gg.rsmod.game.message.impl.UpdateRunWeightMessage
+  - message: org.alter.game.message.impl.UpdateRunWeightMessage
     type: FIXED
     opcode: 82
     structure:
       - name: weight
         type: SHORT
 
-  - message: gg.rsmod.game.message.impl.RunClientScriptMessage
+  - message: org.alter.game.message.impl.RunClientScriptMessage
     type: VARIABLE_SHORT
     opcode: 13
     structure:
@@ -49,7 +49,7 @@ server-packets:
       - name: id
         type: INT
 
-  - message: gg.rsmod.game.message.impl.VarpLargeMessage
+  - message: org.alter.game.message.impl.VarpLargeMessage
     type: FIXED
     opcode: 17
     structure:
@@ -59,7 +59,7 @@ server-packets:
         type: SHORT
         trans: ADD
 
-  - message: gg.rsmod.game.message.impl.MessageGameMessage
+  - message: org.alter.game.message.impl.MessageGameMessage
     type: VARIABLE_BYTE
     opcode: 48
     structure:
@@ -72,7 +72,7 @@ server-packets:
       - name: message
         type: BYTES
 
-  - message: gg.rsmod.game.message.impl.UpdateStatMessage
+  - message: org.alter.game.message.impl.UpdateStatMessage
     type: FIXED
     opcode: 14
     structure:
@@ -86,7 +86,7 @@ server-packets:
         type: INT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.MidiSongMessage
+  - message: org.alter.game.message.impl.MidiSongMessage
     type: FIXED
     opcode: 8
     structure:
@@ -94,7 +94,7 @@ server-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.UpdateInvFullMessage
+  - message: org.alter.game.message.impl.UpdateInvFullMessage
     type: VARIABLE_SHORT
     opcode: 35
     structure:
@@ -107,7 +107,7 @@ server-packets:
       - name: items
         type: BYTES
 
-  - message: gg.rsmod.game.message.impl.IfSetEventsMessage
+  - message: org.alter.game.message.impl.IfSetEventsMessage
     type: FIXED
     opcode: 1
     structure:
@@ -125,14 +125,14 @@ server-packets:
         type: SHORT
         trans: ADD
 
-  - message: gg.rsmod.game.message.impl.IfOpenTopMessage
+  - message: org.alter.game.message.impl.IfOpenTopMessage
     type: FIXED
     opcode: 105
     structure:
       - name: top
         type: SHORT
 
-  - message: gg.rsmod.game.message.impl.SetOpPlayerMessage
+  - message: org.alter.game.message.impl.SetOpPlayerMessage
     type: VARIABLE_BYTE
     opcode: 10
     structure:
@@ -147,18 +147,18 @@ server-packets:
 
 
 # @IGNORED
-#  - message: gg.rsmod.game.message.impl.FriendListLoadedMessage
+#  - message: org.alter.game.message.impl.FriendListLoadedMessage
 #    type: VARIABLE_SHORT
 #    opcode: 73
 
-  - message: gg.rsmod.game.message.impl.UpdateRunEnergyMessage
+  - message: org.alter.game.message.impl.UpdateRunEnergyMessage
     type: FIXED
     opcode: 56
     structure:
       - name: energy
         type: SHORT
 
-  - message: gg.rsmod.game.message.impl.IfSetTextMessage
+  - message: org.alter.game.message.impl.IfSetTextMessage
     type: VARIABLE_SHORT
     opcode: 57
     structure:
@@ -168,7 +168,7 @@ server-packets:
         type: INT
         order: INVERSE_MIDDLE
 
-  - message: gg.rsmod.game.message.impl.IfOpenSubMessage
+  - message: org.alter.game.message.impl.IfOpenSubMessage
     type: FIXED
     opcode: 31
     structure:
@@ -182,7 +182,7 @@ server-packets:
         type: INT
         order: MIDDLE
 
-  - message: gg.rsmod.game.message.impl.VarpSmallMessage
+  - message: org.alter.game.message.impl.VarpSmallMessage
     type: FIXED
     opcode: 85
     structure:
@@ -192,7 +192,7 @@ server-packets:
       - name: id
         type: SHORT
 
-  - message: gg.rsmod.game.message.impl.UpdateZonePartialEnclosedMessage
+  - message: org.alter.game.message.impl.UpdateZonePartialEnclosedMessage
     type: VARIABLE_SHORT
     opcode: 92
     structure:
@@ -204,7 +204,7 @@ server-packets:
       - name: payload
         type: BYTES
 
-  - message: gg.rsmod.game.message.impl.IfMoveSubMessage
+  - message: org.alter.game.message.impl.IfMoveSubMessage
     type: FIXED
     opcode: 50
     structure:
@@ -215,18 +215,18 @@ server-packets:
         type: INT
         order: INVERSE_MIDDLE
 
-  - message: gg.rsmod.game.message.impl.IfCloseSubMessage
+  - message: org.alter.game.message.impl.IfCloseSubMessage
     type: FIXED
     opcode: 16
     structure:
       - name: hash
         type: INT
 
-  - message: gg.rsmod.game.message.impl.CamResetMessage
+  - message: org.alter.game.message.impl.CamResetMessage
     type: FIXED
     opcode: 32
 
-  - message: gg.rsmod.game.message.impl.CamShakeMessage
+  - message: org.alter.game.message.impl.CamShakeMessage
     type: FIXED
     opcode: 71
     structure:
@@ -239,7 +239,7 @@ server-packets:
       - name: right
         type: BYTE
 
-  - message: gg.rsmod.game.message.impl.MapAnimMessage
+  - message: org.alter.game.message.impl.MapAnimMessage
     type: FIXED
     opcode: 41
     structure:
@@ -255,7 +255,7 @@ server-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.UpdateRebootTimerMessage
+  - message: org.alter.game.message.impl.UpdateRebootTimerMessage
     type: FIXED
     opcode: 72
     structure:
@@ -263,11 +263,11 @@ server-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.TriggerOnDialogAbortMessage
+  - message: org.alter.game.message.impl.TriggerOnDialogAbortMessage
     type: FIXED
     opcode: 36
 
-  - message: gg.rsmod.game.message.impl.SoundAreaMessage
+  - message: org.alter.game.message.impl.SoundAreaMessage
     type: FIXED
     opcode: 55
     structure:
@@ -285,7 +285,7 @@ server-packets:
         type: BYTE
         trans: SUBTRACT
 
-  - message: gg.rsmod.game.message.impl.MapProjAnimMessage
+  - message: org.alter.game.message.impl.MapProjAnimMessage
     type: FIXED
     opcode: 11
     structure:
@@ -318,7 +318,7 @@ server-packets:
         type: BYTE
         trans: SUBTRACT
 
-  - message: gg.rsmod.game.message.impl.RebuildRegionMessage
+  - message: org.alter.game.message.impl.RebuildRegionMessage
     type: VARIABLE_SHORT
     opcode: 42
     structure:
@@ -334,7 +334,7 @@ server-packets:
       - name: data
         type: SHORT
 
-  - message: gg.rsmod.game.message.impl.UpdateZonePartialFollowsMessage
+  - message: org.alter.game.message.impl.UpdateZonePartialFollowsMessage
     type: FIXED
     opcode: 26
     structure:
@@ -345,7 +345,7 @@ server-packets:
         type: BYTE
         trans: NEGATE
 
-  - message: gg.rsmod.game.message.impl.LocAddChangeMessage
+  - message: org.alter.game.message.impl.LocAddChangeMessage
     type: FIXED
     opcode: 86
     structure:
@@ -361,7 +361,7 @@ server-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.ObjDelMessage
+  - message: org.alter.game.message.impl.ObjDelMessage
     type: FIXED
     opcode: 38
     structure:
@@ -375,7 +375,7 @@ server-packets:
         type: INT
         order: MIDDLE
 
-  - message: gg.rsmod.game.message.impl.LocDelMessage
+  - message: org.alter.game.message.impl.LocDelMessage
     type: FIXED
     opcode: 9
     structure:
@@ -385,7 +385,7 @@ server-packets:
       - name: settings
         type: BYTE
 
-  - message: gg.rsmod.game.message.impl.ObjAddMessage
+  - message: org.alter.game.message.impl.ObjAddMessage
     type: FIXED
     opcode: 39
     structure:
@@ -413,7 +413,7 @@ server-packets:
         type: BYTE
         trans: NEGATE
 
-  - message: gg.rsmod.game.message.impl.ObjCountMessage
+  - message: org.alter.game.message.impl.ObjCountMessage
     type: FIXED
     opcode: 6
     structure:
@@ -429,18 +429,18 @@ server-packets:
       - name: old_amount
         type: INT
 
-  - message: gg.rsmod.game.message.impl.LogoutFullMessage
+  - message: org.alter.game.message.impl.LogoutFullMessage
     type: FIXED
     opcode: 3
 
-  - message: gg.rsmod.game.message.impl.OpenUrlMessage
+  - message: org.alter.game.message.impl.OpenUrlMessage
     type: VARIABLE_SHORT
     opcode: 60
     structure:
       - name: url
         type: BYTES
 
-  - message: gg.rsmod.game.message.impl.IfSetHideMessage
+  - message: org.alter.game.message.impl.IfSetHideMessage
     type: FIXED
     opcode: 22
     structure:
@@ -450,7 +450,7 @@ server-packets:
         type: BYTE
         trans: SUBTRACT
 
-  - message: gg.rsmod.game.message.impl.IfSetObjectMessage
+  - message: org.alter.game.message.impl.IfSetObjectMessage
     type: FIXED
     opcode: 80
     structure:
@@ -465,7 +465,7 @@ server-packets:
         trans: ADD
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.IfSetNpcHeadMessage
+  - message: org.alter.game.message.impl.IfSetNpcHeadMessage
     type: FIXED
     opcode: 51
     structure:
@@ -478,7 +478,7 @@ server-packets:
         order: MIDDLE
 
 
-  - message: gg.rsmod.game.message.impl.IfSetPlayerHeadMessage
+  - message: org.alter.game.message.impl.IfSetPlayerHeadMessage
     type: FIXED
     opcode: 2
     structure:
@@ -486,7 +486,7 @@ server-packets:
         type: INT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.IfSetAnimMessage
+  - message: org.alter.game.message.impl.IfSetAnimMessage
     type: FIXED
     opcode: 58
     structure:
@@ -498,7 +498,7 @@ server-packets:
         type: INT
         order: INVERSE_MIDDLE
 
-  - message: gg.rsmod.game.message.impl.IfSetModelMessage
+  - message: org.alter.game.message.impl.IfSetModelMessage
     type: FIXED
     opcode: 40
     structure:
@@ -508,7 +508,7 @@ server-packets:
       - name: model_id
         type: SHORT
 
-  - message: gg.rsmod.game.message.impl.SetMapFlagMessage
+  - message: org.alter.game.message.impl.SetMapFlagMessage
     type: FIXED
     opcode: 25
     structure:
@@ -517,7 +517,7 @@ server-packets:
       - name: z
         type: BYTE
 
-  - message: gg.rsmod.game.message.impl.UpdateInvPartialMessage
+  - message: org.alter.game.message.impl.UpdateInvPartialMessage
     type: VARIABLE_SHORT
     opcode: 93
     structure:
@@ -528,7 +528,7 @@ server-packets:
       - name: items
         type: BYTES
 
-  - message: gg.rsmod.game.message.impl.SynthSoundMessage
+  - message: org.alter.game.message.impl.SynthSoundMessage
     type: FIXED
     opcode: 23
     structure:
@@ -539,7 +539,7 @@ server-packets:
       - name: delay
         type: SHORT
 
-  - message: gg.rsmod.game.message.impl.MidiJingleMessage
+  - message: org.alter.game.message.impl.MidiJingleMessage
     type: FIXED
     opcode: 91
     structure:
@@ -549,7 +549,7 @@ server-packets:
         type: SHORT
         order: LITTLE
 
-#  - message: gg.rsmod.game.message.impl.UpdateFriendListMessage
+#  - message: org.alter.game.message.impl.UpdateFriendListMessage
 #    type: VARIABLE_SHORT
 #    opcode: 90
 #    structure:
@@ -566,7 +566,7 @@ server-packets:
 #      - name: rights
 #        write: BYTE
 #
-#  - message: gg.rsmod.game.message.impl.UpdateIgnoreListMessage
+#  - message: org.alter.game.message.impl.UpdateIgnoreListMessage
 #    type: VARIABLE_SHORT
 #    opcode: 23
 #    structure:
@@ -577,7 +577,7 @@ server-packets:
 #      - name: previousUsername
 #        write: BYTES
 #
-#  - message: gg.rsmod.game.message.impl.MessagePrivateReceiverMessage
+#  - message: org.alter.game.message.impl.MessagePrivateReceiverMessage
 #    type: VARIABLE_SHORT
 #    opcode: 45
 #    structure:
@@ -594,7 +594,7 @@ server-packets:
 
 client-packets:
 
-  - message: gg.rsmod.game.message.impl.ClickWorldMapMessage
+  - message: org.alter.game.message.impl.ClickWorldMapMessage
     type: FIXED
     opcode: 46
     length: 4
@@ -603,7 +603,7 @@ client-packets:
         type: INT
         order: INVERSE_MIDDLE
 
-  - message: gg.rsmod.game.message.impl.IfButtonDMessage
+  - message: org.alter.game.message.impl.IfButtonDMessage
     type: FIXED
     opcode: 51
     length: 16
@@ -626,7 +626,7 @@ client-packets:
       - name: src_item
         type: SHORT
 
-  - message: gg.rsmod.game.message.impl.OpNpcTMessage
+  - message: org.alter.game.message.impl.OpNpcTMessage
     type: FIXED
     opcode: 52
     length: 11
@@ -647,7 +647,7 @@ client-packets:
         type: BYTE
         trans: ADD
     # @TODO Haven't mathed this yet.
-  - message: gg.rsmod.game.message.impl.OpNpcUMessage
+  - message: org.alter.game.message.impl.OpNpcUMessage
     type: FIXED
     opcode: 93
     length: 11
@@ -668,13 +668,13 @@ client-packets:
         type: INT
         order: INVERSE_MIDDLE
 
-  - message: gg.rsmod.game.message.impl.OpLocUMessage
+  - message: org.alter.game.message.impl.OpLocUMessage
     type: FIXED
     opcode: 43
     length: 15
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.OpNpc1Message
+  - message: org.alter.game.message.impl.OpNpc1Message
     type: FIXED
     opcode: 91
     length: 3
@@ -686,7 +686,7 @@ client-packets:
         trans: ADD
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.OpNpc2Message
+  - message: org.alter.game.message.impl.OpNpc2Message
     type: FIXED
     opcode: 83
     length: 3
@@ -698,7 +698,7 @@ client-packets:
         type: BYTE
         trans: ADD
 
-  - message: gg.rsmod.game.message.impl.OpNpc3Message
+  - message: org.alter.game.message.impl.OpNpc3Message
     type: FIXED
     opcode: 80
     length: 3
@@ -710,7 +710,7 @@ client-packets:
         type: BYTE
         trans: ADD
 
-  - message: gg.rsmod.game.message.impl.OpNpc4Message
+  - message: org.alter.game.message.impl.OpNpc4Message
     type: FIXED
     opcode: 29
     length: 3
@@ -722,7 +722,7 @@ client-packets:
         type: BYTE
         trans: SUBTRACT
 
-  - message: gg.rsmod.game.message.impl.OpNpc5Message
+  - message: org.alter.game.message.impl.OpNpc5Message
     type: FIXED
     opcode: 49
     length: 3
@@ -733,7 +733,7 @@ client-packets:
         type: SHORT
         trans: ADD
 
-  - message: gg.rsmod.game.message.impl.OpNpc6Message
+  - message: org.alter.game.message.impl.OpNpc6Message
     type: FIXED
     opcode: 55
     length: 2
@@ -742,7 +742,7 @@ client-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.OpObj1Message
+  - message: org.alter.game.message.impl.OpObj1Message
     type: FIXED
     opcode: 81
     length: 7
@@ -760,7 +760,7 @@ client-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.OpObj2Message
+  - message: org.alter.game.message.impl.OpObj2Message
     type: FIXED
     opcode: 33
     length: 7
@@ -779,7 +779,7 @@ client-packets:
         trans: ADD
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.OpObj3Message
+  - message: org.alter.game.message.impl.OpObj3Message
     type: FIXED
     opcode: 28
     length: 7
@@ -797,7 +797,7 @@ client-packets:
         type: SHORT
         trans: ADD
 
-  - message: gg.rsmod.game.message.impl.OpObj4Message
+  - message: org.alter.game.message.impl.OpObj4Message
     type: FIXED
     opcode: 94
     length: 7
@@ -816,7 +816,7 @@ client-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.OpObj5Message
+  - message: org.alter.game.message.impl.OpObj5Message
     type: FIXED
     opcode: 19
     length: 7
@@ -833,7 +833,7 @@ client-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.OpObj6Message
+  - message: org.alter.game.message.impl.OpObj6Message
     type: FIXED
     opcode: 78
     length: 6
@@ -848,7 +848,7 @@ client-packets:
         order: LITTLE
 
   # @TODO Later
-  - message: gg.rsmod.game.message.impl.OpObjUMessage
+  - message: org.alter.game.message.impl.OpObjUMessage
     type: FIXED
     opcode: 15
     length: 15
@@ -877,7 +877,7 @@ client-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.ResumePObjDialogMessage
+  - message: org.alter.game.message.impl.ResumePObjDialogMessage
     type: FIXED
     opcode: 61
     length: 2
@@ -885,7 +885,7 @@ client-packets:
       - name: item
         type: SHORT
 
-  - message: gg.rsmod.game.message.impl.ResumePStringDialogMessage
+  - message: org.alter.game.message.impl.ResumePStringDialogMessage
     type: VARIABLE_BYTE
     opcode: 65
     structure:
@@ -893,7 +893,7 @@ client-packets:
         type: BYTES
         sign: UNSIGNED
 
-  - message: gg.rsmod.game.message.impl.ClientCheatMessage
+  - message: org.alter.game.message.impl.ClientCheatMessage
     type: VARIABLE_BYTE
     opcode: 82
     structure:
@@ -901,7 +901,7 @@ client-packets:
         type: STRING
         sign: UNSIGNED
 
-  - message: gg.rsmod.game.message.impl.WindowStatusMessage
+  - message: org.alter.game.message.impl.WindowStatusMessage
     type: FIXED
     opcode: 16
     length: 5
@@ -916,7 +916,7 @@ client-packets:
         type: SHORT
         sign: UNSIGNED
 
-  - message: gg.rsmod.game.message.impl.MoveGameClickMessage
+  - message: org.alter.game.message.impl.MoveGameClickMessage
     type: VARIABLE_BYTE
     opcode: 59
     structure:
@@ -931,7 +931,7 @@ client-packets:
         type: BYTE
         trans: SUBTRACT
 
-  - message: gg.rsmod.game.message.impl.MoveMinimapClickMessage
+  - message: org.alter.game.message.impl.MoveMinimapClickMessage
     type: VARIABLE_BYTE
     opcode: 0
     structure:
@@ -946,7 +946,7 @@ client-packets:
         type: BYTE
         trans: SUBTRACT
 
-  - message: gg.rsmod.game.message.impl.TeleportMessage
+  - message: org.alter.game.message.impl.TeleportMessage
     type: FIXED
     opcode: 60
     length: 9
@@ -965,7 +965,7 @@ client-packets:
         trans: ADD
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.OpLoc1Message
+  - message: org.alter.game.message.impl.OpLoc1Message
     type: FIXED
     opcode: 10
     length: 7
@@ -984,7 +984,7 @@ client-packets:
         type: SHORT
         trans: ADD
 
-  - message: gg.rsmod.game.message.impl.OpLoc2Message
+  - message: org.alter.game.message.impl.OpLoc2Message
     type: FIXED
     opcode: 39
     length: 7
@@ -1004,7 +1004,7 @@ client-packets:
         type: BYTE
         trans: SUBTRACT
 
-  - message: gg.rsmod.game.message.impl.OpLoc3Message
+  - message: org.alter.game.message.impl.OpLoc3Message
     type: FIXED
     opcode: 44
     length: 7
@@ -1024,7 +1024,7 @@ client-packets:
         type: BYTE
         trans: NEGATE
 
-  - message: gg.rsmod.game.message.impl.OpLoc4Message
+  - message: org.alter.game.message.impl.OpLoc4Message
     type: FIXED
     opcode: 48
     length: 7
@@ -1042,7 +1042,7 @@ client-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.OpLoc5Message
+  - message: org.alter.game.message.impl.OpLoc5Message
     type: FIXED
     opcode: 72
     length: 7
@@ -1063,7 +1063,7 @@ client-packets:
         order: LITTLE
 
     # @Done
-  - message: gg.rsmod.game.message.impl.IfButtonMessage
+  - message: org.alter.game.message.impl.IfButtonMessage
     type: FIXED
     opcodes: 64,70,79,92,20,71,38,63,34,69
     length: 8
@@ -1078,7 +1078,7 @@ client-packets:
         type: SHORT
         sign: UNSIGNED
 
-  - message: gg.rsmod.game.message.impl.ResumePauseButtonMessage
+  - message: org.alter.game.message.impl.ResumePauseButtonMessage
     type: FIXED
     opcode: 76
     length: 6
@@ -1090,7 +1090,7 @@ client-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.ResumePCountDialogMessage
+  - message: org.alter.game.message.impl.ResumePCountDialogMessage
     type: FIXED
     opcode: 11
     length: 4
@@ -1099,7 +1099,7 @@ client-packets:
         type: INT
         sign: UNSIGNED
 
-  - message: gg.rsmod.game.message.impl.OpLoc6Message
+  - message: org.alter.game.message.impl.OpLoc6Message
     type: FIXED
     opcode: 68
     length: 2
@@ -1109,12 +1109,12 @@ client-packets:
         trans: ADD
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.CloseModalMessage
+  - message: org.alter.game.message.impl.CloseModalMessage
     type: FIXED
     opcode: 56
     length: 0
 
-  #  - message: gg.rsmod.game.message.impl.ClanJoinChatLeaveChatMessage
+  #  - message: org.alter.game.message.impl.ClanJoinChatLeaveChatMessage
   #    type: VARIABLE_BYTE
   #    opcode: 68
   #    structure:
@@ -1122,7 +1122,7 @@ client-packets:
   #        type: BYTE
   #        sign: UNSIGNED
   #
-  - message: gg.rsmod.game.message.impl.EventCameraPositionMessage
+  - message: org.alter.game.message.impl.EventCameraPositionMessage
     type: FIXED
     opcode: 77
     length: 4
@@ -1132,18 +1132,18 @@ client-packets:
       - name: pitch
         type: SHORT
 
-  - message: gg.rsmod.game.message.impl.EventMouseIdleMessage # IDLE_LOGOUT
+  - message: org.alter.game.message.impl.EventMouseIdleMessage # IDLE_LOGOUT
     type: FIXED
     opcode: 2
     length: 0
 
     # @Done
-  - message: gg.rsmod.game.message.impl.EventMouseMoveMessage # TODO: need to refactor code to see what values are received
+  - message: org.alter.game.message.impl.EventMouseMoveMessage # TODO: need to refactor code to see what values are received
     type: VARIABLE_BYTE
     opcode: 95
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.DetectModifiedClientMessage
+  - message: org.alter.game.message.impl.DetectModifiedClientMessage
     type: FIXED
     opcode: 36
     length: 4
@@ -1152,7 +1152,7 @@ client-packets:
         type: INT
         sign: UNSIGNED
 
-  - message: gg.rsmod.game.message.impl.UpdateAppearanceMessage
+  - message: org.alter.game.message.impl.UpdateAppearanceMessage
     type: FIXED
     opcode: 4
     length: 13
@@ -1185,13 +1185,13 @@ client-packets:
         type: BYTE
 
   # @Done
-  - message: gg.rsmod.game.message.impl.NoTimeoutMessage
+  - message: org.alter.game.message.impl.NoTimeoutMessage
     type: FIXED
     ignore: true
     opcode: 26
     length: 0
 
-  - message: gg.rsmod.game.message.impl.MessagePublicMessage
+  - message: org.alter.game.message.impl.MessagePublicMessage
     type: VARIABLE_BYTE
     opcode: 12
     structure:
@@ -1205,24 +1205,24 @@ client-packets:
         type: BYTE
         sign: UNSIGNED
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: PING_STATISTICS - need to refactor code to see what values are received
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: PING_STATISTICS - need to refactor code to see what values are received
     type: FIXED
     opcode: 67
     length: 10
     ignore: true
     # @Done
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: EVENT_MOUSE_CLICK - need to refactor code to see what values are received
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: EVENT_MOUSE_CLICK - need to refactor code to see what values are received
     type: FIXED
     opcode: 13
     length: 6
     ignore: true
     # @Done
-  - message: gg.rsmod.game.message.impl.MapBuildCompleteMessage
+  - message: org.alter.game.message.impl.MapBuildCompleteMessage
     type: FIXED
     opcode: 74
     length: 0
     # @Done
-  - message: gg.rsmod.game.message.impl.EventAppletFocusMessage
+  - message: org.alter.game.message.impl.EventAppletFocusMessage
     type: FIXED
     opcode: 66
     length: 1
@@ -1231,7 +1231,7 @@ client-packets:
         type: BYTE
 
   # IGNORED SINCE IT DID NOT MATCH DEOB
-  - message: gg.rsmod.game.message.impl.EventKeyboardMessage
+  - message: org.alter.game.message.impl.EventKeyboardMessage
     type: VARIABLE_SHORT
     ignore: true
     opcode: 5
@@ -1245,22 +1245,22 @@ client-packets:
         order: INVERSE_MIDDLE
         sign: UNSIGNED
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: CLAN_KICKUSER
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: CLAN_KICKUSER
     type: VARIABLE_BYTE
     opcode: 86
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: CHAT_SETMODE / SET_CHATFILTERSETTINGS
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: CHAT_SETMODE / SET_CHATFILTERSETTINGS
     type: FIXED
     opcode: 54
     length: 3
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: BUG_REPORT
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: BUG_REPORT
     type: VARIABLE_SHORT
     opcode: 42
 
-  - message: gg.rsmod.game.message.impl.MessagePrivateSenderMessage
+  - message: org.alter.game.message.impl.MessagePrivateSenderMessage
     type: VARIABLE_SHORT
     opcode: 6
     structure:
@@ -1271,7 +1271,7 @@ client-packets:
 
 
 
-  - message: gg.rsmod.game.message.impl.OpPlayer4Message
+  - message: org.alter.game.message.impl.OpPlayer4Message
     type: FIXED
     opcode: 62
     length: 3
@@ -1283,7 +1283,7 @@ client-packets:
         type: SHORT
         order: LITTLE
 
-  #  - message: gg.rsmod.game.message.impl.IgnoreListDeleteMessage
+  #  - message: org.alter.game.message.impl.IgnoreListDeleteMessage
   #    type: VARIABLE_BYTE
   #    opcode: 86
   #    length: -1
@@ -1291,18 +1291,18 @@ client-packets:
   #      - name: name
   #        type: STRING
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: FREECAM_EXIT
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: FREECAM_EXIT
     type: FIXED
     opcode: 3
     length: 0
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: SEND_SNAPSHOT
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: SEND_SNAPSHOT
     type: VARIABLE_BYTE
     opcode: 73
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.OpPlayer1Message
+  - message: org.alter.game.message.impl.OpPlayer1Message
     type: FIXED
     opcode: 90
     length: 3
@@ -1313,7 +1313,7 @@ client-packets:
       - name: index
         type: SHORT
 
-  - message: gg.rsmod.game.message.impl.OpPlayer8Message
+  - message: org.alter.game.message.impl.OpPlayer8Message
     type: FIXED
     opcode: 8
     length: 3
@@ -1325,13 +1325,13 @@ client-packets:
         type: BYTE
         trans: NEGATE
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: OPOBJ5
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: OPOBJ5
     type: FIXED
     opcode: 72
     length: 7
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.OpObjTMessage
+  - message: org.alter.game.message.impl.OpObjTMessage
     type: FIXED
     opcode: 24
     length: 15
@@ -1360,7 +1360,7 @@ client-packets:
         trans: ADD
         order: LITTLE
 
-  #  - message: gg.rsmod.game.message.impl.FriendListDeleteMessage
+  #  - message: org.alter.game.message.impl.FriendListDeleteMessage
   #    type: VARIABLE_BYTE
   #    opcode: 43
   #    length: -1
@@ -1368,7 +1368,7 @@ client-packets:
   #      - name: name
   #        type: STRING
   #
-  - message: gg.rsmod.game.message.impl.OpPlayerTMessage
+  - message: org.alter.game.message.impl.OpPlayerTMessage
     type: FIXED
     opcode: 47
     length: 11
@@ -1389,7 +1389,7 @@ client-packets:
       - name: component_hash
         type: INT
 
-  - message: gg.rsmod.game.message.impl.OpPlayer2Message
+  - message: org.alter.game.message.impl.OpPlayer2Message
     type: FIXED
     opcode: 35
     length: 3
@@ -1401,7 +1401,7 @@ client-packets:
         type: SHORT
         order: LITTLE
 
-  - message: gg.rsmod.game.message.impl.OpPlayer3Message
+  - message: org.alter.game.message.impl.OpPlayer3Message
     type: FIXED
     opcode: 32
     length: 3
@@ -1414,7 +1414,7 @@ client-packets:
         trans: SUBTRACT
 
 
-  - message: gg.rsmod.game.message.impl.IfModelOp1Message # BUTTON_CLICK
+  - message: org.alter.game.message.impl.IfModelOp1Message # BUTTON_CLICK
     type: FIXED
     opcode: 53
     length: 4
@@ -1422,7 +1422,7 @@ client-packets:
       - name: component
         type: INT
 
-  - message: gg.rsmod.game.message.impl.OpPlayer7Message
+  - message: org.alter.game.message.impl.OpPlayer7Message
     type: FIXED
     opcode: 7
     length: 3
@@ -1435,19 +1435,19 @@ client-packets:
         type: BYTE
         trans: ADD
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: FRIEND_SETRANK
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: FRIEND_SETRANK
     type: VARIABLE_BYTE
     opcode: 45
     length: -1
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: OPPLAYERU
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: OPPLAYERU
     type: FIXED
     opcode: 31
     length: 11
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IfButtonTMessage
+  - message: org.alter.game.message.impl.IfButtonTMessage
     type: FIXED
     opcode: 23
     length: 16
@@ -1471,7 +1471,7 @@ client-packets:
         type: SHORT
         trans: ADD
 
-  - message: gg.rsmod.game.message.impl.OpPlayer5Message
+  - message: org.alter.game.message.impl.OpPlayer5Message
     type: FIXED
     opcode: 22
     length: 3
@@ -1482,7 +1482,7 @@ client-packets:
       - name: index
         type: SHORT
 
-  #  - message: gg.rsmod.game.message.impl.FriendListAddMessage
+  #  - message: org.alter.game.message.impl.FriendListAddMessage
   #    type: VARIABLE_BYTE
   #    opcode: 50
   #    length: -1
@@ -1490,20 +1490,20 @@ client-packets:
   #      - name: name
   #        type: STRING
   #
-  #  - message: gg.rsmod.game.message.impl.IgnoreListAddMessage
+  #  - message: org.alter.game.message.impl.IgnoreListAddMessage
   #    type: VARIABLE_BYTE
   #    opcode: 11
   #    structure:
   #      - name: name
   #        type: STRING
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: REFLECTION_CHECK_REPLY
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: REFLECTION_CHECK_REPLY
     type: VARIABLE_BYTE
     opcode: 85
     length: -1
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.OpLocTMessage
+  - message: org.alter.game.message.impl.OpLocTMessage
     type: FIXED
     opcode: 25
     length: 15
@@ -1530,7 +1530,7 @@ client-packets:
         type: SHORT
         trans: ADD
 
-  - message: gg.rsmod.game.message.impl.OpPlayer6Message
+  - message: org.alter.game.message.impl.OpPlayer6Message
     type: FIXED
     opcode: 57
     length: 3
@@ -1543,7 +1543,7 @@ client-packets:
         trans: NEGATE
 
     # UNKNOWN is name's length+1
-  - message: gg.rsmod.game.message.impl.ResumePNameDialogMessage
+  - message: org.alter.game.message.impl.ResumePNameDialogMessage
     type: VARIABLE_BYTE
     opcode: 58
     structure:
@@ -1552,17 +1552,17 @@ client-packets:
         sign: UNSIGNED
 
     # @Done
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # TODO: LOGIN_STATISTICS
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: LOGIN_STATISTICS
     type: VARIABLE_BYTE
     opcode: 88
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # SteamClient's Packet
+  - message: org.alter.game.message.impl.IgnoreMessage # SteamClient's Packet
     type: VARIABLE_BYTE
     opcode: 30
     ignore: true
 
-  - message: gg.rsmod.game.message.impl.IgnoreMessage # SteamClient's Packet
+  - message: org.alter.game.message.impl.IgnoreMessage # SteamClient's Packet
     type: VARIABLE_BYTE
     opcode: 17
     ignore: true
