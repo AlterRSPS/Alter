@@ -24,16 +24,16 @@ import java.util.concurrent.TimeUnit
  * @author Tom <rspsmods@gmail.com>
  */
 class ItemMetadataService : Service {
-    override fun postLoad(server: org.alter.game.Server, world: World) {
+    override fun postLoad(server: Server, world: World) {
     }
 
-    override fun bindNet(server: org.alter.game.Server, world: World) {
+    override fun bindNet(server: Server, world: World) {
     }
 
-    override fun terminate(server: org.alter.game.Server, world: World) {
+    override fun terminate(server: Server, world: World) {
     }
 
-    override fun init(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
         loadAll(world)
     }
 
@@ -50,7 +50,7 @@ class ItemMetadataService : Service {
         val mapper = YAMLMapper(yamlFactory)
 
 
-        val path = Paths.get("./data/cfg/items")
+        val path = Paths.get("../data/cfg/items")
 
         try {
             Files.newBufferedReader(path.resolve("_Items.yml")).use { reader ->

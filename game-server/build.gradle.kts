@@ -11,8 +11,6 @@ application {
     mainClass.set("org.alter.game.Launcher")
 }
 
-
-
 val lib = rootProject.project.libs
 dependencies {
     implementation(project(":util"))
@@ -27,8 +25,10 @@ dependencies {
     implementation("it.unimi.dsi:fastutil:8.2.1")
     implementation("org.bouncycastle:bcprov-jdk15on:1.54")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
+    implementation(lib.jackson.dataformat.yaml)
     testImplementation("junit:junit:0.9.11")
 }
+
 sourceSets {
     named("main") {
         kotlin.srcDirs("src/main/kotlin")
@@ -177,4 +177,10 @@ tasks.named("install") {
 
 tasks.named<Jar>("jar") {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks {
+    named<ProcessResources>("processResources") {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE // or EXCLUDE, WARN, FAIL
+    }
 }

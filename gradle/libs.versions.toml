@@ -26,7 +26,7 @@ kotlin-stdlib-jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4jApi" }
 log4j-slf4j-impl = { group = "org.apache.logging.log4j", name = "log4j-slf4j-impl", version.ref = "log4jSlf4jImpl" }
 kotlin-logging = { group = "io.github.microutils", name = "kotlin-logging", version.ref = "kotlinLogging" }
-jackson-dataformat-yaml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-yaml", version.ref = "jacksonDataformatYaml" }
+jackson-dataformat-yaml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-yaml", version = "2.14.2" }
 jackson-dataformat-toml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-toml", version.ref = "jacksonDataformatToml" }
 jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jacksonDatabind" }
 jackson-module-kotlin = {group ="com.fasterxml.jackson.module" , name = "jackson-module-kotlin", version = "2.13.0" }
@@ -36,7 +36,7 @@ reflection = {group = "org.reflections", name = "reflections", version = "_"}
 jbcrypt = { group = "org.mindrot", name = "jbcrypt", version.ref = "jbcrypt" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 cache = { group = "net.runelite", name = "cache", version.ref = "cache" }
-netty-all = { group = "io.netty", name = "netty-all", version.ref = "nettyAll" }
+netty-all = { group = "io.netty", name = "netty-all", version = "5.0.0.Alpha1" }
 kotlin-scripting = {group = "org.jetbrains.kotlin", name = "kotlin-scripting-common", version = "_"}
 kotlin-script-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-script-runtime", version = "1.8.20-RC2"}
 kotlinx-coroutines = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "_"}
@@ -47,6 +47,7 @@ bouncycastle = { group = "org.bouncycastle", name =  "bcprov-jdk15on",version = 
 classgraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.157"}
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlinTestJunit"}
+
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

@@ -78,7 +78,7 @@ class Server {
         /*
          * Load the game property file.
          */
-        val initialLaunch = Files.deleteIfExists(Paths.get("./first-launch"))
+        val initialLaunch = Files.deleteIfExists(Paths.get("../first-launch"))
         val gameProperties = ServerProperties()
         val devProperties = ServerProperties()
         gameProperties.loadYaml(gameProps.toFile())
@@ -95,6 +95,7 @@ class Server {
             name = gameProperties.get<String>("name")!!,
             revision = gameProperties.get<Int>("revision")!!,
             cycleTime = gameProperties.getOrDefault("cycle-time", 600),
+
             playerLimit = gameProperties.getOrDefault("max-players", 2048),
             home = Tile(
                 gameProperties.get<Int>("home-x")!!,
@@ -181,7 +182,7 @@ class Server {
         individualStopwatch.reset().start()
         world.plugins.init(
                 server = this, world = world,
-                jarPluginsDirectory = gameProperties.getOrDefault("plugin-packed-path", "./plugins"))
+                jarPluginsDirectory = gameProperties.getOrDefault("plugin-packed-path", "../plugins"))
         logger.info("Loaded {} plugins in {}ms.", DecimalFormat().format(world.plugins.getPluginCount()), individualStopwatch.elapsed(TimeUnit.MILLISECONDS))
 
         /*

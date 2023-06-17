@@ -54,7 +54,7 @@ class Social {
     fun addFriend(player: Player, name: String) {
         if (friends.contains(name))
             return
-        val path = Paths.get("./data/saves/")
+        val path = Paths.get("../data/saves/")
         val save = path.resolve(name)
         if (!Files.exists(save)) {
             player.writeMessage("Unable to add player; user with this username doesn't exist.")
@@ -68,7 +68,7 @@ class Social {
     fun addIgnore(player: Player, name: String) {
         if (ignores.contains(name))
             return
-        val path = Paths.get("./data/saves/")
+        val path = Paths.get("../data/saves/")
         val save = path.resolve(name)
         if (!Files.exists(save)) {
             player.writeMessage("Unable to ignore player; user with this username doesn't exist.")

@@ -39,7 +39,7 @@ class RsaService : Service {
     private var radix = -1
 
     override fun init(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties) {
-        keyPath = Paths.get(serviceProperties.getOrDefault("path", "./data/rsa/key.pem"))
+        keyPath = Paths.get(serviceProperties.getOrDefault("path", "../data/rsa/key.pem"))
         radix = serviceProperties.getOrDefault("radix", 16)
 
         if (!Files.exists(keyPath)) {
@@ -109,7 +109,7 @@ class RsaService : Service {
         println("modulus: " + publicKey.modulus.toString(radix))
 
         try {
-            val writer = PrintWriter(File("./modulus"))
+            val writer = PrintWriter(File("../modulus"))
             writer.println("/* Auto-generated file using ${this::class.java} ${SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())} */")
             writer.println("")
             writer.println("Place these keys in the client (find BigInteger(\"10001\" in client code):")

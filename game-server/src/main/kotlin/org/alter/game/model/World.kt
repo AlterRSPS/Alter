@@ -52,7 +52,7 @@ import java.util.concurrent.TimeUnit
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class World(val gameContext: org.alter.game.GameContext, val devContext: org.alter.game.DevContext) {
+class World(val gameContext: GameContext, val devContext: DevContext) {
 
     /**
      * The [Store] is responsible for handling the data in our cache.
@@ -596,7 +596,7 @@ class World(val gameContext: org.alter.game.GameContext, val devContext: org.alt
     /**
      * Loads all the services listed on our game properties file.
      */
-    internal fun loadServices(server: org.alter.game.Server, gameProperties: ServerProperties) {
+    internal fun loadServices(server: Server, gameProperties: ServerProperties) {
         val stopwatch = Stopwatch.createUnstarted()
         val foundServices = gameProperties.get<ArrayList<Any>>("services")!!
         foundServices.forEach { s ->
@@ -639,7 +639,7 @@ class World(val gameContext: org.alter.game.GameContext, val devContext: org.alt
     /**
      * Invoke network related logic for all services.
      */
-    internal fun bindServices(server: org.alter.game.Server) {
+    internal fun bindServices(server: Server) {
         services.forEach { it.bindNet(server, this) }
     }
 

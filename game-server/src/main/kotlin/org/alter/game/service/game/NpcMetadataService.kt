@@ -24,8 +24,8 @@ class NpcMetadataService : Service {
 
     private lateinit var path: Path
 
-    override fun init(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties) {
-        path = Paths.get(serviceProperties.getOrDefault("path", "./data/cfg/npcs.yml"))
+    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
+        path = Paths.get(serviceProperties.getOrDefault("path", "../data/cfg/npcs.yml"))
         if (!Files.exists(path)) {
             throw FileNotFoundException("Path does not exist. $path")
         }

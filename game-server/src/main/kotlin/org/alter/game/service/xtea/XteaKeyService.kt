@@ -26,8 +26,8 @@ class XteaKeyService : Service {
     val validRegions: IntArray
         get() = keys.keys.toIntArray()
 
-    override fun init(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties) {
-        val path = Paths.get(serviceProperties.getOrDefault("path", "./data/"))
+    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
+        val path = Paths.get(serviceProperties.getOrDefault("path", "../data/"))
         val singleFile = path.resolve("xteas.json")
         if (Files.exists(singleFile)) {
             loadSingleFile(singleFile)
@@ -38,10 +38,10 @@ class XteaKeyService : Service {
         loadKeys(world)
     }
 
-    override fun postLoad(server: org.alter.game.Server, world: World) {
+    override fun postLoad(server: Server, world: World) {
     }
 
-    override fun bindNet(server: org.alter.game.Server, world: World) {
+    override fun bindNet(server: Server, world: World) {
     }
 
     override fun terminate(server: org.alter.game.Server, world: World) {

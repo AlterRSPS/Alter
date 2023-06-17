@@ -1,4 +1,4 @@
-rootProject.name = "org.alter"
+rootProject.name = "Alter"
 
 plugins {
     id("de.fayard.refreshVersions") version("0.51.0")
