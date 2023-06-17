@@ -1,1 +1,0 @@
-package gg.rsmod.plugins.content.area.falador
