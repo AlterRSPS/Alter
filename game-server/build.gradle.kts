@@ -1,6 +1,6 @@
 plugins {
+    alias(libs.plugins.shadow)
     application
-    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 description = "Alter Game"
 application {
@@ -8,20 +8,22 @@ application {
 }
 val lib = rootProject.project.libs
 dependencies {
-    implementation(project(":util"))
-    implementation(project(":net"))
-    runtimeOnly(project(":game-plugins"))
-    implementation("org.jetbrains.kotlin:kotlin-scripting-common:1.4.21")
-    implementation("org.jetbrains.kotlin:kotlin-script-runtime:1.4.21")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.0")
-    implementation("org.reflections:reflections:0.9.11")
-    implementation("commons-io:commons-io:2.4")
-    implementation("io.github.classgraph:classgraph:4.6.12")
-    implementation("it.unimi.dsi:fastutil:8.2.1")
-    implementation("org.bouncycastle:bcprov-jdk15on:1.54")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
-    implementation(lib.jackson.dataformat.yaml)
-    testImplementation("junit:junit:0.9.11")
+    with(lib) {
+        implementation(projects.util)
+        implementation(projects.net)
+        runtimeOnly(projects.gamePlugins)
+        implementation(kotlin.scripting)
+        implementation(kotlin.script.runtime)
+        implementation(kotlinx.coroutines)
+        implementation(reflection)
+        implementation(commons)
+        implementation(classgraph)
+        implementation(fastutil)
+        implementation(bouncycastle)
+        implementation(jackson.module.kotlin)
+        implementation(jackson.dataformat.yaml)
+        testImplementation(junit)
+    }
 }
 sourceSets {
     named("main") {

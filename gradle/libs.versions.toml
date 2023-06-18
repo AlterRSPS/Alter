@@ -38,7 +38,7 @@ gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 cache = { group = "net.runelite", name = "cache", version.ref = "cache" }
 netty-all = { group = "io.netty", name = "netty-all", version = "5.0.0.Alpha1" }
 kotlin-scripting = {group = "org.jetbrains.kotlin", name = "kotlin-scripting-common", version = "_"}
-kotlin-script-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-script-runtime", version = "1.8.20-RC2"}
+kotlin-script-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-script-runtime", version = "1.8.20"}
 kotlinx-coroutines = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "_"}
 kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 commons = { group = "commons-io", name = "commons-io", version = "_"}
@@ -52,4 +52,4 @@ kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit"
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version =  "0.9.18"}
-shadow = { id ="com.github.johnrengelman.shadow", version = "7.0.0"}
+shadow = { id ="com.github.johnrengelman.shadow", version = "8.1.1"}
