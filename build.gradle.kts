@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.jvm) apply true
     alias(libs.plugins.kotlin.serialization)
     idea
 }
@@ -57,7 +57,7 @@ allprojects {
 
     tasks.withType<KotlinCompile>().all {
         kotlinOptions {
-            languageVersion = "1.8"
+            languageVersion = "2.0"
             jvmTarget = "17"
             freeCompilerArgs = listOf(
                 "-Xallow-any-scripts-in-source-roots" ,

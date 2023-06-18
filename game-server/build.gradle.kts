@@ -29,6 +29,7 @@ sourceSets {
         resources.srcDirs("src/main/resources")
     }
 }
+
 tasks.register("install") {
     description = "Install Alter"
     doFirst {
@@ -145,4 +146,7 @@ tasks.named("install") {
 }
 tasks.named<Jar>("jar") {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+tasks.withType<ProcessResources> {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
