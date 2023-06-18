@@ -41,10 +41,11 @@ services:
 
   - class: org.alter.game.service.game.ObjectMetadataService
 
-  - class: org.alter.game.service.game.DumpEntityIdService
-    cache-path: "../data/cache/"
-    output-path: "../game/plugins/src/main/kotlin/gg/rsmod/plugins/api/cfg/"
-    dump: false # Should keep in mind that this can fail. (Aka. On crash fuck up any of the dumping into files
+  # @TODO Redirecting to stay with API
+  #- class: org.alter.game.service.game.DumpEntityIdService
+  #  cache-path: "../data/cache/"
+  #  output-path: "../game/plugins/src/main/kotlin/gg/rsmod/plugins/api/cfg/"
+  #  dump: false # Should keep in mind that this can fail. (Aka. On crash fuck up any of the dumping into files
 
   - class: org.alter.game.service.rsa.RsaService
 
