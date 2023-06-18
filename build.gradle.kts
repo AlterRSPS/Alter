@@ -70,12 +70,13 @@ allprojects {
 
     tasks.withType<KotlinCompile>().all {
         kotlinOptions {
-            languageVersion = "1.8"
+            languageVersion = "1.9"
             jvmTarget = "17"
             freeCompilerArgs = listOf(
                 "-Xallow-any-scripts-in-source-roots" ,
                 "-Xjvm-default=all",
                 "-Xbackend-threads=4",
+                "-Xignore-const-optimization-errors",
             )
         }
     }

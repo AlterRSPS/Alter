@@ -17,7 +17,7 @@ nettyAll = "_"
 kotlinxSerializationCore = "_"
 junit = "4.+"
 kotlinTestJunit = "_"
-kotlin = "1.8.0"
+kotlin = "1.9.0-Beta"
 
 [libraries]
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version.ref = "fastutil" }

@@ -10,7 +10,7 @@ dependencies {
 }
 
 tasks.withType<DokkaTask> {
-    for (pkg in listOf("gg.rsmod.plugins.api.cfg")) {
+    for (pkg in listOf("org.alter.api.cfg")) {
         packageOptions {
             prefix = pkg
             suppress = true

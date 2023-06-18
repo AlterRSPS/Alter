@@ -1,10 +1,10 @@
 description = "Alter Servers Plugins"
 
 dependencies {
-    implementation(project(":game-api"))
-    implementation(project(":game-server"))
-    implementation(project(":util"))
-    implementation(project(":net"))
+    implementation(projects.gameApi)
+    implementation(projects.gameServer)
+    implementation(projects.util)
+    implementation(projects.net)
     implementation(kotlin("script-runtime"))
 }
 
