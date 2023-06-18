@@ -57,7 +57,7 @@ allprojects {
 
     tasks.withType<KotlinCompile>().all {
         kotlinOptions {
-            languageVersion = "2.0"
+            languageVersion = "1.9"
             jvmTarget = "17"
             freeCompilerArgs = listOf(
                 "-Xallow-any-scripts-in-source-roots" ,
