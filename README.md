@@ -51,4 +51,4 @@ Due to the plugin capabilities, even owners without programming experience can j
 [patch]: https://oldschool.runescape.wiki/w/Update:Points-Based_Combat_Achievements
 [rev-badge]: https://img.shields.io/badge/Revision-213-blueviolet
 [license-badge]: https://img.shields.io/badge/license-ISC-informational
-[jdk-badge]: https://img.shields.io/badge/JDK-17-blue
+[jdk-badge]: https://img.shields.io/badge/JDK-18-blue
