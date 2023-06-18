@@ -23,19 +23,19 @@ Due to the plugin capabilities, even owners without programming experience can j
 - Xtea.json has to be in same folder like: Data /`api.yml` , `blocks.yml` , etc..
 * Now click on `Gradle` button on right side. </br>
   ![tutor4](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Tutor4.png)
-* Expand `gg.rsmod` -> `other` and double click `install`
+* Expand `Alter` -> `other` and double click `install`
   ![tutor5](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Tutori5.png)
 * And now wait until you get this result in your `Terminal` at the bottom:
   ![tutor7](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor7.png)
-* Now instead of `Install` task do Run `Gradle -> gg.rsmod -> game -> Tasks -> Application - Run`
+* Now instead of `Install` task do Run `Gradle -> Alter -> game -> Tasks -> Application - Run`
 * Now the server should be running, you should see inside your terminal:
   ![tutor8](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Alter_Successfully_initialized.png)
 * If you only see `Alter Loaded up in x ms.` you messed up somewhere.
 * You can connect what ever client you want (ofc it has to follow OSRS protocols.)
 * ### Some clients that can be used to connected to Alter Server:
-* [MeteorLite](https://github.com/MeteorLite/meteor-client)
-  * Simply run it, and you will have Private Server Plugin which is pretty easy to use.
-  * If you will need help with it, come to their discord server [MeteorLiteDiscord](https://discord.com/invite/Y85d6NH6z3)
+* As for now it's recommended to use:
+* [MeteorLite-RSPS](https://github.com/AlterRSPS/meteor-client) by [MeteorLite Team](http://github.com/meteorLite/)
+* [OPRS RSPS (Devious Client)](https://github.com/AlterRSPS/devious-client-rsps) by [jbx5](https://github.com/jbx5)
 
 * ### Tools:
 * [CS2 Editor](https://github.com/blurite/cs2-editor), Big thanks to [Blurite Team](https://github.com/blurite) for maintaining such good tool.
@@ -51,4 +51,4 @@ Due to the plugin capabilities, even owners without programming experience can j
 [patch]: https://oldschool.runescape.wiki/w/Update:Points-Based_Combat_Achievements
 [rev-badge]: https://img.shields.io/badge/Revision-213-blueviolet
 [license-badge]: https://img.shields.io/badge/license-ISC-informational
-[jdk-badge]: https://img.shields.io/badge/JDK-11-blue
+[jdk-badge]: https://img.shields.io/badge/JDK-17-blue
