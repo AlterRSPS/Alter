@@ -12,7 +12,20 @@ allprojects {
 
     group = "alter"
     version = "0.0.4"
-
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+            vendor.set(JvmVendorSpec.ORACLE)
+            implementation.set(JvmImplementation.VENDOR_SPECIFIC)
+        }
+    }
+    kotlin{
+        jvmToolchain{
+            languageVersion.set(JavaLanguageVersion.of(17))
+            vendor.set(JvmVendorSpec.ORACLE)
+            implementation.set(JvmImplementation.VENDOR_SPECIFIC)
+        }
+    }
     repositories {
         mavenLocal()
         mavenCentral()
