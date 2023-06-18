@@ -1,5 +1,3 @@
-package org.alter.plugins.content.areas.alkharid.shops
-
 import org.alter.plugins.content.mechanics.shops.CoinCurrency
 
 create_shop("Dommik's Crafting Store.", CoinCurrency(), purchasePolicy = PurchasePolicy.BUY_STOCK) {
@@ -13,5 +11,4 @@ create_shop("Dommik's Crafting Store.", CoinCurrency(), purchasePolicy = Purchas
     items[7] = ShopItem(Items.TIARA_MOULD, 10)
     items[8] = ShopItem(Items.BOLT_MOULD, 10)
     items[9] = ShopItem(Items.BRACELET_MOULD, 5)
-
 }

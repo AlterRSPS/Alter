@@ -2,8 +2,7 @@
 package org.alter.api.cfg
 
 object Items {
-
-    const val DWARF_REMAINS = 0
+    fun DWARF_REMAINS(): Int {   return 0    }
     const val TOOLKIT = 1
     const val CANNONBALL = 2
     const val NULODIONS_NOTES = 3
