@@ -109,7 +109,7 @@ class RsaService : Service {
         println("modulus: " + publicKey.modulus.toString(radix))
 
         try {
-            val writer = PrintWriter(File("../modulus"))
+            val writer = PrintWriter(File("./modulus"))
             writer.println("/* Auto-generated file using ${this::class.java} ${SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())} */")
             writer.println("")
             writer.println("Place these keys in the client (find BigInteger(\"10001\" in client code):")
