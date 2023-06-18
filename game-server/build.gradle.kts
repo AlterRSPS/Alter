@@ -1,16 +1,11 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     application
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
 }
 description = "Alter Game"
-
 application {
     mainClass.set("org.alter.game.Launcher")
 }
-
 val lib = rootProject.project.libs
 dependencies {
     implementation(project(":util"))
@@ -28,17 +23,14 @@ dependencies {
     implementation(lib.jackson.dataformat.yaml)
     testImplementation("junit:junit:0.9.11")
 }
-
 sourceSets {
     named("main") {
         kotlin.srcDirs("src/main/kotlin")
         resources.srcDirs("src/main/resources")
     }
 }
-
 tasks.register("install") {
     description = "Install Alter"
-
     doFirst {
         val cacheList = listOf(
             "/cache/main_file_cache.dat2",
@@ -65,7 +57,6 @@ tasks.register("install") {
             "/cache/main_file_cache.idx255",
             "xteas.json"
         )
-
         cacheList.forEach {
             val file = File("${rootProject.projectDir}/data/$it")
             if (!file.exists()) {
@@ -73,28 +64,25 @@ tasks.register("install") {
             }
         }
     }
-
     doLast {
-    // @TODO
-    //
-    //        copy {
-    //            into "${rootProject.projectDir}/"
-    //            from "${rootProject.projectDir}/game.example.yml"
-    //            rename 'game.example.yml', 'game.yml'
-    //            from "${rootProject.projectDir}/dev-settings.example.yml"
-    //            rename 'dev-settings.example.yml', 'dev-settings.yml'
-    //            file("${rootProject.projectDir}/first-launch").createNewFile()
-    //        }
-    //        javaexec {
-    //            workingDir = rootProject.projectDir
-    //            classpath = sourceSets.main.runtimeClasspath
-    //            main = "org.alter.game.service.rsa.RsaService"
-    //            args = [ "16", "1024", "./data/rsa/key.pem" ] // radix, bitcount, rsa pem file
-    //        }
-    //    }
+        copy {
+            into("${rootProject.projectDir}/")
+            from("${rootProject.projectDir}/game.example.yml") {
+                rename("game.example.yml", "game.yml")
+            }
+            from("${rootProject.projectDir}/dev-settings.example.yml") {
+                rename("dev-settings.example.yml", "dev-settings.yml")
+            }
+            file("${rootProject.projectDir}/first-launch").createNewFile()
+        }
+        javaexec {
+            workingDir = rootProject.projectDir
+            classpath = sourceSets["main"].runtimeClasspath
+            mainClass.set("org.alter.game.service.rsa.RsaService")
+            args = listOf("16", "1024", "./data/rsa/key.pem") // radix, bitcount, rsa pem file
+        }
     }
 }
-
 task<Copy>("extractDependencies") {
     from(zipTree("build/distributions/game-server-${project.version}.zip")) {
         include("game-${project.version}/lib/*")
@@ -106,14 +94,6 @@ task<Copy>("extractDependencies") {
     into("build/deps")
 }
 
-task<JavaExec>("ktlint") {
-    group = "verification"
-    description = "Check Kotlin code style."
-    classpath = configurations["ktlint"]
-    setMain("com.github.shyiko.ktlint.Main")
-    args("src/**/*.kt")
-}
-
 tasks.register<Copy>("applicationDistribution") {
     from("$rootDir/data/") {
         into("bin/data/")
@@ -121,7 +101,6 @@ tasks.register<Copy>("applicationDistribution") {
         exclude("saves/*")
     }
 }
-
 tasks.named<Copy>("applicationDistribution") {
     from("$rootDir") {
         into("bin")
@@ -130,15 +109,12 @@ tasks.named<Copy>("applicationDistribution") {
         rename("game.example.yml", "game.yml")
     }
 }
-
-
 tasks.named<Zip>("shadowDistZip") {
     from("$rootDir/data/") {
         into("game-shadow-${project.version}/bin/data/")
         include("**")
         exclude("saves/*")
     }
-
     from("$rootDir") {
         into("game-shadow-${project.version}/bin/")
         include("/game-plugins/*")
@@ -146,18 +122,14 @@ tasks.named<Zip>("shadowDistZip") {
         rename("game.example.yml", "game.yml")
     }
 }
-
-
 tasks.register<Tar>("myShadowDistTar") {
     archiveFileName.set("game-shadow-${project.version}.tar")
     destinationDirectory.set(file("build/distributions/"))
-
     from("$rootDir/data/") {
         into("game-shadow-${project.version}/bin/data/")
         include("**")
         exclude("saves/*")
     }
-
     from("$rootDir") {
         into("game-shadow-${project.version}/bin/")
         include("/game-plugins/*")
@@ -165,22 +137,12 @@ tasks.register<Tar>("myShadowDistTar") {
         rename("game.example.yml", "game.yml")
     }
 }
-
-
 tasks.named("build") {
     finalizedBy("extractDependencies")
 }
-
 tasks.named("install") {
     dependsOn("build")
 }
-
 tasks.named<Jar>("jar") {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
-tasks {
-    named<ProcessResources>("processResources") {
-        duplicatesStrategy = DuplicatesStrategy.INCLUDE // or EXCLUDE, WARN, FAIL
-    }
 }

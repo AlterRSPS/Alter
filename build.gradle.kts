@@ -62,11 +62,13 @@ allprojects {
             freeCompilerArgs = listOf(
                 "-Xallow-any-scripts-in-source-roots" ,
                 "-Xjvm-default=all",
-                "-Xbackend-threads=4")
+                "-Xbackend-threads=4",
+            )
         }
     }
 
 }
+
 tasks.register<Zip>("packageServer") {
     archiveFileName.set("Alter.zip")
     destinationDirectory.set(file("."))

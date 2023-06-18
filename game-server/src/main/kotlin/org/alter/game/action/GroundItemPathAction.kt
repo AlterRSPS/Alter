@@ -2,15 +2,12 @@ package org.alter.game.action
 
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.message.impl.SetMapFlagMessage
-import org.alter.game.model.EntityType
 import org.alter.game.model.MovementQueue
-import org.alter.game.model.Tile
 import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_GROUNDITEM_ATTR
 import org.alter.game.model.attr.INTERACTING_ITEM
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.entity.Entity
-import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
@@ -104,11 +101,19 @@ object GroundItemPathAction {
             val remainder = groundItem.amount - (after - before)
             p.world.remove(groundItem)
 
-            if(remainder != 0){
-                if(groundItem.ownerUID == null)
+            if(remainder != 0) {
+                if(groundItem.ownerUID == null) {
                     p.world.spawn(GroundItem(groundItem.item, remainder, groundItem.tile))
-                else
-                    p.world.spawn(GroundItem(groundItem.item, remainder, groundItem.tile, p.world.getPlayerForUid(groundItem.ownerUID!!)))
+                } else {
+                    p.world.spawn(
+                        GroundItem(
+                            groundItem.item,
+                            remainder,
+                            groundItem.tile,
+                            p.world.getPlayerForUid(groundItem.ownerUID!!)
+                        )
+                    )
+                }
             }
 
             p.attr[GROUNDITEM_PICKUP_TRANSACTION] = WeakReference(add)

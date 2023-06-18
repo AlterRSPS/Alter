@@ -2,7 +2,6 @@ package org.alter.game.fs.def
 
 import org.alter.game.fs.Definition
 import io.netty.buffer.ByteBuf
-import java.lang.IllegalStateException
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -102,6 +101,7 @@ class AnimDef(id: Int) : Definition(id) {
                     buf.readUnsignedByte()
                 }
             }
+            // @TODO Add else
         }
     }
 }

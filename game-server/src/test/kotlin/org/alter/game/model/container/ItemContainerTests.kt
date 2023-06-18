@@ -1,10 +1,13 @@
 package org.alter.game.model.container
 
+import java.nio.file.Paths
+
+import net.runelite.cache.fs.Store
+
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.ItemDef
-import net.runelite.cache.fs.Store
 import org.junit.BeforeClass
-import java.nio.file.Paths
+import org.junit.Test
 import kotlin.test.*
 
 /**
