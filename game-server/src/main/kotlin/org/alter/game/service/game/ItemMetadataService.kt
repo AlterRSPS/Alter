@@ -94,7 +94,7 @@ class ItemMetadataService : Service {
             def.weight = item.weight
             if (item.equipment != null) {
                 val equipment = item.equipment
-                val slots = if (equipment.equipSlot != null) getEquipmentSlots(equipment.equipSlot) else null
+                val slots = if (equipment.equipSlot != null) getEquipmentSlots(equipment.equipSlot, def.id) else null
 
                 def.attackSpeed = equipment.attackSpeed
 
@@ -107,6 +107,7 @@ class ItemMetadataService : Service {
                 }
 
                 def.renderAnimations = equipment.renderAnimations?.getAsArray()
+                def.attackSounds = equipment.attackSounds
                 if (slots != null) {
                     def.equipSlot = slots.slot
                     def.equipType = slots.secondary
@@ -168,7 +169,7 @@ class ItemMetadataService : Service {
         else -> throw IllegalArgumentException("Illegal skill name: $name")
     }
 
-    private fun getEquipmentSlots(slot: String): EquipmentSlots {
+    private fun getEquipmentSlots(slot: String, id: Int? = null): EquipmentSlots {
         val equipSlot: Int
         var equipType = -1
         when (slot) {
@@ -222,7 +223,7 @@ class ItemMetadataService : Service {
             "ammo" -> {
                 equipSlot = 13
             }
-            else -> throw IllegalArgumentException("Illegal equipment slot: $slot")
+            else -> throw IllegalArgumentException("Illegal equipment slot: $slot, $id")
         }
         return EquipmentSlots(equipSlot, equipType)
     }
@@ -263,6 +264,7 @@ class ItemMetadataService : Service {
         @JsonProperty("magic_damage") val magicDamage: Int = 0,
         @JsonProperty("prayer") val prayer: Int = 0,
         @JsonProperty("render_animations") val renderAnimations: renderAnimations? = null,
+        @JsonProperty("attackSounds") val attackSounds: IntArray? = null,
         @JsonProperty("skill_reqs") val skillReqs: Array<SkillRequirement>? = null
     ) {
 
@@ -288,9 +290,13 @@ class ItemMetadataService : Service {
             if (rangedStrength != other.rangedStrength) return false
             if (magicDamage != other.magicDamage) return false
             if (prayer != other.prayer) return false
+
             if (renderAnimations != null) {
                 if (other.renderAnimations == null) return false
             } else if (other.renderAnimations != null) return false
+
+            if (attackSounds != null) return false
+
             if (skillReqs != null) {
                 if (other.skillReqs == null) return false
                 if (!skillReqs.contentEquals(other.skillReqs)) return false
@@ -330,7 +336,7 @@ class ItemMetadataService : Service {
         @JsonProperty("walkBackwardsAnimId") val walkBackwardsAnimId: Int = 0 ,
         @JsonProperty("walkLeftAnimId") val walkLeftAnimId: Int = 0 ,
         @JsonProperty("walkRightAnimId") val walkRightAnimId: Int = 0 ,
-        @JsonProperty("runAnimId") val runAnimId: Int = 0 ,
+        @JsonProperty("runAnimId") val runAnimId: Int = 0
 
     ) {
         fun getAsArray(): IntArray {

@@ -58,6 +58,7 @@ class ItemDef(override val id: Int) : Definition(id) {
     var equipType = 0
     var weaponType = -1
     var renderAnimations: IntArray? = null
+    var attackSounds: IntArray? = null
     var skillReqs: Byte2ByteOpenHashMap? = null
     var equipSound: Int? = -1
     var femaleModel1 = 0
