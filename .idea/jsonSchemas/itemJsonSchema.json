@@ -1,0 +1,589 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "oneOf": [
+    {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "examine": {
+              "type": "string"
+            },
+            "tradeable": {
+              "type": "boolean"
+            },
+            "weight": {
+              "type": ["number", "null"]
+            },
+            "tradeable_on_ge": {
+              "type": "boolean"
+            },
+            "cost": {
+              "type": ["integer", "null"]
+            },
+            "lowalch": {
+              "type": "integer"
+            },
+            "highalch": {
+              "type": "integer"
+            },
+            "buy_limit": {
+              "type": ["integer", "null"]
+            },
+            "equipment": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "examine",
+            "tradeable",
+            "weight",
+            "tradeable_on_ge",
+            "cost",
+            "lowalch",
+            "highalch",
+            "buy_limit",
+            "equipment"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "examine": {
+          "type": "string"
+        },
+        "tradeable": {
+          "type": "boolean"
+        },
+        "weight": {
+          "type": ["number", "null"]
+        },
+        "tradeable_on_ge": {
+          "type": "boolean"
+        },
+        "cost": {
+          "type": "integer"
+        },
+        "lowalch": {
+          "type": "integer"
+        },
+        "highalch": {
+          "type": "integer"
+        },
+        "buy_limit": {
+          "type": ["integer", "null"]
+        },
+        "equipment": {
+          "type": "object",
+          "properties": {
+            "prayer": {
+              "type": "integer"
+            },
+            "equipSlot": {
+              "type": "string"
+            },
+            "weaponType": {
+              "type": "integer"
+            },
+            "attackSpeed": {
+              "type": "integer"
+            },
+            "attackStab": {
+              "type": "integer"
+            },
+            "attackSlash": {
+              "type": "integer"
+            },
+            "attackCrush": {
+              "type": "integer"
+            },
+            "attackMagic": {
+              "type": "integer"
+            },
+            "attackRanged": {
+              "type": "integer"
+            },
+            "defenceStab": {
+              "type": "integer"
+            },
+            "defenceSlash": {
+              "type": "integer"
+            },
+            "defenceCrush": {
+              "type": "integer"
+            },
+            "defenceMagic": {
+              "type": "integer"
+            },
+            "defenceRanged": {
+              "type": "integer"
+            },
+            "meleeStrength": {
+              "type": "integer"
+            },
+            "rangedStrength": {
+              "type": "integer"
+            },
+            "magicDamage": {
+              "type": "integer"
+            },
+            "renderAnimations": {
+              "type": ["object", "null"],
+              "properties": {
+                "standAnimId": {
+                  "type": "integer"
+                },
+                "turnOnSpotAnim": {
+                  "type": "integer"
+                },
+                "walkForwardAnimId": {
+                  "type": "integer"
+                },
+                "walkBackwardsAnimId": {
+                  "type": "integer"
+                },
+                "walkLeftAnimId": {
+                  "type": "integer"
+                },
+                "walkRightAnimId": {
+                  "type": "integer"
+                },
+                "runAnimId": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "standAnimId",
+                "turnOnSpotAnim",
+                "walkForwardAnimId",
+                "walkBackwardsAnimId",
+                "walkLeftAnimId",
+                "walkRightAnimId",
+                "runAnimId"
+              ]
+            },
+            "attackSounds": {
+              "type": ["array", "null"],
+              "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "skillReqs": {
+              "type": ["array", "null"],
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "skill": {
+                      "type": "string"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "skill",
+                    "level"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "prayer",
+            "equipSlot",
+            "weaponType",
+            "attackSpeed",
+            "attackStab",
+            "attackSlash",
+            "attackCrush",
+            "attackMagic",
+            "attackRanged",
+            "defenceStab",
+            "defenceSlash",
+            "defenceCrush",
+            "defenceMagic",
+            "defenceRanged",
+            "meleeStrength",
+            "rangedStrength",
+            "magicDamage",
+            "renderAnimations",
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "examine",
+        "tradeable",
+        "weight",
+        "tradeable_on_ge",
+        "cost",
+        "lowalch",
+        "highalch",
+        "buy_limit",
+        "equipment"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}
+
