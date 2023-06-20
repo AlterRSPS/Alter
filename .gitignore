@@ -17,7 +17,5 @@ modulus
 
 first-launch
 first-launch-example
-/game/plugins/src/main/kotlin/gg/rsmod/plugins/content/Testing
 /game.yml
 /dev-settings.yml
-/.Notes/
