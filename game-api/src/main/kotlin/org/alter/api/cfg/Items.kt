@@ -1,8 +1,9 @@
-/* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
+/* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
 package org.alter.api.cfg
 
 object Items {
-    fun DWARF_REMAINS(): Int {   return 0    }
+
+    const val DWARF_REMAINS = 0
     const val TOOLKIT = 1
     const val CANNONBALL = 2
     const val NULODIONS_NOTES = 3
@@ -3512,7 +3513,7 @@ object Items {
     const val CLUE_SCROLL_MEDIUM_3616 = 3616
     const val CLUE_SCROLL_MEDIUM_3617 = 3617
     const val CLUE_SCROLL_MEDIUM_3618 = 3618
-    const val NULL_3667 = 3667
+    const val BOSS_HELPER_TOOL = 3667
     const val BLACK_PLATESKIRT_T_NOTED = 3668
     const val BLACK_PLATESKIRT_G_NOTED = 3669
     const val ADAMANT_PLATESKIRT_T_NOTED = 3670
@@ -18642,5 +18643,52 @@ object Items {
     const val OLDSCHOOL_JUMPER_27826 = 27826
     const val OLDSCHOOL_JUMPER_27827 = 27827
     const val SILVER_PARTYHAT = 27828
-    /* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
+    const val VESTAS_CHAINBODY_27831 = 27831
+    const val VESTAS_PLATESKIRT_27832 = 27832
+    const val STATIUSS_FULL_HELM_27833 = 27833
+    const val STATIUSS_PLATEBODY_27834 = 27834
+    const val STATIUSS_PLATELEGS_27835 = 27835
+    const val MORRIGANS_COIF_27836 = 27836
+    const val MORRIGANS_LEATHER_BODY_27837 = 27837
+    const val MORRIGANS_LEATHER_CHAPS_27838 = 27838
+    const val ZURIELS_HOOD_27839 = 27839
+    const val ZURIELS_ROBE_TOP_27840 = 27840
+    const val ZURIELS_ROBE_BOTTOM_27841 = 27841
+    const val VESTAS_CHAINBODY_C = 27842
+    const val VESTAS_PLATESKIRT_C = 27843
+    const val STATIUSS_FULL_HELM_C = 27844
+    const val STATIUSS_PLATEBODY_C = 27845
+    const val STATIUSS_PLATELEGS_C = 27846
+    const val MORRIGANS_COIF_C = 27847
+    const val MORRIGANS_LEATHER_BODY_C = 27848
+    const val MORRIGANS_LEATHER_CHAPS_C = 27849
+    const val ZURIELS_HOOD_C = 27850
+    const val ZURIELS_ROBE_TOP_C = 27851
+    const val ZURIELS_ROBE_BOTTOM_C = 27852
+    const val DARK_BOW_BH = 27853
+    const val BARRELCHEST_ANCHOR_BH = 27855
+    const val DRAGON_MACE_BH = 27857
+    const val DRAGON_LONGSWORD_BH = 27859
+    const val ABYSSAL_DAGGER_BH = 27861
+    const val ABYSSAL_DAGGER_BHP = 27863
+    const val ABYSSAL_DAGGER_BHP_27865 = 27865
+    const val ABYSSAL_DAGGER_BHP_27867 = 27867
+    const val VOIDWAKER_27869 = 27869
+    const val LIGHTBEARER_27870 = 27870
+    const val GIANT_BRONZE_DAGGER = 27871
+    const val EASTFLOOR_SPADE = 27873
+    const val NEST_HAT = 27875
+    const val NEST_HAT_27877 = 27877
+    const val EASTER_EGG_27878 = 27878
+    const val WARM_EASTER_EGG = 27880
+    const val EASTER_EGG_HALF = 27882
+    const val EGG_MOULD_27884 = 27884
+    const val DUSTED_EGG_MOULD = 27886
+    const val HOT_EGG_MOULD = 27888
+    const val BUCKET_OF_FREEZING_MILK = 27890
+    const val EASTER_CHOCOLATE_DUST = 27892
+    const val VIRTUS_ROBE_TOP_NOTED = 27894
+    const val VIRTUS_ROBE_BOTTOMS_NOTED = 27895
+    const val VIRTUS_MASK_NOTED = 27896
+    /* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
 }

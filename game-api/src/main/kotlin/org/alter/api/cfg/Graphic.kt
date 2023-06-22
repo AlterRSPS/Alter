@@ -690,4 +690,6 @@ object Graphic {
     const val SAFETY_FIRST_SHIELD = 65533
     const val COCKROACH_PROJECTILE = 65534
     const val ADAMANT_TROPHY_SPARK_FROM_EMOTE = 1757
+    const val FINAL_LEVEL_UP = 1388
+    const val LEVEL_UP = 199
 }

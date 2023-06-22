@@ -1,4 +1,4 @@
-/* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
+/* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
 package org.alter.api.cfg
 
 object Npcs {
@@ -929,6 +929,7 @@ object Npcs {
     const val KALPHITE_GUARDIAN_962 = 962
     const val KALPHITE_QUEEN_963 = 963
     const val HELLPUPPY_964 = 964
+    const val KALPHITE_QUEEN_965 = 965
     const val KALPHITE_LARVA = 966
     const val ANNA = 967
     const val DAVID = 968
@@ -954,6 +955,7 @@ object Npcs {
     const val DAGANNOTH_MOTHER_988 = 988
     const val VELIAF_HURTZ = 989
     const val SIGMUND = 990
+    const val SIGMUND_991 = 991
     const val SIGMUND_992 = 992
     const val SIGMUND_993 = 993
     const val SIGMUND_994 = 994
@@ -4006,6 +4008,7 @@ object Npcs {
     const val ELEMENTAL_BALANCE_4301 = 4301
     const val ELEMENTAL_BALANCE_4302 = 4302
     const val KALPHITE_QUEEN_4303 = 4303
+    const val KALPHITE_QUEEN_4304 = 4304
     const val DRUNKEN_DWARF_4305 = 4305
     const val WISE_OLD_MAN_4306 = 4306
     const val WISE_OLD_MAN_4307 = 4307
@@ -4756,9 +4759,11 @@ object Npcs {
     const val CLAY_GOLEM_5136 = 5136
     const val DESERT_PHOENIX = 5137
     const val ELISSA = 5138
+    const val SIGMUND_5139 = 5139
     const val ZANIK_5140 = 5140
     const val GUARD_5141 = 5141
     const val SIGMUND_5142 = 5142
+    const val SIGMUND_5143 = 5143
     const val SIGMUND_5144 = 5144
     const val SIGMUND_5145 = 5145
     const val SIGMUND_5146 = 5146
@@ -5870,6 +5875,7 @@ object Npcs {
     const val DAGANNOTH_REX_6498 = 6498
     const val GIANT_MOLE_6499 = 6499
     const val KALPHITE_QUEEN_6500 = 6500
+    const val KALPHITE_QUEEN_6501 = 6501
     const val KING_BLACK_DRAGON_6502 = 6502
     const val CALLISTO = 6503
     const val VENENATIS = 6504
@@ -6427,8 +6433,10 @@ object Npcs {
     const val MONKEY_GUARD_7141 = 7141
     const val MONKEY_GUARD_7142 = 7142
     const val MONKEY_GUARD_7143 = 7143
-    const val DEMONIC_GORILLA = 7145
+    const val DEMONIC_GORILLA = 7144
+    const val DEMONIC_GORILLA_7145 = 7145
     const val DEMONIC_GORILLA_7146 = 7146
+    const val DEMONIC_GORILLA_7147 = 7147
     const val DEMONIC_GORILLA_7148 = 7148
     const val DEMONIC_GORILLA_7149 = 7149
     const val TORTURED_GORILLA_7150 = 7150
@@ -7488,6 +7496,7 @@ object Npcs {
     const val WOLFBONE = 8424
     const val MOTHER = 8425
     const val MOTHER_8426 = 8426
+    const val MOTHER_8428 = 8428
     const val MOTHER_8429 = 8429
     const val MOTHER_8430 = 8430
     const val SNOWFLAKE = 8431
@@ -7985,7 +7994,8 @@ object Npcs {
     const val MOURNER_9018 = 9018
     const val ED = 9019
     const val BRYN = 9020
-    const val CRYSTALLINE_HUNLLEF = 9022
+    const val CRYSTALLINE_HUNLLEF = 9021
+    const val CRYSTALLINE_HUNLLEF_9022 = 9022
     const val CRYSTALLINE_HUNLLEF_9023 = 9023
     const val CRYSTALLINE_HUNLLEF_9024 = 9024
     const val CRYSTALLINE_RAT = 9026
@@ -7997,7 +8007,8 @@ object Npcs {
     const val CRYSTALLINE_BEAR = 9032
     const val CRYSTALLINE_DRAGON = 9033
     const val CRYSTALLINE_DARK_BEAST = 9034
-    const val CORRUPTED_HUNLLEF = 9036
+    const val CORRUPTED_HUNLLEF = 9035
+    const val CORRUPTED_HUNLLEF_9036 = 9036
     const val CORRUPTED_HUNLLEF_9037 = 9037
     const val CORRUPTED_HUNLLEF_9038 = 9038
     const val CORRUPTED_RAT = 9040
@@ -9448,6 +9459,8 @@ object Npcs {
     const val NEXLING_11277 = 11277
     const val NEX = 11278
     const val NEX_11279 = 11279
+    const val NEX_11280 = 11280
+    const val NEX_11281 = 11281
     const val NEX_11282 = 11282
     const val FUMUS = 11283
     const val UMBRA = 11284
@@ -10095,9 +10108,11 @@ object Npcs {
     const val SCOUT_12072 = 12072
     const val STRANGE_CREATURE_12073 = 12073
     const val STRANGE_CREATURE_12074 = 12074
+    const val STRANGE_CREATURE_12075 = 12075
     const val STRANGE_CREATURE_12076 = 12076
     const val PHANTOM_MUSPAH = 12077
     const val PHANTOM_MUSPAH_12078 = 12078
+    const val PHANTOM_MUSPAH_12079 = 12079
     const val PHANTOM_MUSPAH_12080 = 12080
     const val STRANGE_CREATURE_12081 = 12081
     const val PHANTOM_MUSPAH_12082 = 12082
@@ -10125,10 +10140,25 @@ object Npcs {
     const val ELIAS_WHITE = 12105
     const val SKELETON_HELLHOUND_12107 = 12107
     const val GREATER_SKELETON_HELLHOUND_12108 = 12108
+    const val EASTER_BUNNY = 12109
+    const val EASTER_BUNNY_12110 = 12110
+    const val CHICKEN_12111 = 12111
+    const val RABBIT_12112 = 12112
+    const val WILOUGH_12113 = 12113
+    const val HORVIK_12114 = 12114
+    const val EMMA = 12116
+    const val SUZIE = 12117
     const val SIR_PEAR_VISOR = 12121
     const val SIR_PEAR_VISOR_12122 = 12122
     const val CRYSTALLINE_HUNLLEF_12123 = 12123
     const val ZALCANO_12124 = 12124
     const val KEPHRI_12125 = 12125
-    /* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
+    const val AKKHA_12126 = 12126
+    const val BABA_12127 = 12127
+    const val ZEBAK_12128 = 12128
+    const val ZEBAKS_TAIL_12129 = 12129
+    const val TUMEKENS_WARDEN_12130 = 12130
+    const val ELIDINIS_WARDEN_12131 = 12131
+    const val OBELISK_12132 = 12132
+    /* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
 }

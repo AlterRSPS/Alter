@@ -1,4 +1,4 @@
-/* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
+/* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
 package org.alter.api.cfg
 
 object Objs {
@@ -11147,7 +11147,7 @@ object Objs {
     const val LADDER_20357 = 20357
     const val SINK_20358 = 20358
     const val WHEELBARROW_20359 = 20359
-    const val WORK_BENCH = 20360
+    const val WORKBENCH_20360 = 20360
     const val SHELF_20362 = 20362
     const val CLOTHING_SHELVES_20364 = 20364
     const val SPINNING_WHEEL_20365 = 20365
@@ -12861,7 +12861,7 @@ object Objs {
     const val MIRROR_24153 = 24153
     const val HEATER = 24156
     const val BATHTUB_24169 = 24169
-    const val WORK_BENCH_24170 = 24170
+    const val WORK_BENCH = 24170
     const val WORK_BENCH_24171 = 24171
     const val BRICKS_24218 = 24218
     const val BRICKS_24219 = 24219
@@ -20708,14 +20708,14 @@ object Objs {
     const val GRAVESTONE_40499 = 40499
     const val CRATE_40544 = 40544
     const val CRATE_40545 = 40545
-    const val CRATE_40546 = 40546
-    const val CRATE_40547 = 40547
+    const val CRATES_40546 = 40546
+    const val CRATES_40547 = 40547
     const val BARREL_40548 = 40548
     const val BARREL_40549 = 40549
     const val TORCH_40550 = 40550
     const val TORCH_40551 = 40551
     const val CRATE_40588 = 40588
-    const val CRATE_40589 = 40589
+    const val CRATES_40589 = 40589
     const val BARREL_40590 = 40590
     const val TREE_40715 = 40715
     const val TREE_40716 = 40716
@@ -23322,5 +23322,63 @@ object Objs {
     const val SWAMP_PASTE_47333 = 47333
     const val POTIONS_47334 = 47334
     const val BARRIER_47336 = 47336
-    /* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
+    const val CRATE_47341 = 47341
+    const val CRATE_47342 = 47342
+    const val NOTHING_47349 = 47349
+    const val CHAIR_47351 = 47351
+    const val TABLE_47352 = 47352
+    const val BUCKET_47354 = 47354
+    const val CAVE_47355 = 47355
+    const val CAVE_47356 = 47356
+    const val CAVE_47357 = 47357
+    const val CAVE_47358 = 47358
+    const val ROCKSLIDE_47359 = 47359
+    const val ROCKSLIDE_47360 = 47360
+    const val ROCKSLIDE_47361 = 47361
+    const val ROCKSLIDE_47362 = 47362
+    const val ROCKSLIDE_47366 = 47366
+    const val ROCKSLIDE_47367 = 47367
+    const val ROCKSLIDE_47368 = 47368
+    const val ROCKSLIDE_47369 = 47369
+    const val PLANT_47370 = 47370
+    const val PLANT_47371 = 47371
+    const val REDWOOD_TREE_47372 = 47372
+    const val REDWOOD_TREE_47373 = 47373
+    const val REDWOOD_TREE_47374 = 47374
+    const val CHAIR_47379 = 47379
+    const val STOOL_47380 = 47380
+    const val THRONE_47381 = 47381
+    const val CUPBOARD_47382 = 47382
+    const val CUPBOARD_47383 = 47383
+    const val SHELVES_47384 = 47384
+    const val HAT_STAND_47385 = 47385
+    const val RACK_47386 = 47386
+    const val BARREL_47387 = 47387
+    const val CABINET_47388 = 47388
+    const val CABINET_47389 = 47389
+    const val GIANT_VIAL_47390 = 47390
+    const val BOOKS_47391 = 47391
+    const val RANGE_47392 = 47392
+    const val SINK_47393 = 47393
+    const val FIREPLACE_47394 = 47394
+    const val BED_47395 = 47395
+    const val BED_47396 = 47396
+    const val SHELVES_47397 = 47397
+    const val SHELVES_47398 = 47398
+    const val SHELF_47400 = 47400
+    const val TABLE_47401 = 47401
+    const val FABRIC_ROLLS = 47402
+    const val CLOTH_47403 = 47403
+    const val TABLE_47406 = 47406
+    const val HAIRSTYLES_POSTER = 47407
+    const val HAIRSTYLES_POSTER_47408 = 47408
+    const val RIO_THE_PARROT = 47409
+    const val PORTRAITS = 47410
+    const val PORTRAITS_47411 = 47411
+    const val PAINTING_47414 = 47414
+    const val VANITY_DRESSER = 47415
+    const val VANITY_DRESSER_47416 = 47416
+    const val CHAIR_47417 = 47417
+    const val BED_47418 = 47418
+    /* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
 }
