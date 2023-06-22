@@ -11,15 +11,15 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Phaser
 
 /**
- * A [GameTask] that is responsible for sending [gg.rsmod.game.model.entity.Pawn]
- * data to [gg.rsmod.game.model.entity.Pawn]s.
+ * A [GameTask] that is responsible for sending [org.alter.game.model.entity.Pawn]
+ * data to [org.alter.game.model.entity.Pawn]s.
  *
  * @author Tom <rspsmods@gmail.com>
  */
 class ParallelSynchronizationTask(private val executor: ExecutorService) : GameTask {
 
     /**
-     * The [Phaser] responsible for waiting on every [gg.rsmod.game.model.entity.Player]
+     * The [Phaser] responsible for waiting on every [org.alter.game.model.entity.Player]
      * to finish a stage in the synchronization process before beginning the next stage.
      */
     private val phaser = Phaser(1)
@@ -48,7 +48,7 @@ class ParallelSynchronizationTask(private val executor: ExecutorService) : GameT
         phaser.bulkRegister(playerCount)
         worldPlayers.forEach { p ->
             /*
-             * Non-human [gg.rsmod.game.model.entity.Player]s do not need this
+             * Non-human [org.alter.game.model.entity.Player]s do not need this
              * to send any synchronization data to their game-client as they do
              * not have one.
              */
@@ -63,7 +63,7 @@ class ParallelSynchronizationTask(private val executor: ExecutorService) : GameT
         phaser.bulkRegister(playerCount)
         worldPlayers.forEach { p ->
             /*
-             * Non-human [gg.rsmod.game.model.entity.Player]s do not need this
+             * Non-human [org.alter.game.model.entity.Player]s do not need this
              * to send any synchronization data to their game-client as they do
              * not have one.
              */

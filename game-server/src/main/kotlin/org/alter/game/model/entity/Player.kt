@@ -205,7 +205,7 @@ open class Player(world: World) : Pawn(world) {
      * The last cycle that this client has received the MAP_BUILD_COMPLETE
      * message. This value is set to [World.currentCycle].
      *
-     * @see [gg.rsmod.game.message.handler.MapBuildCompleteHandler]
+     * @see [org.alter.game.message.handler.MapBuildCompleteHandler]
      */
     var lastMapBuildTime = 0
 
@@ -279,7 +279,7 @@ open class Player(world: World) : Pawn(world) {
 
     /**
      * Logic that should be executed every game cycle, before
-     * [gg.rsmod.game.sync.task.PlayerSynchronizationTask].
+     * [org.alter.game.sync.task.PlayerSynchronizationTask].
      *
      * Note that this method may be handled in parallel, so be careful with race
      * conditions if any logic may modify other [Pawn]s.
@@ -391,7 +391,7 @@ open class Player(world: World) : Pawn(world) {
 
     /**
      * Logic that should be executed every game cycle, after
-     * [gg.rsmod.game.sync.task.PlayerSynchronizationTask].
+     * [org.alter.game.sync.task.PlayerSynchronizationTask].
      *
      * Note that this method may be handled in parallel, so be careful with race
      * conditions if any logic may modify other [Pawn]s.

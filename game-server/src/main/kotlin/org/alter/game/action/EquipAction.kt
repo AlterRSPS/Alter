@@ -130,7 +130,7 @@ object EquipAction {
 
             if (equipType != -1 && equipType != equipSlot) {
                 /*
-                 * [gg.rsmod.game.fs.def.ItemDef.equipType] counts as a 'secondary'
+                 * [org.alter.game.fs.def.ItemDef.equipType] counts as a 'secondary'
                  * equipment slot, which should be unequipped as well.
                  *
                  * For example, 2h swords have an equipment type of 5, which is also

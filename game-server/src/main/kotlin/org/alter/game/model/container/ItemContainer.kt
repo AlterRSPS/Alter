@@ -174,8 +174,8 @@ class ItemContainer(val definitions: DefinitionSet, val key: ContainerKey) : Ite
      * Get the index of [itemId] in relation to [items].
      *
      * @param skipAttrItems
-     * This flag indicates if [gg.rsmod.game.model.item.Item]s which have
-     * [gg.rsmod.game.model.item.ItemAttribute]s should not be taken into
+     * This flag indicates if [org.alter.game.model.item.Item]s which have
+     * [org.alter.game.model.item.ItemAttribute]s should not be taken into
      * account (should be skipped) when iterating through the [items] to
      * find one with the same [itemId] to return its index in the container.
      *

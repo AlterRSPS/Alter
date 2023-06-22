@@ -4,7 +4,7 @@ import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 
 /**
- * A [DynamicObject] is a game object that can be spawned by the [gg.rsmod.game.model.World].
+ * A [DynamicObject] is a game object that can be spawned by the [org.alter.game.model.World].
  *
  * @author Tom <rspsmods@gmail.com>
  */

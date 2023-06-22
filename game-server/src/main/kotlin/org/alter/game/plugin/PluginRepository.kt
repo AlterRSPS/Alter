@@ -23,6 +23,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import mu.KLogging
+import org.alter.game.model.Tile
 import java.net.URLClassLoader
 import java.nio.file.Files
 import java.nio.file.Path
@@ -55,13 +56,13 @@ class PluginRepository(val world: World) {
      * The plugin that will be executed when the core module wants
      * close the main modal the player has opened.
      *
-     * This is used for things such as the [gg.rsmod.game.message.impl.MoveGameClickMessage].
+     * This is used for things such as the [org.alter.game.message.impl.MoveGameClickMessage].
      */
     private var closeModalPlugin: (Plugin.() -> Unit)? = null
 
     /**
      * This plugin is used to check if a player has a menu opened and any
-     * [gg.rsmod.game.model.queue.QueueTask] with a [gg.rsmod.game.model.queue.TaskPriority.STANDARD]
+     * [org.alter.game.model.queue.QueueTask] with a [org.alter.game.model.queue.TaskPriority.STANDARD]
      * priority should wait before executing.
      */
     private var isMenuOpenedPlugin: (Plugin.() -> Boolean)? = null
@@ -77,13 +78,13 @@ class PluginRepository(val world: World) {
     private val logoutPlugins = mutableListOf<Plugin.() -> Unit>()
 
     /**
-     * A list of plugins that will be executed upon an [gg.rsmod.game.model.entity.Npc]
+     * A list of plugins that will be executed upon an [org.alter.game.model.entity.Npc]
      * being spawned into the world. Use sparingly.
      */
     private val globalNpcSpawnPlugins = mutableListOf<Plugin.() -> Unit>()
 
     /**
-     * A list of plugins that will be executed upon an [gg.rsmod.game.model.entity.Npc]
+     * A list of plugins that will be executed upon an [org.alter.game.model.entity.Npc]
      * with a specific id being spawned into the world. Use sparingly per npc.
      *
      * Note: any npc added to this map <strong>will</strong> still invoke the
@@ -138,7 +139,7 @@ class PluginRepository(val world: World) {
      * The privilege power left value can be set to null, which means anyone
      * can use the command.
      */
-    private val commandPlugins = hashMapOf<String, Pair<String?, Plugin.() -> Unit>>()
+    val commandPlugins = hashMapOf<String, Pair<String?, Plugin.() -> Unit>>()
 
     private val commandDescription = hashMapOf<String, String>()
 
@@ -210,15 +211,15 @@ class PluginRepository(val world: World) {
 
     /**
      * A map that contains any plugin that will be executed upon entering a new
-     * [gg.rsmod.game.model.region.Chunk]. The key is the chunk id which can be
-     * calculated via [gg.rsmod.game.model.region.ChunkCoords.hashCode].
+     * [org.alter.game.model.region.Chunk]. The key is the chunk id which can be
+     * calculated via [org.alter.game.model.region.ChunkCoords.hashCode].
      */
     private val enterChunkPlugins = Int2ObjectOpenHashMap<MutableList<Plugin.() -> Unit>>()
 
     /**
      * A map that contains any plugin that will be executed when leaving a
-     * [gg.rsmod.game.model.region.Chunk]. The key is the chunk id which can be
-     * calculated via [gg.rsmod.game.model.region.ChunkCoords.hashCode].
+     * [org.alter.game.model.region.Chunk]. The key is the chunk id which can be
+     * calculated via [org.alter.game.model.region.ChunkCoords.hashCode].
      */
     private val exitChunkPlugins = Int2ObjectOpenHashMap<MutableList<Plugin.() -> Unit>>()
 
@@ -347,12 +348,12 @@ class PluginRepository(val world: World) {
     private val eventPlugins = Object2ObjectOpenHashMap<Class<out Event>, MutableList<Plugin.(Event) -> Unit>>()
 
     /**
-     * The int value is calculated via [gg.rsmod.game.model.region.ChunkCoords.hashCode].
+     * The int value is calculated via [org.alter.game.model.region.ChunkCoords.hashCode].
      */
     internal val multiCombatChunks = IntOpenHashSet()
 
     /**
-     * The int value is calculated via [gg.rsmod.game.model.Tile.regionId].
+     * The int value is calculated via [org.alter.game.model.Tile.regionId].
      */
     internal val multiCombatRegions = IntOpenHashSet()
 
@@ -383,7 +384,7 @@ class PluginRepository(val world: World) {
     /**
      * Holds all valid shops set from plugins for this [PluginRepository].
      */
-    internal val shops = Object2ObjectOpenHashMap<String, Shop>()
+    val shops = Object2ObjectOpenHashMap<String, Shop>()
 
     /**
      * A list of [Service]s that have been requested for loading by a [KotlinPlugin].
@@ -393,8 +394,6 @@ class PluginRepository(val world: World) {
     internal val onAnimList = hashMapOf<Int, Plugin.() -> Unit>()
 
     internal val terminalCommands = hashMapOf<String, Pair<String?, Plugin.() -> Unit>>()
-
-
 
     /**
      * Holds all container keys set from plugins for this [PluginRepository].
@@ -489,7 +488,7 @@ class PluginRepository(val world: World) {
     }
 
     /**
-     * Spawn any and all [gg.rsmod.game.model.entity.Entity]s given to us by
+     * Spawn any and all [org.alter.game.model.entity.Entity]s given to us by
      * [KotlinPlugin]s.
      */
     private fun spawnEntities() {
@@ -1238,7 +1237,7 @@ class PluginRepository(val world: World) {
         val optMap = objectPlugins[obj] ?: Int2ObjectOpenHashMap(1)
         if (optMap.containsKey(opt)) {
             logger.error("Object is already bound to a plugin: $obj [opt=$opt]")
-            throw IllegalStateException("Object is already bound to a plugin: $obj [opt=$opt]")
+            throw IllegalStateException("Objects [opt=$opt : id = $obj] is already bound to a plugin")
         }
 
         if (lineOfSightDistance != -1) {
@@ -1255,6 +1254,7 @@ class PluginRepository(val world: World) {
         p.executePlugin(logic)
         return true
     }
+
 
     fun bindNpc(npc: Int, opt: Int, lineOfSightDistance: Int = -1, plugin: Plugin.() -> Unit) {
         val optMap = npcPlugins[npc] ?: Int2ObjectOpenHashMap(1)
@@ -1338,44 +1338,12 @@ class PluginRepository(val world: World) {
         return true
     }
 
-    fun get_all_commands(): ArrayList<String> {
-        val str_list = ArrayList<String>()
-        commandPlugins.forEach { (t, _) ->
-            var value = "::$t"
-            if (getDescription(t) != "") {
-                value += " = [ ${getDescription(t)} ]"
-            }
-            str_list.add(value)
-        }
-        return str_list
-    }
-
    fun getDescription(command: String): String? {
        if (commandDescription.get(command) != "null") {
             return commandDescription.get(command)
        }
        return ""
    }
-
-    fun bindTerminalCommand(command: String, description: String? = null, plugin: Plugin.() -> Unit) {
-        if (terminalCommands.containsKey(command)) {
-            throw IllegalStateException("Terminal Command $command is already bound to a plugin.")
-        }
-        terminalCommands[command] = Pair(description, plugin)
-    }
-
-    fun executeTerminalCommand(command: String, args: Array<String>? = null): Boolean {
-        val commandPair = terminalCommands[command] ?: return false
-        val plugin = commandPair.second
-        if (args != null) {
-            world.attr.put(COMMAND_ARGS_ATTR, args)
-        } else {
-            world.attr.put(COMMAND_ARGS_ATTR, emptyArray())
-        }
-
-        world.executePlugin(world, plugin)
-        return true
-    }
 
     companion object : KLogging()
 }

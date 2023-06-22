@@ -107,7 +107,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     val privileges = PrivilegeSet()
 
     /**
-     * A cached value for [gg.rsmod.game.service.xtea.XteaKeyService] since it
+     * A cached value for [org.alter.game.service.xtea.XteaKeyService] since it
      * is used frequently and in performance critical code. This value is set
      * when [XteaKeyService.init] is called.
      */
@@ -148,13 +148,13 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      * Plugin handler: a piece of content needs the player to walk somewhere
      * Message handler: the player's client is requesting to move
      *
-     * The [gg.rsmod.game.model.path.FutureRoute.completed] flag is checked on
+     * The [org.alter.game.model.path.FutureRoute.completed] flag is checked on
      * the player pre-synchronization task, right before [MovementQueue.cycle]
      * is called. If the future route is complete, the path is added to the
      * player's movement queue and data is then sent to clients on the player
      * synchronization task.
      *
-     * Due to this design, it is likely that the [gg.rsmod.game.model.path.FutureRoute]
+     * Due to this design, it is likely that the [org.alter.game.model.path.FutureRoute]
      * will not finish calculating the path if the time in between the [Pawn.walkTo]
      * being called and player pre-synchronization task being executed is fast enough
      *

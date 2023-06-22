@@ -78,7 +78,7 @@ class Client(val channel: Channel, world: World) : Player(world) {
 
     /**
      * A flag which indicates that the client will have their incoming packets
-     * ([gg.rsmod.game.message.Message]s) logged.
+     * ([org.alter.game.message.Message]s) logged.
      */
     var logPackets = true
 

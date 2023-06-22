@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Phaser
 
 /**
- * A [GameTask] responsible for executing [gg.rsmod.game.model.entity.Npc]
+ * A [GameTask] responsible for executing [org.alter.game.model.entity.Npc]
  * cycle logic, in parallel.
  *
  * @author Tom <rspsmods@gmail.com>

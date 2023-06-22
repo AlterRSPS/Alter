@@ -29,7 +29,7 @@ enum class EntityType {
     STATIC_OBJECT,
 
     /**
-     * A game object that is spawned in by the [gg.rsmod.game.model.World].
+     * A game object that is spawned in by the [org.alter.game.model.World].
      */
     DYNAMIC_OBJECT,
 

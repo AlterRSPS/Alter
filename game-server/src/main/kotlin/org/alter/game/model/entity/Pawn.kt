@@ -56,7 +56,7 @@ abstract class Pawn(val world: World) : Entity() {
     internal var lastTile: Tile? = null
 
     /**
-     * The last tile that was set for the pawn's [gg.rsmod.game.model.region.Chunk].
+     * The last tile that was set for the pawn's [org.alter.game.model.region.Chunk].
      */
     internal var lastChunkTile: Tile? = null
 

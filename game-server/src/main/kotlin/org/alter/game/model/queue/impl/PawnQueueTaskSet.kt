@@ -6,8 +6,8 @@ import org.alter.game.model.queue.TaskPriority
 import kotlin.coroutines.resume
 
 /**
- * A [QueueTaskSet] implementation for [gg.rsmod.game.model.entity.Pawn]s.
- * Each [gg.rsmod.game.model.queue.QueueTask] is handled one at a time.
+ * A [QueueTaskSet] implementation for [org.alter.game.model.entity.Pawn]s.
+ * Each [org.alter.game.model.queue.QueueTask] is handled one at a time.
  *
  * @author Tom <rspsmods@gmail.com>
  */

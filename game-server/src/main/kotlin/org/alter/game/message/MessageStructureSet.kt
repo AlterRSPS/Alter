@@ -16,7 +16,7 @@ import kotlin.collections.set
 
 /**
  * Stores all the [MessageStructure]s that are used on the
- * [gg.rsmod.game.service.GameService].
+ * [org.alter.game.service.GameService].
  *
  * @author Tom <rspsmods@gmail.com>
  */

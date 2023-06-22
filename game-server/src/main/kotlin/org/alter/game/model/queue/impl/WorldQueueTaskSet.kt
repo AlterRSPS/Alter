@@ -4,8 +4,8 @@ import org.alter.game.model.queue.QueueTaskSet
 import kotlin.coroutines.resume
 
 /**
- * A [QueueTaskSet] implementation for [gg.rsmod.game.model.World].
- * All [gg.rsmod.game.model.queue.QueueTask]s are handled every tick.
+ * A [QueueTaskSet] implementation for [org.alter.game.model.World].
+ * All [org.alter.game.model.queue.QueueTask]s are handled every tick.
  *
  * @author Tom <rspsmods@gmail.com>
  */

@@ -6,7 +6,7 @@ import org.alter.game.message.impl.*
 
 /**
  * Stores all the [MessageDecoder]s that are used on the
- * [gg.rsmod.game.service.GameService].
+ * [org.alter.game.service.GameService].
  *
  * @author Tom <rspsmods@gmail.com>
  */

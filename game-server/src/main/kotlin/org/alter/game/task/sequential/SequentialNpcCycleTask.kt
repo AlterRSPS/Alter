@@ -5,7 +5,7 @@ import org.alter.game.service.GameService
 import org.alter.game.task.GameTask
 
 /**
- * A [GameTask] responsible for executing [gg.rsmod.game.model.entity.Npc]
+ * A [GameTask] responsible for executing [org.alter.game.model.entity.Npc]
  * cycle logic, sequentially.
  *
  * @author Tom <rspsmods@gmail.com>

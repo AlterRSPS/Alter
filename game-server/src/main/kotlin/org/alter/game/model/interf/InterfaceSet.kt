@@ -22,7 +22,7 @@ class InterfaceSet(private val listener: InterfaceListener) {
     /**
      * The main screen is allowed to have one 'main' interface opened.
      * When a client closes a main interface, they will send a message
-     * ([gg.rsmod.game.message.impl.CloseModalMessage]) and we have to make
+     * ([org.alter.game.message.impl.CloseModalMessage]) and we have to make
      * sure the interface is removed from our [visible] map.
      */
     private var currentModal = -1
@@ -48,7 +48,7 @@ class InterfaceSet(private val listener: InterfaceListener) {
      * @note
      * This method by itself will not visually 'open' an interface for the client,
      * you will have to define a specific method or function that will call this
-     * method and also send a [gg.rsmod.game.message.Message] to signal the client
+     * method and also send a [org.alter.game.message.Message] to signal the client
      * to draw the interface.
      */
     fun open(parent: Int, child: Int, interfaceId: Int) {
@@ -68,7 +68,7 @@ class InterfaceSet(private val listener: InterfaceListener) {
      * @note
      * This method by itself will not visually 'close' an interface for the client,
      * you will have to define a specific method or function that will call this
-     * method and also send a [gg.rsmod.game.message.Message] to signal the client
+     * method and also send a [org.alter.game.message.Message] to signal the client
      * to close the interface.
      */
     fun close(parent: Int): Int {
@@ -87,7 +87,7 @@ class InterfaceSet(private val listener: InterfaceListener) {
      * @note
      * This method by itself will not visually 'close' an interface for the client,
      * you will have to define a specific method or function that will call this
-     * method and also send a [gg.rsmod.game.message.Message] to signal the client
+     * method and also send a [org.alter.game.message.Message] to signal the client
      * to close the interface.
      *
      * @return
@@ -105,7 +105,7 @@ class InterfaceSet(private val listener: InterfaceListener) {
      * @note
      * This method by itself will not visually 'close' an interface for the client,
      * you will have to define a specific method or function that will call this
-     * method and also send a [gg.rsmod.game.message.Message] to signal the client
+     * method and also send a [org.alter.game.message.Message] to signal the client
      * to close the interface.
      *
      * @return

@@ -32,7 +32,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
 
     /**
      * The [Entity]s that are currently registered to the [Tile] key. This is
-     * not used for [gg.rsmod.game.model.entity.Pawn], but rather [Entity]s
+     * not used for [org.alter.game.model.entity.Pawn], but rather [Entity]s
      * that do not regularly change [Tile]s.
      */
     private lateinit var entities: MutableMap<Tile, MutableList<Entity>>
@@ -283,7 +283,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
         const val REGION_SIZE = CHUNK_SIZE * CHUNK_SIZE
 
         /**
-         * The size of the viewport a [gg.rsmod.game.model.entity.Player] can
+         * The size of the viewport a [org.alter.game.model.entity.Player] can
          * 'see' at a time, in tiles.
          */
         const val MAX_VIEWPORT = CHUNK_SIZE * CHUNKS_PER_REGION

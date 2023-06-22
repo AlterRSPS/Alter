@@ -38,7 +38,7 @@ class GameService : Service {
     lateinit var world: World
 
     /**
-     * The max amount of incoming [gg.rsmod.game.message.Message]s that can be
+     * The max amount of incoming [org.alter.game.message.Message]s that can be
      * handled per cycle.
      */
     var maxMessagesPerCycle = 0
@@ -82,25 +82,25 @@ class GameService : Service {
 
     /**
      * The amount of time, in milliseconds, that [SequentialPlayerCycleTask]
-     * has taken for each [gg.rsmod.game.model.entity.Player].
+     * has taken for each [org.alter.game.model.entity.Player].
      */
     internal val playerTimes = Object2LongOpenHashMap<String>()
 
     /**
-     * The amount of active [gg.rsmod.game.model.queue.QueueTask]s throughout
-     * the [gg.rsmod.game.model.entity.Player]s.
+     * The amount of active [org.alter.game.model.queue.QueueTask]s throughout
+     * the [org.alter.game.model.entity.Player]s.
      */
     internal var totalPlayerQueues = 0
 
     /**
-     * The amount of active [gg.rsmod.game.model.queue.QueueTask]s throughout
-     * the [gg.rsmod.game.model.entity.Npc]s.
+     * The amount of active [org.alter.game.model.queue.QueueTask]s throughout
+     * the [org.alter.game.model.entity.Npc]s.
      */
     internal var totalNpcQueues = 0
 
     /**
-     * The amount of active [gg.rsmod.game.model.queue.QueueTask]s throughout
-     * the [gg.rsmod.game.model.World].
+     * The amount of active [org.alter.game.model.queue.QueueTask]s throughout
+     * the [org.alter.game.model.World].
      */
     internal var totalWorldQueues = 0
 
@@ -258,9 +258,9 @@ class GameService : Service {
              *
              * Map:
              * The amount of map entities that are currently active.
-             * c: chunks [gg.rsmod.game.model.region.Chunk]
+             * c: chunks [org.alter.game.model.region.Chunk]
              * r: regions
-             * i: instanced maps [gg.rsmod.game.model.instance.InstancedMap]
+             * i: instanced maps [org.alter.game.model.instance.InstancedMap]
              *
              * Queues:
              * The amount of plugins that are being executed on this exact
@@ -290,7 +290,7 @@ class GameService : Service {
              * @TODO
              * If the cycle took more than [GameContext.cycleTime]ms, we log the
              * occurrence as well as the time each [GameTask] took to complete,
-             * as well as how long each [gg.rsmod.game.model.entity.Player] took
+             * as well as how long each [org.alter.game.model.entity.Player] took
              * to process this cycle.
              */
             logger.error { "Cycle took longer than expected: ${(-freeTime) + world.gameContext.cycleTime}ms / ${world.gameContext.cycleTime}ms!" }

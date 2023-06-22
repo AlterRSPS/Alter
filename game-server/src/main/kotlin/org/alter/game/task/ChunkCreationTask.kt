@@ -6,9 +6,9 @@ import org.alter.game.model.entity.Pawn
 import org.alter.game.service.GameService
 
 /**
- * A [GameTask] responsible for creating any non-existent [gg.rsmod.game.model.region.Chunk]
+ * A [GameTask] responsible for creating any non-existent [org.alter.game.model.region.Chunk]
  * that players are standing on as well as registering and de-registering the
- * player from the respective [gg.rsmod.game.model.region.Chunk]s.
+ * player from the respective [org.alter.game.model.region.Chunk]s.
  *
  * @author Tom <rspsmods@gmail.com>
  */
@@ -44,7 +44,7 @@ class ChunkCreationTask : GameTask {
 
     companion object {
         /**
-         * Flag that specifies if [gg.rsmod.game.model.region.Chunk] should be
+         * Flag that specifies if [org.alter.game.model.region.Chunk] should be
          * created if an npc is on it and it doesn't already exist.
          */
         private const val CREATE_CHUNK_FOR_NPC = false

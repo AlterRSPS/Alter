@@ -157,7 +157,7 @@ class DefinitionSet {
     }
 
     /**
-     * Creates an 8x8 [gg.rsmod.game.model.region.Chunk] region.
+     * Creates an 8x8 [org.alter.game.model.region.Chunk] region.
      */
     fun createRegion(world: World, id: Int): Boolean {
         if (xteaService == null) {
@@ -223,7 +223,7 @@ class DefinitionSet {
              * need to decrypt the files through xteas. This means the objects
              * from each region has to be decrypted a different way.
              *
-             * If this is the case, you need to use [gg.rsmod.game.model.region.Chunk.addEntity]
+             * If this is the case, you need to use [org.alter.game.model.region.Chunk.addEntity]
              * to add the object to the world for collision detection.
              */
             return true

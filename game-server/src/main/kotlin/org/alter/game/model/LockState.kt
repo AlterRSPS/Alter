@@ -9,7 +9,7 @@ package org.alter.game.model
 enum class LockState {
 
     /**
-     * Can freely move around, read and write [gg.rsmod.game.message.Message]s.
+     * Can freely move around, read and write [org.alter.game.message.Message]s.
      */
     NONE,
 
@@ -35,7 +35,7 @@ enum class LockState {
 
     /**
      * Cannot log out or perform various actions such as handling incoming
-     * [gg.rsmod.game.message.Message]s.
+     * [org.alter.game.message.Message]s.
      */
     FULL;
 

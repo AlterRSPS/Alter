@@ -29,7 +29,7 @@ class UpdateBlockSet {
     var largeSceneUpdateOpcode = -1
 
     /**
-     * When [gg.rsmod.game.sync.block.UpdateBlockBuffer.blockValue] exceeds the
+     * When [org.alter.game.sync.block.UpdateBlockBuffer.blockValue] exceeds the
      * value 0xFF, we have to write it as a short. The client uses a certain bit
      * to identify when this is the case.
      */

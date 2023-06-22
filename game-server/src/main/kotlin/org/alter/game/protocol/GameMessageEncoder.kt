@@ -11,12 +11,12 @@ import mu.KLogging
 
 /**
  * An implementation of [MessageToMessageEncoder] which is responsible for taking
- * the [Message] and converting it into a [gg.rsmod.net.packet.GamePacket] so that
+ * the [Message] and converting it into a [org.alter.net.packet.GamePacket] so that
  * it may be written to a [io.netty.channel.Channel].
  *
  * @param encoders
- * The available [gg.rsmod.game.message.MessageEncoder]s for the current
- * [gg.rsmod.game.GameContext].
+ * The available [org.alter.game.message.MessageEncoder]s for the current
+ * [org.alter.game.GameContext].
  *
  * @author Tom <rspsmods@gmail.com>
  */

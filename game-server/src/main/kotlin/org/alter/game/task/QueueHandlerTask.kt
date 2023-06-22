@@ -5,7 +5,7 @@ import org.alter.game.service.GameService
 
 /**
  * A [GameTask] responsible for going over all the active
- * [gg.rsmod.game.model.queue.QueueTask]s.
+ * [org.alter.game.model.queue.QueueTask]s.
  *
  * @author Tom <rspsmods@gmail.com>
  */

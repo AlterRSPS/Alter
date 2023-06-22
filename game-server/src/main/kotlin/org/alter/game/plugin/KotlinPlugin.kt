@@ -16,7 +16,6 @@ import org.alter.game.model.shop.ShopCurrency
 import org.alter.game.model.shop.StockType
 import org.alter.game.model.timer.TimerKey
 import org.alter.game.service.Service
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import kotlin.reflect.KClass
 import kotlin.script.experimental.annotations.KotlinScript
 
@@ -52,15 +51,15 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     /**
-     * Set the [gg.rsmod.game.model.region.ChunkCoords] with [chunk] as its
-     * [gg.rsmod.game.model.region.ChunkCoords.hashCode], as a multi-combat area.
+     * Set the [org.alter.game.model.region.ChunkCoords] with [chunk] as its
+     * [org.alter.game.model.region.ChunkCoords.hashCode], as a multi-combat area.
      */
     fun set_multi_combat_chunk(chunk: Int) {
         r.multiCombatChunks.add(chunk)
     }
 
     /**
-     * Set the 8x8 [gg.rsmod.game.model.region.ChunkCoords]s that belong to [region]
+     * Set the 8x8 [org.alter.game.model.region.ChunkCoords]s that belong to [region]
      * as multi-combat areas.
      */
     fun set_multi_combat_region(region: Int) {
@@ -162,7 +161,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
 
     /**
      * Invoke [logic] when the [option] option is clicked on an inventory
-     * [gg.rsmod.game.model.item.Item].
+     * [org.alter.game.model.item.Item].
      *
      * This method should be used over the option-int variant whenever possible.
      */
@@ -175,7 +174,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
     /**
      * Invoke [logic] when the [option] option is clicked on an equipment
-     * [gg.rsmod.game.model.item.Item].
+     * [org.alter.game.model.item.Item].
      */
     fun on_equipment_option(item: Int, option: String, logic: (Plugin).() -> Unit) {
         val opt = option.lowercase()
@@ -189,7 +188,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
 
     /**
      * Invoke [logic] when the [option] option is clicked on a
-     * [gg.rsmod.game.model.entity.GameObject].
+     * [org.alter.game.model.entity.GameObject].
      *
      * This method should be used over the option-int variant whenever possible.
      */
@@ -272,7 +271,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
 
 
     /**
-     * Invoke [logic] when an [item] is used on a [gg.rsmod.game.model.entity.GameObject]
+     * Invoke [logic] when an [item] is used on a [org.alter.game.model.entity.GameObject]
      *
      * @param obj the game object id
      * @param item the item id
@@ -292,20 +291,20 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun on_item_on_ground_item(item: Int, groundItem: Int, plugin: Plugin.() -> Unit) = r.bindItemOnGroundItem(item, groundItem, plugin)
 
     /**
-     * Set the logic to execute when [gg.rsmod.game.message.impl.WindowStatusMessage]
+     * Set the logic to execute when [org.alter.game.message.impl.WindowStatusMessage]
      * is handled.
      */
     fun set_window_status_logic(logic: (Plugin).() -> Unit) = r.bindWindowStatus(logic)
 
     /**
-     * Set the logic to execute when [gg.rsmod.game.message.impl.CloseModalMessage]
+     * Set the logic to execute when [org.alter.game.message.impl.CloseModalMessage]
      * is handled.
      */
     fun set_modal_close_logic(logic: (Plugin).() -> Unit) = r.bindModalClose(logic)
 
     /**
-     * Set the logic to check if a player has a menu opened and any [gg.rsmod.game.model.queue.QueueTask]
-     * with a [gg.rsmod.game.model.queue.TaskPriority.STANDARD] priority should wait before executing.
+     * Set the logic to check if a player has a menu opened and any [org.alter.game.model.queue.QueueTask]
+     * with a [org.alter.game.model.queue.TaskPriority.STANDARD] priority should wait before executing.
      *
      * @see PluginRepository.isMenuOpenedPlugin
      *
@@ -316,7 +315,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun set_menu_open_check(logic: Plugin.() -> Boolean) = r.setMenuOpenedCheck(logic)
 
     /**
-     * Set the logic to execute by default when [gg.rsmod.game.model.entity.Pawn.attack]
+     * Set the logic to execute by default when [org.alter.game.model.entity.Pawn.attack]
      * is handled.
      */
     fun set_combat_logic(logic: (Plugin).() -> Unit) = r.bindCombat(logic)
@@ -394,28 +393,28 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     /**
-     * Invoke [logic] when [gg.rsmod.game.message.impl.OpNpcTMessage] is handled.
+     * Invoke [logic] when [org.alter.game.message.impl.OpNpcTMessage] is handled.
      */
     fun on_spell_on_npc(parent: Int, child: Int, logic: (Plugin).() -> Unit) = r.bindSpellOnNpc(parent, child, logic)
 
     /**
-     * Invoke [logic] when [gg.rsmod.game.message.impl.OpNpcTMessage] is handled.
+     * Invoke [logic] when [org.alter.game.message.impl.OpNpcTMessage] is handled.
      */
     fun on_spell_on_player(parent: Int, child: Int, logic: (Plugin).() -> Unit) = r.bindSpellOnPlayer(parent, child, logic)
 
     /**
-     * Invoke [logic] when [gg.rsmod.game.message.impl.IfOpenSubMessage] is handled.
+     * Invoke [logic] when [org.alter.game.message.impl.IfOpenSubMessage] is handled.
      */
     fun on_interface_open(interfaceId: Int, logic: (Plugin).() -> Unit) = r.bindInterfaceOpen(interfaceId, logic)
 
     /**
-     * Invoke [logic] when [gg.rsmod.game.model.interf.InterfaceSet.closeByHash]
+     * Invoke [logic] when [org.alter.game.model.interf.InterfaceSet.closeByHash]
      * is handled.
      */
     fun on_interface_close(interfaceId: Int, logic: (Plugin).() -> Unit) = r.bindInterfaceClose(interfaceId, logic)
 
     /**
-     * Invoke [logic] when [gg.rsmod.game.message.impl.IfButtonMessage] is handled.
+     * Invoke [logic] when [org.alter.game.message.impl.IfButtonMessage] is handled.
      */
     fun on_button(interfaceId: Int, component: Int, logic: (Plugin).() -> Unit) = r.bindButton(interfaceId, component, logic)
 
@@ -430,7 +429,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun on_global_npc_spawn(logic: (Plugin).() -> Unit) = r.bindGlobalNpcSpawn(logic)
 
     /**
-     * Invoke [logic] when a ground item is picked up by a [gg.rsmod.game.model.entity.Player].
+     * Invoke [logic] when a ground item is picked up by a [org.alter.game.model.entity.Player].
      */
     fun on_global_item_pickup(logic: Plugin.() -> Unit) = r.bindGlobalGroundItemPickUp(logic)
 
@@ -441,7 +440,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun on_npc_spawn(npc: Int, logic: (Plugin).() -> Unit) = r.bindNpcSpawn(npc, logic)
 
     /**
-     * Invoke [logic] when [gg.rsmod.game.message.impl.ClientCheatMessage] is handled.
+     * Invoke [logic] when [org.alter.game.message.impl.ClientCheatMessage] is handled.
      */
     fun on_command(command: String, powerRequired: String? = null, description: String? = null, logic: (Plugin).() -> Unit) = r.bindCommand(command, powerRequired, description, logic)
 
@@ -508,7 +507,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
 
     /**
      * Invoke [logic] when the the option in index [option] is clicked on a
-     * [gg.rsmod.game.model.entity.GameObject].
+     * [org.alter.game.model.entity.GameObject].
      *
      * String option method should be used over this method whenever possible.
      *
@@ -565,14 +564,6 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         return chunk?.getEntities<Npc>(tile, EntityType.NPC)?.firstOrNull()
     }
 
-    fun get_all_commands(): ArrayList<String> {
-        return r.get_all_commands()
-    }
-
-    fun get_all_shops(): Object2ObjectOpenHashMap<String, Shop> {
-        return r.shops
-    }
-
     /**
      * Returns how many times @param from to @param range contains.
      * ex: @param value = 5
@@ -589,13 +580,14 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         return times
     }
 
+
+    fun getPluginRepository(): PluginRepository {
+        return r
+    }
     fun <T : Definition> getDefs(type: KClass<out T>, id: Int): T {
         return world.definitions.get(type.java, id)
     }
     fun <T : Definition> getDefsNullable(type: KClass<out T>, id: Int): T? {
         return world.definitions.getNullable(type.java, id)
     }
-
-    fun on_terminal_command(command: String, description: String? = null, plugin: Plugin.() -> Unit) = r.bindTerminalCommand(command = command, description = description, plugin = plugin)
-
 }

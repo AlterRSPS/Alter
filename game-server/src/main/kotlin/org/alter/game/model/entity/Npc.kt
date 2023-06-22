@@ -37,7 +37,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      * The owner of an npc will be the only [Player] who can view this npc.
      * If the owner is no longer online, this npc will be removed from the world.
      *
-     * @see [gg.rsmod.game.task.WorldRemoveTask]
+     * @see [org.alter.game.task.WorldRemoveTask]
      */
     var owner: Player? = null
 
@@ -92,6 +92,8 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      * Gets the [NpcDef] corresponding to our [id].
      */
     val def: NpcDef = world.definitions.get( NpcDef::class.java, id)
+
+    var pathsIndex = 0
 
     /**
      * Getter property for our npc name.

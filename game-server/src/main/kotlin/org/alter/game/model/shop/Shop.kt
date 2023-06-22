@@ -32,7 +32,7 @@ data class Shop(val name: String, val stockType: StockType, val purchasePolicy: 
                 val currency: ShopCurrency, val items: Array<ShopItem?>) {
 
     /**
-     * The [gg.rsmod.game.model.entity.Player.uid]s for players who currently have
+     * The [org.alter.game.model.entity.Player.uid]s for players who currently have
      * this shop opened on their screen.
      */
     val viewers = ObjectOpenHashSet<PlayerUID>()

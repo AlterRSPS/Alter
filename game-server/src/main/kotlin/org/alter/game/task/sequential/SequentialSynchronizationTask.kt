@@ -6,8 +6,8 @@ import org.alter.game.sync.task.*
 import org.alter.game.task.GameTask
 
 /**
- * A [GameTask] that is responsible for sending [gg.rsmod.game.model.entity.Pawn]
- * data to [gg.rsmod.game.model.entity.Pawn]s.
+ * A [GameTask] that is responsible for sending [org.alter.game.model.entity.Pawn]
+ * data to [org.alter.game.model.entity.Pawn]s.
  *
  * @author Tom <rspsmods@gmail.com>
  */
@@ -31,7 +31,7 @@ class SequentialSynchronizationTask : GameTask {
 
         worldPlayers.forEach { p ->
             /*
-             * Non-human [gg.rsmod.game.model.entity.Player]s do not need this
+             * Non-human [org.alter.game.model.entity.Player]s do not need this
              * to send any synchronization data to their game-client as they do
              * not have one.
              */
@@ -42,7 +42,7 @@ class SequentialSynchronizationTask : GameTask {
 
         worldPlayers.forEach { p ->
             /*
-             * Non-human [gg.rsmod.game.model.entity.Player]s do not need this
+             * Non-human [org.alter.game.model.entity.Player]s do not need this
              * to send any synchronization data to their game-client as they do
              * not have one.
              */

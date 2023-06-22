@@ -5,7 +5,7 @@ import org.alter.game.service.GameService
 
 /**
  * A [GameTask] responsible for handling all incoming
- * [gg.rsmod.game.message.Message]s, sequentially.
+ * [org.alter.game.message.Message]s, sequentially.
  *
  * @author Tom <rspsmods@gmail.com>
  */

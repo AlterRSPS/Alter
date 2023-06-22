@@ -5,7 +5,7 @@ import org.alter.game.service.GameService
 import org.alter.game.task.GameTask
 
 /**
- * A [GameTask] responsible for executing [gg.rsmod.game.model.entity.Pawn]
+ * A [GameTask] responsible for executing [org.alter.game.model.entity.Pawn]
  * "post" cycle logic, sequentially. Post cycle means that the this task
  * will be handled near the end of the cycle, after the synchronization
  * tasks.

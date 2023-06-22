@@ -12,7 +12,7 @@ import java.util.*
  * @param bypassObjectChunkBounds
  * If true, objects that are found to exceed the bounds of its [Chunk] will
  * not throw an error - however the object will not be applied to the world's
- * [gg.rsmod.game.model.region.ChunkSet], so this flag should be used with
+ * [org.alter.game.model.region.ChunkSet], so this flag should be used with
  * that caveat in mind.
  *
  * Explanation:

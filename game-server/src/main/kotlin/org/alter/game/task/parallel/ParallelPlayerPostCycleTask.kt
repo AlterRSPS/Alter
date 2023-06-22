@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Phaser
 
 /**
- * A [GameTask] responsible for executing [gg.rsmod.game.model.entity.Pawn]
+ * A [GameTask] responsible for executing [org.alter.game.model.entity.Pawn]
  * "post" cycle logic, in parallel. Post cycle means that the this task
  * will be handled near the end of the cycle, after the synchronization
  * tasks.

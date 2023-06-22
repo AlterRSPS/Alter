@@ -28,10 +28,10 @@ import org.alter.game.model.Tile
  *
  * @param runEnergy if players' run energy will be deducted whilst running.
  *
- * @param gItemPublicDelay the amount of cycles for a [gg.rsmod.game.model.entity.GroundItem]
+ * @param gItemPublicDelay the amount of cycles for a [org.alter.game.model.entity.GroundItem]
  * to become public if it's owned by a player.
  *
- * @param gItemDespawnDelay the amount of cycles for a [gg.rsmod.game.model.entity.GroundItem]
+ * @param gItemDespawnDelay the amount of cycles for a [org.alter.game.model.entity.GroundItem]
  * to despawn.
  *
  * @param preloadMaps if true, all map data will be be loaded on start-up instead

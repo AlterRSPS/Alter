@@ -3,7 +3,7 @@ package org.alter.game.model.container.key
 import org.alter.game.model.container.ContainerStackType
 
 /**
- * A unique key used for an [gg.rsmod.game.model.container.ItemContainer].
+ * A unique key used for an [org.alter.game.model.container.ItemContainer].
  *
  * @author Tom <rspsmods@gmail.com>
  */
