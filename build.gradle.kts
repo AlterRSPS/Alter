@@ -14,14 +14,14 @@ allprojects {
     version = "0.0.4"
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(18))
+            languageVersion.set(JavaLanguageVersion.of(17))
             vendor.set(JvmVendorSpec.ORACLE)
             implementation.set(JvmImplementation.VENDOR_SPECIFIC)
         }
     }
     kotlin{
         jvmToolchain{
-            languageVersion.set(JavaLanguageVersion.of(18))
+            languageVersion.set(JavaLanguageVersion.of(17))
             vendor.set(JvmVendorSpec.ORACLE)
             implementation.set(JvmImplementation.VENDOR_SPECIFIC)
         }
@@ -64,17 +64,16 @@ allprojects {
     }
 
     tasks.compileJava {
-        sourceCompatibility = JavaVersion.VERSION_18.toString()
-        targetCompatibility = JavaVersion.VERSION_18.toString()
+        sourceCompatibility = JavaVersion.VERSION_17.toString()
+        targetCompatibility = JavaVersion.VERSION_17.toString()
     }
 
     tasks.withType<KotlinCompile>().all {
         kotlinOptions {
-            languageVersion = "1.9"
-            jvmTarget = "18"
+            languageVersion = "1.7"
+            jvmTarget = "17"
             freeCompilerArgs = listOf(
                 "-Xallow-any-scripts-in-source-roots" ,
-                "-Xjvm-default=all",
             )
         }
     }
