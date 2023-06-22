@@ -23,7 +23,7 @@ OpenShopCommands.forEach {
 on_command("listshop", Privilege.ADMIN_POWER) {
     player.message("Shop List: ")
     var id = 0
-    get_all_shops().forEach {
+    getPluginRepository().shops.forEach {
         player.message("id: ${id++} shop name: ${it.key}" )
     }
 }
