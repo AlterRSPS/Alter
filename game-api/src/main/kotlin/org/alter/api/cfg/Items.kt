@@ -1,4 +1,4 @@
-/* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
+/* Auto-generated file using class org.alter.service.DumpEntityIdService */
 package org.alter.api.cfg
 
 object Items {
@@ -18690,5 +18690,5 @@ object Items {
     const val VIRTUS_ROBE_TOP_NOTED = 27894
     const val VIRTUS_ROBE_BOTTOMS_NOTED = 27895
     const val VIRTUS_MASK_NOTED = 27896
-    /* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
+    /* Auto-generated file using class org.alter.service.DumpEntityIdService */
 }

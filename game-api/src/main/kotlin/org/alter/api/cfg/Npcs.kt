@@ -1,4 +1,4 @@
-/* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
+/* Auto-generated file using class org.alter.service.DumpEntityIdService */
 package org.alter.api.cfg
 
 object Npcs {
@@ -10160,5 +10160,5 @@ object Npcs {
     const val TUMEKENS_WARDEN_12130 = 12130
     const val ELIDINIS_WARDEN_12131 = 12131
     const val OBELISK_12132 = 12132
-    /* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
+    /* Auto-generated file using class org.alter.service.DumpEntityIdService */
 }

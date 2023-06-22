@@ -1,4 +1,4 @@
-/* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
+/* Auto-generated file using class org.alter.service.DumpEntityIdService */
 package org.alter.api.cfg
 
 object Objs {
@@ -23380,5 +23380,5 @@ object Objs {
     const val VANITY_DRESSER_47416 = 47416
     const val CHAIR_47417 = 47417
     const val BED_47418 = 47418
-    /* Auto-generated file using class org.alter.service.dumpEntityIdService.DumpEntityIdService */
+    /* Auto-generated file using class org.alter.service.DumpEntityIdService */
 }
