@@ -1,4 +1,4 @@
-package org.alter.service.dumpEntityIdService
+package org.alter.service
 
 import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
@@ -25,18 +25,18 @@ class DumpEntityIdService : Service {
     private var outputPath: Path? = null
 
     override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
-        dump = serviceProperties.getOrDefault("dump", false)
-        if (dump) {
-            cachePath = Paths.get(serviceProperties.get<String>("cache-path")!!)
-            outputPath = Paths.get(serviceProperties.getOrDefault("output-path", "../ids"))
+       dump = serviceProperties.getOrDefault("dump", false)
+       if (dump) {
+           cachePath = Paths.get(serviceProperties.get<String>("cache-path")!!)
+           outputPath = Paths.get(serviceProperties.getOrDefault("output-path", "../ids"))
 
-            if (!Files.exists(outputPath)) {
-                Files.createDirectory(outputPath)
-                logger.info("Output path does not exist. Creating directory: $outputPath")
-            } else if (!Files.isDirectory(outputPath)) {
-                logger.error("Output path specified is a file - it must be a directory!")
-            }
-        }
+           if (!Files.exists(outputPath)) {
+               Files.createDirectory(outputPath)
+               logger.info("Output path does not exist. Creating directory: $outputPath")
+           } else if (!Files.isDirectory(outputPath)) {
+               logger.error("Output path specified is a file - it must be a directory!")
+           }
+       }
     }
 
     override fun postLoad(server: Server, world: World) {
