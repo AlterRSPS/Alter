@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.shadow)
     application
 }
-description = "Alter Game"
+description = "Alter Game Server Launcher"
 application {
     mainClass.set("org.alter.game.Launcher")
 }

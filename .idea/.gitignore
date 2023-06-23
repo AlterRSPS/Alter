@@ -1,4 +1,4 @@
-/workspace.xml
-/compiler.xml
-/gradle.xml
-/misc.xml
+*
+!.gitignore
+!.name
+!icon.png

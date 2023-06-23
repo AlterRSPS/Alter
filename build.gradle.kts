@@ -29,9 +29,10 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven { url = uri("https://repo.maven.apache.org/maven2") }
-        maven { url = uri("https://jitpack.io") }
-        maven { url = uri("https://repo.runelite.net/") }
+        maven("https://repo.maven.apache.org/maven2")
+        maven("https://jitpack.io")
+        maven("https://repo.runelite.net/")
+        maven("https://repo.openrs2.dev/repository/openrs2-snapshots")
     }
 
     val lib = rootProject.project.libs
