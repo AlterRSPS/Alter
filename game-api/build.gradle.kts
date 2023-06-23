@@ -1,5 +1,7 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
+description = "Alter game-api used by Plugins and Server"
+
 plugins {
     id("org.jetbrains.dokka") version "0.9.18"
 }
