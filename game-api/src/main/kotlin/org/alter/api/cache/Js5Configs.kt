@@ -1,4 +1,4 @@
-package org.alter.cache
+package org.alter.api.cache
 
 public object Js5Configs {
     public const val UNDERLAY: Int = 1
