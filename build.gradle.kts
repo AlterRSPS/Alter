@@ -161,7 +161,7 @@ tasks.register<Zip>("packageServer") {
 
 tasks.register<Zip>("packageLibs"){
     archiveFileName.set("Alter-libs.zip")
-    destinationDirectory.set(file('.'))
+    destinationDirectory.set(file("."))
 
     from("game/build/libs/") {
         rename("game-${project.version}.jar", "game.jar")
