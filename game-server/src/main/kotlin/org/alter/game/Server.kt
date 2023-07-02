@@ -90,7 +90,7 @@ class Server {
         /*
          * Create a game context for our configurations and services to run.
          */
-        val gameContext = org.alter.game.GameContext(
+        val gameContext = GameContext(
             initialLaunch = initialLaunch,
             name = gameProperties.get<String>("name")!!,
             revision = gameProperties.get<Int>("revision")!!,
@@ -113,7 +113,7 @@ class Server {
             preloadMaps = gameProperties.getOrDefault("preload-maps", false)
         )
 
-        val devContext = org.alter.game.DevContext(
+        val devContext = DevContext(
             debugExamines = devProperties.getOrDefault("debug-examines", false),
             debugObjects = devProperties.getOrDefault("debug-objects", false),
             debugButtons = devProperties.getOrDefault("debug-buttons", false),
@@ -204,9 +204,10 @@ class Server {
                 filestore = world.filestore, world = world)
 
         bootstrap.group(acceptGroup, ioGroup)
-        bootstrap.channel(NioServerSocketChannel::class.java)
-        bootstrap.childHandler(clientChannelInitializer)
-        bootstrap.option(ChannelOption.TCP_NODELAY, true).option(ChannelOption.SO_KEEPALIVE, true)
+            .channel(NioServerSocketChannel::class.java)
+            .childHandler(clientChannelInitializer)
+            .childOption(ChannelOption.TCP_NODELAY, true)
+            .childOption(ChannelOption.SO_KEEPALIVE, true)
 
         /*
          * Bind all service networks, if applicable.
@@ -237,8 +238,7 @@ class Server {
             val currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
 
             println("[ \u001B[32mCOMMAND\u001B[0m ] [ $currentTime ]: $input")
-            world.plugins.executeTerminalCommand(values[0], args)
-
+            println("${values}")
         } while (serverChannel.channel().isActive)
 
 

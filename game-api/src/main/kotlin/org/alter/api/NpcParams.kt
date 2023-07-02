@@ -151,17 +151,6 @@ class NpcCombatBuilder {
         )
     }
 
-    fun addDropToTable(type: TableTypes, item: itemDrop, tableWeight: Int = 0, tableRolls: Int = 1) {
-        if (dropTable.any { it.tableType == type }) {
-            val existingTable: tableDrops? = dropTable.find { it.tableType == type }
-            val updatedDrops = existingTable?.drops?.plus(item) ?: setOf(item)
-            dropTable.remove(existingTable)
-            dropTable.add(existingTable?.copy(drops = updatedDrops) ?: tableDrops(type, tableWeight,tableRolls, updatedDrops))
-        } else {
-            dropTable.add(tableDrops(type, tableWeight, tableRolls, setOf(item)))
-        }
-    }
-
     fun setAttackSoundArea(attackSoundArea: Boolean) {
         defaultAttackSoundArea = attackSoundArea
     }

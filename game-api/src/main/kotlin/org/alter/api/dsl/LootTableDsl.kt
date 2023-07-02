@@ -7,9 +7,6 @@ import org.alter.game.model.Tile
  */
 object LootTableDsl {
     /**
-     * @TODO Continue after rev213
-     */
-    /**
     val table = ArrayList<>()
 
     @DslMarker

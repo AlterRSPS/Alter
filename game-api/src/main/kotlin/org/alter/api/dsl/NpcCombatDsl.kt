@@ -39,10 +39,11 @@ object NpcCombatDsl {
             combatBuilder.setPoisonChance(builder.poisonChance)
             combatBuilder.setVenomChance(builder.venomChance)
         }
-        //fun drops(init: WeightedTable.WeightedTableBuilder.() -> Unit) {
-        //    val builder = WeightedTable.WeightedTableBuilder(combatBuilder)
-        //    init(builder)
-        //}
+
+        fun drops(init: WeightedTable.WeightedTableBuilder.() -> Unit) {
+            val builder = WeightedTable.WeightedTableBuilder(combatBuilder)
+            init(builder)
+        }
 
         fun aggro(init: AggressivenessBuilder.() -> Unit) {
             val builder = AggressivenessBuilder()

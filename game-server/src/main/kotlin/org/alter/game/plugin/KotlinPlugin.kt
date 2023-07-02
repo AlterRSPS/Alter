@@ -590,4 +590,14 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun <T : Definition> getDefsNullable(type: KClass<out T>, id: Int): T? {
         return world.definitions.getNullable(type.java, id)
     }
+    fun obj_has_option(obj: Int, option: String): Boolean {
+        val objDefs = getDefs(ObjectDef::class, obj)
+        return objDefs.options.contains(option)
+    }
+    fun npc_has_option(npc: Int, option: String): Boolean {
+        val npcDefs = getDefs(NpcDef::class, npc)
+        return npcDefs.options.contains(option)
+    }
+
+
 }
