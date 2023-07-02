@@ -1136,6 +1136,7 @@ client-packets:
     type: FIXED
     opcode: 2
     length: 0
+    ignore: true
 
     # @Done
   - message: org.alter.game.message.impl.EventMouseMoveMessage # TODO: need to refactor code to see what values are received
