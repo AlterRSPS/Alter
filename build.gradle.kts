@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias(libs.plugins.kotlin.jvm) apply true
     alias(libs.plugins.kotlin.serialization)
+    `maven-publish`
     idea
 }
 
@@ -159,7 +160,7 @@ tasks.register<Zip>("packageServer") {
     }
 }
 
-tasks.register<Zip>("packageLibs"){
+tasks.register<Zip>("packageLibs") {
     archiveFileName.set("Alter-libs.zip")
     destinationDirectory.set(file("."))
 
@@ -171,3 +172,21 @@ tasks.register<Zip>("packageLibs"){
         rename("plugins-${project.version}.jar", "plugins.jar")
     }
 }
+
+
+
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "org.alter"
+            artifactId = "library"
+            version = "0.0.4"
+
+            from(components["java"])
+        }
+    }
+}
+
+
+
