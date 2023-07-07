@@ -9,6 +9,8 @@ Due to the plugin capabilities, even owners without programming experience can j
 - You can report them by creating Issue on [GitHub](https://github.com/AlterRSPS/Alter/issues) or in Alter's [Discord Server](https://discord.gg/kdhBuRaduw)
 
 #### Setting up the server:
+* You can also watch on youtube (Without explanation) [![Youtube](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Test.jpg)](https://www.youtube.com/watch?v=2Tu-NTzMbf0)
+
 * ### First of all Download:
 * [2023-05-03-rev213.tar.gz](https://archive.runestats.com/osrs/2023-05-03-rev213.tar.gz) , And make sure you're using correct Java Version.
 * Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o).
