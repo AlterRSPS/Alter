@@ -599,5 +599,13 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         return npcDefs.options.contains(option)
     }
 
+    /**
+     * @param type [Definition]
+     * @return Definition count of that type
+     */
+    fun <T : Definition> getDefCount(type: KClass<out T>) : Int {
+        return world.definitions.getCount(type.java)
+    }
+
 
 }
