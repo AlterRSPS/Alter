@@ -10,9 +10,10 @@ plugins {
 allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "maven-publish")
 
-    group = "alter"
-    version = "0.0.4"
+    group = "org.alter"
+    version = "0.0.5"
     java {
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(17))
@@ -114,21 +115,27 @@ tasks.register<Zip>("packageServer") {
         exclude("xteas.json")
     }
 
-    from("game/") {
-        into("game")
+    from("game-server/") {
+        into("game-server/")
 
         exclude("build")
         exclude("out")
         exclude("plugins")
         exclude("src/main/java")
         exclude("src/test/java")
+
+
     }
 
-    from("game/plugins") {
-        into("game/plugins")
+    from("game-plugins/") {
+        into("game-plugins/")
+        include("src/main/kotlin/alter/plugins/**")
+        //include("src/main/kotlin/alter/plugins/content/osrs.kts")
+    }
 
+    from("game-api/") {
+        into("game-api/")
         include("src/main/kotlin/alter/plugins/api/**")
-        include("src/main/kotlin/alter/plugins/content/osrs.kts")
         include("src/main/kotlin/alter/plugins/service/**")
     }
 
@@ -173,20 +180,17 @@ tasks.register<Zip>("packageLibs") {
     }
 }
 
-
-
-
 publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = "org.alter"
-            artifactId = "library"
-            version = "0.0.4"
-
-            from(components["java"])
+    publications.create<MavenPublication>("maven") {
+        from(components["java"])
+        groupId = "org.alter"
+        artifactId = "alter"
+        pom {
+            packaging = "jar"
+            name.set("Alter")
+            description.set("AlterServer All")
         }
     }
 }
-
 
 
