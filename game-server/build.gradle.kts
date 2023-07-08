@@ -1,9 +1,11 @@
 plugins {
     alias(libs.plugins.shadow)
     application
+    `maven-publish`
 }
 description = "Alter Game Server Launcher"
 application {
+    apply(plugin = "maven-publish")
     mainClass.set("org.alter.game.Launcher")
 }
 val lib = rootProject.project.libs
@@ -151,3 +153,19 @@ tasks.named<Jar>("jar") {
 tasks.withType<ProcessResources> {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
+
+
+publishing {
+    publications.create<MavenPublication>("maven") {
+        from(components["java"])
+        groupId = "org.alter"
+        artifactId = "alter"
+        pom {
+            packaging = "jar"
+            name.set("Alter")
+            description.set("AlterServer All")
+        }
+    }
+}
+
+

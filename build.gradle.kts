@@ -3,14 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias(libs.plugins.kotlin.jvm) apply true
     alias(libs.plugins.kotlin.serialization)
-    `maven-publish`
     idea
 }
 
 allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "maven-publish")
 
     group = "org.alter"
     version = "0.0.5"
@@ -177,19 +175,6 @@ tasks.register<Zip>("packageLibs") {
 
     from("game/plugins/build/libs/") {
         rename("plugins-${project.version}.jar", "plugins.jar")
-    }
-}
-
-publishing {
-    publications.create<MavenPublication>("maven") {
-        from(components["java"])
-        groupId = "org.alter"
-        artifactId = "alter"
-        pom {
-            packaging = "jar"
-            name.set("Alter")
-            description.set("AlterServer All")
-        }
     }
 }
 
