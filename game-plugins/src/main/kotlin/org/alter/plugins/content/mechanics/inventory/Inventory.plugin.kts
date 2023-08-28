@@ -53,7 +53,7 @@ on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
 /**
  * Logic for swapping items in inventory.
  */
-on_component_item_swap(interfaceId = 149, component = 0) {
+on_component_to_component_item_swap(srcInterfaceId = 149, srcComponent = 0, dstInterfaceId = 149, 0) {
     val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
     val dstSlot = player.attr[OTHER_ITEM_SLOT_ATTR]!!
 
