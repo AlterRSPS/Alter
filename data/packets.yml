@@ -1567,3 +1567,15 @@ client-packets:
     type: VARIABLE_BYTE
     opcode: 17
     ignore: true
+
+  - message: org.alter.game.message.impl.EventMouseClickMessage
+    type: FIXED
+    opcode: 13
+    length: 6
+    structure:
+      - name: ignored
+        type: SHORT
+      - name: x
+        type: SHORT
+      - name: y
+        type: SHORT
