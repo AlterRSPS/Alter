@@ -973,16 +973,20 @@ client-packets:
       - name: x
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: ADD
+        sign: UNSIGNED
       - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: id
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
 
   - message: org.alter.game.message.impl.OpLoc2Message
     type: FIXED
@@ -993,16 +997,20 @@ client-packets:
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: z
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: id
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
+        sign: UNSIGNED
 
   - message: org.alter.game.message.impl.OpLoc3Message
     type: FIXED
@@ -1013,16 +1021,20 @@ client-packets:
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: id
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
       - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: NEGATE
+        sign: UNSIGNED
 
   - message: org.alter.game.message.impl.OpLoc4Message
     type: FIXED
@@ -1032,15 +1044,19 @@ client-packets:
       - name: id
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: ADD
+        sign: UNSIGNED
       - name: z
         type: SHORT
         trans: ADD
+        sign: UNSIGNED
       - name: x
         type: SHORT
         order: LITTLE
+        sign: UNSIGNED
 
   - message: org.alter.game.message.impl.OpLoc5Message
     type: FIXED
@@ -1108,6 +1124,7 @@ client-packets:
         type: SHORT
         trans: ADD
         order: LITTLE
+        sign: UNSIGNED
 
   - message: org.alter.game.message.impl.CloseModalMessage
     type: FIXED
