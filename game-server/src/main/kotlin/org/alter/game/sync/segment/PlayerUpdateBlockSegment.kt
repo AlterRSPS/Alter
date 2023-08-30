@@ -162,7 +162,12 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                             if (translation[i] == -1) {
                                 appBuf.put(DataType.BYTE, 0)
                             } else {
-                                appBuf.put(DataType.SHORT, 0x100 + other.appearance.getLook(translation[i]))
+                                val look = other.appearance.getLook(translation[i])
+                                if (look == -1) {
+                                    appBuf.put(DataType.BYTE, 0)
+                                } else {
+                                    appBuf.put(DataType.SHORT, 0x100 + look)
+                                }
                             }
                         } else {
                             appBuf.put(DataType.SHORT, 0x200 + item.id)
