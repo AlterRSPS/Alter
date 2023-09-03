@@ -332,7 +332,7 @@ server-packets:
         trans: ADD
         order: LITTLE
       - name: data
-        type: SHORT
+        type: BYTES
 
   - message: org.alter.game.message.impl.UpdateZonePartialFollowsMessage
     type: FIXED
