@@ -366,8 +366,8 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
             UpdateBlockType.GFX -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
 
-                buf.put(DataType.BYTE, DataTransformation.SUBTRACT, 1) // gfx_array_how many to read one by one
-                buf.put(DataType.BYTE, DataTransformation.NEGATE, 0) // gfx_index from the array
+                buf.put(DataType.BYTE, DataTransformation.ADD, 1) // gfx_array_how many to read one by one
+                buf.put(DataType.BYTE, DataTransformation.SUBTRACT, 0) // gfx_index from the array
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, other.blockBuffer.graphicId)
                 buf.put(structure[1].type, structure[1].order, structure[1].transformation,
                     (other.blockBuffer.graphicHeight shl 16) or other.blockBuffer.graphicDelay

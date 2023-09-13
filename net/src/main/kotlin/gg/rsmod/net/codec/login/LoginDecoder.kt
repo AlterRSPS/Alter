@@ -142,14 +142,11 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
             val clientResizable = (clientSettings shr 1) == 1
             val clientWidth = xteaBuf.readUnsignedShort()
             val clientHeight = xteaBuf.readUnsignedShort()
-
             xteaBuf.skipBytes(24) // random.dat data
             xteaBuf.readString() // param9
             xteaBuf.skipBytes(Int.SIZE_BYTES) // param14
-
             xteaBuf.skipBytes(55) //platform info block size - rev 211
-
-            xteaBuf.skipBytes(Byte.SIZE_BYTES) // client type
+            xteaBuf.readByte() // client type
             xteaBuf.skipBytes(Int.SIZE_BYTES) // 0
 
 

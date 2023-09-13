@@ -29,8 +29,8 @@ class NpcUpdateBlockSegment(private val npc: Npc, private val newAddition: Boole
             }
         }
 
-        val firstExtensionBit = 0x80 // update this
-        val secondExtensionBit = 0x100 // update this
+        val firstExtensionBit = 0x20 // update this
+        val secondExtensionBit = 0x400 // update this
 
         if (mask and 0xFF.inv() != 0) {
             mask = mask or firstExtensionBit
@@ -109,8 +109,8 @@ class NpcUpdateBlockSegment(private val npc: Npc, private val newAddition: Boole
             UpdateBlockType.GFX -> {
                 val structure = blocks.updateBlocks[blockType]!!.values
 
-                buf.put(DataType.BYTE, DataTransformation.ADD, 1) // gfx_array_how many to read one by one
-                buf.put(DataType.BYTE, DataTransformation.SUBTRACT, 0) // gfx_index from the array
+                buf.put(DataType.BYTE, DataTransformation.NEGATE, 1) // gfx_array_how many to read one by one
+                buf.put(DataType.BYTE, DataTransformation.NEGATE, 0) // gfx_index from the array
 
                 buf.put(structure[0].type, structure[0].order, structure[0].transformation, npc.blockBuffer.graphicId)
                 buf.put(structure[1].type, structure[1].order, structure[1].transformation, (npc.blockBuffer.graphicHeight shl 16) or npc.blockBuffer.graphicDelay)

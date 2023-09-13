@@ -5,42 +5,38 @@ server-packets:
 
   - message: org.alter.game.message.impl.RebuildLoginMessage
     type: VARIABLE_SHORT
-    opcode: 0
+    opcode: 99
     structure:
       - name: gpi
         type: BYTES
       - name: z
         type: SHORT
-        order: LITTLE
       - name: x
         type: SHORT
-        order: LITTLE
       - name: xteas
         type: BYTES
 
   - message: org.alter.game.message.impl.RebuildNormalMessage
     type: VARIABLE_SHORT
-    opcode: 0
+    opcode: 99
     structure:
       - name: z
         type: SHORT
-        order: LITTLE
       - name: x
         type: SHORT
-        order: LITTLE
       - name: xteas
         type: BYTES
 
   - message: org.alter.game.message.impl.UpdateRunWeightMessage
     type: FIXED
-    opcode: 82
+    opcode: 41
     structure:
       - name: weight
         type: SHORT
 
   - message: org.alter.game.message.impl.RunClientScriptMessage
     type: VARIABLE_SHORT
-    opcode: 13
+    opcode: 20
     structure:
       - name: types
         type: BYTES
@@ -51,17 +47,19 @@ server-packets:
 
   - message: org.alter.game.message.impl.VarpLargeMessage
     type: FIXED
-    opcode: 17
+    opcode: 8
     structure:
-      - name: value
-        type: INT
       - name: id
         type: SHORT
         trans: ADD
+        order: LITTLE
+      - name: value
+        type: INT
+        order: INVERSE_MIDDLE
 
   - message: org.alter.game.message.impl.MessageGameMessage
     type: VARIABLE_BYTE
-    opcode: 48
+    opcode: 56
     structure:
       - name: type
         type: BYTE
@@ -74,29 +72,27 @@ server-packets:
 
   - message: org.alter.game.message.impl.UpdateStatMessage
     type: FIXED
-    opcode: 14
+    opcode: 28
     structure:
-      - name: skill
-        type: BYTE
-        trans: SUBTRACT
-      - name: level
-        type: BYTE
-        trans: SUBTRACT
       - name: xp
         type: INT
-        order: LITTLE
+        order: INVERSE_MIDDLE
+      - name: level
+        type: BYTE
+      - name: skill
+        type: BYTE
+        trans: NEGATE
 
   - message: org.alter.game.message.impl.MidiSongMessage
     type: FIXED
-    opcode: 8
+    opcode: 89
     structure:
       - name: id
         type: SHORT
-        order: LITTLE
 
   - message: org.alter.game.message.impl.UpdateInvFullMessage
     type: VARIABLE_SHORT
-    opcode: 35
+    opcode: 57
     structure:
       - name: component_hash
         type: INT
@@ -109,382 +105,381 @@ server-packets:
 
   - message: org.alter.game.message.impl.IfSetEventsMessage
     type: FIXED
-    opcode: 1
+    opcode: 5
     structure:
-      - name: hash
-        type: INT
-        order: MIDDLE
-      - name: setting
-        type: INT
-        order: INVERSE_MIDDLE
-      - name: to
-        type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: from
         type: SHORT
         trans: ADD
+        order: LITTLE
+      - name: setting
+        type: INT
+        order: IME
+      - name: to
+        type: SHORT
+        order: LITTLE
+      - name: hash
+        type: INT
+        order: IME
 
   - message: org.alter.game.message.impl.IfOpenTopMessage
     type: FIXED
-    opcode: 105
+    opcode: 106
     structure:
       - name: top
         type: SHORT
+        trans: ADD
+        order: LITTLE
 
   - message: org.alter.game.message.impl.SetOpPlayerMessage
     type: VARIABLE_BYTE
-    opcode: 10
+    opcode: 7
     structure:
       - name: index
         type: BYTE
-        trans: SUBTRACT
-      - name: option
-        type: BYTES
+        trans: NEGATE
       - name: left_click
         type: BYTE
-        trans: SUBTRACT
+        trans: NEGATE
+      - name: option
+        type: BYTES
 
 
-# @IGNORED
-#  - message: org.alter.game.message.impl.FriendListLoadedMessage
-#    type: VARIABLE_SHORT
-#    opcode: 73
+  # @IGNORED
+  #  - message: org.alter.game.message.impl.FriendListLoadedMessage
+  #    type: VARIABLE_SHORT
+  #    opcode: 73
 
   - message: org.alter.game.message.impl.UpdateRunEnergyMessage
     type: FIXED
-    opcode: 56
+    opcode: 23
     structure:
       - name: energy
         type: SHORT
 
   - message: org.alter.game.message.impl.IfSetTextMessage
     type: VARIABLE_SHORT
-    opcode: 57
+    opcode: 14
     structure:
-      - name: text
-        type: BYTES
       - name: hash
         type: INT
-        order: INVERSE_MIDDLE
+        order: MIDDLE
+      - name: text
+        type: BYTES
 
   - message: org.alter.game.message.impl.IfOpenSubMessage
     type: FIXED
-    opcode: 31
+    opcode: 59
     structure:
-      - name: type
-        type: BYTE
-        trans: NEGATE
-      - name: component
-        type: SHORT
-        order: LITTLE
       - name: overlay
         type: INT
-        order: MIDDLE
+      - name: type
+        type: BYTE
+      - name: component
+        type: SHORT
+        trans: ADD
+        order: LITTLE
 
   - message: org.alter.game.message.impl.VarpSmallMessage
     type: FIXED
-    opcode: 85
+    opcode: 39
     structure:
       - name: value
         type: BYTE
-        trans: NEGATE
+        trans: SUBTRACT
       - name: id
         type: SHORT
 
   - message: org.alter.game.message.impl.UpdateZonePartialEnclosedMessage
     type: VARIABLE_SHORT
-    opcode: 92
+    opcode: 102
     structure:
       - name: z
         type: BYTE
-        trans: NEGATE
       - name: x
         type: BYTE
+        trans: NEGATE
       - name: payload
         type: BYTES
 
   - message: org.alter.game.message.impl.IfMoveSubMessage
     type: FIXED
-    opcode: 50
+    opcode: 11
     structure:
-      - name: from
-        type: INT
-        order: INVERSE_MIDDLE
       - name: to
         type: INT
         order: INVERSE_MIDDLE
+      - name: from
+        type: INT
+        order: LITTLE
 
   - message: org.alter.game.message.impl.IfCloseSubMessage
     type: FIXED
-    opcode: 16
+    opcode: 27
     structure:
       - name: hash
         type: INT
 
   - message: org.alter.game.message.impl.CamResetMessage
     type: FIXED
-    opcode: 32
+    opcode: 97
 
+    # @TODO later.
   - message: org.alter.game.message.impl.CamShakeMessage
     type: FIXED
-    opcode: 71
+    opcode: 24
     structure:
       - name: index
         type: BYTE
-      - name: left
+      - name: cameraShakeIntensity
         type: BYTE
-      - name: center
+      - name: cameraMoveIntensity
         type: BYTE
-      - name: right
+      - name: cameraShakeSpeed
         type: BYTE
 
   - message: org.alter.game.message.impl.MapAnimMessage
     type: FIXED
-    opcode: 41
+    opcode: 31
     structure:
       - name: height
         type: BYTE
-        trans: NEGATE
-      - name: delay
-        type: SHORT
+        trans: SUBTRACT
       - name: tile
         type: BYTE
-        trans: SUBTRACT
       - name: id
         type: SHORT
-        order: LITTLE
+      - name: delay
+        type: SHORT
+        trans: ADD
+
 
   - message: org.alter.game.message.impl.UpdateRebootTimerMessage
     type: FIXED
-    opcode: 72
+    opcode: 4
     structure:
       - name: cycles
         type: SHORT
-        order: LITTLE
+        trans: ADD
 
   - message: org.alter.game.message.impl.TriggerOnDialogAbortMessage
     type: FIXED
-    opcode: 36
+    opcode: 68
 
   - message: org.alter.game.message.impl.SoundAreaMessage
     type: FIXED
-    opcode: 55
+    opcode: 1
     structure:
-      - name: sound
-        type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: settings
         type: BYTE
         trans: NEGATE
-      - name: tile
-        type: BYTE
-        trans: ADD
       - name: delay
         type: BYTE
+        trans: ADD
+      - name: tile
+        type: BYTE
         trans: SUBTRACT
+      - name: sound
+        type: SHORT
+        order: LITTLE
 
   - message: org.alter.game.message.impl.MapProjAnimMessage
     type: FIXED
-    opcode: 11
+    opcode: 16
     structure:
-      - name: angle
-        type: BYTE
-      - name: tile
-        type: BYTE
-      - name: end_height
-        type: BYTE
-        trans: SUBTRACT
-      - name: gfx # ID?
-        type: SHORT
-        trans: ADD
-      - name: steepness
-        type: BYTE
-        trans: SUBTRACT
       - name: delay
-        type: SHORT
-      - name: offset_z
-        type: BYTE
-        trans: NEGATE
-      - name: start_height
-        type: BYTE
-        trans: NEGATE
-      - name: lifespan
         type: SHORT
       - name: target_index
         type: MEDIUM
+        order: IME
+        trans: SUBTRACT
+      - name: steepness
+        type: BYTE
+        trans: NEGATE
       - name: offset_x
         type: BYTE
         trans: SUBTRACT
+      - name: tile
+        type: BYTE
+        trans: NEGATE
+      - name: angle
+        type: BYTE
+        trans: ADD
+      - name: lifespan
+        type: SHORT
+        trans: ADD
+      - name: gfx # ID?
+        type: SHORT
+        trans: ADD
+      - name: offset_z
+        type: BYTE
+        trans: ADD
+      - name: end_height
+        type: BYTE
+        trans: ADD
+      - name: start_height
+        type: BYTE
+        trans: NEGATE
 
   - message: org.alter.game.message.impl.RebuildRegionMessage
     type: VARIABLE_SHORT
-    opcode: 42
+    opcode: 54
     structure:
       - name: x
+        type: SHORT
+        trans: ADD
+      - name: z
         type: SHORT
         order: LITTLE
       - name: force_load
         type: BYTE
-      - name: z
-        type: SHORT
-        trans: ADD
-        order: LITTLE
+        trans: SUBTRACT
       - name: data
-        type: BYTES
+        type: SHORT
 
   - message: org.alter.game.message.impl.UpdateZonePartialFollowsMessage
     type: FIXED
-    opcode: 26
+    opcode: 42
     structure:
       - name: z
         type: BYTE
-        trans: SUBTRACT
       - name: x
         type: BYTE
-        trans: NEGATE
 
   - message: org.alter.game.message.impl.LocAddChangeMessage
     type: FIXED
-    opcode: 86
+    opcode: 34
     structure:
-      - name: unknown
-        type: BYTE
       - name: tile
         type: BYTE
         trans: SUBTRACT
-      - name: settings
+      - name: unknown
         type: BYTE
-        trans: NEGATE
+        trans: ADD
       - name: id
         type: SHORT
         order: LITTLE
+      - name: settings
+        type: BYTE
 
   - message: org.alter.game.message.impl.ObjDelMessage
     type: FIXED
-    opcode: 38
+    opcode: 113
     structure:
+      - name: amount
+        type: INT
+        order: LITTLE
+      - name: item
+        type: SHORT
       - name: tile
         type: BYTE
         trans: NEGATE
-      - name: item
-        type: SHORT
-        order: LITTLE
-      - name: amount
-        type: INT
-        order: MIDDLE
 
   - message: org.alter.game.message.impl.LocDelMessage
     type: FIXED
-    opcode: 9
+    opcode: 84
     structure:
       - name: tile
         type: BYTE
-        trans: ADD
+        trans: SUBTRACT
       - name: settings
         type: BYTE
 
   - message: org.alter.game.message.impl.ObjAddMessage
     type: FIXED
-    opcode: 39
+    opcode: 36
     structure:
-      - name: random1
-        type: BYTE
-        trans: ADD
       - name: amount
         type: INT
         order: LITTLE
       - name: unknown1
         type: BYTE
-        trans: ADD
-      - name: tile
-        type: BYTE
-      - name: item
+        trans: SUBTRACT
+      - name: random1
         type: SHORT
-        trans: ADD
       - name: random2
-        type: SHORT
-        order: LITTLE
-      - name: random3
-        type: SHORT
-        trans: ADD
-      - name: random4
         type: BYTE
         trans: NEGATE
+      - name: item
+        type: SHORT
+      - name: tile
+        type: BYTE
+      - name: random3
+        type: BYTE
+      - name: random4
+        type: SHORT
+        trans: ADD
 
   - message: org.alter.game.message.impl.ObjCountMessage
     type: FIXED
-    opcode: 6
+    opcode: 71
     structure:
       - name: tile
         type: BYTE
-        trans: SUBTRACT
-      - name: new_amount
-        type: INT
+        trans: ADD
       - name: item
         type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: old_amount
         type: INT
+        order: IME
+      - name: new_amount
+        type: INT
+        order: IME
 
   - message: org.alter.game.message.impl.LogoutFullMessage
     type: FIXED
-    opcode: 3
+    opcode: 101
 
   - message: org.alter.game.message.impl.OpenUrlMessage
     type: VARIABLE_SHORT
-    opcode: 60
+    opcode: 10
     structure:
       - name: url
         type: BYTES
 
   - message: org.alter.game.message.impl.IfSetHideMessage
     type: FIXED
-    opcode: 22
+    opcode: 90
     structure:
-      - name: hash
-        type: INT
       - name: hidden
         type: BYTE
         trans: SUBTRACT
+      - name: hash
+        type: INT
+        order: LITTLE
 
   - message: org.alter.game.message.impl.IfSetObjectMessage
     type: FIXED
-    opcode: 80
+    opcode: 9
     structure:
-      - name: hash
-        type: INT
-        order: INVERSE_MIDDLE
-      - name: amount
-        type: INT
-        order: LITTLE
       - name: item
         type: SHORT
-        trans: ADD
+        order: LITTLE
+      - name: hash
+        type: INT
+        order: LITTLE
+      - name: amount
+        type: INT
         order: LITTLE
 
   - message: org.alter.game.message.impl.IfSetNpcHeadMessage
     type: FIXED
-    opcode: 51
+    opcode: 26
     structure:
       - name: npc
         type: SHORT
-        trans: ADD
         order: LITTLE
       - name: hash
         type: INT
-        order: MIDDLE
+        order: IME
 
 
   - message: org.alter.game.message.impl.IfSetPlayerHeadMessage
     type: FIXED
-    opcode: 2
+    opcode: 111
     structure:
       - name: hash
         type: INT
-        order: LITTLE
+        order: IME
 
   - message: org.alter.game.message.impl.IfSetAnimMessage
     type: FIXED
@@ -493,24 +488,23 @@ server-packets:
       - name: anim
         type: SHORT
         trans: ADD
-        order: LITTLE
       - name: hash
         type: INT
-        order: INVERSE_MIDDLE
 
   - message: org.alter.game.message.impl.IfSetModelMessage
     type: FIXED
-    opcode: 40
+    opcode: 60
     structure:
       - name: hash
         type: INT
         order: LITTLE
       - name: model_id
         type: SHORT
+        trans: ADD
 
   - message: org.alter.game.message.impl.SetMapFlagMessage
     type: FIXED
-    opcode: 25
+    opcode: 65
     structure:
       - name: x
         type: BYTE
@@ -519,7 +513,7 @@ server-packets:
 
   - message: org.alter.game.message.impl.UpdateInvPartialMessage
     type: VARIABLE_SHORT
-    opcode: 93
+    opcode: 73
     structure:
       - name: component_hash
         type: INT
@@ -530,7 +524,7 @@ server-packets:
 
   - message: org.alter.game.message.impl.SynthSoundMessage
     type: FIXED
-    opcode: 23
+    opcode: 44
     structure:
       - name: sound
         type: SHORT
@@ -541,12 +535,13 @@ server-packets:
 
   - message: org.alter.game.message.impl.MidiJingleMessage
     type: FIXED
-    opcode: 91
+    opcode: 45
     structure:
       - name: garbage_delay
         type: MEDIUM
       - name: id
         type: SHORT
+        trans: ADD
         order: LITTLE
 
 #  - message: org.alter.game.message.impl.UpdateFriendListMessage
@@ -596,7 +591,7 @@ client-packets:
 
   - message: org.alter.game.message.impl.ClickWorldMapMessage
     type: FIXED
-    opcode: 46
+    opcode: 10
     length: 4
     structure:
       - name: data
@@ -605,51 +600,50 @@ client-packets:
 
   - message: org.alter.game.message.impl.IfButtonDMessage
     type: FIXED
-    opcode: 51
+    opcode: 88
     length: 16
     structure:
+      - name: src_item
+        type: SHORT
+      - name: src_component_hash
+        type: SHORT
+        order: LITTLE
+      - name: dst_component_hash
+        type: SHORT
       - name: dst_item
         type: SHORT
         trans: ADD
-      - name: dst_component_hash
+        order: LITTLE
+      - name: src_slot
         type: INT
         order: LITTLE
       - name: dst_slot
-        type: SHORT
-        trans: ADD
-      - name: src_slot
-        type: SHORT
-        trans: ADD
-      - name: src_component_hash
         type: INT
-        order: INVERSE_MIDDLE
-      - name: src_item
-        type: SHORT
+        order: MIDDLE
 
   - message: org.alter.game.message.impl.OpNpcTMessage
     type: FIXED
-    opcode: 52
+    opcode: 8
     length: 11
     structure:
-      - name: verify
-        type: SHORT
-        trans: ADD
       - name: component_hash
         type: INT
-        order: MIDDLE
+        order: INVERSE_MIDDLE
+      - name: component_slot
+        type: SHORT
+        order: LITTLE
+      - name: verify
+        type: SHORT
+        order: LITTLE
       - name: npc_index
         type: SHORT
         order: LITTLE
-      - name: component_slot
-        type: SHORT
-        trans: ADD
       - name: movement_type
         type: BYTE
-        trans: ADD
-    # @TODO Haven't mathed this yet.
+
   - message: org.alter.game.message.impl.OpNpcUMessage
     type: FIXED
-    opcode: 93
+    opcode: 49
     length: 11
     ignore: true
     structure:
@@ -670,13 +664,13 @@ client-packets:
 
   - message: org.alter.game.message.impl.OpLocUMessage
     type: FIXED
-    opcode: 43
+    opcode: 39
     length: 15
     ignore: true
 
   - message: org.alter.game.message.impl.OpNpc1Message
     type: FIXED
-    opcode: 91
+    opcode: 31
     length: 3
     structure:
       - name: movement_type
@@ -688,17 +682,27 @@ client-packets:
 
   - message: org.alter.game.message.impl.OpNpc2Message
     type: FIXED
-    opcode: 83
+    opcode: 76
+    length: 3
+    structure:
+      - name: movement_type
+        type: BYTE
+      - name: index
+        type: SHORT
+        order: LITTLE
+
+  - message: org.alter.game.message.impl.OpNpc3Message
+    type: FIXED
+    opcode: 11
     length: 3
     structure:
       - name: index
         type: SHORT
-        trans: ADD
       - name: movement_type
         type: BYTE
         trans: ADD
 
-  - message: org.alter.game.message.impl.OpNpc3Message
+  - message: org.alter.game.message.impl.OpNpc4Message
     type: FIXED
     opcode: 80
     length: 3
@@ -708,178 +712,164 @@ client-packets:
         order: LITTLE
       - name: movement_type
         type: BYTE
-        trans: ADD
-
-  - message: org.alter.game.message.impl.OpNpc4Message
-    type: FIXED
-    opcode: 29
-    length: 3
-    structure:
-      - name: index
-        type: SHORT
-        trans: ADD
-      - name: movement_type
-        type: BYTE
-        trans: SUBTRACT
 
   - message: org.alter.game.message.impl.OpNpc5Message
     type: FIXED
-    opcode: 49
+    opcode: 30
     length: 3
     structure:
       - name: movement_type
         type: BYTE
+        trans: SUBTRACT
       - name: index
         type: SHORT
-        trans: ADD
 
   - message: org.alter.game.message.impl.OpNpc6Message
     type: FIXED
-    opcode: 55
+    opcode: 25
     length: 2
     structure:
       - name: npc_id
         type: SHORT
-        order: LITTLE
+        trans: ADD
 
   - message: org.alter.game.message.impl.OpObj1Message
     type: FIXED
-    opcode: 81
+    opcode: 67
     length: 7
     structure:
+      - name: movement_type
+        type: BYTE
+        trans: SUBTRACT
+      - name: z
+        type: SHORT
+        trans: ADD
+        order: LITTLE
       - name: item
         type: SHORT
         trans: ADD
         order: LITTLE
-      - name: z
-        type: SHORT
-      - name: movement_type
-        type: BYTE
-        trams: ADD
       - name: x
         type: SHORT
+        trans: ADD
         order: LITTLE
 
   - message: org.alter.game.message.impl.OpObj2Message
     type: FIXED
-    opcode: 33
+    opcode: 58
     length: 7
     structure:
-      - name: z
+      - name: x
         type: SHORT
-        trans: ADD
-      - name: item
-        type: SHORT
-        trans: ADD
         order: LITTLE
       - name: movement_type
         type: BYTE
-      - name: x
+        trans: NEGATE
+      - name: item
+        type: SHORT
+        order: LITTLE
+      - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
 
   - message: org.alter.game.message.impl.OpObj3Message
     type: FIXED
-    opcode: 28
+    opcode: 72
     length: 7
     structure:
       - name: x
         type: SHORT
         trans: ADD
-      - name: movement_type
-        type: BYTE
       - name: item
         type: SHORT
         trans: ADD
-        order: LITTLE
       - name: z
         type: SHORT
-        trans: ADD
+        order: LITTLE
+      - name: movement_type
+        type: BYTE
+        trans: NEGATE
 
   - message: org.alter.game.message.impl.OpObj4Message
     type: FIXED
-    opcode: 94
+    opcode: 53
     length: 7
     structure:
-      - name: x
-        type: SHORT
-        trans: ADD
       - name: movement_type
         type: BYTE
-        trans: ADD
+        trans: SUBTRACT
+      - name: item
+        type: SHORT
+        order: LITTLE
       - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
-      - name: item
+      - name: x
         type: SHORT
+        trans: ADD
         order: LITTLE
 
   - message: org.alter.game.message.impl.OpObj5Message
     type: FIXED
-    opcode: 19
+    opcode: 45
     length: 7
     structure:
-      - name: z
-        type: SHORT
-        order: LITTLE
-      - name: movement_type
-        type: BYTE
-        trans: NEGATE
       - name: x
         type: SHORT
+        trans: ADD
+      - name: movement_type
+        type: BYTE
+        trans: ADD
       - name: item
         type: SHORT
-        order: LITTLE
+        trans: ADD
+      - name: z
+        type: SHORT
+        trans: ADD
 
   - message: org.alter.game.message.impl.OpObj6Message
     type: FIXED
-    opcode: 78
+    opcode: 12
     length: 6
     structure:
-      - name: z
-        type: SHORT
-      - name: item
-        type: SHORT
-        order: LITTLE
       - name: x
         type: SHORT
+        order: LITTLE
+      - name: item
+        type: SHORT
+        trans: ADD
+      - name: z
+        type: SHORT
+        trans: ADD
         order: LITTLE
 
-  # @TODO Later
+    # @TODO Match it.
   - message: org.alter.game.message.impl.OpObjUMessage
     type: FIXED
-    opcode: 15
+    opcode: 35
     length: 15
+    ignore: true
     structure:
       - name: component_hash
-        type: INT
-        order: INVERSE_MIDDLE
+        type: SHORT
       - name: movement_type
-        type: BYTE
-        trans: NEGATE
+        type: SHORT
       - name: x
         type: SHORT
-        order: LITTLE
       - name: z
         type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: slot
         type: SHORT
-        trans: ADD
       - name: ground_item
         type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: item
         type: SHORT
-        order: LITTLE
 
   - message: org.alter.game.message.impl.ResumePObjDialogMessage
     type: FIXED
-    opcode: 61
+    opcode: 41
     length: 2
     structure:
       - name: item
@@ -887,7 +877,7 @@ client-packets:
 
   - message: org.alter.game.message.impl.ResumePStringDialogMessage
     type: VARIABLE_BYTE
-    opcode: 65
+    opcode: 38
     structure:
       - name: input
         type: BYTES
@@ -895,7 +885,7 @@ client-packets:
 
   - message: org.alter.game.message.impl.ClientCheatMessage
     type: VARIABLE_BYTE
-    opcode: 82
+    opcode: 21
     structure:
       - name: command
         type: STRING
@@ -903,7 +893,7 @@ client-packets:
 
   - message: org.alter.game.message.impl.WindowStatusMessage
     type: FIXED
-    opcode: 16
+    opcode: 27
     length: 5
     structure:
       - name: mode
@@ -918,37 +908,33 @@ client-packets:
 
   - message: org.alter.game.message.impl.MoveGameClickMessage
     type: VARIABLE_BYTE
-    opcode: 59
+    opcode: 93
     structure:
-      - name: z
-        type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: x
         type: SHORT
-        order: LITTLE
       - name: movement_type
         type: BYTE
-        trans: SUBTRACT
+        trans: ADD
+      - name: z
+        type: SHORT
+        order: LITTLE
 
   - message: org.alter.game.message.impl.MoveMinimapClickMessage
     type: VARIABLE_BYTE
     opcode: 0
     structure:
-      - name: z
-        type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: x
         type: SHORT
-        order: LITTLE
       - name: movement_type
         type: BYTE
-        trans: SUBTRACT
+        trans: ADD
+      - name: z
+        type: SHORT
+        order: LITTLE
 
   - message: org.alter.game.message.impl.TeleportMessage
     type: FIXED
-    opcode: 60
+    opcode: 4
     length: 9
     structure:
       - name: unknown
@@ -957,131 +943,109 @@ client-packets:
       - name: x
         type: SHORT
         trans: ADD
+        order: LITTLE
       - name: height
         type: BYTE
         trans: ADD
       - name: z
         type: SHORT
         trans: ADD
-        order: LITTLE
 
   - message: org.alter.game.message.impl.OpLoc1Message
     type: FIXED
-    opcode: 10
+    opcode: 37
     length: 7
     structure:
-      - name: x
-        type: SHORT
-        order: LITTLE
-        sign: UNSIGNED
-      - name: movement_type
-        type: BYTE
-        trans: ADD
-        sign: UNSIGNED
-      - name: z
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-        sign: UNSIGNED
-      - name: id
-        type: SHORT
-        trans: ADD
-        sign: UNSIGNED
-
-  - message: org.alter.game.message.impl.OpLoc2Message
-    type: FIXED
-    opcode: 39
-    length: 7
-    structure:
-      - name: x
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-        sign: UNSIGNED
       - name: z
         type: SHORT
         order: LITTLE
-        sign: UNSIGNED
-      - name: id
+      - name: x
         type: SHORT
-        trans: ADD
         order: LITTLE
-        sign: UNSIGNED
       - name: movement_type
         type: BYTE
         trans: SUBTRACT
-        sign: UNSIGNED
+      - name: id
+        type: SHORT
+
+  - message: org.alter.game.message.impl.OpLoc2Message
+    type: FIXED
+    opcode: 9
+    length: 7
+    structure:
+      - name: z
+        type: SHORT
+        order: LITTLE
+      - name: id
+        type: SHORT
+        trans: ADD
+        order: LITTLE
+      - name: movement_type
+        type: BYTE
+      - name: x
+        type: SHORT
+        trans: ADD
 
   - message: org.alter.game.message.impl.OpLoc3Message
     type: FIXED
-    opcode: 44
+    opcode: 42
     length: 7
     structure:
       - name: x
         type: SHORT
         trans: ADD
-        order: LITTLE
-        sign: UNSIGNED
-      - name: id
-        type: SHORT
-        order: LITTLE
-        sign: UNSIGNED
+      - name: movement_type
+        type: BYTE
+        trans: SUBTRACT
       - name: z
         type: SHORT
         trans: ADD
+      - name: id
+        type: SHORT
+        trans: ADD
         order: LITTLE
-        sign: UNSIGNED
-      - name: movement_type
-        type: BYTE
-        trans: NEGATE
-        sign: UNSIGNED
 
   - message: org.alter.game.message.impl.OpLoc4Message
     type: FIXED
-    opcode: 48
+    opcode: 59
     length: 7
     structure:
-      - name: id
-        type: SHORT
-        trans: ADD
-        sign: UNSIGNED
-      - name: movement_type
-        type: BYTE
-        trans: ADD
-        sign: UNSIGNED
       - name: z
         type: SHORT
         trans: ADD
-        sign: UNSIGNED
+        order: LITTLE
       - name: x
         type: SHORT
         order: LITTLE
-        sign: UNSIGNED
+      - name: id
+        type: SHORT
+      - name: movement_type
+        type: BYTE
+        trans: ADD
 
   - message: org.alter.game.message.impl.OpLoc5Message
     type: FIXED
-    opcode: 72
+    opcode: 1
     length: 7
     structure:
       - name: movement_type
         type: BYTE
-        trans: NEGATE
       - name: id
+        type: SHORT
+        trans: ADD
+        order: LITTLE
+      - name: z
         type: SHORT
         trans: ADD
         order: LITTLE
       - name: x
         type: SHORT
         trans: ADD
-      - name: z
-        type: SHORT
-        trans: ADD
         order: LITTLE
 
-    # @Done
   - message: org.alter.game.message.impl.IfButtonMessage
     type: FIXED
-    opcodes: 64,70,79,92,20,71,38,63,34,69
+    opcodes: 34,83,6,52,32,47,82,84,24,22 #64,70,79,92,20,71,38,63,34,69
     length: 8
     structure:
       - name: hash
@@ -1096,19 +1060,20 @@ client-packets:
 
   - message: org.alter.game.message.impl.ResumePauseButtonMessage
     type: FIXED
-    opcode: 76
+    opcode: 68
     length: 6
     structure:
-      - name: hash
-        type: INT
-        order: INVERSE_MIDDLE
       - name: slot
         type: SHORT
         order: LITTLE
+        trans: ADD
+      - name: hash
+        type: INT
+        order: MIDDLE
 
   - message: org.alter.game.message.impl.ResumePCountDialogMessage
     type: FIXED
-    opcode: 11
+    opcode: 50
     length: 4
     structure:
       - name: input
@@ -1117,18 +1082,15 @@ client-packets:
 
   - message: org.alter.game.message.impl.OpLoc6Message
     type: FIXED
-    opcode: 68
+    opcode: 71
     length: 2
     structure:
       - name: id
         type: SHORT
-        trans: ADD
-        order: LITTLE
-        sign: UNSIGNED
 
   - message: org.alter.game.message.impl.CloseModalMessage
     type: FIXED
-    opcode: 56
+    opcode: 81
     length: 0
 
   #  - message: org.alter.game.message.impl.ClanJoinChatLeaveChatMessage
@@ -1141,7 +1103,7 @@ client-packets:
   #
   - message: org.alter.game.message.impl.EventCameraPositionMessage
     type: FIXED
-    opcode: 77
+    opcode: 91
     length: 4
     structure:
       - name: yaw
@@ -1158,12 +1120,12 @@ client-packets:
     # @Done
   - message: org.alter.game.message.impl.EventMouseMoveMessage # TODO: need to refactor code to see what values are received
     type: VARIABLE_BYTE
-    opcode: 95
+    opcode: 20
     ignore: true
 
   - message: org.alter.game.message.impl.DetectModifiedClientMessage
     type: FIXED
-    opcode: 36
+    opcode: 65
     length: 4
     structure:
       - name: dummy
@@ -1172,7 +1134,7 @@ client-packets:
 
   - message: org.alter.game.message.impl.UpdateAppearanceMessage
     type: FIXED
-    opcode: 4
+    opcode: 18
     length: 13
     structure:
       - name: gender
@@ -1206,12 +1168,12 @@ client-packets:
   - message: org.alter.game.message.impl.NoTimeoutMessage
     type: FIXED
     ignore: true
-    opcode: 26
+    opcode: 28
     length: 0
 
   - message: org.alter.game.message.impl.MessagePublicMessage
     type: VARIABLE_BYTE
-    opcode: 12
+    opcode: 94
     structure:
       - name: type
         type: BYTE
@@ -1225,34 +1187,33 @@ client-packets:
 
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: PING_STATISTICS - need to refactor code to see what values are received
     type: FIXED
-    opcode: 67
+    opcode: 33
     length: 10
     ignore: true
     # @Done
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: EVENT_MOUSE_CLICK - need to refactor code to see what values are received
     type: FIXED
-    opcode: 13
+    opcode: 16
     length: 6
     ignore: true
     # @Done
   - message: org.alter.game.message.impl.MapBuildCompleteMessage
     type: FIXED
-    opcode: 74
+    opcode: 78
     length: 0
     # @Done
   - message: org.alter.game.message.impl.EventAppletFocusMessage
     type: FIXED
-    opcode: 66
+    opcode: 7
     length: 1
     structure:
       - name: state
         type: BYTE
 
-  # IGNORED SINCE IT DID NOT MATCH DEOB
   - message: org.alter.game.message.impl.EventKeyboardMessage
     type: VARIABLE_SHORT
     ignore: true
-    opcode: 5
+    opcode: 19
     structure:
       - name: key
         type: BYTE
@@ -1265,22 +1226,22 @@ client-packets:
 
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: CLAN_KICKUSER
     type: VARIABLE_BYTE
-    opcode: 86
+    opcode: 62
     ignore: true
 
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: CHAT_SETMODE / SET_CHATFILTERSETTINGS
     type: FIXED
-    opcode: 54
+    opcode: 86
     length: 3
     ignore: true
 
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: BUG_REPORT
     type: VARIABLE_SHORT
-    opcode: 42
+    opcode: 46
 
   - message: org.alter.game.message.impl.MessagePrivateSenderMessage
     type: VARIABLE_SHORT
-    opcode: 6
+    opcode: 66
     structure:
       - name: length
         type: SHORT
@@ -1291,15 +1252,14 @@ client-packets:
 
   - message: org.alter.game.message.impl.OpPlayer4Message
     type: FIXED
-    opcode: 62
+    opcode: 55
     length: 3
     structure:
-      - name: unknown
-        type: BYTE
-        trans: NEGATE
       - name: index
         type: SHORT
-        order: LITTLE
+        trans: ADD
+      - name: unknown
+        type: BYTE
 
   #  - message: org.alter.game.message.impl.IgnoreListDeleteMessage
   #    type: VARIABLE_BYTE
@@ -1311,72 +1271,72 @@ client-packets:
 
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: FREECAM_EXIT
     type: FIXED
-    opcode: 3
+    opcode: 54
     length: 0
     ignore: true
 
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: SEND_SNAPSHOT
     type: VARIABLE_BYTE
-    opcode: 73
+    opcode: 23
     ignore: true
 
   - message: org.alter.game.message.impl.OpPlayer1Message
     type: FIXED
-    opcode: 90
-    length: 3
-    structure:
-      - name: unknown
-        type: BYTE
-        trans: SUBTRACT
-      - name: index
-        type: SHORT
-
-  - message: org.alter.game.message.impl.OpPlayer8Message
-    type: FIXED
-    opcode: 8
+    opcode: 79
     length: 3
     structure:
       - name: index
         type: SHORT
         trans: ADD
+        order: LITTLE
       - name: unknown
         type: BYTE
-        trans: NEGATE
+        trans: SUBTRACT
+
+  - message: org.alter.game.message.impl.OpPlayer8Message
+    type: FIXED
+    opcode: 70
+    length: 3
+    structure:
+      - name: index
+        type: SHORT
+        trans: ADD
+        order: LITTLE
+      - name: unknown
+        type: BYTE
+        trans: SUBTRACT
 
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: OPOBJ5
     type: FIXED
-    opcode: 72
+    opcode: 45
     length: 7
     ignore: true
 
   - message: org.alter.game.message.impl.OpObjTMessage
     type: FIXED
-    opcode: 24
+    opcode: 36
     length: 15
     structure:
-      - name: movement_type
-        type: BYTE
-        trans: ADD
-      - name: obj
-        type: SHORT
-        order: LITTLE
-      - name: item
-        type: SHORT
-        order: LITTLE
-      - name: x
+      - name: z
         type: SHORT
         order: LITTLE
       - name: slot
         type: SHORT
         trans: ADD
-        order: LITTLE
-      - name: hash
-        type: INT
-        order: MIDDLE
-      - name: z
+      - name: obj
         type: SHORT
         trans: ADD
+      - name: hash
+        type: INT
         order: LITTLE
+      - name: item
+        type: SHORT
+        trans: ADD
+      - name: movement_type
+        type: BYTE
+        trans: NEGATE
+      - name: x
+        type: SHORT
 
   #  - message: org.alter.game.message.impl.FriendListDeleteMessage
   #    type: VARIABLE_BYTE
@@ -1388,53 +1348,50 @@ client-packets:
   #
   - message: org.alter.game.message.impl.OpPlayerTMessage
     type: FIXED
-    opcode: 47
+    opcode: 90
     length: 11
     structure:
-      - name: spell_child_index
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-      - name: verify
-        type: SHORT
-        trans: ADD
       - name: player_index
         type: SHORT
-        order: LITTLE
-      - name: keydown
-        type: BYTE
         trans: ADD
       - name: component_hash
         type: INT
+        order: MIDDLE
+      - name: keydown
+        type: BYTE
+      - name: verify
+        type: SHORT
+      - name: spell_child_index
+        type: SHORT
+        order: LITTLE
 
   - message: org.alter.game.message.impl.OpPlayer2Message
     type: FIXED
-    opcode: 35
+    opcode: 56
     length: 3
     structure:
-      - name: unknown
-        type: BYTE
-        trans: ADD
       - name: index
         type: SHORT
+        trans: ADD
         order: LITTLE
+      - name: unknown
+        type: BYTE
+        trans: NEGATE
 
   - message: org.alter.game.message.impl.OpPlayer3Message
     type: FIXED
-    opcode: 32
+    opcode: 40
     length: 3
     structure:
-      - name: index
-        type: SHORT
-        order: LITTLE
       - name: unknown
         type: BYTE
-        trans: SUBTRACT
+      - name: index
+        type: SHORT
 
 
   - message: org.alter.game.message.impl.IfModelOp1Message # BUTTON_CLICK
     type: FIXED
-    opcode: 53
+    opcode: 5
     length: 4
     structure:
       - name: component
@@ -1442,128 +1399,129 @@ client-packets:
 
   - message: org.alter.game.message.impl.OpPlayer7Message
     type: FIXED
-    opcode: 7
+    opcode: 77
     length: 3
     structure:
       - name: index
         type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: unknown
         type: BYTE
-        trans: ADD
+        trans: NEGATE
 
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: FRIEND_SETRANK
     type: VARIABLE_BYTE
-    opcode: 45
+    opcode: 26
     length: -1
     ignore: true
 
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: OPPLAYERU
     type: FIXED
-    opcode: 31
+    opcode: 69
     length: 11
     ignore: true
 
   - message: org.alter.game.message.impl.IfButtonTMessage
     type: FIXED
-    opcode: 23
+    opcode: 15
     length: 16
     structure:
-      - name: toSlot
-        type: SHORT
-        order: LITTLE
-      - name: toItem
-        type: SHORT
-      - name: from_component_hash
-        type: INT
-        order: INVERSE_MIDDLE
-      - name: fromSlot
-        type: SHORT
-        trans: ADD
-        order: LITTLE
-      - name: to_component_hash
-        type: INT
-        order: MIDDLE
       - name: fromItem
         type: SHORT
         trans: ADD
+      - name: toSlot
+        type: SHORT
+        order: LITTLE
+      - name: fromSlot
+        type: SHORT
+        trans: ADD
+      - name: toItem
+        type: SHORT
+        trans: ADD
+        order: LITTLE
+      - name: from_component_hash
+        type: INT
+        order: MIDDLE
+      - name: to_component_hash
+        type: INT
+        order: MIDDLE
 
   - message: org.alter.game.message.impl.OpPlayer5Message
     type: FIXED
-    opcode: 22
+    opcode: 61
     length: 3
     structure:
+      - name: index
+        type: SHORT
+        trans: ADD
       - name: unknown
         type: BYTE
         trans: NEGATE
-      - name: index
-        type: SHORT
 
-  #  - message: org.alter.game.message.impl.FriendListAddMessage
-  #    type: VARIABLE_BYTE
-  #    opcode: 50
-  #    length: -1
-  #    structure:
-  #      - name: name
-  #        type: STRING
-  #
-  #  - message: org.alter.game.message.impl.IgnoreListAddMessage
-  #    type: VARIABLE_BYTE
-  #    opcode: 11
-  #    structure:
-  #      - name: name
-  #        type: STRING
+    #  - message: org.alter.game.message.impl.FriendListAddMessage
+    #    type: VARIABLE_BYTE
+    #    opcode: 50
+    #    length: -1
+    #    structure:
+    #      - name: name
+    #        type: STRING
+    #
+    #  - message: org.alter.game.message.impl.IgnoreListAddMessage
+    #    type: VARIABLE_BYTE
+    #    opcode: 11
+    #    structure:
+    #      - name: name
+    #        type: STRING
 
+    # @Done
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: REFLECTION_CHECK_REPLY
     type: VARIABLE_BYTE
-    opcode: 85
+    opcode: 75
     length: -1
     ignore: true
 
   - message: org.alter.game.message.impl.OpLocTMessage
     type: FIXED
-    opcode: 25
+    opcode: 89
     length: 15
     structure:
       - name: movement_type
         type: BYTE
-        trans: ADD
-      - name: hash
-        type: INT
-        order: MIDDLE
-      - name: slot
+        trans: NEGATE
+      - name: item
         type: SHORT
-        trans: ADD
-        order: LITTLE
       - name: obj
+        type: SHORT
+      - name: z
         type: SHORT
       - name: x
         type: SHORT
+        trans: ADD
+      - name: slot
+        type: SHORT
         order: LITTLE
-      - name: z
-        type: SHORT
-        trans: ADD
-      - name: item
-        type: SHORT
-        trans: ADD
+      - name: hash
+        type: INT
+        order: INVERSE_MIDDLE
 
+  # DONE
   - message: org.alter.game.message.impl.OpPlayer6Message
     type: FIXED
-    opcode: 57
+    opcode: 64
     length: 3
     structure:
       - name: index
         type: SHORT
         trans: ADD
+        order: LITTLE
       - name: unknown
         type: BYTE
-        trans: NEGATE
+        trans: SUBTRACT
 
     # UNKNOWN is name's length+1
   - message: org.alter.game.message.impl.ResumePNameDialogMessage
     type: VARIABLE_BYTE
-    opcode: 58
+    opcode: 29
+    ignore: true
     structure:
       - name: name
         type: BYTES
@@ -1572,27 +1530,26 @@ client-packets:
     # @Done
   - message: org.alter.game.message.impl.IgnoreMessage # TODO: LOGIN_STATISTICS
     type: VARIABLE_BYTE
-    opcode: 88
+    opcode: 57
     ignore: true
 
-  - message: org.alter.game.message.impl.IgnoreMessage # SteamClient's Packet
-    type: VARIABLE_BYTE
-    opcode: 30
-    ignore: true
-
-  - message: org.alter.game.message.impl.IgnoreMessage # SteamClient's Packet
-    type: VARIABLE_BYTE
-    opcode: 17
-    ignore: true
-
-  - message: org.alter.game.message.impl.EventMouseClickMessage
+    # @Done
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: EVENT_MOUSE_SCROLL
     type: FIXED
-    opcode: 13
-    length: 6
-    structure:
-      - name: ignored
-        type: SHORT
-      - name: x
-        type: SHORT
-      - name: y
-        type: SHORT
+    opcode: 95
+    length: 2
+    ignore: true
+
+    # @Done
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: EVENT_MOUSE_SCROLL
+    type: FIXED
+    opcode: 17
+    length: 2
+    ignore: true
+
+    # @Done
+  - message: org.alter.game.message.impl.IgnoreMessage # TODO: EVENT_MOUSE_SCROLL
+    type: FIXED
+    opcode: 43
+    length: 7
+    ignore: true

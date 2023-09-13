@@ -71,7 +71,20 @@ class MessageStructureSet {
                 packetStructure?.forEach { structure ->
                     val structValues = structure as LinkedHashMap<*, *>
                     val name = structValues["name"] as String
-                    val order = if (structValues.containsKey("order")) DataOrder.valueOf(structValues["order"] as String) else DataOrder.BIG
+                    val order: () -> DataOrder = {
+                        if (structValues.containsKey("order")) {
+                            if (structValues["order"] != "IME") {
+                                DataOrder.valueOf(structValues["order"] as String)
+                            } else {
+                                DataOrder.INVERSE_MIDDLE
+                            }
+                        } else {
+                            DataOrder.BIG
+                        }
+                    }
+
+
+
                     val transform = if (structValues.containsKey("trans")) DataTransformation.valueOf(structValues["trans"] as String) else DataTransformation.NONE
                     val type = DataType.valueOf(structValues["type"] as String)
                     val signature = if (structValues.containsKey("sign")) DataSignature.valueOf((structValues["sign"] as String).uppercase()) else DataSignature.SIGNED

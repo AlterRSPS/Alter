@@ -7,15 +7,15 @@ package org.alter.game.model.region.update
  * @author Tom <rspsmods@gmail.com>
  */
 enum class EntityUpdateType(val id: Int) {
-    REMOVE_OBJECT(id = 0), // LOC_DEL
-    PREFETCH_GAMEOBJECTS(id = 1), // PREFETCH_GAMEOBJECTS
-    MAP_ANIM(id = 2), // MAP_ANIM
+    LEGACY_REMOVE_GROUND_ITEM(id = 0), // OBJ_DEL_LEGACY
+    SPAWN_GROUND_ITEM(id = 1), // OBJ_ADD
+    PLAY_TILE_SOUND(id = 2), // AREA_SOUND
     ANIMATE_OBJECT(id = 3), // LOC_ANIM
-    SPAWN_PROJECTILE(id = 4), //  MAPPROJ_ANIM
-    SPAWN_OBJECT(id = 5), // LOC_ADD_CHANGE
-    PLAY_TILE_SOUND(id = 6), // AREA_SOUND
-    LEGACY_REMOVE_GROUND_ITEM(id = 7), // OBJ_DEL_LEGACY
+    UPDATE_GROUND_ITEM(id = 4), // OBJ_COUNT
+    PREFETCH_GAMEOBJECTS(id = 5), // PREFETCH_GAMEOBJECTS
+    REMOVE_OBJECT(id = 6), // LOC_DEL
+    SPAWN_OBJECT(id = 7), // LOC_ADD_CHANGE
     REMOVE_GROUND_ITEM(id = 8), // OBJ_DEL
-    SPAWN_GROUND_ITEM(id = 9), // OBJ_ADD
-    UPDATE_GROUND_ITEM(id = 10), // OBJ_COUNT
+    MAP_ANIM(id = 9), // MAP_ANIM
+    SPAWN_PROJECTILE(id = 10), //  MAPPROJ_ANIM
 }
