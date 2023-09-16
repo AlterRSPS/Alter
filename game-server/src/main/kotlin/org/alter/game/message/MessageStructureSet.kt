@@ -88,7 +88,7 @@ class MessageStructureSet {
                     val transform = if (structValues.containsKey("trans")) DataTransformation.valueOf(structValues["trans"] as String) else DataTransformation.NONE
                     val type = DataType.valueOf(structValues["type"] as String)
                     val signature = if (structValues.containsKey("sign")) DataSignature.valueOf((structValues["sign"] as String).uppercase()) else DataSignature.SIGNED
-                    packetValues[name] = MessageValue(id = name, order = order, transformation = transform, type = type,
+                    packetValues[name] = MessageValue(id = name, order = order(), transformation = transform, type = type,
                         signature = signature)
                 }
                 val messageStructure = MessageStructure(type = packetType, opcodes = packetOpcodes.toIntArray(), length = packetLength,
