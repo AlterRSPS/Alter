@@ -1,0 +1,1 @@
+description = "Just a simple logger."
