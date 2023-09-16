@@ -9,6 +9,7 @@ include(":net")
 include(":game-plugins")
 include(":game-api")
 include(":game-server")
+include(":Logger")
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -17,3 +18,4 @@ dependencyResolutionManagement {
         }
     }
 }
+include("Logger")
