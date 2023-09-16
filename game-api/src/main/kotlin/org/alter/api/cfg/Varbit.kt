@@ -1077,4 +1077,22 @@ object Varbit {
     const val PRESET_RUNE_POUCH_8_RUNE_2_AMOUNT = 65366
     const val PRESET_RUNE_POUCH_8_RUNE_1_AMOUNT = 65367
     const val PRESET_RUNE_POUCH_8_RUNE_4_INDEX = 65368
+
+
+
+    // SpellBook filter tab @TODO
+    const val SHOW_COMBAT_SPELLS_STATE = 6605
+    const val SHOW_TELEPORT_SPELLS_STATE = 6609
+    const val SHOW_UTILITY_SPELLS = 6606
+    const val SHOW_SPELLS_LACK_MAGIC_LEVEL = 6607
+    const val SHOW_SPELLS_LACK_RUNES = 6608
+    const val SHOW_SPELLS_LACK_REQUIREMENTS = 12137
+    const val ICON_RESIZING = 6548
+
+    // Prayer filter tab
+    const val LOWER_TIERS_OF_TIERED_PRAYERS = 6574
+    const val SHOW_TIERED_PRAYERS_EVEN_IF_MULTI = 6575 // LOWER_TIERS_OF_TIERED_PRAYERS Has to be (1) Disabled other wise ull get output: "This option can only be toggled when the "Show lower tiers of tiered prayers" is off."
+    const val SHOW_RAPID_HEALING_PRAYERS = 6576
+    const val SHOW_PRAYERS_YOU_LACK_THE_LEVEL = 6577
+    const val SHOW_PRAYERS_YOU_LACK_THE_REQUIREMENTS = 6578
 }
