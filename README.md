@@ -1,5 +1,5 @@
 # Alter
-[![revision: 213][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/sAzCuuwkpN) ![jdk-badge] ![](https://tokei.rs/b1/github/AlterRSPS/Alter)
+[![revision: 215][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/sAzCuuwkpN) ![jdk-badge] ![](https://tokei.rs/b1/github/AlterRSPS/Alter)
 
 **Alter** is a modified version of [RSMod](https://github.com/Tomm0017/rsmod) a highly flexible user-friendly game server for use with the OSRS client. Implemented in a modular way,
 the framework allows developers to make and create any sort of plugin they wish without having to modify the core game module.
@@ -12,7 +12,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * You can also watch on youtube (Without explanation) click on the image.. [![Youtube](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Test.jpg)](https://www.youtube.com/watch?v=2Tu-NTzMbf0)
 
 * ### First of all Download:
-* [2023-05-03-rev213.tar.gz](https://archive.runestats.com/osrs/2023-05-03-rev213.tar.gz) , And make sure you're using correct Java Version.
+* [2023-08-03-rev215.tar.gz](https://archive.runestats.com/osrs/2023-08-03-rev215.tar.gz) , And make sure you're using correct Java Version.
 * Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o).
 * Secondly open Intellij, (If you already have a project open, either do `File -> Close`, or `File -> New -> Project from Version Control`)
 * If you decided to use `Close method` you will see this window, click on `Get from VCS`
@@ -20,7 +20,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Second paste `https://github.com/AlterRSPS/Alter` in URL Field and hit Clone. </br>
   ![tutor2](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tuor2.png)
 * Hit `Clone` and Let the project fully load.
-* Now open the `2023-05-03-rev213.tar.gz` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
+* Now open the `2023-08-03-rev215.tar.gz` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
   ![tutor6](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor6.png)
 - Xtea.json has to be in same folder like: Data /`api.yml` , `blocks.yml` , etc..
 * Now click on `Gradle` button on right side. </br>
@@ -50,7 +50,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 ### Some info:
 * Original project founder: [Tomm0017](https://github.com/Tomm0017)
 
-[patch]: https://oldschool.runescape.wiki/w/Update:Points-Based_Combat_Achievements
-[rev-badge]: https://img.shields.io/badge/Revision-213-blueviolet
+[patch]: https://oldschool.runescape.wiki/w/Update:Desert_Treasure_II_-_The_Fallen_Empire
+[rev-badge]: https://img.shields.io/badge/Revision-215-blueviolet
 [license-badge]: https://img.shields.io/badge/license-ISC-informational
 [jdk-badge]: https://img.shields.io/badge/JDK-17-blue
