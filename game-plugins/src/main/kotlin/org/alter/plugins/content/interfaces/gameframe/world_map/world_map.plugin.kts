@@ -35,19 +35,9 @@ on_button(interfaceId = 160, component = 53) {
 }
 
 /**
- * Esc key closes.
+ * Esc key / 'x' closes.
  */
-on_button(interfaceId = WORLD_MAP_INTERFACE_ID, component = 4) {
-    player.closeInterface(WORLD_MAP_INTERFACE_ID)
-    player.openOverlayInterface(player.interfaces.displayMode)
-    player.attr.remove(LAST_TILE)
-    player.timers.remove(UPDATE_TIMER)
-}
-
-/**
- * 'x' button closes
- */
-on_button(interfaceId = WORLD_MAP_INTERFACE_ID, component = 38) {
+on_button(interfaceId = WORLD_MAP_INTERFACE_ID, 4, 38) {
     player.closeInterface(WORLD_MAP_INTERFACE_ID)
     player.openOverlayInterface(player.interfaces.displayMode)
     player.attr.remove(LAST_TILE)

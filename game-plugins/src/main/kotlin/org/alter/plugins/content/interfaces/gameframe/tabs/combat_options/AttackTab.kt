@@ -12,15 +12,12 @@ import org.alter.api.ext.setVarp
  */
 object AttackTab {
     const val ATTACK_TAB_INTERFACE_ID = 593
-
     const val ATTACK_STYLE_VARP = 43
     const val DISABLE_AUTO_RETALIATE_VARP = 172
-
     private const val SPECIAL_ATTACK_ENERGY_VARP = 300
     const val SPECIAL_ATTACK_VARP = 301
 
     val SPEC_RESTORE = TimerKey()
-
 
     fun setEnergy(p: Player, amount: Int) {
         check(amount in 0..100)
