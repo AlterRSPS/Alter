@@ -2,9 +2,9 @@
 fastutil = "8.2.1"
 sparkCore = "2.3"
 kotlinStdlibJdk8 = "1.8.20-RC2"
-slf4jApi = "1.7.25"
-log4jSlf4jImpl = "2.11.2"
-kotlinLogging = "1.5.9"
+slf4jApi = "2.0.9"
+log4jSlf4jImpl = "2.20.0"
+kotlinLogging = "3.0.3"
 jacksonDataformatYaml = "2.13.0"
 jacksonDataformatToml = "2.13.0"
 jacksonDatabind = "2.13.0"
@@ -19,6 +19,8 @@ kotlinTestJunit = "_"
 kotlin = "1.8.10"
 openrs2 = "0.1.0-SNAPSHOT"
 nettyAll = "4.0.34.Final"
+slf4j = "2.0.0-alpha0"
+csv = "0.7.3"
 
 [libraries]
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version.ref = "fastutil" }
@@ -26,6 +28,8 @@ spark-core = { group = "com.sparkjava", name = "spark-core", version.ref = "spar
 kotlin-stdlib-jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlinStdlibJdk8" }
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4jApi" }
 log4j-slf4j-impl = { group = "org.apache.logging.log4j", name = "log4j-slf4j-impl", version.ref = "log4jSlf4jImpl" }
+slf4j = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
+
 kotlin-logging = { group = "io.github.microutils", name = "kotlin-logging", version.ref = "kotlinLogging" }
 jackson-dataformat-yaml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-yaml", version = "2.14.2" }
 jackson-dataformat-toml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-toml", version.ref = "jacksonDataformatToml" }

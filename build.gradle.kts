@@ -52,6 +52,7 @@ allprojects {
         implementation(lib.cache)
         implementation(lib.netty.all)
         implementation(lib.kotlinx.serialization.core)
+        implementation(lib.slf4j)
         testImplementation(lib.junit)
         testImplementation(lib.kotlin.test.junit)
     }
