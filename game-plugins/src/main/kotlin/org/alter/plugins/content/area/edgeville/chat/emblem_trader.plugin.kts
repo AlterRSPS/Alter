@@ -18,11 +18,11 @@ val SKULL_LONG_DURATION = 2000
 
     on_npc_option(npc = Npcs.EMBLEM_TRADER, option = "Rewards") { open_shop(player) }
 
-    on_npc_option(npc = Npcs.EMBLEM_TRADER, option = "Coffer") {
-        player.queue {
-            coffer_option()
-        }
-    }
+    //on_npc_option(npc = Npcs.EMBLEM_TRADER, option = "Coffer") {
+    //    player.queue {
+    //        coffer_option()
+    //    }
+    //}
 
     on_npc_option(npc = Npcs.EMBLEM_TRADER, option = "skull") {
         player.queue {
