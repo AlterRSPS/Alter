@@ -418,6 +418,13 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     fun on_button(interfaceId: Int, component: Int, logic: (Plugin).() -> Unit) = r.bindButton(interfaceId, component, logic)
 
+    fun on_button(interfaceId: Int, vararg components: Int, logic: (Plugin).() -> Unit) {
+        components.forEach {
+            on_button(interfaceId, it, logic)
+        }
+    }
+
+
     /**
      * Invoke [logic] when [key] reaches a time value of 0.
      */
