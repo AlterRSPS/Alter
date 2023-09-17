@@ -1553,3 +1553,15 @@ client-packets:
     opcode: 43
     length: 7
     ignore: true
+
+  - message: org.alter.game.message.impl.EventMouseClickMessage
+    type: FIXED
+    opcode: 16
+    length: 6
+    structure:
+      - name: ignored # Movement type
+        type: SHORT
+      - name: x
+        type: SHORT
+      - name: y
+        type: SHORT
