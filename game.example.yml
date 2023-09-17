@@ -51,3 +51,6 @@ services:
   - class: org.alter.game.service.GameService
 
   - class: org.alter.game.service.login.LoginService
+
+  - class: org.alter.plugins.service.worldlist.WorldListService
+    port: 4842

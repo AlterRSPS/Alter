@@ -1,5 +1,6 @@
 package org.alter.plugins.service.worldlist
 
+import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import org.alter.game.Server
 import org.alter.game.model.World
@@ -18,7 +19,7 @@ import java.nio.file.Paths
 /**
  * @author Triston Plummer ("Dread")
  *
- * Handles the initialisation of the network pipeline used for providing the client's world list. Perhaps in the future
+ * @TODO Handles the initialisation of the network pipeline used for providing the client's world list. Perhaps in the future,
  * if we decide to actually handle multiple worlds, this logic should be moved to a login service or some intermediate
  * service that can retrieve data from multiple worlds.
  */
@@ -39,10 +40,15 @@ class WorldListService : Service {
      */
     @Volatile private lateinit var worldEntry : WorldEntry
 
+    private lateinit var worldEntries : MutableList<WorldEntry>
+
+
     /**
      * The [ChannelFuture] for the network service
      */
     private lateinit var channelFuture : ChannelFuture
+
+
 
     /**
      * Initialises the [WorldListService] by checking that the world list configuration file exists,
@@ -70,7 +76,8 @@ class WorldListService : Service {
      */
     private fun parse() {
         Files.newBufferedReader(path).use { reader ->
-            worldEntry = Gson().fromJson<WorldEntry>(reader, WorldEntry::class.java)
+            val worldEntri: List<WorldEntry> = Gson().fromJson(reader, object : TypeToken<List<WorldEntry>>() {}.type)
+            worldEntries = worldEntri.toMutableList()
         }
     }
 
@@ -83,13 +90,13 @@ class WorldListService : Service {
     override fun bindNet(server: Server, world: World) {
 
         // The inbound channel handler for the world list protocol
-        val handler = WorldListChannelHandler(listOf(worldEntry))
+        val handler = WorldListChannelHandler(worldEntries)
 
         // Bind the world list network pipeline
         val bootstrap = server.bootstrap.clone()
         bootstrap.childHandler(WorldListChannelInitializer(handler))
         channelFuture = bootstrap.bind(port).syncUninterruptibly()
-        logger.info("World list service listening on port $port")
+        logger.info("World list service listening on port $port, ${worldEntries.size} loaded.")
     }
 
     /**
@@ -118,14 +125,16 @@ class WorldListService : Service {
      * Increments the player count for every entry in the world list
      */
     private val incrementPlayerCount : Plugin.() -> Unit = {
-        worldEntry.players++
+        // @TODO Add support for multi worlds
+        //worldEntry.players++
     }
 
     /**
      * Decrements the player count for every entry in the world list
      */
     private val decrementPlayerCount : Plugin.() -> Unit = {
-        worldEntry.players--
+        // @TODO Add support for multi worlds
+        //worldEntry.players--
     }
 
     companion object : KLogging()
