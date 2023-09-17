@@ -24,6 +24,7 @@ dependencies {
         implementation(bouncycastle)
         implementation(jackson.module.kotlin)
         implementation(jackson.dataformat.yaml)
+        implementation(kotlin.csv)
         testImplementation(junit)
     }
 }

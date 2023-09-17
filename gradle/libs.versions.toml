@@ -47,6 +47,7 @@ bouncycastle = { group = "org.bouncycastle", name =  "bcprov-jdk15on",version = 
 classgraph = { group = "io.github.classgraph", name = "classgraph", version = "4.8.157"}
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlinTestJunit"}
+kotlin-csv = { group = "com.github.doyaaaaaken", name = "kotlin-csv", version.ref = "csv"}
 
 openrs2-cache = { module = "org.openrs2:openrs2-cache", version.ref = "openrs2"}
 openrs2-buffer = { module = "org.openrs2:openrs2-buffer", version.ref = "openrs2"}
