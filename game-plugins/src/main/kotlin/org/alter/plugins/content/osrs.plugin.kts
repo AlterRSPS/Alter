@@ -12,6 +12,8 @@ set_modal_close_logic {
         player.interfaces.setModal(-1)
     }
 }
+
+val test = 0
 /**
  * Check if the player has a menu opened.
  */
