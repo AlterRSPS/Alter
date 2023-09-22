@@ -95,6 +95,9 @@ class NpcCombatBuilder {
     var dropTable = mutableListOf<tableDrops>()
 
     fun build(): NpcCombatDef {
+        /**
+         * @TODO Add indentifier if check fails
+         */
         check(maxHealth != -1) { "Max health must be set." }
         check(attackSpeed != -1) { "Attack speed must be set." }
         check(deathAnimList.isNotEmpty()) { "A death animation must be set." }

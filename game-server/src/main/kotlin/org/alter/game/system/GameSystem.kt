@@ -54,6 +54,7 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
     fun handleMessages() {
         for (i in 0 until service.maxMessagesPerCycle) {
             val next = messages.poll() ?: break
+            // @TODO Add debug logging
             next.handler.handle(client, world, next.message)
         }
     }
