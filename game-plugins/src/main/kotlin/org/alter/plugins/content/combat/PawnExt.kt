@@ -13,6 +13,7 @@ import org.alter.api.HitType
 import org.alter.api.ProjectileType
 import org.alter.api.ext.hit
 import org.alter.plugins.content.combat.formula.CombatFormula
+import java.lang.ref.WeakReference
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -23,6 +24,8 @@ fun Pawn.isAttacking(): Boolean = attr[COMBAT_TARGET_FOCUS_ATTR]?.get() != null
 fun Pawn.isBeingAttacked(): Boolean = timers.has(ACTIVE_COMBAT_TIMER)
 
 fun Pawn.getCombatTarget(): Pawn? = attr[COMBAT_TARGET_FOCUS_ATTR]?.get()
+
+fun Pawn.setCombatTarget(target: Pawn) = target.also { attr[COMBAT_TARGET_FOCUS_ATTR] = it as WeakReference<Pawn> }
 
 fun Pawn.removeCombatTarget() = attr.remove(COMBAT_TARGET_FOCUS_ATTR)
 

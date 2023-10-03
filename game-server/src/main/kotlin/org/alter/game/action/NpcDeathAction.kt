@@ -17,19 +17,19 @@ import java.lang.ref.WeakReference
  */
 object NpcDeathAction {
 
-    val deathPlugin: Plugin.() -> Unit = {
+    var deathPlugin: Plugin.() -> Unit = {
         val npc = ctx as Npc
-
-        npc.interruptQueues()
-        npc.stopMovement()
-        npc.lock()
-
-        npc.queue(TaskPriority.STRONG) {
-            death(npc)
+        if (!npc.world.plugins.executeNpcFullDeath(npc)) {
+            npc.interruptQueues()
+            npc.stopMovement()
+            npc.lock()
+            npc.queue(TaskPriority.STRONG) {
+                death(npc)
+            }
         }
     }
 
-    private suspend fun QueueTask.death(npc: Npc) {
+    suspend fun QueueTask.death(npc: Npc) {
         val world = npc.world
         val deathAnimation = npc.combatDef.deathAnimation
         val deathSound = npc.combatDef.defaultDeathSound
@@ -81,4 +81,5 @@ object NpcDeathAction {
         timers.clear()
         world.setNpcDefaults(this)
     }
+
 }

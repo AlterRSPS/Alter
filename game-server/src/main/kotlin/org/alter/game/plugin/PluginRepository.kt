@@ -102,6 +102,12 @@ class PluginRepository(val world: World) {
      */
     private val npcCombatPlugins = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
 
+
+    /**
+     * A map of plugins that contain custoom death plugin for specific npcs.
+     */
+    private val npcFullDeathPlugins = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
+
     /**
      * A map of plugins that will handle spells on npcs depending on the interface
      * hash of the spell.
@@ -561,9 +567,24 @@ class PluginRepository(val world: World) {
         npcCombatPlugins[npc] = plugin
     }
 
+
     fun executeNpcCombat(n: Npc): Boolean {
         val plugin = npcCombatPlugins[n.id] ?: return false
         n.executePlugin(plugin)
+        return true
+    }
+
+
+    fun bindNpcFullDeath(npc: Int, plugin: Plugin.() -> Unit) {
+        if (npcFullDeathPlugins.containsKey(npc)) {
+            logger.error("Npc is already bound to a full death plugin: $npc")
+            throw IllegalStateException("Npc is already bound to a full death plugin: $npc")
+        }
+        npcFullDeathPlugins[npc] = plugin
+    }
+    fun executeNpcFullDeath(npc: Npc): Boolean {
+        val plugin = npcFullDeathPlugins[npc.id] ?: return false
+        npc.executePlugin(plugin)
         return true
     }
 

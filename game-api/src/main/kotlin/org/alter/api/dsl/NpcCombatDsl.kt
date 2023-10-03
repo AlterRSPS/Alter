@@ -18,6 +18,10 @@ fun KotlinPlugin.set_combat_def(npc: Int, init: NpcCombatDsl.Builder.() -> Unit)
     set_combat_def(npc, builder.build())
 }
 
+fun KotlinPlugin.set_combat_def(vararg npc: Int, init: NpcCombatDsl.Builder.() -> Unit) {
+    npc.forEach { set_combat_def(it, init) }
+}
+
 object NpcCombatDsl {
 
     @DslMarker

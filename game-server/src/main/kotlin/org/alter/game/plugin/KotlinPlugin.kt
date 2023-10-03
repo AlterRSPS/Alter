@@ -383,6 +383,12 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     fun on_npc_death(npc: Int, plugin: Plugin.() -> Unit) = r.bindNpcDeath(npc, plugin)
 
+
+    /**
+     * Completely overrides the npc death mechanic.
+     */
+    fun full_npc_death(npc: Int, plugin: Plugin.() -> Unit) = r.bindNpcFullDeath(npc, plugin)
+
     /**
      * Set the combat logic for [npc] and [others], which will override the [set_combat_logic]
      * logic.

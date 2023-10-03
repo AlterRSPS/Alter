@@ -269,7 +269,11 @@ abstract class Pawn(val world: World) : Entity() {
                 if (key == RESET_PAWN_FACING_TIMER) {
                     resetFacePawn()
                 } else {
-                    world.plugins.executeTimer(this, key)
+                    try {
+                        world.plugins.executeTimer(this, key)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 }
                 if (!timers.has(key)) {
                     iterator.remove()
