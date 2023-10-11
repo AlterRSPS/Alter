@@ -1,6 +1,5 @@
 package org.alter.game.fs
 
-import org.alter.game.Server.Companion.logger
 import org.alter.game.fs.def.StructDef
 import org.alter.game.model.World
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap

@@ -10,8 +10,9 @@ import org.alter.plugins.service.worldlist.io.WorldListChannelHandler
 import org.alter.plugins.service.worldlist.io.WorldListChannelInitializer
 import org.alter.plugins.service.worldlist.model.WorldEntry
 import gg.rsmod.util.ServerProperties
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.channel.ChannelFuture
-import mu.KLogging
+
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -137,5 +138,7 @@ class WorldListService : Service {
         //worldEntry.players--
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

@@ -36,7 +36,8 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import net.runelite.cache.IndexType
 import net.runelite.cache.fs.Store
 import java.io.File
@@ -647,8 +648,8 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         return this.attr[TERMINAL_ARGS]
     }
 
-    companion object : KLogging() {
-
+    companion object {
+        private val logger = KotlinLogging.logger{}
         /**
          * If the [rebootTimer] is active and is less than this value, we will
          * begin to reject any log-in.

@@ -6,7 +6,8 @@ import gg.rsmod.net.codec.filestore.FilestoreResponse
 import gg.rsmod.util.io.BufferUtils.toArray
 import io.netty.channel.Channel
 import io.netty.channel.ChannelHandlerContext
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import net.runelite.cache.fs.Container
 import net.runelite.cache.fs.Store
 import net.runelite.cache.fs.jagex.CompressionType
@@ -87,7 +88,8 @@ class FilestoreSystem(channel: Channel, private val filestore: Store) : ServerSy
         }
     }
 
-    companion object : KLogging() {
+    companion object {
+        private val logger = KotlinLogging.logger{}
         private var cachedIndexData: ByteArray? = null
     }
 }

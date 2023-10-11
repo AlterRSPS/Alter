@@ -2,13 +2,12 @@ package org.alter.plugins.content.mechanics.doors
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import org.alter.game.Server
+import org.alter.game.Server.Companion.logger
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import org.alter.api.ext.appendToString
 import gg.rsmod.util.ServerProperties
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import mu.KLogging
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -46,6 +45,4 @@ class DoorService : Service {
 
     override fun terminate(server: org.alter.game.Server, world: World) {
     }
-
-    companion object : KLogging()
 }

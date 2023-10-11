@@ -6,7 +6,8 @@ import org.alter.game.model.World
 import org.alter.game.service.Service
 import gg.rsmod.util.ServerProperties
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import net.runelite.cache.IndexType
 import org.apache.commons.io.FilenameUtils
 import java.io.FileNotFoundException
@@ -142,7 +143,8 @@ class XteaKeyService : Service {
         }
     }
 
-    companion object : KLogging() {
+    companion object {
+        private val logger = KotlinLogging.logger{}
         val EMPTY_KEYS = intArrayOf(0, 0, 0, 0)
     }
 }

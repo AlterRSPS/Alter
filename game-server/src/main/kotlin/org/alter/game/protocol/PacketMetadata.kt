@@ -3,7 +3,8 @@ package org.alter.game.protocol
 import org.alter.game.message.MessageStructureSet
 import gg.rsmod.net.packet.IPacketMetadata
 import gg.rsmod.net.packet.PacketType
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 /**
  * An [IPacketMetadata] implementation that is responsible for exposing
@@ -36,5 +37,7 @@ class PacketMetadata(private val structures: MessageStructureSet) : IPacketMetad
         return structure.ignore
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

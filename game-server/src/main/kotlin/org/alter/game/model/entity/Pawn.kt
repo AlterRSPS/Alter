@@ -494,10 +494,10 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     fun animate(id: Int, delay: Int = 0) {
+        // @TODO
         if (this is Player) {
             world.plugins.executeOnAnimation(this, id)
         }
-
         animateSend(-1, 0)
         animateSend(id, delay)
     }

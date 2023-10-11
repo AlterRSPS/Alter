@@ -21,7 +21,8 @@ import org.alter.game.service.serializer.PlayerLoadResult
 import org.alter.game.service.serializer.PlayerSerializerService
 import gg.rsmod.net.codec.login.LoginRequest
 import gg.rsmod.util.ServerProperties
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.mindrot.jbcrypt.BCrypt
 import java.nio.file.Files
 import java.nio.file.Path
@@ -188,5 +189,7 @@ class JsonPlayerSerializer : PlayerSerializerService() {
                                @JsonProperty("xp") val xp: Double,
                                @JsonProperty("lvl") val lvl: Int)
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

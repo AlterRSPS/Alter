@@ -10,8 +10,8 @@ import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import gg.rsmod.util.ServerProperties
+import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
-import mu.KLogging
 import net.runelite.cache.util.Namer
 import org.yaml.snakeyaml.LoaderOptions
 import java.io.*
@@ -87,55 +87,55 @@ class ItemMetadataService : Service {
     }
 
     private fun load(item: Metadata, world: World) {
-            val def = world.definitions.get(ItemDef::class.java, item.id)
-            def.name = item.name
-            def.examine = item.examine
-            def.tradeable = item.tradeable
-            def.weight = item.weight
-            if (item.equipment != null) {
-                val equipment = item.equipment
-                val slots = if (equipment.equipSlot != null) getEquipmentSlots(equipment.equipSlot, def.id) else null
+        val def = world.definitions.get(ItemDef::class.java, item.id)
+        def.name = item.name
+        def.examine = item.examine
+        def.tradeable = item.tradeable
+        def.weight = item.weight
+        if (item.equipment != null) {
+            val equipment = item.equipment
+            val slots = if (equipment.equipSlot != null) getEquipmentSlots(equipment.equipSlot, def.id) else null
 
-                def.attackSpeed = equipment.attackSpeed
+            def.attackSpeed = equipment.attackSpeed
 
-                if (equipment.weaponType == -1 && slots != null) {
-                    if (slots.slot == 3) {
-                        def.weaponType = 17
-                    }
-                } else {
-                    def.weaponType = equipment.weaponType
+            if (equipment.weaponType == -1 && slots != null) {
+                if (slots.slot == 3) {
+                    def.weaponType = 17
                 }
+            } else {
+                def.weaponType = equipment.weaponType
+            }
 
-                def.renderAnimations = equipment.renderAnimations?.getAsArray()
-                def.attackSounds = equipment.attackSounds
-                if (slots != null) {
-                    def.equipSlot = slots.slot
-                    def.equipType = slots.secondary
+            def.renderAnimations = equipment.renderAnimations?.getAsArray()
+            def.attackSounds = equipment.attackSounds
+            if (slots != null) {
+                def.equipSlot = slots.slot
+                def.equipType = slots.secondary
+            }
+            if (equipment.skillReqs != null) {
+                val reqs = Byte2ByteOpenHashMap()
+                equipment.skillReqs.filter { it.skill != null }.forEach { req ->
+                    reqs[getSkillId(req.skill!!)] = req.level!!.toByte()
                 }
-                if (equipment.skillReqs != null) {
-                    val reqs = Byte2ByteOpenHashMap()
-                    equipment.skillReqs.filter { it.skill != null }.forEach { req ->
-                        reqs[getSkillId(req.skill!!)] = req.level!!.toByte()
-                    }
-                    def.skillReqs = reqs
-                }
-                def.equipSound = equipment.equipSound
-                def.bonuses = intArrayOf(
-                    equipment.attackStab,
-                    equipment.attackSlash,
-                    equipment.attackCrush,
-                    equipment.attackMagic,
-                    equipment.attackRanged,
-                    equipment.defenceStab,
-                    equipment.defenceSlash,
-                    equipment.defenceCrush,
-                    equipment.defenceMagic,
-                    equipment.defenceRanged,
-                    equipment.meleeStrength,
-                    equipment.rangedStrength,
-                    equipment.magicDamage,
-                    equipment.prayer
-                )
+                def.skillReqs = reqs
+            }
+            def.equipSound = equipment.equipSound
+            def.bonuses = intArrayOf(
+                equipment.attackStab,
+                equipment.attackSlash,
+                equipment.attackCrush,
+                equipment.attackMagic,
+                equipment.attackRanged,
+                equipment.defenceStab,
+                equipment.defenceSlash,
+                equipment.defenceCrush,
+                equipment.defenceMagic,
+                equipment.defenceRanged,
+                equipment.meleeStrength,
+                equipment.rangedStrength,
+                equipment.magicDamage,
+                equipment.prayer
+            )
         }
     }
 
@@ -350,5 +350,7 @@ class ItemMetadataService : Service {
         @JsonProperty("level") val level: Int?
     )
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

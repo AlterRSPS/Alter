@@ -8,7 +8,8 @@ import gg.rsmod.net.codec.login.LoginResponse
 import gg.rsmod.net.codec.login.LoginResultType
 import gg.rsmod.util.io.IsaacRandom
 import io.netty.channel.ChannelFutureListener
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 /**
  * A worker for the [LoginService] that is responsible for handling the most
@@ -62,5 +63,7 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
         }
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

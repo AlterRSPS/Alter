@@ -1,5 +1,6 @@
 package org.alter.plugins.content.skills.herblore.pots
 
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
 import org.alter.game.model.attr.OTHER_ITEM_SLOT_ATTR
@@ -8,7 +9,7 @@ import org.alter.api.Skills
 import org.alter.api.cfg.Items
 
 import org.alter.api.ext.*
-import mu.KLogging
+
 
 class Pot(val unfinished: Int, val secondary: Int, val finished: IntArray, val minLevel: Int, val xpAwarded: Double) {
     fun make(player: Player) {
@@ -32,7 +33,7 @@ class Pot(val unfinished: Int, val secondary: Int, val finished: IntArray, val m
 
         } else { // all other values are invalid for charging pots
             // could only happen from improperly managed pot
-            KLogging().logger.error("invalid chargeCount for pot at ${player.inventory[dstSlot]} with charges = $chargeCount")
+            logger.error("invalid chargeCount for pot at ${player.inventory[dstSlot]} with charges = $chargeCount")
         }
     }
 
@@ -50,8 +51,13 @@ class Pot(val unfinished: Int, val secondary: Int, val finished: IntArray, val m
             player.message("You have ${chargeCount-1} doses of potion left.")
         } else { // not valid charge config
             // could only happen if [Pot.consume()] was called from an invalid pot registration
-            KLogging().logger.error("invalid pot registration for ${player.getInteractingItem().id}")
+            logger.error("invalid pot registration for ${player.getInteractingItem().id}")
         }
+    }
+
+
+    companion object {
+        private val logger = KotlinLogging.logger{}
     }
 }
 
@@ -63,16 +69,4 @@ enum class Pots(val pot: Pot) {
     SERUM_207(Pot(Items.TARROMIN_POTION_UNF, Items.ASHES, intArrayOf(Items.SERUM_207_1, Items.SERUM_207_2, Items.SERUM_207_3, Items.SERUM_207_4), 15, 50.0)),
     COMPOST(Pot(Items.HARRALANDER_POTION_UNF, Items.VOLCANIC_ASH, intArrayOf(Items.COMPOST_POTION1, Items.COMPOST_POTION2, Items.COMPOST_POTION3, Items.COMPOST_POTION4), 22, 60.0)),
     RESTORE(Pot(Items.HARRALANDER_POTION_UNF, Items.RED_SPIDERS_EGGS, intArrayOf(Items.RESTORE_POTION1, Items.RESTORE_POTION2, Items.RESTORE_POTION3, Items.RESTORE_POTION4), 22, 62.5)),
-
-
 }
-
-
-
-
-
-
-
-
-
-

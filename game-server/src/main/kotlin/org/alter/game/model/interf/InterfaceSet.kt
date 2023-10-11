@@ -2,7 +2,8 @@ package org.alter.game.model.interf
 
 import org.alter.game.model.interf.listener.InterfaceListener
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 /**
  * Stores visible interfaces.
@@ -167,5 +168,7 @@ class InterfaceSet(private val listener: InterfaceListener) {
      */
     fun getInterfaceAt(parent: Int, child: Int): Int = visible.getOrDefault((parent shl 16) or child, -1)
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

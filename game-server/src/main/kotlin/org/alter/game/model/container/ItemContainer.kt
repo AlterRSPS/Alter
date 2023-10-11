@@ -6,7 +6,8 @@ import org.alter.game.model.attr.OTHER_ITEM_SLOT_ATTR
 import org.alter.game.model.container.key.ContainerKey
 import org.alter.game.model.item.Item
 import org.alter.game.model.item.SlotItem
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 /**
  * An [ItemContainer] represents a collection of ordered [Item]s.
@@ -670,5 +671,7 @@ class ItemContainer(val definitions: DefinitionSet, val key: ContainerKey) : Ite
         dirty = true
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

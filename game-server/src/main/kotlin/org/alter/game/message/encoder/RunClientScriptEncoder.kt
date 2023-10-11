@@ -2,7 +2,8 @@ package org.alter.game.message.encoder
 
 import org.alter.game.message.MessageEncoder
 import org.alter.game.message.impl.RunClientScriptMessage
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -46,5 +47,7 @@ class RunClientScriptEncoder : MessageEncoder<RunClientScriptMessage>() {
         else -> throw Exception("Unhandled value key.")
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

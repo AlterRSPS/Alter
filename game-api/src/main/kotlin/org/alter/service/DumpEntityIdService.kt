@@ -6,7 +6,8 @@ import org.alter.game.fs.def.*
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import gg.rsmod.util.ServerProperties
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import net.runelite.cache.util.Namer
 import java.io.PrintWriter
 import java.nio.file.Files
@@ -125,5 +126,7 @@ class DumpEntityIdService : Service {
         writer.close()
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

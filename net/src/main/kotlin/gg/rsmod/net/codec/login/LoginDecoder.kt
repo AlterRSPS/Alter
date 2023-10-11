@@ -7,11 +7,11 @@ import gg.rsmod.util.io.BufferUtils.readIntLE
 import gg.rsmod.util.io.BufferUtils.readIntME
 import gg.rsmod.util.io.BufferUtils.readString
 import gg.rsmod.util.io.Xtea
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelFutureListener
 import io.netty.channel.ChannelHandlerContext
-import mu.KLogging
 import java.math.BigInteger
 
 /**
@@ -210,11 +210,12 @@ class LoginDecoder(private val serverRevision: Int, private val cacheCrcs: IntAr
      * As of revision 190 the client now sends the CRCs out of order
      * and with varying byte orders
      */
-    companion object : KLogging() {
-        private const val LOGIN_OPCODE = 16
-        private const val RECONNECT_OPCODE = 18
-        private val CRCorder = intArrayOf(
-            9,20,17,10,13,6,12,18,11,5,3,4,0,2,14,15,19,8,1,7
-        )
+     companion object {
+         private val logger = KotlinLogging.logger{}
+         private const val LOGIN_OPCODE = 16
+         private const val RECONNECT_OPCODE = 18
+         private val CRCorder = intArrayOf(
+             9,20,17,10,13,6,12,18,11,5,3,4,0,2,14,15,19,8,1,7
+         )
     }
 }

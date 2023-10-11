@@ -2,7 +2,7 @@ package org.alter.plugins.service.restapi.controllers
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import org.alter.game.Server.Companion.logger
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.model.World
 import org.alter.api.Skills
 import spark.Request
@@ -11,6 +11,7 @@ import spark.Response
 class PlayerController(req: Request, resp: Response, auth: Boolean) : Controller(req, resp, auth) {
 
     val req = req
+    private val logger = KotlinLogging.logger {}
 
     override fun init(world: World): JsonObject {
 

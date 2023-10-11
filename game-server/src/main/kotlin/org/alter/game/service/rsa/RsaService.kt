@@ -4,7 +4,8 @@ import org.alter.game.Server
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import gg.rsmod.util.ServerProperties
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.bouncycastle.jce.provider.BouncyCastleProvider
 import org.bouncycastle.util.io.pem.PemObject
 import org.bouncycastle.util.io.pem.PemReader
@@ -134,7 +135,8 @@ class RsaService : Service {
 
     fun getModulus(): BigInteger = modulus
 
-    companion object : KLogging() {
+    companion object {
+        private val logger = KotlinLogging.logger{}
 
         @JvmStatic
         fun main(args: Array<String>) {

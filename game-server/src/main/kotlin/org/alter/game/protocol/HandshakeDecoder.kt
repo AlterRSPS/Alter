@@ -9,7 +9,8 @@ import gg.rsmod.net.codec.login.LoginEncoder
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.math.BigInteger
 
 /**
@@ -62,5 +63,7 @@ class HandshakeDecoder(private val revision: Int, private val cacheCrcs: IntArra
         out.add(HandshakeMessage(handshake.id))
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

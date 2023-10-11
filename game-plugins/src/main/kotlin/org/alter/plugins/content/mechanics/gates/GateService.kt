@@ -8,7 +8,8 @@ import org.alter.game.service.Service
 import org.alter.api.ext.appendToString
 import gg.rsmod.util.ServerProperties
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -38,5 +39,7 @@ class GateService : Service {
     override fun terminate(server: org.alter.game.Server, world: World) {
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

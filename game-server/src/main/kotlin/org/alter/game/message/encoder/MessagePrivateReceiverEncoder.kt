@@ -2,7 +2,8 @@ package org.alter.game.message.encoder
 
 import org.alter.game.message.MessageEncoder
 import org.alter.game.message.impl.MessagePrivateReceiverMessage
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 class MessagePrivateReceiverEncoder : MessageEncoder<MessagePrivateReceiverMessage>() {
 
@@ -25,6 +26,7 @@ class MessagePrivateReceiverEncoder : MessageEncoder<MessagePrivateReceiverMessa
 
         else -> throw Exception("Unhandled bytes key: $key")
     }
-
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

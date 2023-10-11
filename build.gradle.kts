@@ -32,17 +32,15 @@ allprojects {
         maven("https://repo.maven.apache.org/maven2")
         maven("https://jitpack.io")
         maven("https://repo.runelite.net/")
-        maven("https://repo.openrs2.dev/repository/openrs2-snapshots")
     }
 
     val lib = rootProject.project.libs
     dependencies {
+        implementation(lib.kotlin.logging)
+        implementation("ch.qos.logback:logback-classic:1.4.11")
         implementation(lib.fastutil)
         implementation(lib.spark.core)
         implementation(lib.kotlin.stdlib.jdk8)
-        implementation(lib.slf4j.api)
-        implementation(lib.log4j.slf4j.impl)
-        implementation(lib.kotlin.logging)
         implementation(lib.jackson.dataformat.yaml)
         implementation(lib.jackson.dataformat.toml)
         implementation(lib.jackson.databind)
@@ -52,7 +50,6 @@ allprojects {
         implementation(lib.cache)
         implementation(lib.netty.all)
         implementation(lib.kotlinx.serialization.core)
-        implementation(lib.slf4j)
         testImplementation(lib.junit)
         testImplementation(lib.kotlin.test.junit)
     }

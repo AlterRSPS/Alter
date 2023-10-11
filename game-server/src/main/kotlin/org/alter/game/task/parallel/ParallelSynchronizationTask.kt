@@ -6,7 +6,8 @@ import org.alter.game.service.GameService
 import org.alter.game.sync.SynchronizationTask
 import org.alter.game.sync.task.*
 import org.alter.game.task.GameTask
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Phaser
 
@@ -100,5 +101,7 @@ class ParallelSynchronizationTask(private val executor: ExecutorService) : GameT
         }
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

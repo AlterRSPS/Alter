@@ -19,7 +19,8 @@ import gg.rsmod.util.ServerProperties
 import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -299,7 +300,8 @@ class GameService : Service {
         }
     }
 
-    companion object : KLogging() {
+    companion object {
+        private val logger = KotlinLogging.logger{}
 
         /**
          * The amount of ticks that must go by for debug info to be logged.

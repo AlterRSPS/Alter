@@ -2,7 +2,8 @@ package org.alter.game.model.social
 
 import org.alter.game.message.impl.*
 import org.alter.game.model.entity.Player
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -116,7 +117,7 @@ class Social {
         player.write(MessagePrivateReceiverMessage(target.username, 255, -1, 0, "Testing"))
 
     }
-
-    companion object : KLogging()
-
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

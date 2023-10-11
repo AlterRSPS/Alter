@@ -7,7 +7,8 @@ import org.alter.game.message.impl.*
 import gg.rsmod.net.packet.GamePacketBuilder
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageEncoder
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 /**
  * An implementation of [MessageToMessageEncoder] which is responsible for taking
@@ -41,5 +42,7 @@ class GameMessageEncoder(private val encoders: MessageEncoderSet, private val st
         out.add(builder.toGamePacket())
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

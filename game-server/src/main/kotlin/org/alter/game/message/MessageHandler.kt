@@ -3,7 +3,8 @@ package org.alter.game.message
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 import org.alter.game.service.log.LoggerService
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 /**
  * A [MessageHandler] is responsible for executing [Message] logic on the
@@ -35,5 +36,7 @@ interface MessageHandler<T : Message> {
         }
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 }

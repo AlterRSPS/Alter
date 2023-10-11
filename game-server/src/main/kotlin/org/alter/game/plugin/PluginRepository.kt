@@ -22,7 +22,8 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.model.Tile
 import java.net.URLClassLoader
 import java.nio.file.Files
@@ -1366,5 +1367,7 @@ class PluginRepository(val world: World) {
        return ""
    }
 
-    companion object : KLogging()
+   companion object {
+       private val logger = KotlinLogging.logger{}
+   }
 }

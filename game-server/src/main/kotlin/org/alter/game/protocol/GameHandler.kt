@@ -11,7 +11,8 @@ import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
 import io.netty.handler.timeout.ReadTimeoutException
 import io.netty.util.AttributeKey
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import net.runelite.cache.fs.Store
 
 /**
@@ -64,8 +65,8 @@ class GameHandler(private val filestore: Store, private val world: World) : Chan
         ctx.channel().close()
     }
 
-    companion object : KLogging() {
-
+    companion object {
+        private val logger = KotlinLogging.logger{}
         /**
          * An [AttributeKey] that stores the current [ServerSystem] that
          * will intercept messages sent by the [io.netty.channel.Channel].

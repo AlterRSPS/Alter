@@ -6,7 +6,8 @@ import org.alter.game.model.World
 import org.alter.game.service.Service
 import gg.rsmod.util.ServerProperties
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -47,5 +48,6 @@ class ItemMarketValueService : Service {
         return 0
     }
 
-    companion object : KLogging()
+    private val logger = KotlinLogging.logger{}
+
 }

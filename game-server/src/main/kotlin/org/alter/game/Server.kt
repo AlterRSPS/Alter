@@ -11,11 +11,13 @@ import org.alter.game.service.GameService
 import org.alter.game.service.rsa.RsaService
 import org.alter.game.service.xtea.XteaKeyService
 import gg.rsmod.util.ServerProperties
+import io.github.oshai.kotlinlogging.KLogger
 import io.netty.bootstrap.ServerBootstrap
 import io.netty.channel.ChannelOption
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import net.runelite.cache.fs.Store
 import java.net.InetSocketAddress
 import java.nio.file.Files
@@ -250,5 +252,7 @@ class Server {
      */
     fun getApiName(): String = apiProperties.getOrDefault("org", "Alter")
 
-    companion object : KLogging()
+    companion object {
+        val logger = KotlinLogging.logger {}
+    }
 }

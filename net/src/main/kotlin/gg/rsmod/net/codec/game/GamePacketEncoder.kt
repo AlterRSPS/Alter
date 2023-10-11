@@ -6,7 +6,8 @@ import gg.rsmod.util.io.IsaacRandom
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToByteEncoder
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.text.DecimalFormat
 
 /**
@@ -43,6 +44,8 @@ class GamePacketEncoder(private val random: IsaacRandom?) : MessageToByteEncoder
         msg.payload.release()
     }
 
-    companion object : KLogging()
+    companion object {
+        private val logger = KotlinLogging.logger{}
+    }
 
 }

@@ -1,9 +1,10 @@
 package gg.rsmod.util.concurrency
 
-import mu.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.concurrent.Phaser
 
-object PhasedTask : KLogging() {
+object PhasedTask {
+    private val logger = KotlinLogging.logger{}
 
     fun run(phaser: Phaser, task: () -> Unit) {
         try {

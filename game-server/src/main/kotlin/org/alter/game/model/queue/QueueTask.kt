@@ -4,7 +4,8 @@ import org.alter.game.model.Tile
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.coroutine.*
-import mu.KLogging
+
+import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlin.coroutines.*
 
 /**
@@ -144,7 +145,8 @@ data class QueueTask(val ctx: Any, val priority: TaskPriority) : Continuation<Un
 
     class EmptyReturnValue
 
-    companion object : KLogging() {
+    companion object {
+        private val logger = KotlinLogging.logger{}
         val EMPTY_RETURN_VALUE = EmptyReturnValue()
     }
 }
