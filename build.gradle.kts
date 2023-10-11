@@ -37,7 +37,7 @@ allprojects {
     val lib = rootProject.project.libs
     dependencies {
         implementation(lib.kotlin.logging)
-        implementation("ch.qos.logback:logback-classic:1.4.11")
+        implementation(lib.logback.classic)
         implementation(lib.fastutil)
         implementation(lib.spark.core)
         implementation(lib.kotlin.stdlib.jdk8)

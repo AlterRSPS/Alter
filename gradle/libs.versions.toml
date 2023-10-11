@@ -21,12 +21,14 @@ openrs2 = "0.1.0-SNAPSHOT"
 nettyAll = "4.0.34.Final"
 slf4j = "2.0.0-alpha0"
 csv = "0.7.3"
+logback = "1.4.11"
 
 [libraries]
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version.ref = "fastutil" }
 spark-core = { group = "com.sparkjava", name = "spark-core", version.ref = "sparkCore" }
 kotlin-stdlib-jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlinStdlibJdk8" }
 
+# Leaving for now, will be removed in the future
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4jApi" }
 log4j-slf4j-impl = { group = "org.apache.logging.log4j", name = "log4j-slf4j-impl", version.ref = "log4jSlf4jImpl" }
 slf4j = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
@@ -61,6 +63,7 @@ openrs2-compress = { module = "org.openrs2:openrs2-compress", version.ref = "ope
 
 netty-all = { group = "io.netty", name = "netty-all", version.ref = "nettyAll" }
 
+logback-classic = { group ="ch.qos.logback", name = "logback-classic", version.ref = "logback"}
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
