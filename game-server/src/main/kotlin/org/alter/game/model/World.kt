@@ -649,7 +649,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        val logger = KotlinLogging.logger{}
         /**
          * If the [rebootTimer] is active and is less than this value, we will
          * begin to reject any log-in.
