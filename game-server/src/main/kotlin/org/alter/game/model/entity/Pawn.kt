@@ -493,13 +493,14 @@ abstract class Pawn(val world: World) : Entity() {
         moveTo(tile.x, tile.z, tile.height)
     }
 
-    fun animate(id: Int, delay: Int = 0) {
-        // @TODO
-        if (this is Player) {
-            world.plugins.executeOnAnimation(this, id)
+    fun animate(id: Int, delay: Int = 0, interruptable: Boolean = false) {
+        if (!this.hasBlock(UpdateBlockType.ANIMATION) || interruptable) {
+            if (this is Player) {
+                world.plugins.executeOnAnimation(this, id)
+            }
+            animateSend(-1, 0)
+            animateSend(id, delay)
         }
-        animateSend(-1, 0)
-        animateSend(id, delay)
     }
     fun graphic(id: Int, height: Int = 0, delay: Int = 0) {
         graphicSend(-1, 0, 0)
@@ -507,7 +508,9 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     /**
-     * @disablePlayersClicks For how long to disable the players [GameClicks]
+     * @param id = Animation id
+     * @param startDelay = when to start anim
+     * @param interruptable = if Anim can be interrupted by other anim masks
      */
     fun animateSend(id: Int, startDelay: Int = 0) {
         blockBuffer.animation = id
