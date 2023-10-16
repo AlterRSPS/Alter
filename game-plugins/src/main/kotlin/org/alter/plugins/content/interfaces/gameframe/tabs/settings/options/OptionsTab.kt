@@ -16,7 +16,7 @@ object OptionsTab {
      * Control Settings Tab
      */
     const val CONTROL_SETTINGS_BUTTON_ID = 65
-    const val ACCEPT_AID_BUTTON_ID = 72
+    const val ACCEPT_AID_BUTTON_ID = 29
     const val RUN_MODE_BUTTON_ID = 73
 
     const val HOUSE_OPT_BUTTON_ID = 28

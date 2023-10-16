@@ -19,7 +19,7 @@ object Varp {
     const val PLAYER_ATTACK_PRIORITY_VARP = 1107
     const val NPC_ATTACK_PRIORITY_VARP = 1306
     const val WEAPON_ATTACK_STYLE = 43
-
+    const val ACCEPT_AID_VARP = 427
     const val DWARF_CANNON = 0
     const val CANNON_STAGE = 2
     const val CANNON_BALLS_AMOUNT = 3
