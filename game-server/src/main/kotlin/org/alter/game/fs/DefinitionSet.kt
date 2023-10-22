@@ -1,10 +1,10 @@
 package org.alter.game.fs
 
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.fs.def.*
 import org.alter.game.model.Direction
 import org.alter.game.model.Tile
 import org.alter.game.model.World
-import org.alter.game.model.collision.CollisionManager
 import org.alter.game.model.collision.CollisionUpdate
 import org.alter.game.model.entity.StaticObject
 import org.alter.game.model.region.ChunkSet
@@ -12,8 +12,6 @@ import org.alter.game.service.xtea.XteaKeyService
 import io.netty.buffer.Unpooled
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-
-import io.github.oshai.kotlinlogging.KotlinLogging
 import net.runelite.cache.ConfigType
 import net.runelite.cache.IndexType
 import net.runelite.cache.definitions.loaders.LocationsLoader
@@ -63,12 +61,6 @@ class DefinitionSet {
         logger.info("Loaded ${getCount(EnumDef::class.java)} enum definitions.")
 
         /*
-         * Load [StructDef]s.
-         */
-        load(store, StructDef::class.java)
-        logger.info("Loaded ${getCount(StructDef::class.java)} struct definitions.")
-
-        /*
          * Load [NpcDef]s.
          */
         load(store, NpcDef::class.java)
@@ -106,7 +98,6 @@ class DefinitionSet {
             VarpDef::class.java -> ConfigType.VARPLAYER
             VarbitDef::class.java -> ConfigType.VARBIT
             EnumDef::class.java -> ConfigType.ENUM
-            StructDef::class.java -> ConfigType.STRUCT
             NpcDef::class.java -> ConfigType.NPC
             ObjectDef::class.java -> ConfigType.OBJECT
             ItemDef::class.java -> ConfigType.ITEM
@@ -131,7 +122,6 @@ class DefinitionSet {
             VarpDef::class.java -> VarpDef(id)
             VarbitDef::class.java -> VarbitDef(id)
             EnumDef::class.java -> EnumDef(id)
-            StructDef::class.java -> StructDef(id)
             NpcDef::class.java -> NpcDef(id)
             ObjectDef::class.java -> ObjectDef(id)
             ItemDef::class.java -> ItemDef(id)
@@ -158,7 +148,7 @@ class DefinitionSet {
     }
 
     /**
-     * Creates an 8x8 [org.alter.game.model.region.Chunk] region.
+     * Creates an 8x8 [gg.rsmod.game.model.region.Chunk] region.
      */
     fun createRegion(world: World, id: Int): Boolean {
         if (xteaService == null) {
@@ -185,23 +175,19 @@ class DefinitionSet {
 
         val blocked = hashSetOf<Tile>()
         val bridges = hashSetOf<Tile>()
-        for (height in 0 until 4) {
-            for (lx in 0 until 64) {
-                for (lz in 0 until 64) {
-                    val tileSetting = cacheRegion.getTileSetting(height, lx, lz)
-                    val tile = Tile(cacheRegion.baseX + lx, cacheRegion.baseY + lz, height)
 
-                    if ((tileSetting.toInt() and CollisionManager.BLOCKED_TILE) == CollisionManager.BLOCKED_TILE) {
-                        blocked.add(tile)
+        for (height in 0 until 3) {
+            for (lx in 0 until 63) {
+                for (lz in 0 until 63) {
+                    val bridge = cacheRegion.getTileSetting(1, lx, lz).toInt() and 0x2 != 0
+                    if (bridge) {
+                        bridges.add(Tile(cacheRegion.baseX + lx, cacheRegion.baseY + lz, height))
                     }
-
-                    if ((tileSetting.toInt() and CollisionManager.BRIDGE_TILE) == CollisionManager.BRIDGE_TILE) {
-                        bridges.add(tile)
-                        /*
-                         * We don't want the bottom of the bridge to be blocked,
-                         * so remove the blocked tile if applicable.
-                         */
-                        blocked.remove(tile.transform(-1))
+                    val blockedTile = cacheRegion.getTileSetting(height, lx, lz).toInt() and 0x1 != 0
+                    if (blockedTile) {
+                        val level = if (bridge) (height - 1) else height
+                        if (level < 0) continue
+                        blocked.add(Tile(cacheRegion.baseX + lx, cacheRegion.baseY + lz, level))
                     }
                 }
             }
@@ -224,7 +210,7 @@ class DefinitionSet {
              * need to decrypt the files through xteas. This means the objects
              * from each region has to be decrypted a different way.
              *
-             * If this is the case, you need to use [org.alter.game.model.region.Chunk.addEntity]
+             * If this is the case, you need to use [gg.rsmod.game.model.region.Chunk.addEntity]
              * to add the object to the world for collision detection.
              */
             return true
@@ -235,18 +221,16 @@ class DefinitionSet {
             val landData = landArchive.decompress(world.filestore.storage.loadArchive(landArchive), keys)
             val locDef = LocationsLoader().load(x, z, landData)
             cacheRegion.loadLocations(locDef)
-
             cacheRegion.locations.forEach { loc ->
                 val tile = Tile(loc.position.x, loc.position.y, loc.position.z)
-                if (bridges.contains(tile.transform(1))) {
-                    return@forEach
-                }
-                val obj = StaticObject(loc.id, loc.type, loc.orientation, if (bridges.contains(tile)) tile.transform(-1) else tile)
-                world.chunks.getOrCreate(tile).addEntity(world, obj, obj.tile)
+                val hasBridge = bridges.contains(tile)
+                if (hasBridge && loc.position.z == 0) return@forEach
+                val adjustedTile = if (bridges.contains(tile)) tile.transform(-1) else tile
+                val obj = StaticObject(loc.id, loc.type, loc.orientation, adjustedTile)
+                world.chunks.getOrCreate(adjustedTile).addEntity(world, obj, adjustedTile)
             }
             return true
         } catch (e: IOException) {
-            e.printStackTrace()
             logger.error("Could not decrypt map region {}.", id)
             return false
         }
