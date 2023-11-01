@@ -290,8 +290,9 @@ server-packets:
         type: SHORT
       - name: target_index
         type: MEDIUM
-        order: IME
-        trans: SUBTRACT
+        order: BIG
+        trans: NONE
+        sign: SIGNED
       - name: steepness
         type: BYTE
         trans: NEGATE
@@ -1577,7 +1578,7 @@ client-packets:
 
   - message: org.alter.game.message.impl.EventMouseClickMessage
     type: FIXED
-    opcode: 16
+    opcode: 5
     length: 6
     structure:
       - name: ignored # Movement type
