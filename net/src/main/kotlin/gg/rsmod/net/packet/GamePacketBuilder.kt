@@ -169,6 +169,16 @@ class GamePacketBuilder {
                     else -> throw IllegalStateException("Unknown DataType: $type.")
                 }
             }
+            DataOrder.CUSTOM -> {
+                when (type) {
+                    DataType.MEDIUM -> {
+                        buffer.writeByte((longValue shr 8).toByte().toInt())
+                        buffer.writeByte((longValue shr 16).toByte().toInt())
+                        buffer.writeByte(longValue.toByte().toInt())
+                    }
+                    else -> throw IllegalArgumentException("Unknown shit")
+                }
+            }
             DataOrder.INVERSE_MIDDLE -> {
                 Preconditions.checkArgument(transformation == DataTransformation.NONE, "Inversed middle endian cannot be transformed.")
 

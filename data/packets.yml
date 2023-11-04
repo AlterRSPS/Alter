@@ -290,8 +290,7 @@ server-packets:
         type: SHORT
       - name: target_index
         type: MEDIUM
-        order: BIG
-        trans: NONE
+        order: CUSTOM
         sign: SIGNED
       - name: steepness
         type: BYTE
@@ -308,7 +307,7 @@ server-packets:
       - name: lifespan
         type: SHORT
         trans: ADD
-      - name: gfx # ID?
+      - name: gfx
         type: SHORT
         trans: ADD
       - name: offset_z
@@ -1578,7 +1577,7 @@ client-packets:
 
   - message: org.alter.game.message.impl.EventMouseClickMessage
     type: FIXED
-    opcode: 5
+    opcode: 16
     length: 6
     structure:
       - name: ignored # Movement type

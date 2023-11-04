@@ -46,6 +46,8 @@ enum class DataOrder {
     /**
      * Used exclusively for [DataType.BYTES] written in reverse order
      */
-    REVERSED
+    REVERSED,
+
+    CUSTOM
 
 }
