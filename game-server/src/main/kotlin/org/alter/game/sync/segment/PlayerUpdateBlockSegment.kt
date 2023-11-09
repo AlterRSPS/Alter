@@ -92,8 +92,8 @@ class PlayerUpdateBlockSegment(val other: Player, private val newPlayer: Boolean
                 buf.put(structure[1].type, structure[1].order, structure[1].transformation, chatMessage.icon)
                 buf.put(structure[2].type, structure[2].order, structure[2].transformation, if (chatMessage.type == ChatMessage.ChatType.AUTOCHAT) 1 else 0)
                 buf.put(structure[3].type, structure[3].order, structure[3].transformation, compressedLength)
-                buf.putBytes(structure[4].transformation, compressed, 0, compressedLength)
-                //buf.putBytesReverse(structure[4].transformation, compressed, compressedLength)
+                //buf.putBytes(structure[4].transformation, compressed, 0, compressedLength)
+                buf.putBytesReverse(structure[4].transformation, compressed, compressedLength)
             }
 
             UpdateBlockType.FORCE_CHAT -> {
