@@ -35,14 +35,14 @@ on_button(interfaceId = SHOP_INTERFACE_ID, component = 16) {
         val shopItem = shop.items[slot] ?: return@on_button
 
         when (opt) {
-            1 -> shop.currency.onSellValueMessage(player, shopItem)
-            10 -> world.sendExamine(player, shopItem.item, ExamineEntityType.ITEM)
+            0 -> shop.currency.onSellValueMessage(player, shopItem)
+            9 -> world.sendExamine(player, shopItem.item, ExamineEntityType.ITEM)
             else -> {
                 val amount = when (opt) {
-                    2 -> BUY_OPTS[0]
-                    3 -> BUY_OPTS[1]
-                    4 -> BUY_OPTS[2]
-                    5 -> BUY_OPTS[3]
+                    1 -> BUY_OPTS[0]
+                    2 -> BUY_OPTS[1]
+                    3 -> BUY_OPTS[2]
+                    4 -> BUY_OPTS[3]
                     else -> return@on_button
                 }
                 shop.currency.sellToPlayer(player, shop, slot, amount)
@@ -58,14 +58,14 @@ on_button(interfaceId = INV_INTERFACE_ID, component = 0) {
         val item = player.inventory[slot] ?: return@on_button
 
         when (opt) {
-            1 -> shop.currency.onBuyValueMessage(player, shop, item.id)
-            10 -> world.sendExamine(player, item.id, ExamineEntityType.ITEM)
+            0 -> shop.currency.onBuyValueMessage(player, shop, item.id)
+            9 -> world.sendExamine(player, item.id, ExamineEntityType.ITEM)
             else -> {
                 val amount = when (opt) {
-                    2 -> SELL_OPTS[0]
-                    3 -> SELL_OPTS[1]
-                    4 -> SELL_OPTS[2]
-                    5 -> SELL_OPTS[3]
+                    1 -> SELL_OPTS[0]
+                    2 -> SELL_OPTS[1]
+                    3 -> SELL_OPTS[2]
+                    4 -> SELL_OPTS[3]
                     else -> return@on_button
                 }
                 shop.currency.buyFromPlayer(player, shop, slot, amount)
