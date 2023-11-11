@@ -7,12 +7,13 @@ package org.alter.plugins.content.area.lumbridge.objs.alkharidgate
 val GATES = intArrayOf(Objs.GATE_44052, Objs.GATE_44053)
 
 GATES.forEach { obj ->
-    on_obj_option(obj, "pay-toll(10gp)", lineOfSightDistance = 2) {
+    on_obj_option(obj, "pay-toll(10gp)", lineOfSightDistance = 1) {
         if (player.inventory.getItemCount(Items.COINS_995) >= 10) {
             if (obj == 44053) {
-                player.lock()
                 if (player.tile.x == 3268 && player.tile.z == 3227) {
+                    player.lock()
                     player.moveTo(3268, 3228, 0)
+                    player.unlock()
                 }
                 world.queue {
                     world.openDoor(world.getObject(Tile(3268, 3228), 0)!!, 1574)
@@ -24,14 +25,16 @@ GATES.forEach { obj ->
                 val curr = player.tile
                 val dst = if (curr.sameAs(3267, 3228)) Tile(3268, 3228) else if (curr.sameAs(3268, 3228)) Tile(3267, 3228) else return@on_obj_option
                 player.inventory.remove(Items.COINS_995, 10)
+                player.lock()
                 player.moveTo(dst)
                 player.unlock()
             }
 
             if (obj == 44052) {
-                player.lock()
                 if (player.tile.x == 3268 && player.tile.z == 3228) {
+                    player.lock()
                     player.moveTo(3268, 3227, 0)
+                    player.unlock()
                 }
                 world.queue {
                     world.openDoor(world.getObject(Tile(3268, 3228), 0)!!, 1574)
@@ -43,6 +46,7 @@ GATES.forEach { obj ->
                 val curr = player.tile
                 val dst = if (curr.sameAs(3267, 3227)) Tile(3268, 3227) else if (curr.sameAs(3268, 3227)) Tile(3267, 3227) else return@on_obj_option
                 player.inventory.remove(Items.COINS_995, 10)
+                player.lock()
                 player.moveTo(dst)
                 player.unlock()
             }
