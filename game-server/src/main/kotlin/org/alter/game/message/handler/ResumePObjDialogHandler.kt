@@ -1,17 +1,17 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.resumed.ResumePObjDialog
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.ResumePObjDialogMessage
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-class ResumePObjDialogHandler : MessageHandler<ResumePObjDialogMessage> {
+class ResumePObjDialogHandler : MessageHandler<ResumePObjDialog> {
 
-    override fun handle(client: Client, world: World, message: ResumePObjDialogMessage) {
-        log(client, "Searched item: item=%d", message.item)
-        client.queues.submitReturnValue(message.item)
+    override fun handle(client: Client, world: World, message: ResumePObjDialog) {
+        log(client, "Searched item: item=%d", message.obj)
+        client.queues.submitReturnValue(message.obj)
     }
 }

@@ -1,18 +1,18 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.misc.user.ClientCheat
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.ClientCheatMessage
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 import org.alter.game.service.log.LoggerService
-import java.util.Arrays
+import java.util.*
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-class ClientCheatHandler : MessageHandler<ClientCheatMessage> {
+class ClientCheatHandler : MessageHandler<ClientCheat> {
 
-    override fun handle(client: Client, world: World, message: ClientCheatMessage) {
+    override fun handle(client: Client, world: World, message: ClientCheat) {
         val values = message.command.split(" ")
         val command = values[0].lowercase()
         val args = if (values.size > 1) values.slice(1 until values.size).filter { it.isNotEmpty() }.toTypedArray() else null

@@ -1,7 +1,7 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.misc.user.ClickWorldMap
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.ClickWorldMapMessage
 import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
@@ -10,12 +10,13 @@ import org.alter.game.model.priv.Privilege
 /**
  * @author HolyRSPS <dagreenrs@gmail.com>
  */
-class ClickWorldMapHandler : MessageHandler<ClickWorldMapMessage> {
+class ClickWorldMapHandler : MessageHandler<ClickWorldMap> {
 
-    override fun handle(client: Client, world: World, message: ClickWorldMapMessage) {
+    override fun handle(client: Client, world: World, message: ClickWorldMap) {
         if (world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
-            log(client, "Click world map: %s", Tile.from30BitHash(message.data).toString())
-            client.moveTo(Tile.from30BitHash(message.data))
+            val dest = Tile(message.x, message.z, message.level)
+            log(client, "Click world map: %s", dest.toString())
+            client.moveTo(dest)
         }
     }
 }

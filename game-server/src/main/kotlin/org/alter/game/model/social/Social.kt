@@ -1,12 +1,11 @@
 package org.alter.game.model.social
 
-import org.alter.game.model.entity.Player
-
 import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.protocol.game.outgoing.social.FriendListLoaded
 import org.alter.game.message.impl.MessagePrivateReceiverMessage
 import org.alter.game.message.impl.UpdateFriendListMessage
 import org.alter.game.message.impl.UpdateIgnoreListMessage
+import org.alter.game.model.entity.Player
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -108,17 +107,10 @@ class Social {
         }
     }
 
-    fun sendPrivateMessage(player: Player, target: Player, length: Int, message: ByteArray) {
-        val decompressed = ByteArray(230)
-        val huffman = player.world.huffman
-        huffman.decompress(message, decompressed, length)
-        val unpacked = String(decompressed, 0, length)
-
+    fun sendPrivateMessage(player: Player, target: Player, unpacked: String) {
         logger.info { "${player.username} is attempting to message: ${target.username} with message: $unpacked" }
-
         target.write(MessagePrivateReceiverMessage(player.username, 255, 0, player.privilege.icon, "Testing"))
         player.write(MessagePrivateReceiverMessage(target.username, 255, -1, 0, "Testing"))
-
     }
     companion object {
         private val logger = KotlinLogging.logger{}

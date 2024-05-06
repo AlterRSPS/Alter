@@ -1,7 +1,7 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.resumed.ResumePNameDialog
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.ResumePNameDialogMessage
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 import org.alter.game.model.queue.QueueTask
@@ -9,9 +9,9 @@ import org.alter.game.model.queue.QueueTask
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-class ResumePNameDialogHandler : MessageHandler<ResumePNameDialogMessage> {
+class ResumePNameDialogHandler : MessageHandler<ResumePNameDialog> {
 
-    override fun handle(client: Client, world: World, message: ResumePNameDialogMessage) {
+    override fun handle(client: Client, world: World, message: ResumePNameDialog) {
         val name = message.name
         val target = world.getPlayerForName(name)
 

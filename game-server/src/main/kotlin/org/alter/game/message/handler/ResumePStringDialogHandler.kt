@@ -1,17 +1,17 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.resumed.ResumePStringDialog
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.ResumePStringDialogMessage
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-class ResumePStringDialogHandler : MessageHandler<ResumePStringDialogMessage> {
+class ResumePStringDialogHandler : MessageHandler<ResumePStringDialog> {
 
-    override fun handle(client: Client, world: World, message: ResumePStringDialogMessage) {
-        log(client, "String input dialog: input=%s", message.input)
-        client.queues.submitReturnValue(message.input)
+    override fun handle(client: Client, world: World, message: ResumePStringDialog) {
+        log(client, "String input dialog: input=%s", message.string)
+        client.queues.submitReturnValue(message.string)
     }
 }

@@ -1,7 +1,7 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.misc.user.MoveGameClick
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.MoveGameClickMessage
 import org.alter.game.message.impl.SetMapFlagMessage
 import org.alter.game.model.MovementQueue
 import org.alter.game.model.World
@@ -14,9 +14,9 @@ import org.alter.game.model.timer.STUN_TIMER
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-class ClickMapHandler : MessageHandler<MoveGameClickMessage> {
+class ClickMapHandler : MessageHandler<MoveGameClick> {
 
-    override fun handle(client: Client, world: World, message: MoveGameClickMessage) {
+    override fun handle(client: Client, world: World, message: MoveGameClick) {
         if (!client.lock.canMove()) {
             return
         }
@@ -27,16 +27,16 @@ class ClickMapHandler : MessageHandler<MoveGameClickMessage> {
             return
         }
 
-        log(client, "Click map: x=%d, z=%d, type=%d", message.x, message.z, message.movementType)
+        log(client, "Click map: x=%d, z=%d, type=%d", message.x, message.z, message.keyCombination)
 
         client.closeInterfaceModal()
         client.interruptQueues()
         client.resetInteractions()
 
-        if (message.movementType == 2 && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
+        if (message.keyCombination == 2 && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             client.moveTo(message.x, message.z, client.tile.height)
         } else {
-            val stepType = if (message.movementType == 1) MovementQueue.StepType.FORCED_RUN else MovementQueue.StepType.NORMAL
+            val stepType = if (message.keyCombination == 1) MovementQueue.StepType.FORCED_RUN else MovementQueue.StepType.NORMAL
             val noClip = client.attr[NO_CLIP_ATTR] ?: false
             client.walkTo(message.x, message.z, stepType, detectCollision = !noClip)
         }
