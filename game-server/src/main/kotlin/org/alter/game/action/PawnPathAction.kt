@@ -1,6 +1,5 @@
 package org.alter.game.action
 
-import org.alter.game.message.impl.SetMapFlagMessage
 import org.alter.game.model.MovementQueue
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.*
@@ -16,6 +15,7 @@ import org.alter.game.model.timer.RESET_PAWN_FACING_TIMER
 import org.alter.game.model.timer.STUN_TIMER
 import org.alter.game.plugin.Plugin
 import gg.rsmod.util.AabbUtil
+import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import java.lang.ref.WeakReference
 
 /**
@@ -43,7 +43,7 @@ object PawnPathAction {
             terminateAction = {
                 pawn.stopMovement()
                 if (pawn is Player) {
-                    pawn.write(SetMapFlagMessage(255, 255))
+                    pawn.write(SetMapFlag(255, 255))
                 }
             }
 
@@ -68,7 +68,7 @@ object PawnPathAction {
             terminateAction = {
                 pawn.stopMovement()
                 if (pawn is Player) {
-                    pawn.write(SetMapFlagMessage(255, 255))
+                    pawn.write(SetMapFlag(255, 255))
                 }
             }
 
@@ -91,7 +91,7 @@ object PawnPathAction {
                     pawn.timers.has(STUN_TIMER) -> pawn.writeMessage(Entity.YOURE_STUNNED)
                     else -> pawn.writeMessage(Entity.YOU_CANT_REACH_THAT)
                 }
-                pawn.write(SetMapFlagMessage(255, 255))
+                pawn.write(SetMapFlag(255, 255))
             }
             pawn.resetFacePawn()
             return

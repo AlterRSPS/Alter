@@ -6,7 +6,6 @@ import org.alter.api.SkullIcon
 import com.google.common.primitives.Ints
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.fs.def.VarbitDef
-import org.alter.game.message.impl.*
 import org.alter.game.model.World
 import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
@@ -28,6 +27,16 @@ import org.alter.api.cfg.Varbit
 import org.alter.api.cfg.Varp
 import org.alter.api.cfg.Song
 import gg.rsmod.util.BitManipulation
+import net.rsprot.protocol.game.outgoing.interfaces.*
+import net.rsprot.protocol.game.outgoing.misc.client.UrlOpen
+import net.rsprot.protocol.game.outgoing.misc.player.*
+import net.rsprot.protocol.game.outgoing.sound.MidiJingle
+import net.rsprot.protocol.game.outgoing.sound.MidiSongOld
+import net.rsprot.protocol.game.outgoing.sound.SynthSound
+import net.rsprot.protocol.game.outgoing.varp.VarpLarge
+import net.rsprot.protocol.game.outgoing.varp.VarpSmall
+import org.alter.game.message.impl.UpdateInvFullMessage
+import org.alter.game.message.impl.UpdateInvPartialMessage
 
 /**
  * The id of the script used to initialise the interface overlay options. The 'big' variant of this script
@@ -68,7 +77,10 @@ fun Player.openShop(shopId: Int) {
 }
 
 fun Player.message(message: String, type: ChatMessageType = ChatMessageType.CONSOLE, username: String? = null) {
-    write(MessageGameMessage(type = type.id, message = message, username = username))
+    if (username != null) {
+        MessageGame(type = type.id, message = message, name = username)
+    } else
+        MessageGame(type = type.id, message = message)
 }
 
 /**
@@ -87,15 +99,15 @@ fun Player.nothingMessage(){
 }
 
 fun Player.filterableMessage(message: String) {
-    write(MessageGameMessage(type = ChatMessageType.SPAM.id, message = message, username = null))
+    write(MessageGame(type = ChatMessageType.SPAM.id, message = message))
 }
 
 fun Player.openUrl(url: String) {
-    write(OpenUrlMessage(url))
+    write(UrlOpen(url))
 }
 
 fun Player.runClientScript(id: Int, vararg args: Any) {
-    write(RunClientScriptMessage(id, *args))
+    write(RunClientScript(id, args.toList()))
 }
 
 fun Player.focusTab(tab: GameframeTab) {
@@ -108,11 +120,11 @@ fun Player.setInterfaceUnderlay(color: Int, transparency: Int) {
 }
 
 fun Player.setInterfaceEvents(interfaceId: Int, component: Int, from: Int, to: Int, setting: Int) {
-    write(IfSetEventsMessage(hash = ((interfaceId shl 16) or component), fromChild = from, toChild = to, setting = setting))
+    write(IfSetEvents(interfaceId = interfaceId, componentId = component, start = from, end = to, events = setting))
 }
 
 fun Player.setInterfaceEvents(interfaceId: Int, component: Int, range: IntRange, setting: Int) {
-    write(IfSetEventsMessage(hash = ((interfaceId shl 16) or component), fromChild = range.first, toChild = range.last, setting = setting))
+    write(IfSetEvents(interfaceId = interfaceId, componentId = component, start = range.first, end = range.last, events = setting))
 }
 fun Player.setInterfaceEvents(interfaceId: Int, component: Int, range: IntRange, vararg setting: InterfaceEvent) {
     val list = arrayListOf<Int>()
@@ -120,34 +132,34 @@ fun Player.setInterfaceEvents(interfaceId: Int, component: Int, range: IntRange,
         list.add(it.flag)
     }
     val settings = list.reduce(Int::or)
-    write(IfSetEventsMessage(hash = ((interfaceId shl 16) or component), fromChild = range.first, toChild = range.last, setting = settings))
+    write(IfSetEvents(interfaceId = interfaceId, componentId = component, start = range.first, end = range.last, events = settings))
 }
 fun Player.setInterfaceEvents(interfaceId: Int, component: Int, range: IntRange, setting: InterfaceEvent) {
-    write(IfSetEventsMessage(hash = ((interfaceId shl 16) or component), fromChild = range.first, toChild = range.last, setting = setting.flag))
+    write(IfSetEvents(interfaceId = interfaceId, componentId = component, start = range.first, end = range.last, events = setting.flag))
 }
 
 fun Player.setComponentText(interfaceId: Int, component: Int, text: String) {
-    write(IfSetTextMessage(interfaceId, component, text))
+    write(IfSetText(interfaceId, component, text))
 }
 
 fun Player.setComponentHidden(interfaceId: Int, component: Int, hidden: Boolean) {
-    write(IfSetHideMessage(hash = ((interfaceId shl 16) or component), hidden = hidden))
+    write(IfSetHide(interfaceId = interfaceId, componentId = component, hidden = hidden))
 }
 
 fun Player.setComponentItem(interfaceId: Int, component: Int, item: Int, amountOrZoom: Int) {
-    write(IfSetObjectMessage(hash = ((interfaceId shl 16) or component), item = item, amount = amountOrZoom))
+    write(IfSetObject(interfaceId = interfaceId, componentId = component, obj = item, count = amountOrZoom))
 }
 
 fun Player.setComponentNpcHead(interfaceId: Int, component: Int, npc: Int) {
-    write(IfSetNpcHeadMessage(hash = ((interfaceId shl 16) or component), npc = npc))
+    write(IfSetNpcHead(interfaceId = interfaceId, componentId = component, npc = npc))
 }
 
 fun Player.setComponentPlayerHead(interfaceId: Int, component: Int) {
-    write(IfSetPlayerHeadMessage(hash = ((interfaceId shl 16) or component)))
+    write(IfSetPlayerHead(interfaceId = interfaceId, componentId = component))
 }
 
 fun Player.setComponentAnim(interfaceId: Int, component: Int, anim: Int) {
-    write(IfSetAnimMessage(hash = ((interfaceId shl 16) or component), anim = anim))
+    write(IfSetAnim(interfaceId = interfaceId, componentId = component, anim = anim))
 }
 
 /**
@@ -193,7 +205,7 @@ fun Player.openInterface(parent: Int, child: Int, interfaceId: Int, type: Int = 
     } else {
         interfaces.open(parent, child, interfaceId)
     }
-    write(IfOpenSubMessage(parent, child, interfaceId, type))
+    write(IfOpenSub(parent, child, interfaceId, type))
 }
 
 fun Player.closeInterface(interfaceId: Int) {
@@ -202,7 +214,10 @@ fun Player.closeInterface(interfaceId: Int) {
     }
     val hash = interfaces.close(interfaceId)
     if (hash != -1) {
-        write(IfCloseSubMessage(hash))
+        //this is retarded
+        val parent = hash shr 16
+        val child = hash and 0xFFFF
+        write(IfCloseSub(interfaceId = parent, componentId = child))
     }
 }
 
@@ -212,17 +227,17 @@ fun Player.closeInterface(dest: InterfaceDestination) {
     val parent = getDisplayComponentId(displayMode)
     val hash = interfaces.close(parent, child)
     if (hash != -1) {
-        write(IfCloseSubMessage((parent shl 16) or child))
+        write(IfCloseSub(interfaceId = parent, componentId = child))
     }
 }
 
 fun Player.closeComponent(parent: Int, child: Int) {
     interfaces.close(parent, child)
-    write(IfCloseSubMessage((parent shl 16) or child))
+    write(IfCloseSub(interfaceId = parent, componentId = child))
 }
 
 fun Player.closeInputDialog() {
-    write(TriggerOnDialogAbortMessage())
+    write(net.rsprot.protocol.game.outgoing.misc.player.TriggerOnDialogAbort)
 }
 
 fun Player.getInterfaceAt(dest: InterfaceDestination): Int {
@@ -263,7 +278,7 @@ fun Player.toggleDisplayInterface(newMode: DisplayMode) {
                 }
             }
 
-            write(IfMoveSubMessage(from = (fromParent shl 16) or fromChild, to = (toParent shl 16) or toChild))
+            write(IfMoveSub(sourceInterfaceId = fromParent, sourceComponentId = fromChild, destinationInterfaceId = toParent, destinationComponentId = toChild))
         }
     }
 }
@@ -274,7 +289,7 @@ fun Player.openOverlayInterface(displayMode: DisplayMode) {
     }
     val component = getDisplayComponentId(displayMode)
     interfaces.setVisible(parent = getDisplayComponentId(displayMode), child = 0, visible = true)
-    write(IfOpenTopMessage(component))
+    write(IfOpenTop(component))
 }
 
 fun Player.initInterfaces(displayMode: DisplayMode) {
@@ -377,20 +392,20 @@ fun Player.sendItemContainerOther(key: Int, container: ItemContainer) {
 }
 
 fun Player.sendRunEnergy(energy: Int) {
-    write(UpdateRunEnergyMessage(energy))
+    write(UpdateRunEnergy(energy))
 }
 
 fun Player.playSound(id: Int, volume: Int = 1, delay: Int = 0) {
-    write(SynthSoundMessage(sound = id, volume = volume, delay = delay))
+    write(SynthSound(id = id, loops = volume, delay = delay))
 }
 
 fun Player.playSong(id: Int) {
-    write(MidiSongMessage(id))
+    write(MidiSongOld(id))
     setComponentText(interfaceId = 239, component = 6, text = Song.getTitle(id))
 }
 
 fun Player.playJingle(id: Int) {
-    write(MidiJingleMessage(id))
+    write(MidiJingle(id))
 }
 
 fun Player.getVarp(id: Int): Int = varps.getState(id)
@@ -442,7 +457,7 @@ fun Player.setVarbit(id: Int, value: Int) {
 fun Player.sendTempVarbit(id: Int, value: Int) {
     val def = world.definitions.get(VarbitDef::class.java, id)
     val state = BitManipulation.setBit(varps.getState(def.varp), def.startBit, def.endBit, value)
-    val message = if (state in -Byte.MAX_VALUE..Byte.MAX_VALUE) VarpSmallMessage(def.varp, state) else VarpLargeMessage(def.varp, state)
+    val message = if (state in -Byte.MAX_VALUE..Byte.MAX_VALUE) VarpSmall(def.varp, state) else VarpLarge(def.varp, state)
     write(message)
 }
 
@@ -455,7 +470,7 @@ fun Player.toggleVarbit(id: Int) {
 }
 
 fun Player.setMapFlag(x: Int, z: Int) {
-    write(SetMapFlagMessage(x, z))
+    write(SetMapFlag(x, z))
 }
 
 fun Player.clearMapFlag() {
@@ -466,7 +481,7 @@ fun Player.sendOption(option: String, id: Int, leftClick: Boolean = false) {
     check(id in 1..options.size) { "Option id must range from [1-${options.size}]" }
     val index = id - 1
     options[index] = option
-    write(SetOpPlayerMessage(option, index, leftClick))
+    write(SetPlayerOp(id = index, priority = leftClick, op = option))
 }
 
 /**
@@ -483,7 +498,7 @@ fun Player.hasOption(option: String, id: Int = -1): Boolean {
 fun Player.removeOption(id: Int) {
     check(id in 1..options.size) { "Option id must range from [1-${options.size}]" }
     val index = id - 1
-    write(SetOpPlayerMessage("null", index, false))
+    write(SetPlayerOp(id = index, priority = false, op = "null"))
     options[index] = null
 }
 

@@ -1,7 +1,7 @@
 package org.alter.game.action
 
+import net.rsprot.protocol.game.outgoing.sound.MidiJingle
 import org.alter.game.fs.def.AnimDef
-import org.alter.game.message.impl.MidiJingleMessage
 import org.alter.game.model.attr.KILLER_ATTR
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
@@ -33,7 +33,7 @@ object PlayerDeathAction {
         val world = player.world
         val deathAnim = world.definitions.get(AnimDef::class.java, DEATH_ANIMATION)
         val instancedMap = world.instanceAllocator.getMap(player.tile)
-        player.write(MidiJingleMessage(90))
+        player.write(MidiJingle(90))
         player.damageMap.getMostDamage()?.let { killer ->
             if (killer is Player) {
                 world.getService(LoggerService::class.java, searchSubclasses = true)?.logPlayerKill(killer, player)

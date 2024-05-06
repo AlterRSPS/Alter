@@ -3,7 +3,6 @@ package org.alter.game.model.entity
 import com.google.common.base.MoreObjects
 import org.alter.game.fs.def.VarpDef
 import org.alter.game.message.Message
-import org.alter.game.message.impl.*
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
@@ -25,6 +24,15 @@ import org.alter.game.model.varp.VarpSet
 import org.alter.game.service.log.LoggerService
 import org.alter.game.sync.block.UpdateBlockType
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
+import net.rsprot.protocol.game.outgoing.misc.player.MessageGame
+import net.rsprot.protocol.game.outgoing.misc.player.UpdateRunWeight
+import net.rsprot.protocol.game.outgoing.misc.player.UpdateStat
+import net.rsprot.protocol.game.outgoing.sound.SynthSound
+import net.rsprot.protocol.game.outgoing.varp.VarpLarge
+import net.rsprot.protocol.game.outgoing.varp.VarpSmall
+import org.alter.game.message.impl.RebuildLoginMessage
+import org.alter.game.message.impl.UpdateInvFullMessage
 import java.util.*
 
 /**
@@ -373,8 +381,8 @@ open class Player(world: World) : Pawn(world) {
             if (varps.isDirty(i)) {
                 val varp = varps[i]
                 val message = when {
-                    varp.state in -Byte.MAX_VALUE..Byte.MAX_VALUE -> VarpSmallMessage(varp.id, varp.state)
-                    else -> VarpLargeMessage(varp.id, varp.state)
+                    varp.state in -Byte.MAX_VALUE..Byte.MAX_VALUE -> VarpSmall(varp.id, varp.state)
+                    else -> VarpLarge(varp.id, varp.state)
                 }
                 write(message)
             }
@@ -383,7 +391,7 @@ open class Player(world: World) : Pawn(world) {
 
         for (i in 0 until getSkills().maxSkills) {
             if (getSkills().isDirty(i)) {
-                write(UpdateStatMessage(skill = i, level = getSkills().getCurrentLevel(i), xp = getSkills().getCurrentXp(i).toInt()))
+                write(UpdateStat(stat = i, currentLevel = getSkills().getCurrentLevel(i), invisibleBoostedLevel = getSkills().getCurrentLevel(i), experience = getSkills().getCurrentXp(i).toInt()))
                 getSkills().clean(i)
             }
         }
@@ -432,7 +440,7 @@ open class Player(world: World) : Pawn(world) {
         }
 
         if (world.rebootTimer != -1) {
-            write(UpdateRebootTimerMessage(world.rebootTimer))
+            write(UpdateRebootTimer(world.rebootTimer))
         }
 
         initiated = true
@@ -469,7 +477,7 @@ open class Player(world: World) : Pawn(world) {
         val inventoryWeight = inventory.filterNotNull().sumOf { it.getDef(world.definitions).weight }
         val equipmentWeight = equipment.filterNotNull().sumOf { it.getDef(world.definitions).weight }
         this.weight = inventoryWeight + equipmentWeight
-        write(UpdateRunWeightMessage(this.weight.toInt()))
+        write(UpdateRunWeight(this.weight.toInt()))
     }
 
     fun calculateBonuses() {
@@ -574,11 +582,11 @@ open class Player(world: World) : Pawn(world) {
      * Write a [MessageGameMessage] to the client.
      */
     internal fun writeMessage(message: String) {
-        write(MessageGameMessage(type = 0, message = message, username = null))
+        write(MessageGame(type = 0, message = message))
     }
 
     internal fun playSound(id: Int, volume: Int = 1, delay: Int = 0) {
-        write(SynthSoundMessage(sound = id, volume = volume, delay = delay))
+        write(SynthSound(id = id, loops = volume, delay = delay))
     }
 
     override fun toString(): String = MoreObjects.toStringHelper(this)

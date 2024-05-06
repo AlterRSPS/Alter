@@ -1,7 +1,7 @@
 package org.alter.game.action
 
+import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.fs.def.ItemDef
-import org.alter.game.message.impl.SetMapFlagMessage
 import org.alter.game.model.MovementQueue
 import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_GROUNDITEM_ATTR
@@ -42,7 +42,7 @@ object GroundItemPathAction {
             p.queue(TaskPriority.STANDARD) {
                 terminateAction = {
                     p.stopMovement()
-                    p.write(SetMapFlagMessage(255, 255))
+                    p.write(SetMapFlag(255, 255))
                 }
                 awaitArrival(item, opt)
             }

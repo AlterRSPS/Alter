@@ -1,10 +1,10 @@
 package org.alter.plugins.content.skills.cooking
 
+import net.rsprot.protocol.game.incoming.resumed.ResumePauseButton
+import org.alter.api.ext.*
 import org.alter.game.fs.def.ItemDef
-import org.alter.game.message.impl.ResumePauseButtonMessage
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
-import org.alter.api.ext.*
 import org.alter.plugins.content.skills.cooking.data.CookingObj
 
 private val closeCookingDialog: QueueTask.() -> Unit = {
@@ -35,15 +35,15 @@ suspend fun QueueTask.cookingMessageBox(vararg items: Int, title: String = "What
     waitReturnValue()
     terminateAction!!(this)
 
-    val result = requestReturnValue as? ResumePauseButtonMessage ?: return
-    val child = result.component
+    val result = requestReturnValue as? ResumePauseButton ?: return
+    val child = result.componentId
 
     if(child < 14 || child >= 14 + items.size) {
         return
     }
 
     val item = items[child - 14]
-    val qty = result.slot
+    val qty = result.sub
 
     logic(player, item, qty, obj)
 }

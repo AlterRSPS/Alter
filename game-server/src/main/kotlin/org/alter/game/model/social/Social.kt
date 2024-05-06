@@ -1,9 +1,12 @@
 package org.alter.game.model.social
 
-import org.alter.game.message.impl.*
 import org.alter.game.model.entity.Player
 
 import io.github.oshai.kotlinlogging.KotlinLogging
+import net.rsprot.protocol.game.outgoing.social.FriendListLoaded
+import org.alter.game.message.impl.MessagePrivateReceiverMessage
+import org.alter.game.message.impl.UpdateFriendListMessage
+import org.alter.game.message.impl.UpdateIgnoreListMessage
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -26,7 +29,7 @@ class Social {
         val world = player.world
 
         if (friends.isEmpty()) {
-            player.write(FriendListLoadedMessage())
+            player.write(FriendListLoaded)
         } else {
             friends.forEach {
                 val user = world.getPlayerForName(it)

@@ -1,7 +1,6 @@
 package org.alter.game.action
 
 import org.alter.game.fs.def.ObjectDef
-import org.alter.game.message.impl.SetMapFlagMessage
 import org.alter.game.model.Direction
 import org.alter.game.model.MovementQueue
 import org.alter.game.model.attr.INTERACTING_ITEM
@@ -21,6 +20,7 @@ import org.alter.game.model.timer.STUN_TIMER
 import org.alter.game.plugin.Plugin
 import gg.rsmod.util.AabbUtil
 import gg.rsmod.util.DataConstants
+import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import java.util.ArrayDeque
 import java.util.EnumSet
 
@@ -36,7 +36,7 @@ object ObjectPathAction {
         player.queue(TaskPriority.STANDARD) {
             terminateAction = {
                 player.stopMovement()
-                player.write(SetMapFlagMessage(255, 255))
+                player.write(SetMapFlag(255, 255))
             }
 
             val route = walkTo(obj, lineOfSightRange)
@@ -52,7 +52,7 @@ object ObjectPathAction {
                     player.timers.has(STUN_TIMER) -> player.writeMessage(Entity.YOURE_STUNNED)
                     else -> player.writeMessage(Entity.YOU_CANT_REACH_THAT)
                 }
-                player.write(SetMapFlagMessage(255, 255))
+                player.write(SetMapFlag(255, 255))
             }
         }
     }

@@ -1,8 +1,8 @@
 package org.alter.api.ext
 
+import net.rsprot.protocol.game.incoming.resumed.ResumePauseButton
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.fs.def.NpcDef
-import org.alter.game.message.impl.ResumePauseButtonMessage
 import org.alter.game.model.attr.INTERACTING_NPC_ATTR
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
@@ -81,7 +81,7 @@ suspend fun QueueTask.options(vararg options: String, title: String = "Select an
     terminateAction = closeDialog
     waitReturnValue()
     terminateAction!!(this)
-    return (requestReturnValue as? ResumePauseButtonMessage)?.slot ?: -1
+    return (requestReturnValue as? ResumePauseButton)?.sub ?: -1
 }
 suspend fun QueueTask.itemMessage(message: String, item: Int, amountOrZoom: Int = 1, wait: Int = 1) {
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 193)
@@ -100,7 +100,7 @@ suspend fun QueueTask.interfaceOptions(vararg options: String, title: String): I
     waitReturnValue()
     terminateAction!!(this)
 
-    return (requestReturnValue as? ResumePauseButtonMessage)?.slot ?: -1
+    return (requestReturnValue as? ResumePauseButton)?.sub ?: -1
 }
 
 /**
@@ -340,8 +340,8 @@ suspend fun QueueTask.destroyItem(title: String = "Are you sure you want to dest
     waitReturnValue()
     terminateAction!!(this)
 
-    val msg = requestReturnValue as? ResumePauseButtonMessage
-    return msg?.slot == 1
+    val msg = requestReturnValue as? ResumePauseButton
+    return msg?.sub == 1
 }
 
 fun QueueTask.selectAppearance() {
@@ -450,14 +450,14 @@ suspend fun QueueTask.produceItemBox(vararg items: Int, title: String = "What wo
     waitReturnValue()
     terminateAction!!(this)
 
-    val msg = requestReturnValue as? ResumePauseButtonMessage ?: return
-    val child = msg.component
+    val msg = requestReturnValue as? ResumePauseButton ?: return
+    val child = msg.componentId
 
     if (child < baseChild || child >= baseChild + items.size)
         return
 
     val item = items[child - baseChild]
-    val qty = msg.slot
+    val qty = msg.sub
 
     logic(player, item, qty)
 }

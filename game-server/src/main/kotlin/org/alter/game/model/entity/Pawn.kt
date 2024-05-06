@@ -3,7 +3,6 @@ package org.alter.game.model.entity
 import org.alter.game.action.NpcDeathAction
 import org.alter.game.action.PlayerDeathAction
 import org.alter.game.event.Event
-import org.alter.game.message.impl.SetMapFlagMessage
 import org.alter.game.model.*
 import org.alter.game.model.attr.*
 import org.alter.game.model.bits.INFINITE_VARS_STORAGE
@@ -28,6 +27,7 @@ import org.alter.game.service.log.LoggerService
 import org.alter.game.sync.block.UpdateBlockBuffer
 import org.alter.game.sync.block.UpdateBlockType
 import kotlinx.coroutines.CoroutineScope
+import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import java.lang.ref.WeakReference
 import java.util.ArrayDeque
 import java.util.Queue
@@ -362,7 +362,7 @@ abstract class Pawn(val world: World) : Entity() {
     fun walkPath(path: Queue<Tile>, stepType: MovementQueue.StepType, detectCollision: Boolean) {
         if (path.isEmpty()) {
             if (this is Player) {
-                write(SetMapFlagMessage(255, 255))
+                write(SetMapFlag(255, 255))
             }
             return
         }
@@ -397,14 +397,14 @@ abstract class Pawn(val world: World) : Entity() {
          */
         if (tail == null || tail.sameAs(tile)) {
             if (this is Player) {
-                write(SetMapFlagMessage(255, 255))
+                write(SetMapFlag(255, 255))
             }
             movementQueue.clear()
             return
         }
 
         if (this is Player && lastKnownRegionBase != null) {
-            write(SetMapFlagMessage(tail.x - lastKnownRegionBase!!.x, tail.z - lastKnownRegionBase!!.z))
+            write(SetMapFlag(tail.x - lastKnownRegionBase!!.x, tail.z - lastKnownRegionBase!!.z))
         }
     }
 

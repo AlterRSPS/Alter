@@ -8,8 +8,6 @@ import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.fs.def.NpcDef
 import org.alter.game.fs.def.ObjectDef
-import org.alter.game.message.impl.LogoutFullMessage
-import org.alter.game.message.impl.UpdateRebootTimerMessage
 import org.alter.game.model.attr.AttributeMap
 import org.alter.game.model.attr.TERMINAL_ARGS
 import org.alter.game.model.collision.CollisionManager
@@ -38,6 +36,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 
 import io.github.oshai.kotlinlogging.KotlinLogging
+import net.rsprot.protocol.game.outgoing.logout.Logout
+import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
 import net.runelite.cache.IndexType
 import net.runelite.cache.fs.Store
 import java.io.File
@@ -335,7 +335,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
                 for (i in 0 until players.capacity) {
                     players[i]?.let { player ->
                         player.handleLogout()
-                        player.write(LogoutFullMessage())
+                        player.write(Logout)
                         player.channelClose()
                     }
                 }
@@ -348,7 +348,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      */
     fun sendRebootTimer(cycles: Int = rebootTimer) {
         players.forEach { p ->
-            p.write(UpdateRebootTimerMessage(cycles))
+            p.write(UpdateRebootTimer(cycles))
         }
     }
 
