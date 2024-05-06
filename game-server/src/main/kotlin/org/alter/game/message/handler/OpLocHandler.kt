@@ -1,8 +1,8 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.locs.OpLoc
 import org.alter.game.action.ObjectPathAction
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.OpLoc5Message
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 import org.alter.game.model.World
@@ -17,9 +17,10 @@ import java.lang.ref.WeakReference
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-class OpLoc5Handler : MessageHandler<OpLoc5Message> {
+class OpLocHandler : MessageHandler<OpLoc> {
 
-    override fun handle(client: Client, world: World, message: OpLoc5Message) {
+    override fun handle(client: Client, world: World, message: OpLoc) {
+        //NOTE: OP3 used to just be Ground Item action 3
         /*
          * If tile is too far away, don't process it.
          */
@@ -41,19 +42,19 @@ class OpLoc5Handler : MessageHandler<OpLoc5Message> {
         val chunk = world.chunks.getOrCreate(tile)
         val obj = chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull { it.id == message.id } ?: return
 
-        log(client, "Object action 5: id=%d, x=%d, z=%d, movement=%d", message.id, message.x, message.z, message.movementType)
+        log(client, "Object action %d: id=%d, x=%d, z=%d, movement=%d", message.op, message.id, message.x, message.z, message.controlKey)
 
         client.stopMovement()
         client.closeInterfaceModal()
         client.interruptQueues()
         client.resetInteractions()
 
-        if (message.movementType == 1 && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
+        if (message.controlKey && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             val def = obj.getDef(world.definitions)
             client.moveTo(world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.width, centreLength = def.length) ?: obj.tile)
         }
 
-        client.attr[INTERACTING_OPT_ATTR] = 5
+        client.attr[INTERACTING_OPT_ATTR] = message.op
         client.attr[INTERACTING_OBJ_ATTR] = WeakReference(obj)
         client.executePlugin(ObjectPathAction.objectInteractPlugin)
     }

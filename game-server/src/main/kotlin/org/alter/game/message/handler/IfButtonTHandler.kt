@@ -1,26 +1,23 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.buttons.IfButtonT
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.IfButtonDMessage
-import org.alter.game.message.impl.IfButtonTMessage
 import org.alter.game.model.World
 import org.alter.game.model.attr.*
 import org.alter.game.model.entity.Client
 import java.lang.ref.WeakReference
 
-class IfButtonTHandler : MessageHandler<IfButtonTMessage> {
-    override fun handle(client: Client, world: World, message: IfButtonTMessage) {
-        val fromComponentHash = message.fromComponentHash
-        val fromInterfaceId = fromComponentHash shr 16
-        val fromComponent = fromComponentHash and 0xFFFF
-        val fromSlot = message.fromSlot
-        val fromItemId = message.fromItem
+class IfButtonTHandler : MessageHandler<IfButtonT> {
+    override fun handle(client: Client, world: World, message: IfButtonT) {
+        val fromInterfaceId = message.selectedInterfaceId
+        val fromComponent = message.selectedComponentId
+        val fromSlot = message.selectedSub
+        val fromItemId = message.selectedObj
 
-        val toComponentHash = message.toComponentHash
-        val toInterfaceId = toComponentHash shr 16
-        val toComponent = toComponentHash and 0xFFFF
-        val toSlot = message.toSlot
-        val toItemId = message.toItem
+        val toInterfaceId = message.targetInterfaceId
+        val toComponent = message.targetComponentId
+        val toSlot = message.targetSub
+        val toItemId = message.targetObj
 
         /**
          * @TODO

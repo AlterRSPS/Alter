@@ -1,8 +1,8 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.players.OpPlayer
 import org.alter.game.action.PawnPathAction
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.OpPlayer1Message
 import org.alter.game.model.World
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.attr.INTERACTING_PLAYER_ATTR
@@ -12,12 +12,12 @@ import java.lang.ref.WeakReference
 /**
  * @author Triston Plummer ("Dread")
  */
-class OpPlayer1Handler : MessageHandler<OpPlayer1Message> {
+class OpPlayerHandler : MessageHandler<OpPlayer> {
 
-    override fun handle(client: Client, world: World, message: OpPlayer1Message) {
+    override fun handle(client: Client, world: World, message: OpPlayer) {
         val index = message.index
         // The interaction option id.
-        val option = 1
+        val option = message.op
         // The index of the option in the player's option array.
         val optionIndex = option - 1
 
