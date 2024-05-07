@@ -1,12 +1,12 @@
 package org.alter.game.rsprot
 
 import io.netty.buffer.PooledByteBufAllocator
+import io.netty.channel.ChannelHandlerContext
 import net.rsprot.compression.HuffmanCodec
 import net.rsprot.compression.provider.DefaultHuffmanCodecProvider
 import net.rsprot.compression.provider.HuffmanCodecProvider
 import net.rsprot.crypto.rsa.RsaKeyPair
-import net.rsprot.protocol.api.AbstractNetworkServiceFactory
-import net.rsprot.protocol.api.GameConnectionHandler
+import net.rsprot.protocol.api.*
 import net.rsprot.protocol.api.bootstrap.BootstrapFactory
 import net.rsprot.protocol.api.handlers.ExceptionHandlers
 import net.rsprot.protocol.api.js5.Js5GroupProvider
@@ -46,6 +46,7 @@ import net.rsprot.protocol.game.incoming.social.IgnoreListAdd
 import net.rsprot.protocol.game.incoming.social.IgnoreListDel
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcAvatarExceptionHandler
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcIndexSupplier
+import net.rsprot.protocol.message.IncomingGameMessage
 import net.rsprot.protocol.message.codec.incoming.GameMessageConsumerRepositoryBuilder
 import net.rsprot.protocol.message.codec.incoming.provider.DefaultGameMessageConsumerRepositoryProvider
 import net.rsprot.protocol.message.codec.incoming.provider.GameMessageConsumerRepositoryProvider
@@ -65,11 +66,21 @@ class NetworkServiceFactory(val world: World,
     }
 
     override fun getExceptionHandlers(): ExceptionHandlers<Client> {
-        TODO("Not yet implemented")
+        val channelExceptionHandler = ChannelExceptionHandler {
+                channelHandlerContext: ChannelHandlerContext, throwable: Throwable ->
+                    throwable.printStackTrace()
+        }
+        val incomingGameMessageConsumerExceptionHandler: IncomingGameMessageConsumerExceptionHandler<Client> =
+            IncomingGameMessageConsumerExceptionHandler {
+                session: Session<Client>, incomingGameMessage: IncomingGameMessage, throwable: Throwable ->
+            throwable.printStackTrace()
+
+        }
+        return ExceptionHandlers(channelExceptionHandler, incomingGameMessageConsumerExceptionHandler)
     }
 
     override fun getGameConnectionHandler(): GameConnectionHandler<Client> {
-        TODO("Not yet implemented")
+        return RsModConnectionHandler(world)
     }
 
     override fun getGameMessageConsumerRepositoryProvider(): GameMessageConsumerRepositoryProvider<Client> {
@@ -135,9 +146,14 @@ class NetworkServiceFactory(val world: World,
     }
 
     override fun getRsaKeyPair(): RsaKeyPair {
-        val rsaService = world.getService(RsaService::class.java)!!
+        val rsaService = world.getService(RsaService::class.java)!!//evil assertion ;/
         val exponent: BigInteger = rsaService.getExponent()
         val modulus: BigInteger = rsaService.getModulus()
         return RsaKeyPair(exponent, modulus)
+    }
+
+    private fun npcIndexSupplier(): NpcIndexSupplier {
+
+        return TODO("Provide the return value")
     }
 }

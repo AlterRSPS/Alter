@@ -1,24 +1,24 @@
 package org.alter.game
 
 import com.google.common.base.Stopwatch
+import gg.rsmod.util.ServerProperties
+import io.github.oshai.kotlinlogging.KotlinLogging
+import io.netty.bootstrap.ServerBootstrap
+import io.netty.channel.ChannelOption
+import io.netty.channel.nio.NioEventLoopGroup
+import io.netty.channel.socket.nio.NioServerSocketChannel
+import net.rsprot.protocol.common.client.OldSchoolClientType
+import net.runelite.cache.fs.Store
 import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.skill.SkillSet
 import org.alter.game.protocol.ClientChannelInitializer
+import org.alter.game.rsprot.NetworkServiceFactory
 import org.alter.game.service.GameService
 import org.alter.game.service.rsa.RsaService
 import org.alter.game.service.xtea.XteaKeyService
-import gg.rsmod.util.ServerProperties
-import io.github.oshai.kotlinlogging.KLogger
-import io.netty.bootstrap.ServerBootstrap
-import io.netty.channel.ChannelOption
-import io.netty.channel.nio.NioEventLoopGroup
-import io.netty.channel.socket.nio.NioServerSocketChannel
-
-import io.github.oshai.kotlinlogging.KotlinLogging
-import net.runelite.cache.fs.Store
 import java.net.InetSocketAddress
 import java.nio.file.Files
 import java.nio.file.Path
@@ -226,6 +226,8 @@ class Server {
         System.gc()
         logger.info("For commands, type `help` or `?` ")
 
+        val network = NetworkServiceFactory(world, listOf(port), listOf(OldSchoolClientType.DESKTOP))
+        world.network = network.build()
         var input: String?
         do {
             val name = gameProperties.getOrDefault("name", "Alter")

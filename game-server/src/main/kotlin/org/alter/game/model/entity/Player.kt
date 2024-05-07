@@ -2,7 +2,10 @@ package org.alter.game.model.entity
 
 import com.google.common.base.MoreObjects
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import net.rsprot.protocol.api.Session
+import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerInfo
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
+import net.rsprot.protocol.game.outgoing.map.RebuildLogin
 import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
 import net.rsprot.protocol.game.outgoing.misc.player.MessageGame
 import net.rsprot.protocol.game.outgoing.misc.player.UpdateRunWeight
@@ -423,6 +426,11 @@ open class Player(world: World) : Pawn(world) {
      */
     fun register(): Boolean = world.register(this)
 
+    lateinit var playerInfo: PlayerInfo
+
+    var session: Session<Client>? = null
+
+
     /**
      * Handles any logic that should be executed upon log in.
      */
@@ -442,6 +450,7 @@ open class Player(world: World) : Pawn(world) {
             val tiles = IntArray(gpiTileHashMultipliers.size)
             System.arraycopy(gpiTileHashMultipliers, 0, tiles, 0, tiles.size)
 
+            write(RebuildLogin(tile.x, tile.z, world.xteaKeyService!!, playerInfo))
             write(RebuildLoginMessage(index, tile, tiles, world.xteaKeyService))
             world.getService(LoggerService::class.java, searchSubclasses = true)?.logLogin(this)
         }

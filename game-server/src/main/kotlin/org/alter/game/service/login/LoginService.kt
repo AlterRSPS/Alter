@@ -8,13 +8,10 @@ import net.rsprot.protocol.loginprot.incoming.util.AuthenticationType
 import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
-import org.alter.game.protocol.GameHandler
-import org.alter.game.service.GameService
 import org.alter.game.service.Service
 import org.alter.game.service.serializer.PlayerSerializerService
 import org.alter.game.service.world.SimpleWorldVerificationService
 import org.alter.game.service.world.WorldVerificationService
-import org.alter.game.system.GameSystem
 import java.util.concurrent.Executors
 import java.util.concurrent.LinkedBlockingQueue
 
@@ -62,20 +59,6 @@ class LoginService : Service {
     fun addLoginRequest(world: World, responseHandler: GameLoginResponseHandler<Client>, block: LoginBlock<AuthenticationType<*>>) {
         val serviceRequest = LoginServiceRequest(world, responseHandler, block)
         requests.offer(serviceRequest)
-    }
-
-    fun successfulLogin(client: Client, world: World) {
-        val gameSystem = GameSystem(
-                channel = client.channel, world = world, client = client,
-                service = client.world.getService(GameService::class.java)!!)
-
-        client.gameSystem = gameSystem
-        client.channel.attr(GameHandler.SYSTEM_KEY).set(gameSystem)
-
-        if (client.channel.isActive) {
-            client.login()
-            client.channel.flush()
-        }
     }
 
     companion object {

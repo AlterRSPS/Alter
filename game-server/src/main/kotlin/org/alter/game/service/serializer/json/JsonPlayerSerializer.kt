@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
+import net.rsprot.crypto.xtea.XteaKey
 import net.rsprot.protocol.loginprot.incoming.util.AuthenticationType
 import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
 import org.alter.game.model.PlayerUID
@@ -46,7 +47,7 @@ class JsonPlayerSerializer : PlayerSerializerService() {
         }
     }
 
-    override fun loadClientData(client: Client, block: LoginBlock<AuthenticationType<*>>): PlayerLoadResult {
+    override fun loadClientData(client: Client, block: LoginBlock<*>): PlayerLoadResult {
         val save = path.resolve(client.loginUsername)
         if (!Files.exists(save)) {
             configureNewPlayer(client, block)
@@ -70,13 +71,16 @@ class JsonPlayerSerializer : PlayerSerializerService() {
                     return PlayerLoadResult.INVALID_CREDENTIALS
                 }
             } else {
-                /*
-                 * If the [request] is a [LoginRequest.reconnecting] request, we
-                 * verify that the login xteas match from our previous session.
-                 */
-//                if (!Arrays.equals(data.previousXteas, request.xteaKeys)) {
-//                    return PlayerLoadResult.INVALID_RECONNECTION
-//                }
+
+                if(block.authentication is XteaKey) {
+                    /*
+                    * If the [request] is a [LoginRequest.reconnecting] request, we
+                    * verify that the login xteas match from our previous session.
+                    */
+                    if (!Arrays.equals(data.previousXteas, (block.authentication as XteaKey).key)) {
+                        return PlayerLoadResult.INVALID_RECONNECTION
+                    }
+                }
             }
 
             client.loginUsername = data.username

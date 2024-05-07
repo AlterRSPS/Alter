@@ -1,14 +1,15 @@
 package org.alter.game.service.xtea
 
 import com.google.gson.Gson
+import gg.rsmod.util.ServerProperties
+import io.github.oshai.kotlinlogging.KotlinLogging
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import net.rsprot.crypto.xtea.XteaKey
+import net.rsprot.protocol.game.outgoing.map.util.XteaProvider
+import net.runelite.cache.IndexType
 import org.alter.game.Server
 import org.alter.game.model.World
 import org.alter.game.service.Service
-import gg.rsmod.util.ServerProperties
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-
-import io.github.oshai.kotlinlogging.KotlinLogging
-import net.runelite.cache.IndexType
 import org.apache.commons.io.FilenameUtils
 import java.io.FileNotFoundException
 import java.nio.file.Files
@@ -20,7 +21,7 @@ import java.nio.file.Paths
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class XteaKeyService : Service {
+class XteaKeyService : Service, XteaProvider {
 
     private val keys = Int2ObjectOpenHashMap<IntArray>()
 
@@ -146,5 +147,13 @@ class XteaKeyService : Service {
     companion object {
         private val logger = KotlinLogging.logger{}
         val EMPTY_KEYS = intArrayOf(0, 0, 0, 0)
+    }
+
+    override fun provide(region: Int): XteaKey {
+        if (keys[region] == null) {
+            logger.trace { "No XTEA keys found for region $region." }
+            keys[region] = EMPTY_KEYS
+        }
+        return XteaKey(keys[region]!!)
     }
 }

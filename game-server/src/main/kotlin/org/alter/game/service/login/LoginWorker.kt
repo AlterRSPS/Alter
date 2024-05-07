@@ -2,6 +2,7 @@ package org.alter.game.service.login
 
 import gg.rsmod.net.codec.login.LoginResultType
 import io.github.oshai.kotlinlogging.KotlinLogging
+import net.rsprot.protocol.common.client.OldSchoolClientType
 import net.rsprot.protocol.loginprot.outgoing.LoginResponse
 import net.rsprot.protocol.loginprot.outgoing.util.AuthenticatorResponse
 import org.alter.game.model.entity.Client
@@ -54,7 +55,11 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
                                 userId = 0,
                                 userHash = 0,
                             ), request.block) {
-                                boss.successfulLogin(client, world)
+                                it?.apply {
+                                    client.session = this
+                                    client.playerInfo = client.world.network.playerInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
+                                    client.login()
+                                }
                             }
                         } else {
                             request.responseHandler.writeFailedResponse(LoginResponse.InvalidSave)

@@ -34,18 +34,18 @@ abstract class PlayerSerializerService : Service {
     override fun terminate(server: org.alter.game.Server, world: World) {
     }
 
-    fun configureNewPlayer(client: Client, block: LoginBlock<AuthenticationType<*>>) {
+    fun configureNewPlayer(client: Client, block: LoginBlock<*>) {
         client.attr.put(NEW_ACCOUNT_ATTR, true)
         client.attr.put(APPEARANCE_SET_ATTR, false)
 
-        if(block.authentication is AuthenticationType.PasswordAuthentication)
+        if(block.authentication is AuthenticationType.PasswordAuthentication<*>)
             client.passwordHash = BCrypt.hashpw((block.authentication as AuthenticationType.PasswordAuthentication<*>).password.asString(), BCrypt.gensalt(16))
         client.tile = startTile
     }
 
     abstract fun initSerializer(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties)
 
-    abstract fun loadClientData(client: Client, block: LoginBlock<AuthenticationType<*>>): PlayerLoadResult
+    abstract fun loadClientData(client: Client, block: LoginBlock<*>): PlayerLoadResult
 
     abstract fun saveClientData(client: Client): Boolean
 }
