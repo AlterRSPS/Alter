@@ -1,7 +1,7 @@
 package org.alter.game.model.region.update
 
-import org.alter.game.message.Message
-import org.alter.game.message.impl.ObjDelMessage
+import net.rsprot.protocol.game.outgoing.zone.payload.ObjDel
+import net.rsprot.protocol.message.ZoneProt
 import org.alter.game.model.entity.GroundItem
 
 /**
@@ -12,5 +12,5 @@ import org.alter.game.model.entity.GroundItem
 class ObjDelUpdate(override val type: EntityUpdateType,
                    override val entity: GroundItem) : EntityUpdate<GroundItem>(type, entity) {
 
-    override fun toMessage(): Message = ObjDelMessage(entity.item, ((entity.tile.x and 0x7) shl 4) or (entity.tile.z and 0x7), entity.amount)
+    override fun toMessage(): ZoneProt = ObjDel(entity.item, entity.amount, (entity.tile.x and 0x7), (entity.tile.z and 0x7))
 }

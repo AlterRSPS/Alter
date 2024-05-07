@@ -1,7 +1,7 @@
 package org.alter.game.model.region.update
 
-import org.alter.game.message.Message
-import org.alter.game.message.impl.SoundAreaMessage
+import net.rsprot.protocol.game.outgoing.zone.payload.SoundArea
+import net.rsprot.protocol.message.ZoneProt
 import org.alter.game.model.entity.AreaSound
 
 /**
@@ -11,7 +11,6 @@ import org.alter.game.model.entity.AreaSound
  */
 class SoundAreaUpdate(override val type: EntityUpdateType,
                       override val entity: AreaSound) : EntityUpdate<AreaSound>(type, entity) {
-
-    override fun toMessage(): Message = SoundAreaMessage(((entity.tile.x and 0x7) shl 4) or (entity.tile.z and 0x7), entity.id,
-            entity.radius, entity.volume, entity.delay)
+    override fun toMessage(): ZoneProt = SoundArea(entity.id, entity.delay, entity.volume
+        , entity.radius, 1, (entity.tile.x and 0x7), (entity.tile.z and 0x7))
 }

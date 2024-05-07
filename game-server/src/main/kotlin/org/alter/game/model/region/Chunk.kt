@@ -3,8 +3,10 @@ package org.alter.game.model.region
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
-import org.alter.game.message.impl.UpdateZonePartialEnclosedMessage
-import org.alter.game.message.impl.UpdateZonePartialFollowsMessage
+import net.rsprot.protocol.common.client.OldSchoolClientType
+import net.rsprot.protocol.game.outgoing.zone.header.UpdateZonePartialEnclosed
+import net.rsprot.protocol.game.outgoing.zone.header.UpdateZonePartialFollows
+import net.rsprot.protocol.message.ZoneProt
 import org.alter.game.model.*
 import org.alter.game.model.collision.CollisionMatrix
 import org.alter.game.model.collision.CollisionUpdate
@@ -195,7 +197,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
                     continue
                 }
                 val local = client.lastKnownRegionBase!!.toLocal(this.coords.toTile())
-                client.write(UpdateZonePartialFollowsMessage(local.x, local.z))
+                client.write(UpdateZonePartialFollows(local.x, local.z, local.height))
                 client.write(update.toMessage())
             }
         }
@@ -208,18 +210,18 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
      * Game service is required to get the XTEA service.
      */
     fun sendUpdates(p: Player, gameService: GameService) {
-        val messages = ObjectArrayList<EntityGroupMessage>()
+        val messages = ObjectArrayList<ZoneProt>()
 
         updates.forEach { update ->
-            val message = EntityGroupMessage(update.type.id, update.toMessage())
             if (canBeViewed(p, update.entity)) {
-                messages.add(message)
+                messages.add(update.toMessage())
             }
         }
 
+        val computed = p.world.network.computeUpdateZonePartialEnclosedCache(messages)
         if (messages.isNotEmpty()) {
             val local = p.lastKnownRegionBase!!.toLocal(coords.toTile())
-            p.write(UpdateZonePartialEnclosedMessage(local.x, local.z, gameService.messageEncoders, gameService.messageStructures, *messages.toTypedArray()))
+            p.write(UpdateZonePartialEnclosed(local.x, local.z, local.height, computed[OldSchoolClientType.DESKTOP]!!))
         }
     }
 
@@ -246,9 +248,9 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
             if (spawn) ObjAddUpdate(EntityUpdateType.SPAWN_GROUND_ITEM, entity as GroundItem)
             else ObjDelUpdate(EntityUpdateType.REMOVE_GROUND_ITEM, entity as GroundItem)
 
-        EntityType.PROJECTILE ->
-            if (spawn) MapProjAnimUpdate(EntityUpdateType.SPAWN_PROJECTILE, entity as Projectile)
-            else throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
+//        EntityType.PROJECTILE ->
+//            if (spawn) MapProjAnimUpdate(EntityUpdateType.SPAWN_PROJECTILE, entity as Projectile)
+//            else throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
 
         EntityType.AREA_SOUND ->
             if (spawn) SoundAreaUpdate(EntityUpdateType.PLAY_TILE_SOUND, entity as AreaSound)

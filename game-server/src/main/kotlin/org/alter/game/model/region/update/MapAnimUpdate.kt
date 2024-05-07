@@ -1,7 +1,7 @@
 package org.alter.game.model.region.update
 
-import org.alter.game.message.Message
-import org.alter.game.message.impl.MapAnimMessage
+import net.rsprot.protocol.game.outgoing.zone.payload.MapAnim
+import net.rsprot.protocol.message.ZoneProt
 import org.alter.game.model.Graphic
 import org.alter.game.model.TileGraphic
 
@@ -13,6 +13,6 @@ import org.alter.game.model.TileGraphic
 class MapAnimUpdate(override val type: EntityUpdateType,
                     override val entity: TileGraphic) : EntityUpdate<TileGraphic>(type, entity) {
 
-    override fun toMessage(): Message = MapAnimMessage(entity.id, entity.height, entity.delay,
-            ((entity.tile.x and 0x7) shl 4) or (entity.tile.z and 0x7))
+    override fun toMessage(): ZoneProt = MapAnim(entity.id, entity.delay, entity.height,
+        (entity.tile.x and 0x7), (entity.tile.z and 0x7))
 }
