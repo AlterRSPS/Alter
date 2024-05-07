@@ -4,6 +4,7 @@ import com.google.common.primitives.Ints
 import gg.rsmod.util.BitManipulation
 import net.rsprot.protocol.game.outgoing.interfaces.*
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
+import net.rsprot.protocol.game.outgoing.inv.UpdateInvPartial
 import net.rsprot.protocol.game.outgoing.misc.client.UrlOpen
 import net.rsprot.protocol.game.outgoing.misc.player.*
 import net.rsprot.protocol.game.outgoing.sound.MidiJingle
@@ -17,8 +18,6 @@ import org.alter.api.cfg.Varbit
 import org.alter.api.cfg.Varp
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.fs.def.VarbitDef
-import org.alter.game.message.impl.UpdateInvFullMessage
-import org.alter.game.message.impl.UpdateInvPartialMessage
 import org.alter.game.model.World
 import org.alter.game.model.attr.CHANGE_LOGGING
 import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
@@ -32,6 +31,7 @@ import org.alter.game.model.entity.Player
 import org.alter.game.model.interf.DisplayMode
 import org.alter.game.model.item.Item
 import org.alter.game.model.timer.SKULL_ICON_DURATION_TIMER
+import org.alter.game.rsprot.RsModIndexedObjectProvider
 import org.alter.game.rsprot.RsModObjectProvider
 import org.alter.game.sync.block.UpdateBlockType
 
@@ -362,16 +362,40 @@ fun Player.sendItemContainer(interfaceId: Int, component: Int, container: ItemCo
 fun Player.sendItemContainer(interfaceId: Int, component: Int, key: Int, container: ItemContainer) = sendItemContainer(interfaceId, component, key, container.rawItems)
 
 fun Player.updateItemContainer(interfaceId: Int, component: Int, oldItems: Array<Item?>, newItems: Array<Item?>) {
-    write(UpdateInvPartialMessage(interfaceId = interfaceId, component = component, oldItems = oldItems, newItems = newItems))
+    write(
+        UpdateInvPartial(
+            interfaceId = interfaceId,
+            componentId = component,
+            inventoryId = 0,
+            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
+        )
+    )
 }
 
 fun Player.updateItemContainer(interfaceId: Int, component: Int, key: Int, oldItems: Array<Item?>, newItems: Array<Item?>) {
-    write(UpdateInvPartialMessage(interfaceId = interfaceId, component = component, containerKey = key, oldItems = oldItems, newItems = newItems))
+    write(
+        UpdateInvPartial(
+            interfaceId = interfaceId,
+            componentId = component,
+            inventoryId = key,
+            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
+        )
+    )
 }
 
 fun Player.updateItemContainer(key: Int, oldItems: Array<Item?>, newItems: Array<Item?>) {
-    write(UpdateInvPartialMessage(containerKey = key, oldItems = oldItems, newItems = newItems))
+    write(
+        UpdateInvPartial(
+            inventoryId = key,
+            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
+        )
+    )
 }
+
+private val <T> Array<T>.asNonNullIterator: Iterator<Int>
+    get() {
+        return mapIndexedNotNull { index, item -> if (item != null) index else null }.iterator()
+    }
 
 /**
  * Sends a container type referred to as 'invother' in CS2, which is used for displaying a second container with
@@ -385,7 +409,7 @@ fun Player.updateItemContainer(key: Int, oldItems: Array<Item?>, newItems: Array
  * https://github.com/RuneStar/cs2-scripts/blob/a144f1dceb84c3efa2f9e90648419a11ee48e7a2/scripts/script768.cs2
  */
 fun Player.sendItemContainerOther(key: Int, container: ItemContainer) {
-    write(UpdateInvFullMessage(containerKey = key + 32768, items = container.rawItems))
+    write(UpdateInvFull(inventoryId = key + 32768, capacity = container.rawItems.size, provider = RsModObjectProvider(container.rawItems)))
 }
 
 fun Player.sendRunEnergy(energy: Int) {
