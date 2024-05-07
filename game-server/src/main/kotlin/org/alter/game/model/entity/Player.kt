@@ -15,6 +15,7 @@ import net.rsprot.protocol.game.outgoing.misc.player.UpdateStat
 import net.rsprot.protocol.game.outgoing.sound.SynthSound
 import net.rsprot.protocol.game.outgoing.varp.VarpLarge
 import net.rsprot.protocol.game.outgoing.varp.VarpSmall
+import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.fs.def.VarpDef
 import org.alter.game.message.Message
 import org.alter.game.message.impl.RebuildLoginMessage
@@ -582,7 +583,7 @@ open class Player(world: World) : Pawn(world) {
      * Default method to write [Message]s to the attached channel that won't
      * be handled unless the [Player] is controlled by a [Client] user.
      */
-    open fun write(vararg messages: Message) {
+    open fun write(vararg messages: OutgoingGameMessage) {
     }
 
     open fun write(vararg messages: Any) {

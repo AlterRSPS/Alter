@@ -51,8 +51,11 @@ import net.rsprot.protocol.message.codec.incoming.GameMessageConsumerRepositoryB
 import net.rsprot.protocol.message.codec.incoming.provider.DefaultGameMessageConsumerRepositoryProvider
 import net.rsprot.protocol.message.codec.incoming.provider.GameMessageConsumerRepositoryProvider
 import org.alter.game.message.handler.*
+import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
+import org.alter.game.model.entity.Npc
+import org.alter.game.model.entity.Player
 import org.alter.game.service.rsa.RsaService
 import java.math.BigInteger
 
@@ -140,7 +143,8 @@ class NetworkServiceFactory(val world: World,
     }
 
     override fun getNpcInfoSupplier(): NpcInfoSupplier {
-        val npcIndexSupplier: NpcIndexSupplier = RsmodNpcIndexSupplier(world)
+        //val npcIndexSupplier: NpcIndexSupplier = RsmodNpcIndexSupplier(world)
+        val npcIndexSupplier = npcIndexSupplier()
         val npcAvatarExceptionHandler: NpcAvatarExceptionHandler = RsmodNpcAvatarExceptionHandler(world)
         return NpcInfoSupplier(npcIndexSupplier, npcAvatarExceptionHandler)
     }
@@ -153,7 +157,24 @@ class NetworkServiceFactory(val world: World,
     }
 
     private fun npcIndexSupplier(): NpcIndexSupplier {
+        return NpcIndexSupplier { localPlayerIndex, level, x, z, viewDistance ->
+            val player = world.players[localPlayerIndex] ?: error("Player not found at index: $localPlayerIndex")
+            val tile = Tile(x, z, level)
+            val chunk = world.chunks.get(tile)?: error("Invalid chunk for : $tile")
 
-        return TODO("Provide the return value")
+            val surrounding = chunk.coords.getSurroundingCoords()
+
+            surrounding
+                .mapNotNull { world.chunks.get(it, createIfNeeded = false) }
+                .flatMap { it.npcs }
+                .filter { shouldAdd(player, it, viewDistance) }
+                .map { it.index }.iterator()
+        }
     }
+
+    private fun shouldAdd(player: Player, npc: Npc, viewDistance: Int): Boolean =
+        npc.isSpawned() && !npc.invisible && npc.tile.isWithinRadius(
+            player.tile,
+            viewDistance
+        ) && (npc.owner == null || npc.owner == player)
 }

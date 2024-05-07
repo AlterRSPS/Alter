@@ -75,7 +75,7 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
                         else -> LoginResponse.InvalidSave
                     }
                     request.responseHandler.writeFailedResponse(errorCode)
-                    logger.info("User '{}' login denied with code {}.", client.username, loadResult, client.channel)
+                    logger.info("User '{}' login denied with code {}.", client.username, loadResult)
                 }
             } catch (e: Exception) {
                 logger.error("Error when handling request from ${request.block.username}.", e)

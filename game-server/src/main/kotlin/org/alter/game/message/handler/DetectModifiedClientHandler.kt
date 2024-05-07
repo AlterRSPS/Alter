@@ -10,6 +10,6 @@ import org.alter.game.model.entity.Client
 class DetectModifiedClientHandler : MessageHandler<DetectModifiedClient> {
 
     override fun accept(client: Client, message: DetectModifiedClient) {
-        log(client, "Detected modified client for player %s (%s).", client.username, client.channel)
+        log(client, "Detected modified client for player %s.", client.username)
     }
 }

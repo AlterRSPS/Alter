@@ -1,16 +1,14 @@
 package org.alter.game.model.entity
 
 import com.google.common.base.MoreObjects
-import gg.rsmod.net.codec.login.LoginRequest
 import io.netty.channel.Channel
 import net.rsprot.protocol.api.login.GameLoginResponseHandler
 import net.rsprot.protocol.loginprot.incoming.util.AuthenticationType
 import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
-import org.alter.game.message.Message
+import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.model.EntityType
 import org.alter.game.model.World
 import org.alter.game.service.serializer.PlayerSerializerService
-import org.alter.game.system.GameSystem
 
 /**
  * A [Player] that is controlled by a human. A [Client] is responsible for
@@ -28,11 +26,6 @@ import org.alter.game.system.GameSystem
  */
 class Client(val channel: Channel, world: World) : Player(world) {
 
-    /**
-     * The [System] that will handle [Message]s, write [Message]s and flush the
-     * [Channel].
-     */
-    lateinit var gameSystem: GameSystem
     /**
      * The username that was used to register the [Player]. This username should
      * never be changed through the player's end.
@@ -93,23 +86,19 @@ class Client(val channel: Channel, world: World) : Player(world) {
     }
 
     override fun handleMessages() {
-        gameSystem.handleMessages()
+        session?.processIncomingPackets(this)
     }
 
-    override fun write(vararg messages: Message) {
-        messages.forEach { m -> gameSystem.write(m) }
-    }
-
-    override fun write(vararg messages: Any) {
-        messages.forEach { m -> channel.write(m) }
+    override fun write(vararg messages: OutgoingGameMessage) {
+        messages.forEach { m -> session?.queue(m) }
     }
 
     override fun channelFlush() {
-        gameSystem.flush()
+        session?.flush()
     }
 
     override fun channelClose() {
-        gameSystem.close()
+        world.network.playerInfoProtocol.dealloc(info = playerInfo)
     }
 
     override fun toString(): String = MoreObjects.toStringHelper(this)
