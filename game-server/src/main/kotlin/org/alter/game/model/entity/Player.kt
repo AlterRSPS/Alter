@@ -13,7 +13,6 @@ import net.rsprot.protocol.game.outgoing.varp.VarpSmall
 import org.alter.game.fs.def.VarpDef
 import org.alter.game.message.Message
 import org.alter.game.message.impl.RebuildLoginMessage
-import org.alter.game.message.impl.UpdateInvFullMessage
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
@@ -347,7 +346,8 @@ open class Player(world: World) : Pawn(world) {
         }
 
         if (equipment.dirty) {
-            write(UpdateInvFullMessage(containerKey = 94, items = equipment.rawItems))
+            val items = equipment.rawItems
+            write(UpdateInvFull(inventoryId = 94, capacity = items.size, provider = RsModObjectProvider(items)))
             equipment.dirty = false
             calculateWeight = true
             calculateBonuses = true
@@ -356,13 +356,16 @@ open class Player(world: World) : Pawn(world) {
         }
 
         if (bank.dirty) {
-            write(UpdateInvFullMessage(containerKey = 95, items = bank.rawItems))
+            val items = bank.rawItems
+            write(UpdateInvFull(inventoryId = 95, capacity = items.size, provider = RsModObjectProvider(items)))
             bank.dirty = false
         }
 
         if (shopDirty) {
-            attr[CURRENT_SHOP_ATTR]?.let { shop ->
-                write(UpdateInvFullMessage(containerKey = 13, items = shop.items.map { if (it != null) Item(it.item, it.currentAmount) else null }.toTypedArray()))
+            attr[CURRENT_SHOP_ATTR]?.let { shop -> {
+                    val items = shop.items.map { if (it != null) Item(it.item, it.currentAmount) else null }.toTypedArray()
+                    write(UpdateInvFull(inventoryId = 13, capacity = items.size, provider = RsModObjectProvider(items)))
+                }
             }
             shopDirty = false
         }
