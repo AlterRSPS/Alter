@@ -1,6 +1,18 @@
 package org.alter.game.model
 
 import com.google.common.base.Stopwatch
+import gg.rsmod.util.HuffmanCodec
+import gg.rsmod.util.ServerProperties
+import io.github.oshai.kotlinlogging.KotlinLogging
+import io.netty.buffer.Unpooled
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import net.rsprot.protocol.game.outgoing.logout.Logout
+import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
+import net.runelite.cache.IndexType
+import net.runelite.cache.fs.Store
 import org.alter.game.DevContext
 import org.alter.game.GameContext
 import org.alter.game.Server
@@ -28,23 +40,9 @@ import org.alter.game.service.GameService
 import org.alter.game.service.Service
 import org.alter.game.service.xtea.XteaKeyService
 import org.alter.game.sync.block.UpdateBlockSet
-import gg.rsmod.util.HuffmanCodec
-import gg.rsmod.util.ServerProperties
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-
-import io.github.oshai.kotlinlogging.KotlinLogging
-import net.rsprot.protocol.game.outgoing.logout.Logout
-import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
-import net.runelite.cache.IndexType
-import net.runelite.cache.fs.Store
 import java.io.File
 import java.security.SecureRandom
-import java.util.ArrayList
-import java.util.LinkedHashMap
-import java.util.Random
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -75,6 +73,13 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         val archive = binary.findArchiveByName("huffman")!!
         val file = archive.getFiles(filestore.storage.loadArchive(archive)!!).files[0]
         HuffmanCodec(file.contents)
+    }
+
+    val huffmanNew by lazy {
+        val binary = filestore.getIndex(IndexType.BINARY)!!
+        val archive = binary.findArchiveByName("huffman")!!
+        val file = archive.getFiles(filestore.storage.loadArchive(archive)!!).files[0]
+        net.rsprot.compression.HuffmanCodec.create(Unpooled.wrappedBuffer(file.contents))
     }
 
     /**

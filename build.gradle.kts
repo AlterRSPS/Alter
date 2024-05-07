@@ -15,16 +15,13 @@ allprojects {
     java {
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(17))
-            vendor.set(JvmVendorSpec.ORACLE)
-            implementation.set(JvmImplementation.VENDOR_SPECIFIC)
         }
     }
     kotlin{
         jvmToolchain{
             languageVersion.set(JavaLanguageVersion.of(17))
-            vendor.set(JvmVendorSpec.ORACLE)
-            implementation.set(JvmImplementation.VENDOR_SPECIFIC)
         }
+
     }
     repositories {
         mavenLocal()
@@ -52,6 +49,9 @@ allprojects {
         implementation(lib.kotlinx.serialization.core)
         testImplementation(lib.junit)
         testImplementation(lib.kotlin.test.junit)
+
+        implementation("net.rsprot:osrs-221-api:1.0.0-ALPHA-20240505")
+        implementation("io.netty:netty-buffer:4.0.34.Final")
     }
 
     idea {

@@ -1,13 +1,16 @@
 package org.alter.game.model.entity
 
 import com.google.common.base.MoreObjects
+import gg.rsmod.net.codec.login.LoginRequest
+import io.netty.channel.Channel
+import net.rsprot.protocol.api.login.GameLoginResponseHandler
+import net.rsprot.protocol.loginprot.incoming.util.AuthenticationType
+import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
 import org.alter.game.message.Message
 import org.alter.game.model.EntityType
 import org.alter.game.model.World
 import org.alter.game.service.serializer.PlayerSerializerService
 import org.alter.game.system.GameSystem
-import gg.rsmod.net.codec.login.LoginRequest
-import io.netty.channel.Channel
 
 /**
  * A [Player] that is controlled by a human. A [Client] is responsible for
@@ -120,14 +123,18 @@ class Client(val channel: Channel, world: World) : Player(world) {
         /**
          * Constructs a [Client] based on the [LoginRequest].
          */
-        fun fromRequest(world: World, request: LoginRequest): Client {
-            val client = Client(request.channel, world)
-            client.clientWidth = request.clientWidth
-            client.clientHeight = request.clientHeight
-            client.loginUsername = request.username
-            client.username = request.username
-            client.uuid = request.uuid
-            client.currentXteaKeys = request.xteaKeys
+        fun fromRequest(
+            world: World,
+            request: GameLoginResponseHandler<Client>,
+            block: LoginBlock<AuthenticationType<*>>
+        ): Client {
+            val client = Client(request.ctx.channel(), world)
+            client.clientWidth = block.width
+            client.clientHeight = block.height
+            client.loginUsername = block.username
+            client.username = block.username
+            client.uuid = block.uuid.toString()
+            client.currentXteaKeys = block.seed
             return client
         }
     }

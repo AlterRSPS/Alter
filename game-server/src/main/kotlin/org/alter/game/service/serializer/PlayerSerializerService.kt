@@ -1,14 +1,14 @@
 package org.alter.game.service.serializer
 
-import org.alter.game.Server
+import gg.rsmod.util.ServerProperties
+import net.rsprot.protocol.loginprot.incoming.util.AuthenticationType
+import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
 import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.attr.APPEARANCE_SET_ATTR
 import org.alter.game.model.attr.NEW_ACCOUNT_ATTR
 import org.alter.game.model.entity.Client
 import org.alter.game.service.Service
-import gg.rsmod.net.codec.login.LoginRequest
-import gg.rsmod.util.ServerProperties
 import org.mindrot.jbcrypt.BCrypt
 
 /**
@@ -34,17 +34,18 @@ abstract class PlayerSerializerService : Service {
     override fun terminate(server: org.alter.game.Server, world: World) {
     }
 
-    fun configureNewPlayer(client: Client, request: LoginRequest) {
+    fun configureNewPlayer(client: Client, block: LoginBlock<AuthenticationType<*>>) {
         client.attr.put(NEW_ACCOUNT_ATTR, true)
         client.attr.put(APPEARANCE_SET_ATTR, false)
 
-        client.passwordHash = BCrypt.hashpw(request.password, BCrypt.gensalt(16))
+        if(block.authentication is AuthenticationType.PasswordAuthentication)
+            client.passwordHash = BCrypt.hashpw((block.authentication as AuthenticationType.PasswordAuthentication<*>).password.asString(), BCrypt.gensalt(16))
         client.tile = startTile
     }
 
     abstract fun initSerializer(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties)
 
-    abstract fun loadClientData(client: Client, request: LoginRequest): PlayerLoadResult
+    abstract fun loadClientData(client: Client, block: LoginBlock<AuthenticationType<*>>): PlayerLoadResult
 
     abstract fun saveClientData(client: Client): Boolean
 }

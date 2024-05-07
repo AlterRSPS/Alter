@@ -3,7 +3,10 @@ package org.alter.game.service.serializer.json
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import org.alter.game.Server
+import gg.rsmod.util.ServerProperties
+import io.github.oshai.kotlinlogging.KotlinLogging
+import net.rsprot.protocol.loginprot.incoming.util.AuthenticationType
+import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
 import org.alter.game.model.PlayerUID
 import org.alter.game.model.Tile
 import org.alter.game.model.World
@@ -19,10 +22,6 @@ import org.alter.game.model.social.Social
 import org.alter.game.model.timer.TimerKey
 import org.alter.game.service.serializer.PlayerLoadResult
 import org.alter.game.service.serializer.PlayerSerializerService
-import gg.rsmod.net.codec.login.LoginRequest
-import gg.rsmod.util.ServerProperties
-
-import io.github.oshai.kotlinlogging.KotlinLogging
 import org.mindrot.jbcrypt.BCrypt
 import java.nio.file.Files
 import java.nio.file.Path
@@ -47,10 +46,10 @@ class JsonPlayerSerializer : PlayerSerializerService() {
         }
     }
 
-    override fun loadClientData(client: Client, request: LoginRequest): PlayerLoadResult {
+    override fun loadClientData(client: Client, block: LoginBlock<AuthenticationType<*>>): PlayerLoadResult {
         val save = path.resolve(client.loginUsername)
         if (!Files.exists(save)) {
-            configureNewPlayer(client, request)
+            configureNewPlayer(client, block)
             client.uid = PlayerUID(client.loginUsername)
             saveClientData(client)
             return PlayerLoadResult.NEW_ACCOUNT
@@ -62,12 +61,12 @@ class JsonPlayerSerializer : PlayerSerializerService() {
             val data = json.fromJson(reader, JsonPlayerSaveData::class.java)
             reader.close()
 
-            if (!request.reconnecting) {
+            if (block.authentication is AuthenticationType.PasswordAuthentication<*>) {
                 /*
                  * If the [request] is not a [LoginRequest.reconnecting] request, we have to
                  * verify the password is correct.
                  */
-                if (!BCrypt.checkpw(request.password, data.passwordHash)) {
+                if (!BCrypt.checkpw((block.authentication as AuthenticationType.PasswordAuthentication<*>).password.asString(), data.passwordHash)) {
                     return PlayerLoadResult.INVALID_CREDENTIALS
                 }
             } else {
@@ -75,9 +74,9 @@ class JsonPlayerSerializer : PlayerSerializerService() {
                  * If the [request] is a [LoginRequest.reconnecting] request, we
                  * verify that the login xteas match from our previous session.
                  */
-                if (!Arrays.equals(data.previousXteas, request.xteaKeys)) {
-                    return PlayerLoadResult.INVALID_RECONNECTION
-                }
+//                if (!Arrays.equals(data.previousXteas, request.xteaKeys)) {
+//                    return PlayerLoadResult.INVALID_RECONNECTION
+//                }
             }
 
             client.loginUsername = data.username
@@ -132,7 +131,7 @@ class JsonPlayerSerializer : PlayerSerializerService() {
 
             return PlayerLoadResult.LOAD_ACCOUNT
         } catch (e: Exception) {
-            logger.error(e) { "Error when loading player: ${request.username}" }
+            logger.error(e) { "Error when loading player: ${block.username}" }
             return PlayerLoadResult.MALFORMED
         }
     }

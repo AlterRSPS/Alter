@@ -2,7 +2,6 @@ package org.alter.game.system
 
 import org.alter.game.message.Message
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.*
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 import org.alter.game.service.GameService
@@ -57,7 +56,7 @@ class GameSystem(channel: Channel, val world: World, val client: Client, val ser
         for (i in 0 until service.maxMessagesPerCycle) {
             val next = messages.poll() ?: break
             // @TODO Add debug logging
-            next.handler.handle(client, world, next.message)
+            next.handler.accept(client, next.message)
         }
     }
 

@@ -1,10 +1,9 @@
 package org.alter.game.message
 
-import org.alter.game.model.World
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.model.entity.Client
 import org.alter.game.service.log.LoggerService
-
-import io.github.oshai.kotlinlogging.KotlinLogging
+import java.util.function.BiConsumer
 
 /**
  * A [MessageHandler] is responsible for executing [Message] logic on the
@@ -12,13 +11,13 @@ import io.github.oshai.kotlinlogging.KotlinLogging
  *
  * @author Tom <rspsmods@gmail.com>
  */
-interface MessageHandler<T : Message> {
+interface MessageHandler<T>: BiConsumer<Client, T> {
 
     /**
      * Handles the [message] on the game-thread with the ability to read and write
      * to the [Client].
      */
-    fun handle(client: Client, world: World, message: T)
+    override fun accept(client: Client, message: T)
 
     /**
      * A default method to log the handlers.

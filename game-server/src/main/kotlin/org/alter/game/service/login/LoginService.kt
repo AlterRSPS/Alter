@@ -1,26 +1,20 @@
 package org.alter.game.service.login
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder
-import org.alter.game.Server
+import gg.rsmod.util.ServerProperties
+import io.github.oshai.kotlinlogging.KotlinLogging
+import net.rsprot.protocol.api.login.GameLoginResponseHandler
+import net.rsprot.protocol.loginprot.incoming.util.AuthenticationType
+import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 import org.alter.game.protocol.GameHandler
-import org.alter.game.protocol.GameMessageEncoder
-import org.alter.game.protocol.PacketMetadata
 import org.alter.game.service.GameService
 import org.alter.game.service.Service
-import org.alter.game.service.rsa.RsaService
 import org.alter.game.service.serializer.PlayerSerializerService
 import org.alter.game.service.world.SimpleWorldVerificationService
 import org.alter.game.service.world.WorldVerificationService
 import org.alter.game.system.GameSystem
-import gg.rsmod.net.codec.game.GamePacketDecoder
-import gg.rsmod.net.codec.game.GamePacketEncoder
-import gg.rsmod.net.codec.login.LoginRequest
-import gg.rsmod.util.ServerProperties
-import gg.rsmod.util.io.IsaacRandom
-
-import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.concurrent.Executors
 import java.util.concurrent.LinkedBlockingQueue
 
@@ -65,12 +59,12 @@ class LoginService : Service {
     override fun terminate(server: org.alter.game.Server, world: World) {
     }
 
-    fun addLoginRequest(world: World, request: LoginRequest) {
-        val serviceRequest = LoginServiceRequest(world, request)
+    fun addLoginRequest(world: World, responseHandler: GameLoginResponseHandler<Client>, block: LoginBlock<AuthenticationType<*>>) {
+        val serviceRequest = LoginServiceRequest(world, responseHandler, block)
         requests.offer(serviceRequest)
     }
 
-    fun successfulLogin(client: Client, world: World, encodeRandom: IsaacRandom, decodeRandom: IsaacRandom) {
+    fun successfulLogin(client: Client, world: World) {
         val gameSystem = GameSystem(
                 channel = client.channel, world = world, client = client,
                 service = client.world.getService(GameService::class.java)!!)
@@ -78,27 +72,7 @@ class LoginService : Service {
         client.gameSystem = gameSystem
         client.channel.attr(GameHandler.SYSTEM_KEY).set(gameSystem)
 
-        /*
-         * NOTE(Tom): we should be able to use an parallel task to handle
-         * the pipeline work and then schedule for the [client] to log in on the
-         * next game cycle after completion. Should benchmark first.
-         */
-        val pipeline = client.channel.pipeline()
-        val isaacEncryption = client.world.getService(RsaService::class.java) != null
-        val encoderIsaac = if (isaacEncryption) encodeRandom else null
-        val decoderIsaac = if (isaacEncryption) decodeRandom else null
-
         if (client.channel.isActive) {
-            pipeline.remove("handshake_encoder")
-            pipeline.remove("login_decoder")
-            pipeline.remove("login_encoder")
-
-            pipeline.addFirst("packet_encoder", GamePacketEncoder(encoderIsaac))
-            pipeline.addAfter("packet_encoder", "message_encoder", GameMessageEncoder(gameSystem.service.messageEncoders, gameSystem.service.messageStructures))
-
-            pipeline.addBefore("handler", "packet_decoder",
-                    GamePacketDecoder(decoderIsaac, PacketMetadata(gameSystem.service.messageStructures)))
-
             client.login()
             client.channel.flush()
         }
