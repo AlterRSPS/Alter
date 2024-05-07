@@ -1,10 +1,9 @@
 package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.misc.user.MoveMinimapClick
+import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.SetMapFlagMessage
 import org.alter.game.model.MovementQueue
-import org.alter.game.model.World
 import org.alter.game.model.attr.NO_CLIP_ATTR
 import org.alter.game.model.entity.Client
 import org.alter.game.model.entity.Entity
@@ -16,13 +15,13 @@ import org.alter.game.model.timer.STUN_TIMER
  */
 class ClickMinimapHandler : MessageHandler<MoveMinimapClick> {
 
-    override fun handle(client: Client, world: World, message: MoveMinimapClick) {
+    override fun accept(client: Client, message: MoveMinimapClick) {
         if (!client.lock.canMove()) {
             return
         }
 
         if (client.timers.has(STUN_TIMER)) {
-            client.write(SetMapFlagMessage(255, 255))
+            client.write(SetMapFlag(255, 255))
             client.writeMessage(Entity.YOURE_STUNNED)
             return
         }
@@ -33,7 +32,7 @@ class ClickMinimapHandler : MessageHandler<MoveMinimapClick> {
         client.interruptQueues()
         client.resetInteractions()
 
-        if (message.keyCombination == 2 && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
+        if (message.keyCombination == 2 && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             client.moveTo(message.x, message.z, client.tile.height)
         } else {
             val stepType = if (message.keyCombination == 1) MovementQueue.StepType.FORCED_RUN else MovementQueue.StepType.NORMAL

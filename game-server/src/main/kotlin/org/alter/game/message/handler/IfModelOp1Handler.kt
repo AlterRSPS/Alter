@@ -2,7 +2,6 @@ package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.buttons.If1Button
 import org.alter.game.message.MessageHandler
-import org.alter.game.model.World
 import org.alter.game.model.attr.INTERACTING_ITEM_ID
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
@@ -10,7 +9,7 @@ import org.alter.game.model.entity.Client
 
 class IfModelOp1Handler : MessageHandler<If1Button> {
 
-    override fun handle(client: Client, world: World, message: If1Button) {
+    override fun accept(client: Client, message: If1Button) {
         val interfaceId = message.interfaceId
         val component = message.componentId
         val option = 0
@@ -25,11 +24,11 @@ class IfModelOp1Handler : MessageHandler<If1Button> {
         client.attr[INTERACTING_ITEM_ID] = item
         client.attr[INTERACTING_SLOT_ATTR] = slot
 
-        if (world.plugins.executeButton(client, interfaceId, component)) {
+        if (client.world.plugins.executeButton(client, interfaceId, component)) {
             return
         }
 
-        if (world.devContext.debugButtons) {
+        if (client.world.devContext.debugButtons) {
             client.writeMessage("Unhandled button action: [component=[$interfaceId:$component], option=$option, slot=${slot}, item=${item}]")
         }
     }

@@ -2,13 +2,12 @@ package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.buttons.IfButtonT
 import org.alter.game.message.MessageHandler
-import org.alter.game.model.World
 import org.alter.game.model.attr.*
 import org.alter.game.model.entity.Client
 import java.lang.ref.WeakReference
 
 class IfButtonTHandler : MessageHandler<IfButtonT> {
-    override fun handle(client: Client, world: World, message: IfButtonT) {
+    override fun accept(client: Client, message: IfButtonT) {
         val fromInterfaceId = message.selectedInterfaceId
         val fromComponent = message.selectedComponentId
         val fromSlot = message.selectedSub
@@ -50,7 +49,7 @@ class IfButtonTHandler : MessageHandler<IfButtonT> {
         client.attr[OTHER_ITEM_ID_ATTR] = toItem.id
         client.attr[OTHER_ITEM_SLOT_ATTR] = toSlot
 
-        var handled = world.plugins.executeItemOnItem(client, fromItem.id, toItem.id)
+        var handled = client.world.plugins.executeItemOnItem(client, fromItem.id, toItem.id)
 
         /**
          * simple catchall registration to allow customizable fallback
@@ -59,14 +58,14 @@ class IfButtonTHandler : MessageHandler<IfButtonT> {
          *   Note| should be used with prejudice or for flavour
          */
         if(!handled){
-            handled = world.plugins.executeItemOnItem(client, fromItem.id, -1)
-            if (handled && world.devContext.debugItemActions) {
+            handled = client.world.plugins.executeItemOnItem(client, fromItem.id, -1)
+            if (handled && client.world.devContext.debugItemActions) {
                 client.writeMessage("Unhandled item on item: [from_item=${fromItem.id}, to_item=${toItem.id}, from_slot=$fromSlot, to_slot=$toSlot, " +
                         "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]")
             }
         }
 
-        if (!handled && world.devContext.debugItemActions) {
+        if (!handled && client.world.devContext.debugItemActions) {
             client.writeMessage("Unhandled item on item: [from_item=${fromItem.id}, to_item=${toItem.id}, from_slot=$fromSlot, to_slot=$toSlot, " +
                     "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]")
         }

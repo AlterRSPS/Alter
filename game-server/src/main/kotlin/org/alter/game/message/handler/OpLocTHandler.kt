@@ -1,11 +1,10 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.locs.OpLocT
 import org.alter.game.action.ObjectPathAction
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.OpLocTMessage
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
-import org.alter.game.model.World
 import org.alter.game.model.attr.INTERACTING_ITEM
 import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
 import org.alter.game.model.attr.INTERACTING_OBJ_ATTR
@@ -15,10 +14,14 @@ import org.alter.game.model.entity.Player
 import org.alter.game.model.priv.Privilege
 import java.lang.ref.WeakReference
 
-class OpLocTHandler : MessageHandler<OpLocTMessage> {
+class OpLocTHandler : MessageHandler<OpLocT> {
 
-    override fun handle(client: Client, world: World, message: OpLocTMessage) {
-        if (message.slot < 0 || message.slot >= client.inventory.capacity) {
+    override fun accept(client: Client, message: OpLocT) {
+        val slot = message.selectedSub
+        val sobj = message.selectedObj
+        val sloc = message.id
+
+        if (slot < 0 || slot >= client.inventory.capacity) {
             return
         }
 
@@ -26,9 +29,9 @@ class OpLocTHandler : MessageHandler<OpLocTMessage> {
             return
         }
 
-        val item = client.inventory[message.slot] ?: return
+        val item = client.inventory[slot] ?: return
 
-        if (item.id != message.item) {
+        if (item.id != sobj) {
             return
         }
 
@@ -44,15 +47,15 @@ class OpLocTHandler : MessageHandler<OpLocTMessage> {
         }
 
         // Get the region chunk that the object would belong to.
-        val chunk = world.chunks.getOrCreate(tile)
-        val obj = chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull { it.id == message.obj } ?: return
+        val chunk = client.world.chunks.getOrCreate(tile)
+        val obj = chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull { it.id == message.id } ?: return
 
-        if (message.movementType == 1 && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
-            val def = obj.getDef(world.definitions)
-            client.moveTo(world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.width, centreLength = def.length) ?: obj.tile)
+        if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
+            val def = obj.getDef(client.world.definitions)
+            client.moveTo(client.world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.width, centreLength = def.length) ?: obj.tile)
         }
 
-        log(client, "Item on object: item=%d, slot=%d, obj=%d, x=%d, z=%d", message.item, message.slot, message.obj, message.x, message.z)
+        log(client, "Item on object: item=%d, slot=%d, obj=%d, x=%d, z=%d", sobj, slot, sloc, message.x, message.z)
 
         client.stopMovement()
         client.closeInterfaceModal()
@@ -60,7 +63,7 @@ class OpLocTHandler : MessageHandler<OpLocTMessage> {
         client.resetInteractions()
 
         client.attr[INTERACTING_ITEM] = WeakReference(item)
-        client.attr[INTERACTING_ITEM_SLOT] = message.slot
+        client.attr[INTERACTING_ITEM_SLOT] = slot
         client.attr[INTERACTING_OBJ_ATTR] = WeakReference(obj)
 
         client.executePlugin(ObjectPathAction.itemOnObjectPlugin)

@@ -3,7 +3,6 @@ package org.alter.game.message.handler
 import net.rsprot.protocol.game.incoming.npcs.OpNpc
 import org.alter.game.action.PawnPathAction
 import org.alter.game.message.MessageHandler
-import org.alter.game.model.World
 import org.alter.game.model.attr.INTERACTING_NPC_ATTR
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.entity.Client
@@ -15,8 +14,8 @@ import java.lang.ref.WeakReference
  */
 class OpNpcHandler : MessageHandler<OpNpc> {
 
-    override fun handle(client: Client, world: World, message: OpNpc) {
-        val npc = world.npcs[message.index] ?: return
+    override fun accept(client: Client, message: OpNpc) {
+        val npc = client.world.npcs[message.index] ?: return
 
         if (message.op == 2) {
             if (!client.lock.canAttack()) {
@@ -30,8 +29,8 @@ class OpNpcHandler : MessageHandler<OpNpc> {
 
         log(client, "Npc option %d: index=%d, movement=%d, npc=%s", message.op, message.index, message.controlKey, npc)
 
-        if (message.controlKey && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
-            client.moveTo(world.findRandomTileAround(npc.tile, 1) ?: npc.tile)
+        if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
+            client.moveTo(client.world.findRandomTileAround(npc.tile, 1) ?: npc.tile)
         }
 
         client.closeInterfaceModal()

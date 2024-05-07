@@ -2,7 +2,6 @@ package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.players.OpPlayerT
 import org.alter.game.message.MessageHandler
-import org.alter.game.model.World
 import org.alter.game.model.attr.INTERACTING_COMPONENT_CHILD
 import org.alter.game.model.attr.INTERACTING_COMPONENT_PARENT
 import org.alter.game.model.attr.INTERACTING_PLAYER_ATTR
@@ -12,8 +11,8 @@ import java.lang.ref.WeakReference
 
 class OpPlayerTHandler : MessageHandler<OpPlayerT> {
 
-    override fun handle(client: Client, world: World, message: OpPlayerT) {
-        val player = world.players[message.index] ?: return
+    override fun accept(client: Client, message: OpPlayerT) {
+        val player = client.world.players[message.index] ?: return
         val parent = message.selectedInterfaceId
         val child = message.selectedComponentId
 
@@ -32,9 +31,9 @@ class OpPlayerTHandler : MessageHandler<OpPlayerT> {
         client.attr[INTERACTING_COMPONENT_CHILD] = child
 
         // TODO: add verification of active spellbook add in 196
-        if (!world.plugins.executeSpellOnPlayer(client, parent, child)) {
+        if (!client.world.plugins.executeSpellOnPlayer(client, parent, child)) {
             client.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
-            if (world.devContext.debugMagicSpells) {
+            if (client.world.devContext.debugMagicSpells) {
                 client.writeMessage("Unhandled magic spell: [$parent, $child]")
             }
         }

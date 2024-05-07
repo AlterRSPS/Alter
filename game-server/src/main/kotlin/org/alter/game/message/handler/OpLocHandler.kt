@@ -5,7 +5,6 @@ import org.alter.game.action.ObjectPathAction
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
-import org.alter.game.model.World
 import org.alter.game.model.attr.INTERACTING_OBJ_ATTR
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.entity.Client
@@ -19,7 +18,7 @@ import java.lang.ref.WeakReference
  */
 class OpLocHandler : MessageHandler<OpLoc> {
 
-    override fun handle(client: Client, world: World, message: OpLoc) {
+    override fun accept(client: Client, message: OpLoc) {
         //NOTE: OP3 used to just be Ground Item action 3
         /*
          * If tile is too far away, don't process it.
@@ -39,7 +38,7 @@ class OpLocHandler : MessageHandler<OpLoc> {
         /*
          * Get the region chunk that the object would belong to.
          */
-        val chunk = world.chunks.getOrCreate(tile)
+        val chunk = client.world.chunks.getOrCreate(tile)
         val obj = chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull { it.id == message.id } ?: return
 
         log(client, "Object action %d: id=%d, x=%d, z=%d, movement=%d", message.op, message.id, message.x, message.z, message.controlKey)
@@ -49,9 +48,9 @@ class OpLocHandler : MessageHandler<OpLoc> {
         client.interruptQueues()
         client.resetInteractions()
 
-        if (message.controlKey && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
-            val def = obj.getDef(world.definitions)
-            client.moveTo(world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.width, centreLength = def.length) ?: obj.tile)
+        if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
+            val def = obj.getDef(client.world.definitions)
+            client.moveTo(client.world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.width, centreLength = def.length) ?: obj.tile)
         }
 
         client.attr[INTERACTING_OPT_ATTR] = message.op

@@ -2,7 +2,6 @@ package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.resumed.ResumePauseButton
 import org.alter.game.message.MessageHandler
-import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 
 /**
@@ -10,7 +9,7 @@ import org.alter.game.model.entity.Client
  */
 class ResumePauseButtonHandler : MessageHandler<ResumePauseButton> {
 
-    override fun handle(client: Client, world: World, message: ResumePauseButton) {
+    override fun accept(client: Client, message: ResumePauseButton) {
         log(client, "Continue dialog: component=[%d:%d], slot=%d", message.interfaceId, message.componentId, message.sub)
         client.queues.submitReturnValue(message)
     }

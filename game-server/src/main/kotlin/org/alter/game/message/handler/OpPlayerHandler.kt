@@ -3,7 +3,6 @@ package org.alter.game.message.handler
 import net.rsprot.protocol.game.incoming.players.OpPlayer
 import org.alter.game.action.PawnPathAction
 import org.alter.game.message.MessageHandler
-import org.alter.game.model.World
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.attr.INTERACTING_PLAYER_ATTR
 import org.alter.game.model.entity.Client
@@ -14,7 +13,7 @@ import java.lang.ref.WeakReference
  */
 class OpPlayerHandler : MessageHandler<OpPlayer> {
 
-    override fun handle(client: Client, world: World, message: OpPlayer) {
+    override fun accept(client: Client, message: OpPlayer) {
         val index = message.index
         // The interaction option id.
         val option = message.op
@@ -25,7 +24,7 @@ class OpPlayerHandler : MessageHandler<OpPlayer> {
             return
         }
 
-        val other = world.players[index] ?: return
+        val other = client.world.players[index] ?: return
 
         if (client.options[optionIndex] == null || other == client) {
             return

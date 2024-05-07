@@ -5,7 +5,6 @@ import org.alter.game.action.GroundItemPathAction
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
-import org.alter.game.model.World
 import org.alter.game.model.attr.INTERACTING_GROUNDITEM_ATTR
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.entity.Client
@@ -19,7 +18,7 @@ import java.lang.ref.WeakReference
  */
 class OpObjHandler : MessageHandler<OpObj> {
 
-    override fun handle(client: Client, world: World, message: OpObj) {
+    override fun accept(client: Client, message: OpObj) {
         /*
          * If tile is too far away, don't process it.
          */
@@ -37,10 +36,10 @@ class OpObjHandler : MessageHandler<OpObj> {
         /*
          * Get the region chunk that the object would belong to.
          */
-        val chunk = world.chunks.getOrCreate(tile)
+        val chunk = client.world.chunks.getOrCreate(tile)
         val item = chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull { it.item == message.id && it.canBeViewedBy(client) } ?: return
 
-        if (message.controlKey && world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
+        if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             client.moveTo(item.tile)
         }
 

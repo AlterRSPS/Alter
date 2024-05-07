@@ -2,7 +2,6 @@ package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.misc.user.Teleport
 import org.alter.game.message.MessageHandler
-import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 import org.alter.game.model.priv.Privilege
 
@@ -11,7 +10,7 @@ import org.alter.game.model.priv.Privilege
  */
 class TeleportHandler : MessageHandler<Teleport> {
 
-    override fun handle(client: Client, world: World, message: Teleport) {
+    override fun accept(client: Client, message: Teleport) {
         if (!client.lock.canMove()) {
             return
         }
@@ -22,7 +21,7 @@ class TeleportHandler : MessageHandler<Teleport> {
         client.interruptQueues()
         client.resetInteractions()
 
-        if (world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
+        if (client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             client.moveTo(message.x, message.z, message.level)
         }
     }

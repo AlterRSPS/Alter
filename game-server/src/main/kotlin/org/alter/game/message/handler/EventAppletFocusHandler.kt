@@ -2,7 +2,6 @@ package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.events.EventAppletFocus
 import org.alter.game.message.MessageHandler
-import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 
 /**
@@ -10,7 +9,7 @@ import org.alter.game.model.entity.Client
  */
 class EventAppletFocusHandler : MessageHandler<EventAppletFocus> {
 
-    override fun handle(client: Client, world: World, message: EventAppletFocus) {
+    override fun accept(client: Client, message: EventAppletFocus) {
         client.appletFocused = message.inFocus
     }
 }

@@ -2,7 +2,6 @@ package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.resumed.ResumePObjDialog
 import org.alter.game.message.MessageHandler
-import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 
 /**
@@ -10,7 +9,7 @@ import org.alter.game.model.entity.Client
  */
 class ResumePObjDialogHandler : MessageHandler<ResumePObjDialog> {
 
-    override fun handle(client: Client, world: World, message: ResumePObjDialog) {
+    override fun accept(client: Client, message: ResumePObjDialog) {
         log(client, "Searched item: item=%d", message.obj)
         client.queues.submitReturnValue(message.obj)
     }

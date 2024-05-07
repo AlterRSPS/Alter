@@ -2,7 +2,6 @@ package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.buttons.IfButtonD
 import org.alter.game.message.MessageHandler
-import org.alter.game.model.World
 import org.alter.game.model.attr.INTERACTING_COMPONENT_CHILD
 import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
 import org.alter.game.model.attr.OTHER_ITEM_SLOT_ATTR
@@ -13,7 +12,7 @@ import org.alter.game.model.entity.Client
  */
 class IfButtonDHandler : MessageHandler<IfButtonD> {
 
-    override fun handle(client: Client, world: World, message: IfButtonD) {
+    override fun accept(client: Client, message: IfButtonD) {
         val fromSlot = message.selectedSub
         val fromItemId = message.selectedObj
 
@@ -32,8 +31,8 @@ class IfButtonDHandler : MessageHandler<IfButtonD> {
         client.attr[OTHER_ITEM_SLOT_ATTR] = toSlot
         client.attr[INTERACTING_COMPONENT_CHILD] = fromComponent
 
-        val swapped = world.plugins.executeComponentToComponentItemSwap(client, fromInterfaceId, fromComponent, toInterfaceId, toComponent)
-        if (!swapped && world.devContext.debugButtons) {
+        val swapped = client.world.plugins.executeComponentToComponentItemSwap(client, fromInterfaceId, fromComponent, toInterfaceId, toComponent)
+        if (!swapped && client.world.devContext.debugButtons) {
             client.writeMessage("[IfButtonDHandler] Unhandled component to component swap: [from_item=$fromItemId, to_item=$toItemId, from_slot=$fromSlot, to_slot=$toSlot, " +
                     "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]")
         }
