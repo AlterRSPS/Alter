@@ -1,0 +1,13 @@
+package org.alter.game.rsprot
+
+import net.rsprot.protocol.common.game.outgoing.inv.InventoryObject
+import net.rsprot.protocol.game.outgoing.inv.UpdateInvPartial
+import org.alter.game.model.item.Item
+
+class RsModIndexedObjectProvider(indices: Iterator<Int>, val items: Array<Item?>) : UpdateInvPartial.IndexedObjectProvider(indices) {
+
+    override fun provide(slot: Int): InventoryObject {
+        val item = items[slot]?: return InventoryObject.NULL
+        return InventoryObject(slot, item.id, item.amount)
+    }
+}

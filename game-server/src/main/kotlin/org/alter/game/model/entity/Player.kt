@@ -1,8 +1,19 @@
 package org.alter.game.model.entity
 
 import com.google.common.base.MoreObjects
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
+import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
+import net.rsprot.protocol.game.outgoing.misc.player.MessageGame
+import net.rsprot.protocol.game.outgoing.misc.player.UpdateRunWeight
+import net.rsprot.protocol.game.outgoing.misc.player.UpdateStat
+import net.rsprot.protocol.game.outgoing.sound.SynthSound
+import net.rsprot.protocol.game.outgoing.varp.VarpLarge
+import net.rsprot.protocol.game.outgoing.varp.VarpSmall
 import org.alter.game.fs.def.VarpDef
 import org.alter.game.message.Message
+import org.alter.game.message.impl.RebuildLoginMessage
+import org.alter.game.message.impl.UpdateInvFullMessage
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
@@ -21,18 +32,9 @@ import org.alter.game.model.social.Social
 import org.alter.game.model.timer.ACTIVE_COMBAT_TIMER
 import org.alter.game.model.timer.FORCE_DISCONNECTION_TIMER
 import org.alter.game.model.varp.VarpSet
+import org.alter.game.rsprot.RsModObjectProvider
 import org.alter.game.service.log.LoggerService
 import org.alter.game.sync.block.UpdateBlockType
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
-import net.rsprot.protocol.game.outgoing.misc.player.MessageGame
-import net.rsprot.protocol.game.outgoing.misc.player.UpdateRunWeight
-import net.rsprot.protocol.game.outgoing.misc.player.UpdateStat
-import net.rsprot.protocol.game.outgoing.sound.SynthSound
-import net.rsprot.protocol.game.outgoing.varp.VarpLarge
-import net.rsprot.protocol.game.outgoing.varp.VarpSmall
-import org.alter.game.message.impl.RebuildLoginMessage
-import org.alter.game.message.impl.UpdateInvFullMessage
 import java.util.*
 
 /**
@@ -337,7 +339,9 @@ open class Player(world: World) : Pawn(world) {
         }
 
         if (inventory.dirty) {
-            write(UpdateInvFullMessage(interfaceId = 149, component = 0, containerKey = 93, items = inventory.rawItems))
+            val items = inventory.rawItems
+            write(UpdateInvFull(interfaceId = 149, componentId = 0, inventoryId = 93, capacity = items.size, provider = RsModObjectProvider(items)))
+
             inventory.dirty = false
             calculateWeight = true
         }

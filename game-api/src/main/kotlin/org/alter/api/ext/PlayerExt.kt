@@ -1,33 +1,9 @@
 package org.alter.api.ext
 
-import org.alter.api.EquipmentType
-import org.alter.api.Skills
-import org.alter.api.SkullIcon
 import com.google.common.primitives.Ints
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.fs.def.VarbitDef
-import org.alter.game.model.World
-import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
-import org.alter.game.model.attr.CURRENT_SHOP_ATTR
-import org.alter.game.model.attr.PROTECT_ITEM_ATTR
-import org.alter.game.model.attr.CHANGE_LOGGING
-import org.alter.game.model.bits.BitStorage
-import org.alter.game.model.bits.StorageBits
-import org.alter.game.model.container.ContainerStackType
-import org.alter.game.model.container.ItemContainer
-import org.alter.game.model.entity.Entity
-import org.alter.game.model.entity.Pawn
-import org.alter.game.model.entity.Player
-import org.alter.game.model.interf.DisplayMode
-import org.alter.game.model.item.Item
-import org.alter.game.model.timer.SKULL_ICON_DURATION_TIMER
-import org.alter.game.sync.block.UpdateBlockType
-import org.alter.api.*
-import org.alter.api.cfg.Varbit
-import org.alter.api.cfg.Varp
-import org.alter.api.cfg.Song
 import gg.rsmod.util.BitManipulation
 import net.rsprot.protocol.game.outgoing.interfaces.*
+import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
 import net.rsprot.protocol.game.outgoing.misc.client.UrlOpen
 import net.rsprot.protocol.game.outgoing.misc.player.*
 import net.rsprot.protocol.game.outgoing.sound.MidiJingle
@@ -35,8 +11,29 @@ import net.rsprot.protocol.game.outgoing.sound.MidiSongOld
 import net.rsprot.protocol.game.outgoing.sound.SynthSound
 import net.rsprot.protocol.game.outgoing.varp.VarpLarge
 import net.rsprot.protocol.game.outgoing.varp.VarpSmall
+import org.alter.api.*
+import org.alter.api.cfg.Song
+import org.alter.api.cfg.Varbit
+import org.alter.api.cfg.Varp
+import org.alter.game.fs.def.ItemDef
+import org.alter.game.fs.def.VarbitDef
 import org.alter.game.message.impl.UpdateInvFullMessage
 import org.alter.game.message.impl.UpdateInvPartialMessage
+import org.alter.game.model.World
+import org.alter.game.model.attr.CHANGE_LOGGING
+import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
+import org.alter.game.model.attr.CURRENT_SHOP_ATTR
+import org.alter.game.model.bits.BitStorage
+import org.alter.game.model.bits.StorageBits
+import org.alter.game.model.container.ItemContainer
+import org.alter.game.model.entity.Entity
+import org.alter.game.model.entity.Pawn
+import org.alter.game.model.entity.Player
+import org.alter.game.model.interf.DisplayMode
+import org.alter.game.model.item.Item
+import org.alter.game.model.timer.SKULL_ICON_DURATION_TIMER
+import org.alter.game.rsprot.RsModObjectProvider
+import org.alter.game.sync.block.UpdateBlockType
 
 /**
  * The id of the script used to initialise the interface overlay options. The 'big' variant of this script
@@ -347,15 +344,15 @@ fun Player.initInterfaces(displayMode: DisplayMode) {
 }
 
 fun Player.sendItemContainer(key: Int, items: Array<Item?>) {
-    write(UpdateInvFullMessage(containerKey = key, items = items))
+    write(UpdateInvFull(inventoryId = key, capacity = items.size, provider = RsModObjectProvider(items)))
 }
 
 fun Player.sendItemContainer(interfaceId: Int, component: Int, items: Array<Item?>) {
-    write(UpdateInvFullMessage(interfaceId = interfaceId, component = component, items = items))
+    write(UpdateInvFull(interfaceId = interfaceId, componentId = component, inventoryId = 0, capacity = items.size, provider = RsModObjectProvider(items)))
 }
 
 fun Player.sendItemContainer(interfaceId: Int, component: Int, key: Int, items: Array<Item?>) {
-    write(UpdateInvFullMessage(interfaceId = interfaceId, component = component, containerKey = key, items = items))
+    write(UpdateInvFull(interfaceId = interfaceId, componentId = component, inventoryId = key, capacity = items.size, provider = RsModObjectProvider(items)))
 }
 
 fun Player.sendItemContainer(key: Int, container: ItemContainer) = sendItemContainer(key, container.rawItems)

@@ -6,11 +6,21 @@ import org.alter.game.model.item.Item
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-class UpdateInvFullMessage(val items: Array<Item?>, val componentHash: Int, val containerKey: Int) : Message {
+class UpdateInvFullMessage : Message {
 
-    constructor(interfaceId: Int, component: Int, containerKey: Int, items: Array<Item?>) : this(items, (interfaceId shl 16) or component, containerKey)
+    val items: Array<Item?>
+    val componentHash: Int
+    val containerKey: Int
 
-    constructor(interfaceId: Int, component: Int, items: Array<Item?>) : this(items, (interfaceId shl 16) or component, 0)
+    private constructor(items: Array<Item?>, componentHash: Int, containerKey: Int) {
+        this.items = items
+        this.componentHash = componentHash
+        this.containerKey = containerKey
+    }
+
+    constructor(interfaceId: Int, componentId: Int, inventoryId: Int, items: Array<Item?>) : this(items, (interfaceId shl 16) or componentId, inventoryId)
+
+    constructor(interfaceId: Int, componentId: Int, items: Array<Item?>) : this(items, (interfaceId shl 16) or componentId, 0)
 
     constructor(containerKey: Int, items: Array<Item?>) : this(items, -1, containerKey)
 }
