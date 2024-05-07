@@ -1,5 +1,8 @@
 package org.alter.game.model.region
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import org.alter.game.message.impl.UpdateZonePartialEnclosedMessage
 import org.alter.game.message.impl.UpdateZonePartialFollowsMessage
 import org.alter.game.model.*
@@ -8,9 +11,6 @@ import org.alter.game.model.collision.CollisionUpdate
 import org.alter.game.model.entity.*
 import org.alter.game.model.region.update.*
 import org.alter.game.service.GameService
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 
 /**
  * Represents an 8x8 tile in the game map.
@@ -44,6 +44,11 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
     private lateinit var updates: MutableList<EntityUpdate<*>>
 
     /**
+     * The [Npcs]s that are currently registered to the [Chunk] key.
+     */
+    lateinit var npcs: MutableList<Npc>
+
+    /**
      * Create the collections used for [Entity]s and [EntityUpdate]s.
      * @see entities
      * @see updates
@@ -51,6 +56,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
     fun createEntityContainers() {
         entities = Object2ObjectOpenHashMap()
         updates = ObjectArrayList()
+        npcs = ArrayList()
     }
 
     fun getMatrix(height: Int): CollisionMatrix = matrices[height]

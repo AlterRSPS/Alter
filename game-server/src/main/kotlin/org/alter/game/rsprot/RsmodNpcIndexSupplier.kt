@@ -1,6 +1,7 @@
 package org.alter.game.rsprot
 
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcIndexSupplier
+import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Player
@@ -9,10 +10,16 @@ class RsmodNpcIndexSupplier(val world: World): NpcIndexSupplier {
 
     override fun supply(localPlayerIndex: Int, level: Int, x: Int, z: Int, viewDistance: Int): Iterator<Int> {
         val player = world.players[localPlayerIndex] ?: error("Player not found at index: $localPlayerIndex")
+        val tile = Tile(x, z, level)
+        val chunk = world.chunks.get(tile)?: error("Invalid chunk for : $tile")
 
-        return world.npcs.entries.mapIndexedNotNull { index, npc ->
-            if (npc != null && npc.tile.height == level && shouldAdd(player, npc, viewDistance)) index else null
-        }.toList().iterator()
+        val surrounding = chunk.coords.getSurroundingCoords()
+
+        return surrounding
+            .mapNotNull { world.chunks.get(it, createIfNeeded = false) }
+            .flatMap { it.npcs }
+            .filter { shouldAdd(player, it, viewDistance) }
+            .map { it.index }.iterator()
     }
 }
 
