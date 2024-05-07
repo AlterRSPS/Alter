@@ -3,6 +3,8 @@ package org.alter.game.model.entity
 import com.google.common.base.MoreObjects
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.rsprot.protocol.api.Session
+import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcInfo
+import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerAvatar
 import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerInfo
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
 import net.rsprot.protocol.game.outgoing.map.RebuildLogin
@@ -271,6 +273,12 @@ open class Player(world: World) : Pawn(world) {
         return blockBuffer.hasBit(bits.bit)
     }
 
+    val avatar: PlayerAvatar get() = playerInfo.avatar
+
+    override fun graphic(id: Int, height: Int, delay: Int) {
+        avatar.extendedInfo.setSpotAnim(0, id, delay, height)
+    }
+
     fun forceMove(movement: ForcedMovement) {
         blockBuffer.forceMovement = movement
         addBlock(UpdateBlockType.FORCE_MOVEMENT)
@@ -427,7 +435,7 @@ open class Player(world: World) : Pawn(world) {
     fun register(): Boolean = world.register(this)
 
     lateinit var playerInfo: PlayerInfo
-
+    lateinit var npcInfo: NpcInfo
     var session: Session<Client>? = null
 
 

@@ -1,12 +1,16 @@
 package org.alter.game.model.entity
 
 import com.google.common.base.MoreObjects
+import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcAvatar
 import org.alter.game.fs.def.NpcDef
 import org.alter.game.fs.def.VarbitDef
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 import org.alter.game.model.World
-import org.alter.game.model.combat.*
+import org.alter.game.model.combat.AttackStyle
+import org.alter.game.model.combat.CombatClass
+import org.alter.game.model.combat.CombatStyle
+import org.alter.game.model.combat.NpcCombatDef
 import org.alter.game.model.weightedTableBuilder.tableDrops
 import org.alter.game.sync.block.UpdateBlockType
 
@@ -23,6 +27,8 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
         this.tile = tile
         this.owner = owner
     }
+
+    lateinit var avatar: NpcAvatar
 
     /**
      * This flag indicates whether or not this npc's AI should be processed.
@@ -133,6 +139,10 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
     override fun hasBlock(block: UpdateBlockType): Boolean {
         val bits = world.npcUpdateBlocks.updateBlocks[block]!!
         return blockBuffer.hasBit(bits.bit)
+    }
+
+    override fun graphic(id: Int, height: Int, delay: Int) {
+        avatar.extendedInfo.setSpotAnim(0, id, delay, height)
     }
 
     override fun cycle() {

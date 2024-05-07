@@ -379,6 +379,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     fun spawn(npc: Npc): Boolean {
         val added = npcs.add(npc)
         if (added) {
+            npc.avatar = network.npcAvatarFactory.alloc(npc.index, npc.id, npc.tile.height, npc.tile.x, npc.tile.z, 0, npc.faceDirection.orientationValue)
             setNpcDefaults(npc)
             plugins.executeNpcSpawn(npc)
         }

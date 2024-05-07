@@ -1,5 +1,7 @@
 package org.alter.game.model.entity
 
+import kotlinx.coroutines.CoroutineScope
+import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.action.NpcDeathAction
 import org.alter.game.action.PlayerDeathAction
 import org.alter.game.event.Event
@@ -21,16 +23,12 @@ import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.queue.impl.PawnQueueTaskSet
 import org.alter.game.model.region.Chunk
 import org.alter.game.model.timer.*
-import org.alter.game.model.timer.RESET_PAWN_FACING_TIMER
 import org.alter.game.plugin.Plugin
 import org.alter.game.service.log.LoggerService
 import org.alter.game.sync.block.UpdateBlockBuffer
 import org.alter.game.sync.block.UpdateBlockType
-import kotlinx.coroutines.CoroutineScope
-import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import java.lang.ref.WeakReference
-import java.util.ArrayDeque
-import java.util.Queue
+import java.util.*
 
 /**
  * A controllable character in the world that is used by something, or someone,
@@ -304,6 +302,7 @@ abstract class Pawn(val world: World) : Entity() {
 
             if (hit.damageDelay-- == 0) {
                 if (!hit.cancelCondition()) {
+
                     blockBuffer.hits.add(hit)
                     addBlock(UpdateBlockType.HITMARK)
 
@@ -502,10 +501,7 @@ abstract class Pawn(val world: World) : Entity() {
             animateSend(id, delay)
         }
     }
-    fun graphic(id: Int, height: Int = 0, delay: Int = 0) {
-        graphicSend(-1, 0, 0)
-        graphicSend(id, height, delay)
-    }
+    abstract fun graphic(id: Int, height: Int = 0, delay: Int = 0)
 
     /**
      * @param id = Animation id
@@ -519,13 +515,6 @@ abstract class Pawn(val world: World) : Entity() {
             world.plugins.onAnimList[id]
         }
         addBlock(UpdateBlockType.ANIMATION)
-    }
-
-    fun graphicSend(id: Int, height: Int = 0, delay: Int = 0) {
-        blockBuffer.graphicId = id
-        blockBuffer.graphicHeight = height
-        blockBuffer.graphicDelay = delay
-        addBlock(UpdateBlockType.GFX)
     }
 
     fun applyTint(hue: Int = 0, saturation: Int = 0, luminance: Int = 0, opacity: Int = 0, delay: Int = 0, duration: Int = 0) {
