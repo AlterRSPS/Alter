@@ -116,12 +116,6 @@ abstract class Pawn(val world: World) : Entity() {
     var prayerIcon = -1
 
     /**
-     * Transmog is the action of turning into an npc. This value is equal to the
-     * npc id of the npc you want to turn into, visually.
-     */
-    private var transmogId = -1
-
-    /**
      * A list of pending [Hit]s.
      */
     private val pendingHits = mutableListOf<Hit>()
@@ -184,11 +178,12 @@ abstract class Pawn(val world: World) : Entity() {
      */
     fun isLocked(): Boolean = lock != LockState.NONE
 
-    fun getTransmogId(): Int = transmogId
-
     fun setTransmogId(transmogId: Int) {
-        this.transmogId = transmogId
-        addBlock(UpdateBlockType.APPEARANCE)
+        if(entityType.isNpc) {
+            (this as Npc).avatar.extendedInfo.transformation(transmogId)
+        } else if (entityType.isPlayer) {
+            (this as Player).avatar.extendedInfo.transformToNpc(transmogId)
+        }
     }
 
     fun hasMoveDestination(): Boolean = futureRoute != null || movementQueue.hasDestination()
@@ -486,6 +481,13 @@ abstract class Pawn(val world: World) : Entity() {
         tile = Tile(x, z, height)
         movementQueue.clear()
         addBlock(UpdateBlockType.MOVEMENT)
+
+
+        if(entityType.isNpc) {
+            (this as Npc).avatar.extendedInfo.
+        } else if (entityType.isPlayer) {
+            (this as Player).avatar.extendedInfo.MOVE_SPEED
+        }
     }
 
     fun moveTo(tile: Tile) {
@@ -518,13 +520,23 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     fun applyTint(hue: Int = 0, saturation: Int = 0, luminance: Int = 0, opacity: Int = 0, delay: Int = 0, duration: Int = 0) {
-        blockBuffer.recolourStartCycle = delay
-        blockBuffer.recolourEndCycle = duration
-        blockBuffer.recolourHue = hue
-        blockBuffer.recolourSaturation = saturation
-        blockBuffer.recolourLuminance = luminance
-        blockBuffer.recolourOpacity = opacity
-        addBlock(UpdateBlockType.APPLY_TINT)
+        if(entityType.isNpc) {
+            (this as Npc).avatar.extendedInfo.tinting(
+                startTime = delay,
+                endTime = duration,
+                hue = hue,
+                saturation = saturation,
+                lightness = luminance,
+                weight = opacity)
+        } else if (entityType.isPlayer) {
+            (this as Player).avatar.extendedInfo.tinting(
+                startTime = delay,
+                endTime = duration,
+                hue = hue,
+                saturation = saturation,
+                lightness = luminance,
+                weight = opacity)
+        }
     }
 
     fun overrideLevel(level: Int) {
@@ -532,8 +544,7 @@ abstract class Pawn(val world: World) : Entity() {
             println("Can't override level for a player")
             return
         }
-        blockBuffer.overrideLevel = level
-        addBlock(UpdateBlockType.OVERRIDE_LEVEL)
+        (this as Npc).avatar.extendedInfo.combatLevelChange(level)
     }
 
     fun setTempName(name: String) {
@@ -541,8 +552,7 @@ abstract class Pawn(val world: World) : Entity() {
             println("TempName can't be applied to a player")
             return
         }
-        blockBuffer.TempName = name
-        addBlock(UpdateBlockType.NAME_CHANGE)
+        (this as Npc).avatar.extendedInfo.nameChange(name)
     }
 
     fun graphic(graphic: Graphic) {
@@ -550,8 +560,11 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     fun forceChat(message: String) {
-        blockBuffer.forceChat = message
-        addBlock(UpdateBlockType.FORCE_CHAT)
+        if(entityType.isNpc) {
+            (this as Npc).avatar.extendedInfo.setSay(message)
+        } else if (entityType.isPlayer) {
+            (this as Player).avatar.extendedInfo.setSay(message)
+        }
     }
 
     fun faceDirection(direction: Direction) {
@@ -571,39 +584,33 @@ abstract class Pawn(val world: World) : Entity() {
             degreesX += (Math.floor(width / 2.0)) * 32
             degreesZ += (Math.floor(length / 2.0)) * 32
 
-            blockBuffer.faceDegrees = (Math.atan2(degreesX, degreesZ) * 325.949).toInt() and 0x7ff
+            (this as Player).avatar.extendedInfo.setFaceAngle((Math.atan2(degreesX, degreesZ) * 325.949).toInt() and 0x7ff)
+
         } else if (entityType.isNpc) {
+            //TODO we shouldnt need because we use absolute coords ADVO
             val faceX = (face.x shl 1) + 1
             val faceZ = (face.z shl 1) + 1
-            blockBuffer.faceDegrees = (faceX shl 16) or faceZ
-            blockBuffer.faceInstant = instant
-        }
 
-        blockBuffer.facePawnIndex = -1
-        addBlock(UpdateBlockType.FACE_TILE)
+            (this as Npc).avatar.extendedInfo.faceCoord(face.x, face.z)
+        }
     }
 
     fun facePawn(pawn: Pawn) {
-        blockBuffer.faceDegrees = 0
-
         val index = if (pawn.entityType.isPlayer) pawn.index + 65536 else pawn.index
-        if (blockBuffer.facePawnIndex != index) {
-            blockBuffer.faceDegrees = 0
-            blockBuffer.facePawnIndex = index
-            addBlock(UpdateBlockType.FACE_PAWN)
+        if(entityType.isNpc) {
+            (this as Npc).avatar.extendedInfo.setFacePathingEntity(index)
+        } else if (entityType.isPlayer) {
+            (this as Player).avatar.extendedInfo.setFacePathingEntity(index)
         }
 
         attr[FACING_PAWN_ATTR] = WeakReference(pawn)
     }
 
     fun resetFacePawn() {
-        blockBuffer.faceDegrees = 0
-
-        val index = -1
-        if (blockBuffer.facePawnIndex != index) {
-            blockBuffer.faceDegrees = 0
-            blockBuffer.facePawnIndex = index
-            addBlock(UpdateBlockType.FACE_PAWN)
+        if(entityType.isNpc) {
+            (this as Npc).avatar.extendedInfo.setFacePathingEntity(-1)
+        } else if (entityType.isPlayer) {
+            (this as Player).avatar.extendedInfo.setFacePathingEntity(-1)
         }
 
         attr.remove(FACING_PAWN_ATTR)
@@ -656,4 +663,18 @@ abstract class Pawn(val world: World) : Entity() {
     companion object {
         private val EMPTY_TILE_DEQUE = ArrayDeque<Tile>()
     }
+
+
+    /*
+just
+    if (newAnim.id == -1 ||
+        previouslySetAnim == -1 ||
+        newAnim.config.priority >= config<AnimationConfig>(previouslySetAnim).priority
+    )
+
+if this is true, set the new anim and update the "previouslySetAnim" id to the newAnim.id
+end of tick, reset previouslySetAnim to -1
+     */
+    var previouslySetAnim  = -1
+
 }

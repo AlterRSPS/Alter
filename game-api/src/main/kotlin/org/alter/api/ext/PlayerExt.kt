@@ -33,7 +33,6 @@ import org.alter.game.model.item.Item
 import org.alter.game.model.timer.SKULL_ICON_DURATION_TIMER
 import org.alter.game.rsprot.RsModIndexedObjectProvider
 import org.alter.game.rsprot.RsModObjectProvider
-import org.alter.game.sync.block.UpdateBlockType
 
 /**
  * The id of the script used to initialise the interface overlay options. The 'big' variant of this script
@@ -563,8 +562,7 @@ fun Player.hasEquipped(items: IntArray) = items.all { equipment.contains(it) }
 fun Player.getEquipment(slot: EquipmentType): Item? = equipment[slot.id]
 
 fun Player.setSkullIcon(icon: SkullIcon) {
-    skullIcon = icon.id
-    addBlock(UpdateBlockType.APPEARANCE)
+    avatar.extendedInfo.setSkullIcon(icon.id)
 }
 
 fun Player.skull(icon: SkullIcon, durationCycles: Int) {
@@ -628,7 +626,7 @@ fun Player.calculateAndSetCombatLevel(): Boolean {
     runClientScript(3954, 46661634, 46661635, combatLevel)
     if (changed) {
         sendCombatLevelText()
-        addBlock(UpdateBlockType.APPEARANCE)
+        avatar.extendedInfo.setCombatLevel(combatLevel)
         return true
     }
 

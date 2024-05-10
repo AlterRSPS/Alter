@@ -237,6 +237,15 @@ open class Player(world: World) : Pawn(world) {
 
     fun appearimate(idleSequence: Int, turnLeftSequence: Int, turnRightSequence: Int,
             walkBackSequence: Int, walkLeftSequence: Int, walkRightSequence: Int, runSequence: Int) {
+        avatar.extendedInfo.setBaseAnimationSet(
+            readyAnim = idleSequence,
+            turnAnim =  turnLeftSequence,
+            walkAnim = turnLeftSequence,
+            walkAnimBack = walkBackSequence,
+            walkAnimLeft = walkLeftSequence,
+            walkAnimRight = walkRightSequence,
+            runAnim = runSequence,
+        )
         anims[0] = idleSequence
         anims[1] = turnLeftSequence
         anims[2] = turnRightSequence

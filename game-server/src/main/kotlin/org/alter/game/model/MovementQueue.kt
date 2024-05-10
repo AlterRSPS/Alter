@@ -1,7 +1,9 @@
 package org.alter.game.model
 
 import org.alter.game.model.MovementQueue.Step
+import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
+import org.alter.game.model.entity.Player
 import org.alter.game.sync.block.UpdateBlockType
 import java.util.ArrayDeque
 import java.util.Deque
@@ -81,9 +83,13 @@ class MovementQueue(val pawn: Pawn) {
             }
 
             if (walkDirection != null && walkDirection != Direction.NONE) {
+                if(pawn.entityType.isNpc) {
+                    (pawn as Npc).avatar.walk(walkDirection.getDeltaX(), walkDirection.getDeltaZ())
+                }
                 pawn.steps = StepDirection(walkDirection, runDirection)
                 pawn.tile = Tile(tile)
                 if (runDirection != null) {
+
                     pawn.addBlock(UpdateBlockType.MOVEMENT)
                 }
             }

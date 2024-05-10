@@ -1,8 +1,9 @@
 package org.alter.plugins.content.combat
 
+import org.alter.api.*
+import org.alter.api.ext.*
 import org.alter.game.action.PawnPathAction
 import org.alter.game.model.Tile
-import org.alter.game.model.World
 import org.alter.game.model.attr.AttributeKey
 import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import org.alter.game.model.attr.LAST_HIT_ATTR
@@ -15,9 +16,6 @@ import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.timer.ACTIVE_COMBAT_TIMER
 import org.alter.game.model.timer.ATTACK_DELAY
-import org.alter.game.sync.block.UpdateBlockType
-import org.alter.api.*
-import org.alter.api.ext.*
 import org.alter.plugins.content.combat.strategy.CombatStrategy
 import org.alter.plugins.content.combat.strategy.MagicCombatStrategy
 import org.alter.plugins.content.combat.strategy.MeleeCombatStrategy
@@ -76,7 +74,9 @@ object Combat {
         /*
          * Don't override the animation if one is already set. @Z-Kris
          */
-        if (!target.hasBlock(UpdateBlockType.ANIMATION)) {
+        val hasBlock = target.previouslySetAnim != -1
+
+        if (!hasBlock) {
             target.animate(CombatConfigs.getBlockAnimation(target))
             if (target is Npc) {
                 val npcDefs = target.combatDef
