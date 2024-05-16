@@ -1,10 +1,11 @@
 package org.alter.game.service
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder
-import org.alter.game.Server
-import org.alter.game.message.MessageDecoderSet
-import org.alter.game.message.MessageEncoderSet
-import org.alter.game.message.MessageStructureSet
+import gg.rsmod.util.ServerProperties
+import io.github.oshai.kotlinlogging.KotlinLogging
+import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.asCoroutineDispatcher
 import org.alter.game.model.World
 import org.alter.game.task.*
 import org.alter.game.task.parallel.ParallelNpcCycleTask
@@ -15,12 +16,6 @@ import org.alter.game.task.sequential.SequentialNpcCycleTask
 import org.alter.game.task.sequential.SequentialPlayerCycleTask
 import org.alter.game.task.sequential.SequentialPlayerPostCycleTask
 import org.alter.game.task.sequential.SequentialSynchronizationTask
-import gg.rsmod.util.ServerProperties
-import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.asCoroutineDispatcher
-
-import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -109,12 +104,6 @@ class GameService : Service {
      * A list of tasks that will be executed per game cycle.
      */
     private val tasks = mutableListOf<GameTask>()
-
-    internal val messageStructures = MessageStructureSet()
-
-    internal val messageEncoders = MessageEncoderSet()
-
-    internal val messageDecoders = MessageDecoderSet()
 
     /**
      * This flag indicates that the game cycles should pause.

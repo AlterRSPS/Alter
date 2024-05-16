@@ -1,7 +1,6 @@
 package org.alter.game.model
 
 import com.google.common.base.Stopwatch
-import gg.rsmod.util.HuffmanCodec
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.buffer.Unpooled
@@ -9,6 +8,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
+import net.rsprot.compression.HuffmanCodec
 import net.rsprot.protocol.api.NetworkService
 import net.rsprot.protocol.api.js5.Js5GroupProvider
 import net.rsprot.protocol.game.outgoing.logout.Logout
@@ -77,14 +77,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         val binary = filestore.getIndex(IndexType.BINARY)!!
         val archive = binary.findArchiveByName("huffman")!!
         val file = archive.getFiles(filestore.storage.loadArchive(archive)!!).files[0]
-        HuffmanCodec(file.contents)
-    }
-
-    val huffmanNew by lazy {
-        val binary = filestore.getIndex(IndexType.BINARY)!!
-        val archive = binary.findArchiveByName("huffman")!!
-        val file = archive.getFiles(filestore.storage.loadArchive(archive)!!).files[0]
-        net.rsprot.compression.HuffmanCodec.create(Unpooled.wrappedBuffer(file.contents))
+        HuffmanCodec.create(Unpooled.wrappedBuffer(file.contents))
     }
 
     /**
@@ -631,21 +624,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         }
         services.forEach { s -> s.postLoad(server, this) }
         logger.info("Loaded {} game services.", services.size)
-    }
-
-    /**
-     * Load the external [UpdateBlockSet] data.
-     */
-    internal fun loadUpdateBlocks(blocksFile: File) {
-        val properties = ServerProperties().loadYaml(blocksFile)
-
-        if (properties.has("players")) {
-            playerUpdateBlocks.load(properties.extract("players"))
-        }
-
-        if (properties.has("npcs")) {
-            npcUpdateBlocks.load(properties.extract("npcs"))
-        }
     }
 
     /**

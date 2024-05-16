@@ -14,9 +14,7 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.skill.SkillSet
-import org.alter.game.protocol.ClientChannelInitializer
 import org.alter.game.rsprot.NetworkServiceFactory
-import org.alter.game.service.GameService
 import org.alter.game.service.rsa.RsaService
 import org.alter.game.service.xtea.XteaKeyService
 import java.net.InetSocketAddress
@@ -39,10 +37,6 @@ class Server {
      * The properties specific to our API.
      */
     private val apiProperties = ServerProperties()
-
-    private val acceptGroup = NioEventLoopGroup(2)
-
-    private val ioGroup = NioEventLoopGroup(1)
 
     val bootstrap = ServerBootstrap()
 
@@ -154,24 +148,6 @@ class Server {
         }
 
         /*
-         * Load the packets for the game.
-         */
-        world.getService(type = GameService::class.java)?.let { gameService ->
-            individualStopwatch.reset().start()
-            gameService.messageStructures.load(packets.toFile())
-            gameService.messageEncoders.init()
-            gameService.messageDecoders.init(gameService.messageStructures)
-            logger.info("Loaded message codec and handlers in {}ms.", individualStopwatch.elapsed(TimeUnit.MILLISECONDS))
-        }
-
-        /*
-         * Load the update blocks for the game.
-         */
-        individualStopwatch.reset().start()
-        world.loadUpdateBlocks(blocks.toFile())
-        logger.info("Loaded update blocks in {}ms.", individualStopwatch.elapsed(TimeUnit.MILLISECONDS))
-
-        /*
          * Load the privileges for the game.
          */
         individualStopwatch.reset().start()
@@ -196,20 +172,6 @@ class Server {
          * Inform the time it took to load up all non-network logic.
          */
         logger.info("${gameProperties.get<String>("name")!!} loaded up in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms.")
-
-        /*
-         * Set our bootstrap's groups and parameters.
-         */
-        val rsaService = world.getService(RsaService::class.java)
-        val clientChannelInitializer = ClientChannelInitializer(revision = gameContext.revision,
-                rsaExponent = rsaService?.getExponent(), rsaModulus = rsaService?.getModulus(),
-                filestore = world.filestore, world = world)
-
-        bootstrap.group(acceptGroup, ioGroup)
-            .channel(NioServerSocketChannel::class.java)
-            .childHandler(clientChannelInitializer)
-            .childOption(ChannelOption.TCP_NODELAY, true)
-            .childOption(ChannelOption.SO_KEEPALIVE, true)
 
         /*
          * Bind all service networks, if applicable.

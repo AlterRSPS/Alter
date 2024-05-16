@@ -134,7 +134,7 @@ class NetworkServiceFactory(val world: World,
     }
 
     override fun getHuffmanCodecProvider(): HuffmanCodecProvider {
-        val huffman: HuffmanCodec = world.huffmanNew
+        val huffman: HuffmanCodec = world.huffman
         return DefaultHuffmanCodecProvider(huffman)
     }
 
