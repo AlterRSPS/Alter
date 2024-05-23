@@ -353,6 +353,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     }
 
     fun unregister(p: Player) {
+        network.playerInfoProtocol.dealloc(p.playerInfo)
         players.remove(p)
         chunks.get(p.tile)?.removeEntity(this, p, p.tile)
     }
