@@ -2,9 +2,6 @@ package org.alter.game.model.social
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.protocol.game.outgoing.social.FriendListLoaded
-import org.alter.game.message.impl.MessagePrivateReceiverMessage
-import org.alter.game.message.impl.UpdateFriendListMessage
-import org.alter.game.message.impl.UpdateIgnoreListMessage
 import org.alter.game.model.entity.Player
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -27,20 +24,20 @@ class Social {
         }
         val world = player.world
 
-        if (friends.isEmpty()) {
+        if (friends.isEmpty() || true) {
             player.write(FriendListLoaded)
         } else {
             friends.forEach {
-                val user = world.getPlayerForName(it)
-                if (user != null && !user.social.ignores.contains(player.username))
-                    player.write(UpdateFriendListMessage(0, user.username, "", 304, 0, 0))
-                else
-                /**
-                 * @TODO
-                 * When implementing name change -> save old user name for [previousUsername]
-                 * Actually forgot if it was a list of usernames or only latest
-                 */
-                player.write(UpdateFriendListMessage(0, it, "", 0, 0, 0))
+//                val user = world.getPlayerForName(it)
+//                if (user != null && !user.social.ignores.contains(player.username))
+//                    player.write(UpdateFriendListMessage(0, user.username, "", 304, 0, 0))
+//                else
+//                /**
+//                 * @TODO
+//                 * When implementing name change -> save old user name for [previousUsername]
+//                 * Actually forgot if it was a list of usernames or only latest
+//                 */
+//                player.write(UpdateFriendListMessage(0, it, "", 0, 0, 0))
             }
         }
     }
@@ -49,9 +46,9 @@ class Social {
      * TODO Add support for old display name if current isn't previous/original one
      */
     fun pushIgnores(player: Player) {
-        ignores.forEach {
-            player.write(UpdateIgnoreListMessage(0, it, ""))
-        }
+//        ignores.forEach {
+//            player.write(UpdateIgnoreListMessage(0, it, ""))
+//        }
     }
 
     fun addFriend(player: Player, name: String) {
@@ -109,8 +106,22 @@ class Social {
 
     fun sendPrivateMessage(player: Player, target: Player, unpacked: String) {
         logger.info { "${player.username} is attempting to message: ${target.username} with message: $unpacked" }
-        target.write(MessagePrivateReceiverMessage(player.username, 255, 0, player.privilege.icon, "Testing"))
-        player.write(MessagePrivateReceiverMessage(target.username, 255, -1, 0, "Testing"))
+//        target.write(MessagePrivate(
+//            sender = player.username,
+//            worldId = 1,
+//            worldMessageCounter = 0,
+//            chatCrownType = player.privilege.icon,
+//            message = "Testing",
+//        ))
+//        player.write(MessagePrivate(
+//            sender = target.username,
+//            worldId = 1,
+//            worldMessageCounter = 0,
+//            chatCrownType = 0,
+//            message = "Testing",
+//        ))
+//        target.write(MessagePrivateReceiverMessage(player.username, 255, 0, player.privilege.icon, "Testing"))
+//        player.write(MessagePrivateReceiverMessage(target.username, 255, -1, 0, "Testing"))
     }
     companion object {
         private val logger = KotlinLogging.logger{}
