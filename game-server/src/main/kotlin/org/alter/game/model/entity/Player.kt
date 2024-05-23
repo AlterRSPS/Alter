@@ -191,15 +191,6 @@ open class Player(world: World) : Pawn(world) {
 
     var appearance = Appearance.DEFAULT_MALE
 
-    /**
-     * A flag to indicate whether [anims] should be sent
-     *  in place of the default animation appearance
-     *   Note| "forced" because it's embedded in the [PlayerUpdateBlock]
-     */
-    private var appearimation = false
-
-    val anims = arrayOf(808, 823, 819, 820, 821, 822, 824)
-
     var weight = 0.0
 
     var skullIcon = -1
@@ -228,33 +219,17 @@ open class Player(world: World) : Pawn(world) {
 
     override val entityType: EntityType = EntityType.PLAYER
 
-    fun isAppearimation(): Boolean = appearimation
-
-    fun setAppearimation(forced: Boolean) {
-        this.appearimation = forced
-        addBlock(UpdateBlockType.APPEARANCE)
-    }
-
-    fun appearimate(idleSequence: Int, turnLeftSequence: Int, turnRightSequence: Int,
-            walkBackSequence: Int, walkLeftSequence: Int, walkRightSequence: Int, runSequence: Int) {
+    fun setBaseAnimationSet(readyAnim: Int, turnAnim: Int, walkAnim: Int, walkAnimBack: Int,
+                            walkAnimLeft: Int, walkAnimRight: Int, runAnim: Int) {
         avatar.extendedInfo.setBaseAnimationSet(
-            readyAnim = idleSequence,
-            turnAnim =  turnLeftSequence,
-            walkAnim = turnLeftSequence,
-            walkAnimBack = walkBackSequence,
-            walkAnimLeft = walkLeftSequence,
-            walkAnimRight = walkRightSequence,
-            runAnim = runSequence,
+            readyAnim = readyAnim,
+            turnAnim =  turnAnim,
+            walkAnim = walkAnim,
+            walkAnimBack = walkAnimBack,
+            walkAnimLeft = walkAnimLeft,
+            walkAnimRight = walkAnimRight,
+            runAnim = runAnim,
         )
-        anims[0] = idleSequence
-        anims[1] = turnLeftSequence
-        anims[2] = turnRightSequence
-        anims[3] = walkBackSequence
-        anims[4] = walkLeftSequence
-        anims[5] = walkRightSequence
-        anims[6] = runSequence
-        appearimation = true
-        addBlock(UpdateBlockType.APPEARANCE)
     }
 
     /**
