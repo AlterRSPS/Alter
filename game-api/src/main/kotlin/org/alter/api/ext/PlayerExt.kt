@@ -3,8 +3,6 @@ package org.alter.api.ext
 import com.google.common.primitives.Ints
 import gg.rsmod.util.BitManipulation
 import net.rsprot.protocol.game.outgoing.interfaces.*
-import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
-import net.rsprot.protocol.game.outgoing.inv.UpdateInvPartial
 import net.rsprot.protocol.game.outgoing.misc.client.UrlOpen
 import net.rsprot.protocol.game.outgoing.misc.player.*
 import net.rsprot.protocol.game.outgoing.sound.MidiJingle
@@ -31,8 +29,6 @@ import org.alter.game.model.entity.Player
 import org.alter.game.model.interf.DisplayMode
 import org.alter.game.model.item.Item
 import org.alter.game.model.timer.SKULL_ICON_DURATION_TIMER
-import org.alter.game.rsprot.RsModIndexedObjectProvider
-import org.alter.game.rsprot.RsModObjectProvider
 
 /**
  * The id of the script used to initialise the interface overlay options. The 'big' variant of this script
@@ -343,15 +339,15 @@ fun Player.initInterfaces(displayMode: DisplayMode) {
 }
 
 fun Player.sendItemContainer(key: Int, items: Array<Item?>) {
-    write(UpdateInvFull(inventoryId = key, capacity = items.size, provider = RsModObjectProvider(items)))
+//    write(UpdateInvFull(inventoryId = key, capacity = items.size, provider = RsModObjectProvider(items)))
 }
 
 fun Player.sendItemContainer(interfaceId: Int, component: Int, items: Array<Item?>) {
-    write(UpdateInvFull(interfaceId = interfaceId, componentId = component, inventoryId = 0, capacity = items.size, provider = RsModObjectProvider(items)))
+//    write(UpdateInvFull(interfaceId = interfaceId, componentId = component, inventoryId = 0, capacity = items.size, provider = RsModObjectProvider(items)))
 }
 
 fun Player.sendItemContainer(interfaceId: Int, component: Int, key: Int, items: Array<Item?>) {
-    write(UpdateInvFull(interfaceId = interfaceId, componentId = component, inventoryId = key, capacity = items.size, provider = RsModObjectProvider(items)))
+//    write(UpdateInvFull(interfaceId = interfaceId, componentId = component, inventoryId = key, capacity = items.size, provider = RsModObjectProvider(items)))
 }
 
 fun Player.sendItemContainer(key: Int, container: ItemContainer) = sendItemContainer(key, container.rawItems)
@@ -361,34 +357,34 @@ fun Player.sendItemContainer(interfaceId: Int, component: Int, container: ItemCo
 fun Player.sendItemContainer(interfaceId: Int, component: Int, key: Int, container: ItemContainer) = sendItemContainer(interfaceId, component, key, container.rawItems)
 
 fun Player.updateItemContainer(interfaceId: Int, component: Int, oldItems: Array<Item?>, newItems: Array<Item?>) {
-    write(
-        UpdateInvPartial(
-            interfaceId = interfaceId,
-            componentId = component,
-            inventoryId = 0,
-            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
-        )
-    )
+//    write(
+//        UpdateInvPartial(
+//            interfaceId = interfaceId,
+//            componentId = component,
+//            inventoryId = 0,
+//            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
+//        )
+//    )
 }
 
 fun Player.updateItemContainer(interfaceId: Int, component: Int, key: Int, oldItems: Array<Item?>, newItems: Array<Item?>) {
-    write(
-        UpdateInvPartial(
-            interfaceId = interfaceId,
-            componentId = component,
-            inventoryId = key,
-            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
-        )
-    )
+//    write(
+//        UpdateInvPartial(
+//            interfaceId = interfaceId,
+//            componentId = component,
+//            inventoryId = key,
+//            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
+//        )
+//    )
 }
 
 fun Player.updateItemContainer(key: Int, oldItems: Array<Item?>, newItems: Array<Item?>) {
-    write(
-        UpdateInvPartial(
-            inventoryId = key,
-            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
-        )
-    )
+//    write(
+//        UpdateInvPartial(
+//            inventoryId = key,
+//            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
+//        )
+//    )
 }
 
 private val <T> Array<T>.asNonNullIterator: Iterator<Int>
@@ -408,7 +404,7 @@ private val <T> Array<T>.asNonNullIterator: Iterator<Int>
  * https://github.com/RuneStar/cs2-scripts/blob/a144f1dceb84c3efa2f9e90648419a11ee48e7a2/scripts/script768.cs2
  */
 fun Player.sendItemContainerOther(key: Int, container: ItemContainer) {
-    write(UpdateInvFull(inventoryId = key + 32768, capacity = container.rawItems.size, provider = RsModObjectProvider(container.rawItems)))
+//    write(UpdateInvFull(inventoryId = key + 32768, capacity = container.rawItems.size, provider = RsModObjectProvider(container.rawItems)))
 }
 
 fun Player.sendRunEnergy(energy: Int) {

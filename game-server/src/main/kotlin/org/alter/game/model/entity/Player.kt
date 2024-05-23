@@ -6,7 +6,6 @@ import net.rsprot.protocol.api.Session
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcInfo
 import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerAvatar
 import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerInfo
-import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
 import net.rsprot.protocol.game.outgoing.map.RebuildLogin
 import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
 import net.rsprot.protocol.game.outgoing.misc.player.MessageGame
@@ -35,7 +34,6 @@ import org.alter.game.model.social.Social
 import org.alter.game.model.timer.ACTIVE_COMBAT_TIMER
 import org.alter.game.model.timer.FORCE_DISCONNECTION_TIMER
 import org.alter.game.model.varp.VarpSet
-import org.alter.game.rsprot.RsModObjectProvider
 import org.alter.game.service.log.LoggerService
 import java.util.*
 
@@ -329,7 +327,7 @@ open class Player(world: World) : Pawn(world) {
 
         if (inventory.dirty) {
             val items = inventory.rawItems
-            write(UpdateInvFull(interfaceId = 149, componentId = 0, inventoryId = 93, capacity = items.size, provider = RsModObjectProvider(items)))
+//            write(UpdateInvFull(interfaceId = 149, componentId = 0, inventoryId = 93, capacity = items.size, provider = RsModObjectProvider(items)))
 
             inventory.dirty = false
             calculateWeight = true
@@ -337,7 +335,7 @@ open class Player(world: World) : Pawn(world) {
 
         if (equipment.dirty) {
             val items = equipment.rawItems
-            write(UpdateInvFull(inventoryId = 94, capacity = items.size, provider = RsModObjectProvider(items)))
+//            write(UpdateInvFull(inventoryId = 94, capacity = items.size, provider = RsModObjectProvider(items)))
             equipment.dirty = false
             calculateWeight = true
             calculateBonuses = true
@@ -352,14 +350,14 @@ open class Player(world: World) : Pawn(world) {
 
         if (bank.dirty) {
             val items = bank.rawItems
-            write(UpdateInvFull(inventoryId = 95, capacity = items.size, provider = RsModObjectProvider(items)))
+//            write(UpdateInvFull(inventoryId = 95, capacity = items.size, provider = RsModObjectProvider(items)))
             bank.dirty = false
         }
 
         if (shopDirty) {
             attr[CURRENT_SHOP_ATTR]?.let { shop -> {
                     val items = shop.items.map { if (it != null) Item(it.item, it.currentAmount) else null }.toTypedArray()
-                    write(UpdateInvFull(inventoryId = 13, capacity = items.size, provider = RsModObjectProvider(items)))
+//                    write(UpdateInvFull(inventoryId = 13, capacity = items.size, provider = RsModObjectProvider(items)))
                 }
             }
             shopDirty = false
