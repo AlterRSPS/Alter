@@ -8,7 +8,6 @@ import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.timer.TimerKey
 import org.alter.game.plugin.Plugin
-import org.alter.game.sync.block.UpdateBlockType
 import org.alter.api.GameframeTab
 import org.alter.api.InterfaceDestination
 import org.alter.api.PrayerIcon
@@ -45,7 +44,7 @@ object Prayers {
 
         if (p.prayerIcon != -1) {
             p.prayerIcon = -1
-            p.addBlock(UpdateBlockType.APPEARANCE)
+            p.avatar.extendedInfo.setOverheadIcon(-1)
         }
     }
 
@@ -265,7 +264,7 @@ object Prayers {
 
         if (p.prayerIcon != icon.id) {
             p.prayerIcon = icon.id
-            p.addBlock(UpdateBlockType.APPEARANCE)
+            p.avatar.extendedInfo.setOverheadIcon(icon.id)
         }
     }
 
