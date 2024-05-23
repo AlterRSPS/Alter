@@ -18,7 +18,6 @@ import net.rsprot.protocol.game.outgoing.varp.VarpSmall
 import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.fs.def.VarpDef
 import org.alter.game.message.Message
-import org.alter.game.message.impl.RebuildLoginMessage
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
@@ -39,7 +38,6 @@ import org.alter.game.model.timer.FORCE_DISCONNECTION_TIMER
 import org.alter.game.model.varp.VarpSet
 import org.alter.game.rsprot.RsModObjectProvider
 import org.alter.game.service.log.LoggerService
-import org.alter.game.sync.block.UpdateBlockType
 import java.util.*
 
 /**
@@ -345,7 +343,12 @@ open class Player(world: World) : Pawn(world) {
             calculateWeight = true
             calculateBonuses = true
 
-            addBlock(UpdateBlockType.APPEARANCE)
+
+            items.forEach { item ->
+                //TODO ADVO THIS IS SHIT
+                val def = item?.getDef(world.definitions)?: return
+                avatar.extendedInfo.setWornObj(def.wearPos1, item.id, def.wearPos2, def.wearPos3)
+            }
         }
 
         if (bank.dirty) {
@@ -441,8 +444,7 @@ open class Player(world: World) : Pawn(world) {
             val tiles = IntArray(gpiTileHashMultipliers.size)
             System.arraycopy(gpiTileHashMultipliers, 0, tiles, 0, tiles.size)
 
-            write(RebuildLogin(tile.x, tile.z, world.xteaKeyService!!, playerInfo))
-            write(RebuildLoginMessage(index, tile, tiles, world.xteaKeyService))
+            write(RebuildLogin(tile.x shr 3, tile.z shr 3, world.xteaKeyService!!, playerInfo))
             world.getService(LoggerService::class.java, searchSubclasses = true)?.logLogin(this)
         }
 

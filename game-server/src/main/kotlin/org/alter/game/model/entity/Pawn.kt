@@ -25,8 +25,6 @@ import org.alter.game.model.region.Chunk
 import org.alter.game.model.timer.*
 import org.alter.game.plugin.Plugin
 import org.alter.game.service.log.LoggerService
-import org.alter.game.sync.block.UpdateBlockBuffer
-import org.alter.game.sync.block.UpdateBlockType
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -42,11 +40,6 @@ abstract class Pawn(val world: World) : Entity() {
      * The index assigned when this [Pawn] is successfully added to a [PawnList].
      */
     var index = -1
-
-    /**
-     * @see UpdateBlockBuffer
-     */
-    internal var blockBuffer = UpdateBlockBuffer()
 
     /**
      * The 3D [Tile] that this pawn was standing on, in the last game cycle.
@@ -483,17 +476,13 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     fun moveTo(x: Int, z: Int, height: Int = 0) {
-        moved = true
-        blockBuffer.teleport = !tile.isWithinRadius(x, z, height, Player.NORMAL_VIEW_DISTANCE)
         tile = Tile(x, z, height)
         movementQueue.clear()
-        addBlock(UpdateBlockType.MOVEMENT)
-
 
         if(entityType.isNpc) {
-            (this as Npc).avatar.extendedInfo.
+            (this as Npc).avatar.teleport(height, x, z, true)
         } else if (entityType.isPlayer) {
-            (this as Player).avatar.extendedInfo.MOVE_SPEED
+            (this as Player).avatar.extendedInfo.setTempMoveSpeed(127)
         }
     }
 

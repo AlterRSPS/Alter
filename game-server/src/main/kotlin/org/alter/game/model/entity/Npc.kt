@@ -12,7 +12,6 @@ import org.alter.game.model.combat.CombatClass
 import org.alter.game.model.combat.CombatStyle
 import org.alter.game.model.combat.NpcCombatDef
 import org.alter.game.model.weightedTableBuilder.tableDrops
-import org.alter.game.sync.block.UpdateBlockType
 
 /**
  * @author Tom <rspsmods@gmail.com>

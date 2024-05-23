@@ -3,10 +3,7 @@ package org.alter.game.model
 import org.alter.game.model.MovementQueue.Step
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
-import org.alter.game.model.entity.Player
-import org.alter.game.sync.block.UpdateBlockType
-import java.util.ArrayDeque
-import java.util.Deque
+import java.util.*
 import kotlin.math.abs
 
 /**
@@ -88,10 +85,10 @@ class MovementQueue(val pawn: Pawn) {
                 }
                 pawn.steps = StepDirection(walkDirection, runDirection)
                 pawn.tile = Tile(tile)
-                if (runDirection != null) {
-
-                    pawn.addBlock(UpdateBlockType.MOVEMENT)
-                }
+                //TODO ADVO THIS IS SHIT
+//                if (runDirection != null) {
+//                    pawn.addBlock(UpdateBlockType.MOVEMENT)
+//                }
             }
         }
     }
