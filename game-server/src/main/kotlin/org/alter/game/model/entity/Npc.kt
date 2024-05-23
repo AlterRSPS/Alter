@@ -131,16 +131,6 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
         this.hitpoints = health
     }
 
-    override fun addBlock(block: UpdateBlockType) {
-        val bits = world.npcUpdateBlocks.updateBlocks[block]!!
-        blockBuffer.addBit(bits.bit)
-    }
-
-    override fun hasBlock(block: UpdateBlockType): Boolean {
-        val bits = world.npcUpdateBlocks.updateBlocks[block]!!
-        return blockBuffer.hasBit(bits.bit)
-    }
-
     override fun graphic(id: Int, height: Int, delay: Int) {
         avatar.extendedInfo.setSpotAnim(0, id, delay, height)
     }

@@ -41,8 +41,6 @@ import org.alter.game.plugin.PluginRepository
 import org.alter.game.service.GameService
 import org.alter.game.service.Service
 import org.alter.game.service.xtea.XteaKeyService
-import org.alter.game.sync.block.UpdateBlockSet
-import java.io.File
 import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -116,16 +114,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      * when [XteaKeyService.init] is called.
      */
     var xteaKeyService: XteaKeyService? = null
-
-    /**
-     * The [UpdateBlockSet] for players.
-     */
-    internal val playerUpdateBlocks = UpdateBlockSet()
-
-    /**
-     * The [UpdateBlockSet] for npcs.
-     */
-    internal val npcUpdateBlocks = UpdateBlockSet()
 
     /**
      * A [Random] implementation used for pseudo-random purposes through-out

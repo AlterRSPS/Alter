@@ -155,10 +155,6 @@ abstract class Pawn(val world: World) : Entity() {
 
     abstract fun setCurrentHp(level: Int)
 
-    abstract fun addBlock(block: UpdateBlockType)
-
-    abstract fun hasBlock(block: UpdateBlockType): Boolean
-
     /**
      * Lock the pawn to the default [LockState.FULL] state.
      */

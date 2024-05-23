@@ -248,16 +248,6 @@ open class Player(world: World) : Pawn(world) {
         getSkills().setCurrentLevel(3, level)
     }
 
-    override fun addBlock(block: UpdateBlockType) {
-        val bits = world.playerUpdateBlocks.updateBlocks[block]!!
-        blockBuffer.addBit(bits.bit)
-    }
-
-    override fun hasBlock(block: UpdateBlockType): Boolean {
-        val bits = world.playerUpdateBlocks.updateBlocks[block]!!
-        return blockBuffer.hasBit(bits.bit)
-    }
-
     val avatar: PlayerAvatar get() = playerInfo.avatar
 
     override fun graphic(id: Int, height: Int, delay: Int) {
