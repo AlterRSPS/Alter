@@ -29,6 +29,7 @@ allprojects {
         maven("https://repo.maven.apache.org/maven2")
         maven("https://jitpack.io")
         maven("https://repo.runelite.net/")
+        maven("https://raw.githubusercontent.com/MatthewBishop/hosting/main/")
     }
 
     val lib = rootProject.project.libs
@@ -50,7 +51,7 @@ allprojects {
         testImplementation(lib.junit)
         testImplementation(lib.kotlin.test.junit)
 
-        implementation("net.rsprot:osrs-221-api:1.0.0-ALPHA-20240505")
+        implementation("net.rsprot:osrs-221-api:1.0-SNAPSHOT")
         implementation("io.netty:netty-buffer:4.0.34.Final")
     }
 

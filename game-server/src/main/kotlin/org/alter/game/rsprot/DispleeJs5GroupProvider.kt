@@ -5,8 +5,11 @@ import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import io.netty.handler.codec.DecoderException
 import io.netty.util.ReferenceCounted
+import it.unimi.dsi.fastutil.ints.Int2IntMap
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import net.rsprot.protocol.api.Js5GroupSizeProvider
 import net.rsprot.protocol.api.js5.ByteBufJs5GroupProvider
 import net.rsprot.protocol.api.js5.Js5GroupProvider
 import org.slf4j.Logger
@@ -15,15 +18,22 @@ import java.nio.file.Path
 import kotlin.math.min
 import kotlin.math.pow
 
-class DispleeJs5GroupProvider: ByteBufJs5GroupProvider() {
+class DispleeJs5GroupProvider: ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
 
     override fun provide(archive: Int, group: Int): Js5GroupProvider.ByteBufJs5GroupType {
-        return Js5GroupProvider.ByteBufJs5GroupType(get(bitpack(archive, group))?: throw DecoderException("Invalid on-demand group request ($archive and $group)"))
+        return Js5GroupProvider.ByteBufJs5GroupType(
+            groups[bitpack(archive, group)]
+                ?: throw DecoderException("Invalid on-demand group request ($archive and $group)")
+        )
     }
 
-    private val map: Int2ObjectMap<ByteBuf> = Int2ObjectOpenHashMap(2.toDouble().pow(17).toInt())
 
-    fun get(bitpack: Int): ByteBuf? = map[bitpack]
+    override fun getSize(archive: Int, group: Int): Int {
+        return sizes[bitpack(archive, group)]
+    }
+
+    private val groups: Int2ObjectMap<ByteBuf> = Int2ObjectOpenHashMap(2.toDouble().pow(17).toInt())
+    private val sizes: Int2IntMap = Int2IntOpenHashMap(2.toDouble().pow(17).toInt())
 
     fun load(path: Path) {
         val cache = CacheLibrary(path.toString())
@@ -35,7 +45,9 @@ class DispleeJs5GroupProvider: ByteBufJs5GroupProvider() {
         }
         encodeArchiveMasterIndex(cache, 255)
 
-        logger.info("Loaded {} JS5 responses", map.size)
+        logger.info("Loaded {} JS5 responses", groups.size)
+
+        cache.close()
     }
 
     private fun encodeMasterIndex(cache: CacheLibrary) {
@@ -97,7 +109,8 @@ class DispleeJs5GroupProvider: ByteBufJs5GroupProvider() {
         }
 
         val bitpack = bitpack(archive, group)
-        map[bitpack] = response
+        groups[bitpack] = response
+        sizes[bitpack] = response.writerIndex()
     }
 
     private fun strip(buf: ByteBuf): Int? {

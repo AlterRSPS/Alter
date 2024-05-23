@@ -138,8 +138,14 @@ class NetworkServiceFactory(val world: World,
         return DefaultHuffmanCodecProvider(huffman)
     }
 
+    private val groupProvider = DispleeJs5GroupProvider()
+
     override fun getJs5GroupProvider(): Js5GroupProvider<Js5GroupProvider.ByteBufJs5GroupType> {
-        return DispleeJs5GroupProvider()
+        return groupProvider
+    }
+
+    override fun getJs5GroupSizeProvider(): Js5GroupSizeProvider {
+        return groupProvider
     }
 
     override fun getNpcInfoSupplier(): NpcInfoSupplier {
