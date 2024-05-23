@@ -506,7 +506,9 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     fun animate(id: Int, delay: Int = 0, interruptable: Boolean = false) {
-        if (!this.hasBlock(UpdateBlockType.ANIMATION) || interruptable) {
+        if (entityType.isPlayer && previouslySetAnim == -1 || interruptable) {
+            if(entityType.isPlayer)
+                previouslySetAnim = id
             if (this is Player) {
                 world.plugins.executeOnAnimation(this, id)
             }
@@ -522,12 +524,14 @@ abstract class Pawn(val world: World) : Entity() {
      * @param interruptable = if Anim can be interrupted by other anim masks
      */
     fun animateSend(id: Int, startDelay: Int = 0) {
-        blockBuffer.animation = id
-        blockBuffer.animationDelay = startDelay
+        if(entityType.isNpc) {
+            (this as Npc).avatar.extendedInfo.setSequence(id, startDelay)
+        } else if (entityType.isPlayer) {
+            (this as Player).avatar.extendedInfo.setSequence(id, startDelay)
+        }
         if (this is Player) {
             world.plugins.onAnimList[id]
         }
-        addBlock(UpdateBlockType.ANIMATION)
     }
 
     fun applyTint(hue: Int = 0, saturation: Int = 0, luminance: Int = 0, opacity: Int = 0, delay: Int = 0, duration: Int = 0) {

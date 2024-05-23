@@ -433,6 +433,7 @@ open class Player(world: World) : Pawn(world) {
      * conditions if any logic may modify other [Pawn]s.
      */
     fun postCycle() {
+        previouslySetAnim = -1;
         /*
          * Flush the channel at the end.
          */
