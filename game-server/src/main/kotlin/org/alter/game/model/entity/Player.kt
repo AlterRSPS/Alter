@@ -255,8 +255,15 @@ open class Player(world: World) : Pawn(world) {
     }
 
     fun forceMove(movement: ForcedMovement) {
-        blockBuffer.forceMovement = movement
-        addBlock(UpdateBlockType.FORCE_MOVEMENT)
+        avatar.extendedInfo.setExactMove(
+            deltaX1 = movement.diffX1,
+            deltaZ1 = movement.diffZ1,
+            delay1 = movement.clientDuration1,
+            deltaX2 = movement.diffX2,
+            deltaZ2 = movement.diffZ2,
+            delay2 = movement.clientDuration2,
+            angle = movement.directionAngle,
+        )
     }
 
     suspend fun forceMove(task: QueueTask, movement: ForcedMovement, cycleDuration: Int = movement.maxDuration / 30) {
