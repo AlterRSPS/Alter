@@ -297,14 +297,25 @@ abstract class Pawn(val world: World) : Entity() {
 
             if (hit.damageDelay-- == 0) {
                 if (!hit.cancelCondition()) {
-
-                    blockBuffer.hits.add(hit)
-                    addBlock(UpdateBlockType.HITMARK)
-
                     for (hitmark in hit.hitmarks) {
                         val hp = getCurrentHp()
                         if (hitmark.damage > hp) {
                             hitmark.damage = hp
+                        }
+                        if(entityType.isNpc) {
+                            (this as Npc).avatar.extendedInfo.addHitMark(
+                                sourceIndex = -1,
+                                selfType = hitmark.type,
+                                value = hitmark.damage,
+                                delay = hit.clientDelay,
+                            )
+                        } else if (entityType.isPlayer) {
+                            (this as Player).avatar.extendedInfo.addHitMark(
+                                sourceIndex = -1,
+                                selfType = hitmark.type,
+                                value = hitmark.damage,
+                                delay = hit.clientDelay,
+                            )
                         }
                         /*
                          * Only lower the pawn's hp if they do not have infinite
