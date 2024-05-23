@@ -8,10 +8,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
 import org.alter.game.model.World
 import org.alter.game.task.*
-import org.alter.game.task.parallel.ParallelNpcCycleTask
-import org.alter.game.task.parallel.ParallelPlayerCycleTask
-import org.alter.game.task.parallel.ParallelPlayerPostCycleTask
-import org.alter.game.task.parallel.ParallelSynchronizationTask
 import org.alter.game.task.sequential.SequentialNpcCycleTask
 import org.alter.game.task.sequential.SequentialPlayerCycleTask
 import org.alter.game.task.sequential.SequentialPlayerPostCycleTask
@@ -114,7 +110,7 @@ class GameService : Service {
 
     override fun init(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties) {
         this.world = world
-        populateTasks(serviceProperties)
+        populateTasks()
         maxMessagesPerCycle = serviceProperties.getOrDefault("messages-per-cycle", 30)
         executor.scheduleAtFixedRate(this::cycle, 0, world.gameContext.cycleTime.toLong(), TimeUnit.MILLISECONDS)
     }
@@ -125,47 +121,18 @@ class GameService : Service {
     override fun terminate(server: org.alter.game.Server, world: World) {
     }
 
-    private fun populateTasks(serviceProperties: ServerProperties) {
-        /*
-         * Determine which synchronization task we're going to use based on the
-         * number of available processors we have been provided, also taking
-         * into account the amount of processors the machine has in the first
-         * place.
-         */
-        val availableProcessors = Runtime.getRuntime().availableProcessors()
-        val processors = Math.max(1, Math.min(availableProcessors, serviceProperties.getOrDefault("processors", availableProcessors)))
-        val sequentialTasks = processors == 1 || serviceProperties.getOrDefault("sequential-tasks", false)
-
-        if (sequentialTasks) {
-            tasks.addAll(arrayOf(
-                    MessageHandlerTask(),
-                    QueueHandlerTask(),
-                    SequentialPlayerCycleTask(),
-                    ChunkCreationTask(),
-                    WorldRemoveTask(),
-                    SequentialNpcCycleTask(),
-                    SequentialSynchronizationTask(),
-                    SequentialPlayerPostCycleTask()
-            ))
-            logger.info("Sequential tasks preference enabled. {} tasks will be handled per cycle.", tasks.size)
-        } else {
-            val executor = Executors.newFixedThreadPool(processors, ThreadFactoryBuilder()
-                    .setNameFormat("game-task-thread")
-                    .setUncaughtExceptionHandler { t, e -> logger.error("Error with thread $t", e) }
-                    .build())
-
-            tasks.addAll(arrayOf(
-                    MessageHandlerTask(),
-                    QueueHandlerTask(),
-                    ParallelPlayerCycleTask(executor),
-                    ChunkCreationTask(),
-                    WorldRemoveTask(),
-                    ParallelNpcCycleTask(executor),
-                    ParallelSynchronizationTask(executor),
-                    ParallelPlayerPostCycleTask(executor)
-            ))
-            logger.info("Parallel tasks preference enabled. {} tasks will be handled per cycle.", tasks.size)
-        }
+    private fun populateTasks() {
+        tasks.addAll(arrayOf(
+            MessageHandlerTask(),
+            QueueHandlerTask(),
+            SequentialPlayerCycleTask(),
+            ChunkCreationTask(),
+            WorldRemoveTask(),
+            SequentialNpcCycleTask(),
+            SequentialSynchronizationTask(),
+            SequentialPlayerPostCycleTask()
+        ))
+        logger.info("Sequential tasks preference enabled. {} tasks will be handled per cycle.", tasks.size)
     }
 
     override fun bindNet(server: org.alter.game.Server, world: World) {
