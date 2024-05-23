@@ -5,7 +5,6 @@ plugins {
 }
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":util")
-include(":net")
 include(":game-plugins")
 include(":game-api")
 include(":game-server")
