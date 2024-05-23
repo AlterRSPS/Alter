@@ -1,7 +1,7 @@
 package org.alter.game.fs.def
 
-import org.alter.game.fs.Definition
 import io.netty.buffer.ByteBuf
+import org.alter.game.fs.Definition
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -80,6 +80,7 @@ class AnimDef(id: Int) : Definition(id) {
             13 -> {
                 val count = buf.readUnsignedByte()
                 for (i in 0 until count) {
+                    buf.readUnsignedShort()
                     buf.readMedium()
                 }
             }
@@ -87,6 +88,8 @@ class AnimDef(id: Int) : Definition(id) {
             15 -> {
                 val count = buf.readUnsignedShort()
                 for (i in 0 until count) {
+                    buf.readUnsignedShort()
+
                     buf.readUnsignedShort()
                     buf.readMedium()
                 }

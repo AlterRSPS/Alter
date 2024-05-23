@@ -1,11 +1,10 @@
 package org.alter.game.fs.def
 
-import org.alter.game.fs.Definition
 import gg.rsmod.util.io.BufferUtils.readString
 import io.netty.buffer.ByteBuf
 import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import java.lang.IllegalStateException
+import org.alter.game.fs.Definition
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -112,6 +111,7 @@ class ItemDef(override val id: Int) : Definition(id) {
         when (opcode) {
             1 -> model = buf.readUnsignedShort()
             2 -> name = buf.readString()
+            3 -> examine = buf.readString()
             4 -> zoom2d = buf.readUnsignedShort()
             5 -> xan2d = buf.readUnsignedShort()
             6 -> yan2d = buf.readUnsignedShort()

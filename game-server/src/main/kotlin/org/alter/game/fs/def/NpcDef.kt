@@ -1,10 +1,9 @@
 package org.alter.game.fs.def
 
-import org.alter.game.fs.Definition
 import gg.rsmod.util.io.BufferUtils.readString
 import io.netty.buffer.ByteBuf
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import java.lang.IllegalStateException
+import org.alter.game.fs.Definition
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -40,6 +39,9 @@ class NpcDef(override val id: Int) : Definition(id) {
     var interactable = true
     var clickable = true
     var isPet = false
+    var isFollower = false
+    var lowPriorityFollowerOps = false
+
     var runAnimation = -1
 
     var runRotate180Animation = -1
@@ -187,6 +189,8 @@ class NpcDef(override val id: Int) : Definition(id) {
                 crawlRotateLeftAnimation = buf.readUnsignedShort()
                 crawlRotateRightAnimation = buf.readUnsignedShort()
             }
+            122 -> isFollower = true
+            123 -> lowPriorityFollowerOps = true
             249 -> params.putAll(readParams(buf))
             else -> throw IllegalStateException("Unknown opcode: $opcode in NpcDef")
         }

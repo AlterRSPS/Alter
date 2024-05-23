@@ -1,11 +1,10 @@
 package org.alter.game.fs.def
 
-import org.alter.game.fs.Definition
-import org.alter.game.model.entity.GameObject
 import gg.rsmod.util.io.BufferUtils.readString
 import io.netty.buffer.ByteBuf
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import java.lang.IllegalStateException
+import org.alter.game.fs.Definition
+import org.alter.game.model.entity.GameObject
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -173,11 +172,13 @@ class ObjectDef(override val id: Int) : Definition(id) {
             78 -> {
                 ambientSoundId = buf.readUnsignedShort()
                 ambientSoundRadius = buf.readUnsignedByte().toInt()
+                buf.readByte()
             }
             79 -> {
                 anInt3426 = buf.readUnsignedShort()
                 anInt3427 = buf.readUnsignedShort()
                 ambientSoundRadius = buf.readUnsignedByte().toInt()
+                buf.readByte()
                 val count = buf.readUnsignedByte().toInt()
                 val array = IntArray(count)
                 repeat(count) {
