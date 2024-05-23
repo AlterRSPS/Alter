@@ -16,7 +16,7 @@ import org.alter.api.Skills
  * The child id of the chat box in the gameframe interface. This can change
  * with revision.
  */
-const val CHATBOX_CHILD = 559
+const val CHATBOX_CHILD = 565
 
 /**
  * The id for the appearance interface.
