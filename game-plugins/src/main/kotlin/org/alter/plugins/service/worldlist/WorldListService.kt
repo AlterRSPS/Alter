@@ -2,6 +2,10 @@ package org.alter.plugins.service.worldlist
 
 import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
+import gg.rsmod.util.ServerProperties
+import io.github.oshai.kotlinlogging.KotlinLogging
+import io.netty.bootstrap.ServerBootstrap
+import io.netty.channel.ChannelFuture
 import org.alter.game.Server
 import org.alter.game.model.World
 import org.alter.game.plugin.Plugin
@@ -9,10 +13,6 @@ import org.alter.game.service.Service
 import org.alter.plugins.service.worldlist.io.WorldListChannelHandler
 import org.alter.plugins.service.worldlist.io.WorldListChannelInitializer
 import org.alter.plugins.service.worldlist.model.WorldEntry
-import gg.rsmod.util.ServerProperties
-import io.github.oshai.kotlinlogging.KotlinLogging
-import io.netty.channel.ChannelFuture
-
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -25,6 +25,8 @@ import java.nio.file.Paths
  * service that can retrieve data from multiple worlds.
  */
 class WorldListService : Service {
+
+    val bootstrap = ServerBootstrap()
 
     /**
      * The port for this [WorldListService] to listen on
@@ -94,7 +96,7 @@ class WorldListService : Service {
         val handler = WorldListChannelHandler(worldEntries)
 
         // Bind the world list network pipeline
-        val bootstrap = server.bootstrap.clone()
+        val bootstrap = bootstrap.clone()
         bootstrap.childHandler(WorldListChannelInitializer(handler))
         channelFuture = bootstrap.bind(port).syncUninterruptibly()
         logger.info("World list service listening on port $port, ${worldEntries.size} loaded.")

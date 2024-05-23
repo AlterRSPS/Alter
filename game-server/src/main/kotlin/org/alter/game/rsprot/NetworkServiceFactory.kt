@@ -59,7 +59,8 @@ import org.alter.game.model.entity.Player
 import org.alter.game.service.rsa.RsaService
 import java.math.BigInteger
 
-class NetworkServiceFactory(val world: World,
+class NetworkServiceFactory(val groupProvider: DispleeJs5GroupProvider,
+                            val world: World,
                             override val ports: List<Int>,
                             override val supportedClientTypes: List<OldSchoolClientType>
 ) : AbstractNetworkServiceFactory<Client, Js5GroupProvider.ByteBufJs5GroupType>() {
@@ -137,8 +138,6 @@ class NetworkServiceFactory(val world: World,
         val huffman: HuffmanCodec = world.huffman
         return DefaultHuffmanCodecProvider(huffman)
     }
-
-    private val groupProvider = DispleeJs5GroupProvider()
 
     override fun getJs5GroupProvider(): Js5GroupProvider<Js5GroupProvider.ByteBufJs5GroupType> {
         return groupProvider

@@ -3,10 +3,6 @@ package org.alter.game
 import com.google.common.base.Stopwatch
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
-import io.netty.bootstrap.ServerBootstrap
-import io.netty.channel.ChannelOption
-import io.netty.channel.nio.NioEventLoopGroup
-import io.netty.channel.socket.nio.NioServerSocketChannel
 import net.rsprot.protocol.common.client.OldSchoolClientType
 import net.runelite.cache.fs.Store
 import org.alter.game.model.Tile
@@ -14,10 +10,9 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.skill.SkillSet
+import org.alter.game.rsprot.DispleeJs5GroupProvider
 import org.alter.game.rsprot.NetworkServiceFactory
-import org.alter.game.service.rsa.RsaService
 import org.alter.game.service.xtea.XteaKeyService
-import java.net.InetSocketAddress
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -31,14 +26,13 @@ import java.util.concurrent.TimeUnit
  *
  * @author Tom <rspsmods@gmail.com>
  */
+@OptIn(ExperimentalStdlibApi::class)
 class Server {
 
     /**
      * The properties specific to our API.
      */
     private val apiProperties = ServerProperties()
-
-    val bootstrap = ServerBootstrap()
 
     /**
      * Prepares and handles any API related logic that must be handled
@@ -136,6 +130,14 @@ class Server {
          * Load the services required to run the server.
          */
         world.loadServices(this, gameProperties)
+
+        val groupProvider = DispleeJs5GroupProvider()
+        groupProvider.load(filestore)
+
+        val port = gameProperties.getOrDefault("game-port", 43594)
+        val network = NetworkServiceFactory(groupProvider, world, listOf(port), listOf(OldSchoolClientType.DESKTOP))
+        world.network = network.build()
+
         world.init()
 
         if (gameContext.preloadMaps) {
@@ -181,15 +183,11 @@ class Server {
         /*
          * Bind the game port.
          */
-        val port = gameProperties.getOrDefault("game-port", 43594)
-        val serverChannel = bootstrap.bind(InetSocketAddress(port)).sync()
-        serverChannel.awaitUninterruptibly()
+        world.network.start()
         logger.info("Now listening for incoming connections on port $port...")
         System.gc()
         logger.info("For commands, type `help` or `?` ")
 
-        val network = NetworkServiceFactory(world, listOf(port), listOf(OldSchoolClientType.DESKTOP))
-        world.network = network.build()
         var input: String?
         do {
             val name = gameProperties.getOrDefault("name", "Alter")
@@ -205,7 +203,7 @@ class Server {
 
             println("[ \u001B[32mCOMMAND\u001B[0m ] [ $currentTime ]: $input")
             println("${values}")
-        } while (serverChannel.channel().isActive)
+        } while (true)
 
 
         return world
