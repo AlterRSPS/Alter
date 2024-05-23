@@ -1,6 +1,7 @@
 package org.alter.game.service
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder
+import gg.rsmod.net.codec.login.org.alter.game.task.sequential.SequentialPlayerCoordCycleTask
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap
@@ -129,6 +130,7 @@ class GameService : Service {
             ChunkCreationTask(),
             WorldRemoveTask(),
             SequentialNpcCycleTask(),
+            SequentialPlayerCoordCycleTask(),
             SequentialSynchronizationTask(),
             SequentialPlayerPostCycleTask()
         ))
