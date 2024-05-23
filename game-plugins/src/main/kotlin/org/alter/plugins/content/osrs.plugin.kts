@@ -79,20 +79,20 @@ on_login {
             } else if (pane == InterfaceDestination.MINI_MAP && player.getVarbit(Varbit.HIDE_DATA_ORBS_VARBIT) == 1) {
                 return@forEach
             } else if (pane == InterfaceDestination.QUEST_ROOT) {
-                when (player.getVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB)) {
-                    0 -> {
-                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 712, 1)
-                    }
-                    1 -> {
-                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 399, 1)
-                    }
-                    2 -> {
-                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 259, 1)
-                    }
-                    3 -> {
-                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 245, 1)
-                    }
-                }
+//                when (player.getVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB)) {
+//                    0 -> {
+//                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 712, 1)
+//                    }
+//                    1 -> {
+//                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 399, 1)
+//                    }
+//                    2 -> {
+//                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 259, 1)
+//                    }
+//                    3 -> {
+//                        player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 245, 1)
+//                    }
+//                }
 
 
                 player.setVarbit(11877, 155) // Quests Completed
@@ -116,23 +116,23 @@ on_login {
 // Character summary
 on_button(InterfaceDestination.QUEST_ROOT.interfaceId, 3) {
     player.setVarbit(8168, 0)
-    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 712, 1)
+//    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 712, 1)
 }
 
 // Quest Tab
 on_button(InterfaceDestination.QUEST_ROOT.interfaceId,8) {
     player.setVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB, 1)
-    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 399, 1)
+//    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 399, 1)
 }
 
 on_button(InterfaceDestination.QUEST_ROOT.interfaceId,13) {
     player.setVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB, 2)
-    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 259, 1)
+//    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 259, 1)
 }
 
 on_button(InterfaceDestination.QUEST_ROOT.interfaceId,18) {
     player.setVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB, 3)
-    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 245, 1)
+//    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 245, 1)
 }
 on_button(245, 20) {
     player.openInterface(interfaceId = 626, dest = InterfaceDestination.MAIN_SCREEN)
