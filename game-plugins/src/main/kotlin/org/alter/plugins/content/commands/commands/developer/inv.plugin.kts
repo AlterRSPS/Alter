@@ -13,7 +13,7 @@ on_command("inv", Privilege.DEV_POWER) {
         for(item in 1 until values.size)
             items.add(Item(values[item].toIntOrNull() ?: 0))
         val itemarr = items.toTypedArray()
-//        player.write(UpdateInvFull(inventoryId = key, capacity = itemarr.size, provider = RsModObjectProvider(itemarr)))
+        player.write(UpdateInvFull(inventoryId = key, capacity = itemarr.size, provider = RsModObjectProvider(itemarr)))
         player.message("Added $items to inventory($key)")
     }
 }
