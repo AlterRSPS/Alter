@@ -27,7 +27,7 @@ class OpNpcHandler : MessageHandler<OpNpc> {
             }
         }
 
-        log(client, "Npc option %d: index=%d, movement=%d, npc=%s", message.op, message.index, message.controlKey, npc)
+        log(client, "Npc option %d: index=%d, movement=%b, npc=%s", message.op, message.index, message.controlKey, npc)
 
         if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             client.moveTo(client.world.findRandomTileAround(npc.tile, 1) ?: npc.tile)
