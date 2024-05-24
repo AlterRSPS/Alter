@@ -168,12 +168,22 @@ class NetworkServiceFactory(val groupProvider: DispleeJs5GroupProvider,
             val chunk = world.chunks.get(tile)?: error("Invalid chunk for : $tile")
 
             val surrounding = chunk.coords.getSurroundingCoords()
+            println("Searching!!!")
 
-            surrounding
-                .mapNotNull { world.chunks.get(it, createIfNeeded = false) }
-                .flatMap { it.npcs }
-                .filter { shouldAdd(player, it, viewDistance) }
-                .map { it.index }.iterator()
+            world.npcs.entries.filterNotNull().filter {
+                shouldAdd(player, it, viewDistance)
+            }.map {
+                println("Found npc " + it.index)
+                it.index
+            }.iterator()
+//            surrounding
+//                .mapNotNull { world.chunks.get(it, createIfNeeded = false) }
+//                .flatMap { it.npcs }
+//                .filter { shouldAdd(player, it, viewDistance) }
+//                .map {
+//                    println("Found npc " + it.index)
+//                    it.index
+//                }.iterator()
         }
     }
 
