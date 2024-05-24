@@ -3,6 +3,8 @@ package org.alter.game.model.entity
 import com.google.common.base.MoreObjects
 import io.netty.channel.Channel
 import net.rsprot.protocol.api.login.GameLoginResponseHandler
+import net.rsprot.protocol.game.outgoing.map.RebuildLogin
+import net.rsprot.protocol.game.outgoing.map.RebuildNormal
 import net.rsprot.protocol.loginprot.incoming.util.AuthenticationType
 import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
 import net.rsprot.protocol.message.OutgoingGameMessage
@@ -89,8 +91,29 @@ class Client(val channel: Channel, world: World) : Player(world) {
         session?.processIncomingPackets(this)
     }
 
+    private var rebuildNormalMessageWritten = false
+    private val pendingMessages = mutableListOf<OutgoingGameMessage>()
+    private fun onRebuildNormalMessageWritten() {
+        pendingMessages.forEach { message ->
+            session?.queue(message)
+        }
+        pendingMessages.clear()
+    }
+
     override fun write(vararg messages: OutgoingGameMessage) {
-        messages.forEach { m -> session?.queue(m) }
+        messages.forEach { message ->
+            if (!rebuildNormalMessageWritten && (message is RebuildNormal || message is RebuildLogin)) {
+                session?.queue(message)
+                rebuildNormalMessageWritten = true
+                onRebuildNormalMessageWritten()
+            } else if (rebuildNormalMessageWritten) {
+                session?.queue(message)
+            } else {
+                println(message)
+                pendingMessages.add(message)
+            }
+//                m -> session?.queue(m)
+        }
     }
 
     override fun channelFlush() {
