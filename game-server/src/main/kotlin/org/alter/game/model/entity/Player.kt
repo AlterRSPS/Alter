@@ -17,6 +17,7 @@ import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.fs.def.VarpDef
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
+import org.alter.game.model.appearance.Gender
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
 import org.alter.game.model.attr.LEVEL_UP_INCREMENT
 import org.alter.game.model.attr.LEVEL_UP_OLD_XP
@@ -379,15 +380,40 @@ open class Player(world: World) : Pawn(world) {
      * Handles any logic that should be executed upon log in.
      */
     fun login() {
+        playerInfo.updateCoord(tile.height, tile.x, tile.z)
         if (entityType.isHumanControlled) {
             write(RebuildLogin(tile.x shr 3, tile.z shr 3, world.xteaKeyService!!, playerInfo))
+            avatar.postUpdate() // TODO ADVO on newer API this isnt needed
             world.getService(LoggerService::class.java, searchSubclasses = true)?.logLogin(this)
         }
 
         if (world.rebootTimer != -1) {
             write(UpdateRebootTimer(world.rebootTimer))
         }
-
+        //TODO ADVO extract this and sync appearance if dirty
+        for (slot in 0..6) {
+            avatar.extendedInfo.setIdentKit(slot, appearance.getLook(slot))
+        }
+        for (slot in 0..11) {
+            avatar.extendedInfo.setWornObj(slot, -1, -1, -1)
+        }
+        for (slot in 0..4) {
+            avatar.extendedInfo.setColour(slot, appearance.colors[slot])
+        }
+        avatar.extendedInfo.setBaseAnimationSet(
+            readyAnim = 808,
+            turnAnim =  823,
+            walkAnim = 819,
+            walkAnimBack = 820,
+            walkAnimLeft = 821,
+            walkAnimRight = 822,
+            runAnim = 824,
+        )
+        avatar.extendedInfo.setName(username)
+        avatar.extendedInfo.setCombatLevel(combatLevel)
+        avatar.extendedInfo.setMale(appearance.gender == Gender.MALE)
+        avatar.extendedInfo.setOverheadIcon(prayerIcon)
+        avatar.extendedInfo.setSkullIcon(-1)
         initiated = true
         world.plugins.executeLogin(this)
         social.updateStatus(this)

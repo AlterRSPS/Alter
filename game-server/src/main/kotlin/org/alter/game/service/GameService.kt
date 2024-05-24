@@ -134,7 +134,6 @@ class GameService : Service {
             SequentialSynchronizationTask(),
             SequentialPlayerPostCycleTask()
         ))
-        logger.info("Sequential tasks preference enabled. {} tasks will be handled per cycle.", tasks.size)
     }
 
     override fun bindNet(server: org.alter.game.Server, world: World) {

@@ -13,7 +13,9 @@ class SequentialPlayerCoordCycleTask : GameTask {
     override fun execute(world: World, service: GameService) {
         world.players.forEach { p ->
             val start = System.currentTimeMillis()
-            p.avatar.updateCoord(p.tile.height, p.tile.x, p.tile.z)
+            p.playerInfo.updateCoord(p.tile.height, p.tile.x, p.tile.z)
+            p.npcInfo.updateCoord(p.tile.height, p.tile.x, p.tile.z)
+
             /*
              * Log the time it takes for task to handle the player's cycle
              * logic.

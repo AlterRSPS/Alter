@@ -133,7 +133,6 @@ class Server {
 
         val groupProvider = DispleeJs5GroupProvider()
         groupProvider.load(filestore)
-
         val port = gameProperties.getOrDefault("game-port", 43594)
         val network = NetworkServiceFactory(groupProvider, world, listOf(port), listOf(OldSchoolClientType.DESKTOP))
         world.network = network.build()

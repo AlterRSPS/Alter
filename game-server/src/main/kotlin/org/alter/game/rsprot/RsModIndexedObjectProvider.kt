@@ -7,7 +7,7 @@ import org.alter.game.model.item.Item
 class RsModIndexedObjectProvider(indices: Iterator<Int>, val items: Array<Item?>) : UpdateInvPartial.IndexedObjectProvider(indices) {
 
     override fun provide(slot: Int): InventoryObject {
-        val item = items[slot]?: return InventoryObject.NULL
+        val item = items[slot]?: return InventoryObject(slot, -1, -1)
         return InventoryObject(slot, item.id, item.amount)
     }
 }
