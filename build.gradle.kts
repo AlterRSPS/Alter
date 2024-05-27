@@ -28,7 +28,6 @@ allprojects {
         mavenCentral()
         maven("https://repo.maven.apache.org/maven2")
         maven("https://jitpack.io")
-        maven("https://repo.runelite.net/")
         maven("https://raw.githubusercontent.com/MatthewBishop/hosting/main/")
     }
 
@@ -45,7 +44,6 @@ allprojects {
         implementation(lib.json)
         implementation(lib.jbcrypt)
         implementation(lib.gson)
-        implementation(lib.cache)
         implementation(lib.netty.all)
         implementation(lib.kotlinx.serialization.core)
         testImplementation(lib.junit)
@@ -54,6 +52,9 @@ allprojects {
         implementation("net.rsprot:osrs-221-api:1.0-SNAPSHOT")
         implementation("io.netty:netty-buffer:4.0.34.Final")
         implementation("com.displee:rs-cache-library:7.1.3")
+        // https://mvnrepository.com/artifact/com.google.guava/guava
+        implementation("com.google.guava:guava:23.2-jre")
+
     }
 
     idea {
