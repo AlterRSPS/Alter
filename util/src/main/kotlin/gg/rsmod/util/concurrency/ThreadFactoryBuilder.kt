@@ -35,6 +35,9 @@ import java.util.concurrent.atomic.AtomicLong
  *
  * @author Kurt Alfred Kluever
  * @since 4.0
+ *
+ * Changes: 5/27/2024 converted com.google.common.util.concurrent.ThreadFactoryBuilder to kotlin
+ * Original file from commit c4b883de9679dae7da831e49dd9adaca71cc1991
  */
 class ThreadFactoryBuilder
 /** Creates a new [ThreadFactory] builder.  */

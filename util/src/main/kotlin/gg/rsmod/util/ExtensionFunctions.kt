@@ -14,42 +14,34 @@
 package gg.rsmod.util
 
 /**
- * Creates an instance of [ToStringHelper].
- *
+ * Extension function that creates an instance of [ToStringHelper].
  *
  * This is helpful for implementing [Object.toString]. Specification by example:
  *
- * <pre>`// Returns "ClassName{}"
- * toStringHelper()
- * .toString();
+ * toStringHelper().toString();  // Returns "ClassName{}"
  *
- * // Returns "ClassName{x=1}"
- * toStringHelper()
- * .add("x", 1)
- * .toString();
- *
- * // Returns "ClassName{x=1, y=foo}"
- * toStringHelper()
- * .add("x", 1)
- * .add("y", "foo")
- * .toString();
- *
-`</pre> *
+ * toStringHelper().add("x", 1).toString();  // Returns "ClassName{x=1}"
  *
  *
- * @since 18.0 (since 2.0 as `Objects.toStringHelper()`).
+ * toStringHelper().add("x", 1).add("y", "foo").toString(); // Returns "ClassName{x=1, y=foo}"
+ *
  */
 fun Any.toStringHelper(): ToStringHelper {
     return ToStringHelper(javaClass.simpleName)
 }
 
 /**
- * Support class for [toStringHelper.toStringHelper].
+ * Support class for [toStringHelper].
+ *
+ * Use [toStringHelper()] to create an instance. Do not instantiate this directly.
  *
  * @author Jason Lee
  * @since 18.0 (since 2.0 as `Objects.ToStringHelper`).
+ *
+ * Changes: 5/27/2024 converted com.google.common.base.MoreObjects.ToStringHelper to kotlin
+ * Streamlined functionality and removed excluding nulls.
+ * Original file from commit c4b883de9679dae7da831e49dd9adaca71cc1991
  */
-/** Use [toStringHelper.toStringHelper] to create an instance.  */
 class ToStringHelper constructor(private val className: String) {
     private val holderHead = ValueHolder()
     private var holderTail: ValueHolder? = holderHead

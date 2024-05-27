@@ -65,6 +65,9 @@ import java.util.concurrent.TimeUnit
  *
  * @author Kevin Bourrillion
  * @since 10.0
+ *
+ * Changes: 5/27/2024 converted com.google.common.base.Stopwatch to kotlin
+ * Original file from commit c4b883de9679dae7da831e49dd9adaca71cc1991
  */
 class Stopwatch {
     /**
