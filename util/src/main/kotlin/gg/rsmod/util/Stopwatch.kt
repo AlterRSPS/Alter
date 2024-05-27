@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.google.common.base
+package gg.rsmod.util
 
 import java.time.Duration
 import java.util.*

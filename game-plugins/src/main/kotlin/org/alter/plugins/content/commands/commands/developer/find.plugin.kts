@@ -1,4 +1,4 @@
-import com.google.common.base.Stopwatch
+import gg.rsmod.util.Stopwatch
 import org.alter.game.model.priv.Privilege
 import java.util.concurrent.TimeUnit
 

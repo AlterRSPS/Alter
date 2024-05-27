@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
-import com.google.common.base.Stopwatch
+import gg.rsmod.util.Stopwatch
 import org.alter.game.Server
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.World

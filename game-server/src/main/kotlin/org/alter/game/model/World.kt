@@ -1,7 +1,7 @@
 package org.alter.game.model
 
 import com.displee.cache.CacheLibrary
-import com.google.common.base.Stopwatch
+import gg.rsmod.util.Stopwatch
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.buffer.Unpooled
