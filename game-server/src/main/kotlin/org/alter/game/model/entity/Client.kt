@@ -1,7 +1,6 @@
 package org.alter.game.model.entity
 
 import gg.rsmod.util.toStringHelper
-import io.netty.channel.Channel
 import net.rsprot.protocol.api.login.GameLoginResponseHandler
 import net.rsprot.protocol.game.outgoing.map.RebuildLogin
 import net.rsprot.protocol.game.outgoing.map.RebuildNormal
@@ -18,15 +17,12 @@ import org.alter.game.service.serializer.PlayerSerializerService
  *
  * Anything other than network logic should be added to [Player] instead.
  *
- * @param channel
- * The [Channel] used to write and read [Message]s to and from the client.
- *
  * @param world
  * The [World] that this client is registered to.
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class Client(val channel: Channel, world: World) : Player(world) {
+class Client(world: World) : Player(world) {
 
     /**
      * The username that was used to register the [Player]. This username should
@@ -127,7 +123,6 @@ class Client(val channel: Channel, world: World) : Player(world) {
     override fun toString(): String = toStringHelper()
             .add("login_username", loginUsername)
             .add("username", username)
-            .add("channel", channel)
             .toString()
 
     companion object {
@@ -140,7 +135,7 @@ class Client(val channel: Channel, world: World) : Player(world) {
             request: GameLoginResponseHandler<Client>,
             block: LoginBlock<AuthenticationType<*>>
         ): Client {
-            val client = Client(request.ctx.channel(), world)
+            val client = Client(world)
             client.clientWidth = block.width
             client.clientHeight = block.height
             client.loginUsername = block.username
