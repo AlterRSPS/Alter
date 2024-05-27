@@ -1,7 +1,5 @@
 package org.alter.game.plugin
 
-import com.google.common.collect.HashMultimap
-import com.google.common.collect.Multimap
 import org.alter.game.Server
 import org.alter.game.event.Event
 import org.alter.game.model.World
@@ -165,13 +163,13 @@ class PluginRepository(val world: World) {
      * A map of plugins that contain plugins that should execute when equipping
      * items from a certain equipment slot.
      */
-    private val equipSlotPlugins: Multimap<Int, Plugin.() -> Unit> = HashMultimap.create()
+    private val equipSlotPlugins: MutableMap<Int, MutableList<Plugin.() -> Unit>> = mutableMapOf()
 
     /**
      * A map of plugins that contain plugins that should execute when un-equipping
      * items from a certain equipment slot.
      */
-    private val unequipSlotPlugins: Multimap<Int, Plugin.() -> Unit> = HashMultimap.create()
+    private val unequipSlotPlugins: MutableMap<Int, MutableList<Plugin.() -> Unit>> = mutableMapOf()
 
     /**
      * A map of plugins that can stop an item from being equipped.
@@ -933,7 +931,7 @@ class PluginRepository(val world: World) {
     }
 
     fun bindEquipSlot(equipSlot: Int, plugin: Plugin.() -> Unit) {
-        equipSlotPlugins.put(equipSlot, plugin)
+        equipSlotPlugins.getOrPut(equipSlot) { mutableListOf() }.add(plugin)
     }
 
     fun executeEquipSlot(p: Player, equipSlot: Int): Boolean {
@@ -946,7 +944,7 @@ class PluginRepository(val world: World) {
     }
 
     fun bindUnequipSlot(equipSlot: Int, plugin: Plugin.() -> Unit) {
-        unequipSlotPlugins.put(equipSlot, plugin)
+        unequipSlotPlugins.getOrPut(equipSlot) { mutableListOf() }.add(plugin)
     }
 
     fun executeUnequipSlot(p: Player, equipSlot: Int): Boolean {
