@@ -21,11 +21,13 @@ import java.util.concurrent.atomic.AtomicLong
 /**
  * A ThreadFactory builder, providing any combination of these features:
  *
+ *
  *  * whether threads should be marked as [daemon][Thread.setDaemon] threads
  *  * a [naming format][ThreadFactoryBuilder.setNameFormat]
  *  * a [thread priority][Thread.setPriority]
  *  * an [uncaught exception handler][Thread.setUncaughtExceptionHandler]
  *  * a [backing thread factory][ThreadFactory.newThread]
+ *
  *
  *
  * If no backing thread factory is provided, a default backing thread factory is used as if by
@@ -35,9 +37,7 @@ import java.util.concurrent.atomic.AtomicLong
  * @since 4.0
  */
 class ThreadFactoryBuilder
-/**
- * Creates a new [ThreadFactory] builder.
- */
+/** Creates a new [ThreadFactory] builder.  */
 {
     private var nameFormat: String? = null
     private var daemon: Boolean? = null
@@ -52,8 +52,7 @@ class ThreadFactoryBuilder
      * @param nameFormat a [String.format]-compatible format String, to which
      * a unique integer (0, 1, etc.) will be supplied as the single parameter. This integer will
      * be unique to the built instance of the ThreadFactory and will be assigned sequentially. For
-     * example, `"rpc-pool-%d"` will generate thread names like `"rpc-pool-0"`,
-     * `"rpc-pool-1"`, `"rpc-pool-2"`, etc.
+     * example, `"rpc-pool-%d"` will generate thread names like `"rpc-pool-0"`, `"rpc-pool-1"`, `"rpc-pool-2"`, etc.
      * @return this for the builder pattern
      */
     fun setNameFormat(nameFormat: String): ThreadFactoryBuilder {
@@ -75,6 +74,9 @@ class ThreadFactoryBuilder
 
     /**
      * Sets the priority for new threads created with this ThreadFactory.
+     *
+     *
+     * **Warning:** relying on the thread scheduler is [discouraged](http://errorprone.info/bugpattern/ThreadPriorityCheck).
      *
      * @param priority the priority for new Threads created with this ThreadFactory
      * @return this for the builder pattern
@@ -146,12 +148,14 @@ class ThreadFactoryBuilder
             val daemon = builder.daemon
             val priority = builder.priority
             val uncaughtExceptionHandler = builder.uncaughtExceptionHandler
-            val backingThreadFactory =
-                if (builder.backingThreadFactory != null) builder.backingThreadFactory else Executors.defaultThreadFactory()
-            val count = if (nameFormat != null) AtomicLong(0) else null
+            val backingThreadFactory = builder.backingThreadFactory?: Executors.defaultThreadFactory()
+            val count: AtomicLong? = if (nameFormat != null) AtomicLong(0) else null
             return ThreadFactory { runnable ->
-                val thread = backingThreadFactory!!.newThread(runnable)
+                val thread: Thread = backingThreadFactory.newThread(runnable)
+                // TODO(b/139735208): Figure out what to do when the factory returns null.
+                Objects.requireNonNull(thread)
                 if (nameFormat != null) {
+                    // this is safe because we create `count` if (and only if) we have a nameFormat.
                     thread.name = format(nameFormat, count!!.getAndIncrement())
                 }
                 if (daemon != null) {
