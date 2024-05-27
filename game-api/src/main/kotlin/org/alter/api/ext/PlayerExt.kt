@@ -1,6 +1,6 @@
 package org.alter.api.ext
 
-import com.google.common.primitives.Ints
+import com.google.common.primitives.max
 import gg.rsmod.util.BitManipulation
 import net.rsprot.protocol.game.outgoing.interfaces.*
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
@@ -618,7 +618,7 @@ fun Player.calculateAndSetCombatLevel(): Boolean {
     val ranged = getSkills().getBaseLevel(Skills.RANGED)
     val magic = getSkills().getBaseLevel(Skills.MAGIC)
 
-    val base = Ints.max(strength + attack, magic * 2, ranged * 2)
+    val base = max(strength + attack, magic * 2, ranged * 2)
     combatLevel = ((base * 1.3 + defence + hitpoints + prayer / 2) / 4).toInt()
 
     val changed = combatLevel != old
