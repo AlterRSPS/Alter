@@ -13,19 +13,20 @@
  */
 package com.google.common.base
 
+import java.util.*
+
 /**
- * Helper functions that operate on any `Object`, and are not already provided in
- * [java.util.Objects].
+ * Helper functions that operate on any `Object`, and are not already provided in [ ].
  *
  *
- * See the Guava User Guide on
- * [writing
- * `Object` methods with `MoreObjects`](https://github.com/google/guava/wiki/CommonObjectUtilitiesExplained).
+ * See the Guava User Guide on [writing `Object`
+ * methods with `MoreObjects`](https://github.com/google/guava/wiki/CommonObjectUtilitiesExplained).
  *
  * @author Laurence Gonsalves
  * @since 18.0 (since 2.0 as `Objects`)
  */
 object MoreObjects {
+
     /**
      * Creates an instance of [ToStringHelper].
      *
@@ -71,12 +72,28 @@ object MoreObjects {
         return ToStringHelper(self.javaClass.simpleName)
     }
 
-    //TODO ADDED
-    private fun <T> checkNotNull(reference: T): T {
-        if (reference == null) {
-            throw NullPointerException()
-        }
-        return reference
+    /**
+     * Creates an instance of [ToStringHelper] in the same manner as [ ][.toStringHelper], but using the simple name of `clazz` instead of using an
+     * instance's [Object.getClass].
+     *
+     *
+     * Note that in GWT, class names are often obfuscated.
+     *
+     * @param clazz the [Class] of the instance
+     * @since 18.0 (since 7.0 as `Objects.toStringHelper()`).
+     */
+    fun toStringHelper(clazz: Class<*>): ToStringHelper {
+        return ToStringHelper(clazz.simpleName)
+    }
+
+    /**
+     * Creates an instance of [ToStringHelper] in the same manner as [ ][.toStringHelper], but using `className` instead of using an instance's [ ][Object.getClass].
+     *
+     * @param className the name of the instance type
+     * @since 18.0 (since 7.0 as `Objects.toStringHelper()`).
+     */
+    fun toStringHelper(className: String): ToStringHelper {
+        return ToStringHelper(className)
     }
 
     /**
@@ -85,17 +102,10 @@ object MoreObjects {
      * @author Jason Lee
      * @since 18.0 (since 2.0 as `Objects.ToStringHelper`).
      */
-    class ToStringHelper(className: String) {
-        private val className: String
+    /** Use [MoreObjects.toStringHelper] to create an instance.  */
+    class ToStringHelper constructor(private val className: String) {
         private val holderHead = ValueHolder()
         private var holderTail: ValueHolder? = holderHead
-
-        /**
-         * Use [MoreObjects.toStringHelper] to create an instance.
-         */
-        init {
-            this.className = checkNotNull(className)
-        }
 
         /**
          * Adds a name/value pair to the formatted output in `name=value` format. If `value`
@@ -107,7 +117,7 @@ object MoreObjects {
             holderTail!!.next = valueHolder
             holderTail = holderTail!!.next
             valueHolder.value = value
-            valueHolder.name = checkNotNull(name)
+            valueHolder.name = name
             return this
         }
 
@@ -134,7 +144,7 @@ object MoreObjects {
                 }
                 if (value != null && value.javaClass.isArray) {
                     val objectArray = arrayOf(value)
-                    val arrayString = objectArray.contentDeepToString()
+                    val arrayString = Arrays.deepToString(objectArray)
                     builder.append(arrayString, 1, arrayString.length - 1)
                 } else {
                     builder.append(value)
@@ -144,6 +154,7 @@ object MoreObjects {
             return builder.append('}').toString()
         }
 
+        // Holder object for values that might be null and/or empty.
         private class ValueHolder {
             var name: String? = null
             var value: Any? = null
