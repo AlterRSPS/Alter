@@ -18,15 +18,30 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
- * An object that measures elapsed time in nanoseconds. It is useful to measure elapsed time using
- * this class instead of direct calls to [System.nanoTime] for a few reasons:
+ * An object that accurately measures *elapsed time*: the measured duration between two
+ * successive readings of "now" in the same process.
  *
  *
- *  * As documented by `nanoTime`, the value returned has no absolute meaning, and can only
- * be interpreted as relative to another timestamp returned by `nanoTime` at a different
- * time. `Stopwatch` is a more effective abstraction because it exposes only these
- * relative values, not the absolute ones.
+ * In contrast, *wall time* is a reading of "now" as given by a method like
+ * [System.currentTimeMillis], best represented as an [java.time.Instant]. Such values
+ * *can* be subtracted to obtain a `Duration` (such as by `Duration.between`), but
+ * doing so does *not* give a reliable measurement of elapsed time, because wall time readings
+ * are inherently approximate, routinely affected by periodic clock corrections. Because this class
+ * uses [System.nanoTime], it is unaffected by these changes.
  *
+ *
+ * Use this class instead of direct calls to [System.nanoTime] for the following reason:
+ *
+ *
+ *  * The raw `long` values returned by `nanoTime` are meaningless and unsafe to use
+ * in any other way than how `Stopwatch` uses them.
+ *
+ *
+ *
+ * The one downside of `Stopwatch` relative to [System.nanoTime] is that `Stopwatch` requires object allocation and additional method calls, which can reduce the accuracy
+ * of the elapsed times reported. `Stopwatch` is still suitable for logging and metrics where
+ * reasonably accurate values are sufficient. If the uncommon case that you need to maximize
+ * accuracy, use `System.nanoTime()` directly instead.
  *
  *
  * Basic usage:
@@ -41,11 +56,12 @@ import java.util.concurrent.TimeUnit
 `</pre> *
  *
  *
- * Stopwatch methods are not idempotent; it is an error to start or stop a stopwatch that is
- * already in the desired state.
+ * The state-changing methods are not idempotent; it is an error to start or stop a stopwatch
+ * that is already in the desired state.
  *
  *
  * **Note:** This class is not thread-safe.
+ *
  *
  * @author Kevin Bourrillion
  * @since 10.0
@@ -55,8 +71,7 @@ class Stopwatch {
      * Returns `true` if [.start] has been called on this stopwatch, and [.stop]
      * has not been called since the last call to `start()`.
      */
-    var isRunning = false
-        private set
+    private var isRunning = false
     private var elapsedNanos: Long = 0
     private var startTick: Long = 0
 
@@ -67,7 +82,7 @@ class Stopwatch {
      * @throws IllegalStateException if the stopwatch is already running.
      */
     fun start(): Stopwatch {
-        checkState(!isRunning, "This stopwatch is already running.")
+        check(!isRunning) { "This stopwatch is already running." }
         isRunning = true
         startTick = System.nanoTime()
         return this
@@ -82,7 +97,7 @@ class Stopwatch {
      */
     fun stop(): Stopwatch {
         val tick = System.nanoTime()
-        checkState(isRunning, "This stopwatch is already stopped.")
+        check(isRunning) { "This stopwatch is already stopped." }
         isRunning = false
         elapsedNanos += tick - startTick
         return this
@@ -114,7 +129,7 @@ class Stopwatch {
      *
      * It is generally not a good idea to use an ambiguous, unitless `long` to represent
      * elapsed time. Therefore, we recommend using [.elapsed] instead, which returns a
-     * strongly-typed [Duration] instance.
+     * strongly-typed `Duration` instance.
      *
      * @since 14.0 (since 10.0 as `elapsedTime()`)
      */
@@ -184,7 +199,7 @@ class Stopwatch {
         private fun abbreviate(unit: TimeUnit): String {
             return when (unit) {
                 TimeUnit.NANOSECONDS -> "ns"
-                TimeUnit.MICROSECONDS -> "\u03bcs" // ?s
+                TimeUnit.MICROSECONDS -> "\u03bcs" // μs
                 TimeUnit.MILLISECONDS -> "ms"
                 TimeUnit.SECONDS -> "s"
                 TimeUnit.MINUTES -> "min"
@@ -194,12 +209,6 @@ class Stopwatch {
             }
         }
 
-        //ADDED
-        fun checkState(expression: Boolean, errorMessage: Any?) {
-            check(expression) { errorMessage.toString() }
-        }
-
-        //ADDED
         fun formatCompact4Digits(value: Double): String {
             return String.format(Locale.ROOT, "%.4g", value)
         }
