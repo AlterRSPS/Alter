@@ -162,24 +162,26 @@ class DefinitionSet {
 
         val mapDefinition = MapLoader().load(x, z, mapData)
 
-        val cacheRegion = net.runelite.cache.region.Region(id)
-        cacheRegion.loadTerrain(mapDefinition)
+        val baseX: Int = id shr 8 and 255 shl 6
+        val baseY: Int = id and 255 shl 6
 
         val blocked = hashSetOf<Tile>()
         val bridges = hashSetOf<Tile>()
 
-        for (height in 0 until 3) {
-            for (lx in 0 until 63) {
-                for (lz in 0 until 63) {
-                    val bridge = cacheRegion.getTileSetting(1, lx, lz).toInt() and 0x2 != 0
+        val tiles = mapDefinition.tiles
+
+        for (height in 0 until 4) {
+            for (lx in 0 until 64) {
+                for (lz in 0 until 64) {
+                    val bridge = tiles[1][lx][lz].getSettings().toInt() and 0x2 != 0
                     if (bridge) {
-                        bridges.add(Tile(cacheRegion.baseX + lx, cacheRegion.baseY + lz, height))
+                        bridges.add(Tile(baseX + lx, baseY + lz, height))
                     }
-                    val blockedTile = cacheRegion.getTileSetting(height, lx, lz).toInt() and 0x1 != 0
+                    val blockedTile = tiles[height][lx][lz].getSettings().toInt() and 0x1 != 0
                     if (blockedTile) {
                         val level = if (bridge) (height - 1) else height
                         if (level < 0) continue
-                        blocked.add(Tile(cacheRegion.baseX + lx, cacheRegion.baseY + lz, level))
+                        blocked.add(Tile(baseX + lx, baseY + lz, level))
                     }
                 }
             }
@@ -212,9 +214,13 @@ class DefinitionSet {
         try {
             val landData = world.filestore.data(IndexType.MAPS.number, "l${x}_$z", keys) ?: return false
             val locDef = LocationsLoader().load(x, z, landData)
-            cacheRegion.loadLocations(locDef)
-            cacheRegion.locations.forEach { loc ->
-                val tile = Tile(loc.position.x, loc.position.y, loc.position.z)
+
+            locDef.locations.forEach { loc ->
+                val tile = Tile(
+                    baseX + loc.position.x,
+                    baseY + loc.position.y,
+                    loc.position.z
+                )
                 val hasBridge = bridges.contains(tile)
                 if (hasBridge && loc.position.z == 0) return@forEach
                 val adjustedTile = if (bridges.contains(tile)) tile.transform(-1) else tile
