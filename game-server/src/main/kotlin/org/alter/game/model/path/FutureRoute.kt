@@ -1,6 +1,6 @@
 package org.alter.game.model.path
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder
+import gg.rsmod.util.concurrency.ThreadFactoryBuilder
 import org.alter.game.model.MovementQueue
 
 import io.github.oshai.kotlinlogging.KotlinLogging

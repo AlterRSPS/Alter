@@ -1,6 +1,6 @@
 package org.alter.game.service.login
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder
+import gg.rsmod.util.concurrency.ThreadFactoryBuilder
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.protocol.api.login.GameLoginResponseHandler

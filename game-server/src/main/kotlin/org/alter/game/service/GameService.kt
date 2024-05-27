@@ -1,6 +1,6 @@
 package org.alter.game.service
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder
+import gg.rsmod.util.concurrency.ThreadFactoryBuilder
 import gg.rsmod.net.codec.login.org.alter.game.task.sequential.SequentialPlayerCoordCycleTask
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging

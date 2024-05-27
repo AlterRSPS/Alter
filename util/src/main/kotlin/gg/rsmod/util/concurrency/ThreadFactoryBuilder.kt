@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.google.common.util.concurrent
+package gg.rsmod.util.concurrency
 
 import java.util.*
 import java.util.concurrent.Executors
