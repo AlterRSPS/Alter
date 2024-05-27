@@ -1,6 +1,6 @@
 package org.alter.game.model.collision
 
-import com.google.common.base.MoreObjects
+import gg.rsmod.util.toStringHelper
 import org.alter.game.model.Direction
 import java.util.*
 import kotlin.experimental.inv
@@ -82,7 +82,7 @@ class CollisionMatrix private constructor(val length: Int, val width: Int, priva
 
     private fun indexOf(x: Int, y: Int) = y * width + x
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("matrices", Arrays.toString(matrix)).toString()
+    override fun toString(): String = toStringHelper().add("matrices", Arrays.toString(matrix)).toString()
 
     companion object {
 

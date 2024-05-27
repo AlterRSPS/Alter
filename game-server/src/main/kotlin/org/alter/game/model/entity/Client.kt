@@ -1,6 +1,6 @@
 package org.alter.game.model.entity
 
-import com.google.common.base.MoreObjects
+import gg.rsmod.util.toStringHelper
 import io.netty.channel.Channel
 import net.rsprot.protocol.api.login.GameLoginResponseHandler
 import net.rsprot.protocol.game.outgoing.map.RebuildLogin
@@ -124,7 +124,7 @@ class Client(val channel: Channel, world: World) : Player(world) {
         world.network.playerInfoProtocol.dealloc(info = playerInfo)
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this)
+    override fun toString(): String = toStringHelper()
             .add("login_username", loginUsername)
             .add("username", username)
             .add("channel", channel)

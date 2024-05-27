@@ -1,6 +1,6 @@
 package org.alter.game.model.entity
 
-import com.google.common.base.MoreObjects
+import gg.rsmod.util.toStringHelper
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 
@@ -44,7 +44,7 @@ class Projectile private constructor(val targetPawn: Pawn?, val targetTile: Tile
 
     override val entityType: EntityType = EntityType.PROJECTILE
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("start", tile).add("targetPawn", targetPawn)
+    override fun toString(): String = toStringHelper().add("start", tile).add("targetPawn", targetPawn)
             .add("targetTile", targetTile).add("gfx", gfx).add("startHeight", startHeight)
             .add("endHeight", endHeight).add("angle", angle).add("steepness", steepness)
             .add("delay", delay).add("lifespan", lifespan).toString()

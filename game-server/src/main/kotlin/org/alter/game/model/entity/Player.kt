@@ -1,6 +1,6 @@
 package org.alter.game.model.entity
 
-import com.google.common.base.MoreObjects
+import gg.rsmod.util.toStringHelper
 import net.rsprot.protocol.api.Session
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcInfo
 import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerAvatar
@@ -562,7 +562,7 @@ open class Player(world: World) : Pawn(world) {
         write(SynthSound(id = id, loops = volume, delay = delay))
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this)
+    override fun toString(): String = toStringHelper()
             .add("name", username)
             .add("pid", index)
             .toString()

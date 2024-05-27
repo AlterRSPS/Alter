@@ -1,8 +1,8 @@
 package org.alter.game.model.region
 
-import com.google.common.base.MoreObjects
-import org.alter.game.model.Tile
+import gg.rsmod.util.toStringHelper
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import org.alter.game.model.Tile
 
 /**
  * Represents coordinates that can be occupied by a [Chunk].
@@ -24,7 +24,7 @@ class ChunkCoords(val x: Int, val z: Int) {
         return surrounding
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("x", x).add("z", z).toString()
+    override fun toString(): String = toStringHelper().add("x", x).add("z", z).toString()
 
     override fun equals(other: Any?): Boolean {
         if (other is ChunkCoords) {

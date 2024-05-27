@@ -1,6 +1,6 @@
 package org.alter.game.model.entity
 
-import com.google.common.base.MoreObjects
+import gg.rsmod.util.toStringHelper
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcAvatar
 import org.alter.game.fs.def.NpcDef
 import org.alter.game.fs.def.VarbitDef
@@ -180,7 +180,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      */
     fun isSpawned(): Boolean = index > 0
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("id", id).add("name", name).add("index", index).add("active", active).toString()
+    override fun toString(): String = toStringHelper().add("id", id).add("name", name).add("index", index).add("active", active).toString()
 
     companion object {
         internal const val RESET_PAWN_FACE_DELAY = 25

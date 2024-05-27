@@ -1,8 +1,6 @@
 package org.alter.game.model
 
-import com.google.common.base.MoreObjects
-import org.alter.game.model.collision.CollisionFlag
-import org.alter.game.model.entity.GroundItem
+import gg.rsmod.util.toStringHelper
 import org.alter.game.model.region.Chunk
 import org.alter.game.model.region.ChunkCoords
 
@@ -133,7 +131,7 @@ class Tile {
 
     fun sameAs(x: Int, z: Int): Boolean = x == this.x && z == this.z
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("x", x).add("z", z).add("height", height).toString()
+    override fun toString(): String = toStringHelper().add("x", x).add("z", z).add("height", height).toString()
 
     override fun hashCode(): Int = coordinate
 

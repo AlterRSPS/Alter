@@ -1,6 +1,6 @@
 package org.alter.game.model.item
 
-import com.google.common.base.MoreObjects
+import gg.rsmod.util.toStringHelper
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.ItemDef
 
@@ -69,5 +69,5 @@ class Item(val id: Int, var amount: Int = 1) {
         return this
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("id", id).add("amount", amount).toString()
+    override fun toString(): String = toStringHelper().add("id", id).add("amount", amount).toString()
 }

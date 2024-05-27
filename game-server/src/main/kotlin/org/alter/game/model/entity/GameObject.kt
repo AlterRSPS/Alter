@@ -1,6 +1,6 @@
 package org.alter.game.model.entity
 
-import com.google.common.base.MoreObjects
+import gg.rsmod.util.toStringHelper
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.ObjectDef
 import org.alter.game.fs.def.VarbitDef
@@ -105,5 +105,5 @@ abstract class GameObject : Entity {
         return id
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("id", id).add("type", type).add("rot", rot).add("tile", tile.toString()).toString()
+    override fun toString(): String = toStringHelper().add("id", id).add("type", type).add("rot", rot).add("tile", tile.toString()).toString()
 }

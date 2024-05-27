@@ -1,6 +1,6 @@
 package org.alter.game.model.attr
 
-import com.google.common.base.MoreObjects
+import gg.rsmod.util.toStringHelper
 
 /**
  * An [AttributeKey] is a flexible key that can be used to represent any type of
@@ -26,7 +26,7 @@ import com.google.common.base.MoreObjects
  */
 class AttributeKey<T>(val persistenceKey: String? = null, val resetOnDeath: Boolean = false, val temp : Boolean = false) {
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("persistenceKey", persistenceKey).add("resetOnDeath", resetOnDeath).toString()
+    override fun toString(): String = toStringHelper().add("persistenceKey", persistenceKey).add("resetOnDeath", resetOnDeath).toString()
 
     override fun equals(other: Any?): Boolean {
         if (other !is AttributeKey<*>) {
