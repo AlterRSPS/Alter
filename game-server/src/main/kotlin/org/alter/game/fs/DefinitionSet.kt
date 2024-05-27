@@ -1,5 +1,6 @@
 package org.alter.game.fs
 
+import com.displee.cache.CacheLibrary
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.fs.def.*
 import org.alter.game.model.Direction
@@ -12,12 +13,8 @@ import org.alter.game.service.xtea.XteaKeyService
 import io.netty.buffer.Unpooled
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import net.runelite.cache.ConfigType
-import net.runelite.cache.IndexType
 import net.runelite.cache.definitions.loaders.LocationsLoader
 import net.runelite.cache.definitions.loaders.MapLoader
-import net.runelite.cache.fs.Store
-import java.io.FileNotFoundException
 import java.io.IOException
 
 /**
@@ -35,47 +32,47 @@ class DefinitionSet {
 
     private var xteaService: XteaKeyService? = null
 
-    fun loadAll(store: Store) {
+    fun loadAll(library: CacheLibrary) {
         /*
          * Load [AnimDef]s.
          */
-        load(store, AnimDef::class.java)
+        load(library, AnimDef::class.java)
         logger.info("Loaded ${getCount(AnimDef::class.java)} animation definitions.")
 
         /*
          * Load [VarpDef]s.
          */
-        load(store, VarpDef::class.java)
+        load(library, VarpDef::class.java)
         logger.info("Loaded ${getCount(VarpDef::class.java)} varp definitions.")
 
         /*
          * Load [VarbitDef]s.
          */
-        load(store, VarbitDef::class.java)
+        load(library, VarbitDef::class.java)
         logger.info("Loaded ${getCount(VarbitDef::class.java)} varbit definitions.")
 
         /*
          * Load [EnumDef]s.
          */
-        load(store, EnumDef::class.java)
+        load(library, EnumDef::class.java)
         logger.info("Loaded ${getCount(EnumDef::class.java)} enum definitions.")
 
         /*
          * Load [NpcDef]s.
          */
-        load(store, NpcDef::class.java)
+        load(library, NpcDef::class.java)
         logger.info("Loaded ${getCount(NpcDef::class.java)} npc definitions.")
 
         /*
          * Load [ItemDef]s.
          */
-        load(store, ItemDef::class.java)
+        load(library, ItemDef::class.java)
         logger.info("Loaded ${getCount(ItemDef::class.java)} item definitions.")
 
         /*
          * Load [ObjectDef]s.
          */
-        load(store, ObjectDef::class.java)
+        load(library, ObjectDef::class.java)
         logger.info("Loaded ${getCount(ObjectDef::class.java)} object definitions.")
     }
 
@@ -93,7 +90,7 @@ class DefinitionSet {
         logger.info { "Loaded $loaded regions in ${System.currentTimeMillis() - start}ms" }
     }
 
-    fun <T : Definition> load(store: Store, type: Class<out T>) {
+    fun <T : Definition> load(library: CacheLibrary, type: Class<out T>) {
         val configType: ConfigType = when (type) {
             VarpDef::class.java -> ConfigType.VARPLAYER
             VarbitDef::class.java -> ConfigType.VARBIT
@@ -104,14 +101,17 @@ class DefinitionSet {
             AnimDef::class.java -> ConfigType.SEQUENCE
             else -> throw IllegalArgumentException("Unhandled class type ${type::class.java}.")
         }
-        val configs = store.getIndex(IndexType.CONFIGS) ?: throw FileNotFoundException("Cache was not found.")
-        val archive = configs.getArchive(configType.id)!!
-        val files = archive.getFiles(store.storage.loadArchive(archive)!!).files
+        val configs = library.index(IndexType.CONFIGS.number)
+        val archive = configs.archive(configType.id)
+        val files = archive!!.files
 
         val definitions = Int2ObjectOpenHashMap<T?>(files.size + 1)
+
         for (i in 0 until files.size) {
-            val def = createDefinition(type, files[i].fileId, files[i].contents)
-            definitions[files[i].fileId] = def
+            val file = files[i] ?: continue
+            val data = file.data ?: continue
+            val def = createDefinition(type, file.id, data)
+            definitions[file.id] = def
         }
         defs[type] = definitions
     }
@@ -155,19 +155,11 @@ class DefinitionSet {
             xteaService = world.getService(XteaKeyService::class.java)
         }
 
-        val regionIndex = world.filestore.getIndex(IndexType.MAPS)
-
         val x = id shr 8
         val z = id and 0xFF
 
-        val mapArchive = regionIndex.findArchiveByName("m${x}_$z") ?: return false
-        val landArchive = regionIndex.findArchiveByName("l${x}_$z") ?: return false
+        val mapData = world.filestore.data(IndexType.MAPS.number, "m${x}_$z") ?: return false
 
-        val mapData = mapArchive.decompress(world.filestore.storage.loadArchive(mapArchive))
-        if (mapData == null) {
-            logger.error { "Map data null for region $id ($x, $z)" }
-            return false
-        }
         val mapDefinition = MapLoader().load(x, z, mapData)
 
         val cacheRegion = net.runelite.cache.region.Region(id)
@@ -218,7 +210,7 @@ class DefinitionSet {
 
         val keys = xteaService?.get(id) ?: XteaKeyService.EMPTY_KEYS
         try {
-            val landData = landArchive.decompress(world.filestore.storage.loadArchive(landArchive), keys)
+            val landData = world.filestore.data(IndexType.MAPS.number, "l${x}_$z", keys) ?: return false
             val locDef = LocationsLoader().load(x, z, landData)
             cacheRegion.loadLocations(locDef)
             cacheRegion.locations.forEach { loc ->

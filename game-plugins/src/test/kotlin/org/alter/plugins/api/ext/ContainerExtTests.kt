@@ -1,12 +1,12 @@
 package org.alter.plugins.api.ext
 
+import com.displee.cache.CacheLibrary
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.container.ContainerStackType
 import org.alter.game.model.container.ItemContainer
 import org.alter.game.model.item.Item
 import org.alter.game.model.item.ItemAttribute
-import net.runelite.cache.fs.Store
 import org.alter.api.ext.transfer
 import org.junit.BeforeClass
 import java.nio.file.Files
@@ -76,7 +76,7 @@ class ContainerExtTests {
     companion object {
         private val definitions = DefinitionSet()
 
-        private lateinit var store: Store
+        private lateinit var library: CacheLibrary
 
         @BeforeClass
         @JvmStatic
@@ -84,10 +84,9 @@ class ContainerExtTests {
             val path = Paths.get("../data", "cache")
             check(Files.exists(path)) { "Path does not exist: ${path.toAbsolutePath()}" }
 
-            store = Store(path.toFile())
-            store.load()
+            library = CacheLibrary(path.toFile().toString())
 
-            definitions.load(store, ItemDef::class.java)
+            definitions.load(library, ItemDef::class.java)
 
             assertNotEquals(definitions.getCount(ItemDef::class.java), 0)
         }

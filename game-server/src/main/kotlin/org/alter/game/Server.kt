@@ -1,10 +1,10 @@
 package org.alter.game
 
+import com.displee.cache.CacheLibrary
 import com.google.common.base.Stopwatch
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.protocol.common.client.OldSchoolClientType
-import net.runelite.cache.fs.Store
 import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.entity.GroundItem
@@ -117,8 +117,7 @@ class Server {
          * Load the file store.
          */
         individualStopwatch.reset().start()
-        world.filestore = Store(filestore.toFile())
-        world.filestore.load()
+        world.filestore = CacheLibrary(filestore.toFile().toString())
         logger.info("Loaded filestore from path {} in {}ms.", filestore, individualStopwatch.elapsed(TimeUnit.MILLISECONDS))
 
         /*

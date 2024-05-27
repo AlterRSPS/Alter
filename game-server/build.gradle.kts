@@ -26,7 +26,6 @@ dependencies {
         implementation(kotlin.csv)
         testImplementation(junit)
     }
-    implementation("com.displee:rs-cache-library:7.1.3")
 }
 sourceSets {
     named("main") {

@@ -6,8 +6,8 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import net.rsprot.crypto.xtea.XteaKey
 import net.rsprot.protocol.game.outgoing.map.util.XteaProvider
-import net.runelite.cache.IndexType
 import org.alter.game.Server
+import org.alter.game.fs.IndexType
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import org.apache.commons.io.FilenameUtils
@@ -65,7 +65,7 @@ class XteaKeyService : Service, XteaProvider {
         var totalRegions = 0
         val missingKeys = mutableListOf<Int>()
 
-        val regionIndex = world.filestore.getIndex(IndexType.MAPS)
+        val library = world.filestore
         for (regionId in 0 until maxRegions) {
             val x = regionId shr 8
             val z = regionId and 0xFF
@@ -74,8 +74,7 @@ class XteaKeyService : Service, XteaProvider {
              * Check if the region corresponding to the x and z can be
              * found in our cache.
              */
-            regionIndex.findArchiveByName("m${x}_$z") ?: continue
-            regionIndex.findArchiveByName("l${x}_$z") ?: continue
+            library.data(IndexType.MAPS.number, "m${x}_$z") ?: continue
 
             /*
              * The region was found in the regionIndex.

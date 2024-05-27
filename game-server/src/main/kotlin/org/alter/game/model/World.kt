@@ -1,5 +1,6 @@
 package org.alter.game.model
 
+import com.displee.cache.CacheLibrary
 import com.google.common.base.Stopwatch
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -13,8 +14,6 @@ import net.rsprot.protocol.api.NetworkService
 import net.rsprot.protocol.api.js5.Js5GroupProvider
 import net.rsprot.protocol.game.outgoing.logout.Logout
 import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
-import net.runelite.cache.IndexType
-import net.runelite.cache.fs.Store
 import org.alter.game.DevContext
 import org.alter.game.GameContext
 import org.alter.game.Server
@@ -57,9 +56,9 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     lateinit var network: NetworkService<Client, Js5GroupProvider.ByteBufJs5GroupType>
 
     /**
-     * The [Store] is responsible for handling the data in our cache.
+     * The [CacheLibrary] is responsible for handling the data in our cache.
      */
-    lateinit var filestore: Store
+    lateinit var filestore: CacheLibrary
 
     /**
      * The [DefinitionSet] that holds general filestore data.
@@ -72,10 +71,10 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      * The [HuffmanCodec] used to compress and decompress public chat messages.
      */
     val huffman by lazy {
-        val binary = filestore.getIndex(IndexType.BINARY)!!
-        val archive = binary.findArchiveByName("huffman")!!
-        val file = archive.getFiles(filestore.storage.loadArchive(archive)!!).files[0]
-        HuffmanCodec.create(Unpooled.wrappedBuffer(file.contents))
+        val binary = filestore.index(10)!!
+        val archive = binary.archive("huffman")!!
+        val file = archive.files[0]
+        HuffmanCodec.create(Unpooled.wrappedBuffer(file?.data!!))
     }
 
     /**

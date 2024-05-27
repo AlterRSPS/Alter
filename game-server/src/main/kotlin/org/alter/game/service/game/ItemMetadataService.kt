@@ -9,10 +9,10 @@ import org.alter.game.Server
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.World
 import org.alter.game.service.Service
+import gg.rsmod.util.Namer
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
-import net.runelite.cache.util.Namer
 import org.yaml.snakeyaml.LoaderOptions
 import java.io.*
 import java.nio.file.Files
@@ -79,7 +79,7 @@ class ItemMetadataService : Service {
         if (item.id == 35) {
             if (item.equipment != null) {
                 val namer = Namer()
-                val name = namer.name(item.name, item.id).lowercase()
+                val name = namer.name(item.name, item.id)?.lowercase()
                 //val file: File = File("./data/cfg/newItems/equipable/", "${item.id}_$name.yml")
                 println(item)
             }

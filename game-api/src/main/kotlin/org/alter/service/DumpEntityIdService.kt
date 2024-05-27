@@ -5,10 +5,10 @@ import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.*
 import org.alter.game.model.World
 import org.alter.game.service.Service
+import gg.rsmod.util.Namer
 import gg.rsmod.util.ServerProperties
 
 import io.github.oshai.kotlinlogging.KotlinLogging
-import net.runelite.cache.util.Namer
 import java.io.PrintWriter
 import java.nio.file.Files
 import java.nio.file.Path

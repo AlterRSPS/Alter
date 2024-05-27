@@ -1,8 +1,7 @@
 package org.alter.game.model.container
 
+import com.displee.cache.CacheLibrary
 import java.nio.file.Paths
-
-import net.runelite.cache.fs.Store
 
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.ItemDef
@@ -133,15 +132,14 @@ class ItemContainerTests {
 
         private val definitions = DefinitionSet()
 
-        private lateinit var store: Store
+        private lateinit var library: CacheLibrary
 
         @BeforeClass
         @JvmStatic
         fun loadCache() {
-            store = Store(Paths.get("..", "data", "cache").toFile())
-            store.load()
+            library = CacheLibrary(Paths.get("..", "data", "cache").toFile().toString())
 
-            definitions.loadAll(store)
+            definitions.loadAll(library)
 
             assertNotEquals(definitions.getCount(ItemDef::class.java), 0)
         }

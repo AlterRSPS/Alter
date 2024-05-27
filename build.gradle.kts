@@ -53,6 +53,7 @@ allprojects {
 
         implementation("net.rsprot:osrs-221-api:1.0-SNAPSHOT")
         implementation("io.netty:netty-buffer:4.0.34.Final")
+        implementation("com.displee:rs-cache-library:7.1.3")
     }
 
     idea {
