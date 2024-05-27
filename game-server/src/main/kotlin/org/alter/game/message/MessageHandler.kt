@@ -25,6 +25,7 @@ interface MessageHandler<T>: BiConsumer<Client, T> {
     fun log(client: Client, format: String, vararg args: Any) {
         if (client.logPackets) {
             val message = String.format(format, *args)
+            client.writeMessage(message)
             val logService = client.world.getService(LoggerService::class.java, searchSubclasses = true)
             //println("Logger-message: [$message] , client: [$client]")
             if (logService != null) {
