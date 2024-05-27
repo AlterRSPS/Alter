@@ -1,7 +1,6 @@
 package org.alter.api.ext
 
 import gg.rsmod.util.BitManipulation
-import gg.rsmod.util.Misc
 import net.rsprot.protocol.game.outgoing.interfaces.*
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvPartial
@@ -33,6 +32,7 @@ import org.alter.game.model.item.Item
 import org.alter.game.model.timer.SKULL_ICON_DURATION_TIMER
 import org.alter.game.rsprot.RsModIndexedObjectProvider
 import org.alter.game.rsprot.RsModObjectProvider
+import kotlin.math.floor
 
 /**
  * The id of the script used to initialise the interface overlay options. The 'big' variant of this script
@@ -618,8 +618,17 @@ fun Player.calculateAndSetCombatLevel(): Boolean {
     val ranged = getSkills().getBaseLevel(Skills.RANGED)
     val magic = getSkills().getBaseLevel(Skills.MAGIC)
 
-    val base = Misc.max(strength + attack, magic * 2, ranged * 2)
-    combatLevel = ((base * 1.3 + defence + hitpoints + prayer / 2) / 4).toInt()
+    val melee = (strength + attack).toDouble();
+    val mage = (floor((magic * 0.50)) + magic);
+    val range = (floor((ranged * 0.50)) + ranged);
+
+    val style = when {
+        melee >= range && melee >= mage -> melee
+        range >= melee && range >= mage -> range
+        else -> mage
+    }
+
+    combatLevel = floor(0.25 * (defence + hitpoints + floor((prayer * 0.50))) + 0.325 * style).toInt()
 
     val changed = combatLevel != old
 
