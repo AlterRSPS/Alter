@@ -13,8 +13,6 @@ import org.alter.game.service.xtea.XteaKeyService
 import io.netty.buffer.Unpooled
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import net.runelite.cache.definitions.loaders.LocationsLoader
-import net.runelite.cache.definitions.loaders.MapLoader
 import java.io.IOException
 
 /**
@@ -160,24 +158,22 @@ class DefinitionSet {
 
         val mapData = world.filestore.data(IndexType.MAPS.number, "m${x}_$z") ?: return false
 
-        val mapDefinition = MapLoader().load(x, z, mapData)
-
         val baseX: Int = id shr 8 and 255 shl 6
         val baseY: Int = id and 255 shl 6
 
         val blocked = hashSetOf<Tile>()
         val bridges = hashSetOf<Tile>()
 
-        val tiles = mapDefinition.tiles
+        val tiles = loadTerrain(mapData)
 
         for (height in 0 until 4) {
             for (lx in 0 until 64) {
                 for (lz in 0 until 64) {
-                    val bridge = tiles[1][lx][lz].getSettings().toInt() and 0x2 != 0
+                    val bridge = tiles[1][lx][lz]!!.settings.toInt() and 0x2 != 0
                     if (bridge) {
                         bridges.add(Tile(baseX + lx, baseY + lz, height))
                     }
-                    val blockedTile = tiles[height][lx][lz].getSettings().toInt() and 0x1 != 0
+                    val blockedTile = tiles[height][lx][lz]!!.settings.toInt() and 0x1 != 0
                     if (blockedTile) {
                         val level = if (bridge) (height - 1) else height
                         if (level < 0) continue
@@ -213,9 +209,8 @@ class DefinitionSet {
         val keys = xteaService?.get(id) ?: XteaKeyService.EMPTY_KEYS
         try {
             val landData = world.filestore.data(IndexType.MAPS.number, "l${x}_$z", keys) ?: return false
-            val locDef = LocationsLoader().load(x, z, landData)
 
-            locDef.locations.forEach { loc ->
+            loadLocations(landData).forEach { loc ->
                 val tile = Tile(
                     baseX + loc.position.x,
                     baseY + loc.position.y,
