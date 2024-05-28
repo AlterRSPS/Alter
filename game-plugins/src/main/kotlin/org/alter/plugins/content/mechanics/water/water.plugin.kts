@@ -7,7 +7,7 @@ WaterSources.values().forEach { source ->
     source.waterObjIds.forEach { obj ->
         WaterContainers.values().forEach {
             on_item_on_obj(obj = obj, item = it.container.unfilled) {
-                val message = if(it.container.unfilled.getItemName(world.definitions).contains("Cup"))
+                val message = if(it.container.unfilled.getItemName().contains("Cup"))
                     "You fill the cup."
                 else
                     source.message.replaceItemName(it.container.unfilled, world.definitions)
@@ -43,10 +43,10 @@ WaterContainers.values().forEach {
      * Toy sink item!
      */
     on_item_on_item(Items.SINK, it.container.unfilled){
-        it.container.fill(player, "The cute sink fills the ${it.container.unfilled.getItemName(world.definitions, lowercase = true)} to the brim.")
+        it.container.fill(player, "The cute sink fills the ${it.container.unfilled.getItemName(lowercase = true)} to the brim.")
     }
     on_item_on_item(Items.SINK, it.container.filled){
-        player.message("The ${it.container.unfilled.getItemName(world.definitions, lowercase = true)} cannot hold any more water.")
+        player.message("The ${it.container.unfilled.getItemName(lowercase = true)} cannot hold any more water.")
     }
 }
 

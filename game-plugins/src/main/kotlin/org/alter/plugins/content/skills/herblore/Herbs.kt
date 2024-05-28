@@ -10,7 +10,7 @@ import kotlin.random.Random
 
 class Herb(val dirty: Int, val clean: Int, val unfinished: Int, val minCleanLevel: Int, val xpOnClean: Double, val minApothLevel: Int) {
     fun clean(player: Player) {
-        val lvlMessage = "You need level $minCleanLevel Herblore to clean the ${dirty.getItemName(player.world.definitions)}."
+        val lvlMessage = "You need level $minCleanLevel Herblore to clean the ${dirty.getItemName()}."
         when(AUTO_CLEAN){
             true -> {
                 if(player.getSkills().getCurrentLevel(Skills.HERBLORE) < minCleanLevel)

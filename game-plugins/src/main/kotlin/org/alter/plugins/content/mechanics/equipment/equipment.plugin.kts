@@ -2,6 +2,7 @@ package org.alter.plugins.content.mechanics.equipment
 
 import org.alter.api.EquipmentType.Companion.EQUIPMENT_INTERFACE_ID
 import org.alter.game.action.EquipAction
+import org.alter.game.fs.ObjectExamineHolder
 
 fun bind_unequip(equipment: EquipmentType, child: Int) {
     on_button(interfaceId = EQUIPMENT_INTERFACE_ID, component = child) {
@@ -21,7 +22,7 @@ fun bind_unequip(equipment: EquipmentType, child: Int) {
                 val item = player.equipment[equipment.id] ?: return@on_button
                 val menuOpt = opt
                 if (!world.plugins.executeEquipmentOption(player, item.id, menuOpt) && world.devContext.debugItemActions) {
-                    val action = world.definitions.get(ItemDef::class.java, item.id).equipmentMenu[menuOpt]
+                    val action = ObjectExamineHolder.EQUIPMENT_MENU.get(item.id).equipmentMenu[menuOpt]
                     //TODO ADVO was val action = item.getDef(world.definitions).equipmentMenu[menuOpt]
                     player.message("Unhandled equipment action: [item=${item.id}, option=$menuOpt, action=$action]")
                 }

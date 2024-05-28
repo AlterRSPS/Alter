@@ -20,7 +20,7 @@ import org.alter.game.DevContext
 import org.alter.game.GameContext
 import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ObjectDef
+import org.alter.game.fs.ObjectExamineHolder
 import org.alter.game.model.attr.AttributeMap
 import org.alter.game.model.attr.TERMINAL_ARGS
 import org.alter.game.model.collision.CollisionManager
@@ -547,7 +547,9 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         val examine = when (type) {
             ExamineEntityType.ITEM -> getItem(id).examine
             ExamineEntityType.NPC -> getNpc(id).examine
-            ExamineEntityType.OBJECT -> definitions.get(ObjectDef::class.java, id).examine
+// TODO ADVO fix examines
+//            ExamineEntityType.OBJECT -> definitions.get(ObjectDef::class.java, id).examine
+            ExamineEntityType.OBJECT -> ObjectExamineHolder.EXAMINES.get(id)
         }
 
         if (examine != null) {

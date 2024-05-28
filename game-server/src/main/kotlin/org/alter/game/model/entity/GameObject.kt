@@ -4,7 +4,6 @@ import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.getObject
 import dev.openrune.cache.filestore.definition.data.ObjectType
 import gg.rsmod.util.toStringHelper
-import org.alter.game.fs.def.ObjectDef
 import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.attr.AttributeMap
@@ -86,7 +85,7 @@ abstract class GameObject : Entity {
      * [player]'s view point.
      *
      * Objects can change their appearance for each player depending on their
-     * [ObjectDef.transforms] and [ObjectDef.varp]/[ObjectDef.varbit].
+     * [ObjectType.transforms] and [ObjectType.varp]/[ObjectType.varbit].
      */
     fun getTransform(player: Player): Int {
         val world = player.world

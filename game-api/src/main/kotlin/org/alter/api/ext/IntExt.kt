@@ -60,7 +60,7 @@ fun Int.formatRS2() : String {
 
 fun Int.toItem(): Item = Item(this)
 
-fun Int.getItemName(definitions: DefinitionSet, lowercase: Boolean = false): String {
+fun Int.getItemName(lowercase: Boolean = false): String {
     return if(lowercase)
         getItem(this).name.lowercase()
     else

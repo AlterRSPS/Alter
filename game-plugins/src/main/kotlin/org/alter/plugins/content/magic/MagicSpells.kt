@@ -1,13 +1,13 @@
 package org.alter.plugins.content.magic
 
 import dev.openrune.cache.CacheManager.getEnum
+import dev.openrune.cache.CacheManager.getItem
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
 import org.alter.api.ext.getSpellbook
 import org.alter.api.ext.getVarbit
 import org.alter.api.ext.message
-import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.World
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
@@ -95,8 +95,8 @@ object MagicSpells {
             val spellItems = spellBookEnum.values.values.map { it as Int }
 
             for (item in spellItems) {
-                val itemDef = world.definitions.get(ItemDef::class.java, item)
-                val params = itemDef.params
+                val itemDef = getItem(item)
+                val params = itemDef.params?:continue
 
                 val spellbook = params[SPELL_SPELLBOOK_KEY] as Int
                 val name = params[SPELL_NAME_KEY] as String

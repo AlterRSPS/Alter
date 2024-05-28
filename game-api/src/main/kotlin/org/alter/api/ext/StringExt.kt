@@ -1,7 +1,6 @@
 package org.alter.api.ext
 
 import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
 
 private const val vowels = "aeiou"
 
@@ -25,14 +24,14 @@ fun String.prefixAn() : String {
 }
 
 /**
- * very specific string operation to replace "#ITEM" in a string with the [ItemDef.name]
+ * very specific string operation to replace "#ITEM" in a string with the [ItemType.name]
  * of the supplied [Item.id] as found in the supplied [DefinitionSet]
  *
  * @param item - [Item.id] of the [Item] to lookup
- * @param definitions - [DefinitionSet] to search for [ItemDef.name] against
+ * @param definitions - [DefinitionSet] to search for [ItemType.name] against
  */
 fun String.replaceItemName(item: Int, definitions: DefinitionSet, lowercase: Boolean = true): String {
-    return this.replace("#ITEM", item.getItemName(definitions, lowercase))
+    return this.replace("#ITEM", item.getItemName(lowercase))
 }
 
 /**

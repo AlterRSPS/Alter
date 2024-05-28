@@ -19,10 +19,10 @@ class WaterContainer(val unfilled: Int, val filled: Int) {
         if(player.replaceItemInSlot(filled, unfilled, player.getInteractingItemSlot())){
             player.queue {
                 // only some make sounds when emptying
-                if(unfilled.getItemName(player.world.definitions).contains(Regex("Bowl|Bucket|Jug"))){
+                if(unfilled.getItemName().contains(Regex("Bowl|Bucket|Jug"))){
                     player.playSound(2401, 1, 0)
                 }
-                player.message("You empty the contents of the ${unfilled.getItemName(player.world.definitions, lowercase = true)} on the floor.")
+                player.message("You empty the contents of the ${unfilled.getItemName(lowercase = true)} on the floor.")
             }
         }
     }

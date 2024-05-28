@@ -1,11 +1,11 @@
 package org.alter.game.service.game
 
+import gg.rsmod.util.ServerProperties
 import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ObjectDef
+import org.alter.game.fs.ObjectExamineHolder
 import org.alter.game.model.World
 import org.alter.game.service.Service
-import gg.rsmod.util.ServerProperties
 import java.io.FileNotFoundException
 import java.nio.file.Files
 import java.nio.file.Path
@@ -42,8 +42,11 @@ class ObjectMetadataService : Service {
                 val id = parts[0].toIntOrNull()
                 val examine = line.substringAfter(',').trim()
                 if (id != null) {
-                    val def = definitions.getNullable(ObjectDef::class.java, id) ?: return@forEachLine
-                    def.examine = examine.replace("\"", "")
+                    ObjectExamineHolder.EXAMINES.put(id, examine.replace("\"", ""))
+//TODO ADVO
+//                    val def = definitions.getNullable(ObjectDef::class.java, id) ?: return@forEachLine
+//                    def.examine = examine.replace("\"", "")
+
                 }
             }
         }

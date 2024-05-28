@@ -5,7 +5,7 @@ import dev.openrune.cache.CacheManager.getNpc
 import dev.openrune.cache.CacheManager.getObject
 import org.alter.game.Server
 import org.alter.game.event.Event
-import org.alter.game.fs.def.ItemDef
+import org.alter.game.fs.ObjectExamineHolder
 import org.alter.game.model.*
 import org.alter.game.model.combat.NpcCombatDef
 import org.alter.game.model.container.key.ContainerKey
@@ -177,7 +177,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     fun on_equipment_option(item: Int, option: String, logic: (Plugin).() -> Unit) {
         val opt = option.lowercase()
-        val def = world.definitions.get(ItemDef::class.java, item)
+        val def = ObjectExamineHolder.EQUIPMENT_MENU.get(item)
         val slot = def.equipmentMenu.indexOfFirst { it?.lowercase() == opt }
 
         check(slot != -1) { "Option \"$option\" not found for item equipment $item [options=${def.equipmentMenu.filterNotNull().filter { it.isNotBlank() }}]" }
@@ -209,7 +209,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     fun itemHasInventoryOption(item: Int, option: String) : Boolean {
-        val slot =  world.definitions.get(ItemDef::class.java, item).interfaceOptions.indexOfFirst {
+        val slot =  getItem(item).interfaceOptions.indexOfFirst {
             it?.lowercase() == option.lowercase()
         }
         return slot != -1

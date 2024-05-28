@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
-import gg.rsmod.util.Stopwatch
-import org.alter.game.Server
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.World
-import org.alter.game.service.Service
+import dev.openrune.cache.CacheManager.getItem
 import gg.rsmod.util.Namer
 import gg.rsmod.util.ServerProperties
+import gg.rsmod.util.Stopwatch
 import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
+import org.alter.game.Server
+import org.alter.game.model.World
+import org.alter.game.service.Service
 import org.yaml.snakeyaml.LoaderOptions
 import java.io.*
 import java.nio.file.Files
@@ -87,7 +87,7 @@ class ItemMetadataService : Service {
     }
 
     private fun load(item: Metadata, world: World) {
-        val def = world.definitions.get(ItemDef::class.java, item.id)
+        val def = getItem(item.id)
         def.name = item.name
         def.examine = item.examine
         def.isTradeable = item.tradeable
@@ -107,7 +107,8 @@ class ItemMetadataService : Service {
             }
 
             def.renderAnimations = equipment.renderAnimations?.getAsArray()
-            def.attackSounds = equipment.attackSounds
+// TODO ADVO add back attack sounds
+//            def.attackSounds = equipment.attackSounds
             if (slots != null) {
                 def.equipSlot = slots.slot
                 def.equipType = slots.secondary
@@ -119,7 +120,8 @@ class ItemMetadataService : Service {
                 }
                 def.skillReqs = reqs
             }
-            def.equipSound = equipment.equipSound
+// TODO ADVO add back equip sounds
+//            def.equipSound = equipment.equipSound
             def.bonuses = intArrayOf(
                 equipment.attackStab,
                 equipment.attackSlash,

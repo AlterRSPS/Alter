@@ -1,10 +1,9 @@
 package org.alter.game.model.shop
 
-import org.alter.game.fs.def.ItemDef
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import org.alter.game.model.PlayerUID
 import org.alter.game.model.World
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 
 /**
  * Represents an in-game shop where items can exchanged.

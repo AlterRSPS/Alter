@@ -1,7 +1,6 @@
 package org.alter.game.action
 
 import dev.openrune.cache.CacheManager.getItem
-import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
 
@@ -61,7 +60,7 @@ object EquipAction {
     }
 
     fun equip(p: Player, item: Item, inventorySlot: Int = -1): Result {
-        val def = p.world.definitions.get(ItemDef::class.java, item.id)
+        val def = getItem(item.id)
         val plugins = p.world.plugins
 
         // Resets interaction when an item is equipped.
@@ -202,9 +201,10 @@ object EquipAction {
                     onItemUnequip(p, equipmentId, slot)
                 }
 
-                if (def.equipSound != null) {
-                    p.playSound(def.equipSound!!)
-                }
+// TODO ADVO add back equip sounds
+//                if (def.equipSound != null) {
+//                    p.playSound(def.equipSound!!)
+//                }
 
                 p.equipment[equipSlot] = newEquippedItem
                 plugins.executeEquipSlot(p, equipSlot)
