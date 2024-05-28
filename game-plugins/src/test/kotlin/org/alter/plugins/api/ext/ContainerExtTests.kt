@@ -1,13 +1,14 @@
 package org.alter.plugins.api.ext
 
 import com.displee.cache.CacheLibrary
+import dev.openrune.cache.CacheManager.itemSize
+import org.alter.api.ext.transfer
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.container.ContainerStackType
 import org.alter.game.model.container.ItemContainer
 import org.alter.game.model.item.Item
 import org.alter.game.model.item.ItemAttribute
-import org.alter.api.ext.transfer
 import org.junit.BeforeClass
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -88,7 +89,7 @@ class ContainerExtTests {
 
             definitions.load(library, ItemDef::class.java)
 
-            assertNotEquals(definitions.getCount(ItemDef::class.java), 0)
+            assertNotEquals(itemSize(), 0)
         }
     }
 }

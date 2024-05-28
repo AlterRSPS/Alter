@@ -2,6 +2,13 @@ package org.alter.game.fs
 
 import com.displee.cache.CacheLibrary
 import dev.openrune.cache.*
+import dev.openrune.cache.CacheManager.animSize
+import dev.openrune.cache.CacheManager.enumSize
+import dev.openrune.cache.CacheManager.itemSize
+import dev.openrune.cache.CacheManager.npcSize
+import dev.openrune.cache.CacheManager.objectSize
+import dev.openrune.cache.CacheManager.varbitSize
+import dev.openrune.cache.CacheManager.varpSize
 import dev.openrune.cache.filestore.loadLocations
 import dev.openrune.cache.filestore.loadTerrain
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -38,43 +45,43 @@ class DefinitionSet {
          * Load [AnimDef]s.
          */
         load(library, AnimDef::class.java)
-        logger.info("Loaded ${getCount(AnimDef::class.java)} animation definitions.")
+        logger.info("Loaded ${animSize()} animation definitions.")
 
         /*
          * Load [VarpDef]s.
          */
         load(library, VarpDef::class.java)
-        logger.info("Loaded ${getCount(VarpDef::class.java)} varp definitions.")
+        logger.info("Loaded ${varpSize()} varp definitions.")
 
         /*
          * Load [VarbitDef]s.
          */
         load(library, VarbitDef::class.java)
-        logger.info("Loaded ${getCount(VarbitDef::class.java)} varbit definitions.")
+        logger.info("Loaded ${varbitSize()} varbit definitions.")
 
         /*
          * Load [EnumDef]s.
          */
         load(library, EnumDef::class.java)
-        logger.info("Loaded ${getCount(EnumDef::class.java)} enum definitions.")
+        logger.info("Loaded ${enumSize()} enum definitions.")
 
         /*
          * Load [NpcDef]s.
          */
         load(library, NpcDef::class.java)
-        logger.info("Loaded ${getCount(NpcDef::class.java)} npc definitions.")
+        logger.info("Loaded ${npcSize()} npc definitions.")
 
         /*
          * Load [ItemDef]s.
          */
         load(library, ItemDef::class.java)
-        logger.info("Loaded ${getCount(ItemDef::class.java)} item definitions.")
+        logger.info("Loaded ${itemSize()} item definitions.")
 
         /*
          * Load [ObjectDef]s.
          */
         load(library, ObjectDef::class.java)
-        logger.info("Loaded ${getCount(ObjectDef::class.java)} object definitions.")
+        logger.info("Loaded ${objectSize()} object definitions.")
     }
 
     fun loadRegions(world: World, chunks: ChunkSet, regions: IntArray) {
@@ -135,8 +142,6 @@ class DefinitionSet {
         buf.release()
         return def as T
     }
-
-    fun getCount(type: Class<*>) = defs[type]!!.size
 
     @Suppress("UNCHECKED_CAST")
     fun <T : Definition> get(type: Class<out T>, id: Int): T {

@@ -1,12 +1,11 @@
 package org.alter.game.model.container
 
 import com.displee.cache.CacheLibrary
-import java.nio.file.Paths
-
+import dev.openrune.cache.CacheManager.itemSize
 import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
 import org.junit.BeforeClass
 import org.junit.Test
+import java.nio.file.Paths
 import kotlin.test.*
 
 /**
@@ -141,7 +140,7 @@ class ItemContainerTests {
 
             definitions.loadAll(library)
 
-            assertNotEquals(definitions.getCount(ItemDef::class.java), 0)
+            assertNotEquals(itemSize(), 0)
         }
     }
 }

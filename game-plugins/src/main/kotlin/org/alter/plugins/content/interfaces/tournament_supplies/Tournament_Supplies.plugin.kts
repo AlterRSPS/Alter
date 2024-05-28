@@ -1,9 +1,8 @@
 package org.alter.plugins.content.interfaces.tournament_supplies
 
-import org.alter.game.model.attr.INTERACTING_ITEM_ID
+import dev.openrune.cache.CacheManager.itemSize
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.priv.Privilege
-import java.lang.NullPointerException
 
 val itemListBySlot = hashMapOf<Int, Int>()
 
@@ -25,7 +24,7 @@ on_command("tournament", Privilege.ADMIN_POWER) {
 on_button(interfaceId = Tournament_Supplies.TOURNAMENT_SUPPLIES_INTERFACE, component = 4) {
     val itemid = itemListBySlot[player.attr[INTERACTING_SLOT_ATTR]!!]!!
     val option = player.getInteractingOption()
-    if (world.definitions.getCount(ItemDef::class.java) < itemid) {
+    if (itemSize() < itemid) {
         player.message("[Unhandled item] - $itemid")
     } else {
         if (option == 9) {

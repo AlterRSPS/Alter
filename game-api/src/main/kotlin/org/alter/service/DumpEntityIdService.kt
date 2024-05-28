@@ -1,14 +1,18 @@
 package org.alter.service
 
-import org.alter.game.Server
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.*
-import org.alter.game.model.World
-import org.alter.game.service.Service
+import dev.openrune.cache.CacheManager
+import dev.openrune.cache.CacheManager.itemSize
+import dev.openrune.cache.CacheManager.npcSize
 import gg.rsmod.util.Namer
 import gg.rsmod.util.ServerProperties
-
 import io.github.oshai.kotlinlogging.KotlinLogging
+import org.alter.game.Server
+import org.alter.game.fs.DefinitionSet
+import org.alter.game.fs.def.ItemDef
+import org.alter.game.fs.def.NpcDef
+import org.alter.game.fs.def.ObjectDef
+import org.alter.game.model.World
+import org.alter.game.service.Service
 import java.io.PrintWriter
 import java.nio.file.Files
 import java.nio.file.Path
@@ -59,7 +63,7 @@ class DumpEntityIdService : Service {
     }
 
     private fun writeItems(definitions: DefinitionSet, namer: Namer) {
-        val count = definitions.getCount(ItemDef::class.java)
+        val count = itemSize()
         val items = generateWriter("Items.kt")
         for (i in 0 until count) {
             val item = definitions.getNullable(ItemDef::class.java, i) ?: continue
@@ -79,7 +83,7 @@ class DumpEntityIdService : Service {
     }
 
     private fun writeNpcs(definitions: DefinitionSet, namer: Namer) {
-        val count = definitions.getCount(NpcDef::class.java)
+        val count = npcSize()
         val npcs = generateWriter("Npcs.kt")
         for (i in 0 until count) {
             val npc = definitions.getNullable(NpcDef::class.java, i) ?: continue
@@ -93,7 +97,7 @@ class DumpEntityIdService : Service {
     }
 
     private fun writeObjs(definitions: DefinitionSet, namer: Namer) {
-        val count = definitions.getCount(ObjectDef::class.java)
+        val count = CacheManager.objectSize()
         val objs = generateWriter("Objs.kt")
         for (i in 0 until count) {
             val npc = definitions.getNullable(ObjectDef::class.java, i) ?: continue

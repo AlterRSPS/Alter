@@ -1,5 +1,6 @@
 package org.alter.plugins.content.commands.commands.developer
 
+import dev.openrune.cache.CacheManager.itemSize
 import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
@@ -9,7 +10,7 @@ on_command("getitemstype", Privilege.DEV_POWER, description = "Get items type") 
         var items_list = mutableListOf<Int>()
         var item_name = values[0].toInt() // Search trough and if it matches in examine / name add to array and spawn all to bank | $ For spaces
 
-        for (i in 0 until world.definitions.getCount(ItemDef::class.java)) {
+        for (i in 0 until itemSize()) {
             val def = world.definitions.get(ItemDef::class.java, Item(i).toUnnoted(world.definitions).id)
             val items_name = def.name.lowercase()
             //val items_examine = def.examine?.lowercase()

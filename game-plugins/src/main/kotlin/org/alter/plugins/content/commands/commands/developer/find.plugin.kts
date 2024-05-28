@@ -1,3 +1,6 @@
+import dev.openrune.cache.CacheManager.itemSize
+import dev.openrune.cache.CacheManager.npcSize
+import dev.openrune.cache.CacheManager.objectSize
 import gg.rsmod.util.Stopwatch
 import org.alter.game.model.priv.Privilege
 import java.util.concurrent.TimeUnit
@@ -20,7 +23,7 @@ listOf("find", "search").forEach { command ->
             val stopwatch = Stopwatch.createStarted()
             when (entity) {
                 "item", "i" -> {
-                    val itemDefs = (0 until getDefCount(ItemDef::class)).map { world.definitions.getNullable(ItemDef::class.java, it) }.map { it?.id to it?.name }.toTypedArray()
+                    val itemDefs = (0 until itemSize()).map { world.definitions.getNullable(ItemDef::class.java, it) }.map { it?.id to it?.name }.toTypedArray()
                     val list = search(keyword, itemDefs)
                     list.forEach {
                         var name = it.first!!.replace(keyword, "<col=178000>$keyword</col>", ignoreCase = true)
@@ -38,7 +41,7 @@ listOf("find", "search").forEach { command ->
                     player.message("Found: ${list.size} results. That include `$keyword` in their name. Search time: ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms.")
                 }
                 "object", "o", "obj" -> {
-                    val objDefs = (0 until getDefCount(ObjectDef::class)).map { world.definitions.getNullable(ObjectDef::class.java, it) }.map { it?.id to it?.name }.toTypedArray()
+                    val objDefs = (0 until objectSize()).map { world.definitions.getNullable(ObjectDef::class.java, it) }.map { it?.id to it?.name }.toTypedArray()
                     val list = search(keyword, objDefs)
                     list.forEach {
                         val name = it.first!!.replace(keyword, "<col=178000>$keyword</col>", ignoreCase = true)
@@ -47,7 +50,7 @@ listOf("find", "search").forEach { command ->
                     player.message("Found: ${list.size} results. That include `$keyword` in their name. Search time: ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms.")
                 }
                 "npc", "n" -> {
-                    val npcDefs = (0 until getDefCount(NpcDef::class)).map { world.definitions.getNullable(NpcDef::class.java, it) }.map { it?.id to it?.name }.toTypedArray()
+                    val npcDefs = (0 until npcSize()).map { world.definitions.getNullable(NpcDef::class.java, it) }.map { it?.id to it?.name }.toTypedArray()
                     val list = search(keyword, npcDefs)
                     list.forEach {
                         val name = it.first!!.replace(keyword, "<col=178000>$keyword</col>", ignoreCase = true)

@@ -1,5 +1,10 @@
 package org.alter.game.service.game
 
+import dev.openrune.cache.CacheManager.enumSize
+import dev.openrune.cache.CacheManager.itemSize
+import dev.openrune.cache.CacheManager.npcSize
+import dev.openrune.cache.CacheManager.objectSize
+import dev.openrune.cache.CacheManager.structSize
 import gg.rsmod.util.Namer
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -60,10 +65,10 @@ class DumpEntityIdService : Service {
 
     private fun writeStructs(definitions: DefinitionSet, namer: Namer) {
         // Get all enums from cache
-        val enumCount = definitions.getCount(EnumDef::class.java)
+        val enumCount = enumSize()
         val enums : MutableList<EnumDef> = mutableListOf()
         // Get all structs from cache
-        val structCount = definitions.getCount(StructDef::class.java)
+        val structCount = structSize()
         val structs : MutableList<StructDef> = mutableListOf()
         for (s in 0 until structCount) {
             val struct = definitions.getNullable(StructDef::class.java, s) ?: continue
@@ -95,7 +100,7 @@ class DumpEntityIdService : Service {
     }
 
     private fun writeItems(definitions: DefinitionSet, namer: Namer) {
-        val count = definitions.getCount(ItemDef::class.java)
+        val count = itemSize()
         val items = generateWriter("Items.kt")
         for (i in 0 until count) {
             val item = definitions.getNullable(ItemDef::class.java, i) ?: continue
@@ -115,7 +120,7 @@ class DumpEntityIdService : Service {
     }
 
     private fun writeNpcs(definitions: DefinitionSet, namer: Namer) {
-        val count = definitions.getCount(NpcDef::class.java)
+        val count = npcSize()
         val npcs = generateWriter("Npcs.kt")
         for (i in 0 until count) {
             val npc = definitions.getNullable(NpcDef::class.java, i) ?: continue
@@ -129,7 +134,7 @@ class DumpEntityIdService : Service {
     }
 
     private fun writeObjs(definitions: DefinitionSet, namer: Namer) {
-        val count = definitions.getCount(ObjectDef::class.java)
+        val count = objectSize()
         val objs = generateWriter("Objs.kt")
         for (i in 0 until count) {
             val npc = definitions.getNullable(ObjectDef::class.java, i) ?: continue

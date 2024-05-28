@@ -1,5 +1,6 @@
 package org.alter.game.model.entity
 
+import dev.openrune.cache.CacheManager.varpSize
 import gg.rsmod.util.toStringHelper
 import net.rsprot.protocol.api.Session
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcInfo
@@ -15,7 +16,6 @@ import net.rsprot.protocol.game.outgoing.sound.SynthSound
 import net.rsprot.protocol.game.outgoing.varp.VarpLarge
 import net.rsprot.protocol.game.outgoing.varp.VarpSmall
 import net.rsprot.protocol.message.OutgoingGameMessage
-import org.alter.game.fs.def.VarpDef
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
 import org.alter.game.model.appearance.Gender
@@ -119,7 +119,7 @@ open class Player(world: World) : Pawn(world) {
 
     val interfaces by lazy { InterfaceSet(PlayerInterfaceListener(this, world.plugins)) }
 
-    val varps = VarpSet(maxVarps = world.definitions.getCount(VarpDef::class.java))
+    val varps = VarpSet(maxVarps = varpSize())
 
     private val skillSet = SkillSet(maxSkills = world.gameContext.skillCount)
 
