@@ -1,8 +1,9 @@
 package org.alter.game
 
 import com.displee.cache.CacheLibrary
-import gg.rsmod.util.Stopwatch
+import dev.openrune.cache.CacheManager
 import gg.rsmod.util.ServerProperties
+import gg.rsmod.util.Stopwatch
 import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.protocol.common.client.OldSchoolClientType
 import org.alter.game.model.Tile
@@ -123,7 +124,7 @@ class Server {
         /*
          * Load the definitions.
          */
-        world.definitions.loadAll(world.filestore)
+        CacheManager.init(filestore, 221)
 
         /*
          * Load the services required to run the server.

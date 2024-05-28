@@ -1,15 +1,9 @@
 package org.alter.game.fs
 
-import com.displee.cache.CacheLibrary
 import dev.openrune.cache.*
-import dev.openrune.cache.CacheManager.itemSize
-import dev.openrune.cache.CacheManager.objectSize
 import dev.openrune.cache.filestore.loadLocations
 import dev.openrune.cache.filestore.loadTerrain
 import io.github.oshai.kotlinlogging.KotlinLogging
-import io.netty.buffer.Unpooled
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.alter.game.fs.def.*
 import org.alter.game.model.Direction
 import org.alter.game.model.Tile
@@ -28,27 +22,7 @@ import java.io.IOException
  */
 class DefinitionSet {
 
-    /**
-     * A [Map] holding all definitions with their [Class] as key.
-     */
-    private val defs = Object2ObjectOpenHashMap<Class<out Definition>, Map<Int, *>>()
-
     private var xteaService: XteaKeyService? = null
-
-    fun loadAll(library: CacheLibrary) {
-
-        /*
-         * Load [ItemDef]s.
-         */
-        load(library, ItemDef::class.java)
-        logger.info("Loaded ${itemSize()} item definitions.")
-
-        /*
-         * Load [ObjectDef]s.
-         */
-        load(library, ObjectDef::class.java)
-        logger.info("Loaded ${objectSize()} object definitions.")
-    }
 
     fun loadRegions(world: World, chunks: ChunkSet, regions: IntArray) {
         val start = System.currentTimeMillis()
@@ -62,51 +36,6 @@ class DefinitionSet {
             }
         }
         logger.info { "Loaded $loaded regions in ${System.currentTimeMillis() - start}ms" }
-    }
-
-    fun <T : Definition> load(library: CacheLibrary, type: Class<out T>) {
-        val configType = when (type) {
-            ObjectDef::class.java -> OBJECT
-            ItemDef::class.java -> ITEM
-            else -> throw IllegalArgumentException("Unhandled class type ${type::class.java}.")
-        }
-        val configs = library.index(CONFIGS)
-        val archive = configs.archive(configType)
-        val files = archive!!.files
-
-        val definitions = Int2ObjectOpenHashMap<T?>(files.size + 1)
-
-        for (i in 0 until files.size) {
-            val file = files[i] ?: continue
-            val data = file.data ?: continue
-            val def = createDefinition(type, file.id, data)
-            definitions[file.id] = def
-        }
-        defs[type] = definitions
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    fun <T : Definition> createDefinition(type: Class<out T>, id: Int, data: ByteArray): T {
-        val def: Definition = when (type) {
-            ObjectDef::class.java -> ObjectDef(id)
-            ItemDef::class.java -> ItemDef(id)
-            else -> throw IllegalArgumentException("Unhandled class type ${type::class.java}.")
-        }
-
-        val buf = Unpooled.wrappedBuffer(data)
-        def.decode(buf)
-        buf.release()
-        return def as T
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    fun <T : Definition> get(type: Class<out T>, id: Int): T {
-        return (defs[type]!!)[id] as T
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    fun <T : Definition> getNullable(type: Class<out T>, id: Int): T? {
-        return (defs[type]!!)[id] as T?
     }
 
     /**
