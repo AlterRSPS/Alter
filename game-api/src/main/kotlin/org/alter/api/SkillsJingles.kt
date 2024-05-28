@@ -1,6 +1,5 @@
 package org.alter.api
 
-import org.alter.game.fs.def.EnumDef
 import org.alter.game.model.World
 
 private val SkillJingle = setOf(

@@ -1,5 +1,6 @@
 package org.alter.api.ext
 
+import dev.openrune.cache.CacheManager
 import gg.rsmod.util.BitManipulation
 import net.rsprot.protocol.game.outgoing.interfaces.*
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
@@ -16,7 +17,6 @@ import org.alter.api.cfg.Song
 import org.alter.api.cfg.Varbit
 import org.alter.api.cfg.Varp
 import org.alter.game.fs.def.ItemDef
-import org.alter.game.fs.def.VarbitDef
 import org.alter.game.model.World
 import org.alter.game.model.attr.CHANGE_LOGGING
 import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
@@ -446,7 +446,7 @@ fun Player.syncVarp(id: Int) {
 }
 
 fun Player.getVarbit(id: Int): Int {
-    val def = world.definitions.get(VarbitDef::class.java, id)
+    val def = CacheManager.getVarbit(id)
     return varps.getBit(def.varp, def.startBit, def.endBit)
 }
 
@@ -466,7 +466,7 @@ fun Player.setVarbit(id: Int, value: Int) {
     if (attr.has(CHANGE_LOGGING) && getVarbit(id) != value) {
         message("Varbit: $id was changed from: ${getVarbit(id)} to $value")
     }
-    val def = world.definitions.get(VarbitDef::class.java, id)
+    val def = CacheManager.getVarbit(id)
     varps.setBit(def.varp, def.startBit, def.endBit, value)
 }
 
@@ -475,7 +475,7 @@ fun Player.setVarbit(id: Int, value: Int) {
  * its varp value in [Player.varps].
  */
 fun Player.sendTempVarbit(id: Int, value: Int) {
-    val def = world.definitions.get(VarbitDef::class.java, id)
+    val def = CacheManager.getVarbit(id)
     val state = BitManipulation.setBit(varps.getState(def.varp), def.startBit, def.endBit, value)
     val message = if (state in -Byte.MAX_VALUE..Byte.MAX_VALUE) VarpSmall(def.varp, state) else VarpLarge(def.varp, state)
     write(message)
@@ -485,7 +485,7 @@ fun Player.toggleVarbit(id: Int) {
     if (attr.has(CHANGE_LOGGING)) {
         message("Varbit toggle: $id was changed from: ${getVarbit(id)} to ${getVarbit(id) xor 1}")
     }
-    val def = world.definitions.get(VarbitDef::class.java, id)
+    val def = CacheManager.getVarbit(id)
     varps.setBit(def.varp, def.startBit, def.endBit, getVarbit(id) xor 1)
 }
 

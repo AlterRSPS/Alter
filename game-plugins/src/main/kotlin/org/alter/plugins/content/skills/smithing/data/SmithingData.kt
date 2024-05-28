@@ -1,7 +1,7 @@
 package org.alter.plugins.content.skills.smithing.data
 
+import dev.openrune.cache.CacheManager.getEnum
 import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.EnumDef
 import org.alter.game.fs.def.ItemDef
 
 /**
@@ -17,23 +17,23 @@ class SmithingData(private val defs: DefinitionSet) {
      * The enum definition containing the number of items that are produced
      * when smithing a specified item
      */
-    private val producedCountEnum = defs.get(EnumDef::class.java, PRODUCED_COUNT_ENUM)
+    private val producedCountEnum = getEnum(PRODUCED_COUNT_ENUM)
 
     /**
      * The enum definition containing the number of bars required to produce
      * each item
      */
-    private val barCountEnum = defs.get(EnumDef::class.java, BARS_COUNT_ENUM)
+    private val barCountEnum = getEnum(BARS_COUNT_ENUM)
 
     /**
      * The enum definition containing the levels required for each producible item
      */
-    private val levelReqsEnum = defs.get(EnumDef::class.java, LEVEL_REQ_ENUM)
+    private val levelReqsEnum = getEnum(LEVEL_REQ_ENUM)
 
     /**
      * The enum definition containing the bars that may be smithed
      */
-    val smithableBarsEnum = defs.get(EnumDef::class.java, SMITHABLE_BARS_ENUM)
+    val smithableBarsEnum = getEnum(SMITHABLE_BARS_ENUM)
 
     /**
      * A map of producible items to their names

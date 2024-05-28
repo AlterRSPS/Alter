@@ -1,3 +1,5 @@
+
+import dev.openrune.cache.CacheManager.getEnum
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.priv.Privilege
@@ -26,13 +28,13 @@ var slotList = listOf(
 )
 
 on_world_init {
-    val setsEnum = world.definitions.get(EnumDef::class.java, 1034)
+    val setsEnum = getEnum(1034)
     val set = setsEnum.values
     set.forEach { it ->
         val enumId: Int = it.value as Int
         val keyId: Int = it.key as Int
         val assignItems: MutableList<Int> = mutableListOf()
-        world.definitions.get(EnumDef::class.java, enumId).values.forEach {
+        getEnum(enumId).values.forEach {
             val param: Int = it.key+1
             val item = it.value as Int
             if (param != 0 && item != 0) {

@@ -3,12 +3,9 @@ package org.alter.game.fs
 import com.displee.cache.CacheLibrary
 import dev.openrune.cache.*
 import dev.openrune.cache.CacheManager.animSize
-import dev.openrune.cache.CacheManager.enumSize
 import dev.openrune.cache.CacheManager.itemSize
 import dev.openrune.cache.CacheManager.npcSize
 import dev.openrune.cache.CacheManager.objectSize
-import dev.openrune.cache.CacheManager.varbitSize
-import dev.openrune.cache.CacheManager.varpSize
 import dev.openrune.cache.filestore.loadLocations
 import dev.openrune.cache.filestore.loadTerrain
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -48,24 +45,6 @@ class DefinitionSet {
         logger.info("Loaded ${animSize()} animation definitions.")
 
         /*
-         * Load [VarpDef]s.
-         */
-        load(library, VarpDef::class.java)
-        logger.info("Loaded ${varpSize()} varp definitions.")
-
-        /*
-         * Load [VarbitDef]s.
-         */
-        load(library, VarbitDef::class.java)
-        logger.info("Loaded ${varbitSize()} varbit definitions.")
-
-        /*
-         * Load [EnumDef]s.
-         */
-        load(library, EnumDef::class.java)
-        logger.info("Loaded ${enumSize()} enum definitions.")
-
-        /*
          * Load [NpcDef]s.
          */
         load(library, NpcDef::class.java)
@@ -100,9 +79,6 @@ class DefinitionSet {
 
     fun <T : Definition> load(library: CacheLibrary, type: Class<out T>) {
         val configType = when (type) {
-            VarpDef::class.java -> VARPLAYER
-            VarbitDef::class.java -> VARBIT
-            EnumDef::class.java -> ENUM
             NpcDef::class.java -> NPC
             ObjectDef::class.java -> OBJECT
             ItemDef::class.java -> ITEM
@@ -127,9 +103,6 @@ class DefinitionSet {
     @Suppress("UNCHECKED_CAST")
     fun <T : Definition> createDefinition(type: Class<out T>, id: Int, data: ByteArray): T {
         val def: Definition = when (type) {
-            VarpDef::class.java -> VarpDef(id)
-            VarbitDef::class.java -> VarbitDef(id)
-            EnumDef::class.java -> EnumDef(id)
             NpcDef::class.java -> NpcDef(id)
             ObjectDef::class.java -> ObjectDef(id)
             ItemDef::class.java -> ItemDef(id)

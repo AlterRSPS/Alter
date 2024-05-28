@@ -1,9 +1,9 @@
 package org.alter.game.model.entity
 
+import dev.openrune.cache.CacheManager
 import gg.rsmod.util.toStringHelper
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.ObjectDef
-import org.alter.game.fs.def.VarbitDef
 import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.attr.AttributeMap
@@ -92,7 +92,7 @@ abstract class GameObject : Entity {
         val def = getDef(world.definitions)
 
         if (def.varbit != -1) {
-            val varbitDef = world.definitions.get(VarbitDef::class.java, def.varbit)
+            val varbitDef = CacheManager.getVarbit(def.varbit)
             val state = player.varps.getBit(varbitDef.varp, varbitDef.startBit, varbitDef.endBit)
             return def.transforms!![state]
         }

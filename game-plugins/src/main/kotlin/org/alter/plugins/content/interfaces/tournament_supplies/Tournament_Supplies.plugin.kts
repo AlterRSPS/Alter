@@ -1,5 +1,6 @@
 package org.alter.plugins.content.interfaces.tournament_supplies
 
+import dev.openrune.cache.CacheManager.getEnum
 import dev.openrune.cache.CacheManager.itemSize
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.priv.Privilege
@@ -7,7 +8,7 @@ import org.alter.game.model.priv.Privilege
 val itemListBySlot = hashMapOf<Int, Int>()
 
 on_world_init {
-    val itemEnum = world.definitions.get(EnumDef::class.java, 1124)
+    val itemEnum = getEnum(1124)
     itemEnum.values.forEach { it ->
         val item = it.value as Int
         val slot = it.key as Int

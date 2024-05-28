@@ -1,6 +1,6 @@
 package org.alter.api
 
-import org.alter.game.fs.def.EnumDef
+import dev.openrune.cache.CacheManager.getEnum
 import org.alter.game.model.World
 
 /**
@@ -36,7 +36,7 @@ object Skills {
     const val MAX_COMBAT_LVL = 126
 
     fun getSkillName(world: World, skill: Int): String {
-        val enum = world.definitions.get(EnumDef::class.java, 680)
+        val enum = getEnum(680)
         return enum.getString(skill)
     }
 

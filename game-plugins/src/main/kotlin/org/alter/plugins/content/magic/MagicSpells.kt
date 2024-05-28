@@ -1,18 +1,16 @@
 package org.alter.plugins.content.magic
 
-import org.alter.game.fs.def.EnumDef
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.World
-import org.alter.game.model.entity.Player
-import org.alter.game.model.item.Item
-import org.alter.game.plugin.KotlinPlugin
-import org.alter.game.plugin.Plugin
+import dev.openrune.cache.CacheManager.getEnum
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
 import org.alter.api.ext.getSpellbook
 import org.alter.api.ext.getVarbit
 import org.alter.api.ext.message
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import org.alter.game.fs.def.ItemDef
+import org.alter.game.model.World
+import org.alter.game.model.entity.Player
+import org.alter.game.model.item.Item
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -90,10 +88,10 @@ object MagicSpells {
     fun isLoaded(): Boolean = metadata.isNotEmpty()
 
     fun loadSpellRequirements(world: World) {
-        val spellBookEnums = world.definitions.get(EnumDef::class.java, SPELLBOOK_POINTER_ENUM)
+        val spellBookEnums = getEnum(SPELLBOOK_POINTER_ENUM)
         val spellBooks = spellBookEnums.values.values.map { it as Int }
         spellBooks.forEach { spellBook ->
-            val spellBookEnum = world.definitions.get(EnumDef::class.java, spellBook)
+            val spellBookEnum = getEnum(spellBook)
             val spellItems = spellBookEnum.values.values.map { it as Int }
 
             for (item in spellItems) {
