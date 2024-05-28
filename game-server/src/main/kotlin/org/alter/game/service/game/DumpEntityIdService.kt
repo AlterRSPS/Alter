@@ -1,16 +1,23 @@
 package org.alter.game.service.game
 
+import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.enumSize
+import dev.openrune.cache.CacheManager.getEnums
+import dev.openrune.cache.CacheManager.getNpcs
+import dev.openrune.cache.CacheManager.getObjects
+import dev.openrune.cache.CacheManager.getStructs
 import dev.openrune.cache.CacheManager.itemSize
 import dev.openrune.cache.CacheManager.npcSize
 import dev.openrune.cache.CacheManager.objectSize
 import dev.openrune.cache.CacheManager.structSize
+import dev.openrune.cache.filestore.definition.data.EnumType
+import dev.openrune.cache.filestore.definition.data.StructType
 import gg.rsmod.util.Namer
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.*
+import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import java.io.PrintWriter
@@ -66,16 +73,16 @@ class DumpEntityIdService : Service {
     private fun writeStructs(definitions: DefinitionSet, namer: Namer) {
         // Get all enums from cache
         val enumCount = enumSize()
-        val enums : MutableList<EnumDef> = mutableListOf()
+        val enums : MutableList<EnumType> = mutableListOf()
         // Get all structs from cache
         val structCount = structSize()
-        val structs : MutableList<StructDef> = mutableListOf()
+        val structs : MutableList<StructType> = mutableListOf()
         for (s in 0 until structCount) {
-            val struct = definitions.getNullable(StructDef::class.java, s) ?: continue
+            val struct = getStructs().get(s) ?: continue
             structs.add(s, struct)
         }
         for (e in 0 until enumCount) {
-            val enum = definitions.getNullable(EnumDef::class.java, e) ?: continue
+            val enum = getEnums().get(e) ?: continue
             enums.add(e, enum)
         }
         val settingsFile = generateWriter("SettingCategories.kt")
@@ -83,7 +90,7 @@ class DumpEntityIdService : Service {
         // Get all settings structs
         enums[422].values.forEach { (_, u) ->
             var name = ""
-            structs[u as Int].params.forEach { (k, v) ->
+            structs[u as Int].params!!.forEach { (k, v) ->
                 if(k == 744) {
                     name = namer.name(v.toString() + "_enum_id", k).toString()
                 }
@@ -103,7 +110,7 @@ class DumpEntityIdService : Service {
         val count = itemSize()
         val items = generateWriter("Items.kt")
         for (i in 0 until count) {
-            val item = definitions.getNullable(ItemDef::class.java, i) ?: continue
+            val item = CacheManager.getItems().get(i) ?: continue
             /*
              * Skip placeholder items.
              */
@@ -123,7 +130,7 @@ class DumpEntityIdService : Service {
         val count = npcSize()
         val npcs = generateWriter("Npcs.kt")
         for (i in 0 until count) {
-            val npc = definitions.getNullable(NpcDef::class.java, i) ?: continue
+            val npc = getNpcs().get(i) ?: continue
             val rawName = npc.name.replace("?", "")
             if (rawName.isNotEmpty() && rawName.isNotBlank()) {
                 val name = namer.name(npc.name, i)
@@ -137,7 +144,7 @@ class DumpEntityIdService : Service {
         val count = objectSize()
         val objs = generateWriter("Objs.kt")
         for (i in 0 until count) {
-            val npc = definitions.getNullable(ObjectDef::class.java, i) ?: continue
+            val npc = getObjects().get(i) ?: continue
             val rawName = npc.name.replace("?", "")
             if (rawName.isNotEmpty() && rawName.isNotBlank()) {
                 val name = namer.name(npc.name, i)

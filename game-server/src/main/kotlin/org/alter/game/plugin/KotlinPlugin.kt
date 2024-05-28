@@ -1,8 +1,9 @@
 package org.alter.game.plugin
 
+import dev.openrune.cache.CacheManager.getNpc
+import dev.openrune.cache.CacheManager.getObject
 import org.alter.game.Server
 import org.alter.game.event.Event
-import org.alter.game.fs.Definition
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.fs.def.NpcDef
 import org.alter.game.fs.def.ObjectDef
@@ -16,7 +17,6 @@ import org.alter.game.model.shop.ShopCurrency
 import org.alter.game.model.shop.StockType
 import org.alter.game.model.timer.TimerKey
 import org.alter.game.service.Service
-import kotlin.reflect.KClass
 import kotlin.script.experimental.annotations.KotlinScript
 
 /**
@@ -597,19 +597,13 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun getPluginRepository(): PluginRepository {
         return r
     }
-    fun <T : Definition> getDefs(type: KClass<out T>, id: Int): T {
-        return world.definitions.get(type.java, id)
-    }
-    fun <T : Definition> getDefsNullable(type: KClass<out T>, id: Int): T? {
-        return world.definitions.getNullable(type.java, id)
-    }
     fun obj_has_option(obj: Int, option: String): Boolean {
-        val objDefs = getDefs(ObjectDef::class, obj)
-        return objDefs.options.contains(option)
+        val objDefs = getObject(obj)
+        return objDefs.actions.contains(option)
     }
     fun npc_has_option(npc: Int, option: String): Boolean {
-        val npcDefs = getDefs(NpcDef::class, npc)
-        return npcDefs.options.contains(option)
+        val npcDefs = getNpc(npc)
+        return npcDefs.actions.contains(option)
     }
 
 }

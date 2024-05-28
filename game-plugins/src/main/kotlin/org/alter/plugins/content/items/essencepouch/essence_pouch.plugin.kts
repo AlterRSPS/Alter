@@ -1,5 +1,7 @@
 package org.alter.plugins.content.items.other.essencepouch
 
+import dev.openrune.cache.CacheManager.getItems
+
 /**
  * The set of essence pouch definitions
  */
@@ -38,7 +40,7 @@ fun fillPouch(player: Player, pouch: EssencePouch) {
     val containedItem = item.getAttr(ItemAttribute.ATTACHED_ITEM_ID) ?: -1
     val amount = Math.max(item.getAttr(ItemAttribute.ATTACHED_ITEM_COUNT) ?: 0, 0)
 
-    val def = world.definitions.getNullable(ItemDef::class.java, containedItem)
+    val def = getItems().get(containedItem)
     val inventory = player.inventory
     val freeSpace = pouch.capacity - amount
 

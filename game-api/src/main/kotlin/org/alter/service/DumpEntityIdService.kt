@@ -1,6 +1,9 @@
 package org.alter.service
 
 import dev.openrune.cache.CacheManager
+import dev.openrune.cache.CacheManager.getItems
+import dev.openrune.cache.CacheManager.getNpcs
+import dev.openrune.cache.CacheManager.getObjects
 import dev.openrune.cache.CacheManager.itemSize
 import dev.openrune.cache.CacheManager.npcSize
 import gg.rsmod.util.Namer
@@ -9,8 +12,6 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.ItemDef
-import org.alter.game.fs.def.NpcDef
-import org.alter.game.fs.def.ObjectDef
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import java.io.PrintWriter
@@ -66,7 +67,7 @@ class DumpEntityIdService : Service {
         val count = itemSize()
         val items = generateWriter("Items.kt")
         for (i in 0 until count) {
-            val item = definitions.getNullable(ItemDef::class.java, i) ?: continue
+            val item = getItems().get(i) ?: continue
             /*
              * Skip placeholder items.
              */
@@ -86,7 +87,7 @@ class DumpEntityIdService : Service {
         val count = npcSize()
         val npcs = generateWriter("Npcs.kt")
         for (i in 0 until count) {
-            val npc = definitions.getNullable(NpcDef::class.java, i) ?: continue
+            val npc = getNpcs().get(i) ?: continue
             val rawName = npc.name.replace("?", "")
             if (rawName.isNotEmpty() && rawName.isNotBlank()) {
                 val name = namer.name(npc.name, i)
@@ -100,7 +101,7 @@ class DumpEntityIdService : Service {
         val count = CacheManager.objectSize()
         val objs = generateWriter("Objs.kt")
         for (i in 0 until count) {
-            val npc = definitions.getNullable(ObjectDef::class.java, i) ?: continue
+            val npc = getObjects().get(i) ?: continue
             val rawName = npc.name.replace("?", "")
             if (rawName.isNotEmpty() && rawName.isNotBlank()) {
                 val name = namer.name(npc.name, i)
