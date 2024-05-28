@@ -3,8 +3,8 @@ package org.alter.game.fs
 import java.io.IOException
 import java.nio.ByteBuffer
 
-class RLTile {
-    var height: Int? = null
+class TileData {
+    var height = 0
     var attrOpcode = 0
     var settings: Byte = 0
     var overlayId: Short = 0
@@ -13,12 +13,9 @@ class RLTile {
     var underlayId: Short = 0
 }
 
-class RLPosition(val x: Int, val y: Int, val z: Int)
+class LocationData(val id: Int, val type: Int, val orientation: Int, val localX: Int, val localY: Int, val height: Int)
 
-class RLLocation(val id: Int, val type: Int, val orientation: Int, val position: RLPosition)
-
-fun loadLocations(b: ByteArray): List<RLLocation> {
-    val locations: MutableList<RLLocation> = ArrayList()
+fun loadLocations(b: ByteArray, fn: (LocationData) -> Unit) {
     val buf = InputStream(b)
     var id = -1
     var idOffset: Int
@@ -34,20 +31,18 @@ fun loadLocations(b: ByteArray): List<RLLocation> {
             val attributes = buf.readUnsignedByte()
             val type = attributes shr 2
             val orientation = attributes and 3
-            locations.add(RLLocation(id, type, orientation, RLPosition(localX, localY, height)))
+            fn.invoke(LocationData(id, type, orientation, localX, localY, height))
         }
     }
-    return locations
 }
 
-fun loadTerrain(b: ByteArray): Array<Array<Array<RLTile?>>> {
-    val tiles = Array(4) { Array(64) { arrayOfNulls<RLTile>(64) } }
+fun loadTerrain(b: ByteArray): Array<Array<Array<TileData>>> {
+    val tiles = Array(4) { Array(64) { Array(64) { TileData() } } }
     val buf = InputStream(b)
-    for (z in 0..3) {
-        for (x in 0..63) {
-            for (y in 0..63) {
-                val tile = RLTile()
-                tiles[z][x][y] = tile
+    for (z in 0 until 4) {
+        for (x in 0 until 64) {
+            for (y in 0 until 64) {
+                val tile = tiles[z][x][y]
 
                 while (true) {
                     val attribute = buf.readUnsignedShort()

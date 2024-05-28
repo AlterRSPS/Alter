@@ -169,11 +169,11 @@ class DefinitionSet {
         for (height in 0 until 4) {
             for (lx in 0 until 64) {
                 for (lz in 0 until 64) {
-                    val bridge = tiles[1][lx][lz]!!.settings.toInt() and 0x2 != 0
+                    val bridge = tiles[1][lx][lz].settings.toInt() and 0x2 != 0
                     if (bridge) {
                         bridges.add(Tile(baseX + lx, baseY + lz, height))
                     }
-                    val blockedTile = tiles[height][lx][lz]!!.settings.toInt() and 0x1 != 0
+                    val blockedTile = tiles[height][lx][lz].settings.toInt() and 0x1 != 0
                     if (blockedTile) {
                         val level = if (bridge) (height - 1) else height
                         if (level < 0) continue
@@ -210,14 +210,14 @@ class DefinitionSet {
         try {
             val landData = world.filestore.data(IndexType.MAPS.number, "l${x}_$z", keys) ?: return false
 
-            loadLocations(landData).forEach { loc ->
+            loadLocations(landData) { loc ->
                 val tile = Tile(
-                    baseX + loc.position.x,
-                    baseY + loc.position.y,
-                    loc.position.z
+                    baseX + loc.localX,
+                    baseY + loc.localY,
+                    loc.height
                 )
                 val hasBridge = bridges.contains(tile)
-                if (hasBridge && loc.position.z == 0) return@forEach
+                if (hasBridge && loc.height == 0) return@loadLocations
                 val adjustedTile = if (bridges.contains(tile)) tile.transform(-1) else tile
                 val obj = StaticObject(loc.id, loc.type, loc.orientation, adjustedTile)
                 world.chunks.getOrCreate(adjustedTile).addEntity(world, obj, adjustedTile)
