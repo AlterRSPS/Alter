@@ -6,6 +6,7 @@ import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
 import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.protocol.common.client.OldSchoolClientType
+import org.alter.game.fs.ObjectExamineHolder
 import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.entity.GroundItem
@@ -125,6 +126,7 @@ class Server {
          * Load the definitions.
          */
         CacheManager.init(filestore, 221)
+        ObjectExamineHolder.load()
 
         /*
          * Load the services required to run the server.
