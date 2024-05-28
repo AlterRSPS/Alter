@@ -1,8 +1,9 @@
 package org.alter.game.model.entity
 
 import dev.openrune.cache.CacheManager
+import dev.openrune.cache.CacheManager.getObject
+import dev.openrune.cache.filestore.definition.data.ObjectType
 import gg.rsmod.util.toStringHelper
-import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.ObjectDef
 import org.alter.game.model.Tile
 import org.alter.game.model.World
@@ -76,7 +77,7 @@ abstract class GameObject : Entity {
 
     constructor(id: Int, type: Int, rot: Int, tile: Tile) : this(id, (type shl 2) or rot, tile)
 
-    fun getDef(definitions: DefinitionSet): ObjectDef = definitions.get(ObjectDef::class.java, id)
+    fun getDef(): ObjectType = getObject(id)
 
     fun isSpawned(world: World): Boolean = world.isSpawned(this)
 
@@ -89,7 +90,7 @@ abstract class GameObject : Entity {
      */
     fun getTransform(player: Player): Int {
         val world = player.world
-        val def = getDef(world.definitions)
+        val def = getDef()
 
         if (def.varbit != -1) {
             val varbitDef = CacheManager.getVarbit(def.varbit)

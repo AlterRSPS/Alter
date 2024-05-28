@@ -1,5 +1,7 @@
 package org.alter.plugins.content.skills.runecrafting
 
+import dev.openrune.cache.CacheManager.getObject
+
 private val enterOption = "Enter"
 
 Altar.values.forEach { altar ->
@@ -10,7 +12,7 @@ Altar.values.forEach { altar ->
     altar.ruins?.forEach { ruin ->
 
         // The object definition for the Mysterious Ruins
-        val def = world.definitions.get(ObjectDef::class.java, ruin)
+        val def = getObject(ruin)
 
         // Allow using the talisman on the ruins to enter the altar
         altar.talisman?.let { talisman ->
@@ -20,7 +22,7 @@ Altar.values.forEach { altar ->
         }
 
         // If the object has the 'enter' option, we should check that the varbit is set for the player before teleporting them to the altar
-        if (def.options.contains(enterOption)) {
+        if (def.actions.contains(enterOption)) {
             on_obj_option(obj = ruin, option = enterOption) {
                 if (player.getVarbit(altar.varbit) == 1) {
                     altar.entrance?.let { player.moveTo(it) }

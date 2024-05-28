@@ -49,8 +49,8 @@ class OpObjTHandler : MessageHandler<OpObjT> {
             val obj = chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull { it.id == message.id } ?: return
 
             if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
-                val def = obj.getDef(client.world.definitions)
-                client.moveTo(client.world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.width, centreLength = def.length) ?: obj.tile)
+                val def = obj.getDef()
+                client.moveTo(client.world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.sizeX, centreLength = def.sizeY) ?: obj.tile)
             }
 
             log(client, "Item on object: item=%d, slot=%d, obj=%d, x=%d, z=%d", sobj, slot, message.id, message.x, message.z)

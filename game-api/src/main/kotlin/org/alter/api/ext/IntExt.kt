@@ -1,8 +1,8 @@
 package org.alter.api.ext
 
+import dev.openrune.cache.CacheManager.getObject
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.def.ItemDef
-import org.alter.game.fs.def.ObjectDef
 import org.alter.game.model.item.Item
 import kotlin.math.ceil
 
@@ -69,9 +69,9 @@ fun Int.getItemName(definitions: DefinitionSet, lowercase: Boolean = false): Str
 
 fun Int.getObjName(definitions: DefinitionSet, lowercase: Boolean = false): String {
     return if(lowercase)
-        definitions.get(ObjectDef::class.java, this).name.lowercase()
+        getObject(this).name.lowercase()
     else
-        definitions.get(ObjectDef::class.java, this).name
+        getObject(this).name
 }
 
 /**

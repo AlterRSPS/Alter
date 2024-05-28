@@ -1,10 +1,12 @@
 package org.alter.game.model.instance
 
+import dev.openrune.cache.filestore.definition.data.ObjectType
 import org.alter.game.model.Area
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.entity.DynamicObject
+import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Player
 import org.alter.game.model.entity.StaticObject
 import org.alter.game.model.region.Chunk
@@ -167,7 +169,7 @@ class InstancedMapAllocator {
 
                         copyChunk.getEntities<StaticObject>(EntityType.STATIC_OBJECT).forEach { obj ->
                             if (obj.tile.height == chunkH && obj.tile.isInSameChunk(copyTile)) {
-                                val def = obj.getDef(world.definitions)
+                                val def = obj.getDef()
                                 val width = def.getRotatedWidth(obj)
                                 val length = def.getRotatedLength(obj)
 
@@ -238,4 +240,14 @@ class InstancedMapAllocator {
          */
         private const val SCAN_MAPS_CYCLES = 25
     }
+}
+
+fun ObjectType.getRotatedWidth(obj: GameObject): Int = when {
+    (obj.rot and 0x1) == 1 -> sizeY
+    else -> sizeX
+}
+
+fun ObjectType.getRotatedLength(obj: GameObject): Int = when {
+    (obj.rot and 0x1) == 1 -> sizeX
+    else -> sizeY
 }

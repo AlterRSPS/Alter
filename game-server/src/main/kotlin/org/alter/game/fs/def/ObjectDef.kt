@@ -4,7 +4,6 @@ import gg.rsmod.util.io.BufferUtils.readString
 import io.netty.buffer.ByteBuf
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import org.alter.game.fs.Definition
-import org.alter.game.model.entity.GameObject
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -12,10 +11,10 @@ import org.alter.game.model.entity.GameObject
 class ObjectDef(override val id: Int) : Definition(id) {
 
     var name = ""
-    var width = 1
-    var length = 1
+    var sizeX = 1
+    var sizeY = 1
     var solid = true
-    var blockProjectile = true
+    var impenetrable = true
     var interactType = false
     var contouredGround: Int = -1
     var nonFlatShading = false
@@ -57,17 +56,6 @@ class ObjectDef(override val id: Int) : Definition(id) {
     var anInt3427: Int = 0
     var anIntArray3428: Array<Int> = emptyArray<Int>()
 
-
-    fun getRotatedWidth(obj: GameObject): Int = when {
-        (obj.rot and 0x1) == 1 -> length
-        else -> width
-    }
-
-    fun getRotatedLength(obj: GameObject): Int = when {
-        (obj.rot and 0x1) == 1 -> width
-        else -> length
-    }
-
     override fun decode(buf: ByteBuf, opcode: Int) {
         when (opcode) {
             1 -> {
@@ -87,10 +75,10 @@ class ObjectDef(override val id: Int) : Definition(id) {
                     objectModels[i] = buf.readUnsignedShort()
                 }
             }
-            14 -> width = buf.readUnsignedByte().toInt()
-            15 -> length = buf.readUnsignedByte().toInt()
+            14 -> sizeX = buf.readUnsignedByte().toInt()
+            15 -> sizeY = buf.readUnsignedByte().toInt()
             17 -> solid = false // interact type = 0
-            18 -> blockProjectile = false
+            18 -> impenetrable = false
             19 -> interactType = buf.readUnsignedByte().toInt() == 1
             21 -> contouredGround = 0
             22 -> nonFlatShading = true

@@ -1,6 +1,9 @@
 package org.alter.game.action
 
-import org.alter.game.fs.def.ObjectDef
+import dev.openrune.cache.CacheManager.getObject
+import gg.rsmod.util.AabbUtil
+import gg.rsmod.util.DataConstants
+import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.model.Direction
 import org.alter.game.model.MovementQueue
 import org.alter.game.model.attr.INTERACTING_ITEM
@@ -18,11 +21,7 @@ import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.timer.FROZEN_TIMER
 import org.alter.game.model.timer.STUN_TIMER
 import org.alter.game.plugin.Plugin
-import gg.rsmod.util.AabbUtil
-import gg.rsmod.util.DataConstants
-import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
-import java.util.ArrayDeque
-import java.util.EnumSet
+import java.util.*
 
 /**
  * This class is responsible for calculating distances and valid interaction
@@ -94,12 +93,12 @@ object ObjectPathAction {
     private suspend fun QueueTask.walkTo(obj: GameObject, lineOfSightRange: Int?): Route {
         val pawn = ctx as Pawn
 
-        val def = obj.getDef(pawn.world.definitions)
+        val def = obj.getDef()
         val tile = obj.tile
         val type = obj.type
         val rot = obj.rot
-        var width = def.width
-        var length = def.length
+        var width = def.sizeX
+        var length = def.sizeY
         val clipMask = def.clipMask
 
         val wall = type == ObjectType.LENGTHWISE_WALL.value || type == ObjectType.DIAGONAL_WALL.value
@@ -111,8 +110,8 @@ object ObjectPathAction {
             width = 0
             length = 0
         } else if (!wall && (rot == 1 || rot == 3)) {
-            width = def.length
-            length = def.width
+            width = def.sizeY
+            length = def.sizeX
         }
 
         /*
@@ -239,7 +238,7 @@ object ObjectPathAction {
     }
 
     private fun faceObj(pawn: Pawn, obj: GameObject) {
-        val def = pawn.world.definitions.get(ObjectDef::class.java, obj.id)
+        val def = getObject(obj.id)
         val rot = obj.rot
         val type = obj.type
 
@@ -260,11 +259,11 @@ object ObjectPathAction {
                 pawn.faceTile(pawn.tile.step(dir))
             }
             else -> {
-                var width = def.width
-                var length = def.length
+                var width = def.sizeX
+                var length = def.sizeY
                 if (rot == 1 || rot == 3) {
-                    width = def.length
-                    length = def.width
+                    width = def.sizeY
+                    length = def.sizeX
                 }
                 pawn.faceTile(obj.tile.transform(width shr 1, length shr 1), width, length)
             }

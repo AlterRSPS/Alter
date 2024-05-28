@@ -5,7 +5,6 @@ import dev.openrune.cache.CacheManager.getObject
 import org.alter.game.Server
 import org.alter.game.event.Event
 import org.alter.game.fs.def.ItemDef
-import org.alter.game.fs.def.ObjectDef
 import org.alter.game.model.*
 import org.alter.game.model.combat.NpcCombatDef
 import org.alter.game.model.container.key.ContainerKey
@@ -193,10 +192,10 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     fun on_obj_option(obj: Int, option: String, lineOfSightDistance: Int = -1, logic: (Plugin).() -> Unit) {
         val opt = option.lowercase()
-        val def = world.definitions.get(ObjectDef::class.java, obj)
-        val slot = def.options.indexOfFirst { it?.lowercase() == opt }
+        val def = getObject(obj)
+        val slot = def.actions.indexOfFirst { it?.lowercase() == opt }
 
-        check(slot != -1) { "Option \"$option\" not found for object $obj [options=${def.options.filterNotNull().filter { it.isNotBlank() }}]" }
+        check(slot != -1) { "Option \"$option\" not found for object $obj [options=${def.actions.filterNotNull().filter { it.isNotBlank() }}]" }
 
         r.bindObject(obj, slot + 1, lineOfSightDistance, logic)
     }
@@ -216,7 +215,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     fun objHasOption(obj: Int, option: String) : Boolean {
-        val slot =  world.definitions.get(ObjectDef::class.java, obj).options.indexOfFirst {
+        val slot =  getObject(obj).actions.indexOfFirst {
             it?.lowercase() == option.lowercase()
         }
         return slot != -1
