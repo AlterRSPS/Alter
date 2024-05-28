@@ -1,10 +1,8 @@
 package org.alter.plugins.api.ext
 
-import com.displee.cache.CacheLibrary
+import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.itemSize
 import org.alter.api.ext.transfer
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.container.ContainerStackType
 import org.alter.game.model.container.ItemContainer
 import org.alter.game.model.item.Item
@@ -24,8 +22,8 @@ class ContainerExtTests {
 
     @Test
     fun `verify that a transfer goes as expected`() {
-        val container1 = ItemContainer(definitions, capacity = 28, stackType = ContainerStackType.NORMAL)
-        val container2 = ItemContainer(definitions, capacity = 28, stackType = ContainerStackType.NORMAL)
+        val container1 = ItemContainer(capacity = 28, stackType = ContainerStackType.NORMAL)
+        val container2 = ItemContainer(capacity = 28, stackType = ContainerStackType.NORMAL)
 
         val item = Item(4151)
 
@@ -37,8 +35,8 @@ class ContainerExtTests {
 
     @Test
     fun `verify that transferred item keeps its attributes`() {
-        val container1 = ItemContainer(definitions, capacity = 28, stackType = ContainerStackType.NORMAL)
-        val container2 = ItemContainer(definitions, capacity = 28, stackType = ContainerStackType.NORMAL)
+        val container1 = ItemContainer(capacity = 28, stackType = ContainerStackType.NORMAL)
+        val container2 = ItemContainer(capacity = 28, stackType = ContainerStackType.NORMAL)
 
         val item = Item(4151)
         val charges = 40
@@ -58,8 +56,8 @@ class ContainerExtTests {
 
     @Test
     fun `verify failed transfer due to full container`() {
-        val container1 = ItemContainer(definitions, capacity = 28, stackType = ContainerStackType.NORMAL)
-        val container2 = ItemContainer(definitions, capacity = 0, stackType = ContainerStackType.NORMAL)
+        val container1 = ItemContainer(capacity = 28, stackType = ContainerStackType.NORMAL)
+        val container2 = ItemContainer(capacity = 0, stackType = ContainerStackType.NORMAL)
 
         val item = Item(4151)
 
@@ -75,9 +73,6 @@ class ContainerExtTests {
     }
 
     companion object {
-        private val definitions = DefinitionSet()
-
-        private lateinit var library: CacheLibrary
 
         @BeforeClass
         @JvmStatic
@@ -85,9 +80,7 @@ class ContainerExtTests {
             val path = Paths.get("../data", "cache")
             check(Files.exists(path)) { "Path does not exist: ${path.toAbsolutePath()}" }
 
-            library = CacheLibrary(path.toFile().toString())
-
-            definitions.load(library, ItemDef::class.java)
+            CacheManager.init(path, 221)
 
             assertNotEquals(itemSize(), 0)
         }

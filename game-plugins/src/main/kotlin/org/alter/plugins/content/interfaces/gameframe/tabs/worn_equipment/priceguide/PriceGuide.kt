@@ -24,7 +24,7 @@ object PriceGuide {
     private val TEMP_INV_CONTAINER = AttributeKey<ItemContainer>()
 
     fun open(p: Player) {
-        p.attr[GUIDE_CONTAINER] = ItemContainer(p.world.definitions, p.inventory.capacity, ContainerStackType.STACK)
+        p.attr[GUIDE_CONTAINER] = ItemContainer(p.inventory.capacity, ContainerStackType.STACK)
         p.attr[TEMP_INV_CONTAINER] = ItemContainer(p.inventory)
 
         p.setInterfaceUnderlay(color = -1, transparency = -1)

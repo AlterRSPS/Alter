@@ -21,7 +21,7 @@ on_login {
      * in your looting bag, the bag won't have the "view" option on it.
      */
     if (player.inventory.containsAny(Items.LOOTING_BAG, Items.LOOTING_BAG_22586)) {
-        val container = player.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(world.definitions, CONTAINER_KEY) }
+        val container = player.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(CONTAINER_KEY) }
         player.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
     }
 }
@@ -81,7 +81,7 @@ on_button(interfaceId = TAB_INTERFACE_ID, component = 5) {
         3 -> store(player, slot = slot, amount = Int.MAX_VALUE)
         4 -> player.queue { store(player, slot = slot, amount = inputInt()) }
         5 -> {
-            val container = player.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(world.definitions, CONTAINER_KEY) }
+            val container = player.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(CONTAINER_KEY) }
             val item = container[slot] ?: return@on_button
             world.sendExamine(player, item.id, ExamineEntityType.ITEM)
         }
@@ -143,7 +143,7 @@ fun store(p: Player, slot: Int, amount: Int) {
         return
     }
 
-    if (!item.toUnnoted(world.definitions).getDef().isTradeable) {
+    if (!item.toUnnoted().getDef().isTradeable) {
         p.message("Only tradeable items can be put in the bag.")
         return
     }
@@ -225,7 +225,7 @@ fun settings(p: Player) {
 }
 
 fun check(p: Player) {
-    val container = p.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(world.definitions, CONTAINER_KEY) }
+    val container = p.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(CONTAINER_KEY) }
 
     p.runClientScript(149, 81 shl 16 or 5, LOOTING_BAG_CONTAINER_ID, 4, 7, 0, -1, "", "", "", "", "Examine")
     p.openInterface(dest = InterfaceDestination.TAB_AREA, interfaceId = TAB_INTERFACE_ID)

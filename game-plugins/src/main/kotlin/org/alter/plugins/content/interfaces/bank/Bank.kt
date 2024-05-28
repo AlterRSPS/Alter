@@ -197,7 +197,7 @@ object Bank {
         p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 107, text = "Slayer: 0%") // @TODO
     }
     fun ItemContainer.removePlaceholder(world: World, item: Item): Int {
-        val def = item.toUnnoted(world.definitions).getDef()
+        val def = item.toUnnoted().getDef()
         val slot = if (def.placeholderLink > 0) indexOfFirst { it?.id == def.placeholderLink && it.amount == -2 } else -1
         if (slot != -1) {
             this[slot] = null

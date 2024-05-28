@@ -27,7 +27,7 @@ class TradeSession(private val player: Player, private val partner: Player) {
     /**
      * The trade container for this trade session, in the current player's context
      */
-    val container = ItemContainer(player.world.definitions, player.inventory.capacity, ContainerStackType.NORMAL)
+    val container = ItemContainer(player.inventory.capacity, ContainerStackType.NORMAL)
 
     /**
      * The [ItemMarketValueService] instance for this trade session

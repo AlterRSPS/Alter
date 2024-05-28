@@ -2,7 +2,6 @@ package org.alter.game.model.container
 
 import dev.openrune.cache.CacheManager.getItem
 import io.github.oshai.kotlinlogging.KotlinLogging
-import org.alter.game.fs.DefinitionSet
 import org.alter.game.model.container.key.ContainerKey
 import org.alter.game.model.item.Item
 import org.alter.game.model.item.SlotItem
@@ -12,12 +11,12 @@ import org.alter.game.model.item.SlotItem
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class ItemContainer(val definitions: DefinitionSet, val key: ContainerKey) : Iterable<Item?> {
+class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
 
-    constructor(definitions: DefinitionSet, capacity: Int, stackType: ContainerStackType)
-            : this(definitions, ContainerKey("", capacity, stackType))
+    constructor(capacity: Int, stackType: ContainerStackType)
+            : this(ContainerKey("", capacity, stackType))
 
-    constructor(other: ItemContainer) : this(other.definitions, other.capacity, other.stackType) {
+    constructor(other: ItemContainer) : this(other.capacity, other.stackType) {
         for (i in 0 until capacity) {
             val item = if (other[i] != null) Item(other[i]!!) else null
             set(i, item)

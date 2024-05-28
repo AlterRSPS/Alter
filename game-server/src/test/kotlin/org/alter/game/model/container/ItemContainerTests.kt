@@ -1,8 +1,7 @@
 package org.alter.game.model.container
 
-import com.displee.cache.CacheLibrary
+import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.itemSize
-import org.alter.game.fs.DefinitionSet
 import org.junit.BeforeClass
 import org.junit.Test
 import java.nio.file.Paths
@@ -15,7 +14,7 @@ class ItemContainerTests {
 
     @Test
     fun createContainer() {
-        val container = ItemContainer(definitions, CAPACITY, ContainerStackType.NORMAL)
+        val container = ItemContainer(CAPACITY, ContainerStackType.NORMAL)
 
         assertEquals(container.capacity, CAPACITY)
         assertEquals(container.nextFreeSlot, 0)
@@ -25,7 +24,7 @@ class ItemContainerTests {
 
     @Test
     fun addNoted() {
-        val container = ItemContainer(definitions, CAPACITY, ContainerStackType.NORMAL)
+        val container = ItemContainer(CAPACITY, ContainerStackType.NORMAL)
         val result = container.add(item = 4152, amount = 3, forceNoStack = false, assureFullInsertion = true, beginSlot = 0)
 
         assertTrue(result.hasSucceeded())
@@ -37,7 +36,7 @@ class ItemContainerTests {
 
     @Test
     fun addUnnoted() {
-        val container = ItemContainer(definitions, CAPACITY, ContainerStackType.NORMAL)
+        val container = ItemContainer(CAPACITY, ContainerStackType.NORMAL)
         val result = container.add(item = 4151, amount = 3, forceNoStack = false, assureFullInsertion = true, beginSlot = 0)
 
         assertTrue(result.hasSucceeded())
@@ -57,7 +56,7 @@ class ItemContainerTests {
 
     @Test
     fun addNotedNoStack() {
-        val container = ItemContainer(definitions, CAPACITY, ContainerStackType.NORMAL)
+        val container = ItemContainer(CAPACITY, ContainerStackType.NORMAL)
         val result = container.add(item = 4152, amount = 3, forceNoStack = true, assureFullInsertion = true, beginSlot = 0)
 
         assertTrue(result.hasSucceeded())
@@ -77,7 +76,7 @@ class ItemContainerTests {
 
     @Test
     fun addOneTooManyStrict() {
-        val container = ItemContainer(definitions, CAPACITY, ContainerStackType.NORMAL)
+        val container = ItemContainer(CAPACITY, ContainerStackType.NORMAL)
         val result = container.add(item = 4151, amount = CAPACITY + 1, forceNoStack = false, assureFullInsertion = true, beginSlot = 0)
         assertFalse(result.hasSucceeded())
         assertEquals(container.nextFreeSlot, 0)
@@ -85,7 +84,7 @@ class ItemContainerTests {
 
     @Test
     fun addOneTooManyLoose() {
-        val container = ItemContainer(definitions, CAPACITY, ContainerStackType.NORMAL)
+        val container = ItemContainer(CAPACITY, ContainerStackType.NORMAL)
         val loose = container.add(item = 4151, amount = CAPACITY + 1, forceNoStack = false, assureFullInsertion = false, beginSlot = 0)
         assertFalse(loose.hasSucceeded())
         assertEquals(container.freeSlotCount, 0)
@@ -93,7 +92,7 @@ class ItemContainerTests {
 
     @Test
     fun addOverflowAmount() {
-        val container = ItemContainer(definitions, CAPACITY, ContainerStackType.NORMAL)
+        val container = ItemContainer(CAPACITY, ContainerStackType.NORMAL)
 
         container.add(item = 4152, amount = Int.MAX_VALUE, forceNoStack = false, assureFullInsertion = true, beginSlot = 0)
         assertEquals(container.getItemCount(4152), Int.MAX_VALUE)
@@ -106,7 +105,7 @@ class ItemContainerTests {
 
     @Test
     fun addToMiddle() {
-        val container = ItemContainer(definitions, CAPACITY, ContainerStackType.NORMAL)
+        val container = ItemContainer(CAPACITY, ContainerStackType.NORMAL)
         val result = container.add(item = 4151, amount = 1, forceNoStack = false, assureFullInsertion = false, beginSlot = CAPACITY / 2)
         assertTrue(result.hasSucceeded())
         assertEquals(container.freeSlotCount, CAPACITY - 1)
@@ -117,7 +116,7 @@ class ItemContainerTests {
 
     @Test
     fun addToStackContainer() {
-        val container = ItemContainer(definitions, CAPACITY, ContainerStackType.STACK)
+        val container = ItemContainer(CAPACITY, ContainerStackType.STACK)
         val result = container.add(item = 4151, amount = Int.MAX_VALUE, forceNoStack = false, assureFullInsertion = false, beginSlot = 0)
 
         assertTrue(result.hasSucceeded())
@@ -129,16 +128,13 @@ class ItemContainerTests {
 
         private const val CAPACITY = 28
 
-        private val definitions = DefinitionSet()
-
-        private lateinit var library: CacheLibrary
 
         @BeforeClass
         @JvmStatic
         fun loadCache() {
-            library = CacheLibrary(Paths.get("..", "data", "cache").toFile().toString())
+            val path = Paths.get("..", "data", "cache")
 
-            definitions.loadAll(library)
+            CacheManager.init(path, 221)
 
             assertNotEquals(itemSize(), 0)
         }

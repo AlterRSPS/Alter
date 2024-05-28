@@ -99,13 +99,13 @@ open class Player(world: World) : Pawn(world) {
      */
     @Volatile private var setDisconnectionTimer = false
 
-    val bonds = ItemContainer(world.definitions, BOND_POUCH_KEY)
+    val bonds = ItemContainer(BOND_POUCH_KEY)
 
-    val inventory = ItemContainer(world.definitions, INVENTORY_KEY)
+    val inventory = ItemContainer(INVENTORY_KEY)
 
-    val equipment = ItemContainer(world.definitions, EQUIPMENT_KEY)
+    val equipment = ItemContainer(EQUIPMENT_KEY)
 
-    val bank = ItemContainer(world.definitions, BANK_KEY)
+    val bank = ItemContainer(BANK_KEY)
 
     /**
      * A map that contains all the [ItemContainer]s a player can have.

@@ -6,7 +6,6 @@ import org.alter.game.model.container.ItemContainer
 import org.alter.game.model.entity.Player
 import org.alter.api.InterfaceDestination
 import org.alter.api.ext.*
-import java.text.DecimalFormat
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -16,7 +15,7 @@ object KeptOnDeath {
     const val KOD_COMPONENT_ID = 5
 
     fun open(p: Player, world: World) {
-        val dummyContainer = ItemContainer(world.definitions, capacity = 50, stackType = ContainerStackType.NO_STACK)
+        val dummyContainer = ItemContainer(capacity = 50, stackType = ContainerStackType.NO_STACK)
 
         dummyContainer.add(368, 9)
         dummyContainer.add(324, 41)

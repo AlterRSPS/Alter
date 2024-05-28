@@ -24,7 +24,7 @@ class Item(val id: Int, var amount: Int = 1) {
      * If this item does not have a noted link item id, it will return a new [Item]
      * with the same [Item.id].
      */
-    fun toNoted(definitions: DefinitionSet): Item {
+    fun toNoted(): Item {
         val def = getDef()
         return if (def.noteTemplateId == 0 && def.noteLinkId > 0) Item(def.noteLinkId, amount).copyAttr(this) else Item(this).copyAttr(this)
     }
@@ -34,7 +34,7 @@ class Item(val id: Int, var amount: Int = 1) {
      * If this item does not have a unnoted link item id, it will return a new [Item]
      * with the same [Item.id].
      */
-    fun toUnnoted(definitions: DefinitionSet): Item {
+    fun toUnnoted(): Item {
         val def = getDef()
         return if (def.noteTemplateId > 0) Item(def.noteLinkId, amount).copyAttr(this) else Item(this).copyAttr(this)
     }
@@ -43,7 +43,7 @@ class Item(val id: Int, var amount: Int = 1) {
      * Get the name of this item. If this item is noted this method will use
      * its un-noted template and get the name for said template.
      */
-    fun getName(definitions: DefinitionSet): String = toUnnoted(definitions).getDef().name
+    fun getName(definitions: DefinitionSet): String = toUnnoted().getDef().name
 
     fun getDef() = getItem(id)
 
