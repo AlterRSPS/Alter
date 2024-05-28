@@ -1,7 +1,7 @@
 package org.alter.game.action
 
+import dev.openrune.cache.CacheManager.getItem
 import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
-import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.MovementQueue
 import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_GROUNDITEM_ATTR
@@ -129,7 +129,7 @@ object GroundItemPathAction {
         } else {
             val handled = p.world.plugins.executeGroundItem(p, groundItem.item, opt)
             if (!handled && p.world.devContext.debugItemActions) {
-                val definition = p.world.definitions.get(ItemDef::class.java, groundItem.item)
+                val definition = getItem(groundItem.item)
                 p.writeMessage("Unhandled ground item action: [item=${groundItem.item}, option=[$opt, ${definition.options[opt - 1]}]]")
             }
         }

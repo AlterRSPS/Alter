@@ -13,7 +13,7 @@ val attachedDefs = Attached.attachedDefinitions
 /**
  * The item attaching action instance
  */
-val attachAction = AttachAction(world.definitions)
+val attachAction = AttachAction()
 
 /**
  * Handles using the firstMaterial on the secondMaterial

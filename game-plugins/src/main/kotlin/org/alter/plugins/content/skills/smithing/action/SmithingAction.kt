@@ -1,14 +1,13 @@
 package org.alter.plugins.content.skills.smithing.action
 
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
-
 import org.alter.api.ext.messageBox
 import org.alter.api.ext.playSound
 import org.alter.api.ext.player
 import org.alter.api.ext.prefixAn
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.smithing.data.Bar
 import org.alter.plugins.content.skills.smithing.data.SmithingMetaData
 
@@ -120,7 +119,7 @@ object SmithingAction {
         }
 
         if (bar.level > player.getSkills().getCurrentLevel(Skills.SMITHING)) {
-            val barDef = task.player.world.definitions.get(ItemDef::class.java, bar.id)
+            val barDef = getItem(bar.id)
             task.messageBox(INSUFFICIENT_LEVEL_BAR.format(bar.level, barDef.name.lowercase()))
             return false
         }
@@ -145,7 +144,7 @@ object SmithingAction {
             }
 
             if (meta.barCount > player.inventory.getItemCount(meta.bar!!.id)) {
-                val barDef = task.player.world.definitions.get(ItemDef::class.java, meta.bar.id)
+                val barDef = getItem(meta.bar.id)
                 task.messageBox(INSUFFICIENT_BAR_QTY.format(barDef.name.lowercase(), meta.name.prefixAn()))
                 return false
             }

@@ -166,7 +166,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     fun on_item_option(item: Int, option: String, logic: (Plugin).() -> Unit) {
         val opt = option.lowercase()
-        val def = world.definitions.get(ItemDef::class.java, item)
+        val def = getItem(item)
         val option = def.interfaceOptions.indexOfFirst { it?.lowercase() == opt }
         check(option != -1) { "Option \"$option\" not found for item $item [options=${def.interfaceOptions.filterNotNull().filter { it.isNotBlank() }}]" }
         r.bindItem(item, option + 1, logic)

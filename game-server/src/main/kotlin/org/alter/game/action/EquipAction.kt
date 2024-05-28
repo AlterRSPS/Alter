@@ -1,5 +1,6 @@
 package org.alter.game.action
 
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
@@ -147,7 +148,7 @@ object EquipAction {
              */
             for (i in 0 until p.equipment.capacity) {
                 val equip = p.equipment[i] ?: continue
-                val otherDef = p.world.definitions.get(ItemDef::class.java, equip.id)
+                val otherDef = getItem(equip.id)
                 if (otherDef.equipType == equipSlot && otherDef.equipType != 0) {
                     unequip.add(i)
                 }

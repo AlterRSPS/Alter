@@ -1,6 +1,7 @@
 package org.alter.plugins.content.interfaces.tournament_supplies
 
 import dev.openrune.cache.CacheManager.getEnum
+import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.itemSize
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.priv.Privilege
@@ -43,10 +44,7 @@ on_button(interfaceId = Tournament_Supplies.TOURNAMENT_SUPPLIES_INTERFACE, compo
             player.queue(TaskPriority.WEAK) {
                 amount = inputInt("How many would you like to withdraw?")
                 if (amount > 0) {
-                    if (player.inventory.freeSlotCount < amount && !world.definitions.get(
-                            ItemDef::class.java,
-                            itemid
-                        ).stackable
+                    if (player.inventory.freeSlotCount < amount && !getItem(itemid).stackable
                     ) {
                         amount = player.inventory.freeSlotCount
                     }
@@ -54,7 +52,7 @@ on_button(interfaceId = Tournament_Supplies.TOURNAMENT_SUPPLIES_INTERFACE, compo
                 }
             }
         } else {
-            if (world.definitions.get(ItemDef::class.java, itemid).stackable) {
+            if (getItem(itemid).stackable) {
                 amount = 10000
             }
             player.inventory.add(itemid, amount)
@@ -74,7 +72,7 @@ on_button(interfaceId = Tournament_Supplies.TOURNAMENT_SUPPLIES_INVENTORY_INTERF
             1 -> player.inventory.getItemCount(player.inventory[slot]!!.id)
             else -> 1
         }
-        if (world.definitions.get(ItemDef::class.java, player.inventory[slot]!!.id).stackable) {
+        if (getItem(player.inventory[slot]!!.id).stackable) {
             amount = player.inventory.getItemCount(player.inventory[slot]!!.id)
         }
         player.inventory.remove(item = player.inventory[slot]!!.id, amount = amount , beginSlot = slot)

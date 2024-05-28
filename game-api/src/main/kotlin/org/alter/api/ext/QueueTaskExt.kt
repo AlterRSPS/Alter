@@ -1,10 +1,10 @@
 package org.alter.api.ext
 
+import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.getNpc
 import net.rsprot.protocol.game.incoming.resumed.ResumePauseButton
 import org.alter.api.InterfaceDestination
 import org.alter.api.Skills
-import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.attr.INTERACTING_NPC_ATTR
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
@@ -430,7 +430,7 @@ suspend fun QueueTask.levelUpMessageBox(skill: Int, levelIncrement: Int) {
  */
 suspend fun QueueTask.produceItemBox(vararg items: Int, title: String = "What would you like to make?", maxProducable: Int = player.inventory.capacity, logic: Player.(Int, Int) -> Unit) {
     val defs = player.world.definitions
-    val itemDefs = items.map { defs.get(ItemDef::class.java, it) }
+    val itemDefs = items.map { getItem(it) }
 
     val baseChild = 14
     val itemArray = Array(10) { -1 }

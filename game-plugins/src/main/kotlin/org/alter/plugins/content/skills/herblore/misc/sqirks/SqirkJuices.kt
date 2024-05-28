@@ -1,12 +1,11 @@
 package org.alter.plugins.content.skills.herblore.misc.sqirks
 
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.entity.Player
-import org.alter.game.model.item.Item
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
-
 import org.alter.api.ext.message
+import org.alter.game.model.entity.Player
+import org.alter.game.model.item.Item
 
 enum class SqirkJuices(val sqirks: Item, val juice: Int, val cookingXpAwarded: Double, val thieveBoost: Int, val runBoostPercent: Double) {
     WINTER(Item(Items.WINTER_SQIRK,5), Items.WINTER_SQIRKJUICE, 12.0, 0, .05),
@@ -20,7 +19,10 @@ enum class SqirkJuices(val sqirks: Item, val juice: Int, val cookingXpAwarded: D
                 player.inventory.add(juice)
                 player.addXp(Skills.COOKING, cookingXpAwarded)
             } else {
-                player.message("You do not have the required sq'irks needed. You need ${sqirks.amount - player.inventory.getItemCount(sqirks.id)} more ${player.world.definitions.get(ItemDef::class.java, sqirks.id).name}.")
+                player.message("You do not have the required sq'irks needed. You need ${sqirks.amount - player.inventory.getItemCount(sqirks.id)} more ${
+                    getItem(
+                        sqirks.id
+                    ).name}.")
             }
         } else {
             player.message("You need a beer glass to make a sq'irk juice!")

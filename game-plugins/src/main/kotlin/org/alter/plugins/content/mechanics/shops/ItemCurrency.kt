@@ -3,7 +3,6 @@ package org.alter.plugins.content.mechanics.shops
 import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.cfg.Items
 import org.alter.api.ext.message
-import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.World
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
@@ -65,7 +64,7 @@ open class ItemCurrency(private val currencyItem: Int, private val singularCurre
 
     override fun getSellPrice(world: World, item: Int): Int = Math.max(1, getItem(item).cost)
 
-    override fun getBuyPrice(world: World, item: Int): Int = (world.definitions.get(ItemDef::class.java, item).cost * 0.6).toInt()
+    override fun getBuyPrice(world: World, item: Int): Int = (getItem(item).cost * 0.6).toInt()
 
     override fun sellToPlayer(p: Player, shop: Shop, slot: Int, amt: Int) {
         val shopItem = shop.items[slot] ?: return

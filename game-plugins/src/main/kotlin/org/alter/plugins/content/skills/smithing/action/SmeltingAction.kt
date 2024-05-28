@@ -1,10 +1,9 @@
 package org.alter.plugins.content.skills.smithing.action
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
 import org.alter.api.ext.*
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.smithing.data.Bar
 
 /**
@@ -12,17 +11,19 @@ import org.alter.plugins.content.skills.smithing.data.Bar
  *
  * Handles the action of smelting bars at a furnace.
  */
-class SmeltingAction(private val defs: DefinitionSet) {
+class SmeltingAction {
 
     /**
      * A map of bar ids to their item names
      */
-    private val barNames = Bar.values.associate { it.id to  defs.get(ItemDef::class.java, it.id).name.lowercase() }
+    private val barNames = Bar.values.associate { it.id to getItem(it.id).name.lowercase() }
 
     /**
      * A map of ore ids to their item names
      */
-    private val oreNames = Bar.values.map { Pair(it.primaryOre, it.secondaryOre) }.flatMap { it.toList() }.distinct().associate { it to  defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val oreNames = Bar.values.map { Pair(it.primaryOre, it.secondaryOre) }.flatMap { it.toList() }.distinct().associate { it to getItem(
+        it
+    ).name.lowercase() }
 
     /**
      * Handles the smelting of a bar

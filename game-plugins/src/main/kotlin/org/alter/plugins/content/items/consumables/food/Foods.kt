@@ -1,11 +1,6 @@
 package org.alter.plugins.content.items.food
 
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.entity.Player
-import org.alter.game.model.timer.ATTACK_DELAY
-import org.alter.game.model.timer.COMBO_FOOD_DELAY
-import org.alter.game.model.timer.FOOD_DELAY
-import org.alter.game.model.timer.POTION_DELAY
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.EquipmentType
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
@@ -13,6 +8,11 @@ import org.alter.api.ext.hasEquipped
 import org.alter.api.ext.heal
 import org.alter.api.ext.message
 import org.alter.api.ext.playSound
+import org.alter.game.model.entity.Player
+import org.alter.game.model.timer.ATTACK_DELAY
+import org.alter.game.model.timer.COMBO_FOOD_DELAY
+import org.alter.game.model.timer.FOOD_DELAY
+import org.alter.game.model.timer.POTION_DELAY
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -44,7 +44,7 @@ object Foods {
         }
 
         val oldHp = p.getSkills().getCurrentLevel(Skills.HITPOINTS)
-        val foodName = p.world.definitions.get(ItemDef::class.java, food.item).name
+        val foodName = getItem(food.item).name
 
         p.animate(anim)
         p.playSound(EAT_FOOD_SOUND)

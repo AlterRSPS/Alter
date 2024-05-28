@@ -1,10 +1,10 @@
 package org.alter.plugins.content.skills.prayer
 
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.entity.Player
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
 import org.alter.api.cfg.Animation
 import org.alter.api.ext.message
+import org.alter.game.model.entity.Player
 
 /**
  * @author Fritz <frikkipafi@gmail.com>
@@ -20,7 +20,7 @@ object Bury {
                 wait(3)
                 p.unlock()
             }
-        val boneName = p.world.definitions.get(ItemDef::class.java, bones.id).name
+        val boneName = getItem(bones.id).name
         when(bones){
             else -> {
                 p.message("You bury a ${boneName.lowercase()}")

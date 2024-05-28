@@ -1,5 +1,7 @@
 package org.alter.plugins.content.skills.cooking.special
 
+import dev.openrune.cache.CacheManager.getItem
+
 val INGREDIENTS = intArrayOf(Items.EGG, Items.POT_OF_FLOUR, Items.BUCKET_OF_MILK)
 
 INGREDIENTS.forEach { ingredient ->
@@ -12,8 +14,7 @@ INGREDIENTS.forEach { ingredient ->
 }
 
 fun checkIngredients(player: Player): Boolean {
-    val defs = world.definitions
-    val names = INGREDIENTS.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    val names = INGREDIENTS.associate { it to getItem(it).name.lowercase() }
 
     val missing = arrayListOf<Int>()
     INGREDIENTS.forEach { ingredient ->

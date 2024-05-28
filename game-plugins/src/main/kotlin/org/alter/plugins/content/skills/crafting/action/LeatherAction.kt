@@ -1,10 +1,10 @@
 package org.alter.plugins.content.skills.crafting.action
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
-import org.alter.api.ext.*
+import org.alter.api.ext.messageBox
+import org.alter.api.ext.player
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.crafting.data.LeatherItem
 import org.alter.plugins.content.skills.crafting.data.Leathers
 
@@ -13,10 +13,12 @@ import org.alter.plugins.content.skills.crafting.data.Leathers
  * @editor pitch blac23
  */
 
-class LeatherAction(private val defs: DefinitionSet) {
+class LeatherAction {
 
-    private val leatherNames = Leathers.leatherDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
-    private val leatherItemNames = Leathers.leatherDefinitions.flatMap { it.value.values }.distinct().associate { it.id to defs.get(ItemDef::class.java, it.id).name.lowercase() }
+    private val leatherNames = Leathers.leatherDefinitions.keys.associate { it to getItem(it).name.lowercase() }
+    private val leatherItemNames = Leathers.leatherDefinitions.flatMap { it.value.values }.distinct().associate { it.id to getItem(
+        it.id
+    ).name.lowercase() }
 
     suspend fun leathers(task: QueueTask, leathers: Int, leatherItem: LeatherItem, amount: Int) {
         if (!canLeather(task, leathers, leatherItem))

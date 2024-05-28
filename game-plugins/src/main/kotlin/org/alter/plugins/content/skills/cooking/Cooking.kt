@@ -1,25 +1,27 @@
 package org.alter.plugins.content.skills.cooking
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.entity.Player
-import org.alter.game.model.queue.QueueTask
-import org.alter.api.Skills
-import org.alter.api.ext.*
 /*import org.alter.plugins.content.modules.tutorialisland.TutorialIsland
 import org.alter.plugins.content.modules.tutorialisland.events.CookedBreadEvent
 import org.alter.plugins.content.modules.tutorialisland.events.CookedShrimpEvent
 import org.alter.plugins.content.modules.tutorialisland.events.CreateBreadDoughEvent*/
+import dev.openrune.cache.CacheManager.getItem
+import org.alter.api.Skills
+import org.alter.api.ext.filterableMessage
+import org.alter.api.ext.interpolate
+import org.alter.api.ext.playSound
+import org.alter.api.ext.player
+import org.alter.game.model.entity.Player
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.cooking.data.CookingFood
 import org.alter.plugins.content.skills.cooking.data.CookingIngredient
 import org.alter.plugins.content.skills.cooking.data.CookingObj
 
-class Cooking(private val defs: DefinitionSet) {
+class Cooking {
 
-    val foodNames = CookingFood.values.associate { it.raw_item to defs.get(ItemDef::class.java, it.raw_item).name.lowercase() }
-    val cookedFoodNames = CookingFood.values.associate { it.cooked_item to defs.get(ItemDef::class.java, it.cooked_item).name.lowercase() }
+    val foodNames = CookingFood.values.associate { it.raw_item to getItem(it.raw_item).name.lowercase() }
+    val cookedFoodNames = CookingFood.values.associate { it.cooked_item to getItem(it.cooked_item).name.lowercase() }
 
-    val ingredientNames = CookingIngredient.values.associate { it.result to defs.get(ItemDef::class.java, it.result).name.lowercase() }
+    val ingredientNames = CookingIngredient.values.associate { it.result to getItem(it.result).name.lowercase() }
 
     suspend fun cook(task: QueueTask, food: CookingFood, amount: Int, obj: CookingObj, forceBurn: Boolean = false) {
         val player = task.player

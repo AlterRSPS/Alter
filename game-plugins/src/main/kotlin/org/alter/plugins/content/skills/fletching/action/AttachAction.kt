@@ -1,10 +1,10 @@
 package org.alter.plugins.content.skills.fletching.action
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
-import org.alter.api.ext.*
+import org.alter.api.ext.messageBox
+import org.alter.api.ext.player
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.fletching.data.Attached
 
 /**
@@ -12,17 +12,19 @@ import org.alter.plugins.content.skills.fletching.data.Attached
  *
  * Handles the action of attaching one item to another (with or without a required third item)
  */
-class AttachAction(private val defs: DefinitionSet) {
+class AttachAction {
 
     /**
      * A map of attached items to their item names
      */
-    private val itemNames = Attached.attachedDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val itemNames = Attached.attachedDefinitions.keys.associate { it to getItem(it).name.lowercase() }
 
     /**
      * A map of material ids to their item names
      */
-    private val materialNames = Attached.attachedDefinitions.values.flatMap { listOf(it.firstMaterial, it.secondMaterial) }.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val materialNames = Attached.attachedDefinitions.values.flatMap { listOf(it.firstMaterial, it.secondMaterial) }.associate { it to getItem(
+        it
+    ).name.lowercase() }
 
     /**
      * Handles the attachment of item one to item two
@@ -95,7 +97,7 @@ class AttachAction(private val defs: DefinitionSet) {
 
         if (attached.toolRequired >= 0 && !inventory.contains(attached.toolRequired)) {
             if(sendMessageBox)
-                task.messageBox("You need a ${defs.get(ItemDef::class.java, attached.toolRequired).name.lowercase()} to attach ${materialNames[attached.firstMaterial]} and ${materialNames[attached.secondMaterial]}")
+                task.messageBox("You need a ${getItem(attached.toolRequired).name.lowercase()} to attach ${materialNames[attached.firstMaterial]} and ${materialNames[attached.secondMaterial]}")
             return false
         }
 

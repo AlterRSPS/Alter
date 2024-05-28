@@ -1,6 +1,5 @@
 package org.alter.plugins.content.skills.cooking
 
-import org.alter.game.plugin.KotlinPlugin
 import org.alter.plugins.content.skills.cooking.data.CookingFood
 import org.alter.plugins.content.skills.cooking.data.CookingIngredient
 import org.alter.plugins.content.skills.cooking.data.CookingObj
@@ -17,7 +16,7 @@ val burntFoodDefs = CookingFood.values.associate { it.burnt_item to it }
 
 val ingredientDefs = CookingIngredient.values.associate { it.result to it }
 
-val cooking = Cooking(world.definitions)
+val cooking = Cooking()
 
 val ingredientListenHashes = Int2ObjectOpenHashMap<Boolean>()
 val objListenHashes = Int2ObjectOpenHashMap<Boolean>()

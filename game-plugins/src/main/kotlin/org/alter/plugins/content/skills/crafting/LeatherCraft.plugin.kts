@@ -6,7 +6,7 @@ import org.alter.game.model.attr.OTHER_ITEM_ID_ATTR
 import org.alter.game.model.attr.INTERACTING_ITEM_ID
 
 val leatherDefs = Leathers.leatherDefinitions
-val leatherAction = LeatherAction(world.definitions)
+val leatherAction = LeatherAction()
 
 leatherDefs.keys.forEach { leathers ->
 //    on_item_on_item(item1 = Items.NEEDLE, item2 = leathers) { craftLeather(player, leathers) }

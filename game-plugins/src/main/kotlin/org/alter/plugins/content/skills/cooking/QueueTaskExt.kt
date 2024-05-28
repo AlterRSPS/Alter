@@ -1,8 +1,8 @@
 package org.alter.plugins.content.skills.cooking
 
+import dev.openrune.cache.CacheManager.getItem
 import net.rsprot.protocol.game.incoming.resumed.ResumePauseButton
 import org.alter.api.ext.*
-import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.cooking.data.CookingObj
@@ -13,7 +13,7 @@ private val closeCookingDialog: QueueTask.() -> Unit = {
 
 suspend fun QueueTask.cookingMessageBox(vararg items: Int, title: String = "What would you like to cook?", maxItems: Int = player.inventory.capacity, obj: CookingObj?, logic: Player.(Int, Int, CookingObj?) -> Unit) {
     val defs = player.world.definitions
-    val itemDefs = items.map { defs.get(ItemDef::class.java, it) }
+    val itemDefs = items.map { getItem(it) }
 
     val itemArray = Array(10) { -1 }
     val nameArray = Array(10) { "|" }

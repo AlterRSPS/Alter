@@ -1,15 +1,14 @@
 package org.alter.plugins.content.skills.woodcutting
 
-import org.alter.game.fs.def.ItemDef
+import dev.openrune.cache.CacheManager.getItem
+import org.alter.api.Skills
+import org.alter.api.cfg.Items
+import org.alter.api.ext.*
 import org.alter.game.model.attr.AttributeKey
 import org.alter.game.model.entity.DynamicObject
 import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
-import org.alter.api.Skills
-import org.alter.api.cfg.Items
-
-import org.alter.api.ext.*
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -27,7 +26,7 @@ object Woodcutting {
             return
         }
 
-        val logName = p.world.definitions.get(ItemDef::class.java, tree.log).name
+        val logName = getItem(tree.log).name
         val axe = AxeType.values.firstOrNull { p.getSkills().getBaseLevel(Skills.WOODCUTTING) >= it.level && (p.equipment.contains(it.item) || p.inventory.contains(it.item)) }!!
 
         p.filterableMessage("You swing your axe at the tree.")

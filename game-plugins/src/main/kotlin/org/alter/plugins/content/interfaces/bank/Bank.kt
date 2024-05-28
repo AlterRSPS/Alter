@@ -7,11 +7,7 @@ import org.alter.game.model.item.Item
 import org.alter.api.BonusSlot
 import org.alter.api.InterfaceDestination
 import org.alter.api.ext.*
-import org.alter.plugins.content.interfaces.bank.BankTabs.BANK_TABLIST_ID
-import org.alter.plugins.content.interfaces.bank.BankTabs.BANK_TAB_ROOT_VARBIT
 import org.alter.plugins.content.interfaces.bank.BankTabs.SELECTED_TAB_VARBIT
-import org.alter.plugins.content.interfaces.bank.BankTabs.getCurrentTab
-import org.alter.plugins.content.interfaces.bank.BankTabs.getTabByItem
 import org.alter.plugins.content.interfaces.equipstats.EquipmentStats
 
 /**

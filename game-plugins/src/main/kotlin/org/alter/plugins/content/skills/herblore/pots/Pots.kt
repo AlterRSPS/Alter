@@ -1,14 +1,13 @@
 package org.alter.plugins.content.skills.herblore.pots
 
+import dev.openrune.cache.CacheManager.getItem
 import io.github.oshai.kotlinlogging.KotlinLogging
-import org.alter.game.fs.def.ItemDef
+import org.alter.api.Skills
+import org.alter.api.cfg.Items
+import org.alter.api.ext.*
 import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
 import org.alter.game.model.attr.OTHER_ITEM_SLOT_ATTR
 import org.alter.game.model.entity.Player
-import org.alter.api.Skills
-import org.alter.api.cfg.Items
-
-import org.alter.api.ext.*
 
 
 class Pot(val unfinished: Int, val secondary: Int, val finished: IntArray, val minLevel: Int, val xpAwarded: Double) {
@@ -40,12 +39,12 @@ class Pot(val unfinished: Int, val secondary: Int, val finished: IntArray, val m
     fun consume(player: Player) {
         val chargeCount = finished.indexOf(player.getInteractingItem().id)+1
         if(chargeCount == 1 && player.inventory.remove(finished[0], beginSlot = player.getInteractingItemSlot()).hasSucceeded()) {
-            player.message("You drink some of your ${player.world.definitions.get(ItemDef::class.java, finished[chargeCount-1]).name}.")
+            player.message("You drink some of your ${getItem(finished[chargeCount - 1]).name}.")
             player.animate(829)
             player.inventory.add(Items.VIAL)
             player.message("You have finished your potion.")
         } else if(chargeCount != 0 && player.inventory.remove(finished[chargeCount-1], beginSlot = player.getInteractingItemSlot()).hasSucceeded()) {
-            player.message("You drink some of your ${player.world.definitions.get(ItemDef::class.java, finished[chargeCount-1]).name}")
+            player.message("You drink some of your ${getItem(finished[chargeCount-1]).name}")
             player.animate(829)
             player.inventory.add(finished[chargeCount-2], beginSlot = player.getInteractingItemSlot())
             player.message("You have ${chargeCount-1} doses of potion left.")
