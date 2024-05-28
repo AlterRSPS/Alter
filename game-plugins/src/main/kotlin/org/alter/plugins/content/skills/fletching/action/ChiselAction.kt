@@ -1,12 +1,11 @@
 package org.alter.plugins.content.skills.fletching.action
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
-
-import org.alter.api.ext.*
+import org.alter.api.ext.messageBox
+import org.alter.api.ext.player
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.fletching.data.Chiseled
 
 /**
@@ -14,16 +13,18 @@ import org.alter.plugins.content.skills.fletching.data.Chiseled
  *
  * Handles the action of chiseling items with a chisel
  */
-class ChiselAction(private val defs: DefinitionSet) {
+class ChiselAction {
     /**
      * A map of chiseled ids to their item names
      */
-    private val chiseledNames = Chiseled.chiseledDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val chiseledNames = Chiseled.chiseledDefinitions.keys.associate { it to getItem(it).name.lowercase() }
 
     /**
      * A map of unchiseled item ids to their item names
      */
-    private val unchiseledNames = Chiseled.chiseledDefinitions.values.associate { it.unchiseled to defs.get(ItemDef::class.java, it.unchiseled).name.lowercase() }
+    private val unchiseledNames = Chiseled.chiseledDefinitions.values.associate { it.unchiseled to getItem(
+        it.unchiseled
+    ).name.lowercase() }
 
     /**
      * Handles the chiseling of a chiseled

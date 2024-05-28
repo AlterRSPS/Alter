@@ -1,12 +1,12 @@
 package org.alter.plugins.content.skills.fletching.action
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
-
-import org.alter.api.ext.*
+import org.alter.api.ext.messageBox
+import org.alter.api.ext.player
+import org.alter.game.fs.DefinitionSet
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.fletching.data.Log
 import org.alter.plugins.content.skills.fletching.data.WhittleItem
 
@@ -19,12 +19,12 @@ class WhittlingAction(private val defs: DefinitionSet) {
     /**
      * A map of log ids to their item names
      */
-    private val logNames = Log.logDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val logNames = Log.logDefinitions.keys.associate { it to getItem(it).name.lowercase() }
 
     /**
      * A map of fletchable item ids to their item names
      */
-    private val whittleNames = Log.logDefinitions.flatMap { it.value.values }.distinct().associate { it.id to defs.get(ItemDef::class.java, it.id).name.lowercase() }
+    private val whittleNames = Log.logDefinitions.flatMap { it.value.values }.distinct().associate { it.id to getItem(it.id).name.lowercase() }
 
     /**
      * Handles the whittling of a log

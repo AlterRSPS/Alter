@@ -1,10 +1,11 @@
 package org.alter.plugins.content.skills.fletching.action
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
-import org.alter.api.ext.*
+import org.alter.api.ext.messageBox
+import org.alter.api.ext.player
+import org.alter.game.fs.DefinitionSet
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.fletching.data.Tipped
 
 /**
@@ -17,17 +18,17 @@ class TipAction(private val defs: DefinitionSet) {
     /**
      * A map of the completed items to their item names
      */
-    private val itemNames = Tipped.tippedDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val itemNames = Tipped.tippedDefinitions.keys.associate { it to getItem(it).name.lowercase() }
 
     /**
      * A map of tipped item bases to their item names
      */
-    private val baseNames = Tipped.tippedDefinitions.values.associate { it.base to defs.get(ItemDef::class.java, it.base).name.lowercase() }
+    private val baseNames = Tipped.tippedDefinitions.values.associate { it.base to getItem(it.base).name.lowercase() }
 
     /**
      * A map of item tips to their item names
      */
-    private val tipNames = Tipped.tippedDefinitions.values.associate { it.tip to defs.get(ItemDef::class.java, it.tip).name.lowercase() }
+    private val tipNames = Tipped.tippedDefinitions.values.associate { it.tip to getItem(it.tip).name.lowercase() }
 
     /**
      * Handles the tipping of an item

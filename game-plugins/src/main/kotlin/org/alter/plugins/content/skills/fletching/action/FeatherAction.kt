@@ -1,12 +1,12 @@
 package org.alter.plugins.content.skills.fletching.action
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
-
-import org.alter.api.ext.*
+import org.alter.api.ext.messageBox
+import org.alter.api.ext.player
+import org.alter.game.fs.DefinitionSet
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.fletching.data.Feathered
 
 /**
@@ -19,12 +19,14 @@ class FeatherAction(private val defs: DefinitionSet) {
     /**
      * A map of feathered items to their item names
      */
-    private val itemNames = Feathered.featheredDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val itemNames = Feathered.featheredDefinitions.keys.associate { it to getItem(it).name.lowercase() }
 
     /**
      * A map of the unfeathered items to their item names
      */
-    private val unfeatheredNames = Feathered.featheredDefinitions.values.associate { it.unfeathered to defs.get(ItemDef::class.java, it.unfeathered).name.lowercase() }
+    private val unfeatheredNames = Feathered.featheredDefinitions.values.associate { it.unfeathered to getItem(
+        it.unfeathered
+    ).name.lowercase() }
 
     /**
      * A map of feathers to their item names
