@@ -1,13 +1,13 @@
 package org.alter.game.service.xtea
 
 import com.google.gson.Gson
+import dev.openrune.cache.MAPS
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import net.rsprot.crypto.xtea.XteaKey
 import net.rsprot.protocol.game.outgoing.map.util.XteaProvider
 import org.alter.game.Server
-import org.alter.game.fs.IndexType
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import org.apache.commons.io.FilenameUtils
@@ -74,7 +74,7 @@ class XteaKeyService : Service, XteaProvider {
              * Check if the region corresponding to the x and z can be
              * found in our cache.
              */
-            library.data(IndexType.MAPS.number, "m${x}_$z") ?: continue
+            library.data(MAPS, "m${x}_$z") ?: continue
 
             /*
              * The region was found in the regionIndex.

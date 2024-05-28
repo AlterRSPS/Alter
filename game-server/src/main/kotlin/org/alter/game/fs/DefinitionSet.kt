@@ -1,7 +1,13 @@
 package org.alter.game.fs
 
 import com.displee.cache.CacheLibrary
+import dev.openrune.cache.*
+import dev.openrune.cache.filestore.loadLocations
+import dev.openrune.cache.filestore.loadTerrain
 import io.github.oshai.kotlinlogging.KotlinLogging
+import io.netty.buffer.Unpooled
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.alter.game.fs.def.*
 import org.alter.game.model.Direction
 import org.alter.game.model.Tile
@@ -10,9 +16,6 @@ import org.alter.game.model.collision.CollisionUpdate
 import org.alter.game.model.entity.StaticObject
 import org.alter.game.model.region.ChunkSet
 import org.alter.game.service.xtea.XteaKeyService
-import io.netty.buffer.Unpooled
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import java.io.IOException
 
 /**
@@ -89,18 +92,18 @@ class DefinitionSet {
     }
 
     fun <T : Definition> load(library: CacheLibrary, type: Class<out T>) {
-        val configType: ConfigType = when (type) {
-            VarpDef::class.java -> ConfigType.VARPLAYER
-            VarbitDef::class.java -> ConfigType.VARBIT
-            EnumDef::class.java -> ConfigType.ENUM
-            NpcDef::class.java -> ConfigType.NPC
-            ObjectDef::class.java -> ConfigType.OBJECT
-            ItemDef::class.java -> ConfigType.ITEM
-            AnimDef::class.java -> ConfigType.SEQUENCE
+        val configType = when (type) {
+            VarpDef::class.java -> VARPLAYER
+            VarbitDef::class.java -> VARBIT
+            EnumDef::class.java -> ENUM
+            NpcDef::class.java -> NPC
+            ObjectDef::class.java -> OBJECT
+            ItemDef::class.java -> ITEM
+            AnimDef::class.java -> SEQUENCE
             else -> throw IllegalArgumentException("Unhandled class type ${type::class.java}.")
         }
-        val configs = library.index(IndexType.CONFIGS.number)
-        val archive = configs.archive(configType.id)
+        val configs = library.index(CONFIGS)
+        val archive = configs.archive(configType)
         val files = archive!!.files
 
         val definitions = Int2ObjectOpenHashMap<T?>(files.size + 1)
@@ -156,7 +159,7 @@ class DefinitionSet {
         val x = id shr 8
         val z = id and 0xFF
 
-        val mapData = world.filestore.data(IndexType.MAPS.number, "m${x}_$z") ?: return false
+        val mapData = world.filestore.data(MAPS, "m${x}_$z") ?: return false
 
         val baseX: Int = id shr 8 and 255 shl 6
         val baseY: Int = id and 255 shl 6
@@ -208,7 +211,7 @@ class DefinitionSet {
 
         val keys = xteaService?.get(id) ?: XteaKeyService.EMPTY_KEYS
         try {
-            val landData = world.filestore.data(IndexType.MAPS.number, "l${x}_$z", keys) ?: return false
+            val landData = world.filestore.data(MAPS, "l${x}_$z", keys) ?: return false
 
             loadLocations(landData) { loc ->
                 val tile = Tile(
