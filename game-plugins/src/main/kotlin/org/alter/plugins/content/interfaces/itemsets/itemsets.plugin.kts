@@ -1,5 +1,6 @@
 
 import dev.openrune.cache.CacheManager.getEnum
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.priv.Privilege
@@ -54,7 +55,7 @@ on_button(ItemSets.ITEMSETS_INTERFACE, 2) {
         val message: StringBuilder = StringBuilder()
         if (itemlist[Item] != null) {
             itemlist[Item]?.forEachIndexed { index, item ->
-                val itemName = world.definitions.get(ItemDef::class.java, item).name
+                val itemName = getItem(item).name
                 if (!player.inventory.contains(item)) {
                     message.append("<col=ef1020>$itemName</col>")
                     missing += 1

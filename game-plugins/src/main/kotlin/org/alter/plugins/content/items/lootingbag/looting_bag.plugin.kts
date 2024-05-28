@@ -1,9 +1,8 @@
 package org.alter.plugins.content.items.others.lootingbag
 
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
-import org.alter.game.model.container.ContainerStackType
-import org.alter.game.model.container.key.ContainerKey
 import org.alter.plugins.service.marketvalue.ItemMarketValueService
 
 val CONTAINER_KEY = ContainerKey("looting_bag", capacity = 28, stackType = ContainerStackType.NORMAL)
@@ -144,7 +143,7 @@ fun store(p: Player, slot: Int, amount: Int) {
         return
     }
 
-    if (!item.toUnnoted(world.definitions).getDef(world.definitions).tradeable) {
+    if (!item.toUnnoted(world.definitions).getDef().isTradeable) {
         p.message("Only tradeable items can be put in the bag.")
         return
     }
@@ -270,7 +269,7 @@ fun get_item_prices(world: World, container: ItemContainer): Array<Int> {
 
     container.forEachIndexed { index, item ->
         if (item != null) {
-            prices[index] = marketService?.get(item.id) ?: world.definitions.get(ItemDef::class.java, item.id).cost
+            prices[index] = marketService?.get(item.id) ?: getItem(item.id).cost
         }
     }
 

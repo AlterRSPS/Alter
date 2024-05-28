@@ -63,7 +63,7 @@ object MagicSpells {
         if (p.getVarbit(INF_RUNES_VARBIT) == 0) {
             for (item in items) {
                 if (p.inventory.getItemCount(item.id) < item.amount && p.equipment.getItemCount(item.id) < item.amount) {
-                    p.message("You do not have enough ${item.getDef(p.world.definitions).name}s to cast this spell.")
+                    p.message("You do not have enough ${item.getDef().name}s to cast this spell.")
                     return false
                 }
             }

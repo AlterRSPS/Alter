@@ -16,8 +16,8 @@ class ItemDef(override val id: Int) : Definition(id) {
     var stacks = false
     var cost = 0
     var members = false
-    val groundMenu = Array<String?>(5) { null }
-    val inventoryMenu = Array<String?>(5) { null }
+    val options = Array<String?>(5) { null }
+    val interfaceOptions = Array<String?>(5) { null }
     val equipmentMenu = Array<String?>(8) { null }
     /**
      * The item can be traded through the grand exchange.
@@ -50,7 +50,7 @@ class ItemDef(override val id: Int) : Definition(id) {
      * Custom metadata.
      */
     var examine: String? = null
-    var tradeable = false
+    var isTradeable = false
     var weight = 0.0
     var attackSpeed = -1
     var equipSlot = -1
@@ -135,13 +135,13 @@ class ItemDef(override val id: Int) : Definition(id) {
             26 -> femaleModel1 = buf.readUnsignedShort()
             27 -> wearPos3 = buf.readByte().toInt()
             in 30 until 35 -> {
-                groundMenu[opcode - 30] = buf.readString()
-                if (groundMenu[opcode - 30]!!.equals("null", true)
-                    || groundMenu[opcode - 30]!!.equals("hidden", true)) {
-                    groundMenu[opcode - 30] = null
+                options[opcode - 30] = buf.readString()
+                if (options[opcode - 30]!!.equals("null", true)
+                    || options[opcode - 30]!!.equals("hidden", true)) {
+                    options[opcode - 30] = null
                 }
             }
-            in 35 until 40 -> inventoryMenu[opcode - 35] = buf.readString()
+            in 35 until 40 -> interfaceOptions[opcode - 35] = buf.readString()
             40,41 -> {
                 val count = buf.readUnsignedByte().toInt()
                 val src = IntArray(count)

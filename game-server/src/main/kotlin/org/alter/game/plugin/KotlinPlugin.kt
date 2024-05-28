@@ -1,5 +1,6 @@
 package org.alter.game.plugin
 
+import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.getNpc
 import dev.openrune.cache.CacheManager.getObject
 import org.alter.game.Server
@@ -166,8 +167,8 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     fun on_item_option(item: Int, option: String, logic: (Plugin).() -> Unit) {
         val opt = option.lowercase()
         val def = world.definitions.get(ItemDef::class.java, item)
-        val option = def.inventoryMenu.indexOfFirst { it?.lowercase() == opt }
-        check(option != -1) { "Option \"$option\" not found for item $item [options=${def.inventoryMenu.filterNotNull().filter { it.isNotBlank() }}]" }
+        val option = def.interfaceOptions.indexOfFirst { it?.lowercase() == opt }
+        check(option != -1) { "Option \"$option\" not found for item $item [options=${def.interfaceOptions.filterNotNull().filter { it.isNotBlank() }}]" }
         r.bindItem(item, option + 1, logic)
     }
     /**
@@ -201,14 +202,14 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     fun itemHasGroundOption(item: Int, option: String) : Boolean {
-        val slot =  world.definitions.get(ItemDef::class.java, item).inventoryMenu.indexOfFirst {
+        val slot = getItem(item).interfaceOptions.indexOfFirst {
             it?.lowercase() == option.lowercase()
         }
         return slot != -1
     }
 
     fun itemHasInventoryOption(item: Int, option: String) : Boolean {
-        val slot =  world.definitions.get(ItemDef::class.java, item).inventoryMenu.indexOfFirst {
+        val slot =  world.definitions.get(ItemDef::class.java, item).interfaceOptions.indexOfFirst {
             it?.lowercase() == option.lowercase()
         }
         return slot != -1
@@ -258,10 +259,10 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     fun on_ground_item_option(item: Int, option: String, logic: (Plugin).() -> Unit) {
         val opt = option.lowercase()
-        val def = world.definitions.get(ItemDef::class.java, item)
-        val slot = def.groundMenu.indexOfFirst { it?.lowercase() == opt }
+        val def = getItem(item)
+        val slot = def.options.indexOfFirst { it?.lowercase() == opt }
 
-        check(slot != -1) { "Option \"$option\" not found for ground item $item [options=${def.groundMenu.filterNotNull().filter { it.isNotBlank() }}]" }
+        check(slot != -1) { "Option \"$option\" not found for ground item $item [options=${def.options.filterNotNull().filter { it.isNotBlank() }}]" }
 
         r.bindGroundItem(item, slot + 1, logic)
     }

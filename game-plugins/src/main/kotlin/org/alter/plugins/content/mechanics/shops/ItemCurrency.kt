@@ -1,5 +1,8 @@
 package org.alter.plugins.content.mechanics.shops
 
+import dev.openrune.cache.CacheManager.getItem
+import org.alter.api.cfg.Items
+import org.alter.api.ext.message
 import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.World
 import org.alter.game.model.entity.Player
@@ -8,9 +11,6 @@ import org.alter.game.model.shop.PurchasePolicy
 import org.alter.game.model.shop.Shop
 import org.alter.game.model.shop.ShopCurrency
 import org.alter.game.model.shop.ShopItem
-import org.alter.api.cfg.Items
-import org.alter.api.ext.message
-import org.alter.game.model.container.ItemContainer
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -25,7 +25,7 @@ open class ItemCurrency(private val currencyItem: Int, private val singularCurre
         }
         when {
             shop.purchasePolicy == PurchasePolicy.BUY_TRADEABLES -> {
-                if (!Item(item).getDef(world.definitions).tradeable) {
+                if (!Item(item).getDef().isTradeable) {
                     return AcceptItemState(acceptable = false, errorMessage = "You can't sell this item.")
                 }
             }
@@ -63,7 +63,7 @@ open class ItemCurrency(private val currencyItem: Int, private val singularCurre
         }
     }
 
-    override fun getSellPrice(world: World, item: Int): Int = Math.max(1, world.definitions.get(ItemDef::class.java, item).cost)
+    override fun getSellPrice(world: World, item: Int): Int = Math.max(1, getItem(item).cost)
 
     override fun getBuyPrice(world: World, item: Int): Int = (world.definitions.get(ItemDef::class.java, item).cost * 0.6).toInt()
 

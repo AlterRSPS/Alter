@@ -54,7 +54,7 @@ object PriceGuide {
         val guideContainer = p.attr[GUIDE_CONTAINER] ?: return
         val invContainer = p.attr[TEMP_INV_CONTAINER] ?: return
 
-        if (!p.world.definitions.get(ItemDef::class.java, item).tradeable) {
+        if (!p.world.definitions.get(ItemDef::class.java, item).isTradeable) {
             p.message("You cannot trade that item.")
             return
         }
@@ -88,7 +88,7 @@ object PriceGuide {
         for (i in 0 until invContainer.capacity) {
             val item = invContainer[i] ?: continue
 
-            if (!p.world.definitions.get(ItemDef::class.java, item.id).tradeable) {
+            if (!p.world.definitions.get(ItemDef::class.java, item.id).isTradeable) {
                 anyUntradeables = true
                 continue
             }

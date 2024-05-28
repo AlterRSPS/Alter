@@ -1,6 +1,7 @@
 package org.alter.service
 
 import dev.openrune.cache.CacheManager
+import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.getItems
 import dev.openrune.cache.CacheManager.getNpcs
 import dev.openrune.cache.CacheManager.getObjects
@@ -11,7 +12,6 @@ import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import java.io.PrintWriter
@@ -74,7 +74,7 @@ class DumpEntityIdService : Service {
             if (item.isPlaceholder) {
                 continue
             }
-            val rawName = if (item.noteTemplateId > 0) definitions.get(ItemDef::class.java, item.noteLinkId).name + "_NOTED" else item.name
+            val rawName = if (item.noteTemplateId > 0) getItem(item.noteLinkId).name + "_NOTED" else item.name
             if (rawName.isNotBlank()) {
                 val name = namer.name(rawName, i)
                 write(items, "const val $name = $i")

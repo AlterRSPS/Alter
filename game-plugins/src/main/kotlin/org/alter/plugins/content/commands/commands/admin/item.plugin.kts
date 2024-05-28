@@ -1,3 +1,4 @@
+import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.itemSize
 import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
@@ -10,7 +11,7 @@ on_command("item", Privilege.ADMIN_POWER, description = "Spawn items") {
             val item = values[0].toInt()
             val amount = if (values.size > 1) Math.min(Int.MAX_VALUE.toLong(), values[1].parseAmount()).toInt() else 1
             if (item < itemSize()) {
-                val def = world.definitions.get(ItemDef::class.java, Item(item).toUnnoted(world.definitions).id)
+                val def = getItem(Item(item).toUnnoted(world.definitions).id)
                 val result = player.inventory.add(item = item, amount = amount, assureFullInsertion = false)
                 player.message("You have spawned <col=801700>${DecimalFormat().format(result.completed)} x ${def.name}</col></col> ($item).")
             } else {

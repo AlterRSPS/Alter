@@ -1,9 +1,10 @@
 package org.alter.game.model
 
 import com.displee.cache.CacheLibrary
+import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.getNpc
-import gg.rsmod.util.Stopwatch
 import gg.rsmod.util.ServerProperties
+import gg.rsmod.util.Stopwatch
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.buffer.Unpooled
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
@@ -19,7 +20,6 @@ import org.alter.game.DevContext
 import org.alter.game.GameContext
 import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
 import org.alter.game.fs.def.ObjectDef
 import org.alter.game.model.attr.AttributeMap
 import org.alter.game.model.attr.TERMINAL_ARGS
@@ -393,7 +393,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     fun spawn(item: GroundItem) {
         val tile = item.tile
         val chunk = chunks.getOrCreate(tile)
-        val def = definitions.get(ItemDef::class.java, item.item)
+        val def = getItem(item.item)
         if (def.stackable) {
             val oldItem = chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull { it.item == item.item && it.ownerUID == item.ownerUID }
             if (oldItem != null) {
@@ -545,7 +545,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
 
     fun sendExamine(p: Player, id: Int, type: ExamineEntityType) {
         val examine = when (type) {
-            ExamineEntityType.ITEM -> definitions.get(ItemDef::class.java, id).examine
+            ExamineEntityType.ITEM -> getItem(id).examine
             ExamineEntityType.NPC -> getNpc(id).examine
             ExamineEntityType.OBJECT -> definitions.get(ObjectDef::class.java, id).examine
         }

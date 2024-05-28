@@ -1,6 +1,7 @@
 package org.alter.api.ext
 
 import dev.openrune.cache.CacheManager
+import dev.openrune.cache.CacheManager.getItem
 import gg.rsmod.util.BitManipulation
 import net.rsprot.protocol.game.outgoing.interfaces.*
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
@@ -16,7 +17,6 @@ import org.alter.api.*
 import org.alter.api.cfg.Song
 import org.alter.api.cfg.Varbit
 import org.alter.api.cfg.Varp
-import org.alter.game.fs.def.ItemDef
 import org.alter.game.model.World
 import org.alter.game.model.attr.CHANGE_LOGGING
 import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
@@ -592,7 +592,7 @@ fun Player.sendWeaponComponentInformation() {
     val panel: Int
 
     if (weapon != null) {
-        val definition = world.definitions.get(ItemDef::class.java, weapon.id)
+        val definition = getItem(weapon.id)
         name = definition.name
 
         panel = Math.max(0, definition.weaponType)

@@ -21,7 +21,8 @@ fun bind_unequip(equipment: EquipmentType, child: Int) {
                 val item = player.equipment[equipment.id] ?: return@on_button
                 val menuOpt = opt
                 if (!world.plugins.executeEquipmentOption(player, item.id, menuOpt) && world.devContext.debugItemActions) {
-                    val action = item.getDef(world.definitions).equipmentMenu[menuOpt]
+                    val action = world.definitions.get(ItemDef::class.java, item.id).equipmentMenu[menuOpt]
+                    //TODO ADVO was val action = item.getDef(world.definitions).equipmentMenu[menuOpt]
                     player.message("Unhandled equipment action: [item=${item.id}, option=$menuOpt, action=$action]")
                 }
             }

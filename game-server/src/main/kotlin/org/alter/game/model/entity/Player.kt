@@ -299,7 +299,7 @@ open class Player(world: World) : Pawn(world) {
 
             items.forEach { item ->
                 //TODO ADVO THIS IS SHIT
-                val def = item?.getDef(world.definitions)?: return
+                val def = item?.getDef() ?: return
                 avatar.extendedInfo.setWornObj(def.wearPos1, item.id, def.wearPos2, def.wearPos3)
             }
         }
@@ -447,8 +447,8 @@ open class Player(world: World) : Pawn(world) {
     }
 
     fun calculateWeight() {
-        val inventoryWeight = inventory.filterNotNull().sumOf { it.getDef(world.definitions).weight }
-        val equipmentWeight = equipment.filterNotNull().sumOf { it.getDef(world.definitions).weight }
+        val inventoryWeight = inventory.filterNotNull().sumOf { it.getDef().weight }
+        val equipmentWeight = equipment.filterNotNull().sumOf { it.getDef().weight }
         this.weight = inventoryWeight + equipmentWeight
         write(UpdateRunWeight(this.weight.toInt()))
     }
@@ -457,7 +457,7 @@ open class Player(world: World) : Pawn(world) {
         Arrays.fill(equipmentBonuses, 0)
         for (i in 0 until equipment.capacity) {
             val item = equipment[i] ?: continue
-            val def = item.getDef(world.definitions)
+            val def = item.getDef()
             def.bonuses.forEachIndexed { index, bonus -> equipmentBonuses[index] += bonus }
         }
     }

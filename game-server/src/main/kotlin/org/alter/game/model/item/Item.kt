@@ -1,8 +1,8 @@
 package org.alter.game.model.item
 
+import dev.openrune.cache.CacheManager.getItem
 import gg.rsmod.util.toStringHelper
 import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -25,7 +25,7 @@ class Item(val id: Int, var amount: Int = 1) {
      * with the same [Item.id].
      */
     fun toNoted(definitions: DefinitionSet): Item {
-        val def = getDef(definitions)
+        val def = getDef()
         return if (def.noteTemplateId == 0 && def.noteLinkId > 0) Item(def.noteLinkId, amount).copyAttr(this) else Item(this).copyAttr(this)
     }
 
@@ -35,7 +35,7 @@ class Item(val id: Int, var amount: Int = 1) {
      * with the same [Item.id].
      */
     fun toUnnoted(definitions: DefinitionSet): Item {
-        val def = getDef(definitions)
+        val def = getDef()
         return if (def.noteTemplateId > 0) Item(def.noteLinkId, amount).copyAttr(this) else Item(this).copyAttr(this)
     }
 
@@ -43,9 +43,9 @@ class Item(val id: Int, var amount: Int = 1) {
      * Get the name of this item. If this item is noted this method will use
      * its un-noted template and get the name for said template.
      */
-    fun getName(definitions: DefinitionSet): String = toUnnoted(definitions).getDef(definitions).name
+    fun getName(definitions: DefinitionSet): String = toUnnoted(definitions).getDef().name
 
-    fun getDef(definitions: DefinitionSet) = definitions.get(ItemDef::class.java, id)
+    fun getDef() = getItem(id)
 
     /**
      * Returns true if [attr] contains any value.

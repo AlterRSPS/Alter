@@ -90,7 +90,7 @@ class ItemMetadataService : Service {
         val def = world.definitions.get(ItemDef::class.java, item.id)
         def.name = item.name
         def.examine = item.examine
-        def.tradeable = item.tradeable
+        def.isTradeable = item.tradeable
         def.weight = item.weight
         if (item.equipment != null) {
             val equipment = item.equipment
