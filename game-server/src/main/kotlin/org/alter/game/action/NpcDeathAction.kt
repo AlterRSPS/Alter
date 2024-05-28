@@ -1,9 +1,12 @@
 package org.alter.game.action
 
-import org.alter.game.fs.def.AnimDef
+import dev.openrune.cache.CacheManager.getAnim
 import org.alter.game.model.LockState
 import org.alter.game.model.attr.KILLER_ATTR
-import org.alter.game.model.entity.*
+import org.alter.game.model.entity.AreaSound
+import org.alter.game.model.entity.Npc
+import org.alter.game.model.entity.Pawn
+import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
 import org.alter.game.plugin.Plugin
@@ -52,7 +55,7 @@ object NpcDeathAction {
         }
 
         deathAnimation.forEach { anim ->
-            val def = npc.world.definitions.get(AnimDef::class.java, anim)
+            val def = getAnim(anim)
             npc.animate(def.id)
             wait(def.cycleLength +1)
         }

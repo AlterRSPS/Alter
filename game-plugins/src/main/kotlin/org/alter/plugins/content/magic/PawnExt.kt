@@ -1,13 +1,13 @@
 package org.alter.plugins.content.magic
 
-import org.alter.game.fs.def.AnimDef
+import dev.openrune.cache.CacheManager.getAnim
+import org.alter.api.ext.getWildernessLevel
+import org.alter.api.ext.message
 import org.alter.game.model.LockState
 import org.alter.game.model.Tile
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.TaskPriority
-import org.alter.api.ext.getWildernessLevel
-import org.alter.api.ext.message
 
 fun Player.canTeleport(type: TeleportType): Boolean {
     val currWildLvl = tile.getWildernessLevel()
@@ -55,7 +55,7 @@ fun Pawn.teleport(endTile: Tile, type: TeleportType) {
           }
 
           type.endAnimation?.let {
-              val def = world.definitions.get(AnimDef::class.java, it)
+              val def = getAnim(it)
               wait(def.cycleLength)
           }
 

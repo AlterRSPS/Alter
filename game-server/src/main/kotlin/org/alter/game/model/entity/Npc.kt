@@ -1,9 +1,10 @@
 package org.alter.game.model.entity
 
-import dev.openrune.cache.CacheManager
+import dev.openrune.cache.CacheManager.getNpc
+import dev.openrune.cache.CacheManager.getVarbit
+import dev.openrune.cache.filestore.definition.data.NpcType
 import gg.rsmod.util.toStringHelper
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcAvatar
-import org.alter.game.fs.def.NpcDef
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 import org.alter.game.model.World
@@ -94,9 +95,9 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
     var aggroCheck: ((Npc, Player) -> Boolean)? = null
 
     /**
-     * Gets the [NpcDef] corresponding to our [id].
+     * Gets the [NpcType] corresponding to our [id].
      */
-    val def: NpcDef = world.definitions.get( NpcDef::class.java, id)
+    val def: NpcType = getNpc(id)
 
     var pathsIndex = 0
 
@@ -120,7 +121,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
 
     override fun isRunning(): Boolean = false
 
-    override fun getSize(): Int = world.definitions.get(NpcDef::class.java, id).size
+    override fun getSize(): Int = getNpc(id).size // TODO ADVO can we just do def.size() ?
 
     override fun getCurrentHp(): Int = hitpoints
 
@@ -146,17 +147,17 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      * [player]'s view point.
      *
      * Npcs can change their appearance for each player depending on their
-     * [NpcDef.transforms] and [NpcDef.transformVarp]/[NpcDef.transformVarbit].
+     * [NpcType.transforms] and [NpcType.transformVarp]/[NpcType.transformVarbit].
      */
     fun getTransform(player: Player): Int {
-        if (def.transformVarbit != -1) {
-            val varbitDef = CacheManager.getVarbit(def.transformVarbit)
+        if (def.varbit != -1) {
+            val varbitDef = getVarbit(def.varbit)
             val state = player.varps.getBit(varbitDef.varp, varbitDef.startBit, varbitDef.endBit)
             return def.transforms!![state]
         }
 
-        if (def.transformVarp != -1) {
-            val state = player.varps.getState(def.transformVarp)
+        if (def.varp != -1) {
+            val state = player.varps.getState(def.varp)
             return def.transforms!![state]
         }
 

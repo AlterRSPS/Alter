@@ -1,7 +1,7 @@
 package org.alter.game.action
 
+import dev.openrune.cache.CacheManager.getAnim
 import net.rsprot.protocol.game.outgoing.sound.MidiJingle
-import org.alter.game.fs.def.AnimDef
 import org.alter.game.model.attr.KILLER_ATTR
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
@@ -31,7 +31,7 @@ object PlayerDeathAction {
 
     private suspend fun QueueTask.death(player: Player) {
         val world = player.world
-        val deathAnim = world.definitions.get(AnimDef::class.java, DEATH_ANIMATION)
+        val deathAnim = getAnim(DEATH_ANIMATION)
         val instancedMap = world.instanceAllocator.getMap(player.tile)
         player.write(MidiJingle(90))
         player.damageMap.getMostDamage()?.let { killer ->

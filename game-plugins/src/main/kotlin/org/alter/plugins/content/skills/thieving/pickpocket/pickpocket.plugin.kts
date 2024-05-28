@@ -1,5 +1,6 @@
 package org.alter.plugins.content.skills.thieving.pickpocket
 
+import dev.openrune.cache.CacheManager.getNpc
 import org.alter.plugins.content.combat.isAttacking
 import org.alter.plugins.content.combat.isBeingAttacked
 
@@ -20,7 +21,7 @@ PickpocketNpc.values.forEach { pickpocketNpc ->
  */
 suspend fun QueueTask.pickpocket(npcId: Int, npc: PickpocketNpc) {
     val playerThievingLvl = player.getSkills().getCurrentLevel(Skills.THIEVING)
-    val npcName = npc.npcName ?: world.definitions.get(NpcDef::class.java, npcId).name
+    val npcName = npc.npcName ?: getNpc(npcId).name
     if (playerThievingLvl < npc.reqLevel) {
         player.message("You need level ${npc.reqLevel} thieving to pick the $npcName's pocket.")
         return

@@ -2,9 +2,7 @@ package org.alter.game.fs
 
 import com.displee.cache.CacheLibrary
 import dev.openrune.cache.*
-import dev.openrune.cache.CacheManager.animSize
 import dev.openrune.cache.CacheManager.itemSize
-import dev.openrune.cache.CacheManager.npcSize
 import dev.openrune.cache.CacheManager.objectSize
 import dev.openrune.cache.filestore.loadLocations
 import dev.openrune.cache.filestore.loadTerrain
@@ -38,17 +36,6 @@ class DefinitionSet {
     private var xteaService: XteaKeyService? = null
 
     fun loadAll(library: CacheLibrary) {
-        /*
-         * Load [AnimDef]s.
-         */
-        load(library, AnimDef::class.java)
-        logger.info("Loaded ${animSize()} animation definitions.")
-
-        /*
-         * Load [NpcDef]s.
-         */
-        load(library, NpcDef::class.java)
-        logger.info("Loaded ${npcSize()} npc definitions.")
 
         /*
          * Load [ItemDef]s.
@@ -79,10 +66,8 @@ class DefinitionSet {
 
     fun <T : Definition> load(library: CacheLibrary, type: Class<out T>) {
         val configType = when (type) {
-            NpcDef::class.java -> NPC
             ObjectDef::class.java -> OBJECT
             ItemDef::class.java -> ITEM
-            AnimDef::class.java -> SEQUENCE
             else -> throw IllegalArgumentException("Unhandled class type ${type::class.java}.")
         }
         val configs = library.index(CONFIGS)
@@ -103,10 +88,8 @@ class DefinitionSet {
     @Suppress("UNCHECKED_CAST")
     fun <T : Definition> createDefinition(type: Class<out T>, id: Int, data: ByteArray): T {
         val def: Definition = when (type) {
-            NpcDef::class.java -> NpcDef(id)
             ObjectDef::class.java -> ObjectDef(id)
             ItemDef::class.java -> ItemDef(id)
-            AnimDef::class.java -> AnimDef(id)
             else -> throw IllegalArgumentException("Unhandled class type ${type::class.java}.")
         }
 

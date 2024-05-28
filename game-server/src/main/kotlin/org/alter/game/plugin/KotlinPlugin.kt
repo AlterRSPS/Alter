@@ -5,7 +5,6 @@ import dev.openrune.cache.CacheManager.getObject
 import org.alter.game.Server
 import org.alter.game.event.Event
 import org.alter.game.fs.def.ItemDef
-import org.alter.game.fs.def.NpcDef
 import org.alter.game.fs.def.ObjectDef
 import org.alter.game.model.*
 import org.alter.game.model.combat.NpcCombatDef
@@ -226,8 +225,8 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     /**
      * Checks if a [NPC] has [option]
      */
-    fun npcHasOption(npc: Int, option: String) : Boolean {
-        val slot =  world.definitions.get(NpcDef::class.java, npc).options.indexOfFirst {
+    fun npcHasOption(npc: Int, option: String) : Boolean { //TODO ADVO what is this for?
+        val slot =  getNpc(npc).actions.indexOfFirst {
             it?.lowercase() == option.lowercase()
         }
         return slot != -1
@@ -245,10 +244,10 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
      */
     fun on_npc_option(npc: Int, option: String, lineOfSightDistance: Int = -1, logic: (Plugin).() -> Unit) {
         val opt = option.lowercase()
-        val def = world.definitions.get(NpcDef::class.java, npc)
-        val slot = def.options.indexOfFirst { it?.lowercase() == opt }
+        val def = getNpc(npc)
+        val slot = def.actions.indexOfFirst { it?.lowercase() == opt }
 
-        check(slot != -1) { "Option \"$option\" not found for npc $npc [options=${def.options.filterNotNull().filter { it.isNotBlank() }}]" }
+        check(slot != -1) { "Option \"$option\" not found for npc $npc [options=${def.actions.filterNotNull().filter { it.isNotBlank() }}]" }
 
         r.bindNpc(npc, slot + 1, lineOfSightDistance, logic)
     }

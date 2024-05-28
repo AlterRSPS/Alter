@@ -1,16 +1,16 @@
 package org.alter.api.ext
 
+import dev.openrune.cache.CacheManager.getNpc
 import net.rsprot.protocol.game.incoming.resumed.ResumePauseButton
+import org.alter.api.InterfaceDestination
+import org.alter.api.Skills
 import org.alter.game.fs.def.ItemDef
-import org.alter.game.fs.def.NpcDef
 import org.alter.game.model.attr.INTERACTING_NPC_ATTR
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
 import org.alter.game.model.queue.QueueTask
-import org.alter.api.InterfaceDestination
-import org.alter.api.Skills
 
 /**
  * The child id of the chat box in the gameframe interface. This can change
@@ -247,7 +247,7 @@ suspend fun QueueTask.messageBox(message: String, lineSpacing: Int = 31, continu
  */
 suspend fun QueueTask.chatNpc(message: String, npc: Int = -1, animation: Int = 588, title: String? = null) {
     val npcId = if (npc != -1) npc else player.attr[INTERACTING_NPC_ATTR]?.get()?.getTransform(player) ?: throw RuntimeException("Npc id must be manually set as the player is not interacting with an npc.")
-    val dialogTitle = title ?: player.world.definitions.get(NpcDef::class.java, npcId).name
+    val dialogTitle = title ?: getNpc(npcId).name
 
     player.runClientScript(2379)
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 231)
