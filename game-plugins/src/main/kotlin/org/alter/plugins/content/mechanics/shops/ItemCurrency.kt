@@ -43,7 +43,7 @@ open class ItemCurrency(private val currencyItem: Int, private val singularCurre
     override fun onSellValueMessage(p: Player, shopItem: ShopItem) {
         val unnoted = Item(shopItem.item).toUnnoted()
         val value = shopItem.sellPrice ?: getSellPrice(p.world, unnoted.id)
-        val name = unnoted.getName(p.world.definitions)
+        val name = unnoted.getName()
         val currency = if (value != 1) pluralCurrency else singularCurrency
         p.message("$name: currently costs $value $currency")
     }
@@ -54,7 +54,7 @@ open class ItemCurrency(private val currencyItem: Int, private val singularCurre
         if (acceptance.acceptable) {
             val shopItem = shop.items.filterNotNull().firstOrNull { it.item == item}
             val value = shopItem?.buyPrice ?: getBuyPrice(p.world, unnoted.id)
-            val name = unnoted.getName(p.world.definitions)
+            val name = unnoted.getName()
             val currency = if (value != 1) pluralCurrency else singularCurrency
             p.message("$name: shop will buy for $value $currency")
         } else {

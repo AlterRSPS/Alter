@@ -21,7 +21,7 @@ on_command("item", Privilege.ADMIN_POWER, description = "Spawn items") {
             player.queue(TaskPriority.STRONG) {
                 val item = spawn() ?: return@queue
                 if (item.amount > 0) {
-                    player.message("You have spawned ${item.amount} x ${item.getName(world.definitions)}.")
+                    player.message("You have spawned ${item.amount} x ${item.getName()}.")
                 } else {
                     player.message("You don't have enough inventory space.")
                 }

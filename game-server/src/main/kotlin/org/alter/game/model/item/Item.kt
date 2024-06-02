@@ -2,7 +2,6 @@ package org.alter.game.model.item
 
 import dev.openrune.cache.CacheManager.getItem
 import gg.rsmod.util.toStringHelper
-import org.alter.game.fs.DefinitionSet
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -43,7 +42,7 @@ class Item(val id: Int, var amount: Int = 1) {
      * Get the name of this item. If this item is noted this method will use
      * its un-noted template and get the name for said template.
      */
-    fun getName(definitions: DefinitionSet): String = toUnnoted().getDef().name
+    fun getName(): String = toUnnoted().getDef().name
 
     fun getDef() = getItem(id)
 

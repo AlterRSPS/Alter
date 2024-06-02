@@ -98,9 +98,7 @@ enum class Stall(val stalls: IntArray, private val levelRequired: Int, val xp: D
 
 				val outMsg = "You steal ${
 					Misc.getIndefiniteArticle(
-						item.getName(
-							player.world.definitions,
-						).lowercase()
+						item.getName().lowercase()
 					)
 				}."
 				player.addXp(Skills.THIEVING, xp)
