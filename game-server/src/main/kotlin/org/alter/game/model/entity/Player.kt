@@ -6,6 +6,7 @@ import net.rsprot.protocol.api.Session
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcInfo
 import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerAvatar
 import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerInfo
+import net.rsprot.protocol.game.outgoing.info.util.BuildArea
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
 import net.rsprot.protocol.game.outgoing.map.RebuildLogin
 import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
@@ -374,6 +375,7 @@ open class Player(world: World) : Pawn(world) {
     fun register(): Boolean = world.register(this)
 
     lateinit var playerInfo: PlayerInfo
+    @OptIn(ExperimentalUnsignedTypes::class)
     lateinit var npcInfo: NpcInfo
     var session: Session<Client>? = null
 
@@ -381,11 +383,15 @@ open class Player(world: World) : Pawn(world) {
     /**
      * Handles any logic that should be executed upon log in.
      */
+    @OptIn(ExperimentalUnsignedTypes::class)
     fun login() {
         playerInfo.updateCoord(tile.height, tile.x, tile.z)
         if (entityType.isHumanControlled) {
-            write(RebuildLogin(tile.x shr 3, tile.z shr 3, world.xteaKeyService!!, playerInfo))
-            avatar.postUpdate() // TODO ADVO on newer API this isnt needed
+            write(RebuildLogin(tile.x ushr 3, tile.z shr 3, world.xteaKeyService!!, playerInfo))
+            val buildArea = BuildArea((tile.x ushr 3) - 6, (tile.z ushr 3) - 6)
+            playerInfo.updateBuildArea(buildArea)
+            npcInfo.updateBuildArea(buildArea)
+            //avatar.postUpdate() // TODO ADVO on newer API this isnt needed
             world.getService(LoggerService::class.java, searchSubclasses = true)?.logLogin(this)
         }
 

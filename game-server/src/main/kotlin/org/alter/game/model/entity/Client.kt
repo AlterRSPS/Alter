@@ -4,7 +4,6 @@ import gg.rsmod.util.toStringHelper
 import net.rsprot.protocol.api.login.GameLoginResponseHandler
 import net.rsprot.protocol.game.outgoing.map.RebuildLogin
 import net.rsprot.protocol.game.outgoing.map.RebuildNormal
-import net.rsprot.protocol.loginprot.incoming.util.AuthenticationType
 import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
 import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.model.EntityType
@@ -133,7 +132,7 @@ class Client(world: World) : Player(world) {
         fun fromRequest(
             world: World,
             request: GameLoginResponseHandler<Client>,
-            block: LoginBlock<AuthenticationType<*>>
+            block: LoginBlock<*>
         ): Client {
             val client = Client(world)
             client.clientWidth = block.width

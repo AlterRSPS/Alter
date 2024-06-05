@@ -18,7 +18,10 @@ class RsModConnectionHandler(private val world: World): GameConnectionHandler<Cl
     }
 
     override fun onReconnect(responseHandler: GameLoginResponseHandler<Client>, block: LoginBlock<XteaKey>) {
-        TODO("Not yet implemented")
+        if (loginService == null) {
+            loginService = world.getService(LoginService::class.java)
+        }
+        loginService!!.addLoginRequest(world, responseHandler, block)
     }
 
     companion object {

@@ -1,6 +1,7 @@
 package org.alter.game.sync.task
 
 import net.rsprot.crypto.xtea.XteaKey
+import net.rsprot.protocol.game.outgoing.info.util.BuildArea
 import net.rsprot.protocol.game.outgoing.map.RebuildNormal
 import net.rsprot.protocol.game.outgoing.map.RebuildRegion
 import org.alter.game.model.Coordinate
@@ -48,6 +49,9 @@ object PlayerPreSynchronizationTask : SynchronizationTask<Player> {
                 }
                 else -> RebuildNormal(current.x shr 3, current.z shr 3, xteaService)
             }
+            val buildArea = BuildArea((current.x ushr 3) - 6, (current.z ushr 3) - 6)
+            pawn.playerInfo.updateBuildArea(buildArea)
+            pawn.npcInfo.updateBuildArea(buildArea)
             pawn.write(rebuildMessage)
         }
     }

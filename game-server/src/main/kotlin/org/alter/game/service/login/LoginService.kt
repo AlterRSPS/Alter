@@ -1,10 +1,9 @@
 package org.alter.game.service.login
 
-import gg.rsmod.util.concurrency.ThreadFactoryBuilder
 import gg.rsmod.util.ServerProperties
+import gg.rsmod.util.concurrency.ThreadFactoryBuilder
 import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.protocol.api.login.GameLoginResponseHandler
-import net.rsprot.protocol.loginprot.incoming.util.AuthenticationType
 import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
@@ -56,7 +55,7 @@ class LoginService : Service {
     override fun terminate(server: org.alter.game.Server, world: World) {
     }
 
-    fun addLoginRequest(world: World, responseHandler: GameLoginResponseHandler<Client>, block: LoginBlock<AuthenticationType<*>>) {
+    fun addLoginRequest(world: World, responseHandler: GameLoginResponseHandler<Client>, block: LoginBlock<*>) {
         val serviceRequest = LoginServiceRequest(world, responseHandler, block)
         requests.offer(serviceRequest)
     }

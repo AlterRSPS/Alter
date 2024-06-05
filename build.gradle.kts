@@ -28,7 +28,7 @@ allprojects {
         mavenCentral()
         maven("https://repo.maven.apache.org/maven2")
         maven("https://jitpack.io")
-        maven("https://raw.githubusercontent.com/MatthewBishop/hosting/main/")
+//        maven("https://raw.githubusercontent.com/MatthewBishop/hosting/main/")
         maven("https://raw.githubusercontent.com/OpenRune/hosting/master")
     }
 
@@ -51,8 +51,9 @@ allprojects {
         testImplementation(lib.kotlin.test.junit)
 
         implementation("dev.openrune:filestore:1.3.0")
-        implementation("net.rsprot:osrs-221-api:1.0-SNAPSHOT")
+//        implementation("net.rsprot:osrs-221-api:1.0-SNAPSHOT")
         implementation("com.displee:rs-cache-library:7.1.3")
+        implementation("net.rsprot:osrs-221-api:1.0.0-ALPHA-20240605")
     }
 
     idea {

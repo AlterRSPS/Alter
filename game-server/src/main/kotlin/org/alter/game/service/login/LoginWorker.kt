@@ -54,13 +54,13 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
                                 accountHash = 0,
                                 userId = 0,
                                 userHash = 0,
-                            ), request.block) {
-                                it?.apply {
-                                    client.session = this
-                                    client.playerInfo = client.world.network.playerInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
-                                    client.npcInfo = client.world.network.npcInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
-                                    client.login()
-                                }
+                            ), request.block).apply {
+                                if(this == null)
+                                    return@apply
+                                client.session = this
+                                client.playerInfo = client.world.network.playerInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
+                                client.npcInfo = client.world.network.npcInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
+                                client.login()
                             }
                         } else {
                             request.responseHandler.writeFailedResponse(LoginResponse.InvalidSave)
