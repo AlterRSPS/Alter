@@ -4,7 +4,6 @@ import dev.openrune.cache.*
 import dev.openrune.cache.filestore.loadLocations
 import dev.openrune.cache.filestore.loadTerrain
 import io.github.oshai.kotlinlogging.KotlinLogging
-import org.alter.game.fs.def.*
 import org.alter.game.model.Direction
 import org.alter.game.model.Tile
 import org.alter.game.model.World
