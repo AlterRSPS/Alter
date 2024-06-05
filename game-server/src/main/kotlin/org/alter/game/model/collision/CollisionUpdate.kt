@@ -96,9 +96,9 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
 
         private fun unwalkable(def: dev.openrune.cache.filestore.definition.data.ObjectType, type: Int): Boolean {
             val isSolidFloorDecoration = type == ObjectType.FLOOR_DECORATION.value && def.interactive == 1
-            val isRoof = type > ObjectType.DIAGONAL_INTERACTABLE.value && type < ObjectType.FLOOR_DECORATION.value && def.solid == 1
-            val isWall = (type >= ObjectType.LENGTHWISE_WALL.value && type <= ObjectType.RECTANGULAR_CORNER.value || type == ObjectType.DIAGONAL_WALL.value) && def.solid == 1
-            val isSolidInteractable = (type == ObjectType.DIAGONAL_INTERACTABLE.value || type == ObjectType.INTERACTABLE.value) && def.solid == 1
+            val isRoof = type > ObjectType.DIAGONAL_INTERACTABLE.value && type < ObjectType.FLOOR_DECORATION.value && def.solid != 1
+            val isWall = (type >= ObjectType.LENGTHWISE_WALL.value && type <= ObjectType.RECTANGULAR_CORNER.value || type == ObjectType.DIAGONAL_WALL.value) && def.solid != 1
+            val isSolidInteractable = (type == ObjectType.DIAGONAL_INTERACTABLE.value || type == ObjectType.INTERACTABLE.value) && def.solid != 1
 
             return isWall || isRoof || isSolidInteractable || isSolidFloorDecoration
         }
