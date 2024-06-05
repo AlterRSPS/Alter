@@ -391,7 +391,6 @@ open class Player(world: World) : Pawn(world) {
             val buildArea = BuildArea((tile.x ushr 3) - 6, (tile.z ushr 3) - 6)
             playerInfo.updateBuildArea(buildArea)
             npcInfo.updateBuildArea(buildArea)
-            //avatar.postUpdate() // TODO ADVO on newer API this isnt needed
             world.getService(LoggerService::class.java, searchSubclasses = true)?.logLogin(this)
         }
 
