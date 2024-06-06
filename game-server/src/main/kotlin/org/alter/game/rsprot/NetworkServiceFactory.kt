@@ -11,6 +11,7 @@ import net.rsprot.protocol.api.bootstrap.BootstrapFactory
 import net.rsprot.protocol.api.handlers.ExceptionHandlers
 import net.rsprot.protocol.api.js5.Js5GroupProvider
 import net.rsprot.protocol.api.suppliers.NpcInfoSupplier
+import net.rsprot.protocol.api.suppliers.WorldEntityInfoSupplier
 import net.rsprot.protocol.common.client.OldSchoolClientType
 import net.rsprot.protocol.game.incoming.buttons.If1Button
 import net.rsprot.protocol.game.incoming.buttons.If3Button
@@ -44,8 +45,9 @@ import net.rsprot.protocol.game.incoming.social.FriendListAdd
 import net.rsprot.protocol.game.incoming.social.FriendListDel
 import net.rsprot.protocol.game.incoming.social.IgnoreListAdd
 import net.rsprot.protocol.game.incoming.social.IgnoreListDel
-import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcAvatarExceptionHandler
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcIndexSupplier
+import net.rsprot.protocol.game.outgoing.info.worldentityinfo.WorldEntityAvatarExceptionHandler
+import net.rsprot.protocol.game.outgoing.info.worldentityinfo.WorldEntityIndexSupplier
 import net.rsprot.protocol.message.IncomingGameMessage
 import net.rsprot.protocol.message.codec.incoming.GameMessageConsumerRepositoryBuilder
 import net.rsprot.protocol.message.codec.incoming.provider.DefaultGameMessageConsumerRepositoryProvider
@@ -150,7 +152,7 @@ class NetworkServiceFactory(val groupProvider: DispleeJs5GroupProvider,
     override fun getNpcInfoSupplier(): NpcInfoSupplier {
         //val npcIndexSupplier: NpcIndexSupplier = RsmodNpcIndexSupplier(world)
         val npcIndexSupplier = npcIndexSupplier()
-        val npcAvatarExceptionHandler: NpcAvatarExceptionHandler = RsmodNpcAvatarExceptionHandler(world)
+        val npcAvatarExceptionHandler = RsmodNpcAvatarExceptionHandler(world)
         return NpcInfoSupplier(npcIndexSupplier, npcAvatarExceptionHandler)
     }
 
@@ -159,6 +161,37 @@ class NetworkServiceFactory(val groupProvider: DispleeJs5GroupProvider,
         val exponent: BigInteger = rsaService.getExponent()
         val modulus: BigInteger = rsaService.getModulus()
         return RsaKeyPair(exponent, modulus)
+    }
+
+    override fun getWorldEntityInfoSupplier(): WorldEntityInfoSupplier {
+        val worldEntityIndexSupplier = worldEntityIndexSupplier()
+        val worldEntityAvatarExceptionHandler = worldEntityAvatarExceptionHandler()
+        return WorldEntityInfoSupplier(worldEntityIndexSupplier, worldEntityAvatarExceptionHandler)
+    }
+
+    private fun worldEntityIndexSupplier(): WorldEntityIndexSupplier {
+        return WorldEntityIndexSupplier { localPlayerIndex, level, x, z, viewDistance ->
+            val player = world.players[localPlayerIndex] ?: error("Player not found at index: $localPlayerIndex")
+            val tile = Tile(x, z, level)
+            val chunk = world.chunks.get(tile)?: error("Invalid chunk for : $tile")
+
+            val surrounding = chunk.coords.getSurroundingCoords()
+            println("Searching!!!")
+
+            world.npcs.entries.filterNotNull().filter {
+                shouldAdd(player, it, viewDistance)
+            }.map {
+                println("Found npc " + it.index)
+                it.index
+            }.iterator()
+        }
+    }
+
+    private fun worldEntityAvatarExceptionHandler(): WorldEntityAvatarExceptionHandler {
+        return WorldEntityAvatarExceptionHandler { index, exception ->
+            //TODO log exception and then deregister this index.
+            //Should this drop
+        }
     }
 
     private fun npcIndexSupplier(): NpcIndexSupplier {

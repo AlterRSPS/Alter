@@ -53,7 +53,7 @@ allprojects {
         implementation("dev.openrune:filestore:1.3.0")
 //        implementation("net.rsprot:osrs-221-api:1.0-SNAPSHOT")
         implementation("com.displee:rs-cache-library:7.1.3")
-        implementation("net.rsprot:osrs-221-api:1.0.0-ALPHA-20240605")
+        implementation("net.rsprot:osrs-222-api:1.0.0-ALPHA-20240605")
     }
 
     idea {

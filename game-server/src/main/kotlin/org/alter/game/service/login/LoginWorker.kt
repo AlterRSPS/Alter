@@ -60,6 +60,7 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
                                 client.session = this
                                 client.playerInfo = client.world.network.playerInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
                                 client.npcInfo = client.world.network.npcInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
+                                client.worldEntityInfo= client.world.network.worldEntityInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
                                 client.login()
                             }
                         } else {

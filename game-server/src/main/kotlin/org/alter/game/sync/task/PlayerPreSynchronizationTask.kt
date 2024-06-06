@@ -4,6 +4,7 @@ import net.rsprot.crypto.xtea.XteaKey
 import net.rsprot.protocol.game.outgoing.info.util.BuildArea
 import net.rsprot.protocol.game.outgoing.map.RebuildNormal
 import net.rsprot.protocol.game.outgoing.map.RebuildRegion
+import net.rsprot.protocol.game.outgoing.map.util.RebuildRegionZone
 import org.alter.game.model.Coordinate
 import org.alter.game.model.Tile
 import org.alter.game.model.entity.Player
@@ -34,10 +35,10 @@ object PlayerPreSynchronizationTask : SynchronizationTask<Player> {
             val rebuildMessage = when {
                 instance != null -> {
                     RebuildRegion(current.x shr 3, current.z shr 3, true, object  : RebuildRegion.RebuildRegionZoneProvider {
-                        override fun provide(zoneX: Int, zoneZ: Int, level: Int): RebuildRegion.RebuildRegionZone? {
+                        override fun provide(zoneX: Int, zoneZ: Int, level: Int): RebuildRegionZone? {
                             val coord = InstancedChunkSet.getCoordinates(zoneX, zoneZ, level)
                             val chunk = instance.chunks.values[coord]?: return null
-                            return RebuildRegion.RebuildRegionZone(
+                            return RebuildRegionZone(
                                 chunk.zoneX,
                                 chunk.zoneZ,
                                 chunk.height,
@@ -47,11 +48,13 @@ object PlayerPreSynchronizationTask : SynchronizationTask<Player> {
                         }
                     })
                 }
-                else -> RebuildNormal(current.x shr 3, current.z shr 3, xteaService)
+                else -> RebuildNormal(current.x shr 3, current.z shr 3, -1, xteaService)
             }
-            val buildArea = BuildArea((current.x ushr 3) - 6, (current.z ushr 3) - 6)
-            pawn.playerInfo.updateBuildArea(buildArea)
-            pawn.npcInfo.updateBuildArea(buildArea)
+            pawn.buildArea = BuildArea((current.x ushr 3) - 6, (current.z ushr 3) - 6).apply {
+                pawn.playerInfo.updateBuildArea(-1, this)
+                pawn.npcInfo.updateBuildArea(-1, this)
+                pawn.worldEntityInfo.updateBuildArea(this)
+            }
             pawn.write(rebuildMessage)
         }
     }

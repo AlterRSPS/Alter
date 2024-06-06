@@ -7,6 +7,7 @@ import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcInfo
 import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerAvatar
 import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerInfo
 import net.rsprot.protocol.game.outgoing.info.util.BuildArea
+import net.rsprot.protocol.game.outgoing.info.worldentityinfo.WorldEntityInfo
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
 import net.rsprot.protocol.game.outgoing.map.RebuildLogin
 import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
@@ -377,8 +378,9 @@ open class Player(world: World) : Pawn(world) {
     lateinit var playerInfo: PlayerInfo
     @OptIn(ExperimentalUnsignedTypes::class)
     lateinit var npcInfo: NpcInfo
+    lateinit var worldEntityInfo: WorldEntityInfo
     var session: Session<Client>? = null
-
+    var buildArea: BuildArea = BuildArea.INVALID
 
     /**
      * Handles any logic that should be executed upon log in.
@@ -386,11 +388,16 @@ open class Player(world: World) : Pawn(world) {
     @OptIn(ExperimentalUnsignedTypes::class)
     fun login() {
         playerInfo.updateCoord(tile.height, tile.x, tile.z)
+        npcInfo.updateCoord(-1, tile.height, tile.x, tile.z)
+        worldEntityInfo.updateCoord(-1, tile.height, tile.x, tile.z)
+
         if (entityType.isHumanControlled) {
-            write(RebuildLogin(tile.x ushr 3, tile.z shr 3, world.xteaKeyService!!, playerInfo))
-            val buildArea = BuildArea((tile.x ushr 3) - 6, (tile.z ushr 3) - 6)
-            playerInfo.updateBuildArea(buildArea)
-            npcInfo.updateBuildArea(buildArea)
+            write(RebuildLogin(tile.x ushr 3, tile.z shr 3, -1, world.xteaKeyService!!, playerInfo))
+            buildArea = BuildArea((tile.x ushr 3) - 6, (tile.z ushr 3) - 6).apply {
+                playerInfo.updateBuildArea(-1, this)
+                npcInfo.updateBuildArea(-1, this)
+                worldEntityInfo.updateBuildArea(this)
+            }
             world.getService(LoggerService::class.java, searchSubclasses = true)?.logLogin(this)
         }
 
