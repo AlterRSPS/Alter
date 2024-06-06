@@ -39,7 +39,6 @@ import org.alter.game.model.timer.ACTIVE_COMBAT_TIMER
 import org.alter.game.model.timer.FORCE_DISCONNECTION_TIMER
 import org.alter.game.model.varp.VarpSet
 import org.alter.game.rsprot.RsModObjectProvider
-import org.alter.game.service.GameService
 import org.alter.game.service.log.LoggerService
 import java.util.*
 
@@ -407,17 +406,15 @@ open class Player(world: World) : Pawn(world) {
             val oldChunk = if (oldTile != null) this.world.chunks.get(oldTile.chunkCoords, createIfNeeded = false) else null
             val newChunk = this.world.chunks.get(this.tile.chunkCoords, createIfNeeded = false)
             if (newChunk != null && (oldChunk != newChunk || changedHeight)) {
-                this.world.getService(GameService::class.java)?.let { service ->
-                    val newSurroundings = newChunk.coords.getSurroundingCoords()
-                    if (!changedHeight) {
-                        val oldSurroundings = oldChunk?.coords?.getSurroundingCoords() ?: ObjectOpenHashSet()
-                        newSurroundings.removeAll(oldSurroundings)
-                    }
+                val newSurroundings = newChunk.coords.getSurroundingCoords()
+                if (!changedHeight) {
+                    val oldSurroundings = oldChunk?.coords?.getSurroundingCoords() ?: ObjectOpenHashSet()
+                    newSurroundings.removeAll(oldSurroundings)
+                }
 
-                    newSurroundings.forEach { coords ->
-                        val chunk = this.world.chunks.get(coords, createIfNeeded = false) ?: return@forEach
-                        chunk.sendUpdates(this, service)
-                    }
+                newSurroundings.forEach { coords ->
+                    val chunk = this.world.chunks.get(coords, createIfNeeded = false) ?: return@forEach
+                    chunk.sendUpdates(this)
                 }
                 if (!changedHeight) {
                     if (oldChunk != null) {

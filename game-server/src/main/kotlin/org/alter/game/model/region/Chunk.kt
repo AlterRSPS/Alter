@@ -12,7 +12,6 @@ import org.alter.game.model.collision.CollisionMatrix
 import org.alter.game.model.collision.CollisionUpdate
 import org.alter.game.model.entity.*
 import org.alter.game.model.region.update.*
-import org.alter.game.service.GameService
 
 /**
  * Represents an 8x8 tile in the game map.
@@ -227,13 +226,8 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
     /**
      * Sends all [updates] from this chunk to the player [p].
      *
-     * @param gameService
-     * Game service is required to get the XTEA service.
      */
-    fun sendUpdates(
-        p: Player,
-        gameService: GameService,
-    ) {
+    fun sendUpdates(p: Player) {
         val messages = ObjectArrayList<ZoneProt>()
 
         updates.forEach { update ->
