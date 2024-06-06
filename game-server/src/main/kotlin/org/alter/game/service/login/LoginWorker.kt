@@ -1,6 +1,5 @@
 package org.alter.game.service.login
 
-import gg.rsmod.net.codec.login.LoginResultType
 import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.protocol.common.client.OldSchoolClientType
 import net.rsprot.protocol.loginprot.outgoing.LoginResponse
@@ -25,26 +24,17 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
                 val world = request.world
 
                 val client = Client.fromRequest(world, request.responseHandler, request.block)
-//                if(request.block.authentication is AuthenticationType.PasswordAuthentication) {
-//
-//                }
-//                if(request.block.authentication is AuthenticationType.TokenAuthentication) {
-//
-//                }
-//                if(request.block.authentication is XteaKey) {
-//
-//                }
+
                 val loadResult: PlayerLoadResult = boss.serializer.loadClientData(client, request.block)
 
                 if (loadResult == PlayerLoadResult.LOAD_ACCOUNT || loadResult == PlayerLoadResult.NEW_ACCOUNT) {
                     world.getService(GameService::class.java)?.submitGameThreadJob {
                         val interceptedLoginResult = verificationService.interceptLoginResult(world, client.uid, client.username, client.loginUsername)
-                        val loginResult: LoginResultType = interceptedLoginResult ?: if (client.register()) {
-                            LoginResultType.ACCEPTABLE
-                        } else {
-                            LoginResultType.COULD_NOT_COMPLETE_LOGIN
-                        }
-                        if (loginResult == LoginResultType.ACCEPTABLE) {
+
+                        if (interceptedLoginResult != null) {
+                            request.responseHandler.writeFailedResponse(interceptedLoginResult)
+                            logger.info("User '{}' login denied with code {}.", client.username, interceptedLoginResult)
+                        } else if (client.register()) {
                             request.responseHandler.writeSuccessfulResponse(LoginResponse.Ok(
                                 authenticatorResponse = AuthenticatorResponse.NoAuthenticator,
                                 staffModLevel = client.privilege.id,
@@ -65,7 +55,7 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
                             }
                         } else {
                             request.responseHandler.writeFailedResponse(LoginResponse.InvalidSave)
-                            logger.info("User '{}' login denied with code {}.", client.username, loginResult)
+                            logger.info("User '{}' login denied with code {}.", client.username, LoginResponse.InvalidSave)
                         }
                     }
                 } else {
