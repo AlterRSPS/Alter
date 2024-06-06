@@ -389,11 +389,7 @@ open class Player(world: World) : Pawn(world) {
     }
 
     /**
-     * Logic that should be executed every game cycle, after
-     * [org.alter.game.sync.task.PlayerSynchronizationTask].
-     *
-     * Note that this method may be handled in parallel, so be careful with race
-     * conditions if any logic may modify other [Pawn]s.
+     * Logic that should be executed every game cycle, after updating occurs.
      */
     fun postCycle() {
         previouslySetAnim = -1

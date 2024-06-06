@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package org.alter.game.service
 
 import gg.rsmod.net.codec.login.org.alter.game.task.sequential.SequentialPlayerCoordCycleTask
@@ -11,7 +13,6 @@ import org.alter.game.model.World
 import org.alter.game.task.*
 import org.alter.game.task.sequential.SequentialNpcCycleTask
 import org.alter.game.task.sequential.SequentialPlayerCycleTask
-import org.alter.game.task.sequential.SequentialPlayerPostCycleTask
 import org.alter.game.task.sequential.SequentialSynchronizationTask
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.Executors
@@ -144,7 +145,6 @@ class GameService : Service {
                 SequentialNpcCycleTask(),
                 SequentialPlayerCoordCycleTask(),
                 SequentialSynchronizationTask(),
-                SequentialPlayerPostCycleTask(),
             ),
         )
     }
