@@ -2,7 +2,6 @@
 
 package org.alter.game.service
 
-import gg.rsmod.net.codec.login.org.alter.game.task.sequential.SequentialPlayerCoordCycleTask
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.concurrency.ThreadFactoryBuilder
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -12,6 +11,7 @@ import kotlinx.coroutines.asCoroutineDispatcher
 import org.alter.game.model.World
 import org.alter.game.task.*
 import org.alter.game.task.sequential.SequentialNpcCycleTask
+import org.alter.game.task.sequential.SequentialPlayerCoordCycleTask
 import org.alter.game.task.sequential.SequentialPlayerCycleTask
 import org.alter.game.task.sequential.SequentialSynchronizationTask
 import java.util.concurrent.ConcurrentLinkedQueue

@@ -1,4 +1,4 @@
-package gg.rsmod.net.codec.login.org.alter.game.fs
+package org.alter.game.fs
 
 class ItemType2 {
     var attackSounds: IntArray? = null

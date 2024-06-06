@@ -1,4 +1,4 @@
-package gg.rsmod.net.codec.login.org.alter.game.task.sequential
+package org.alter.game.task.sequential
 
 import org.alter.game.model.World
 import org.alter.game.service.GameService

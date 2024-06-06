@@ -3,7 +3,6 @@ package org.alter.game.fs
 import dev.openrune.cache.CacheManager.getItems
 import dev.openrune.cache.CacheManager.itemSize
 import dev.openrune.cache.CacheManager.objectSize
-import gg.rsmod.net.codec.login.org.alter.game.fs.ItemType2
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 
