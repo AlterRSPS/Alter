@@ -17,7 +17,10 @@ suspend fun QueueTask.dialog() {
         }
         2 -> {
             chatPlayer("Isn't this place built a bit out of the way?", animation = 554)
-            chatNpc("We like it that way actually! We get disturbed less. We<br>still get rather a large amount of travellers looking for<br>sanctuary and healing here as it is!", animation = 590)
+            chatNpc(
+                "We like it that way actually! We get disturbed less. We<br>still get rather a large amount of travellers looking for<br>sanctuary and healing here as it is!",
+                animation = 590,
+            )
         }
     }
 }

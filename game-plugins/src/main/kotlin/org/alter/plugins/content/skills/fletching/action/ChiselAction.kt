@@ -22,9 +22,13 @@ class ChiselAction {
     /**
      * A map of unchiseled item ids to their item names
      */
-    private val unchiseledNames = Chiseled.chiseledDefinitions.values.associate { it.unchiseled to getItem(
-        it.unchiseled
-    ).name.lowercase() }
+    private val unchiseledNames =
+        Chiseled.chiseledDefinitions.values.associate {
+            it.unchiseled to
+                getItem(
+                    it.unchiseled,
+                ).name.lowercase()
+        }
 
     /**
      * Handles the chiseling of a chiseled
@@ -33,9 +37,14 @@ class ChiselAction {
      * @param chiseled  The Chiseled definition
      * @param amount    The amount the player is trying to chisel
      */
-    suspend fun chisel(task: QueueTask, chiseled: Chiseled, amount: Int) {
-        if (!canChisel(task, chiseled))
+    suspend fun chisel(
+        task: QueueTask,
+        chiseled: Chiseled,
+        amount: Int,
+    ) {
+        if (!canChisel(task, chiseled)) {
             return
+        }
 
         val player = task.player
         val inventory = player.inventory
@@ -45,19 +54,19 @@ class ChiselAction {
         // Wait two ticks to follow OSRS behavior
         task.wait(2)
         var completed = 0
-        while(completed < maxCount) {
+        while (completed < maxCount) {
             player.animate(chiseled.animation)
             task.wait(4)
 
             player.lock()
             // This is here to prevent a TOCTTOU attack
-            if (!canChisel(task, chiseled, sendMessageBox = false)){
+            if (!canChisel(task, chiseled, sendMessageBox = false)) {
                 player.unlock()
                 break
             }
 
             val removeUnchiseled = inventory.remove(item = chiseled.unchiseled, amount = 1, assureFullRemoval = true)
-            if (removeUnchiseled.hasFailed()){
+            if (removeUnchiseled.hasFailed()) {
                 player.unlock()
                 break
             }
@@ -76,18 +85,29 @@ class ChiselAction {
      * @param chiseled          The chiseled item being created
      * @param sendMessageBox    Whether or not to send the error message
      */
-    private suspend fun canChisel(task: QueueTask, chiseled: Chiseled, sendMessageBox: Boolean = true) : Boolean {
+    private suspend fun canChisel(
+        task: QueueTask,
+        chiseled: Chiseled,
+        sendMessageBox: Boolean = true,
+    ): Boolean {
         val player = task.player
         val inventory = player.inventory
         if (!inventory.contains(chiseled.unchiseled) || !inventory.contains(Items.CHISEL)) {
-            if(sendMessageBox)
+            if (sendMessageBox) {
                 task.messageBox("You need a chisel and ${unchiseledNames[chiseled.unchiseled]} to make ${chiseledNames[chiseled.id]}")
+            }
             return false
         }
 
         if (player.getSkills().getCurrentLevel(Skills.FLETCHING) < chiseled.level) {
-            if(sendMessageBox)
-                task.messageBox("You need a ${Skills.getSkillName(player.world, Skills.FLETCHING)} level of at least ${chiseled.level} to fletch ${chiseledNames[chiseled.id]}.")
+            if (sendMessageBox) {
+                task.messageBox(
+                    "You need a ${Skills.getSkillName(
+                        player.world,
+                        Skills.FLETCHING,
+                    )} level of at least ${chiseled.level} to fletch ${chiseledNames[chiseled.id]}.",
+                )
+            }
             return false
         }
 

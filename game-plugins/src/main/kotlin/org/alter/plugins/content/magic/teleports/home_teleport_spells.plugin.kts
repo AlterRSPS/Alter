@@ -1,26 +1,26 @@
-//package org.alter.plugins.content.magic.teleports
+// package org.alter.plugins.content.magic.teleports
 //
-//import org.alter.plugins.content.combat.isAttacking
-//import org.alter.plugins.content.combat.isBeingAttacked
-//import org.alter.plugins.content.magic.MagicSpells.on_magic_spell_button
-//import org.alter.plugins.content.magic.TeleportType
-//import org.alter.plugins.content.magic.canTeleport
+// import org.alter.plugins.content.combat.isAttacking
+// import org.alter.plugins.content.combat.isBeingAttacked
+// import org.alter.plugins.content.magic.MagicSpells.on_magic_spell_button
+// import org.alter.plugins.content.magic.TeleportType
+// import org.alter.plugins.content.magic.canTeleport
 //
-//val TERMINATE_HOME_TELEPORT_NEUTRAL: QueueTask.() -> Unit = {
+// val TERMINATE_HOME_TELEPORT_NEUTRAL: QueueTask.() -> Unit = {
 //    player.animate(-1)
 //    player.graphic(-1)
-//}
+// }
 //
-//val TERMINATE_HOME_TELEPORT_SITTING: QueueTask.() -> Unit = {
+// val TERMINATE_HOME_TELEPORT_SITTING: QueueTask.() -> Unit = {
 //    player.animate(4852)
 //    player.graphic(-1)
-//}
+// }
 //
-//val HOME_TELEPORT_TIMER_ENABLED = true
-//val HOME_TELEPORT_TIMER_DELAY = 3000
-//val HOME_TELEPORT_TIMER = TimerKey(persistenceKey = "home_teleport_delay")
+// val HOME_TELEPORT_TIMER_ENABLED = true
+// val HOME_TELEPORT_TIMER_DELAY = 3000
+// val HOME_TELEPORT_TIMER = TimerKey(persistenceKey = "home_teleport_delay")
 //
-//HomeTeleport.values.forEach { teleport ->
+// HomeTeleport.values.forEach { teleport ->
 //
 //    on_magic_spell_button(teleport.spellName) {
 //        if (player.hasMoveDestination()) {
@@ -48,9 +48,9 @@
 //            }
 //        }
 //    }
-//}
+// }
 //
-//suspend fun QueueTask.teleport(endTile: Tile) {
+// suspend fun QueueTask.teleport(endTile: Tile) {
 //    wait(2)
 //    terminateAction = TERMINATE_HOME_TELEPORT_NEUTRAL
 //    player.animate(4847)
@@ -88,9 +88,9 @@
 //    player.animate(-1)
 //    player.moveTo(endTile)
 //    player.timers[HOME_TELEPORT_TIMER] = HOME_TELEPORT_TIMER_DELAY
-//}
+// }
 //
-//suspend fun QueueTask.wait_and_check_combat(cycles: Int): Boolean {
+// suspend fun QueueTask.wait_and_check_combat(cycles: Int): Boolean {
 //    for (i in 0 until cycles) {
 //        wait(1)
 //        if (player.isBeingAttacked()) {
@@ -99,9 +99,9 @@
 //        }
 //    }
 //    return true
-//}
+// }
 //
-//enum class HomeTeleport(val spellName: String, val endTile: World.() -> Tile) {
+// enum class HomeTeleport(val spellName: String, val endTile: World.() -> Tile) {
 //    LUMBRIDGE("Lumbridge Home Teleport", { gameContext.home }),
 //    EDGEVILLE("Edgeville Home Teleport", { gameContext.home }),
 //    LUNAR("Lunar Home Teleport", { gameContext.home }),
@@ -111,4 +111,4 @@
 //    companion object {
 //        val values = enumValues<HomeTeleport>()
 //    }
-//}
+// }

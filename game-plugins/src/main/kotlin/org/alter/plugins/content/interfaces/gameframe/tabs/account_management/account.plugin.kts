@@ -5,23 +5,25 @@
 val BUTTON_ID = 109
 
 val NAME_CHANGER_ID = 45
+
 /**
  * Account Tab Buttons
  */
-val buttons: Array<Pair<String, Int>> = arrayOf(
-    Pair("UPGRADE_NOW_ID", 26),
-    Pair("BENEFITS_ID", 31),
-    Pair("INBOX_ID", 38),
-    Pair("HISTORY_ID", 61),
-    Pair("NEWS_ID", 68),
-    Pair("ARCHIVE_ID", 73),
-    Pair("WEBSITE_ID", 81),
-    Pair("GE_ID", 83),
-    Pair("WIKI_ID", 85),
-    Pair("SUPPORT_ID", 82),
-    Pair("HISCORE_ID", 84),
-    Pair("MERCH_ID", 86)
-)
+val buttons: Array<Pair<String, Int>> =
+    arrayOf(
+        Pair("UPGRADE_NOW_ID", 26),
+        Pair("BENEFITS_ID", 31),
+        Pair("INBOX_ID", 38),
+        Pair("HISTORY_ID", 61),
+        Pair("NEWS_ID", 68),
+        Pair("ARCHIVE_ID", 73),
+        Pair("WEBSITE_ID", 81),
+        Pair("GE_ID", 83),
+        Pair("WIKI_ID", 85),
+        Pair("SUPPORT_ID", 82),
+        Pair("HISCORE_ID", 84),
+        Pair("MERCH_ID", 86),
+    )
 
 on_button(BUTTON_ID, NAME_CHANGER_ID) {
     player.openInterface(interfaceId = 589, dest = InterfaceDestination.TAB_AREA)
@@ -37,10 +39,8 @@ buttons.forEach {
     }
 }
 
-
-
-listOf(6, 11,16).forEachIndexed { index, it ->
-    on_button(109 , it) {
+listOf(6, 11, 16).forEachIndexed { index, it ->
+    on_button(109, it) {
         player.setVarbit(10060, index)
     }
 }

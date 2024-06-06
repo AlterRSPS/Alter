@@ -12,7 +12,6 @@ import kotlin.coroutines.resume
  * @author Tom <rspsmods@gmail.com>
  */
 class PawnQueueTaskSet : QueueTaskSet() {
-
     override fun cycle() {
         while (true) {
             val task = queue.peekFirst() ?: break

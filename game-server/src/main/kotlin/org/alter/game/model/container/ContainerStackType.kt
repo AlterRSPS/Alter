@@ -6,7 +6,6 @@ package org.alter.game.model.container
  * @author Tom <rspsmods@gmail.com>
  */
 enum class ContainerStackType {
-
     /**
      * Represents an [ItemContainer] which only stacks items that are defined to
      * be stackable by their metadata.
@@ -22,5 +21,5 @@ enum class ContainerStackType {
     /**
      * Represents an [ItemContainer] which never stacks any item.
      */
-    NO_STACK;
+    NO_STACK,
 }

@@ -7,7 +7,6 @@ import kotlin.test.assertEquals
  * @author Tom <rspsmods@gmail.com>
  */
 class SkillSetTests {
-
     private fun createSkills(): SkillSet = SkillSet(SKILL_COUNT)
 
     @Test

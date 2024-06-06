@@ -19,9 +19,7 @@ package org.alter.game.model.priv
  * @author Tom <rspsmods@gmail.com>
  */
 data class Privilege(val id: Int, val icon: Int, val name: String, val powers: Set<String>) {
-
     companion object {
-
         /**
          * The global identifier used for developers. This identifier should be
          * used globally to identify a player with developer privileges.

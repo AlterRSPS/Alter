@@ -1,11 +1,10 @@
 package org.alter.game.service.rsa
 
+import gg.rsmod.util.ServerProperties
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.Server
 import org.alter.game.model.World
 import org.alter.game.service.Service
-import gg.rsmod.util.ServerProperties
-
-import io.github.oshai.kotlinlogging.KotlinLogging
 import org.bouncycastle.jce.provider.BouncyCastleProvider
 import org.bouncycastle.util.io.pem.PemObject
 import org.bouncycastle.util.io.pem.PemReader
@@ -30,7 +29,6 @@ import java.util.*
  * @author Tom <rspsmods@gmail.com>
  */
 class RsaService : Service {
-
     private lateinit var keyPath: Path
 
     private lateinit var exponent: BigInteger
@@ -39,7 +37,11 @@ class RsaService : Service {
 
     private var radix = -1
 
-    override fun init(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(
+        server: org.alter.game.Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
         keyPath = Paths.get(serviceProperties.getOrDefault("path", "../data/rsa/key.pem"))
         radix = serviceProperties.getOrDefault("radix", 16)
 
@@ -77,13 +79,22 @@ class RsaService : Service {
         }
     }
 
-    override fun postLoad(server: org.alter.game.Server, world: World) {
+    override fun postLoad(
+        server: org.alter.game.Server,
+        world: World,
+    ) {
     }
 
-    override fun bindNet(server: org.alter.game.Server, world: World) {
+    override fun bindNet(
+        server: org.alter.game.Server,
+        world: World,
+    ) {
     }
 
-    override fun terminate(server: org.alter.game.Server, world: World) {
+    override fun terminate(
+        server: org.alter.game.Server,
+        world: World,
+    ) {
     }
 
     /**
@@ -136,7 +147,7 @@ class RsaService : Service {
     fun getModulus(): BigInteger = modulus
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
 
         @JvmStatic
         fun main(args: Array<String>) {

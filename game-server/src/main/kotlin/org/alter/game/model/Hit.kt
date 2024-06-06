@@ -24,7 +24,6 @@ import org.alter.game.model.Hit.Hitmark
  * @author Tom <rspsmods@gmail.com>
  */
 class Hit private constructor(val hitmarks: List<Hitmark>, val hitbar: Hitbar?, val clientDelay: Int, var damageDelay: Int) {
-
     /**
      * A list of actions that will be invoked upon this hit dealing damage
      * to whichever entity it may.
@@ -70,7 +69,6 @@ class Hit private constructor(val hitmarks: List<Hitmark>, val hitbar: Hitbar?, 
     data class Hitbar(val type: Int, val percentage: Int, val maxPercentage: Int, val depleteSpeed: Int, val delay: Int)
 
     class Builder {
-
         private val hitmarks = mutableListOf<Hitmark>()
 
         private var onlyShowHitbar = false
@@ -92,9 +90,13 @@ class Hit private constructor(val hitmarks: List<Hitmark>, val hitbar: Hitbar?, 
         private var damageDelay = -1
 
         fun build(): Hit {
-            check(onlyShowHitbar || hitmarks.isNotEmpty()) { "You can't build a Hit with no hitmarkers unless the appropriate flag is set (Builder#addHit or Builder#onlyShowHitbar)" }
+            check(onlyShowHitbar || hitmarks.isNotEmpty()) {
+                "You can't build a Hit with no hitmarkers unless the appropriate flag is set (Builder#addHit or Builder#onlyShowHitbar)"
+            }
             check(!onlyShowHitbar || !hideHitbar) { "You can't have both of these flags set (Builder#hideHitbar | Builder#onlyShowHitbar)" }
-            check(hideHitbar || hitbarDepleteSpeed == -1 || hitbarDepleteSpeed == 0 || hitbarMaxPercentage != -1) { "Hitbar deplete speed cannot be > 0 unless max percentage is set (Builder#setHitbarMaxPercentage)" }
+            check(hideHitbar || hitbarDepleteSpeed == -1 || hitbarDepleteSpeed == 0 || hitbarMaxPercentage != -1) {
+                "Hitbar deplete speed cannot be > 0 unless max percentage is set (Builder#setHitbarMaxPercentage)"
+            }
             check(damageDelay == -1 || damageDelay >= 0) { "Damage delay must be positive" }
 
             if (clientDelay == -1) {
@@ -117,14 +119,28 @@ class Hit private constructor(val hitmarks: List<Hitmark>, val hitbar: Hitbar?, 
                 damageDelay = 0
             }
 
-            val hitbar = if (!hideHitbar) Hitbar(hitbarType, hitbarPercentage, hitbarMaxPercentage, hitbarDepleteSpeed, hitbarDelay) else null
+            val hitbar =
+                if (!hideHitbar) {
+                    Hitbar(
+                        hitbarType,
+                        hitbarPercentage,
+                        hitbarMaxPercentage,
+                        hitbarDepleteSpeed,
+                        hitbarDelay,
+                    )
+                } else {
+                    null
+                }
             return Hit(hitmarks, hitbar, clientDelay, damageDelay)
         }
 
         /**
          * @see Hit.hitmarks
          */
-        fun addHit(damage: Int, type: Int): Builder {
+        fun addHit(
+            damage: Int,
+            type: Int,
+        ): Builder {
             hitmarks.add(Hitmark(type, damage))
             return this
         }

@@ -1,7 +1,12 @@
 package org.alter.plugins.content.commands
 
 object Command {
-    fun tryWithUsage(player: Player, args: Array<String>, failMessage: String, tryUnit: Function1<Array<String>, Unit>) {
+    fun tryWithUsage(
+        player: Player,
+        args: Array<String>,
+        failMessage: String,
+        tryUnit: Function1<Array<String>, Unit>,
+    ) {
         try {
             tryUnit.invoke(args)
         } catch (e: Exception) {

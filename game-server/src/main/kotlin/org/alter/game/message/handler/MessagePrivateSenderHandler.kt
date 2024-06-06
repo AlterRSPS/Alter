@@ -9,7 +9,10 @@ import org.alter.game.model.entity.Client
  * @TODO
  */
 class MessagePrivateSenderHandler : MessageHandler<MessagePrivate> {
-    override fun accept(client: Client, message: MessagePrivate) {
+    override fun accept(
+        client: Client,
+        message: MessagePrivate,
+    ) {
         logger.info { "Sender: ${client.username} - Target: ${message.name} - Message: ${message.message}" }
         val target = client.world.getPlayerForName(message.name)
         if (target != null) {
@@ -17,7 +20,8 @@ class MessagePrivateSenderHandler : MessageHandler<MessagePrivate> {
             client.social.sendPrivateMessage(client, target, message.message)
         }
     }
+
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

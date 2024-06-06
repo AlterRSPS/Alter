@@ -8,8 +8,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class EventAppletFocusHandler : MessageHandler<EventAppletFocus> {
-
-    override fun accept(client: Client, message: EventAppletFocus) {
+    override fun accept(
+        client: Client,
+        message: EventAppletFocus,
+    ) {
         client.appletFocused = message.inFocus
     }
 }

@@ -8,8 +8,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class ResumePCountDialogHandler : MessageHandler<ResumePCountDialog> {
-
-    override fun accept(client: Client, message: ResumePCountDialog) {
+    override fun accept(
+        client: Client,
+        message: ResumePCountDialog,
+    ) {
         log(client, "Integer input dialog: input=%d", message.count)
         client.queues.submitReturnValue(Math.max(0, message.count))
     }

@@ -11,5 +11,5 @@ enum class XpMode {
     DEFENCE,
     RANGED,
     MAGIC,
-    SHARED
+    SHARED,
 }

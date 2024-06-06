@@ -23,7 +23,6 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 object GroundItemPathAction {
-
     /**
      * The option used to specify that a walk action should execute item on
      * ground item plugins when destination is reached.
@@ -49,7 +48,10 @@ object GroundItemPathAction {
         }
     }
 
-    private suspend fun QueueTask.awaitArrival(item: GroundItem, opt: Int) {
+    private suspend fun QueueTask.awaitArrival(
+        item: GroundItem,
+        opt: Int,
+    ) {
         val p = ctx as Player
         val destination = p.movementQueue.peekLast()
         if (destination == null) {
@@ -70,7 +72,11 @@ object GroundItemPathAction {
         }
     }
 
-    private fun handleAction(p: Player, groundItem: GroundItem, opt: Int) {
+    private fun handleAction(
+        p: Player,
+        groundItem: GroundItem,
+        opt: Int,
+    ) {
         if (!p.world.isSpawned(groundItem)) {
             return
         }
@@ -101,8 +107,8 @@ object GroundItemPathAction {
             val remainder = groundItem.amount - (after - before)
             p.world.remove(groundItem)
 
-            if(remainder != 0) {
-                if(groundItem.ownerUID == null) {
+            if (remainder != 0) {
+                if (groundItem.ownerUID == null) {
                     p.world.spawn(GroundItem(groundItem.item, remainder, groundItem.tile))
                 } else {
                     p.world.spawn(
@@ -110,8 +116,8 @@ object GroundItemPathAction {
                             groundItem.item,
                             remainder,
                             groundItem.tile,
-                            p.world.getPlayerForUid(groundItem.ownerUID!!)
-                        )
+                            p.world.getPlayerForUid(groundItem.ownerUID!!),
+                        ),
                     )
                 }
             }

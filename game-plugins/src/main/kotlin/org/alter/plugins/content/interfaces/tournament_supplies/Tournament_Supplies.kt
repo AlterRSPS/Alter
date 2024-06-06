@@ -1,11 +1,11 @@
 package org.alter.plugins.content.interfaces.tournament_supplies
 
-import org.alter.game.model.entity.Player
 import org.alter.api.InterfaceDestination
 import org.alter.api.ext.openInterface
 import org.alter.api.ext.runClientScript
 import org.alter.api.ext.setInterfaceEvents
 import org.alter.api.ext.setInterfaceUnderlay
+import org.alter.game.model.entity.Player
 
 object Tournament_Supplies {
     var TOURNAMENT_SUPPLIES_INTERFACE = 100

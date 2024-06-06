@@ -13,8 +13,10 @@ import org.alter.game.task.GameTask
  * @author Tom <rspsmods@gmail.com>
  */
 class SequentialPlayerPostCycleTask : GameTask {
-
-    override fun execute(world: World, service: GameService) {
+    override fun execute(
+        world: World,
+        service: GameService,
+    ) {
         world.players.forEach { p ->
             p.postCycle()
         }

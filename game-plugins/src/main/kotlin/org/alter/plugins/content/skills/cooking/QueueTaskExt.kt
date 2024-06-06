@@ -11,14 +11,20 @@ private val closeCookingDialog: QueueTask.() -> Unit = {
     player.closeComponent(parent = 162, child = 561)
 }
 
-suspend fun QueueTask.cookingMessageBox(vararg items: Int, title: String = "What would you like to cook?", maxItems: Int = player.inventory.capacity, obj: CookingObj?, logic: Player.(Int, Int, CookingObj?) -> Unit) {
+suspend fun QueueTask.cookingMessageBox(
+    vararg items: Int,
+    title: String = "What would you like to cook?",
+    maxItems: Int = player.inventory.capacity,
+    obj: CookingObj?,
+    logic: Player.(Int, Int, CookingObj?) -> Unit,
+) {
     val defs = player.world.definitions
     val itemDefs = items.map { getItem(it) }
 
     val itemArray = Array(10) { -1 }
     val nameArray = Array(10) { "|" }
 
-    itemDefs.withIndex().forEach{
+    itemDefs.withIndex().forEach {
         val def = it.value
         itemArray[it.index] = def.id
         nameArray[it.index] = "|${def.name}"
@@ -38,7 +44,7 @@ suspend fun QueueTask.cookingMessageBox(vararg items: Int, title: String = "What
     val result = requestReturnValue as? ResumePauseButton ?: return
     val child = result.componentId
 
-    if(child < 14 || child >= 14 + items.size) {
+    if (child < 14 || child >= 14 + items.size) {
         return
     }
 

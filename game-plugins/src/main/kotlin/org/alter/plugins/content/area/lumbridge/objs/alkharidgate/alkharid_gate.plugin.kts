@@ -22,7 +22,14 @@ GATES.forEach { obj ->
                     world.closeDoor(world.getObject(Tile(3267, 3228), 0)!!, Objs.GATE_44053)
                 }
                 val curr = player.tile
-                val dst = if (curr.sameAs(3267, 3228)) Tile(3268, 3228) else if (curr.sameAs(3268, 3228)) Tile(3267, 3228) else return@on_obj_option
+                val dst =
+                    if (curr.sameAs(3267, 3228)) {
+                        Tile(3268, 3228)
+                    } else if (curr.sameAs(3268, 3228)) {
+                        Tile(3267, 3228)
+                    } else {
+                        return@on_obj_option
+                    }
                 player.inventory.remove(Items.COINS_995, 10)
                 player.moveTo(dst)
                 player.unlock()
@@ -41,13 +48,21 @@ GATES.forEach { obj ->
                     world.closeDoor(world.getObject(Tile(3267, 3228), 0)!!, Objs.GATE_44053)
                 }
                 val curr = player.tile
-                val dst = if (curr.sameAs(3267, 3227)) Tile(3268, 3227) else if (curr.sameAs(3268, 3227)) Tile(3267, 3227) else return@on_obj_option
+                val dst =
+                    if (curr.sameAs(3267, 3227)) {
+                        Tile(3268, 3227)
+                    } else if (curr.sameAs(3268, 3227)) {
+                        Tile(3267, 3227)
+                    } else {
+                        return@on_obj_option
+                    }
                 player.inventory.remove(Items.COINS_995, 10)
                 player.moveTo(dst)
                 player.unlock()
             }
-        } else
+        } else {
             player.queue { dialog() }
+        }
     }
 
     on_obj_option(obj, "open") {
@@ -55,9 +70,7 @@ GATES.forEach { obj ->
     }
 }
 
-
 suspend fun QueueTask.dialog() {
-
     val guard = Npcs.BORDER_GUARD
 
     chatPlayer("Can I come through this gate?", animation = 588)
@@ -72,13 +85,13 @@ suspend fun QueueTask.dialog() {
             chatNpc(npc = guard, message = "The money goes to the city of Al-Kharid.", animation = 590)
         }
         3 -> {
-                chatPlayer("Yes, ok.", animation = 554)
+            chatPlayer("Yes, ok.", animation = 554)
 
-                /** TODO
-                 * make different walking from multi tiles
-                 * make block for multi accounts
-                 * add in after quest dialog & open gate freely
-                 * */
-            }
+            /** TODO
+             * make different walking from multi tiles
+             * make block for multi accounts
+             * add in after quest dialog & open gate freely
+             * */
         }
     }
+}

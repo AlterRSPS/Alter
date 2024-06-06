@@ -5,7 +5,10 @@ import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
 
 class FriendListAddHandler : MessageHandler<FriendListAdd> {
-    override fun accept(client: Client, message: FriendListAdd) {
+    override fun accept(
+        client: Client,
+        message: FriendListAdd,
+    ) {
         client.social.addFriend(client, message.name)
     }
 }

@@ -36,7 +36,7 @@ suspend fun QueueTask.teach() {
     if (player.getSkills().getCurrentLevel(Skills.WOODCUTTING) < 12) {
         chatPlayer("Could you teach me about canoes?", animation = 554)
         chatNpc("Well, you don't look like you have the skill to make a<br>canoe.", animation = 589)
-        chatNpc("You need to have at least level 12 woodcutting.", animation = 588) //TODO
+        chatNpc("You need to have at least level 12 woodcutting.", animation = 588) // TODO
         chatNpc("Once you are able to make a canoe it makes travel<br>along the river much quicker!", animation = 589)
     } else {
         chatPlayer("Could you teach me about canoes?", animation = 554)
@@ -48,14 +48,18 @@ suspend fun QueueTask.teach() {
             chatNpc("No Callouses! No Splinters! No camp fires littering the<br>trail behind you.")
             chatNpc("Anyway, the only 'canoe' you can make is a log. You'll<br>be able to travel 1 stop along the river with a log canoe.")
         } else if (player.getSkills().getCurrentLevel(Skills.WOODCUTTING) < 42) {
-            chatNpc("With your skill in woodcutting you could make my<br>favourite canoe, the Dugout. They might not be the<br>best canoe on the river, but they get you where you're<br>going.")
+            chatNpc(
+                "With your skill in woodcutting you could make my<br>favourite canoe, the Dugout. They might not be the<br>best canoe on the river, but they get you where you're<br>going.",
+            )
             chatPlayer("How far will I be able to go in a Dugout canoe?")
             chatNpc("You will be able to travel 2 stops on the river.")
         } else if (player.getSkills().getCurrentLevel(Skills.WOODCUTTING) < 57) {
             chatNpc("The best canoe you can make is a Stable Dugout, one<br>step beyond a normal Dugout.")
             chatNpc("With a Stable Dugout you can travel to any place on<br>the river.")
             chatPlayer("Even into the Wilderness?")
-            chatNpc("Not likely! I've heard tell of a man up near Edgeville<br>who claims he can use a Waka to get up into the<br>Wilderness.")
+            chatNpc(
+                "Not likely! I've heard tell of a man up near Edgeville<br>who claims he can use a Waka to get up into the<br>Wilderness.",
+            )
             chatNpc("I can't think why anyone would wish to venture into<br>that hellish landscape though.")
         } else if (player.getSkills().getCurrentLevel(Skills.WOODCUTTING) >= 57) {
             chatNpc("Hoo! You look like you know which end of an axe is<br>which!")

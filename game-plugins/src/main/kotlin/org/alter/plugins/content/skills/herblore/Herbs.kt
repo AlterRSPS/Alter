@@ -1,31 +1,38 @@
 package org.alter.plugins.content.skills.herblore
 
-import org.alter.game.model.entity.Player
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
-
 import org.alter.api.ext.*
+import org.alter.game.model.entity.Player
 import org.alter.plugins.content.skills.herblore.Herbs.Companion.AUTO_CLEAN
 import kotlin.random.Random
 
 class Herb(val dirty: Int, val clean: Int, val unfinished: Int, val minCleanLevel: Int, val xpOnClean: Double, val minApothLevel: Int) {
     fun clean(player: Player) {
         val lvlMessage = "You need level $minCleanLevel Herblore to clean the ${dirty.getItemName()}."
-        when(AUTO_CLEAN){
+        when (AUTO_CLEAN) {
             true -> {
-                if(player.getSkills().getCurrentLevel(Skills.HERBLORE) < minCleanLevel)
+                if (player.getSkills().getCurrentLevel(Skills.HERBLORE) < minCleanLevel) {
                     player.message(lvlMessage)
-                else
+                } else {
                     player.autoReplace(dirty, clean, slotAware = true, perform = {
                         player.animate(712) // cleaning herbs technically does not have animation
                         player.playSound(Random.nextInt(3920, 3923), 1, 0)
                     }, success = {
                         player.addXp(Skills.HERBLORE, xpOnClean)
                     })
+                }
             }
             false -> {
-                if(player.replaceItemWithSkillRequirement(dirty, clean, Skills.HERBLORE, minCleanLevel,
-                                slot = player.getInteractingItemSlot(),minLvlMessage = lvlMessage)){
+                if (player.replaceItemWithSkillRequirement(
+                        dirty,
+                        clean,
+                        Skills.HERBLORE,
+                        minCleanLevel,
+                        slot = player.getInteractingItemSlot(),
+                        minLvlMessage = lvlMessage,
+                    )
+                ) {
                     player.animate(712) // cleaning herbs technically does not have animation
                     player.playSound(Random.nextInt(3920, 3923), 1, 0)
                     player.addXp(Skills.HERBLORE, xpOnClean)
@@ -35,7 +42,14 @@ class Herb(val dirty: Int, val clean: Int, val unfinished: Int, val minCleanLeve
     }
 
     fun apoth(player: Player) {
-        if(player.replaceItemAndRemoveAnotherWithSkillRequirement(Items.VIAL_OF_WATER, unfinished, clean.toItem(), Skills.HERBLORE, minApothLevel)){
+        if (player.replaceItemAndRemoveAnotherWithSkillRequirement(
+                Items.VIAL_OF_WATER,
+                unfinished,
+                clean.toItem(),
+                Skills.HERBLORE,
+                minApothLevel,
+            )
+        ) {
             player.animate(id = 363, delay = 0)
             player.playSound(2608, 1, 0)
         }
@@ -58,7 +72,8 @@ enum class Herbs(val herb: Herb) {
     CADANTINE(Herb(Items.GRIMY_CADANTINE, Items.CADANTINE, Items.CADANTINE_POTION_UNF, 65, 12.5, 66)),
     LANTADYME(Herb(Items.GRIMY_LANTADYME, Items.LANTADYME, Items.LANTADYME_POTION_UNF, 67, 13.1, 69)),
     DWARF_WEED(Herb(Items.GRIMY_DWARF_WEED, Items.DWARF_WEED, Items.DWARF_WEED_POTION_UNF, 70, 13.8, 72)),
-    TORSTOL(Herb(Items.GRIMY_TORSTOL, Items.TORSTOL, Items.TORSTOL_POTION_UNF, 75, 15.0, 78));
+    TORSTOL(Herb(Items.GRIMY_TORSTOL, Items.TORSTOL, Items.TORSTOL_POTION_UNF, 75, 15.0, 78)),
+    ;
 
     companion object {
         val values = values()

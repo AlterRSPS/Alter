@@ -10,8 +10,10 @@ import java.util.*
  * @author Tom <rspsmods@gmail.com>
  */
 class ClientCheatHandler : MessageHandler<ClientCheat> {
-
-    override fun accept(client: Client, message: ClientCheat) {
+    override fun accept(
+        client: Client,
+        message: ClientCheat,
+    ) {
         val values = message.command.split(" ")
         val command = values[0].lowercase()
         val args = if (values.size > 1) values.slice(1 until values.size).filter { it.isNotEmpty() }.toTypedArray() else null

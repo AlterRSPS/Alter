@@ -1,11 +1,10 @@
 package org.alter.game.model.queue
 
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.model.Tile
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.coroutine.*
-
-import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlin.coroutines.*
 
 /**
@@ -15,7 +14,6 @@ import kotlin.coroutines.*
  * @author Tom <rspsmods@gmail.com>
  */
 data class QueueTask(val ctx: Any, val priority: TaskPriority) : Continuation<Unit> {
-
     lateinit var coroutine: Continuation<Unit>
 
     /**
@@ -86,51 +84,61 @@ data class QueueTask(val ctx: Any, val priority: TaskPriority) : Continuation<Un
      * Wait for the specified amount of game cycles [cycles] before
      * continuing the logic associated with this task.
      */
-    suspend fun wait(cycles: Int): Unit = suspendCoroutine {
-        check(cycles > 0) { "Wait cycles must be greater than 0." }
-        nextStep = SuspendableStep(WaitCondition(cycles), it)
-    }
+    suspend fun wait(cycles: Int): Unit =
+        suspendCoroutine {
+            check(cycles > 0) { "Wait cycles must be greater than 0." }
+            nextStep = SuspendableStep(WaitCondition(cycles), it)
+        }
+
     /**
      * Wait for the specified amount of game cycles [cycles] - [cycles] before
      * continuing the logic associated with this task.
      */
-    suspend fun wait(cyclesfrom: Int, cyclesto: Int): Unit = suspendCoroutine {
-        check(cyclesfrom > 0) { "Wait cycles must be greater than 0." }
-        check(cyclesto > cyclesfrom) { "Wait cycles must be greater than ${cyclesfrom}." }
-        val cycles = (cyclesfrom..cyclesto).random()
-        nextStep = SuspendableStep(WaitCondition(cycles), it)
-    }
+    suspend fun wait(
+        cyclesfrom: Int,
+        cyclesto: Int,
+    ): Unit =
+        suspendCoroutine {
+            check(cyclesfrom > 0) { "Wait cycles must be greater than 0." }
+            check(cyclesto > cyclesfrom) { "Wait cycles must be greater than $cyclesfrom." }
+            val cycles = (cyclesfrom..cyclesto).random()
+            nextStep = SuspendableStep(WaitCondition(cycles), it)
+        }
 
     /**
      * Wait for [predicate] to return true.
      */
-    suspend fun wait(predicate: () -> Boolean): Unit = suspendCoroutine {
-        nextStep = SuspendableStep(PredicateCondition { predicate() }, it)
-    }
+    suspend fun wait(predicate: () -> Boolean): Unit =
+        suspendCoroutine {
+            nextStep = SuspendableStep(PredicateCondition { predicate() }, it)
+        }
 
     /**
      * Wait for our [ctx] to reach [tile]. Note that [ctx] MUST be an instance
      * of [Pawn] and that the height of the [tile] and [Pawn.tile] must be equal,
      * as well as the x and z coordinates.
      */
-    suspend fun waitTile(tile: Tile): Unit = suspendCoroutine {
-        nextStep = SuspendableStep(TileCondition((ctx as Pawn).tile, tile), it)
-    }
+    suspend fun waitTile(tile: Tile): Unit =
+        suspendCoroutine {
+            nextStep = SuspendableStep(TileCondition((ctx as Pawn).tile, tile), it)
+        }
 
     /**
      * Wait for our [ctx] as [Player] to close the [interfaceId].
      */
-    suspend fun waitInterfaceClose(interfaceId: Int): Unit = suspendCoroutine {
-        nextStep = SuspendableStep(PredicateCondition { !(ctx as Player).interfaces.isVisible(interfaceId) }, it)
-    }
+    suspend fun waitInterfaceClose(interfaceId: Int): Unit =
+        suspendCoroutine {
+            nextStep = SuspendableStep(PredicateCondition { !(ctx as Player).interfaces.isVisible(interfaceId) }, it)
+        }
 
     /**
      * Wait for <strong>any</strong> return value to be available before
      * continuing.
      */
-    suspend fun waitReturnValue(): Unit = suspendCoroutine {
-        nextStep = SuspendableStep(PredicateCondition { requestReturnValue != null }, it)
-    }
+    suspend fun waitReturnValue(): Unit =
+        suspendCoroutine {
+            nextStep = SuspendableStep(PredicateCondition { requestReturnValue != null }, it)
+        }
 
     override fun equals(other: Any?): Boolean {
         val o = other as? QueueTask ?: return false
@@ -146,7 +154,7 @@ data class QueueTask(val ctx: Any, val priority: TaskPriority) : Continuation<Un
     class EmptyReturnValue
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
         val EMPTY_RETURN_VALUE = EmptyReturnValue()
     }
 }

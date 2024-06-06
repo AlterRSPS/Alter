@@ -8,8 +8,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class ResumePStringDialogHandler : MessageHandler<ResumePStringDialog> {
-
-    override fun accept(client: Client, message: ResumePStringDialog) {
+    override fun accept(
+        client: Client,
+        message: ResumePStringDialog,
+    ) {
         log(client, "String input dialog: input=%s", message.string)
         client.queues.submitReturnValue(message.string)
     }

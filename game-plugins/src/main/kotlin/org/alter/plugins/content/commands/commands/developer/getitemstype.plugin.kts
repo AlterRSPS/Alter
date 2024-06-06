@@ -14,17 +14,16 @@ on_command("getitemstype", Privilege.DEV_POWER, description = "Get items type") 
         for (i in 0 until itemSize()) {
             val def = getItem(Item(i).toUnnoted().id)
             val items_name = def.name.lowercase()
-            //val items_examine = def.examine?.lowercase()
+            // val items_examine = def.examine?.lowercase()
             if (!def.isPlaceholder && items_name != "null") {
                 if (def.equipSlot.equals(item_name)) {
                     items_list.add(def.id)
                 }
-
-                }
-        }
-            for (i in 0 until items_list.count()) {
-                player.bank.add(items_list[i], 10)
             }
+        }
+        for (i in 0 until items_list.count()) {
+            player.bank.add(items_list[i], 10)
+        }
         player.message("Total Count: ${items_list.count()} with keyword: $item_name in their name and examine")
     }
 }

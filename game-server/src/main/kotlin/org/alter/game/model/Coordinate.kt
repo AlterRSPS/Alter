@@ -7,7 +7,6 @@ package org.alter.game.model
  * @author Tom <rspsmods@gmail.com>
  */
 data class Coordinate(val x: Int, val z: Int, val height: Int) {
-
     /**
      * Returns the local tile of our region relative to the current [x] and [z].
      *

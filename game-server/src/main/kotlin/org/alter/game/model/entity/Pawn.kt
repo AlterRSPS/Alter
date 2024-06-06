@@ -35,7 +35,6 @@ import java.util.*
  * @author Tom <rspsmods@gmail.com>
  */
 abstract class Pawn(val world: World) : Entity() {
-
     /**
      * The index assigned when this [Pawn] is successfully added to a [PawnList].
      */
@@ -168,7 +167,7 @@ abstract class Pawn(val world: World) : Entity() {
     fun isLocked(): Boolean = lock != LockState.NONE
 
     fun setTransmogId(transmogId: Int) {
-        if(entityType.isNpc) {
+        if (entityType.isNpc) {
             (this as Npc).avatar.extendedInfo.transformation(transmogId)
         } else if (entityType.isPlayer) {
             (this as Player).avatar.extendedInfo.transformToNpc(transmogId)
@@ -187,7 +186,10 @@ abstract class Pawn(val world: World) : Entity() {
      * Gets the tile the pawn is currently facing towards.
      */
     // Credits: Kris#1337
-    fun getFrontFacingTile(target: Tile, offset: Int = 0): Tile {
+    fun getFrontFacingTile(
+        target: Tile,
+        offset: Int = 0,
+    ): Tile {
         val size = (getSize() shr 1)
         val centre = getCentreTile()
 
@@ -209,7 +211,10 @@ abstract class Pawn(val world: World) : Entity() {
     /**
      * Alias for [getFrontFacingTile] using a [Pawn] as the target tile.
      */
-    fun getFrontFacingTile(target: Pawn, offset: Int = 0): Tile = getFrontFacingTile(target.getCentreTile(), offset)
+    fun getFrontFacingTile(
+        target: Pawn,
+        offset: Int = 0,
+    ): Tile = getFrontFacingTile(target.getCentreTile(), offset)
 
     /**
      * Initiate combat with [target].
@@ -291,7 +296,7 @@ abstract class Pawn(val world: World) : Entity() {
                         if (hitmark.damage > hp) {
                             hitmark.damage = hp
                         }
-                        if(entityType.isNpc) {
+                        if (entityType.isNpc) {
                             (this as Npc).avatar.extendedInfo.addHitMark(
                                 sourceIndex = -1,
                                 selfType = hitmark.type,
@@ -353,7 +358,11 @@ abstract class Pawn(val world: World) : Entity() {
      * Walk to all the tiles specified in our [path] queue, using [stepType] as
      * the [MovementQueue.StepType].
      */
-    fun walkPath(path: Queue<Tile>, stepType: MovementQueue.StepType, detectCollision: Boolean) {
+    fun walkPath(
+        path: Queue<Tile>,
+        stepType: MovementQueue.StepType,
+        detectCollision: Boolean,
+    ) {
         if (path.isEmpty()) {
             if (this is Player) {
                 write(SetMapFlag(255, 255))
@@ -402,9 +411,18 @@ abstract class Pawn(val world: World) : Entity() {
         }
     }
 
-    fun walkTo(tile: Tile, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL, detectCollision: Boolean = true) = walkTo(tile.x, tile.z, stepType, detectCollision)
+    fun walkTo(
+        tile: Tile,
+        stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
+        detectCollision: Boolean = true,
+    ) = walkTo(tile.x, tile.z, stepType, detectCollision)
 
-    fun walkTo(x: Int, z: Int, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL, detectCollision: Boolean = true) {
+    fun walkTo(
+        x: Int,
+        z: Int,
+        stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
+        detectCollision: Boolean = true,
+    ) {
         /*
          * Already standing on requested destination.
          */
@@ -446,9 +464,20 @@ abstract class Pawn(val world: World) : Entity() {
         }
     }
 
-    suspend fun walkTo(it: QueueTask, tile: Tile, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL, detectCollision: Boolean = true) = walkTo(it, tile.x, tile.z, stepType, detectCollision)
+    suspend fun walkTo(
+        it: QueueTask,
+        tile: Tile,
+        stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
+        detectCollision: Boolean = true,
+    ) = walkTo(it, tile.x, tile.z, stepType, detectCollision)
 
-    suspend fun walkTo(it: QueueTask, x: Int, z: Int, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL, detectCollision: Boolean = true): Route {
+    suspend fun walkTo(
+        it: QueueTask,
+        x: Int,
+        z: Int,
+        stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
+        detectCollision: Boolean = true,
+    ): Route {
         /*
          * Already standing on requested destination.
          */
@@ -475,11 +504,15 @@ abstract class Pawn(val world: World) : Entity() {
         return route
     }
 
-    fun moveTo(x: Int, z: Int, height: Int = 0) {
+    fun moveTo(
+        x: Int,
+        z: Int,
+        height: Int = 0,
+    ) {
         tile = Tile(x, z, height)
         movementQueue.clear()
 
-        if(entityType.isNpc) {
+        if (entityType.isNpc) {
             (this as Npc).avatar.teleport(height, x, z, true)
         } else if (entityType.isPlayer) {
             (this as Player).avatar.extendedInfo.setTempMoveSpeed(127)
@@ -490,10 +523,15 @@ abstract class Pawn(val world: World) : Entity() {
         moveTo(tile.x, tile.z, tile.height)
     }
 
-    fun animate(id: Int, delay: Int = 0, interruptable: Boolean = false) {
+    fun animate(
+        id: Int,
+        delay: Int = 0,
+        interruptable: Boolean = false,
+    ) {
         if (entityType.isPlayer && previouslySetAnim == -1 || interruptable) {
-            if(entityType.isPlayer)
+            if (entityType.isPlayer) {
                 previouslySetAnim = id
+            }
             if (this is Player) {
                 world.plugins.executeOnAnimation(this, id)
             }
@@ -501,15 +539,23 @@ abstract class Pawn(val world: World) : Entity() {
             animateSend(id, delay)
         }
     }
-    abstract fun graphic(id: Int, height: Int = 0, delay: Int = 0)
+
+    abstract fun graphic(
+        id: Int,
+        height: Int = 0,
+        delay: Int = 0,
+    )
 
     /**
      * @param id = Animation id
      * @param startDelay = when to start anim
      * @param interruptable = if Anim can be interrupted by other anim masks
      */
-    fun animateSend(id: Int, startDelay: Int = 0) {
-        if(entityType.isNpc) {
+    fun animateSend(
+        id: Int,
+        startDelay: Int = 0,
+    ) {
+        if (entityType.isNpc) {
             (this as Npc).avatar.extendedInfo.setSequence(id, startDelay)
         } else if (entityType.isPlayer) {
             (this as Player).avatar.extendedInfo.setSequence(id, startDelay)
@@ -519,15 +565,23 @@ abstract class Pawn(val world: World) : Entity() {
         }
     }
 
-    fun applyTint(hue: Int = 0, saturation: Int = 0, luminance: Int = 0, opacity: Int = 0, delay: Int = 0, duration: Int = 0) {
-        if(entityType.isNpc) {
+    fun applyTint(
+        hue: Int = 0,
+        saturation: Int = 0,
+        luminance: Int = 0,
+        opacity: Int = 0,
+        delay: Int = 0,
+        duration: Int = 0,
+    ) {
+        if (entityType.isNpc) {
             (this as Npc).avatar.extendedInfo.tinting(
                 startTime = delay,
                 endTime = duration,
                 hue = hue,
                 saturation = saturation,
                 lightness = luminance,
-                weight = opacity)
+                weight = opacity,
+            )
         } else if (entityType.isPlayer) {
             (this as Player).avatar.extendedInfo.tinting(
                 startTime = delay,
@@ -535,7 +589,8 @@ abstract class Pawn(val world: World) : Entity() {
                 hue = hue,
                 saturation = saturation,
                 lightness = luminance,
-                weight = opacity)
+                weight = opacity,
+            )
         }
     }
 
@@ -560,7 +615,7 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     fun forceChat(message: String) {
-        if(entityType.isNpc) {
+        if (entityType.isNpc) {
             (this as Npc).avatar.extendedInfo.setSay(message)
         } else if (entityType.isPlayer) {
             (this as Player).avatar.extendedInfo.setSay(message)
@@ -571,7 +626,12 @@ abstract class Pawn(val world: World) : Entity() {
         faceTile(Tile(direction.getDeltaX(), direction.getDeltaZ()))
     }
 
-    fun faceTile(face: Tile, width: Int = 1, length: Int = 1, instant: Int = 0) {
+    fun faceTile(
+        face: Tile,
+        width: Int = 1,
+        length: Int = 1,
+        instant: Int = 0,
+    ) {
         if (entityType.isPlayer) {
             val srcX = tile.x * 64
             val srcZ = tile.z * 64
@@ -585,9 +645,8 @@ abstract class Pawn(val world: World) : Entity() {
             degreesZ += (Math.floor(length / 2.0)) * 32
 
             (this as Player).avatar.extendedInfo.setFaceAngle((Math.atan2(degreesX, degreesZ) * 325.949).toInt() and 0x7ff)
-
         } else if (entityType.isNpc) {
-            //TODO we shouldnt need because we use absolute coords ADVO
+            // TODO we shouldnt need because we use absolute coords ADVO
             val faceX = (face.x shl 1) + 1
             val faceZ = (face.z shl 1) + 1
 
@@ -597,7 +656,7 @@ abstract class Pawn(val world: World) : Entity() {
 
     fun facePawn(pawn: Pawn) {
         val index = if (pawn.entityType.isPlayer) pawn.index + 65536 else pawn.index
-        if(entityType.isNpc) {
+        if (entityType.isNpc) {
             (this as Npc).avatar.extendedInfo.setFacePathingEntity(index)
         } else if (entityType.isPlayer) {
             (this as Player).avatar.extendedInfo.setFacePathingEntity(index)
@@ -607,7 +666,7 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     fun resetFacePawn() {
-        if(entityType.isNpc) {
+        if (entityType.isNpc) {
             (this as Npc).avatar.extendedInfo.setFacePathingEntity(-1)
         } else if (entityType.isPlayer) {
             (this as Player).avatar.extendedInfo.setFacePathingEntity(-1)
@@ -626,7 +685,10 @@ abstract class Pawn(val world: World) : Entity() {
         resetFacePawn()
     }
 
-    fun queue(priority: TaskPriority = TaskPriority.STANDARD, logic: suspend QueueTask.(CoroutineScope) -> Unit) {
+    fun queue(
+        priority: TaskPriority = TaskPriority.STANDARD,
+        logic: suspend QueueTask.(CoroutineScope) -> Unit,
+    ) {
         queues.queue(this, world.coroutineDispatcher, priority, logic)
     }
 
@@ -651,19 +713,19 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     internal fun createPathFindingStrategy(copyChunks: Boolean = false): PathFindingStrategy {
-        val collision: CollisionManager = if (copyChunks) {
-            val chunks = world.chunks.copyChunksWithinRadius(tile.chunkCoords, height = tile.height, radius = Chunk.CHUNK_VIEW_RADIUS)
-            CollisionManager(chunks, createChunksIfNeeded = false)
-        } else {
-            world.collision
-        }
+        val collision: CollisionManager =
+            if (copyChunks) {
+                val chunks = world.chunks.copyChunksWithinRadius(tile.chunkCoords, height = tile.height, radius = Chunk.CHUNK_VIEW_RADIUS)
+                CollisionManager(chunks, createChunksIfNeeded = false)
+            } else {
+                world.collision
+            }
         return if (entityType.isPlayer) BFSPathFindingStrategy(collision) else SimplePathFindingStrategy(collision)
     }
 
     companion object {
         private val EMPTY_TILE_DEQUE = ArrayDeque<Tile>()
     }
-
 
     /*
 just
@@ -675,6 +737,5 @@ just
 if this is true, set the new anim and update the "previouslySetAnim" id to the newAnim.id
 end of tick, reset previouslySetAnim to -1
      */
-    var previouslySetAnim  = -1
-
+    var previouslySetAnim = -1
 }

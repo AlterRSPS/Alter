@@ -39,9 +39,8 @@ import java.util.concurrent.atomic.AtomicLong
  * Changes: 5/27/2024 converted com.google.common.util.concurrent.ThreadFactoryBuilder to kotlin
  * Original file from commit c4b883de9679dae7da831e49dd9adaca71cc1991
  */
-class ThreadFactoryBuilder
+class ThreadFactoryBuilder {
 /** Creates a new [ThreadFactory] builder.  */
-{
     private var nameFormat: String? = null
     private var daemon: Boolean? = null
     private var priority: Int? = null
@@ -91,14 +90,14 @@ class ThreadFactoryBuilder
             format(
                 "Thread priority (%s) must be >= %s",
                 priority,
-                Thread.MIN_PRIORITY
+                Thread.MIN_PRIORITY,
             )
         }
         require(priority <= Thread.MAX_PRIORITY) {
             format(
                 "Thread priority (%s) must be <= %s",
                 priority,
-                Thread.MAX_PRIORITY
+                Thread.MAX_PRIORITY,
             )
         }
         this.priority = priority
@@ -112,9 +111,7 @@ class ThreadFactoryBuilder
      * this ThreadFactory
      * @return this for the builder pattern
      */
-    fun setUncaughtExceptionHandler(
-        uncaughtExceptionHandler: Thread.UncaughtExceptionHandler
-    ): ThreadFactoryBuilder {
+    fun setUncaughtExceptionHandler(uncaughtExceptionHandler: Thread.UncaughtExceptionHandler): ThreadFactoryBuilder {
         this.uncaughtExceptionHandler = uncaughtExceptionHandler
         return this
     }
@@ -151,7 +148,7 @@ class ThreadFactoryBuilder
             val daemon = builder.daemon
             val priority = builder.priority
             val uncaughtExceptionHandler = builder.uncaughtExceptionHandler
-            val backingThreadFactory = builder.backingThreadFactory?: Executors.defaultThreadFactory()
+            val backingThreadFactory = builder.backingThreadFactory ?: Executors.defaultThreadFactory()
             val count: AtomicLong? = if (nameFormat != null) AtomicLong(0) else null
             return ThreadFactory { runnable ->
                 val thread: Thread = backingThreadFactory.newThread(runnable)
@@ -174,7 +171,10 @@ class ThreadFactoryBuilder
             }
         }
 
-        private fun format(format: String, vararg args: Any): String {
+        private fun format(
+            format: String,
+            vararg args: Any,
+        ): String {
             return String.format(Locale.ROOT, format, *args)
         }
     }

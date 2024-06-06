@@ -21,8 +21,11 @@ Tiara.values.forEach { tiara ->
  * @param talisman  The talisman required
  * @param def       The tiara definition
  */
-fun createTiara(player: Player, talisman: Int, def: Tiara) {
-
+fun createTiara(
+    player: Player,
+    talisman: Int,
+    def: Tiara,
+) {
     val tiaraDef = getItem(Items.TIARA)
     val talismanDef = getItem(talisman)
     val inventory = player.inventory

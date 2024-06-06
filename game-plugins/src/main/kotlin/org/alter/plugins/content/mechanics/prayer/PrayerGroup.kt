@@ -10,5 +10,5 @@ enum class PrayerGroup {
     ATTACK,
     RANGED,
     MAGIC,
-    COMBAT
+    COMBAT,
 }

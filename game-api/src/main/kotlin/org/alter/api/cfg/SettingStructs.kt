@@ -1,6 +1,5 @@
-/* Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService */
+// Auto-generated file using class gg.rsmod.game.service.game.DumpEntityIdService
 package org.alter.api.cfg
-
 
 object SettingStructs {
     const val SHOW_BOSS_HEALTH_OVERLAY_STRUCT_ID = 3002

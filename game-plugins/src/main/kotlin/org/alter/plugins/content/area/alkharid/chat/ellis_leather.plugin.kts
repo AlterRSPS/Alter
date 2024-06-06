@@ -1,10 +1,10 @@
-//package org.alter.plugins.content.area.alkharid.chat
+// package org.alter.plugins.content.area.alkharid.chat
 //
-//import org.alter.api.ext.chatNpc
-//import org.alter.api.ext.player
-//import org.alter.game.model.queue.QueueTask
+// import org.alter.api.ext.chatNpc
+// import org.alter.api.ext.player
+// import org.alter.game.model.queue.QueueTask
 //
-//spawn_npc(Npcs.ELLIS, 3273, 3192, 0, 4, Direction.EAST)
+// spawn_npc(Npcs.ELLIS, 3273, 3192, 0, 4, Direction.EAST)
 //
 //    on_npc_option(npc = Npcs.ELLIS, option = "talk-to") {
 //        player.queue { dialog(this) }
@@ -15,7 +15,7 @@
 //        player.openInterface(324, InterfaceDestination.MAIN_SCREEN)
 //    }
 //
-//suspend fun dialog(it: QueueTask) {
+// suspend fun dialog(it: QueueTask) {
 //    it.chatNpc("Greetings friend. I am a manufacturer of leather.", animation = 567)
 //    if (it.player.inventory.getItemCount(Items.COWHIDE) >= 1) {
 //        it.chatNpc("I see you have brought me a hide. Would you like me to tan it for you?", animation = 567)
@@ -44,4 +44,4 @@
 //            it.chatPlayer("Thanks, I'll bear it in mind.", animation = 567)
 //        }
 //    }
-//}
+// }

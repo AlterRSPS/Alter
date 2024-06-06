@@ -1,8 +1,8 @@
 package org.alter.plugins.content.interfaces.worldmap
 
-import org.alter.plugins.content.interfaces.worldmap.WorldMap.WORLD_MAP_INTERFACE_ID
 import org.alter.plugins.content.interfaces.worldmap.WorldMap.LAST_TILE
 import org.alter.plugins.content.interfaces.worldmap.WorldMap.UPDATE_TIMER
+import org.alter.plugins.content.interfaces.worldmap.WorldMap.WORLD_MAP_INTERFACE_ID
 
 on_button(interfaceId = 160, component = 53) {
     if (!player.lock.canInterfaceInteract()) {
@@ -23,7 +23,7 @@ on_button(interfaceId = 160, component = 53) {
         } else {
             player.queue {
                 player.animate(Animation.LOOK_AT_MINIMAP_WHEN_FULLSCREEN)
-                wait (1)
+                wait(1)
                 player.message("Fullscreen minimap was temporarily disabled.")
                 player.animate(Animation.CLOSE_MINIMAP_FULLSCREEN)
             }

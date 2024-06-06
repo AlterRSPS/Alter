@@ -30,8 +30,12 @@ import java.util.*
  * @author Tom <rspsmods@gmail.com>
  */
 object ObjectPathAction {
-
-    fun walk(player: Player, obj: GameObject, lineOfSightRange: Int?, logic: Plugin.() -> Unit) {
+    fun walk(
+        player: Player,
+        obj: GameObject,
+        lineOfSightRange: Int?,
+        logic: Plugin.() -> Unit,
+    ) {
         player.queue(TaskPriority.STANDARD) {
             terminateAction = {
                 player.stopMovement()
@@ -67,7 +71,9 @@ object ObjectPathAction {
             if (!player.world.plugins.executeItemOnObject(player, obj.getTransform(player), item.id)) {
                 player.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
                 if (player.world.devContext.debugObjects) {
-                    player.writeMessage("Unhandled item on object: [item=$item, id=${obj.id}, type=${obj.type}, rot=${obj.rot}, x=${obj.tile.x}, z=${obj.tile.z}]")
+                    player.writeMessage(
+                        "Unhandled item on object: [item=$item, id=${obj.id}, type=${obj.type}, rot=${obj.rot}, x=${obj.tile.x}, z=${obj.tile.z}]",
+                    )
                 }
             }
         }
@@ -84,13 +90,18 @@ object ObjectPathAction {
             if (!player.world.plugins.executeObject(player, obj.getTransform(player), opt!!)) {
                 player.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
                 if (player.world.devContext.debugObjects) {
-                    player.writeMessage("Unhandled object action: [opt=$opt, id=${obj.id}, type=${obj.type}, rot=${obj.rot}, x=${obj.tile.x}, z=${obj.tile.z}]")
+                    player.writeMessage(
+                        "Unhandled object action: [opt=$opt, id=${obj.id}, type=${obj.type}, rot=${obj.rot}, x=${obj.tile.x}, z=${obj.tile.z}]",
+                    )
                 }
             }
         }
     }
 
-    private suspend fun QueueTask.walkTo(obj: GameObject, lineOfSightRange: Int?): Route {
+    private suspend fun QueueTask.walkTo(
+        obj: GameObject,
+        lineOfSightRange: Int?,
+    ): Route {
         val pawn = ctx as Pawn
 
         val def = obj.getDef()
@@ -142,13 +153,14 @@ object ObjectPathAction {
          * Wall objects can't be interacted from certain directions due to
          * how they are visually placed in a tile.
          */
-        val blockedWallDirections = when (rot) {
-            0 -> EnumSet.of(Direction.EAST)
-            1 -> EnumSet.of(Direction.SOUTH)
-            2 -> EnumSet.of(Direction.WEST)
-            3 -> EnumSet.of(Direction.NORTH)
-            else -> throw IllegalStateException("Invalid object rotation: $rot")
-        }
+        val blockedWallDirections =
+            when (rot) {
+                0 -> EnumSet.of(Direction.EAST)
+                1 -> EnumSet.of(Direction.SOUTH)
+                2 -> EnumSet.of(Direction.WEST)
+                3 -> EnumSet.of(Direction.NORTH)
+                else -> throw IllegalStateException("Invalid object rotation: $rot")
+            }
 
         /*
          * Diagonal walls have an extra direction set as 'blocked', this is to
@@ -171,7 +183,20 @@ object ObjectPathAction {
              */
             if (pawn.tile.isWithinRadius(tile, 1)) {
                 val dir = Direction.between(tile, pawn.tile)
-                if (dir !in blockedWallDirections && (diagonal || !AabbUtil.areDiagonal(pawn.tile.x, pawn.tile.z, pawn.getSize(), pawn.getSize(), tile.x, tile.z, width, length))) {
+                if (dir !in blockedWallDirections && (
+                        diagonal ||
+                            !AabbUtil.areDiagonal(
+                                pawn.tile.x,
+                                pawn.tile.z,
+                                pawn.getSize(),
+                                pawn.getSize(),
+                                tile.x,
+                                tile.z,
+                                width,
+                                length,
+                            )
+                    )
+                ) {
                     return Route(ArrayDeque(), success = true, tail = pawn.tile)
                 }
             }
@@ -179,7 +204,8 @@ object ObjectPathAction {
             blockDirections.addAll(blockedWallDirections)
         }
 
-        val builder = PathRequest.Builder()
+        val builder =
+            PathRequest.Builder()
                 .setPoints(pawn.tile, tile)
                 .setSourceSize(pawn.getSize(), pawn.getSize())
                 .setProjectilePath(lineOfSightRange != null)
@@ -217,7 +243,11 @@ object ObjectPathAction {
         pawn.walkPath(route.path, MovementQueue.StepType.NORMAL, detectCollision = true)
 
         val last = pawn.movementQueue.peekLast()
-        while (last != null && !pawn.tile.sameAs(last) && !pawn.timers.has(FROZEN_TIMER) && !pawn.timers.has(STUN_TIMER) && pawn.lock.canMove()) {
+        while (last != null &&
+            !pawn.tile.sameAs(
+                last,
+            ) && !pawn.timers.has(FROZEN_TIMER) && !pawn.timers.has(STUN_TIMER) && pawn.lock.canMove()
+        ) {
             wait(1)
         }
 
@@ -237,7 +267,10 @@ object ObjectPathAction {
         return route
     }
 
-    private fun faceObj(pawn: Pawn, obj: GameObject) {
+    private fun faceObj(
+        pawn: Pawn,
+        obj: GameObject,
+    ) {
         val def = getObject(obj.id)
         val rot = obj.rot
         val type = obj.type
@@ -249,13 +282,14 @@ object ObjectPathAction {
                 }
             }
             ObjectType.INTERACTABLE_WALL_DECORATION.value, ObjectType.INTERACTABLE_WALL.value -> {
-                val dir = when (rot) {
-                    0 -> Direction.WEST
-                    1 -> Direction.NORTH
-                    2 -> Direction.EAST
-                    3 -> Direction.SOUTH
-                    else -> throw IllegalStateException("Invalid object rotation: $obj")
-                }
+                val dir =
+                    when (rot) {
+                        0 -> Direction.WEST
+                        1 -> Direction.NORTH
+                        2 -> Direction.EAST
+                        3 -> Direction.SOUTH
+                        else -> throw IllegalStateException("Invalid object rotation: $obj")
+                    }
                 pawn.faceTile(pawn.tile.step(dir))
             }
             else -> {

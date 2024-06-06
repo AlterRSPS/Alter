@@ -15,14 +15,14 @@ suspend fun QueueTask.dialog() {
             if (player.inventory.contains(Items.COINS_995)) {
                 player.inventory.remove(Items.COINS_995, 2)
                 player.inventory.add(Items.BEER, 1)
-            } else
+            } else {
                 chatPlayer("Oh dear, I don't seem to have enough money.")
+            }
         }
         2 -> {
             chatPlayer("Heard any rumors recently?")
             chatNpc("One of the patrons here is looking for treasure<br><br>apparently. A chap byu the name of Veos.")
         }
         3 -> chatPlayer("Nothing, I'm fine.")
-
     }
 }

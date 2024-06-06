@@ -26,9 +26,10 @@ val smelting = SmeltingAction()
 /**
  * The set of 'standard' furnaces
  */
-val standardFurnaces = setOf(
-        Objs.FURNACE_24009
-)
+val standardFurnaces =
+    setOf(
+        Objs.FURNACE_24009,
+    )
 
 /**
  * Handles the smelting of the standard bars
@@ -37,7 +38,11 @@ val standardFurnaces = setOf(
  * @param item      The item the player is trying to smelt
  * @param amount    The number of bars the player is trying to smelt
  */
-fun smeltItem(player: Player, item: Int, amount: Int = 28) {
+fun smeltItem(
+    player: Player,
+    item: Int,
+    amount: Int = 28,
+) {
     val def = barDefs[item] ?: return
     player.queue { smelting.smelt(this, def, amount) }
 }

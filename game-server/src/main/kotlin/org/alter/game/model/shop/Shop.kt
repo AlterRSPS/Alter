@@ -27,9 +27,13 @@ import org.alter.game.model.attr.CURRENT_SHOP_ATTR
  *
  * @author Tom <rspsmods@gmail.com>
  */
-data class Shop(val name: String, val stockType: StockType, val purchasePolicy: PurchasePolicy,
-                val currency: ShopCurrency, val items: Array<ShopItem?>) {
-
+data class Shop(
+    val name: String,
+    val stockType: StockType,
+    val purchasePolicy: PurchasePolicy,
+    val currency: ShopCurrency,
+    val items: Array<ShopItem?>,
+) {
     /**
      * The [org.alter.game.model.entity.Player.uid]s for players who currently have
      * this shop opened on their screen.
@@ -64,8 +68,12 @@ data class Shop(val name: String, val stockType: StockType, val purchasePolicy: 
         for (i in 0 until items.size) {
             val item = items[i] ?: continue
             if (item.currentAmount != item.amount && currentCycle % item.resupplyCycles == 0) {
-                val amount = if (item.currentAmount > item.amount) Math.max(item.amount, item.currentAmount - item.resupplyAmount)
-                                else Math.min(item.amount, item.currentAmount + item.resupplyAmount)
+                val amount =
+                    if (item.currentAmount > item.amount) {
+                        Math.max(item.amount, item.currentAmount - item.resupplyAmount)
+                    } else {
+                        Math.min(item.amount, item.currentAmount + item.resupplyAmount)
+                    }
                 /*
                  * When an item's initial [ShopItem.amount] is 0, it means that
                  * the item was not initially in the shop, but was added later.
@@ -116,10 +124,12 @@ data class Shop(val name: String, val stockType: StockType, val purchasePolicy: 
          * The default amount of items that can be displayed on shops at a time.
          */
         const val DEFAULT_STOCK_SIZE = 40
+
         /**
          * The default amount of an item that is resupplied per "resupply tick".
          */
         const val DEFAULT_RESUPPLY_AMOUNT = 1
+
         /**
          * The default amount of cycles per "resupply tick".
          */

@@ -6,12 +6,13 @@ import dev.openrune.cache.CacheManager.getItems
 /**
  * The set of essence pouch definitions
  */
-private val pouches = setOf(
-        EssencePouch(id = Items.SMALL_POUCH,    levelReq = 1,   capacity = 3),
-        EssencePouch(id = Items.MEDIUM_POUCH,   levelReq = 25,  capacity = 6),
-        EssencePouch(id = Items.LARGE_POUCH,    levelReq = 50,  capacity = 9),
-        EssencePouch(id = Items.GIANT_POUCH,    levelReq = 75,  capacity = 12)
-)
+private val pouches =
+    setOf(
+        EssencePouch(id = Items.SMALL_POUCH, levelReq = 1, capacity = 3),
+        EssencePouch(id = Items.MEDIUM_POUCH, levelReq = 25, capacity = 6),
+        EssencePouch(id = Items.LARGE_POUCH, levelReq = 50, capacity = 9),
+        EssencePouch(id = Items.GIANT_POUCH, levelReq = 75, capacity = 12),
+    )
 
 /**
  * Bind item option events for the various essence pouches
@@ -30,8 +31,10 @@ pouches.forEach { pouch ->
  * @param player    The player attempting to fill the pouch
  * @param pouch     The essence pouch definition
  */
-fun fillPouch(player: Player, pouch: EssencePouch) {
-
+fun fillPouch(
+    player: Player,
+    pouch: EssencePouch,
+) {
     if (player.getSkills().getBaseLevel(Skills.RUNECRAFTING) < pouch.levelReq) {
         player.message("This pouch requires level ${pouch.levelReq} ${Skills.getSkillName(world, Skills.RUNECRAFTING)} to use.")
         return
@@ -58,7 +61,12 @@ fun fillPouch(player: Player, pouch: EssencePouch) {
      * @param essence   The essence item id
      * @param def       The definition of the essence pouch
      */
-    fun deposit(pouch: Item, container: ItemContainer, essence: Int, def: EssencePouch) {
+    fun deposit(
+        pouch: Item,
+        container: ItemContainer,
+        essence: Int,
+        def: EssencePouch,
+    ) {
         val fillAmount = Math.min(container.getItemCount(essence), def.capacity)
         val transaction = container.remove(item = essence, amount = fillAmount)
         val amountRemoved = transaction.items.size
@@ -68,7 +76,6 @@ fun fillPouch(player: Player, pouch: EssencePouch) {
     }
 
     if (def != null) {
-
         if (!inventory.contains(def.id)) {
             player.message("You can only put ${def.name.lowercase()} in the pouch.")
             return

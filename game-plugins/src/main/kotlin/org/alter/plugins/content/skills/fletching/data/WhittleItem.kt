@@ -57,5 +57,5 @@ enum class WhittleItem(val id: Int, val level: Int, val logCount: Int = 1, val a
 
     // Redwood Logs
     ARROW_SHAFT_105(id = Items.ARROW_SHAFT, level = 90, amount = 105, fletchingXP = 0.5),
-    REDWOOD_SHIELD(id = Items.REDWOOD_SHIELD, level = 92, ticks = 7, logCount = 2, fletchingXP = 216.0);
+    REDWOOD_SHIELD(id = Items.REDWOOD_SHIELD, level = 92, ticks = 7, logCount = 2, fletchingXP = 216.0),
 }

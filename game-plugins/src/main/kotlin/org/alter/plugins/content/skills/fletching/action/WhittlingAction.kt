@@ -24,7 +24,13 @@ class WhittlingAction(private val defs: DefinitionSet) {
     /**
      * A map of fletchable item ids to their item names
      */
-    private val whittleNames = Log.logDefinitions.flatMap { it.value.values }.distinct().associate { it.id to getItem(it.id).name.lowercase() }
+    private val whittleNames =
+        Log.logDefinitions.flatMap { it.value.values }.distinct().associate {
+            it.id to
+                getItem(
+                    it.id,
+                ).name.lowercase()
+        }
 
     /**
      * Handles the whittling of a log
@@ -34,33 +40,39 @@ class WhittlingAction(private val defs: DefinitionSet) {
      * @param whittleItem   The whittleItem definition
      * @param amount        The amount the player is trying to whittle
      */
-    suspend fun whittle(task: QueueTask, log: Int, whittleItem: WhittleItem, amount: Int) {
-        if (!canWhittle(task, log, whittleItem))
+    suspend fun whittle(
+        task: QueueTask,
+        log: Int,
+        whittleItem: WhittleItem,
+        amount: Int,
+    ) {
+        if (!canWhittle(task, log, whittleItem)) {
             return
+        }
 
         val player = task.player
         val inventory = player.inventory
 
-        val primaryCount = inventory.getItemCount(log)/whittleItem.logCount
+        val primaryCount = inventory.getItemCount(log) / whittleItem.logCount
         val maxCount = Math.min(amount, primaryCount)
 
         // Wait two ticks to follow OSRS behavior
         task.wait(2)
         var completed = 0
-        while(completed < maxCount) {
+        while (completed < maxCount) {
             player.animate(WHITTLE_ANIM)
             task.wait(whittleItem.ticks)
-            //player.playSound(WHITTLE_SOUND)
+            // player.playSound(WHITTLE_SOUND)
 
             player.lock()
             // This is here to prevent a TOCTTOU attack
-            if (!canWhittle(task, log, whittleItem, sendMessageBox = false)){
+            if (!canWhittle(task, log, whittleItem, sendMessageBox = false)) {
                 player.unlock()
                 break
             }
 
             val removeLog = inventory.remove(item = log, amount = whittleItem.logCount, assureFullRemoval = true)
-            if (removeLog.hasFailed()){
+            if (removeLog.hasFailed()) {
                 player.unlock()
                 break
             }
@@ -68,7 +80,7 @@ class WhittlingAction(private val defs: DefinitionSet) {
             var amountMade = whittleItem.amount
 
             // Ogre Arrow Shafts randomized between 2 and 6
-            if(whittleItem.id == Items.OGRE_ARROW_SHAFT){
+            if (whittleItem.id == Items.OGRE_ARROW_SHAFT) {
                 amountMade = (2..6).random()
             }
 
@@ -87,33 +99,44 @@ class WhittlingAction(private val defs: DefinitionSet) {
      * @param whittleItem       The whittleItem being created
      * @param sendMessageBox    Whether or not to send the error message
      */
-    private suspend fun canWhittle(task: QueueTask, log: Int, whittleItem: WhittleItem, sendMessageBox: Boolean = true) : Boolean {
+    private suspend fun canWhittle(
+        task: QueueTask,
+        log: Int,
+        whittleItem: WhittleItem,
+        sendMessageBox: Boolean = true,
+    ): Boolean {
         val player = task.player
         val inventory = player.inventory
         if (inventory.getItemCount(log) < whittleItem.logCount) {
-            if(sendMessageBox)
+            if (sendMessageBox) {
                 task.messageBox("You need ${whittleItem.logCount} ${logNames[log]} to make a ${whittleNames[whittleItem.id]}")
+            }
             return false
         }
 
         if (!inventory.contains(Items.KNIFE)) {
-            if(sendMessageBox)
+            if (sendMessageBox) {
                 task.messageBox("You need a knife to cut ${logNames[log]} into ${whittleNames[whittleItem.id]}")
+            }
             return false
         }
 
         if (player.getSkills().getCurrentLevel(Skills.FLETCHING) < whittleItem.level) {
-            if(sendMessageBox)
-                task.messageBox("You need a ${Skills.getSkillName(player.world, Skills.FLETCHING)} level of at least ${whittleItem.level} to fletch ${whittleNames[whittleItem.id]}.")
+            if (sendMessageBox) {
+                task.messageBox(
+                    "You need a ${Skills.getSkillName(
+                        player.world,
+                        Skills.FLETCHING,
+                    )} level of at least ${whittleItem.level} to fletch ${whittleNames[whittleItem.id]}.",
+                )
+            }
             return false
         }
 
         return true
     }
 
-
     companion object {
-
         /**
          * The animation played when whittling a log
          */

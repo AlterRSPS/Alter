@@ -7,7 +7,6 @@ import java.nio.file.Files
 import java.nio.file.Paths
 
 class Social {
-
     private val friends = mutableListOf<String>()
     private val ignores = mutableListOf<String>()
 
@@ -51,9 +50,13 @@ class Social {
 //        }
     }
 
-    fun addFriend(player: Player, name: String) {
-        if (friends.contains(name))
+    fun addFriend(
+        player: Player,
+        name: String,
+    ) {
+        if (friends.contains(name)) {
             return
+        }
         val path = Paths.get("../data/saves/")
         val save = path.resolve(name)
         if (!Files.exists(save)) {
@@ -65,9 +68,13 @@ class Social {
         updateStatus(player)
     }
 
-    fun addIgnore(player: Player, name: String) {
-        if (ignores.contains(name))
+    fun addIgnore(
+        player: Player,
+        name: String,
+    ) {
+        if (ignores.contains(name)) {
             return
+        }
         val path = Paths.get("../data/saves/")
         val save = path.resolve(name)
         if (!Files.exists(save)) {
@@ -79,32 +86,44 @@ class Social {
         updateStatus(player)
     }
 
-    fun deleteIgnore(player: Player, name: String) {
+    fun deleteIgnore(
+        player: Player,
+        name: String,
+    ) {
         ignores.remove(name)
         pushIgnores(player)
         updateStatus(player)
     }
 
-    fun deleteFriend(player: Player, name: String) {
+    fun deleteFriend(
+        player: Player,
+        name: String,
+    ) {
         friends.remove(name)
         pushFriends(player)
         updateStatus(player)
     }
 
-    //TODO Add support for having private off/friends/etc...
+    // TODO Add support for having private off/friends/etc...
     fun updateStatus(player: Player) {
         player.world.players.forEach {
-            if (it == player)
+            if (it == player) {
                 return@forEach
-            if (it.social.ignores.contains(player.username))
+            }
+            if (it.social.ignores.contains(player.username)) {
                 return@forEach
+            }
             if (it.social.friends.contains(player.username)) {
                 it.social.pushFriends(it)
             }
         }
     }
 
-    fun sendPrivateMessage(player: Player, target: Player, unpacked: String) {
+    fun sendPrivateMessage(
+        player: Player,
+        target: Player,
+        unpacked: String,
+    ) {
         logger.info { "${player.username} is attempting to message: ${target.username} with message: $unpacked" }
 //        target.write(MessagePrivate(
 //            sender = player.username,
@@ -123,7 +142,8 @@ class Social {
 //        target.write(MessagePrivateReceiverMessage(player.username, 255, 0, player.privilege.icon, "Testing"))
 //        player.write(MessagePrivateReceiverMessage(target.username, 255, -1, 0, "Testing"))
     }
+
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

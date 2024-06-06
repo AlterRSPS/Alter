@@ -13,8 +13,10 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 class OpNpcHandler : MessageHandler<OpNpc> {
-
-    override fun accept(client: Client, message: OpNpc) {
+    override fun accept(
+        client: Client,
+        message: OpNpc,
+    ) {
         val npc = client.world.npcs[message.index] ?: return
 
         if (message.op == 2) {

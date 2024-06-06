@@ -9,8 +9,10 @@ import org.alter.game.model.priv.Privilege
  * @author Tom <rspsmods@gmail.com>
  */
 class TeleportHandler : MessageHandler<Teleport> {
-
-    override fun accept(client: Client, message: Teleport) {
+    override fun accept(
+        client: Client,
+        message: Teleport,
+    ) {
         if (!client.lock.canMove()) {
             return
         }

@@ -8,7 +8,10 @@ on_command("col_grid") {
     }
 }
 
-fun printGridAroundTile(player: Player, centerTile: Tile) {
+fun printGridAroundTile(
+    player: Player,
+    centerTile: Tile,
+) {
     val areaSize = 12
     val builder = StringBuilder()
     builder.append("---------------------------------------------------\n")

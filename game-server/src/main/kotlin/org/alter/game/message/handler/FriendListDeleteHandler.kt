@@ -5,7 +5,10 @@ import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
 
 class FriendListDeleteHandler : MessageHandler<FriendListDel> {
-    override fun accept(client: Client, message: FriendListDel) {
+    override fun accept(
+        client: Client,
+        message: FriendListDel,
+    ) {
         client.social.deleteFriend(client, message.name)
     }
 }

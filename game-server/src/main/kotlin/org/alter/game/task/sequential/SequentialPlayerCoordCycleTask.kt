@@ -9,14 +9,15 @@ import org.alter.game.task.GameTask
  * displacement effects [dspear, etc]
  */
 class SequentialPlayerCoordCycleTask : GameTask {
-
-    override fun execute(world: World, service: GameService) {
+    override fun execute(
+        world: World,
+        service: GameService,
+    ) {
         world.players.forEach { p ->
             val start = System.currentTimeMillis()
             p.playerInfo.updateCoord(p.tile.height, p.tile.x, p.tile.z)
             p.npcInfo.updateCoord(-1, p.tile.height, p.tile.x, p.tile.z)
             p.worldEntityInfo.updateCoord(-1, p.tile.height, p.tile.x, p.tile.z)
-
 
             /*
              * Log the time it takes for task to handle the player's cycle

@@ -25,7 +25,6 @@ val TRACKER_COMPONENT_ID = 25
 val GOAL_COMPONENT_ID = 33
 val TRACKER_SET = 30
 
-
 val skillEnum = getEnum(681)
 
 listOf(
@@ -37,7 +36,7 @@ listOf(
     Pair(PROGRESS_BAR_DROPDOWN_ID, Varbit.EXPERIENCE_TRACKER_PROGRESS_BAR),
     Pair(COLOUR_BAR_DROPDOWN_ID, Varbit.EXPERIENCE_TRACKER_COLOUR),
     Pair(GROUP_BAR_DROPDOWN_ID, Varbit.EXPERIENCE_TRACKER_GROUP),
-    Pair(FAKE_DROPS_DROPDOWN_ID, Varbit.EXPERIENCE_TRACKER_FAKE_DROPS)
+    Pair(FAKE_DROPS_DROPDOWN_ID, Varbit.EXPERIENCE_TRACKER_FAKE_DROPS),
 ).forEach { (button, varbit) ->
     on_xp_button(button) {
         player.setVarbit(varbit, player.getInteractingSlot() - 1)
@@ -60,7 +59,7 @@ on_xp_button(RETURN_TO_SETTINGS) {
     }
     player.setVarbit(Varbit.EXPERIENCE_TRACKER_CONFIGURED_SKILL, 1) // Actl on osrs they set this one to wut it was before but i aint wasting memory on that shit.
     player.setVarbit(Varbit.EXPERIENCE_TRACKER_CONFIGURED_SKILL, 0)
-    player.setVarp(261,-1)
+    player.setVarp(261, -1)
     player.setVarp(262, -1)
 }
 // No tracker or Goal
@@ -70,14 +69,17 @@ on_xp_button(NO_TRACKER_OR_GOAL_COMPONENT_ID) {
 
 // Tracker
 on_xp_button(TRACKER_COMPONENT_ID) {
-    player.setVarp(262, -1)  // Tf Makes 61512 ?
+    player.setVarp(262, -1) // Tf Makes 61512 ?
     player.setVarp(261, -1) // Tf Makes 61512 ?
     player.setVarbit(Varbit.EXPERIENCE_TRACKER_CONFIGURED_MODE, 1)
     val slot = player.getVarbit(Varbit.EXPERIENCE_TRACKER_CONFIGURED_SKILL)
     when {
         slot in 0..23 -> {
             val skillEnum = getEnum(681)
-            player.setVarp(261, player.getSkills()[skillEnum.getInt(player.getVarbit(Varbit.EXPERIENCE_TRACKER_CONFIGURED_SKILL))].xp.roundToInt())
+            player.setVarp(
+                261,
+                player.getSkills()[skillEnum.getInt(player.getVarbit(Varbit.EXPERIENCE_TRACKER_CONFIGURED_SKILL))].xp.roundToInt(),
+            )
         }
         slot == 24 -> {
             player.setVarp(261, player.getSkills().calculateTotalXp.roundToInt())
@@ -117,7 +119,7 @@ on_xp_button(GOAL_COMPONENT_ID) {
     }
 }
 
-fun getClosestNumber(xp: Int) : Int {
+fun getClosestNumber(xp: Int): Int {
     return when {
         xp < 10 -> 10
         xp < 100 -> 100
@@ -136,24 +138,31 @@ on_xp_button(TRACKER_SET) {
     val xp = 0
     val level = 0
     val inter = 0
-    when(player.getInteractingOption()) {
+    when (player.getInteractingOption()) {
         5 -> {
             player.queue {
                 inputInt("Set tracker start point: (skill level)") // If more than 99 it's not valid. "Input is not a valid skill level.
                 // Set varp 261 to xp : so if u input level 80 , it needs to convert into XP
             }
-        }// Set level
+        } // Set level
         6 -> {
             player.queue {
                 inputInt("Set tracker start point: (XP value)")
             }
         }
-        9 -> player.setVarp(261, player.getSkills()[skillEnum.getInt(player.getVarbit(Varbit.EXPERIENCE_TRACKER_CONFIGURED_SKILL))].xp.roundToInt())
+        9 ->
+            player.setVarp(
+                261,
+                player.getSkills()[skillEnum.getInt(player.getVarbit(Varbit.EXPERIENCE_TRACKER_CONFIGURED_SKILL))].xp.roundToInt(),
+            )
         else -> "Something went wrong! method: on_xp_button(TRACKER_SET) Interaction slot: ${player.getInteractingOption()}"
     }
 }
 
-fun on_xp_button(component: Int, plugin: Plugin.() -> Unit) {
+fun on_xp_button(
+    component: Int,
+    plugin: Plugin.() -> Unit,
+) {
     on_button(XpSettings.SETUP_INTERFACE_ID, component) {
         player.playSound(Sound.INTERFACE_SELECT1)
         plugin()

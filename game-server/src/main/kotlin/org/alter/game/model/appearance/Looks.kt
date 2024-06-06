@@ -7,7 +7,7 @@ object Looks {
     val FEMALE_HEADS = arrayOf(*(45..55).toArray(), *(118..128).toArray(), 152, 143) // 45-55, 118-128, 152, 143
 
     fun getHeads(gender: Gender): Array<Int> {
-        return when(gender) {
+        return when (gender) {
             Gender.MALE -> MALE_HEADS
             Gender.FEMALE -> FEMALE_HEADS
         }
@@ -21,7 +21,7 @@ object Looks {
      * in that capacity unless bearded ladies are desired.
      */
     fun getJaws(gender: Gender): Array<Int> {
-        return when(gender) {
+        return when (gender) {
             Gender.MALE -> MALE_JAWS
             Gender.FEMALE -> FEMALE_JAWS
         }
@@ -31,7 +31,7 @@ object Looks {
     val FEMALE_TORSOS = arrayOf(*(56..60).toArray(), *(89..94).toArray())
 
     fun getTorsos(gender: Gender): Array<Int> {
-        return when(gender) {
+        return when (gender) {
             Gender.MALE -> MALE_TORSOS
             Gender.FEMALE -> FEMALE_TORSOS
         }
@@ -41,7 +41,7 @@ object Looks {
     val FEMALE_ARMS = arrayOf(*(61..66).toArray(), *(95..99).toArray())
 
     fun getArms(gender: Gender): Array<Int> {
-        return when(gender) {
+        return when (gender) {
             Gender.MALE -> MALE_ARMS
             Gender.FEMALE -> FEMALE_ARMS
         }
@@ -51,7 +51,7 @@ object Looks {
     val FEMALE_HANDS = arrayOf(67, 68)
 
     fun getHands(gender: Gender): Array<Int> {
-        return when(gender) {
+        return when (gender) {
             Gender.MALE -> MALE_HANDS
             Gender.FEMALE -> FEMALE_HANDS
         }
@@ -61,17 +61,17 @@ object Looks {
     val FEMALE_LEGS = arrayOf(*(70..73).toArray(), *(76..78).toArray(), *(135..140).toArray())
 
     fun getLegs(gender: Gender): Array<Int> {
-        return when(gender) {
+        return when (gender) {
             Gender.MALE -> MALE_LEGS
             Gender.FEMALE -> FEMALE_LEGS
         }
     }
 
-    val MALE_FEETS = arrayOf(42,43)
+    val MALE_FEETS = arrayOf(42, 43)
     val FEMALE_FEETS = arrayOf(79, 80)
 
     fun getFeets(gender: Gender): Array<Int> {
-        return when(gender) {
+        return when (gender) {
             Gender.MALE -> MALE_FEETS
             Gender.FEMALE -> FEMALE_FEETS
         }

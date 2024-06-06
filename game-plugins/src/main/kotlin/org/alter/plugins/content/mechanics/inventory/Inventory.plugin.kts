@@ -16,25 +16,25 @@ on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
         val item = player.inventory[slot] ?: return@on_button
         player.attr[INTERACTING_ITEM_SLOT] = slot
 
-        when(option) {
+        when (option) {
             6 -> {
                 if (world.plugins.canDropItem(player, item.id)) {
                     if (!world.plugins.executeItem(player, item.id, option)) {
-                            val remove = player.inventory.remove(item, assureFullRemoval = false, beginSlot = slot)
-                            if (remove.completed > 0) {
-                                val floor = GroundItem(item.id, remove.completed, player.tile, player)
-                                remove.firstOrNull()?.let { removed ->
-                                    floor.copyAttr(removed.item.attr)
-                                }
-                                world.spawn(floor)
+                        val remove = player.inventory.remove(item, assureFullRemoval = false, beginSlot = slot)
+                        if (remove.completed > 0) {
+                            val floor = GroundItem(item.id, remove.completed, player.tile, player)
+                            remove.firstOrNull()?.let { removed ->
+                                floor.copyAttr(removed.item.attr)
                             }
+                            world.spawn(floor)
                         }
                     }
+                }
             }
             2 -> {
                 val result = EquipAction.equip(player, item, slot)
                 if (result == EquipAction.Result.UNHANDLED && world.devContext.debugItemActions) {
-                    player.message("Unhandled item action: [item=${item.id}, slot=${slot}, option=$option]")
+                    player.message("Unhandled item action: [item=${item.id}, slot=$slot, option=$option]")
                 }
             }
             9 -> {
@@ -43,7 +43,7 @@ on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
             else -> {
                 if (option != null) {
                     if (!world.plugins.executeItem(player, item.id, option) && world.devContext.debugItemActions) {
-                        player.message("Unhandled item action: [item=${item.id}, slot=${slot}, option=${option}]")
+                        player.message("Unhandled item action: [item=${item.id}, slot=$slot, option=$option]")
                     }
                 }
             }

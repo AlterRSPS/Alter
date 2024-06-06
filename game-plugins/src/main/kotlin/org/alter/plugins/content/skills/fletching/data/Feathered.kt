@@ -5,7 +5,14 @@ import org.alter.api.cfg.Items
 enum class Feathered(val id: Int, val unfeathered: Int, val amount: Int = 10, val feathersNeeded: Int = 1, val level: Int, val fletchingXP: Double) {
     // Headless (Ogre) Arrows (The only real exception here)
     HEADLESS_ARROW(id = Items.HEADLESS_ARROW, unfeathered = Items.ARROW_SHAFT, amount = 15, level = 1, fletchingXP = 1.0),
-    FLIGHTED_OGRE_ARROW(id = Items.FLIGHTED_OGRE_ARROW, unfeathered = Items.OGRE_ARROW_SHAFT, amount = 6, feathersNeeded = 4, level = 1, fletchingXP = 0.9),
+    FLIGHTED_OGRE_ARROW(
+        id = Items.FLIGHTED_OGRE_ARROW,
+        unfeathered = Items.OGRE_ARROW_SHAFT,
+        amount = 6,
+        feathersNeeded = 4,
+        level = 1,
+        fletchingXP = 0.9,
+    ),
 
     // Bolts
     BRONZE_BOLTS(id = Items.BRONZE_BOLTS, unfeathered = Items.BRONZE_BOLTS_UNF, level = 9, fletchingXP = 0.5),
@@ -26,25 +33,26 @@ enum class Feathered(val id: Int, val unfeathered: Int, val amount: Int = 10, va
     MITHRIL_DART(id = Items.MITHRIL_DART, unfeathered = Items.MITHRIL_DART_TIP, level = 52, fletchingXP = 11.2),
     ADAMANT_DART(id = Items.ADAMANT_DART, unfeathered = Items.ADAMANT_DART_TIP, level = 67, fletchingXP = 15.0),
     RUNE_DART(id = Items.RUNE_DART, unfeathered = Items.RUNE_DART_TIP, level = 81, fletchingXP = 18.8),
-    DRAGON_DART(id = Items.DRAGON_DART, unfeathered = Items.DRAGON_DART_TIP, level = 95, fletchingXP = 25.0);
-
+    DRAGON_DART(id = Items.DRAGON_DART, unfeathered = Items.DRAGON_DART_TIP, level = 95, fletchingXP = 25.0),
+    ;
 
     companion object {
         /**
          * The map of crossbow ids to its definition
          */
-        val featheredDefinitions = values().associate { it.id to it}
+        val featheredDefinitions = values().associate { it.id to it }
 
         /**
          * The list of all possible feathers to be used
          */
-        val feathers = setOf(
+        val feathers =
+            setOf(
                 Items.FEATHER,
                 Items.RED_FEATHER,
                 Items.ORANGE_FEATHER,
                 Items.YELLOW_FEATHER,
                 Items.BLUE_FEATHER,
-                Items.STRIPY_FEATHER
-        )
+                Items.STRIPY_FEATHER,
+            )
     }
 }

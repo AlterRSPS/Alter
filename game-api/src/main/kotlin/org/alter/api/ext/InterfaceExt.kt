@@ -9,7 +9,7 @@ package org.alter.api.ext
  *
  * @param child     The child component
  */
-fun Int.getInterfaceHash(child: Int = -1) : Int {
+fun Int.getInterfaceHash(child: Int = -1): Int {
     val value = (this shl 16)
     if (child != -1) return value or child
     return value

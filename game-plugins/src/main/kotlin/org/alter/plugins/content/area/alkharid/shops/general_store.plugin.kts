@@ -1,8 +1,8 @@
-//package org.alter.plugins.content.areas.alkharid.shops
+// package org.alter.plugins.content.areas.alkharid.shops
 //
-//import org.alter.plugins.content.mechanics.shops.CoinCurrency
+// import org.alter.plugins.content.mechanics.shops.CoinCurrency
 //
-//create_shop("Al-Kharid General Store", CoinCurrency(), purchasePolicy = PurchasePolicy.BUY_TRADEABLES) {
+// create_shop("Al-Kharid General Store", CoinCurrency(), purchasePolicy = PurchasePolicy.BUY_TRADEABLES) {
 //    items[0] = ShopItem(Items.POT, 5)
 //    items[1] = ShopItem(Items.JUG, 2)
 //    items[2] = ShopItem(Items.EMPTY_JUG_PACK, 5)
@@ -16,4 +16,4 @@
 //    items[10] = ShopItem(Items.HAMMER, 5)
 //    items[11] = ShopItem(Items.NEWCOMER_MAP, 5)
 //    items[12] = ShopItem(Items.SECURITY_BOOK, 5)
-//}
+// }

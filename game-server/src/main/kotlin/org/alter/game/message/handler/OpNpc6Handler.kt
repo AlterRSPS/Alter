@@ -9,8 +9,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class OpNpc6Handler : MessageHandler<OpNpc6> {
-
-    override fun accept(client: Client, message: OpNpc6) {
+    override fun accept(
+        client: Client,
+        message: OpNpc6,
+    ) {
         client.world.sendExamine(client, message.id, ExamineEntityType.NPC)
     }
 }

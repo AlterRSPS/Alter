@@ -47,7 +47,11 @@ on_world_init {
     }
 }
 
-fun open_gate(p: Player, obj: GameObject, gates: GateSet) {
+fun open_gate(
+    p: Player,
+    obj: GameObject,
+    gates: GateSet,
+) {
     val oldRot = obj.rot
 
     val hinge = obj.id == gates.closed.hinge || obj.id == gates.opened.hinge
@@ -94,7 +98,11 @@ fun open_gate(p: Player, obj: GameObject, gates: GateSet) {
     p.playSound(OPEN_DOOR_SFX)
 }
 
-fun close_gate(p: Player, obj: GameObject, gates: GateSet) {
+fun close_gate(
+    p: Player,
+    obj: GameObject,
+    gates: GateSet,
+) {
     val oldRot = obj.rot
 
     val hinge = obj.id == gates.closed.hinge || obj.id == gates.opened.hinge
@@ -147,7 +155,11 @@ fun close_gate(p: Player, obj: GameObject, gates: GateSet) {
     p.playSound(CLOSE_DOOR_SFX)
 }
 
-fun get_neighbour_gate(world: World, obj: GameObject, otherGate: Int): GameObject? {
+fun get_neighbour_gate(
+    world: World,
+    obj: GameObject,
+    otherGate: Int,
+): GameObject? {
     val tile = obj.tile
 
     for (x in -1..1) {
@@ -165,13 +177,19 @@ fun get_neighbour_gate(world: World, obj: GameObject, otherGate: Int): GameObjec
     return null
 }
 
-fun copy_stick_vars(from: GameObject, to: GameObject) {
+fun copy_stick_vars(
+    from: GameObject,
+    to: GameObject,
+) {
     if (from.attr.has(STICK_STATE)) {
         to.attr[STICK_STATE] = from.attr[STICK_STATE]!!
     }
 }
 
-fun add_stick_var(world: World, obj: GameObject) {
+fun add_stick_var(
+    world: World,
+    obj: GameObject,
+) {
     var currentChanges = get_stick_changes(obj)
     if (obj.attr.has(STICK_STATE) && Math.abs(world.currentCycle - obj.attr[STICK_STATE]!!.lastChangeCycle) >= resetStickDelay) {
         currentChanges = 0
@@ -181,7 +199,10 @@ fun add_stick_var(world: World, obj: GameObject) {
 
 fun get_stick_changes(obj: GameObject): Int = obj.attr[STICK_STATE]?.changeCount ?: 0
 
-fun is_stuck(world: World, obj: GameObject): Boolean {
+fun is_stuck(
+    world: World,
+    obj: GameObject,
+): Boolean {
     val stuck = get_stick_changes(obj) >= changesBeforeStick
     if (stuck && Math.abs(world.currentCycle - obj.attr[STICK_STATE]!!.lastChangeCycle) >= resetStickDelay) {
         obj.attr.remove(STICK_STATE)

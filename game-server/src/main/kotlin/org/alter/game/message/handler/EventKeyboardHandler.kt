@@ -8,7 +8,9 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class EventKeyboardHandler : MessageHandler<EventKeyboard> {
-
-    override fun accept(client: Client, message: EventKeyboard) {
+    override fun accept(
+        client: Client,
+        message: EventKeyboard,
+    ) {
     }
 }

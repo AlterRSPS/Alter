@@ -17,8 +17,10 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 class OpObjHandler : MessageHandler<OpObj> {
-
-    override fun accept(client: Client, message: OpObj) {
+    override fun accept(
+        client: Client,
+        message: OpObj,
+    ) {
         /*
          * If tile is too far away, don't process it.
          */
@@ -31,13 +33,24 @@ class OpObjHandler : MessageHandler<OpObj> {
             return
         }
 
-        log(client, "Ground Item action %d: item=%d, x=%d, z=%d, movement=%d", message.op, message.id, message.x, message.z, message.controlKey)
+        log(
+            client,
+            "Ground Item action %d: item=%d, x=%d, z=%d, movement=%d",
+            message.op,
+            message.id,
+            message.x,
+            message.z,
+            message.controlKey,
+        )
 
         /*
          * Get the region chunk that the object would belong to.
          */
         val chunk = client.world.chunks.getOrCreate(tile)
-        val item = chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull { it.item == message.id && it.canBeViewedBy(client) } ?: return
+        val item =
+            chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull {
+                it.item == message.id && it.canBeViewedBy(client)
+            } ?: return
 
         if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             client.moveTo(item.tile)

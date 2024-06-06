@@ -8,8 +8,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class MapBuildCompleteHandler : MessageHandler<MapBuildComplete> {
-
-    override fun accept(client: Client, message: MapBuildComplete) {
+    override fun accept(
+        client: Client,
+        message: MapBuildComplete,
+    ) {
         client.lastMapBuildTime = client.world.currentCycle
     }
 }

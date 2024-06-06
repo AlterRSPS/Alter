@@ -17,7 +17,15 @@ arrayOf(Npcs.BANKER_2897, Npcs.BANKER_2898, Npcs.BANKER_1633, Npcs.BANKER_1634, 
 
 suspend fun QueueTask.dialog() {
     chatNpc("Good day, how may I help you?")
-    when (options("I'd like to access my bank account, please.", "I'd like to check my PIN settings.", "I'd like to collect items.", "I'd like to buy more bank slots.", "What is this place?")) {
+    when (
+        options(
+            "I'd like to access my bank account, please.",
+            "I'd like to check my PIN settings.",
+            "I'd like to collect items.",
+            "I'd like to buy more bank slots.",
+            "What is this place?",
+        )
+    ) {
         1 -> player.openBank()
         2 -> open_pin(player)
         3 -> open_collect(player)
@@ -26,7 +34,10 @@ suspend fun QueueTask.dialog() {
             chatPlayer("What is this place?")
             chatNpc("This is a branch of the Bank of Gielinor. We have<br><br>branches in many towns.", animation = 568)
             chatPlayer("And what do you do?", animation = 554)
-            chatNpc("We will look after your items and money for you.<br>Leave your valuables with us if you want to keep them<br>safe.", animation = 569)
+            chatNpc(
+                "We will look after your items and money for you.<br>Leave your valuables with us if you want to keep them<br>safe.",
+                animation = 569,
+            )
         }
     }
 }

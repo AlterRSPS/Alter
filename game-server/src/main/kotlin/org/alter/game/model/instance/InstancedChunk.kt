@@ -10,10 +10,9 @@ package org.alter.game.model.instance
  * @author Tom <rspsmods@gmail.com>
  */
 data class InstancedChunk(var packed: Int) {
-
     val rot: Int get() = (packed shr 1) and 0x3
 
-    //TODO ADVO check over these when sober
+    // TODO ADVO check over these when sober
     val height: Int get() = (packed shr 24) and 0x3
     val x: Int get() = zoneX shl 3
     val z: Int get() = zoneZ shl 3

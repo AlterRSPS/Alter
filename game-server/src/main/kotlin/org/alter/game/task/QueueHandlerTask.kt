@@ -10,8 +10,10 @@ import org.alter.game.service.GameService
  * @author Tom <rspsmods@gmail.com>
  */
 class QueueHandlerTask : GameTask {
-
-    override fun execute(world: World, service: GameService) {
+    override fun execute(
+        world: World,
+        service: GameService,
+    ) {
         var playerQueues = 0
         var npcQueues = 0
 

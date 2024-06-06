@@ -8,8 +8,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class ResumePauseButtonHandler : MessageHandler<ResumePauseButton> {
-
-    override fun accept(client: Client, message: ResumePauseButton) {
+    override fun accept(
+        client: Client,
+        message: ResumePauseButton,
+    ) {
         log(client, "Continue dialog: component=[%d:%d], slot=%d", message.interfaceId, message.componentId, message.sub)
         client.queues.submitReturnValue(message)
     }

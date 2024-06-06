@@ -12,9 +12,8 @@ import org.alter.game.model.item.SlotItem
  * @author Tom <rspsmods@gmail.com>
  */
 class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
-
-    constructor(capacity: Int, stackType: ContainerStackType)
-            : this(ContainerKey("", capacity, stackType))
+    constructor(capacity: Int, stackType: ContainerStackType) :
+        this(ContainerKey("", capacity, stackType))
 
     constructor(other: ItemContainer) : this(other.capacity, other.stackType) {
         for (i in 0 until capacity) {
@@ -55,13 +54,19 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      * Checks if the container has an [Item] which has the same [Item.id] as
      * [item] or any of the values (if any) in [others].
      */
-    fun containsAny(item: Int, vararg others: Int): Boolean = items.any { it != null && (it.id == item || it.id in others) }
+    fun containsAny(
+        item: Int,
+        vararg others: Int,
+    ): Boolean = items.any { it != null && (it.id == item || it.id in others) }
 
     /**
      * Checks if the container has an [Item] which has the same [Item.id] as
      * [itemId] in the specific [slot].
      */
-    fun hasAt(slot: Int, itemId: Int): Boolean = items[slot]?.id == itemId
+    fun hasAt(
+        slot: Int,
+        itemId: Int,
+    ): Boolean = items[slot]?.id == itemId
 
     /**
      * Gets the most-left/first index(slot) that is not occupied by an [Item].
@@ -79,16 +84,16 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      * Defaults to -1 if none is found.
      */
     fun getLastFreeSlot(): Int {
-        var lastEmpty = -1;
+        var lastEmpty = -1
         for (index in items.indices) {
-            if (items[index] == null)
+            if (items[index] == null) {
                 lastEmpty = index
-            else
+            } else {
                 break
+            }
         }
         return lastEmpty
     }
-
 
     /**
      * @TODO Refactor.
@@ -104,13 +109,15 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
         }
         return lastEmpty
     }
+
     fun getLastFreeSlotReversed(): Int {
-        var lastEmpty = -1;
+        var lastEmpty = -1
         for (index in items.indices.reversed()) {
-            if (items[index] == null)
+            if (items[index] == null) {
                 lastEmpty = index
-            else
+            } else {
                 break
+            }
         }
         return lastEmpty
     }
@@ -180,7 +187,10 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      * @return
      * [-1] if no item with [itemId] could be found.
      */
-    fun getItemIndex(itemId: Int, skipAttrItems: Boolean): Int {
+    fun getItemIndex(
+        itemId: Int,
+        skipAttrItems: Boolean,
+    ): Int {
         for (i in 0 until capacity) {
             if (items[i]?.id == itemId && (!skipAttrItems || !items[i]!!.hasAnyAttr())) {
                 return i
@@ -250,7 +260,13 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      *
      * @see ItemTransaction
      */
-    fun add(item: Int, amount: Int = 1, assureFullInsertion: Boolean = true, forceNoStack: Boolean = false, beginSlot: Int = -1): ItemTransaction {
+    fun add(
+        item: Int,
+        amount: Int = 1,
+        assureFullInsertion: Boolean = true,
+        forceNoStack: Boolean = false,
+        beginSlot: Int = -1,
+    ): ItemTransaction {
         val def = getItem(item)
 
         /*
@@ -350,7 +366,11 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
                      * at least one item, whether stackable or not, can fit in
                      * our container.
                      */
-                    logger.error(RuntimeException("Unable to find a free slot for a stackable item. [capacity=$capacity, item=$item, quantity=$amount]")) {}
+                    logger.error(
+                        RuntimeException(
+                            "Unable to find a free slot for a stackable item. [capacity=$capacity, item=$item, quantity=$amount]",
+                        ),
+                    ) {}
                     return ItemTransaction(amount, completed, emptyList())
                 }
             }
@@ -375,9 +395,19 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      * be added. Nothing else in it, including its attributes, are taken into
      * account.
      */
-    fun add(item: Item, assureFullInsertion: Boolean = true, forceNoStack: Boolean = false, beginSlot: Int = -1): ItemTransaction {
-        return add(item = item.id, amount = item.amount, assureFullInsertion = assureFullInsertion,
-                forceNoStack = forceNoStack, beginSlot = beginSlot)
+    fun add(
+        item: Item,
+        assureFullInsertion: Boolean = true,
+        forceNoStack: Boolean = false,
+        beginSlot: Int = -1,
+    ): ItemTransaction {
+        return add(
+            item = item.id,
+            amount = item.amount,
+            assureFullInsertion = assureFullInsertion,
+            forceNoStack = forceNoStack,
+            beginSlot = beginSlot,
+        )
     }
 
     /**
@@ -416,7 +446,12 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      *
      * @see ItemTransaction
      */
-    fun remove(item: Int, amount: Int = 1, assureFullRemoval: Boolean = false, beginSlot: Int = -1): ItemTransaction {
+    fun remove(
+        item: Int,
+        amount: Int = 1,
+        assureFullRemoval: Boolean = false,
+        beginSlot: Int = -1,
+    ): ItemTransaction {
         val hasAmount = getItemCount(item)
 
         if (assureFullRemoval && hasAmount < amount) {
@@ -496,7 +531,11 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      * remove(id: Int, amount: Int, assureFullRemoval: Boolean = false, beginSlot: Int = -1)
      * ```
      */
-    fun remove(item: Item, assureFullRemoval: Boolean = false, beginSlot: Int = -1): ItemTransaction = remove(item.id, item.amount, assureFullRemoval, beginSlot)
+    fun remove(
+        item: Item,
+        assureFullRemoval: Boolean = false,
+        beginSlot: Int = -1,
+    ): ItemTransaction = remove(item.id, item.amount, assureFullRemoval, beginSlot)
 
     /**
      * replaces [Item] in container with optional slot awareness
@@ -511,11 +550,16 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      *
      * @return whether or not the replace operation completed as expected -> true|false
      */
-    fun replace(remove: Int, add: Int, slot: Int = -1): Boolean {
-        return if(remove(remove, beginSlot = slot).hasSucceeded())
+    fun replace(
+        remove: Int,
+        add: Int,
+        slot: Int = -1,
+    ): Boolean {
+        return if (remove(remove, beginSlot = slot).hasSucceeded()) {
             add(add, beginSlot = slot).hasSucceeded()
-        else
+        } else {
             false
+        }
     }
 
     /**
@@ -526,11 +570,17 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      *
      * @param required - [Item.id] of [Item] required in container for replace
      */
-    fun replaceWithItemRequirement(remove: Int, add: Int, required: Int, slot: Int = -1): Boolean {
-        return if(contains(required))
+    fun replaceWithItemRequirement(
+        remove: Int,
+        add: Int,
+        required: Int,
+        slot: Int = -1,
+    ): Boolean {
+        return if (contains(required)) {
             replace(remove, add, slot)
-        else
+        } else {
             false
+        }
     }
 
     /**
@@ -544,25 +594,40 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      *   Note| the use of [Item] and not [Item.id] is purposed to permit amounts
      *   and imposes assurance checks in container operations
      */
-    fun replaceAndRemoveAnother(remove: Int, add: Int, other: Item, slot: Int = -1, otherSlot: Int = -1): Boolean {
+    fun replaceAndRemoveAnother(
+        remove: Int,
+        add: Int,
+        other: Item,
+        slot: Int = -1,
+        otherSlot: Int = -1,
+    ): Boolean {
         val taken = remove(other, assureFullRemoval = true, beginSlot = otherSlot).hasSucceeded()
-        return if(replace(remove, add, slot) && taken)
+        return if (replace(remove, add, slot) && taken) {
             true
-        else if(taken){
+        } else if (taken) {
             add(other, assureFullInsertion = true, beginSlot = otherSlot)
             false
-        } else
+        } else {
             false
+        }
     }
 
     /**
      * wrapper for [replaceAndRemoveAnother] which requires the container to contain [required]
      */
-    fun replaceAndRemoveAnotherWithItemRequirement(remove: Int, add: Int, other: Item, required: Int, slot: Int = -1, otherSlot: Int = -1): Boolean {
-        return if(contains(required))
+    fun replaceAndRemoveAnotherWithItemRequirement(
+        remove: Int,
+        add: Int,
+        other: Item,
+        required: Int,
+        slot: Int = -1,
+        otherSlot: Int = -1,
+    ): Boolean {
+        return if (contains(required)) {
             replaceAndRemoveAnother(remove, add, other, slot, otherSlot)
-        else
+        } else {
             false
+        }
     }
 
     /**
@@ -579,21 +644,32 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      *
      * @return whether or not the replace operation completed as expected -> true|false
      */
-    fun replaceBoth(removeItem: Int, addItem: Int, otherItem: Int, otherAddItem:Int, slot: Int = -1, otherSlot: Int = -1): Boolean {
+    fun replaceBoth(
+        removeItem: Int,
+        addItem: Int,
+        otherItem: Int,
+        otherAddItem: Int,
+        slot: Int = -1,
+        otherSlot: Int = -1,
+    ): Boolean {
         val taken = replace(otherItem, otherAddItem, otherSlot)
-        return if(replace(removeItem, addItem, slot) && taken)
+        return if (replace(removeItem, addItem, slot) && taken) {
             true
-        else if(taken){
+        } else if (taken) {
             replace(otherAddItem, otherItem, otherSlot)
             false
-        } else
+        } else {
             false
+        }
     }
 
     /**
      * Swap slots of items in slot [from] and [to].
      */
-    fun swap(from: Int, to: Int) {
+    fun swap(
+        from: Int,
+        to: Int,
+    ) {
         val copy = items[from]
         set(from, items[to])
         set(to, copy)
@@ -663,12 +739,15 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
 
     operator fun get(index: Int): Item? = items[index]
 
-    operator fun set(index: Int, item: Item?) {
+    operator fun set(
+        index: Int,
+        item: Item?,
+    ) {
         items[index] = item
         dirty = true
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

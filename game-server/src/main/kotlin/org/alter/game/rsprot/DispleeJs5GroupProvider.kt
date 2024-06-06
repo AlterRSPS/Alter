@@ -18,17 +18,21 @@ import java.nio.file.Path
 import kotlin.math.min
 import kotlin.math.pow
 
-class DispleeJs5GroupProvider: ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
-
-    override fun provide(archive: Int, group: Int): Js5GroupProvider.ByteBufJs5GroupType {
+class DispleeJs5GroupProvider : ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
+    override fun provide(
+        archive: Int,
+        group: Int,
+    ): Js5GroupProvider.ByteBufJs5GroupType {
         return Js5GroupProvider.ByteBufJs5GroupType(
             groups[bitpack(archive, group)]
-                ?: throw DecoderException("Invalid on-demand group request ($archive and $group)")
+                ?: throw DecoderException("Invalid on-demand group request ($archive and $group)"),
         )
     }
 
-
-    override fun getSize(archive: Int, group: Int): Int {
+    override fun getSize(
+        archive: Int,
+        group: Int,
+    ): Int {
         return sizes[bitpack(archive, group)]
     }
 
@@ -40,7 +44,7 @@ class DispleeJs5GroupProvider: ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
 
         encodeMasterIndex(cache)
 
-        for(test in cache.indices()) {
+        for (test in cache.indices()) {
             encodeArchive(cache, test.id)
         }
         encodeArchiveMasterIndex(cache, 255)
@@ -73,9 +77,12 @@ class DispleeJs5GroupProvider: ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
         }
     }
 
-    private fun encodeArchiveMasterIndex(cache: CacheLibrary, index: Int) {
+    private fun encodeArchiveMasterIndex(
+        cache: CacheLibrary,
+        index: Int,
+    ) {
         for (archive in cache.indices()) {
-            if (archive.id == 255) continue// this is the prebuilt versiontable.
+            if (archive.id == 255) continue // this is the prebuilt versiontable.
             val data = cache.index255?.readArchiveSector(archive.id)?.data ?: continue
 
             Unpooled.directBuffer().use { uncompressed ->
@@ -85,7 +92,10 @@ class DispleeJs5GroupProvider: ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
         }
     }
 
-    private fun encodeArchive(cache: CacheLibrary, index: Int) {
+    private fun encodeArchive(
+        cache: CacheLibrary,
+        index: Int,
+    ) {
         for (archive in cache.index(index).archives()) {
             val data = cache.index(index).readArchiveSector(archive.id)?.data ?: continue
 
@@ -97,12 +107,17 @@ class DispleeJs5GroupProvider: ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
         }
     }
 
-    private fun encodeGroup(archive: Int, group: Int, data: ByteBuf) {
-        val response = Unpooled.directBuffer()
-            .writeByte(archive)
-            .writeShort(group)
-            .writeByte(data.readUnsignedByte().toInt()) // compression
-            .writeBytes(data, min(data.readableBytes(), BYTES_BEFORE_BLOCK))
+    private fun encodeGroup(
+        archive: Int,
+        group: Int,
+        data: ByteBuf,
+    ) {
+        val response =
+            Unpooled.directBuffer()
+                .writeByte(archive)
+                .writeShort(group)
+                .writeByte(data.readUnsignedByte().toInt()) // compression
+                .writeBytes(data, min(data.readableBytes(), BYTES_BEFORE_BLOCK))
         while (data.isReadable) {
             response.writeByte(0xFF)
             response.writeBytes(data, min(data.readableBytes(), BYTES_AFTER_BLOCK))
@@ -133,7 +148,6 @@ class DispleeJs5GroupProvider: ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
     }
 
     private companion object {
-
         private const val BLOCK_SIZE = 512
         private const val BLOCK_HEADER_SIZE = 1 + 2 + 1
         private const val BLOCK_DELIMITER_SIZE = 1
@@ -142,7 +156,10 @@ class DispleeJs5GroupProvider: ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
 
         private val logger: Logger = LoggerFactory.getLogger(DispleeJs5GroupProvider::class.java)
 
-        fun bitpack(archive: Int, group: Int): Int {
+        fun bitpack(
+            archive: Int,
+            group: Int,
+        ): Int {
             require(archive and 0xFF.inv() == 0) { "invalid archive $archive:$group" }
             require(group and 0xFFFF.inv() == 0) { "invalid group $archive:$group" }
 

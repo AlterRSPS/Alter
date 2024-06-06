@@ -1,8 +1,8 @@
 package org.alter.plugins.content.skills.woodcutting
 
-import org.alter.game.model.attr.AttributeKey
 import org.alter.api.cfg.Items
 import org.alter.api.ext.player
+import org.alter.game.model.attr.AttributeKey
 
 val rechargeItem = intArrayOf(Items.SMOULDERING_STONE, Items.DRAGON_AXE)
 val infernalAxe = AttributeKey<Int>("Infernal Axe Charges")

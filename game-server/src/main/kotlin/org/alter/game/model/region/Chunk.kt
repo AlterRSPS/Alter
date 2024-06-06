@@ -20,7 +20,6 @@ import org.alter.game.service.GameService
  * @author Tom <rspsmods@gmail.com>
  */
 class Chunk(val coords: ChunkCoords, val heights: Int) {
-
     constructor(other: Chunk) : this(other.coords, other.heights) {
         copyMatrices(other)
     }
@@ -63,7 +62,10 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
 
     fun getMatrix(height: Int): CollisionMatrix = matrices[height]
 
-    fun setMatrix(height: Int, matrix: CollisionMatrix) {
+    fun setMatrix(
+        height: Int,
+        matrix: CollisionMatrix,
+    ) {
         matrices[height] = matrix
     }
 
@@ -78,11 +80,19 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
      */
     fun contains(tile: Tile): Boolean = coords == tile.chunkCoords
 
-    fun isBlocked(tile: Tile, direction: Direction, projectile: Boolean): Boolean = matrices[tile.height].isBlocked(tile.x % CHUNK_SIZE, tile.z % CHUNK_SIZE, direction, projectile)
+    fun isBlocked(
+        tile: Tile,
+        direction: Direction,
+        projectile: Boolean,
+    ): Boolean = matrices[tile.height].isBlocked(tile.x % CHUNK_SIZE, tile.z % CHUNK_SIZE, direction, projectile)
 
     fun isClipped(tile: Tile): Boolean = matrices[tile.height].isClipped(tile.x % CHUNK_SIZE, tile.z % CHUNK_SIZE)
 
-    fun addEntity(world: World, entity: Entity, tile: Tile) {
+    fun addEntity(
+        world: World,
+        entity: Entity,
+        tile: Tile,
+    ) {
         /*
          * Objects will affect the collision map.
          */
@@ -127,7 +137,11 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
         }
     }
 
-    fun removeEntity(world: World, entity: Entity, tile: Tile) {
+    fun removeEntity(
+        world: World,
+        entity: Entity,
+        tile: Tile,
+    ) {
         /*
          * Transient entities do not get added to our [Chunk]'s tiles, so no use
          * in trying to remove it.
@@ -149,7 +163,6 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
          */
         val update = createUpdateFor(entity, spawn = false)
         if (update != null) {
-
             /*
              * If the entity is an [EntityType.STATIC_OBJECT], we want to cache
              * an [EntityUpdate] that will remove the entity when new players come
@@ -174,7 +187,12 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
     /**
      * Update the item amount of an existing [GroundItem] in [entities].
      */
-    fun updateGroundItem(world: World, item: GroundItem, oldAmount: Int, newAmount: Int) {
+    fun updateGroundItem(
+        world: World,
+        item: GroundItem,
+        oldAmount: Int,
+        newAmount: Int,
+    ) {
         val update = ObjCountUpdate(EntityUpdateType.UPDATE_GROUND_ITEM, item, oldAmount, newAmount)
         sendUpdate(world, update)
 
@@ -187,7 +205,10 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
      * Send the [update] to any [Client] entities that are within view distance
      * of this chunk.
      */
-    private fun sendUpdate(world: World, update: EntityUpdate<*>) {
+    private fun sendUpdate(
+        world: World,
+        update: EntityUpdate<*>,
+    ) {
         val surrounding = coords.getSurroundingCoords()
         for (coords in surrounding) {
             val chunk = world.chunks.get(coords, createIfNeeded = false) ?: continue
@@ -209,7 +230,10 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
      * @param gameService
      * Game service is required to get the XTEA service.
      */
-    fun sendUpdates(p: Player, gameService: GameService) {
+    fun sendUpdates(
+        p: Player,
+        gameService: GameService,
+    ) {
         val messages = ObjectArrayList<ZoneProt>()
 
         updates.forEach { update ->
@@ -228,7 +252,10 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
     /**
      * Checks to see if player [p] is able to view [entity].
      */
-    private fun canBeViewed(p: Player, entity: Entity): Boolean {
+    private fun canBeViewed(
+        p: Player,
+        entity: Entity,
+    ): Boolean {
         if (p.tile.height != entity.tile.height) {
             return false
         }
@@ -239,35 +266,54 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
         return true
     }
 
-    private fun <T : Entity> createUpdateFor(entity: T, spawn: Boolean): EntityUpdate<*>? = when (entity.entityType) {
-        EntityType.DYNAMIC_OBJECT, EntityType.STATIC_OBJECT ->
-            if (spawn) LocAddChangeUpdate(EntityUpdateType.SPAWN_OBJECT, entity as GameObject)
-            else LocDelUpdate(EntityUpdateType.REMOVE_OBJECT, entity as GameObject)
+    private fun <T : Entity> createUpdateFor(
+        entity: T,
+        spawn: Boolean,
+    ): EntityUpdate<*>? =
+        when (entity.entityType) {
+            EntityType.DYNAMIC_OBJECT, EntityType.STATIC_OBJECT ->
+                if (spawn) {
+                    LocAddChangeUpdate(EntityUpdateType.SPAWN_OBJECT, entity as GameObject)
+                } else {
+                    LocDelUpdate(EntityUpdateType.REMOVE_OBJECT, entity as GameObject)
+                }
 
-        EntityType.GROUND_ITEM ->
-            if (spawn) ObjAddUpdate(EntityUpdateType.SPAWN_GROUND_ITEM, entity as GroundItem)
-            else ObjDelUpdate(EntityUpdateType.REMOVE_GROUND_ITEM, entity as GroundItem)
+            EntityType.GROUND_ITEM ->
+                if (spawn) {
+                    ObjAddUpdate(EntityUpdateType.SPAWN_GROUND_ITEM, entity as GroundItem)
+                } else {
+                    ObjDelUpdate(EntityUpdateType.REMOVE_GROUND_ITEM, entity as GroundItem)
+                }
 
 //        EntityType.PROJECTILE ->
 //            if (spawn) MapProjAnimUpdate(EntityUpdateType.SPAWN_PROJECTILE, entity as Projectile)
 //            else throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
 
-        EntityType.AREA_SOUND ->
-            if (spawn) SoundAreaUpdate(EntityUpdateType.PLAY_TILE_SOUND, entity as AreaSound)
-            else throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
+            EntityType.AREA_SOUND ->
+                if (spawn) {
+                    SoundAreaUpdate(EntityUpdateType.PLAY_TILE_SOUND, entity as AreaSound)
+                } else {
+                    throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
+                }
 
-        EntityType.MAP_ANIM ->
-            if (spawn) MapAnimUpdate(EntityUpdateType.MAP_ANIM, entity as TileGraphic)
-            else throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
+            EntityType.MAP_ANIM ->
+                if (spawn) {
+                    MapAnimUpdate(EntityUpdateType.MAP_ANIM, entity as TileGraphic)
+                } else {
+                    throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
+                }
 
-        else -> null
-    }
+            else -> null
+        }
 
     @Suppress("UNCHECKED_CAST")
     fun <T> getEntities(vararg types: EntityType): List<T> = entities.values.flatten().filter { it.entityType in types } as List<T>
 
     @Suppress("UNCHECKED_CAST")
-    fun <T> getEntities(tile: Tile, vararg types: EntityType): List<T> = entities[tile]?.filter { it.entityType in types } as? List<T> ?: emptyList()
+    fun <T> getEntities(
+        tile: Tile,
+        vararg types: EntityType,
+    ): List<T> = entities[tile]?.filter { it.entityType in types } as? List<T> ?: emptyList()
 
     companion object {
         /**

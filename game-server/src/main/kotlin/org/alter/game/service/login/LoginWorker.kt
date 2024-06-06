@@ -16,7 +16,6 @@ import org.alter.game.service.world.WorldVerificationService
  * @author Tom <rspsmods@gmail.com>
  */
 class LoginWorker(private val boss: LoginService, private val verificationService: WorldVerificationService) : Runnable {
-
     override fun run() {
         while (true) {
             val request = boss.requests.take()
@@ -29,28 +28,42 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
 
                 if (loadResult == PlayerLoadResult.LOAD_ACCOUNT || loadResult == PlayerLoadResult.NEW_ACCOUNT) {
                     world.getService(GameService::class.java)?.submitGameThreadJob {
-                        val interceptedLoginResult = verificationService.interceptLoginResult(world, client.uid, client.username, client.loginUsername)
+                        val interceptedLoginResult =
+                            verificationService.interceptLoginResult(
+                                world,
+                                client.uid,
+                                client.username,
+                                client.loginUsername,
+                            )
 
                         if (interceptedLoginResult != null) {
                             request.responseHandler.writeFailedResponse(interceptedLoginResult)
                             logger.info("User '{}' login denied with code {}.", client.username, interceptedLoginResult)
                         } else if (client.register()) {
-                            request.responseHandler.writeSuccessfulResponse(LoginResponse.Ok(
-                                authenticatorResponse = AuthenticatorResponse.NoAuthenticator,
-                                staffModLevel = client.privilege.id,
-                                playerMod = true,
-                                index = client.index,
-                                member = true,
-                                accountHash = 0,
-                                userId = 0,
-                                userHash = 0,
-                            ), request.block).apply {
-                                if(this == null)
+                            request.responseHandler.writeSuccessfulResponse(
+                                LoginResponse.Ok(
+                                    authenticatorResponse = AuthenticatorResponse.NoAuthenticator,
+                                    staffModLevel = client.privilege.id,
+                                    playerMod = true,
+                                    index = client.index,
+                                    member = true,
+                                    accountHash = 0,
+                                    userId = 0,
+                                    userHash = 0,
+                                ),
+                                request.block,
+                            ).apply {
+                                if (this == null) {
                                     return@apply
+                                }
                                 client.session = this
                                 client.playerInfo = client.world.network.playerInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
                                 client.npcInfo = client.world.network.npcInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
-                                client.worldEntityInfo= client.world.network.worldEntityInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
+                                client.worldEntityInfo =
+                                    client.world.network.worldEntityInfoProtocol.alloc(
+                                        client.index,
+                                        OldSchoolClientType.DESKTOP,
+                                    )
                                 client.login()
                             }
                         } else {
@@ -59,12 +72,13 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
                         }
                     }
                 } else {
-                    val errorCode = when (loadResult) {
-                        PlayerLoadResult.INVALID_CREDENTIALS -> LoginResponse.InvalidUsernameOrPassword
-                        PlayerLoadResult.INVALID_RECONNECTION -> LoginResponse.BadSessionId
-                        PlayerLoadResult.MALFORMED -> LoginResponse.Locked
-                        else -> LoginResponse.InvalidSave
-                    }
+                    val errorCode =
+                        when (loadResult) {
+                            PlayerLoadResult.INVALID_CREDENTIALS -> LoginResponse.InvalidUsernameOrPassword
+                            PlayerLoadResult.INVALID_RECONNECTION -> LoginResponse.BadSessionId
+                            PlayerLoadResult.MALFORMED -> LoginResponse.Locked
+                            else -> LoginResponse.InvalidSave
+                        }
                     request.responseHandler.writeFailedResponse(errorCode)
                     logger.info("User '{}' login denied with code {}.", client.username, loadResult)
                 }
@@ -75,6 +89,6 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

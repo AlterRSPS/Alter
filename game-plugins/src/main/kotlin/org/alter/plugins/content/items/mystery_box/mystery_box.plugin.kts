@@ -1,4 +1,4 @@
-package org.alter.plugins.content.items.mystery_box;
+package org.alter.plugins.content.items.mystery_box
 
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.itemSize
@@ -19,7 +19,7 @@ on_item_option(Items.MYSTERY_BOX, "open") {
     }
 
     if (player.inventory.freeSlotCount > 0) {
-        player.inventory.add(item,1, true)
+        player.inventory.add(item, 1, true)
     } else {
         player.bank.add(item, 1000, true)
     }
@@ -28,7 +28,7 @@ on_item_option(Items.MYSTERY_BOX, "open") {
 on_command("randbank") {
     repeat(700) {
         val getItemRange = itemSize()
-        var getRandId= world.random(0..getItemRange)
+        var getRandId = world.random(0..getItemRange)
         val itemDefs = getItem(getRandId)
         if (!itemDefs.isPlaceholder && !itemDefs.noted && itemDefs.name != "" && itemDefs.name.isNotEmpty() && itemDefs.name != "null") {
             player.bank.add(getRandId, 10000)

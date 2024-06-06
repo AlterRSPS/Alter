@@ -6,3 +6,6 @@ spawn_npc(Npcs.BANKER_1032, 3267, 3167, 0, 0, Direction.EAST)
 spawn_npc(Npcs.BANKER_1033, 3267, 3168, 0, 0, Direction.EAST)
 spawn_npc(Npcs.BANKER_1032, 3267, 3169, 0, 0, Direction.EAST)
 
+
+
+

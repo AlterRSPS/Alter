@@ -1,4 +1,4 @@
-package org.alter.plugins.content.npcs;
+package org.alter.plugins.content.npcs
 
 import org.alter.plugins.content.combat.isBeingAttacked
 
@@ -7,10 +7,10 @@ import org.alter.plugins.content.combat.isBeingAttacked
  *  @author <a href="https://www.rune-server.ee/members/376238-cloudsec/">Cl0ud</a>
  *
  */
-val cow_npc_list = listOf(
-    Npcs.COW
-)
-
+val cow_npc_list =
+    listOf(
+        Npcs.COW,
+    )
 
 val COW_YELL_DELAY = TimerKey()
 

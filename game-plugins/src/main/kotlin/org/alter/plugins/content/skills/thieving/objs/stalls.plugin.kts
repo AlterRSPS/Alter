@@ -1,6 +1,6 @@
 package org.alter.plugins.content.skills.thieving.objs
 
-Stall.values().forEach{ stall ->
+Stall.values().forEach { stall ->
     stall.stalls.forEach { id ->
         if (objHasOption(id, "Steal-from")) {
             on_obj_option(id, "Steal-from") {

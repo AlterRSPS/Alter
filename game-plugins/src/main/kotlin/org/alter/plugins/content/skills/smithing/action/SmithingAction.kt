@@ -17,7 +17,6 @@ import org.alter.plugins.content.skills.smithing.data.SmithingMetaData
  * Handles the action of smithing a bar at a furnace
  */
 object SmithingAction {
-
     /**
      * The message displayed when trying to smith a bar without the required level
      */
@@ -55,10 +54,14 @@ object SmithingAction {
      * @param meta      The smithing meta data
      * @param amount    The amount to smith
      */
-    suspend fun smith(task: QueueTask, meta: SmithingMetaData, amount: Int) {
-
-        if (!canSmith(task, meta))
+    suspend fun smith(
+        task: QueueTask,
+        meta: SmithingMetaData,
+        amount: Int,
+    ) {
+        if (!canSmith(task, meta)) {
             return
+        }
 
         val player = task.player
         val inventory = player.inventory
@@ -68,7 +71,6 @@ object SmithingAction {
         val craftAmount = Math.min(amount, maxAmount)
 
         repeat(craftAmount) {
-
             task.wait(2)
 
             player.animate(SMITHING_ANIM)
@@ -85,7 +87,6 @@ object SmithingAction {
                 inventory.add(meta.id, meta.numProduced)
                 player.addXp(Skills.SMITHING, (meta.barCount * meta.bar.smithXp))
             }
-
         }
     }
 
@@ -93,9 +94,9 @@ object SmithingAction {
      * Checks if the player has a hammer to smith with
      *
      * @param task  The queued task
-     * @return      If the player has a hammer
+     * @return If the player has a hammer
      */
-    private suspend fun hasHammer(task: QueueTask) : Boolean {
+    private suspend fun hasHammer(task: QueueTask): Boolean {
         val hammer = task.player.inventory.contains(Items.HAMMER)
         if (!hammer) {
             task.messageBox(NO_HAMMER)
@@ -108,9 +109,12 @@ object SmithingAction {
      *
      * @param task  The queued task
      * @param bar   The bar definition
-     * @return      If the bar can be smithed by the player
+     * @return If the bar can be smithed by the player
      */
-    suspend fun canSmithBar(task: QueueTask, bar: Bar?) : Boolean {
+    suspend fun canSmithBar(
+        task: QueueTask,
+        bar: Bar?,
+    ): Boolean {
         val player = task.player
 
         if (bar == null) {
@@ -132,9 +136,12 @@ object SmithingAction {
      *
      * @param task  The queued task
      * @param meta  The item meta data
-     * @return      If the item can be smithed
+     * @return If the item can be smithed
      */
-    private suspend fun canSmith(task: QueueTask, meta: SmithingMetaData) : Boolean {
+    private suspend fun canSmith(
+        task: QueueTask,
+        meta: SmithingMetaData,
+    ): Boolean {
         if (canSmithBar(task, meta.bar)) {
             val player = task.player
 

@@ -3,7 +3,7 @@ package org.alter.plugins.content.skills.woodcutting
 import org.alter.api.cfg.Npcs
 
 
-private val teaseableNpcs = arrayOf(Npcs.SPINED_LARUPIA,Npcs.HORNED_GRAAHK)
+private val teaseableNpcs = arrayOf(Npcs.SPINED_LARUPIA, Npcs.HORNED_GRAAHK)
 teaseableNpcs.forEach { npcId ->
     on_npc_option(npc = npcId, option = "tease") {
         val npc = player.getInteractingNpc()
@@ -15,10 +15,9 @@ teaseableNpcs.forEach { npcId ->
             return@on_npc_option
         }
         player.queue {
-            player.animate(893) //tease anim
+            player.animate(893) // tease anim
             val npc = player.getInteractingNpc()
             npc.attack(player)
         }
     }
 }
-

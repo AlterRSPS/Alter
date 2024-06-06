@@ -29,5 +29,5 @@ enum class PlayerLoadResult {
     /**
      * There was an error decoding the data.
      */
-    MALFORMED
+    MALFORMED,
 }

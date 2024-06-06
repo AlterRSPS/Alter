@@ -30,10 +30,14 @@ on_item_option(item = Items.SPADE, "dig") {
             player.setVarp(2111, 5)
             itemMessageBox(
                 "You dig up an Ancient Casket. As you do, you hear a<br>faint whispering. You can't make out what it says<br>though...",
-                item = 23071
+                item = 23071,
             )
             chatPlayer("Hmmmm... Must have been the wind.")
-            chatPlayer("Anyway, this must be the treasure that Veos is after. I<br>should take it to him. If I remember right, he's docked<br>at the northernmost pier in Port Sarim.")
+            chatPlayer(
+                "Anyway, this must be the treasure that Veos is after. I<br>should take it to him. If I remember right, he's docked<br>at the northernmost pier in Port Sarim.",
+            )
         }
-    } else player.message("Nothing interesting happens.")
+    } else {
+        player.message("Nothing interesting happens.")
+    }
 }

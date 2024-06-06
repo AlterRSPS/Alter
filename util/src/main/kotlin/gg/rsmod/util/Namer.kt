@@ -25,11 +25,15 @@
  */
 package gg.rsmod.util
 
-import java.util.*
+import java.util.Locale
 
 class Namer {
     private val used: MutableSet<String> = HashSet()
-    fun name(name: String?, id: Int): String? {
+
+    fun name(
+        name: String?,
+        id: Int,
+    ): String? {
         var name = name
         name = sanitize(name)
         if (name == null) {
@@ -45,10 +49,11 @@ class Namer {
 
     companion object {
         private fun sanitize(`in`: String?): String? {
-            val s = removeTags(`in`)
-                .uppercase(Locale.getDefault())
-                .replace(' ', '_')
-                .replace("[^a-zA-Z0-9_]".toRegex(), "")
+            val s =
+                removeTags(`in`)
+                    .uppercase(Locale.getDefault())
+                    .replace(' ', '_')
+                    .replace("[^a-zA-Z0-9_]".toRegex(), "")
             if (s.isEmpty()) {
                 return null
             }

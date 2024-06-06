@@ -19,7 +19,6 @@ import kotlin.test.assertNull
  * @author Tom <rspsmods@gmail.com>
  */
 class ContainerExtTests {
-
     @Test
     fun `verify that a transfer goes as expected`() {
         val container1 = ItemContainer(capacity = 28, stackType = ContainerStackType.NORMAL)
@@ -73,7 +72,6 @@ class ContainerExtTests {
     }
 
     companion object {
-
         @BeforeClass
         @JvmStatic
         fun loadCache() {

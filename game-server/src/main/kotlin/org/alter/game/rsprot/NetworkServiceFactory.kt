@@ -61,27 +61,27 @@ import org.alter.game.model.entity.Player
 import org.alter.game.service.rsa.RsaService
 import java.math.BigInteger
 
-class NetworkServiceFactory(val groupProvider: DispleeJs5GroupProvider,
-                            val world: World,
-                            override val ports: List<Int>,
-                            override val supportedClientTypes: List<OldSchoolClientType>
+class NetworkServiceFactory(
+    val groupProvider: DispleeJs5GroupProvider,
+    val world: World,
+    override val ports: List<Int>,
+    override val supportedClientTypes: List<OldSchoolClientType>,
 ) : AbstractNetworkServiceFactory<Client, Js5GroupProvider.ByteBufJs5GroupType>() {
-
     override fun getBootstrapFactory(): BootstrapFactory {
         return BootstrapFactory(PooledByteBufAllocator.DEFAULT)
     }
 
     override fun getExceptionHandlers(): ExceptionHandlers<Client> {
-        val channelExceptionHandler = ChannelExceptionHandler {
-                channelHandlerContext: ChannelHandlerContext, throwable: Throwable ->
-                    throwable.printStackTrace()
-        }
+        val channelExceptionHandler =
+            ChannelExceptionHandler {
+                    channelHandlerContext: ChannelHandlerContext, throwable: Throwable ->
+                throwable.printStackTrace()
+            }
         val incomingGameMessageConsumerExceptionHandler: IncomingGameMessageConsumerExceptionHandler<Client> =
             IncomingGameMessageConsumerExceptionHandler {
-                session: Session<Client>, incomingGameMessage: IncomingGameMessage, throwable: Throwable ->
-            throwable.printStackTrace()
-
-        }
+                    session: Session<Client>, incomingGameMessage: IncomingGameMessage, throwable: Throwable ->
+                throwable.printStackTrace()
+            }
         return ExceptionHandlers(channelExceptionHandler, incomingGameMessageConsumerExceptionHandler)
     }
 
@@ -90,7 +90,7 @@ class NetworkServiceFactory(val groupProvider: DispleeJs5GroupProvider,
     }
 
     override fun getGameMessageConsumerRepositoryProvider(): GameMessageConsumerRepositoryProvider<Client> {
-        val bldr = GameMessageConsumerRepositoryBuilder<Client>();
+        val bldr = GameMessageConsumerRepositoryBuilder<Client>()
         bldr.addListener(DetectModifiedClient::class.java, DetectModifiedClientHandler())
         bldr.addListener(EventAppletFocus::class.java, EventAppletFocusHandler())
         bldr.addListener(EventCameraPosition::class.java, EventCameraPositionHandler())
@@ -150,14 +150,14 @@ class NetworkServiceFactory(val groupProvider: DispleeJs5GroupProvider,
     }
 
     override fun getNpcInfoSupplier(): NpcInfoSupplier {
-        //val npcIndexSupplier: NpcIndexSupplier = RsmodNpcIndexSupplier(world)
+        // val npcIndexSupplier: NpcIndexSupplier = RsmodNpcIndexSupplier(world)
         val npcIndexSupplier = npcIndexSupplier()
         val npcAvatarExceptionHandler = RsmodNpcAvatarExceptionHandler(world)
         return NpcInfoSupplier(npcIndexSupplier, npcAvatarExceptionHandler)
     }
 
     override fun getRsaKeyPair(): RsaKeyPair {
-        val rsaService = world.getService(RsaService::class.java)!!//evil assertion ;/
+        val rsaService = world.getService(RsaService::class.java)!! // evil assertion ;/
         val exponent: BigInteger = rsaService.getExponent()
         val modulus: BigInteger = rsaService.getModulus()
         return RsaKeyPair(exponent, modulus)
@@ -173,7 +173,7 @@ class NetworkServiceFactory(val groupProvider: DispleeJs5GroupProvider,
         return WorldEntityIndexSupplier { localPlayerIndex, level, x, z, viewDistance ->
             val player = world.players[localPlayerIndex] ?: error("Player not found at index: $localPlayerIndex")
             val tile = Tile(x, z, level)
-            val chunk = world.chunks.get(tile)?: error("Invalid chunk for : $tile")
+            val chunk = world.chunks.get(tile) ?: error("Invalid chunk for : $tile")
 
             val surrounding = chunk.coords.getSurroundingCoords()
             println("Searching!!!")
@@ -189,8 +189,8 @@ class NetworkServiceFactory(val groupProvider: DispleeJs5GroupProvider,
 
     private fun worldEntityAvatarExceptionHandler(): WorldEntityAvatarExceptionHandler {
         return WorldEntityAvatarExceptionHandler { index, exception ->
-            //TODO log exception and then deregister this index.
-            //Should this drop
+            // TODO log exception and then deregister this index.
+            // Should this drop
         }
     }
 
@@ -198,7 +198,7 @@ class NetworkServiceFactory(val groupProvider: DispleeJs5GroupProvider,
         return NpcIndexSupplier { localPlayerIndex, level, x, z, viewDistance ->
             val player = world.players[localPlayerIndex] ?: error("Player not found at index: $localPlayerIndex")
             val tile = Tile(x, z, level)
-            val chunk = world.chunks.get(tile)?: error("Invalid chunk for : $tile")
+            val chunk = world.chunks.get(tile) ?: error("Invalid chunk for : $tile")
 
             val surrounding = chunk.coords.getSurroundingCoords()
             println("Searching!!!")
@@ -220,9 +220,14 @@ class NetworkServiceFactory(val groupProvider: DispleeJs5GroupProvider,
         }
     }
 
-    private fun shouldAdd(player: Player, npc: Npc, viewDistance: Int): Boolean =
-        npc.isSpawned() && !npc.invisible && npc.tile.isWithinRadius(
-            player.tile,
-            viewDistance
-        ) && (npc.owner == null || npc.owner == player)
+    private fun shouldAdd(
+        player: Player,
+        npc: Npc,
+        viewDistance: Int,
+    ): Boolean =
+        npc.isSpawned() && !npc.invisible &&
+            npc.tile.isWithinRadius(
+                player.tile,
+                viewDistance,
+            ) && (npc.owner == null || npc.owner == player)
 }

@@ -15,5 +15,9 @@ fun open_settings(p: Player) {
     p.setComponentHidden(interfaceId = INTERFACE_ID, component = 26, hidden = true)
     p.setComponentText(interfaceId = INTERFACE_ID, component = 8, text = "7 days")
     p.setComponentText(interfaceId = INTERFACE_ID, component = 10, text = "Always lock")
-    p.setComponentText(interfaceId = INTERFACE_ID, component = 14, text = "Customers are reminded that they should NEVER tell anyone their Bank PINs or passwords, nor should they ever enter their PINs on any website form.")
+    p.setComponentText(
+        interfaceId = INTERFACE_ID,
+        component = 14,
+        text = "Customers are reminded that they should NEVER tell anyone their Bank PINs or passwords, nor should they ever enter their PINs on any website form.",
+    )
 }

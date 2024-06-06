@@ -18,7 +18,6 @@ import org.alter.game.model.weightedTableBuilder.tableDrops
  * @author Tom <rspsmods@gmail.com>
  */
 class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : Pawn(world) {
-
     constructor(id: Int, tile: Tile, world: World) : this(id, world, spawnTile = Tile(tile)) {
         this.tile = tile
     }
@@ -131,7 +130,11 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
         this.hitpoints = health
     }
 
-    override fun graphic(id: Int, height: Int, delay: Int) {
+    override fun graphic(
+        id: Int,
+        height: Int,
+        delay: Int,
+    ) {
         avatar.extendedInfo.setSpotAnim(0, id, delay, height)
     }
 
@@ -191,7 +194,6 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      * @param nStats the max amount of stats an npc has.
      */
     class Stats(val nStats: Int) {
-
         private val currentLevels = Array(nStats) { 1 }
 
         private val maxLevels = Array(nStats) { 1 }
@@ -200,11 +202,17 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
 
         fun getMaxLevel(skill: Int): Int = maxLevels[skill]
 
-        fun setCurrentLevel(skill: Int, level: Int) {
+        fun setCurrentLevel(
+            skill: Int,
+            level: Int,
+        ) {
             currentLevels[skill] = level
         }
 
-        fun setMaxLevel(skill: Int, level: Int) {
+        fun setMaxLevel(
+            skill: Int,
+            level: Int,
+        ) {
             maxLevels[skill] = level
         }
 
@@ -221,15 +229,20 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
          * skill that has is [99], that means that the level can be altered
          * from [99] to [102].
          */
-        fun alterCurrentLevel(skill: Int, value: Int, capValue: Int = 0) {
+        fun alterCurrentLevel(
+            skill: Int,
+            value: Int,
+            capValue: Int = 0,
+        ) {
             check(capValue == 0 || capValue < 0 && value < 0 || capValue > 0 && value >= 0) {
                 "Cap value and alter value must always be the same signum (+ or -)."
             }
-            val altered = when {
-                capValue > 0 -> Math.min(getCurrentLevel(skill) + value, getMaxLevel(skill) + capValue)
-                capValue < 0 -> Math.max(getCurrentLevel(skill) + value, getMaxLevel(skill) + capValue)
-                else -> Math.min(getMaxLevel(skill), getCurrentLevel(skill) + value)
-            }
+            val altered =
+                when {
+                    capValue > 0 -> Math.min(getCurrentLevel(skill) + value, getMaxLevel(skill) + capValue)
+                    capValue < 0 -> Math.max(getCurrentLevel(skill) + value, getMaxLevel(skill) + capValue)
+                    else -> Math.min(getMaxLevel(skill), getCurrentLevel(skill) + value)
+                }
             val newLevel = Math.max(0, altered)
             val curLevel = getCurrentLevel(skill)
 
@@ -249,7 +262,11 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
          * @param capped if true, the [skill] level cannot decrease further than
          * [getMaxLevel] - [value].
          */
-        fun decrementCurrentLevel(skill: Int, value: Int, capped: Boolean) = alterCurrentLevel(skill, -value, if (capped) -value else 0)
+        fun decrementCurrentLevel(
+            skill: Int,
+            value: Int,
+            capped: Boolean,
+        ) = alterCurrentLevel(skill, -value, if (capped) -value else 0)
 
         /**
          * Increase the level of [skill].
@@ -262,7 +279,11 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
          * @param capped if true, the [skill] level cannot increase further than
          * [getMaxLevel].
          */
-        fun incrementCurrentLevel(skill: Int, value: Int, capped: Boolean) = alterCurrentLevel(skill, value, if (capped) 0 else value)
+        fun incrementCurrentLevel(
+            skill: Int,
+            value: Int,
+            capped: Boolean,
+        ) = alterCurrentLevel(skill, value, if (capped) 0 else value)
 
         companion object {
             /**

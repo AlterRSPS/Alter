@@ -26,12 +26,21 @@ suspend fun dialog(it: QueueTask) {
     }
 }
 
-suspend fun options(it: QueueTask): Int = it.options("I'd like to access my bank account, please.", "I'd like to check my PIN settings.", "I'd like to collect items.", "What is this place?")
+suspend fun options(it: QueueTask): Int =
+    it.options(
+        "I'd like to access my bank account, please.",
+        "I'd like to check my PIN settings.",
+        "I'd like to collect items.",
+        "What is this place?",
+    )
 
 suspend fun what_is_this_place(it: QueueTask) {
     it.chatNpc("This is a branch of the Bank of Gielinor. We have<br>branches in many towns.", animation = 568)
     it.chatPlayer("And what do you do?", animation = 554)
-    it.chatNpc("We will look after your items and money for you.<br>Leave your valuables with us if you want to keep them<br>safe.", animation = 569)
+    it.chatNpc(
+        "We will look after your items and money for you.<br>Leave your valuables with us if you want to keep them<br>safe.",
+        animation = 569,
+    )
 }
 
 fun open_collect(p: Player) {

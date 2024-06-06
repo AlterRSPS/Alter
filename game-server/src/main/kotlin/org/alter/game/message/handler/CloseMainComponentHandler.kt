@@ -8,8 +8,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class CloseMainComponentHandler : MessageHandler<CloseModal> {
-
-    override fun accept(client: Client, message: CloseModal) {
+    override fun accept(
+        client: Client,
+        message: CloseModal,
+    ) {
         client.closeInterfaceModal()
     }
 }

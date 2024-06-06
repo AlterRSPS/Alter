@@ -12,8 +12,10 @@ import java.lang.ref.WeakReference
  * @author Triston Plummer ("Dread")
  */
 class OpPlayerHandler : MessageHandler<OpPlayer> {
-
-    override fun accept(client: Client, message: OpPlayer) {
+    override fun accept(
+        client: Client,
+        message: OpPlayer,
+    ) {
         val index = message.index
         // The interaction option id.
         val option = message.op

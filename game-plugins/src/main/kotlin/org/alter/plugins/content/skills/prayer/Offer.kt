@@ -10,11 +10,17 @@ import org.alter.game.model.entity.Player
  * @author Fritz <frikkipafi@gmail.com>
  */
 object Offer {
-
-    fun canOffer(p: Player, bones: Bones): Boolean = true
+    fun canOffer(
+        p: Player,
+        bones: Bones,
+    ): Boolean = true
 
     // Altar = 1(gilded), Altar = 2(ecto), Altar = 3(chaos)
-    fun OfferBones(p: Player, bones: Bones, Altar: Int) {
+    fun OfferBones(
+        p: Player,
+        bones: Bones,
+        Altar: Int,
+    ) {
         val boneName = getItem(bones.id).name
         val altars = arrayOf(bones.gilded, bones.ecto, bones.chaos)
         p.queue {
@@ -25,11 +31,10 @@ object Offer {
             wait(3)
             p.unlock()
         }
-        when(bones){
+        when (bones) {
             else -> {
                 p.message("You offer the ${boneName.lowercase()} to Gilded altar")
             }
         }
     }
-
 }

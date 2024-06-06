@@ -19,7 +19,6 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 object NpcDeathAction {
-
     var deathPlugin: Plugin.() -> Unit = {
         val npc = ctx as Npc
         if (!npc.world.plugins.executeNpcFullDeath(npc)) {
@@ -57,12 +56,11 @@ object NpcDeathAction {
         deathAnimation.forEach { anim ->
             val def = getAnim(anim)
             npc.animate(def.id)
-            wait(def.cycleLength +1)
+            wait(def.cycleLength + 1)
         }
 
         npc.animate(-1)
         world.plugins.executeNpcDeath(npc)
-
 
         if (npc.respawns) {
             npc.invisible = true
@@ -84,5 +82,4 @@ object NpcDeathAction {
         timers.clear()
         world.setNpcDefaults(this)
     }
-
 }

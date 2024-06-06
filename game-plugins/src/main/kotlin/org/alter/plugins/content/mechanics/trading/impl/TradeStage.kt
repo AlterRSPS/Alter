@@ -6,7 +6,6 @@ package org.alter.plugins.content.mechanics.trading.impl
  * Represents the current 'stage' within a trade session
  */
 enum class TradeStage {
-
     /**
      * Represents a trade session that is currently sitting on the first trade
      * screen, where players may offer up items to trade with each other.
@@ -22,5 +21,5 @@ enum class TradeStage {
     /**
      * Represents a trade session that has been completed
      */
-    COMPLETED
+    COMPLETED,
 }

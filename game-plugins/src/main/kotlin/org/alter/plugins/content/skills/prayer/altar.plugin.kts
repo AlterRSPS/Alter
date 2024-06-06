@@ -1,31 +1,32 @@
 package org.alter.plugins.content.skills.prayer
 
-val altars = arrayOf(
-    Objs.BANDOS_ALTAR,
-    Objs.ARMADYL_ALTAR,
-    Objs.SARADOMIN_ALTAR,
-    Objs.ALTAR_42965,
-    Objs.ZAMORAK_ALTAR,
-    Objs.ALTAR_27501,
-    Objs.ALTAR_39723,
-    Objs.ALTAR_28566,
-    Objs.ALTAR_18258,
-    Objs.ALTAR_409,
-    Objs.ALTAR_14860,
-    Objs.CHAOS_ALTAR,
-    Objs.ALTAR_8749,
-    Objs.CHAOS_ALTAR_411,
-    Objs.ALTAR_29941,
-    Objs.ALTAR_20377,
-    Objs.STATUE_39234,
-    Objs.ALTAR_OF_ZAMORAK,
-    Objs.SHRINE,
-    Objs.ALTAR_2640,
-    Objs.ALTAR_28455,
-    Objs.GORILLA_STATUE_4859,
-    Objs.ALTAR_OF_GUTHIX,
-    Objs.ALTAR_19145
-)
+val altars =
+    arrayOf(
+        Objs.BANDOS_ALTAR,
+        Objs.ARMADYL_ALTAR,
+        Objs.SARADOMIN_ALTAR,
+        Objs.ALTAR_42965,
+        Objs.ZAMORAK_ALTAR,
+        Objs.ALTAR_27501,
+        Objs.ALTAR_39723,
+        Objs.ALTAR_28566,
+        Objs.ALTAR_18258,
+        Objs.ALTAR_409,
+        Objs.ALTAR_14860,
+        Objs.CHAOS_ALTAR,
+        Objs.ALTAR_8749,
+        Objs.CHAOS_ALTAR_411,
+        Objs.ALTAR_29941,
+        Objs.ALTAR_20377,
+        Objs.STATUE_39234,
+        Objs.ALTAR_OF_ZAMORAK,
+        Objs.SHRINE,
+        Objs.ALTAR_2640,
+        Objs.ALTAR_28455,
+        Objs.GORILLA_STATUE_4859,
+        Objs.ALTAR_OF_GUTHIX,
+        Objs.ALTAR_19145,
+    )
 
 altars.forEach { obj ->
     arrayOf("Pray", "Pray-at").forEach {
@@ -46,7 +47,7 @@ fun pray(player: Player) {
     } else {
         player.queue {
             player.lock()
-            player.getSkills() .restore(Skills.PRAYER)
+            player.getSkills().restore(Skills.PRAYER)
             player.playSound(Sound.ALTAR_PRAY)
             player.animate(Animation.PRAY_AT_ALTAR_ANIM)
             wait(2)

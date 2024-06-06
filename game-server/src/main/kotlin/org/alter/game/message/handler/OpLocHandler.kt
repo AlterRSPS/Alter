@@ -17,9 +17,11 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 class OpLocHandler : MessageHandler<OpLoc> {
-
-    override fun accept(client: Client, message: OpLoc) {
-        //NOTE: OP3 used to just be Ground Item action 3
+    override fun accept(
+        client: Client,
+        message: OpLoc,
+    ) {
+        // NOTE: OP3 used to just be Ground Item action 3
         /*
          * If tile is too far away, don't process it.
          */
@@ -39,7 +41,10 @@ class OpLocHandler : MessageHandler<OpLoc> {
          * Get the region chunk that the object would belong to.
          */
         val chunk = client.world.chunks.getOrCreate(tile)
-        val obj = chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull { it.id == message.id } ?: return
+        val obj =
+            chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull {
+                it.id == message.id
+            } ?: return
 
         log(client, "Object action %d: id=%d, x=%d, z=%d, movement=%d", message.op, message.id, message.x, message.z, message.controlKey)
 
@@ -50,7 +55,9 @@ class OpLocHandler : MessageHandler<OpLoc> {
 
         if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             val def = obj.getDef()
-            client.moveTo(client.world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.sizeX, centreLength = def.sizeY) ?: obj.tile)
+            client.moveTo(
+                client.world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.sizeX, centreLength = def.sizeY) ?: obj.tile,
+            )
         }
 
         client.attr[INTERACTING_OPT_ATTR] = message.op

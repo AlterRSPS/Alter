@@ -1,8 +1,8 @@
-//package org.alter.plugins.content.areas.alkharid.chat
+// package org.alter.plugins.content.areas.alkharid.chat
 //
-//val INTERFACE_ID = 324
+// val INTERFACE_ID = 324
 //
-//on_interface_open(INTERFACE_ID) {
+// on_interface_open(INTERFACE_ID) {
 //    //Soft leather
 //    player.setComponentItem(interfaceId = INTERFACE_ID, component = 100, item = 1739, amountOrZoom = 250)
 //    player.setComponentText(interfaceId = INTERFACE_ID, component = 108, text = "Soft leather")
@@ -36,9 +36,9 @@
 //    player.setComponentText(interfaceId = INTERFACE_ID, component = 115, text = "Black d'hide")
 //    player.setComponentText(interfaceId = INTERFACE_ID, component = 123, text = "20 coins")
 //
-//}
-////Soft Leather
-//on_button(interfaceId = 324, component = 148) {
+// }
+// //Soft Leather
+// on_button(interfaceId = 324, component = 148) {
 //    val inventory = player.inventory
 //    if (inventory.getItemCount(Items.COINS_995) <  1) {
 //        player.message("You haven't got enough coins to pay for soft leather.")
@@ -50,11 +50,11 @@
 //        inventory.remove(Items.COINS_995, 1)
 //        inventory.add(Items.LEATHER)
 //    }
-//}
-//on_button(interfaceId = 324, component = 140) {
+// }
+// on_button(interfaceId = 324, component = 140) {
 //    //Make-5
-//}
-//on_button(interfaceId = 324, component = 132) {
+// }
+// on_button(interfaceId = 324, component = 132) {
 //    var amount: Int
 //    val inventory = player.inventory
 //
@@ -71,8 +71,8 @@
 //            inventory.add(Items.LEATHER, amount)
 //        }
 //    }
-//}
-//on_button(interfaceId = 324, component = 124) {
+// }
+// on_button(interfaceId = 324, component = 124) {
 //    val inventory = player.inventory
 //
 //    if (inventory.getItemCount(Items.COINS_995) < 1) {
@@ -90,9 +90,9 @@
 //            player.inventory.add(Items.LEATHER, count)
 //        }
 //    }
-//}
-////Hard Leather
-//on_button(interfaceId = 324, component = 149) {
+// }
+// //Hard Leather
+// on_button(interfaceId = 324, component = 149) {
 //    val inventory = player.inventory
 //    if (inventory.getItemCount(Items.COINS_995) <  3) {
 //        player.message("You haven't got enough coins to pay for hard leather.")
@@ -104,11 +104,11 @@
 //        inventory.remove(Items.COINS_995, 3)
 //        inventory.add(Items.HARD_LEATHER)
 //    }
-//}
-//on_button(interfaceId = 324, component = 141) {
+// }
+// on_button(interfaceId = 324, component = 141) {
 //    //Make-5
-//}
-//on_button(interfaceId = 324, component = 133) {
+// }
+// on_button(interfaceId = 324, component = 133) {
 //    var amount: Int
 //    val inventory = player.inventory
 //
@@ -125,8 +125,8 @@
 //            inventory.add(Items.HARD_LEATHER, amount)
 //        }
 //    }
-//}
-//on_button(interfaceId = 324, component = 125) {
+// }
+// on_button(interfaceId = 324, component = 125) {
 //    val inventory = player.inventory
 //
 //    if (inventory.getItemCount(Items.COINS_995) < 3) {
@@ -144,9 +144,9 @@
 //            player.inventory.add(Items.HARD_LEATHER, count)
 //        }
 //    }
-//}
-////Snake-Hide Norm
-//on_button(interfaceId = 324, component = 150) {
+// }
+// //Snake-Hide Norm
+// on_button(interfaceId = 324, component = 150) {
 //    val inventory = player.inventory
 //    if (inventory.getItemCount(Items.COINS_995) <  20) {
 //        player.message("You haven't got enough coins to pay for snake skin.")
@@ -158,11 +158,11 @@
 //        inventory.remove(Items.COINS_995, 20)
 //        inventory.add(Items.SNAKESKIN)
 //    }
-//}
-//on_button(interfaceId = 324, component = 142) {
+// }
+// on_button(interfaceId = 324, component = 142) {
 //    //Make-5
-//}
-//on_button(interfaceId = 324, component = 134) {
+// }
+// on_button(interfaceId = 324, component = 134) {
 //    var amount: Int
 //    val inventory = player.inventory
 //
@@ -179,8 +179,8 @@
 //            inventory.add(Items.SNAKESKIN, amount)
 //        }
 //    }
-//}
-//on_button(interfaceId = 324, component = 126) {
+// }
+// on_button(interfaceId = 324, component = 126) {
 //    val inventory = player.inventory
 //
 //    if (inventory.getItemCount(Items.COINS_995) < 20) {
@@ -198,9 +198,9 @@
 //            player.inventory.add(Items.SNAKESKIN, count)
 //        }
 //    }
-//}
-////Snake-Hide Temple Trekking
-//on_button(interfaceId = 324, component = 151) {
+// }
+// //Snake-Hide Temple Trekking
+// on_button(interfaceId = 324, component = 151) {
 //    val inventory = player.inventory
 //    if (inventory.getItemCount(Items.COINS_995) <  15) {
 //        player.message("You haven't got enough coins to pay for snake skin.")
@@ -212,11 +212,11 @@
 //        inventory.remove(Items.COINS_995, 15)
 //        inventory.add(Items.SNAKESKIN)
 //    }
-//}
-//on_button(interfaceId = 324, component = 143) {
+// }
+// on_button(interfaceId = 324, component = 143) {
 //    //Make-5
-//}
-//on_button(interfaceId = 324, component = 135) {
+// }
+// on_button(interfaceId = 324, component = 135) {
 //    var amount: Int
 //    val inventory = player.inventory
 //
@@ -233,8 +233,8 @@
 //            inventory.add(Items.SNAKESKIN, amount)
 //        }
 //    }
-//}
-//on_button(interfaceId = 324, component = 127) {
+// }
+// on_button(interfaceId = 324, component = 127) {
 //    val inventory = player.inventory
 //
 //    if (inventory.getItemCount(Items.COINS_995) < 15) {
@@ -252,9 +252,9 @@
 //            player.inventory.add(Items.SNAKESKIN, count)
 //        }
 //    }
-//}
-////Green D'Hide
-//on_button(interfaceId = 324, component = 152) {
+// }
+// //Green D'Hide
+// on_button(interfaceId = 324, component = 152) {
 //    val inventory = player.inventory
 //    if (inventory.getItemCount(Items.COINS_995) <  20) {
 //        player.message("You haven't got enough coins to pay for green d'hide.")
@@ -266,11 +266,11 @@
 //        inventory.remove(Items.COINS_995, 20)
 //        inventory.add(Items.GREEN_DRAGON_LEATHER)
 //    }
-//}
-//on_button(interfaceId = 324, component = 144) {
+// }
+// on_button(interfaceId = 324, component = 144) {
 //    //Make-5
-//}
-//on_button(interfaceId = 324, component = 136) {
+// }
+// on_button(interfaceId = 324, component = 136) {
 //    var amount: Int
 //    val inventory = player.inventory
 //
@@ -287,8 +287,8 @@
 //            inventory.add(Items.GREEN_DRAGON_LEATHER, amount)
 //        }
 //    }
-//}
-//on_button(interfaceId = 324, component = 128) {
+// }
+// on_button(interfaceId = 324, component = 128) {
 //    val inventory = player.inventory
 //
 //    if (inventory.getItemCount(Items.COINS_995) < 20) {
@@ -306,9 +306,9 @@
 //            player.inventory.add(Items.GREEN_DRAGON_LEATHER, count)
 //        }
 //    }
-//}
-////Blue D'Hide
-//on_button(interfaceId = 324, component = 153) {
+// }
+// //Blue D'Hide
+// on_button(interfaceId = 324, component = 153) {
 //    val inventory = player.inventory
 //    if (inventory.getItemCount(Items.COINS_995) <  20) {
 //        player.message("You haven't got enough coins to pay for blue d'hide.")
@@ -320,11 +320,11 @@
 //        inventory.remove(Items.COINS_995, 20)
 //        inventory.add(Items.BLUE_DRAGON_LEATHER)
 //    }
-//}
-//on_button(interfaceId = 324, component = 145) {
+// }
+// on_button(interfaceId = 324, component = 145) {
 //    //Make-5
-//}
-//on_button(interfaceId = 324, component = 137) {
+// }
+// on_button(interfaceId = 324, component = 137) {
 //    var amount: Int
 //    val inventory = player.inventory
 //
@@ -341,8 +341,8 @@
 //            inventory.add(Items.BLUE_DRAGON_LEATHER, amount)
 //        }
 //    }
-//}
-//on_button(interfaceId = 324, component = 129) {
+// }
+// on_button(interfaceId = 324, component = 129) {
 //    val inventory = player.inventory
 //
 //    if (inventory.getItemCount(Items.COINS_995) < 20) {
@@ -360,9 +360,9 @@
 //            player.inventory.add(Items.BLUE_DRAGON_LEATHER, count)
 //        }
 //    }
-//}
-////Red D'Hide
-//on_button(interfaceId = 324, component = 154) {
+// }
+// //Red D'Hide
+// on_button(interfaceId = 324, component = 154) {
 //    val inventory = player.inventory
 //    if (inventory.getItemCount(Items.COINS_995) <  20) {
 //        player.message("You haven't got enough coins to pay for red d'hide.")
@@ -374,11 +374,11 @@
 //        inventory.remove(Items.COINS_995, 20)
 //        inventory.add(Items.RED_DRAGON_LEATHER)
 //    }
-//}
-//on_button(interfaceId = 324, component = 146) {
+// }
+// on_button(interfaceId = 324, component = 146) {
 //    //Make-5
-//}
-//on_button(interfaceId = 324, component = 138) {
+// }
+// on_button(interfaceId = 324, component = 138) {
 //    var amount: Int
 //    val inventory = player.inventory
 //
@@ -395,8 +395,8 @@
 //            inventory.add(Items.RED_DRAGON_LEATHER, amount)
 //        }
 //    }
-//}
-//on_button(interfaceId = 324, component = 130) {
+// }
+// on_button(interfaceId = 324, component = 130) {
 //    val inventory = player.inventory
 //
 //    if (inventory.getItemCount(Items.COINS_995) < 20) {
@@ -414,9 +414,9 @@
 //            player.inventory.add(Items.RED_DRAGON_LEATHER, count)
 //        }
 //    }
-//}
-////Black D'Hide
-//on_button(interfaceId = 324, component = 155) {
+// }
+// //Black D'Hide
+// on_button(interfaceId = 324, component = 155) {
 //    val inventory = player.inventory
 //    if (inventory.getItemCount(Items.COINS_995) <  20) {
 //        player.message("You haven't got enough coins to pay for black d'hide.")
@@ -428,11 +428,11 @@
 //        inventory.remove(Items.COINS_995, 20)
 //        inventory.add(Items.BLACK_DRAGON_LEATHER)
 //    }
-//}
-//on_button(interfaceId = 324, component = 147) {
+// }
+// on_button(interfaceId = 324, component = 147) {
 //    //Make-5
-//}
-//on_button(interfaceId = 324, component = 139) {
+// }
+// on_button(interfaceId = 324, component = 139) {
 //    var amount: Int
 //    val inventory = player.inventory
 //
@@ -449,8 +449,8 @@
 //            inventory.add(Items.BLACK_DRAGON_LEATHER, amount)
 //        }
 //    }
-//}
-//on_button(interfaceId = 324, component = 131) {
+// }
+// on_button(interfaceId = 324, component = 131) {
 //    val inventory = player.inventory
 //
 //    if (inventory.getItemCount(Items.COINS_995) < 20) {
@@ -468,4 +468,4 @@
 //            player.inventory.add(Items.BLACK_DRAGON_LEATHER, count)
 //        }
 //    }
-//}
+// }

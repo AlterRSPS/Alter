@@ -29,14 +29,17 @@ import java.nio.file.Paths
  * @author Tom <rspsmods@gmail.com>
  */
 class DumpEntityIdService : Service {
-
     private var dump = false
 
     private var cachePath: Path? = null
 
     private var outputPath: Path? = null
 
-    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(
+        server: Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
         dump = serviceProperties.getOrDefault("dump", false)
         if (dump) {
             cachePath = Paths.get(serviceProperties.get<String>("cache-path")!!)
@@ -51,7 +54,10 @@ class DumpEntityIdService : Service {
         }
     }
 
-    override fun postLoad(server: Server, world: World) {
+    override fun postLoad(
+        server: Server,
+        world: World,
+    ) {
         if (!dump) {
             return
         }
@@ -64,19 +70,28 @@ class DumpEntityIdService : Service {
         writeStructs(definitions, namer)
     }
 
-    override fun bindNet(server: Server, world: World) {
+    override fun bindNet(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun terminate(server: Server, world: World) {
+    override fun terminate(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    private fun writeStructs(definitions: DefinitionSet, namer: Namer) {
+    private fun writeStructs(
+        definitions: DefinitionSet,
+        namer: Namer,
+    ) {
         // Get all enums from cache
         val enumCount = enumSize()
-        val enums : MutableList<EnumType> = mutableListOf()
+        val enums: MutableList<EnumType> = mutableListOf()
         // Get all structs from cache
         val structCount = structSize()
-        val structs : MutableList<StructType> = mutableListOf()
+        val structs: MutableList<StructType> = mutableListOf()
         for (s in 0 until structCount) {
             val struct = getStructs().get(s) ?: continue
             structs.add(s, struct)
@@ -91,10 +106,10 @@ class DumpEntityIdService : Service {
         enums[422].values.forEach { (_, u) ->
             var name = ""
             structs[u as Int].params!!.forEach { (k, v) ->
-                if(k == 744) {
+                if (k == 744) {
                     name = namer.name(v.toString() + "_enum_id", k).toString()
                 }
-                if(k == 745 && name.isNotBlank()) {
+                if (k == 745 && name.isNotBlank()) {
                     write(settingsFile, "const val $name = $v")
                     enums[v as Int].values.forEach { e ->
                         System.out.println(e)
@@ -106,7 +121,10 @@ class DumpEntityIdService : Service {
         endWriter(settingsFile)
     }
 
-    private fun writeItems(definitions: DefinitionSet, namer: Namer) {
+    private fun writeItems(
+        definitions: DefinitionSet,
+        namer: Namer,
+    ) {
         val count = itemSize()
         val items = generateWriter("Items.kt")
         for (i in 0 until count) {
@@ -126,7 +144,10 @@ class DumpEntityIdService : Service {
         endWriter(items)
     }
 
-    private fun writeNpcs(definitions: DefinitionSet, namer: Namer) {
+    private fun writeNpcs(
+        definitions: DefinitionSet,
+        namer: Namer,
+    ) {
         val count = npcSize()
         val npcs = generateWriter("Npcs.kt")
         for (i in 0 until count) {
@@ -140,7 +161,10 @@ class DumpEntityIdService : Service {
         endWriter(npcs)
     }
 
-    private fun writeObjs(definitions: DefinitionSet, namer: Namer) {
+    private fun writeObjs(
+        definitions: DefinitionSet,
+        namer: Namer,
+    ) {
         val count = objectSize()
         val objs = generateWriter("Objs.kt")
         for (i in 0 until count) {
@@ -164,7 +188,10 @@ class DumpEntityIdService : Service {
         return writer
     }
 
-    private fun write(writer: PrintWriter, text: String) {
+    private fun write(
+        writer: PrintWriter,
+        text: String,
+    ) {
         writer.println("    $text")
     }
 
@@ -175,6 +202,6 @@ class DumpEntityIdService : Service {
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

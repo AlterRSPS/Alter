@@ -6,7 +6,6 @@ import org.alter.api.cfg.Items
  * @author Tom <rspsmods@gmail.com>
  */
 object Knives {
-
     val BRONZE_KNIVES = arrayOf(Items.BRONZE_KNIFE, Items.BRONZE_KNIFEP, Items.BRONZE_KNIFEP_5654, Items.BRONZE_KNIFEP_5661)
     val IRON_KNIVES = arrayOf(Items.IRON_KNIFE, Items.IRON_KNIFEP, Items.IRON_KNIFEP_5655, Items.IRON_KNIFEP_5662)
     val STEEL_KNIVES = arrayOf(Items.STEEL_KNIFE, Items.STEEL_KNIFEP, Items.STEEL_KNIFEP_5656, Items.STEEL_KNIFEP_5663)

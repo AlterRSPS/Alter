@@ -72,25 +72,32 @@ fun Player.openShop(shopId: Int) {
     }
 }
 
-fun Player.message(message: String, type: ChatMessageType = ChatMessageType.CONSOLE, username: String? = null) {
+fun Player.message(
+    message: String,
+    type: ChatMessageType = ChatMessageType.CONSOLE,
+    username: String? = null,
+) {
     if (username != null) {
         MessageGame(type = type.id, message = message, name = username)
-    } else
+    } else {
         MessageGame(type = type.id, message = message)
+    }
 }
 
 /**
  * Print message in Servers Terminal and send message if player has reqPrivilege
  */
-fun Player.printAndMessageIfHasPower(message: String, privilege: String) {
+fun Player.printAndMessageIfHasPower(
+    message: String,
+    privilege: String,
+) {
     if (isPrivilegeEligible(privilege)) {
         message(message)
     }
     println(message)
 }
 
-
-fun Player.nothingMessage(){
+fun Player.nothingMessage() {
     message(Entity.NOTHING_INTERESTING_HAPPENS)
 }
 
@@ -102,7 +109,10 @@ fun Player.openUrl(url: String) {
     write(UrlOpen(url))
 }
 
-fun Player.runClientScript(id: Int, vararg args: Any) {
+fun Player.runClientScript(
+    id: Int,
+    vararg args: Any,
+) {
     write(RunClientScript(id, args.toList()))
 }
 
@@ -110,19 +120,39 @@ fun Player.focusTab(tab: GameframeTab) {
     runClientScript(915, tab.id)
 }
 
-fun Player.setInterfaceUnderlay(color: Int, transparency: Int) {
+fun Player.setInterfaceUnderlay(
+    color: Int,
+    transparency: Int,
+) {
     runClientScript(917, color, transparency)
     runClientScript(2524, color, transparency)
 }
 
-fun Player.setInterfaceEvents(interfaceId: Int, component: Int, from: Int, to: Int, setting: Int) {
+fun Player.setInterfaceEvents(
+    interfaceId: Int,
+    component: Int,
+    from: Int,
+    to: Int,
+    setting: Int,
+) {
     write(IfSetEvents(interfaceId = interfaceId, componentId = component, start = from, end = to, events = setting))
 }
 
-fun Player.setInterfaceEvents(interfaceId: Int, component: Int, range: IntRange, setting: Int) {
+fun Player.setInterfaceEvents(
+    interfaceId: Int,
+    component: Int,
+    range: IntRange,
+    setting: Int,
+) {
     write(IfSetEvents(interfaceId = interfaceId, componentId = component, start = range.first, end = range.last, events = setting))
 }
-fun Player.setInterfaceEvents(interfaceId: Int, component: Int, range: IntRange, vararg setting: InterfaceEvent) {
+
+fun Player.setInterfaceEvents(
+    interfaceId: Int,
+    component: Int,
+    range: IntRange,
+    vararg setting: InterfaceEvent,
+) {
     val list = arrayListOf<Int>()
     setting.forEach {
         list.add(it.flag)
@@ -130,31 +160,61 @@ fun Player.setInterfaceEvents(interfaceId: Int, component: Int, range: IntRange,
     val settings = list.reduce(Int::or)
     write(IfSetEvents(interfaceId = interfaceId, componentId = component, start = range.first, end = range.last, events = settings))
 }
-fun Player.setInterfaceEvents(interfaceId: Int, component: Int, range: IntRange, setting: InterfaceEvent) {
+
+fun Player.setInterfaceEvents(
+    interfaceId: Int,
+    component: Int,
+    range: IntRange,
+    setting: InterfaceEvent,
+) {
     write(IfSetEvents(interfaceId = interfaceId, componentId = component, start = range.first, end = range.last, events = setting.flag))
 }
 
-fun Player.setComponentText(interfaceId: Int, component: Int, text: String) {
+fun Player.setComponentText(
+    interfaceId: Int,
+    component: Int,
+    text: String,
+) {
     write(IfSetText(interfaceId, component, text))
 }
 
-fun Player.setComponentHidden(interfaceId: Int, component: Int, hidden: Boolean) {
+fun Player.setComponentHidden(
+    interfaceId: Int,
+    component: Int,
+    hidden: Boolean,
+) {
     write(IfSetHide(interfaceId = interfaceId, componentId = component, hidden = hidden))
 }
 
-fun Player.setComponentItem(interfaceId: Int, component: Int, item: Int, amountOrZoom: Int) {
+fun Player.setComponentItem(
+    interfaceId: Int,
+    component: Int,
+    item: Int,
+    amountOrZoom: Int,
+) {
     write(IfSetObject(interfaceId = interfaceId, componentId = component, obj = item, count = amountOrZoom))
 }
 
-fun Player.setComponentNpcHead(interfaceId: Int, component: Int, npc: Int) {
+fun Player.setComponentNpcHead(
+    interfaceId: Int,
+    component: Int,
+    npc: Int,
+) {
     write(IfSetNpcHead(interfaceId = interfaceId, componentId = component, npc = npc))
 }
 
-fun Player.setComponentPlayerHead(interfaceId: Int, component: Int) {
+fun Player.setComponentPlayerHead(
+    interfaceId: Int,
+    component: Int,
+) {
     write(IfSetPlayerHead(interfaceId = interfaceId, componentId = component))
 }
 
-fun Player.setComponentAnim(interfaceId: Int, component: Int, anim: Int) {
+fun Player.setComponentAnim(
+    interfaceId: Int,
+    component: Int,
+    anim: Int,
+) {
     write(IfSetAnim(interfaceId = interfaceId, componentId = component, anim = anim))
 }
 
@@ -168,7 +228,11 @@ fun Player.setComponentAnim(interfaceId: Int, component: Int, anim: Int) {
  *
  * as it holds logic that must be handled for certain [InterfaceDestination]s.
  */
-fun Player.openInterface(interfaceId: Int, dest: InterfaceDestination, fullscreen: Boolean = false) {
+fun Player.openInterface(
+    interfaceId: Int,
+    dest: InterfaceDestination,
+    fullscreen: Boolean = false,
+) {
     val displayMode = if (!fullscreen || dest.fullscreenChildId == -1) interfaces.displayMode else DisplayMode.FULLSCREEN
     val child = getChildId(dest, displayMode)
     val parent = getDisplayComponentId(displayMode)
@@ -185,7 +249,10 @@ fun Player.openInterface(interfaceId: Int, dest: InterfaceDestination, fullscree
  *
  * as it holds logic that must be handled for certain [InterfaceDestination]s.
  */
-fun Player.openInterface(dest: InterfaceDestination, autoClose: Boolean = false) {
+fun Player.openInterface(
+    dest: InterfaceDestination,
+    autoClose: Boolean = false,
+) {
     val displayMode = if (!autoClose || dest.fullscreenChildId == -1) interfaces.displayMode else DisplayMode.FULLSCREEN
     val child = getChildId(dest, displayMode)
     val parent = getDisplayComponentId(displayMode)
@@ -195,7 +262,13 @@ fun Player.openInterface(dest: InterfaceDestination, autoClose: Boolean = false)
     openInterface(parent, child, dest.interfaceId, if (dest.clickThrough) 1 else 0, isModal = dest == InterfaceDestination.MAIN_SCREEN)
 }
 
-fun Player.openInterface(parent: Int, child: Int, interfaceId: Int, type: Int = 0, isModal: Boolean = false) {
+fun Player.openInterface(
+    parent: Int,
+    child: Int,
+    interfaceId: Int,
+    type: Int = 0,
+    isModal: Boolean = false,
+) {
     if (isModal) {
         interfaces.openModal(parent, child, interfaceId)
     } else {
@@ -210,7 +283,7 @@ fun Player.closeInterface(interfaceId: Int) {
     }
     val hash = interfaces.close(interfaceId)
     if (hash != -1) {
-        //this is retarded
+        // this is retarded
         val parent = hash shr 16
         val child = hash and 0xFFFF
         write(IfCloseSub(interfaceId = parent, componentId = child))
@@ -227,7 +300,10 @@ fun Player.closeInterface(dest: InterfaceDestination) {
     }
 }
 
-fun Player.closeComponent(parent: Int, child: Int) {
+fun Player.closeComponent(
+    parent: Int,
+    child: Int,
+) {
     interfaces.close(parent, child)
     write(IfCloseSub(interfaceId = parent, componentId = child))
 }
@@ -274,14 +350,25 @@ fun Player.toggleDisplayInterface(newMode: DisplayMode) {
                 }
             }
 
-            write(IfMoveSub(sourceInterfaceId = fromParent, sourceComponentId = fromChild, destinationInterfaceId = toParent, destinationComponentId = toChild))
+            write(
+                IfMoveSub(
+                    sourceInterfaceId = fromParent,
+                    sourceComponentId = fromChild,
+                    destinationInterfaceId = toParent,
+                    destinationComponentId = toChild,
+                ),
+            )
         }
     }
 }
 
 fun Player.openOverlayInterface(displayMode: DisplayMode) {
     if (displayMode != interfaces.displayMode) {
-        interfaces.setVisible(parent = getDisplayComponentId(interfaces.displayMode), child = getChildId(InterfaceDestination.MAIN_SCREEN, interfaces.displayMode), visible = false)
+        interfaces.setVisible(
+            parent = getDisplayComponentId(interfaces.displayMode),
+            child = getChildId(InterfaceDestination.MAIN_SCREEN, interfaces.displayMode),
+            visible = false,
+        )
     }
     val component = getDisplayComponentId(displayMode)
     interfaces.setVisible(parent = getDisplayComponentId(displayMode), child = 0, visible = true)
@@ -289,7 +376,7 @@ fun Player.openOverlayInterface(displayMode: DisplayMode) {
 }
 
 fun Player.initInterfaces(displayMode: DisplayMode) {
-    when(displayMode) {
+    when (displayMode) {
         DisplayMode.FIXED -> {
             setInterfaceEvents(interfaceId = 548, component = 51, range = -1..-1, setting = 2)
             setInterfaceEvents(interfaceId = 548, component = 52, range = -1..-1, setting = 2)
@@ -342,52 +429,107 @@ fun Player.initInterfaces(displayMode: DisplayMode) {
     }
 }
 
-fun Player.sendItemContainer(key: Int, items: Array<Item?>) {
+fun Player.sendItemContainer(
+    key: Int,
+    items: Array<Item?>,
+) {
     write(UpdateInvFull(inventoryId = key, capacity = items.size, provider = RsModObjectProvider(items)))
 }
 
-fun Player.sendItemContainer(interfaceId: Int, component: Int, items: Array<Item?>) {
-    write(UpdateInvFull(interfaceId = interfaceId, componentId = component, inventoryId = 0, capacity = items.size, provider = RsModObjectProvider(items)))
+fun Player.sendItemContainer(
+    interfaceId: Int,
+    component: Int,
+    items: Array<Item?>,
+) {
+    write(
+        UpdateInvFull(
+            interfaceId = interfaceId,
+            componentId = component,
+            inventoryId = 0,
+            capacity = items.size,
+            provider = RsModObjectProvider(items),
+        ),
+    )
 }
 
-fun Player.sendItemContainer(interfaceId: Int, component: Int, key: Int, items: Array<Item?>) {
-    write(UpdateInvFull(interfaceId = interfaceId, componentId = component, inventoryId = key, capacity = items.size, provider = RsModObjectProvider(items)))
+fun Player.sendItemContainer(
+    interfaceId: Int,
+    component: Int,
+    key: Int,
+    items: Array<Item?>,
+) {
+    write(
+        UpdateInvFull(
+            interfaceId = interfaceId,
+            componentId = component,
+            inventoryId = key,
+            capacity = items.size,
+            provider = RsModObjectProvider(items),
+        ),
+    )
 }
 
-fun Player.sendItemContainer(key: Int, container: ItemContainer) = sendItemContainer(key, container.rawItems)
+fun Player.sendItemContainer(
+    key: Int,
+    container: ItemContainer,
+) = sendItemContainer(key, container.rawItems)
 
-fun Player.sendItemContainer(interfaceId: Int, component: Int, container: ItemContainer) = sendItemContainer(interfaceId, component, container.rawItems)
+fun Player.sendItemContainer(
+    interfaceId: Int,
+    component: Int,
+    container: ItemContainer,
+) = sendItemContainer(interfaceId, component, container.rawItems)
 
-fun Player.sendItemContainer(interfaceId: Int, component: Int, key: Int, container: ItemContainer) = sendItemContainer(interfaceId, component, key, container.rawItems)
+fun Player.sendItemContainer(
+    interfaceId: Int,
+    component: Int,
+    key: Int,
+    container: ItemContainer,
+) = sendItemContainer(interfaceId, component, key, container.rawItems)
 
-fun Player.updateItemContainer(interfaceId: Int, component: Int, oldItems: Array<Item?>, newItems: Array<Item?>) {
+fun Player.updateItemContainer(
+    interfaceId: Int,
+    component: Int,
+    oldItems: Array<Item?>,
+    newItems: Array<Item?>,
+) {
     write(
         UpdateInvPartial(
             interfaceId = interfaceId,
             componentId = component,
             inventoryId = 0,
-            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
-        )
+            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems),
+        ),
     )
 }
 
-fun Player.updateItemContainer(interfaceId: Int, component: Int, key: Int, oldItems: Array<Item?>, newItems: Array<Item?>) {
+fun Player.updateItemContainer(
+    interfaceId: Int,
+    component: Int,
+    key: Int,
+    oldItems: Array<Item?>,
+    newItems: Array<Item?>,
+) {
     write(
         UpdateInvPartial(
             interfaceId = interfaceId,
             componentId = component,
             inventoryId = key,
-            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
-        )
+            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems),
+        ),
     )
 }
 
-fun Player.updateItemContainer(key: Int, oldItems: Array<Item?>, newItems: Array<Item?>) {
+fun Player.updateItemContainer(
+    key: Int,
+    oldItems: Array<Item?>,
+    newItems: Array<Item?>,
+) {
     write(
         UpdateInvPartial(
             inventoryId = key,
-            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems)
-        )
+            provider = RsModIndexedObjectProvider(oldItems.asNonNullIterator, newItems),
+        ),
     )
 }
 
@@ -407,7 +549,10 @@ private val <T> Array<T>.asNonNullIterator: Iterator<Int>
  *
  * https://github.com/RuneStar/cs2-scripts/blob/a144f1dceb84c3efa2f9e90648419a11ee48e7a2/scripts/script768.cs2
  */
-fun Player.sendItemContainerOther(key: Int, container: ItemContainer) {
+fun Player.sendItemContainerOther(
+    key: Int,
+    container: ItemContainer,
+) {
     write(UpdateInvFull(inventoryId = key + 32768, capacity = container.rawItems.size, provider = RsModObjectProvider(container.rawItems)))
 }
 
@@ -415,7 +560,11 @@ fun Player.sendRunEnergy(energy: Int) {
     write(UpdateRunEnergy(energy))
 }
 
-fun Player.playSound(id: Int, volume: Int = 1, delay: Int = 0) {
+fun Player.playSound(
+    id: Int,
+    volume: Int = 1,
+    delay: Int = 0,
+) {
     write(SynthSound(id = id, loops = volume, delay = delay))
 }
 
@@ -430,7 +579,10 @@ fun Player.playJingle(id: Int) {
 
 fun Player.getVarp(id: Int): Int = varps.getState(id)
 
-fun Player.setVarp(id: Int, value: Int) {
+fun Player.setVarp(
+    id: Int,
+    value: Int,
+) {
     if (attr.has(CHANGE_LOGGING) && getVarp(id) != value) {
         message("Varp: $id was changed from: ${getVarp(id)} to $value")
     }
@@ -450,19 +602,28 @@ fun Player.getVarbit(id: Int): Int {
     return varps.getBit(def.varp, def.startBit, def.endBit)
 }
 
-fun Player.incrementVarbit(id: Int, amount: Int = 1): Int {
-    val inc = getVarbit(id)+amount
+fun Player.incrementVarbit(
+    id: Int,
+    amount: Int = 1,
+): Int {
+    val inc = getVarbit(id) + amount
     setVarbit(id, inc)
     return inc
 }
 
-fun Player.decrementVarbit(id: Int, amount: Int = 1): Int {
-    val dec = getVarbit(id)-amount
+fun Player.decrementVarbit(
+    id: Int,
+    amount: Int = 1,
+): Int {
+    val dec = getVarbit(id) - amount
     setVarbit(id, dec)
     return dec
 }
 
-fun Player.setVarbit(id: Int, value: Int) {
+fun Player.setVarbit(
+    id: Int,
+    value: Int,
+) {
     if (attr.has(CHANGE_LOGGING) && getVarbit(id) != value) {
         message("Varbit: $id was changed from: ${getVarbit(id)} to $value")
     }
@@ -474,7 +635,10 @@ fun Player.setVarbit(id: Int, value: Int) {
  * Write a varbit message to the player's client without actually modifying
  * its varp value in [Player.varps].
  */
-fun Player.sendTempVarbit(id: Int, value: Int) {
+fun Player.sendTempVarbit(
+    id: Int,
+    value: Int,
+) {
     val def = CacheManager.getVarbit(id)
     val state = BitManipulation.setBit(varps.getState(def.varp), def.startBit, def.endBit, value)
     val message = if (state in -Byte.MAX_VALUE..Byte.MAX_VALUE) VarpSmall(def.varp, state) else VarpLarge(def.varp, state)
@@ -489,7 +653,10 @@ fun Player.toggleVarbit(id: Int) {
     varps.setBit(def.varp, def.startBit, def.endBit, getVarbit(id) xor 1)
 }
 
-fun Player.setMapFlag(x: Int, z: Int) {
+fun Player.setMapFlag(
+    x: Int,
+    z: Int,
+) {
     write(SetMapFlag(x, z))
 }
 
@@ -497,7 +664,11 @@ fun Player.clearMapFlag() {
     setMapFlag(255, 255)
 }
 
-fun Player.sendOption(option: String, id: Int, leftClick: Boolean = false) {
+fun Player.sendOption(
+    option: String,
+    id: Int,
+    leftClick: Boolean = false,
+) {
     check(id in 1..options.size) { "Option id must range from [1-${options.size}]" }
     val index = id - 1
     options[index] = option
@@ -507,7 +678,10 @@ fun Player.sendOption(option: String, id: Int, leftClick: Boolean = false) {
 /**
  * Checks if the player has an option with the name [option] (case-sensitive).
  */
-fun Player.hasOption(option: String, id: Int = -1): Boolean {
+fun Player.hasOption(
+    option: String,
+    id: Int = -1,
+): Boolean {
     check(id == -1 || id in 1..options.size) { "Option id must range from [1-${options.size}]" }
     return if (id != -1) options.any { it == option } else options[id - 1] == option
 }
@@ -522,19 +696,35 @@ fun Player.removeOption(id: Int) {
     options[index] = null
 }
 
-fun Player.getStorageBit(storage: BitStorage, bits: StorageBits): Int = storage.get(this, bits)
+fun Player.getStorageBit(
+    storage: BitStorage,
+    bits: StorageBits,
+): Int = storage.get(this, bits)
 
-fun Player.hasStorageBit(storage: BitStorage, bits: StorageBits): Boolean = storage.get(this, bits) != 0
+fun Player.hasStorageBit(
+    storage: BitStorage,
+    bits: StorageBits,
+): Boolean = storage.get(this, bits) != 0
 
-fun Player.setStorageBit(storage: BitStorage, bits: StorageBits, value: Int) {
+fun Player.setStorageBit(
+    storage: BitStorage,
+    bits: StorageBits,
+    value: Int,
+) {
     storage.set(this, bits, value)
 }
 
-fun Player.toggleStorageBit(storage: BitStorage, bits: StorageBits) {
+fun Player.toggleStorageBit(
+    storage: BitStorage,
+    bits: StorageBits,
+) {
     storage.set(this, bits, storage.get(this, bits) xor 1)
 }
 
-fun Player.heal(amount: Int, capValue: Int = 0) {
+fun Player.heal(
+    amount: Int,
+    capValue: Int = 0,
+) {
     getSkills().alterCurrentLevel(skill = Skills.HITPOINTS, value = amount, capValue = capValue)
 }
 
@@ -550,9 +740,19 @@ fun Player.getWeaponType(): Int = getVarbit(Varbit.WEAPON_TYPE_VARBIT)
 
 fun Player.getAttackStyle(): Int = getVarp(Varp.WEAPON_ATTACK_STYLE)
 
-fun Player.hasWeaponType(type: WeaponType, vararg others: WeaponType): Boolean = getWeaponType() == type.id || others.isNotEmpty() && getWeaponType() in others.map { it.id }
+fun Player.hasWeaponType(
+    type: WeaponType,
+    vararg others: WeaponType,
+): Boolean =
+    getWeaponType() == type.id || others.isNotEmpty() && getWeaponType() in
+        others.map {
+            it.id
+        }
 
-fun Player.hasEquipped(slot: EquipmentType, vararg items: Int): Boolean {
+fun Player.hasEquipped(
+    slot: EquipmentType,
+    vararg items: Int,
+): Boolean {
     check(items.isNotEmpty()) { "Items shouldn't be empty." }
     return items.any { equipment.hasAt(slot.id, it) }
 }
@@ -565,7 +765,10 @@ fun Player.setSkullIcon(icon: SkullIcon) {
     avatar.extendedInfo.setSkullIcon(icon.id)
 }
 
-fun Player.skull(icon: SkullIcon, durationCycles: Int) {
+fun Player.skull(
+    icon: SkullIcon,
+    durationCycles: Int,
+) {
     check(icon != SkullIcon.NONE)
     setSkullIcon(icon)
     timers[SKULL_ICON_DURATION_TIMER] = durationCycles
@@ -573,7 +776,8 @@ fun Player.skull(icon: SkullIcon, durationCycles: Int) {
 
 fun Player.hasSkullIcon(icon: SkullIcon): Boolean = skullIcon == icon.id
 
-fun Player.isClientResizable(): Boolean = interfaces.displayMode == DisplayMode.RESIZABLE_NORMAL || interfaces.displayMode == DisplayMode.RESIZABLE_LIST
+fun Player.isClientResizable(): Boolean =
+    interfaces.displayMode == DisplayMode.RESIZABLE_NORMAL || interfaces.displayMode == DisplayMode.RESIZABLE_LIST
 
 fun Player.inWilderness(): Boolean = getInterfaceAt(InterfaceDestination.OVERLAY) != -1
 
@@ -618,15 +822,16 @@ fun Player.calculateAndSetCombatLevel(): Boolean {
     val ranged = getSkills().getBaseLevel(Skills.RANGED)
     val magic = getSkills().getBaseLevel(Skills.MAGIC)
 
-    val melee = (strength + attack).toDouble();
-    val mage = (floor((magic * 0.50)) + magic);
-    val range = (floor((ranged * 0.50)) + ranged);
+    val melee = (strength + attack).toDouble()
+    val mage = (floor((magic * 0.50)) + magic)
+    val range = (floor((ranged * 0.50)) + ranged)
 
-    val style = when {
-        melee >= range && melee >= mage -> melee
-        range >= melee && range >= mage -> range
-        else -> mage
-    }
+    val style =
+        when {
+            melee >= range && melee >= mage -> melee
+            range >= melee && range >= mage -> range
+            else -> mage
+        }
 
     combatLevel = floor(0.25 * (defence + hitpoints + floor((prayer * 0.50))) + 0.325 * style).toInt()
 
@@ -643,7 +848,10 @@ fun Player.calculateAndSetCombatLevel(): Boolean {
 }
 
 // Note: this does not take ground items, that may belong to the player, into account.
-fun Player.hasItem(item: Int, amount: Int = 1): Boolean = containers.values.firstOrNull { container -> container.getItemCount(item) >= amount } != null
+fun Player.hasItem(
+    item: Int,
+    amount: Int = 1,
+): Boolean = containers.values.firstOrNull { container -> container.getItemCount(item) >= amount } != null
 
 fun Player.isPrivilegeEligible(to: String): Boolean = world.privileges.isEligible(privilege, to)
 
@@ -656,5 +864,5 @@ fun Player.getMagicDamageBonus(): Int = equipmentBonuses[12]
 fun Player.getPrayerBonus(): Int = equipmentBonuses[13]
 
 fun Player.format_bonus_with_sign(value: Int): String {
-     return if (value < 0) value.toString() else "+$value"
+    return if (value < 0) value.toString() else "+$value"
 }

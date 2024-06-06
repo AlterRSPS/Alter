@@ -15,8 +15,11 @@ import org.alter.game.model.priv.Privilege
 import java.lang.ref.WeakReference
 
 class OpObjTHandler : MessageHandler<OpObjT> {
-    override fun accept(client: Client, message: OpObjT) {
-        if(true) {
+    override fun accept(
+        client: Client,
+        message: OpObjT,
+    ) {
+        if (true) {
             val slot = message.selectedSub
             val sobj = message.selectedObj
             if (slot < 0 || slot >= client.inventory.capacity) {
@@ -46,11 +49,16 @@ class OpObjTHandler : MessageHandler<OpObjT> {
 
             // Get the region chunk that the object would belong to.
             val chunk = client.world.chunks.getOrCreate(tile)
-            val obj = chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull { it.id == message.id } ?: return
+            val obj =
+                chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull {
+                    it.id == message.id
+                } ?: return
 
             if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
                 val def = obj.getDef()
-                client.moveTo(client.world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.sizeX, centreLength = def.sizeY) ?: obj.tile)
+                client.moveTo(
+                    client.world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.sizeX, centreLength = def.sizeY) ?: obj.tile,
+                )
             }
 
             log(client, "Item on object: item=%d, slot=%d, obj=%d, x=%d, z=%d", sobj, slot, message.id, message.x, message.z)
@@ -65,13 +73,13 @@ class OpObjTHandler : MessageHandler<OpObjT> {
             client.attr[INTERACTING_OBJ_ATTR] = WeakReference(obj)
 
             client.executePlugin(ObjectPathAction.itemOnObjectPlugin)
-        } else { //Old OpObjU
+        } else { // Old OpObjU
             val slot = message.selectedSub
             val sobj = message.selectedObj
 
             /*
- * If tile is too far away, don't process it.
- */
+             * If tile is too far away, don't process it.
+             */
             val tile = Tile(message.x, message.z, client.tile.height)
             if (!tile.viewableFrom(client.tile, Player.TILE_VIEW_DISTANCE)) {
                 return
@@ -88,10 +96,22 @@ class OpObjTHandler : MessageHandler<OpObjT> {
             }
 
             val chunk = client.world.chunks.getOrCreate(tile)
-            val groundItem = chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull { it.item == message.id && it.canBeViewedBy(client) } ?: return
+            val groundItem =
+                chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull {
+                    it.item == message.id && it.canBeViewedBy(client)
+                } ?: return
 
-            log(client, "Item on Ground Item action: item=[%d, %d], ground=[%d, %d], x=%d, z=%d, movement=%d",
-                item.id, item.amount, groundItem.item, groundItem.amount, tile.x, tile.z, message.controlKey)
+            log(
+                client,
+                "Item on Ground Item action: item=[%d, %d], ground=[%d, %d], x=%d, z=%d, movement=%d",
+                item.id,
+                item.amount,
+                groundItem.item,
+                groundItem.amount,
+                tile.x,
+                tile.z,
+                message.controlKey,
+            )
 
             if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
                 client.moveTo(groundItem.tile)

@@ -8,7 +8,9 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class EventMouseIdleHandler : MessageHandler<Idle> {
-
-    override fun accept(client: Client, message: Idle) {
+    override fun accept(
+        client: Client,
+        message: Idle,
+    ) {
     }
 }

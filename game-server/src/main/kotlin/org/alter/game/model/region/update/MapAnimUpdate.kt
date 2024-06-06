@@ -10,9 +10,16 @@ import org.alter.game.model.TileGraphic
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class MapAnimUpdate(override val type: EntityUpdateType,
-                    override val entity: TileGraphic) : EntityUpdate<TileGraphic>(type, entity) {
-
-    override fun toMessage(): ZoneProt = MapAnim(entity.id, entity.delay, entity.height,
-        (entity.tile.x and 0x7), (entity.tile.z and 0x7))
+class MapAnimUpdate(
+    override val type: EntityUpdateType,
+    override val entity: TileGraphic,
+) : EntityUpdate<TileGraphic>(type, entity) {
+    override fun toMessage(): ZoneProt =
+        MapAnim(
+            entity.id,
+            entity.delay,
+            entity.height,
+            (entity.tile.x and 0x7),
+            (entity.tile.z and 0x7),
+        )
 }

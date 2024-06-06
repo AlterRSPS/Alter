@@ -15,8 +15,10 @@ import org.alter.game.model.priv.Privilege
 import java.lang.ref.WeakReference
 
 class OpLocTHandler : MessageHandler<OpLocT> {
-
-    override fun accept(client: Client, message: OpLocT) {
+    override fun accept(
+        client: Client,
+        message: OpLocT,
+    ) {
         val slot = message.selectedSub
         val sobj = message.selectedObj
         val sloc = message.id
@@ -48,11 +50,16 @@ class OpLocTHandler : MessageHandler<OpLocT> {
 
         // Get the region chunk that the object would belong to.
         val chunk = client.world.chunks.getOrCreate(tile)
-        val obj = chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull { it.id == message.id } ?: return
+        val obj =
+            chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull {
+                it.id == message.id
+            } ?: return
 
         if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             val def = obj.getDef()
-            client.moveTo(client.world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.sizeX, centreLength = def.sizeY) ?: obj.tile)
+            client.moveTo(
+                client.world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.sizeX, centreLength = def.sizeY) ?: obj.tile,
+            )
         }
 
         log(client, "Item on object: item=%d, slot=%d, obj=%d, x=%d, z=%d", sobj, slot, sloc, message.x, message.z)

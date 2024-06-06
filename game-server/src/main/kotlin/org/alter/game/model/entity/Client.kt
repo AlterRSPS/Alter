@@ -22,7 +22,6 @@ import org.alter.game.service.serializer.PlayerSerializerService
  * @author Tom <rspsmods@gmail.com>
  */
 class Client(world: World) : Player(world) {
-
     /**
      * The username that was used to register the [Player]. This username should
      * never be changed through the player's end.
@@ -88,6 +87,7 @@ class Client(world: World) : Player(world) {
 
     private var rebuildNormalMessageWritten = false
     private val pendingMessages = mutableListOf<OutgoingGameMessage>()
+
     private fun onRebuildNormalMessageWritten() {
         pendingMessages.forEach { message ->
             session?.queue(message)
@@ -119,20 +119,20 @@ class Client(world: World) : Player(world) {
         world.network.playerInfoProtocol.dealloc(info = playerInfo)
     }
 
-    override fun toString(): String = toStringHelper()
+    override fun toString(): String =
+        toStringHelper()
             .add("login_username", loginUsername)
             .add("username", username)
             .toString()
 
     companion object {
-
         /**
          * Constructs a [Client] based on the [LoginRequest].
          */
         fun fromRequest(
             world: World,
             request: GameLoginResponseHandler<Client>,
-            block: LoginBlock<*>
+            block: LoginBlock<*>,
         ): Client {
             val client = Client(world)
             client.clientWidth = block.width

@@ -32,12 +32,12 @@ object TimeConstants {
      */
     fun secondsToCycles(seconds: Int): Int? {
         val secs = (seconds * 0.6).roundToInt()
-        return if(secs > 0) secs else null
+        return if (secs > 0) secs else null
     }
 
     fun minutesToCycles(minutes: Int): Int? {
         val mins = minutes * 100
-        return if(mins > 0) mins else null
+        return if (mins > 0) mins else null
     }
 
     fun hoursToCycles(hours: Int): Int? = minutesToCycles(hours)?.times(60)
@@ -53,7 +53,7 @@ object TimeConstants {
      */
     fun cyclesToSeconds(cycles: Int): Int? {
         val seconds = (cycles / 0.6).roundToInt()
-        return if(seconds > 0) seconds else null
+        return if (seconds > 0) seconds else null
     }
 
     fun cyclesToMinutes(cycles: Int): Int? {
@@ -90,34 +90,34 @@ object TimeConstants {
         val df = DecimalFormat("#.#")
 
         when {
-            value < CYCLES_PER_MINUTE*3 -> {
+            value < CYCLES_PER_MINUTE * 3 -> {
                 amount = value / 1.666
                 formatted = df.format(amount)
-                sb.append("$formatted ${if(amount > 1) "seconds" else "second"}")
+                sb.append("$formatted ${if (amount > 1) "seconds" else "second"}")
             }
 
             value < CYCLES_PER_HOUR -> {
                 amount = value / CYCLES_PER_MINUTE.toDouble()
                 formatted = df.format(amount)
-                sb.append("$formatted ${if(amount > 1) "minutes" else "minute"}")
+                sb.append("$formatted ${if (amount > 1) "minutes" else "minute"}")
             }
 
             value < CYCLES_PER_DAY -> {
                 amount = value / CYCLES_PER_HOUR.toDouble()
                 formatted = df.format(amount)
-                sb.append("$formatted ${if(amount > 1) "hours" else "hour"}")
+                sb.append("$formatted ${if (amount > 1) "hours" else "hour"}")
             }
 
             value < CYCLES_PER_WEEK -> {
                 amount = value / CYCLES_PER_DAY.toDouble()
                 formatted = df.format(amount)
-                sb.append("$formatted ${if(amount.toInt() > 1) "days" else "day"}")
+                sb.append("$formatted ${if (amount.toInt() > 1) "days" else "day"}")
             }
 
-            value < CYCLES_PER_WEEK*26 -> {
+            value < CYCLES_PER_WEEK * 26 -> {
                 amount = value / (CYCLES_PER_WEEK.toDouble() * 4)
                 formatted = df.format(amount)
-                sb.append("$formatted ${if(amount.toInt() > 1) "months" else "month"}")
+                sb.append("$formatted ${if (amount.toInt() > 1) "months" else "month"}")
             }
 
             else -> {
@@ -146,31 +146,31 @@ object TimeConstants {
             value < MINUTE -> {
                 amount = value / SECOND.toDouble()
                 formatted = df.format(amount)
-                sb.append("$formatted ${if(amount > 1) "seconds" else "second"}")
+                sb.append("$formatted ${if (amount > 1) "seconds" else "second"}")
             }
 
             value < HOUR -> {
                 amount = value / MINUTE.toDouble()
                 formatted = df.format(amount)
-                sb.append("$formatted ${if(amount > 1) "minutes" else "minute"}")
+                sb.append("$formatted ${if (amount > 1) "minutes" else "minute"}")
             }
 
             value < DAY -> {
                 amount = value / HOUR.toDouble()
                 formatted = df.format(amount)
-                sb.append("$formatted ${if(amount > 1) "hours" else "hour"}")
+                sb.append("$formatted ${if (amount > 1) "hours" else "hour"}")
             }
 
             // anything less than 84 days (three 28-day months) is displayed in days
             value < DAY.toLong() * 84 -> {
                 amount = value / DAY.toDouble()
-                sb.append("${amount.toInt()} ${if(amount.toInt() > 1) "days" else "day"}")
+                sb.append("${amount.toInt()} ${if (amount.toInt() > 1) "days" else "day"}")
             }
 
             // anything else less than or equal to a year is in months
             value < YEAR -> {
                 amount = value / (DAY.toLong() * 28).toDouble()
-                sb.append("${amount.toInt()} ${if(amount.toInt() > 1) "months" else "month"}")
+                sb.append("${amount.toInt()} ${if (amount.toInt() > 1) "months" else "month"}")
             }
 
             else -> {
@@ -185,55 +185,56 @@ object TimeConstants {
 
     fun getBriefTimeContext(time: Long): String {
         val complete = getCompleteTimeContext(time)
-        return if(complete.count { it == ' ' } > 2){
+        return if (complete.count { it == ' ' } > 2) {
             val parts = complete.split(' ')
             "${parts[0]} ${parts[1]} ${parts[2]}"
-        } else
+        } else {
             complete
+        }
     }
 
     fun getCompleteTimeContext(time: Long): String {
         val sb = StringBuilder()
         var value = time
         var amount = 0
-        if(value >= YEAR){
+        if (value >= YEAR) {
             amount = (value / YEAR).toInt()
-            sb.append("$amount ${if(amount > 1) "years" else "year"}")
+            sb.append("$amount ${if (amount > 1) "years" else "year"}")
             value %= YEAR
-            if(value.toInt() != 0) sb.append(" ")
+            if (value.toInt() != 0) sb.append(" ")
         }
 
-        if(value >= WEEK){
+        if (value >= WEEK) {
             amount = (value / WEEK).toInt()
-            sb.append("$amount ${if(amount > 1) "weeks" else "week"}")
+            sb.append("$amount ${if (amount > 1) "weeks" else "week"}")
             value %= WEEK
-            if(value.toInt() != 0) sb.append(" ")
+            if (value.toInt() != 0) sb.append(" ")
         }
 
-        if(value >= DAY){
+        if (value >= DAY) {
             amount = (value / DAY).toInt()
-            sb.append("$amount ${if(amount > 1) "days" else "day"}")
+            sb.append("$amount ${if (amount > 1) "days" else "day"}")
             value %= DAY
-            if(value.toInt() != 0) sb.append(" ")
+            if (value.toInt() != 0) sb.append(" ")
         }
 
-        if(value >= HOUR){
+        if (value >= HOUR) {
             amount = (value / HOUR).toInt()
-            sb.append("$amount ${if(amount > 1) "hours" else "hour"}")
+            sb.append("$amount ${if (amount > 1) "hours" else "hour"}")
             value %= HOUR
-            if(value.toInt() != 0) sb.append(" ")
+            if (value.toInt() != 0) sb.append(" ")
         }
 
-        if(value >= MINUTE){
+        if (value >= MINUTE) {
             amount = (value / MINUTE).toInt()
-            sb.append("$amount ${if(amount > 1) "minutes" else "minute"}")
+            sb.append("$amount ${if (amount > 1) "minutes" else "minute"}")
             value %= MINUTE
-            if(value.toInt() != 0) sb.append(" ")
+            if (value.toInt() != 0) sb.append(" ")
         }
 
-        if(value >= SECOND){
+        if (value >= SECOND) {
             amount = (value / SECOND).toInt()
-            sb.append("$amount ${if(amount > 1) "seconds" else "second"}")
+            sb.append("$amount ${if (amount > 1) "seconds" else "second"}")
             value %= SECOND
         }
 

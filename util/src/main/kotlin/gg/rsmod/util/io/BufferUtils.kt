@@ -56,7 +56,7 @@ object BufferUtils {
      *       commented out for posterity and to keep it from showing in code completion
      */
     fun ByteBuf.readIntLE(): Int {
-        if(readableBytes() < 4) throw IndexOutOfBoundsException("buffer does not contain enough bytes to read an int")
+        if (readableBytes() < 4) throw IndexOutOfBoundsException("buffer does not contain enough bytes to read an int")
         return (readByte().toInt() and 0xFF) + ((readByte().toInt() and 0xFF) shl 8) + ((readByte().toInt() and 0xFF) shl 16) + ((readByte().toInt() and 0xFF) shl 24)
     }
 
@@ -69,7 +69,7 @@ object BufferUtils {
      *         if {@code this.readableBytes} is less than {@code 4}
      */
     fun ByteBuf.readIntIME(): Int {
-        if(readableBytes() < 4) throw IndexOutOfBoundsException("buffer does not contain enough bytes to read an int")
+        if (readableBytes() < 4) throw IndexOutOfBoundsException("buffer does not contain enough bytes to read an int")
         return ((readByte().toInt() and 0xFF) shl 16) + ((readByte().toInt() and 0xFF) shl 24) + (readByte().toInt() and 0xFF) + ((readByte().toInt() and 0xFF) shl 8)
     }
 
@@ -82,8 +82,7 @@ object BufferUtils {
      *         if {@code this.readableBytes} is less than {@code 4}
      */
     fun ByteBuf.readIntME(): Int {
-        if(readableBytes() < 4) throw IndexOutOfBoundsException("buffer does not contain enough bytes to read an int")
+        if (readableBytes() < 4) throw IndexOutOfBoundsException("buffer does not contain enough bytes to read an int")
         return ((readByte().toInt() and 0xFF) shl 8) + (readByte().toInt() and 0xFF) + ((readByte().toInt() and 0xFF) shl 24) + ((readByte().toInt() and 0xFF) shl 16)
     }
-
 }

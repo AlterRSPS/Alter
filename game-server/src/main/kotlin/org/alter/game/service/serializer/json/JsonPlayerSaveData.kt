@@ -9,13 +9,25 @@ import org.alter.game.model.varp.Varp
  *
  * @author Tom <rspsmods@gmail.com>
  */
-data class JsonPlayerSaveData(val passwordHash: String, val username: String, val displayName: String,
-                              val previousXteas: IntArray, val x: Int, val z: Int, val height: Int, val privilege: Int,
-                              val displayMode: Int, val runEnergy: Double, val appearance: JsonPlayerSerializer.PersistentAppearance,
-                              val skills: List<JsonPlayerSerializer.PersistentSkill>,val attributes: Map<String, Any>,
-                              val timers: List<TimerMap.PersistentTimer>, val itemContainers: List<JsonPlayerSerializer.PersistentContainer>,
-                              val varps: List<Varp>, var social: Social) {
-
+data class JsonPlayerSaveData(
+    val passwordHash: String,
+    val username: String,
+    val displayName: String,
+    val previousXteas: IntArray,
+    val x: Int,
+    val z: Int,
+    val height: Int,
+    val privilege: Int,
+    val displayMode: Int,
+    val runEnergy: Double,
+    val appearance: JsonPlayerSerializer.PersistentAppearance,
+    val skills: List<JsonPlayerSerializer.PersistentSkill>,
+    val attributes: Map<String, Any>,
+    val timers: List<TimerMap.PersistentTimer>,
+    val itemContainers: List<JsonPlayerSerializer.PersistentContainer>,
+    val varps: List<Varp>,
+    var social: Social,
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

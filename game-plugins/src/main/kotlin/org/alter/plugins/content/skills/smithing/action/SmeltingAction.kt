@@ -12,7 +12,6 @@ import org.alter.plugins.content.skills.smithing.data.Bar
  * Handles the action of smelting bars at a furnace.
  */
 class SmeltingAction {
-
     /**
      * A map of bar ids to their item names
      */
@@ -21,9 +20,13 @@ class SmeltingAction {
     /**
      * A map of ore ids to their item names
      */
-    private val oreNames = Bar.values.map { Pair(it.primaryOre, it.secondaryOre) }.flatMap { it.toList() }.distinct().associate { it to getItem(
-        it
-    ).name.lowercase() }
+    private val oreNames =
+        Bar.values.map { Pair(it.primaryOre, it.secondaryOre) }.flatMap { it.toList() }.distinct().associate {
+            it to
+                getItem(
+                    it,
+                ).name.lowercase()
+        }
 
     /**
      * Handles the smelting of a bar
@@ -32,10 +35,14 @@ class SmeltingAction {
      * @param bar       The bar definition
      * @param amount    The amount the player is trying to smelt
      */
-    suspend fun smelt(task: QueueTask, bar: Bar, amount: Int) {
-
-        if (!canSmelt(task, bar))
+    suspend fun smelt(
+        task: QueueTask,
+        bar: Bar,
+        amount: Int,
+    ) {
+        if (!canSmelt(task, bar)) {
             return
+        }
 
         val player = task.player
         val inventory = player.inventory
@@ -47,7 +54,6 @@ class SmeltingAction {
         val maxCount = Math.min(amount, barCount)
 
         repeat(maxCount) {
-
             player.animate(SMELT_ANIM)
             player.playSound(SMELT_SOUND)
             task.wait(ANIMATION_CYCLE)
@@ -78,22 +84,31 @@ class SmeltingAction {
      * @param task  The queued task
      * @param bar   The bar to smelt
      */
-    private suspend fun canSmelt(task: QueueTask, bar: Bar) : Boolean {
+    private suspend fun canSmelt(
+        task: QueueTask,
+        bar: Bar,
+    ): Boolean {
         val player = task.player
         val inventory = player.inventory
 
         if (!inventory.contains(bar.primaryOre) || inventory.getItemCount(bar.secondaryOre) < bar.secondaryCount) {
-            val message = when(bar.secondaryCount) {
-                0 -> "You don't have any ${oreNames[bar.primaryOre]} to smelt."
-                else -> "You need one ${oreNames[bar.primaryOre]} and ${bar.secondaryCount.toLiteral()} ${oreNames[bar.secondaryOre]} to make ${barNames[bar.id]?.prefixAn()}."
-            }
+            val message =
+                when (bar.secondaryCount) {
+                    0 -> "You don't have any ${oreNames[bar.primaryOre]} to smelt."
+                    else -> "You need one ${oreNames[bar.primaryOre]} and ${bar.secondaryCount.toLiteral()} ${oreNames[bar.secondaryOre]} to make ${barNames[bar.id]?.prefixAn()}."
+                }
 
             task.messageBox(message)
             return false
         }
 
         if (player.getSkills().getCurrentLevel(Skills.SMITHING) < bar.level) {
-            task.messageBox("You need a ${Skills.getSkillName(player.world, Skills.SMITHING)} level of at least ${bar.level} to smelt ${oreNames[bar.primaryOre]}.")
+            task.messageBox(
+                "You need a ${Skills.getSkillName(
+                    player.world,
+                    Skills.SMITHING,
+                )} level of at least ${bar.level} to smelt ${oreNames[bar.primaryOre]}.",
+            )
             return false
         }
 
@@ -101,7 +116,6 @@ class SmeltingAction {
     }
 
     companion object {
-
         /**
          * The animation played when smelting a bar
          */

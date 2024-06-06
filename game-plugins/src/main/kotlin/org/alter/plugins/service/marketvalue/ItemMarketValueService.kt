@@ -13,10 +13,13 @@ import org.alter.game.service.Service
  * @author Tom <rspsmods@gmail.com>
  */
 class ItemMarketValueService : Service {
-
     private val values = Int2IntOpenHashMap()
 
-    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(
+        server: Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
         val items = itemSize()
         for (i in 0 until items) {
             val def = getItems().get(i) ?: continue
@@ -31,13 +34,22 @@ class ItemMarketValueService : Service {
         logger.info("Loaded {} item values.", values.size)
     }
 
-    override fun postLoad(server: Server, world: World) {
+    override fun postLoad(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun bindNet(server: Server, world: World) {
+    override fun bindNet(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun terminate(server: Server, world: World) {
+    override fun terminate(
+        server: Server,
+        world: World,
+    ) {
     }
 
     fun get(item: Int): Int {
@@ -48,6 +60,5 @@ class ItemMarketValueService : Service {
         return 0
     }
 
-    private val logger = KotlinLogging.logger{}
-
+    private val logger = KotlinLogging.logger {}
 }

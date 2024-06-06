@@ -14,7 +14,6 @@ import org.alter.plugins.content.skills.fletching.data.Tipped
  * Handles the action of adding tips to an item
  */
 class TipAction(private val defs: DefinitionSet) {
-
     /**
      * A map of the completed items to their item names
      */
@@ -37,9 +36,14 @@ class TipAction(private val defs: DefinitionSet) {
      * @param tipped    The tipped definition
      * @param amount    The amount the player is trying to tip
      */
-    suspend fun tip(task: QueueTask, tipped: Tipped, amount: Int) {
-        if (!canTip(task, tipped))
+    suspend fun tip(
+        task: QueueTask,
+        tipped: Tipped,
+        amount: Int,
+    ) {
+        if (!canTip(task, tipped)) {
             return
+        }
 
         val player = task.player
         val inventory = player.inventory
@@ -49,12 +53,12 @@ class TipAction(private val defs: DefinitionSet) {
         val maxCount = Math.min(Math.min(amount, baseCount), tipCount)
 
         var completed = 0
-        while(completed < maxCount) {
+        while (completed < maxCount) {
             task.wait(2)
 
             player.lock()
             // This is here again to prevent a TOCTTOU attack
-            if (!canTip(task, tipped, sendMessageBox = false)){
+            if (!canTip(task, tipped, sendMessageBox = false)) {
                 player.unlock()
                 break
             }
@@ -65,13 +69,13 @@ class TipAction(private val defs: DefinitionSet) {
             val currentBaseIndex = inventory.getItemIndex(tipped.base, true)
 
             val removeBases = inventory.remove(item = tipped.base, amount = currentSetAmount, assureFullRemoval = true)
-            if (removeBases.hasFailed()){
+            if (removeBases.hasFailed()) {
                 player.unlock()
                 break
             }
 
             val removeTips = inventory.remove(item = tipped.tip, amount = currentSetAmount, assureFullRemoval = true)
-            if (removeTips.hasFailed()){
+            if (removeTips.hasFailed()) {
                 inventory.add(item = tipped.base, amount = currentSetAmount, beginSlot = currentBaseIndex)
                 player.unlock()
                 break
@@ -91,18 +95,29 @@ class TipAction(private val defs: DefinitionSet) {
      * @param tipped            The Tipped definition
      * @param sendMessageBox    Whether or not to send the error message
      */
-    private suspend fun canTip(task: QueueTask, tipped: Tipped, sendMessageBox: Boolean = true) : Boolean {
+    private suspend fun canTip(
+        task: QueueTask,
+        tipped: Tipped,
+        sendMessageBox: Boolean = true,
+    ): Boolean {
         val player = task.player
         val inventory = player.inventory
         if (inventory.getItemCount(tipped.base) < 1 || inventory.getItemCount(tipped.tip) < 1) {
-            if(sendMessageBox)
+            if (sendMessageBox) {
                 task.messageBox("You need ${baseNames[tipped.base]} and a ${tipNames[tipped.tip]} to make a ${itemNames[tipped.id]}")
+            }
             return false
         }
 
         if (player.getSkills().getCurrentLevel(Skills.FLETCHING) < tipped.level) {
-            if(sendMessageBox)
-                task.messageBox("You need a ${Skills.getSkillName(player.world, Skills.FLETCHING)} level of at least ${tipped.level} to tip ${itemNames[tipped.id]}.")
+            if (sendMessageBox) {
+                task.messageBox(
+                    "You need a ${Skills.getSkillName(
+                        player.world,
+                        Skills.FLETCHING,
+                    )} level of at least ${tipped.level} to tip ${itemNames[tipped.id]}.",
+                )
+            }
             return false
         }
 

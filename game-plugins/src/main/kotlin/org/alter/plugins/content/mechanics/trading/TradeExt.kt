@@ -28,12 +28,12 @@ fun Player.hasTradeSession() = this.attr.has(TRADE_SESSION_ATTR)
 /**
  * Gets the [TradeSession] instance for a player
  */
-fun Player.getTradeSession() : TradeSession? = this.attr[TRADE_SESSION_ATTR]
+fun Player.getTradeSession(): TradeSession? = this.attr[TRADE_SESSION_ATTR]
 
 /**
  * If the [Player] has accepted a trade session
  */
-fun Player.hasAcceptedTrade() : Boolean = this.attr[TRADE_ACCEPTED_ATTR] ?: false
+fun Player.hasAcceptedTrade(): Boolean = this.attr[TRADE_ACCEPTED_ATTR] ?: false
 
 /**
  * Removes the [TradeSession] instance from a [Player]
@@ -46,4 +46,4 @@ fun Player.removeTradeSession() {
 /**
  * Gets the set of trade requests for a [Player]
  */
-fun Player.getTradeRequests() : HashSet<Player> = attr[TRADE_REQUESTS]!!
+fun Player.getTradeRequests(): HashSet<Player> = attr[TRADE_REQUESTS]!!

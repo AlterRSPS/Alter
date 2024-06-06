@@ -5,7 +5,11 @@ import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
 on_command("setlvl", Privilege.DEV_POWER, description = "Set your level") {
     val args = player.getCommandArgs()
-    tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::setlvl 0 99</col> or <col=801700>::setlvl attack 99</col>") { values ->
+    tryWithUsage(
+        player,
+        args,
+        "Invalid format! Example of proper command <col=801700>::setlvl 0 99</col> or <col=801700>::setlvl attack 99</col>",
+    ) { values ->
         var skill: Int
         try {
             skill = values[0].toInt()

@@ -7,7 +7,6 @@ import gg.rsmod.util.toStringHelper
  * @author Tom <rspsmods@gmail.com>
  */
 class Item(val id: Int, var amount: Int = 1) {
-
     constructor(other: Item) : this(other.id, other.amount) {
         copyAttr(other)
     }
@@ -53,7 +52,10 @@ class Item(val id: Int, var amount: Int = 1) {
 
     fun getAttr(attrib: ItemAttribute): Int? = attr[attrib]
 
-    fun putAttr(attrib: ItemAttribute, value: Int): Item {
+    fun putAttr(
+        attrib: ItemAttribute,
+        value: Int,
+    ): Item {
         attr[attrib] = value
         return this
     }

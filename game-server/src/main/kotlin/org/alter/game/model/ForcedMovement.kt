@@ -3,10 +3,13 @@ package org.alter.game.model
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-data class ForcedMovement internal constructor(private val initialTile: Tile, internal val destinations: Array<Tile>,
-                                               internal val clientDuration1: Int, internal val clientDuration2: Int,
-                                               internal val directionAngle: Int) {
-
+data class ForcedMovement internal constructor(
+    private val initialTile: Tile,
+    internal val destinations: Array<Tile>,
+    internal val clientDuration1: Int,
+    internal val clientDuration2: Int,
+    internal val directionAngle: Int,
+) {
     internal val finalDestination: Tile
         get() = destinations.last()
 
@@ -68,12 +71,24 @@ data class ForcedMovement internal constructor(private val initialTile: Tile, in
     }
 
     companion object {
-
-        fun of(src: Tile, dst: Tile, clientDuration1: Int, clientDuration2: Int, directionAngle: Int): ForcedMovement {
+        fun of(
+            src: Tile,
+            dst: Tile,
+            clientDuration1: Int,
+            clientDuration2: Int,
+            directionAngle: Int,
+        ): ForcedMovement {
             return ForcedMovement(src, arrayOf(dst), clientDuration1, clientDuration2, directionAngle)
         }
 
-        fun of(src: Tile, dst1: Tile, dst2: Tile, clientDuration1: Int, clientDuration2: Int, directionAngle: Int): ForcedMovement {
+        fun of(
+            src: Tile,
+            dst1: Tile,
+            dst2: Tile,
+            clientDuration1: Int,
+            clientDuration2: Int,
+            directionAngle: Int,
+        ): ForcedMovement {
             return ForcedMovement(src, arrayOf(dst1, dst2), clientDuration1, clientDuration2, directionAngle)
         }
     }

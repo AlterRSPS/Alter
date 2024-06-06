@@ -21,7 +21,6 @@ import java.util.concurrent.LinkedBlockingQueue
  * @author Tom <rspsmods@gmail.com>
  */
 class LoginService : Service {
-
     /**
      * The [PlayerSerializerService] implementation that will be used to decode
      * and encode the player data.
@@ -35,33 +34,60 @@ class LoginService : Service {
 
     private var threadCount = 1
 
-    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(
+        server: Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
         threadCount = serviceProperties.getOrDefault("thread-count", 3)
     }
 
-    override fun postLoad(server: Server, world: World) {
+    override fun postLoad(
+        server: Server,
+        world: World,
+    ) {
         serializer = world.getService(PlayerSerializerService::class.java, searchSubclasses = true)!!
 
-        val worldVerificationService = world.getService(WorldVerificationService::class.java, searchSubclasses = true) ?: SimpleWorldVerificationService()
+        val worldVerificationService =
+            world.getService(
+                WorldVerificationService::class.java,
+                searchSubclasses = true,
+            ) ?: SimpleWorldVerificationService()
 
-        val executorService = Executors.newFixedThreadPool(threadCount, ThreadFactoryBuilder().setNameFormat("login-worker").setUncaughtExceptionHandler { t, e -> logger.error("Error with thread $t", e) }.build())
+        val executorService =
+            Executors.newFixedThreadPool(
+                threadCount,
+                ThreadFactoryBuilder().setNameFormat(
+                    "login-worker",
+                ).setUncaughtExceptionHandler { t, e -> logger.error("Error with thread $t", e) }.build(),
+            )
         for (i in 0 until threadCount) {
             executorService.execute(LoginWorker(this, worldVerificationService))
         }
     }
 
-    override fun bindNet(server: Server, world: World) {
+    override fun bindNet(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun terminate(server: Server, world: World) {
+    override fun terminate(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    fun addLoginRequest(world: World, responseHandler: GameLoginResponseHandler<Client>, block: LoginBlock<*>) {
+    fun addLoginRequest(
+        world: World,
+        responseHandler: GameLoginResponseHandler<Client>,
+        block: LoginBlock<*>,
+    ) {
         val serviceRequest = LoginServiceRequest(world, responseHandler, block)
         requests.offer(serviceRequest)
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

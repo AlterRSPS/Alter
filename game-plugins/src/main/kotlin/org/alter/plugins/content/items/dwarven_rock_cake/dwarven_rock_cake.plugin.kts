@@ -27,11 +27,12 @@ listOf(Items.DWARVEN_ROCK_CAKE, Items.DWARVEN_ROCK_CAKE_7510).forEach {
             this.player.filterableMessage("OW! A terrible shock jars through your skull.")
             this.player.animate(Animation.CONSUME)
             this.player.playSound(Sound.EAT_ROCKCAKE)
-            val incomingDamage = when (player.getCurrentHp()) {
-                2 -> 1
-                1 -> 0
-                else -> ceil(player.getCurrentHp() * 0.10).toInt()
-            }
+            val incomingDamage =
+                when (player.getCurrentHp()) {
+                    2 -> 1
+                    1 -> 0
+                    else -> ceil(player.getCurrentHp() * 0.10).toInt()
+                }
             this.player.hit(incomingDamage)
         }
     }

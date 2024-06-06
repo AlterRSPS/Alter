@@ -1,8 +1,7 @@
-/* Auto-generated file using class org.alter.service.DumpEntityIdService */
+// Auto-generated file using class org.alter.service.DumpEntityIdService
 package org.alter.api.cfg
 
 object Objs {
-
     const val CRATE_1 = 1
     const val CAVE_ENTRANCE = 2
     const val DOOR_3 = 3
@@ -24374,5 +24373,5 @@ object Objs {
     const val STRANGE_SHRINE_49549 = 49549
     const val STONE_CHEST_49550 = 49550
     const val STRANGE_SHRINE_49554 = 49554
-    /* Auto-generated file using class org.alter.service.DumpEntityIdService */
+    // Auto-generated file using class org.alter.service.DumpEntityIdService
 }

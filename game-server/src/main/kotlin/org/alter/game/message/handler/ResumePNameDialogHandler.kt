@@ -9,8 +9,10 @@ import org.alter.game.model.queue.QueueTask
  * @author Tom <rspsmods@gmail.com>
  */
 class ResumePNameDialogHandler : MessageHandler<ResumePNameDialog> {
-
-    override fun accept(client: Client, message: ResumePNameDialog) {
+    override fun accept(
+        client: Client,
+        message: ResumePNameDialog,
+    ) {
         val name = message.name
         val target = client.world.getPlayerForName(name)
 

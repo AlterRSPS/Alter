@@ -9,12 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author Tom <rspsmods@gmail.com>
  */
 class TimerMap {
-
     private var timers: MutableMap<TimerKey, Int> = HashMap(0)
 
     operator fun get(key: TimerKey): Int = timers[key]!!
 
-    operator fun set(key: TimerKey, value: Int): TimerMap {
+    operator fun set(
+        key: TimerKey,
+        value: Int,
+    ): TimerMap {
         timers[key] = value
         return this
     }
@@ -41,8 +43,10 @@ class TimerMap {
         }
     }
 
-
-    fun toPersistentTimers(): List<PersistentTimer> = timers.filter { it.key.persistenceKey != null }.map { PersistentTimer(it.key.persistenceKey, it.key.tickOffline, it.value, System.currentTimeMillis()) }
+    fun toPersistentTimers(): List<PersistentTimer> =
+        timers.filter {
+            it.key.persistenceKey != null
+        }.map { PersistentTimer(it.key.persistenceKey, it.key.tickOffline, it.value, System.currentTimeMillis()) }
 
     fun getTimers(): MutableMap<TimerKey, Int> = timers
 
@@ -52,8 +56,10 @@ class TimerMap {
     /**
      * Represents a persistent timer that will be saved through player sessions.
      */
-    data class PersistentTimer(@JsonProperty("identifier") val identifier: String? = null,
-                               @JsonProperty("tickOffline") val tickOffline: Boolean = true,
-                               @JsonProperty("timeLeft") val timeLeft: Int,
-                               @JsonProperty("currentMs") val currentMs: Long)
+    data class PersistentTimer(
+        @JsonProperty("identifier") val identifier: String? = null,
+        @JsonProperty("tickOffline") val tickOffline: Boolean = true,
+        @JsonProperty("timeLeft") val timeLeft: Int,
+        @JsonProperty("currentMs") val currentMs: Long,
+    )
 }

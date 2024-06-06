@@ -1,5 +1,10 @@
 package org.alter.plugins.content.mechanics.prayer
 
+import org.alter.api.GameframeTab
+import org.alter.api.InterfaceDestination
+import org.alter.api.PrayerIcon
+import org.alter.api.Skills
+import org.alter.api.ext.*
 import org.alter.game.model.attr.AttributeKey
 import org.alter.game.model.attr.PROTECT_ITEM_ATTR
 import org.alter.game.model.bits.INFINITE_VARS_STORAGE
@@ -8,14 +13,8 @@ import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.timer.TimerKey
 import org.alter.game.plugin.Plugin
-import org.alter.api.GameframeTab
-import org.alter.api.InterfaceDestination
-import org.alter.api.PrayerIcon
-import org.alter.api.Skills
-import org.alter.api.ext.*
 
 object Prayers {
-
     private val PRAYER_DRAIN_COUNTER = AttributeKey<Int>()
 
     val PRAYER_DRAIN = TimerKey()
@@ -26,14 +25,17 @@ object Prayers {
     private const val ACTIVE_PRAYERS_VARP = 83
     private const val SELECTED_QUICK_PRAYERS_VARP = 84
 
-    //const val INF_PRAY_VARBIT = 5314
+    // const val INF_PRAY_VARBIT = 5314
     private const val QUICK_PRAYERS_ACTIVE_VARBIT = 4103
     private const val KING_RANSOMS_QUEST_VARBIT = 3909 // Used for chivalry/piety prayer.
     const val RIGOUR_UNLOCK_VARBIT = 5451
     const val AUGURY_UNLOCK_VARBIT = 5452
     const val PRESERVE_UNLOCK_VARBIT = 5453
 
-    fun disableOverheads(p: Player, cycles: Int) {
+    fun disableOverheads(
+        p: Player,
+        cycles: Int,
+    ) {
         p.timers[DISABLE_OVERHEADS] = cycles
     }
 
@@ -48,7 +50,10 @@ object Prayers {
         }
     }
 
-    suspend fun toggle(it: QueueTask, prayer: Prayer) {
+    suspend fun toggle(
+        it: QueueTask,
+        prayer: Prayer,
+    ) {
         val p = it.player
 
         if (p.isDead() || !p.lock.canUsePrayer()) {
@@ -77,10 +82,16 @@ object Prayers {
         p.setVarbit(QUICK_PRAYERS_ACTIVE_VARBIT, 0)
     }
 
-    fun activate(p: Player, prayer: Prayer) {
+    fun activate(
+        p: Player,
+        prayer: Prayer,
+    ) {
         if (!isActive(p, prayer)) {
-            val others = Prayer.values.filter { other -> prayer != other && other.group != null &&
-                    (prayer.group == other.group || prayer.overlap.contains(other.group)) }
+            val others =
+                Prayer.values.filter { other ->
+                    prayer != other && other.group != null &&
+                        (prayer.group == other.group || prayer.overlap.contains(other.group))
+                }
             others.forEach { other ->
                 if (p.getVarbit(other.varbit) != 0) {
                     p.setVarbit(other.varbit, 0)
@@ -100,7 +111,10 @@ object Prayers {
         }
     }
 
-    fun deactivate(p: Player, prayer: Prayer) {
+    fun deactivate(
+        p: Player,
+        prayer: Prayer,
+    ) {
         if (isActive(p, prayer)) {
             p.setVarbit(prayer.varbit, 0)
             p.playSound(DEACTIVATE_PRAYER_SOUND)
@@ -137,7 +151,10 @@ object Prayers {
         }
     }
 
-    fun selectQuickPrayer(it: Plugin, prayer: Prayer) {
+    fun selectQuickPrayer(
+        it: Plugin,
+        prayer: Prayer,
+    ) {
         val player = it.player
 
         if (player.isDead() || !player.lock.canUsePrayer()) {
@@ -151,12 +168,18 @@ object Prayers {
         it.player.queue {
             if (!enabled) {
                 if (checkRequirements(this, prayer)) {
-                    val others = Prayer.values.filter { other -> prayer != other && other.group != null &&
-                            (prayer.group == other.group || prayer.overlap.contains(other.group)) }
+                    val others =
+                        Prayer.values.filter { other ->
+                            prayer != other && other.group != null &&
+                                (prayer.group == other.group || prayer.overlap.contains(other.group))
+                        }
                     others.forEach { other ->
                         val otherEnabled = (player.getVarp(SELECTED_QUICK_PRAYERS_VARP) and (1 shl other.quickPrayerSlot)) != 0
                         if (otherEnabled) {
-                            player.setVarp(SELECTED_QUICK_PRAYERS_VARP, player.getVarp(SELECTED_QUICK_PRAYERS_VARP) and (1 shl other.quickPrayerSlot).inv())
+                            player.setVarp(
+                                SELECTED_QUICK_PRAYERS_VARP,
+                                player.getVarp(SELECTED_QUICK_PRAYERS_VARP) and (1 shl other.quickPrayerSlot).inv(),
+                            )
                         }
                     }
                     player.setVarp(SELECTED_QUICK_PRAYERS_VARP, player.getVarp(SELECTED_QUICK_PRAYERS_VARP) or (1 shl slot))
@@ -167,7 +190,10 @@ object Prayers {
         }
     }
 
-    fun toggleQuickPrayers(p: Player, opt: Int) {
+    fun toggleQuickPrayers(
+        p: Player,
+        opt: Int,
+    ) {
         if (p.isDead() || !p.lock.canUsePrayer()) {
             p.setVarbit(QUICK_PRAYERS_ACTIVE_VARBIT, 0)
             return
@@ -206,9 +232,15 @@ object Prayers {
         }
     }
 
-    fun isActive(p: Player, prayer: Prayer): Boolean = p.getVarbit(prayer.varbit) != 0
+    fun isActive(
+        p: Player,
+        prayer: Prayer,
+    ): Boolean = p.getVarbit(prayer.varbit) != 0
 
-    private suspend fun checkRequirements(it: QueueTask, prayer: Prayer): Boolean {
+    private suspend fun checkRequirements(
+        it: QueueTask,
+        prayer: Prayer,
+    ): Boolean {
         val p = it.player
 
         if (p.getSkills().getBaseLevel(Skills.PRAYER) < prayer.level) {
@@ -252,15 +284,16 @@ object Prayers {
     }
 
     private fun setOverhead(p: Player) {
-        val icon = when {
-            isActive(p, Prayer.PROTECT_FROM_MELEE) -> PrayerIcon.PROTECT_FROM_MELEE
-            isActive(p, Prayer.PROTECT_FROM_MISSILES) -> PrayerIcon.PROTECT_FROM_MISSILES
-            isActive(p, Prayer.PROTECT_FROM_MAGIC) -> PrayerIcon.PROTECT_FROM_MAGIC
-            isActive(p, Prayer.RETRIBUTION) -> PrayerIcon.RETRIBUTION
-            isActive(p, Prayer.SMITE) -> PrayerIcon.SMITE
-            isActive(p, Prayer.REDEMPTION) -> PrayerIcon.REDEMPTION
-            else -> PrayerIcon.NONE
-        }
+        val icon =
+            when {
+                isActive(p, Prayer.PROTECT_FROM_MELEE) -> PrayerIcon.PROTECT_FROM_MELEE
+                isActive(p, Prayer.PROTECT_FROM_MISSILES) -> PrayerIcon.PROTECT_FROM_MISSILES
+                isActive(p, Prayer.PROTECT_FROM_MAGIC) -> PrayerIcon.PROTECT_FROM_MAGIC
+                isActive(p, Prayer.RETRIBUTION) -> PrayerIcon.RETRIBUTION
+                isActive(p, Prayer.SMITE) -> PrayerIcon.SMITE
+                isActive(p, Prayer.REDEMPTION) -> PrayerIcon.REDEMPTION
+                else -> PrayerIcon.NONE
+            }
 
         if (p.prayerIcon != icon.id) {
             p.prayerIcon = icon.id

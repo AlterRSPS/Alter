@@ -10,15 +10,15 @@ abstract class Controller(req: Request, resp: Response, auth: Boolean) {
     protected var authState = true
 
     init {
-        if(auth) {
+        if (auth) {
             val xAuth = req.headers("X-AUTH") ?: ""
 
-            if(xAuth.isEmpty()) {
+            if (xAuth.isEmpty()) {
                 // X-AUTH was not present in request headers
                 authState = false
             }
 
-            if(!Auth.auth(xAuth)) {
+            if (!Auth.auth(xAuth)) {
                 // X-AUTH was not valid or has expired
                 authState = false
             }

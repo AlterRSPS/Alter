@@ -25,5 +25,5 @@ enum class PurchasePolicy {
     /**
      * Buys all items.
      */
-    BUY_ALL
+    BUY_ALL,
 }

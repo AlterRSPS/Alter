@@ -10,9 +10,17 @@ import org.alter.game.model.entity.GameObject
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class LocAddChangeUpdate(override val type: EntityUpdateType,
-                         override val entity: GameObject) : EntityUpdate<GameObject>(type, entity) {
-
-    override fun toMessage(): ZoneProt = LocAddChange(entity.id, (entity.tile.x and 0x7)
-        ,(entity.tile.z and 0x7), entity.type, entity.rot, OpFlags.ALL_SHOWN)
+class LocAddChangeUpdate(
+    override val type: EntityUpdateType,
+    override val entity: GameObject,
+) : EntityUpdate<GameObject>(type, entity) {
+    override fun toMessage(): ZoneProt =
+        LocAddChange(
+            entity.id,
+            (entity.tile.x and 0x7),
+            (entity.tile.z and 0x7),
+            entity.type,
+            entity.rot,
+            OpFlags.ALL_SHOWN,
+        )
 }

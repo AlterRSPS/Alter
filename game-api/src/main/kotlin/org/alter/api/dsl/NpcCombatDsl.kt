@@ -1,6 +1,5 @@
 package org.alter.api.dsl
 
-import org.alter.game.plugin.KotlinPlugin
 import org.alter.api.BonusSlot
 import org.alter.api.NpcCombatBuilder
 import org.alter.api.NpcSkills
@@ -10,26 +9,31 @@ import org.alter.api.ext.NPC_MAGIC_DAMAGE_BONUS_INDEX
 import org.alter.api.ext.NPC_RANGED_STRENGTH_BONUS_INDEX
 import org.alter.api.ext.NPC_STRENGTH_BONUS_INDEX
 import org.alter.api.ext.enumSetOf
+import org.alter.game.plugin.KotlinPlugin
 
-fun KotlinPlugin.set_combat_def(npc: Int, init: NpcCombatDsl.Builder.() -> Unit) {
+fun KotlinPlugin.set_combat_def(
+    npc: Int,
+    init: NpcCombatDsl.Builder.() -> Unit,
+) {
     val builder = NpcCombatDsl.Builder()
     init(builder)
 
     set_combat_def(npc, builder.build())
 }
 
-fun KotlinPlugin.set_combat_def(vararg npc: Int, init: NpcCombatDsl.Builder.() -> Unit) {
+fun KotlinPlugin.set_combat_def(
+    vararg npc: Int,
+    init: NpcCombatDsl.Builder.() -> Unit,
+) {
     npc.forEach { set_combat_def(it, init) }
 }
 
 object NpcCombatDsl {
-
     @DslMarker
     annotation class CombatDslMarker
 
     @CombatDslMarker
     class Builder {
-
         private val combatBuilder = NpcCombatBuilder()
 
         fun build() = combatBuilder.build()
@@ -202,7 +206,6 @@ object NpcCombatDsl {
 
     @CombatDslMarker
     class StatsBuilder(private val stats: MutableList<Pair<Int, Int>>) {
-
         var hitpoints = 1
 
         var attack: Int = 1
@@ -240,7 +243,6 @@ object NpcCombatDsl {
 
     @CombatDslMarker
     class BonusBuilder(private val bonuses: MutableList<Pair<Int, Int>>) {
-
         var attackStab: Int = 0
             set(value) {
                 set(Pair(BonusSlot.ATTACK_STAB.id, value))
@@ -321,7 +323,6 @@ object NpcCombatDsl {
 
     @CombatDslMarker
     class SpeciesBuilder(private val species: MutableSet<NpcSpecies>) {
-
         infix fun of(species: NpcSpecies) {
             this.species.add(species)
         }
@@ -344,7 +345,6 @@ object NpcCombatDsl {
 
     @CombatDslMarker
     class AnimationBuilder {
-
         var attack = -1
         var block = -1
         private val deathList = mutableListOf<Int>()
@@ -366,7 +366,6 @@ object NpcCombatDsl {
 
         @CombatDslMarker
         class DeathBuilder(private val anims: MutableList<Int>) {
-
             infix fun add(anim: Int) {
                 anims.add(anim)
             }
@@ -393,7 +392,6 @@ object NpcCombatDsl {
                 field = value
             }
 
-
         var deathSound = -1
         var deathArea: Boolean = false
         var deathVolume: Int = 50
@@ -403,7 +401,5 @@ object NpcCombatDsl {
                 check(deathArea) { "Can't assign deathRadius when deathArea is false." }
                 field = value
             }
-
     }
 }
-

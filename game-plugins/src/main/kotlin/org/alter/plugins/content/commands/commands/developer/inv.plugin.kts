@@ -10,7 +10,7 @@ on_command("inv", Privilege.DEV_POWER) {
     tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::inv invKey itemIds ...</col>") { values ->
         val key = values[0].toInt()
         val items = mutableListOf<Item?>()
-        for(item in 1 until values.size)
+        for (item in 1 until values.size)
             items.add(Item(values[item].toIntOrNull() ?: 0))
         val itemarr = items.toTypedArray()
         player.write(UpdateInvFull(inventoryId = key, capacity = itemarr.size, provider = RsModObjectProvider(itemarr)))

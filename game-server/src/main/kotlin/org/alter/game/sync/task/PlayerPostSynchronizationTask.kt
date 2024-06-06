@@ -10,7 +10,6 @@ import org.alter.game.sync.SynchronizationTask
  * @author Tom <rspsmods@gmail.com>
  */
 object PlayerPostSynchronizationTask : SynchronizationTask<Player> {
-
     override fun run(pawn: Player) {
         val oldTile = pawn.lastTile
         val moved = oldTile == null || !oldTile.sameAs(pawn.tile)

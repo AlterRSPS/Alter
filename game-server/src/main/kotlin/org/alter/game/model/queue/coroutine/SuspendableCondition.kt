@@ -24,7 +24,6 @@ abstract class SuspendableCondition {
  * The amount of game cycles that must pass before the coroutine can continue.
  */
 class WaitCondition(cycles: Int) : SuspendableCondition() {
-
     private val cyclesLeft = AtomicInteger(cycles)
 
     override fun resume(): Boolean = cyclesLeft.decrementAndGet() <= 0
@@ -46,7 +45,6 @@ class WaitCondition(cycles: Int) : SuspendableCondition() {
  * The tile that must be reached by [dst].
  */
 class TileCondition(private val src: Tile, private val dst: Tile) : SuspendableCondition() {
-
     override fun resume(): Boolean = src.sameAs(dst)
 
     override fun toString(): String = toStringHelper().add("src", src).add("dst", dst).toString()
@@ -57,6 +55,5 @@ class TileCondition(private val src: Tile, private val dst: Tile) : SuspendableC
  * permitting the coroutine to continue its logic.
  */
 class PredicateCondition(private val predicate: () -> Boolean) : SuspendableCondition() {
-
     override fun resume(): Boolean = predicate.invoke()
 }

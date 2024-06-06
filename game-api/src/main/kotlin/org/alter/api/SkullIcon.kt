@@ -17,5 +17,5 @@ enum class SkullIcon(val id: Int) {
     DMM_HIGH_RISK(id = 9),
     DMM_MEDIUM_RISK(id = 10),
     DMM_LOW_RISK(id = 11),
-    DMM_VERY_LOW_RISK(id = 12)
+    DMM_VERY_LOW_RISK(id = 12),
 }

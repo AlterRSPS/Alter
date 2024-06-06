@@ -12,5 +12,5 @@ enum class AttackStyle(val id: Int) {
     DEFENSIVE(id = 2),
     CONTROLLED(id = 3),
     RAPID(id = 4),
-    LONG_RANGE(id = 5)
+    LONG_RANGE(id = 5),
 }

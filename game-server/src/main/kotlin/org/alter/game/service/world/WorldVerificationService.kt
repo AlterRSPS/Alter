@@ -10,17 +10,29 @@ import org.alter.game.service.Service
  * @author Tom <rspsmods@gmail.com>
  */
 interface WorldVerificationService : Service {
-
-    override fun init(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(
+        server: org.alter.game.Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
     }
 
-    override fun postLoad(server: org.alter.game.Server, world: World) {
+    override fun postLoad(
+        server: org.alter.game.Server,
+        world: World,
+    ) {
     }
 
-    override fun bindNet(server: org.alter.game.Server, world: World) {
+    override fun bindNet(
+        server: org.alter.game.Server,
+        world: World,
+    ) {
     }
 
-    override fun terminate(server: org.alter.game.Server, world: World) {
+    override fun terminate(
+        server: org.alter.game.Server,
+        world: World,
+    ) {
     }
 
     /**
@@ -28,5 +40,10 @@ interface WorldVerificationService : Service {
      *
      * @return null if the player can log in successfully without
      */
-    fun interceptLoginResult(world: World, uid: PlayerUID, displayName: String, loginName: String): LoginResponse?
+    fun interceptLoginResult(
+        world: World,
+        uid: PlayerUID,
+        displayName: String,
+        loginName: String,
+    ): LoginResponse?
 }

@@ -14,8 +14,10 @@ import org.alter.game.model.timer.STUN_TIMER
  * @author Tom <rspsmods@gmail.com>
  */
 class ClickMapHandler : MessageHandler<MoveGameClick> {
-
-    override fun accept(client: Client, message: MoveGameClick) {
+    override fun accept(
+        client: Client,
+        message: MoveGameClick,
+    ) {
         if (!client.lock.canMove()) {
             return
         }

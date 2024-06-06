@@ -16,7 +16,6 @@ import java.text.DecimalFormat
  * @author Tom <rspsmods@gmail.com>
  */
 object PriceGuide {
-
     const val PRICE_GUIDE_INTERFACE_ID = 464
     const val PRICE_GUIDE_TAB_INTERFACE_ID = 238
 
@@ -34,7 +33,20 @@ object PriceGuide {
         update(p)
 
         p.setInterfaceEvents(interfaceId = PRICE_GUIDE_INTERFACE_ID, component = 2, range = 0..27, setting = 1086)
-        p.runClientScript(149, 15597568, 93, 4, 7, 0, -1, "Add<col=ff9040>", "Add-5<col=ff9040>", "Add-10<col=ff9040>", "Add-All<col=ff9040>", "Add-X<col=ff9040>")
+        p.runClientScript(
+            149,
+            15597568,
+            93,
+            4,
+            7,
+            0,
+            -1,
+            "Add<col=ff9040>",
+            "Add-5<col=ff9040>",
+            "Add-10<col=ff9040>",
+            "Add-All<col=ff9040>",
+            "Add-X<col=ff9040>",
+        )
         p.setInterfaceEvents(interfaceId = PRICE_GUIDE_TAB_INTERFACE_ID, component = 0, range = 0..27, setting = 1086)
     }
 
@@ -44,13 +56,20 @@ object PriceGuide {
         p.attr.remove(TEMP_INV_CONTAINER)
     }
 
-    fun add(p: Player, fakeInvSlot: Int) {
+    fun add(
+        p: Player,
+        fakeInvSlot: Int,
+    ) {
         val container = p.attr[TEMP_INV_CONTAINER] ?: return
         val item = container[fakeInvSlot] ?: return
         add(p, item.id, item.amount)
     }
 
-    fun add(p: Player, item: Int, amount: Int) {
+    fun add(
+        p: Player,
+        item: Int,
+        amount: Int,
+    ) {
         val guideContainer = p.attr[GUIDE_CONTAINER] ?: return
         val invContainer = p.attr[TEMP_INV_CONTAINER] ?: return
 
@@ -114,7 +133,11 @@ object PriceGuide {
         }
     }
 
-    fun remove(p: Player, slot: Int, amount: Int) {
+    fun remove(
+        p: Player,
+        slot: Int,
+        amount: Int,
+    ) {
         val guideContainer = p.attr[GUIDE_CONTAINER] ?: return
         val invContainer = p.attr[TEMP_INV_CONTAINER] ?: return
 
@@ -138,54 +161,71 @@ object PriceGuide {
         update(p)
     }
 
-    suspend fun remove(it: QueueTask, slot: Int, opt: Int) {
+    suspend fun remove(
+        it: QueueTask,
+        slot: Int,
+        opt: Int,
+    ) {
         val p = it.player
         val container = p.attr[GUIDE_CONTAINER] ?: return
         val item = container[slot] ?: return
 
-        val amount = when (opt) {
-            1 -> 1
-            2 -> 5
-            3 -> 10
-            4 -> container.getItemCount(item.id)
-            5 -> it.inputInt()
-            10 -> {
-                p.world.sendExamine(p, item.id, ExamineEntityType.ITEM)
-                return
+        val amount =
+            when (opt) {
+                1 -> 1
+                2 -> 5
+                3 -> 10
+                4 -> container.getItemCount(item.id)
+                5 -> it.inputInt()
+                10 -> {
+                    p.world.sendExamine(p, item.id, ExamineEntityType.ITEM)
+                    return
+                }
+                else -> return
             }
-            else -> return
-        }
         remove(p = p, slot = slot, amount = amount)
     }
 
-    suspend fun add(it: QueueTask, slot: Int, opt: Int) {
+    suspend fun add(
+        it: QueueTask,
+        slot: Int,
+        opt: Int,
+    ) {
         val p = it.player
         val container = p.attr[TEMP_INV_CONTAINER] ?: return
         val item = container[slot] ?: return
 
-        val amount = when (opt) {
-            1 -> 1
-            2 -> 5
-            3 -> 10
-            4 -> container.getItemCount(item.id)
-            5 -> it.inputInt()
-            10 -> {
-                p.world.sendExamine(p, item.id, ExamineEntityType.ITEM)
-                return
+        val amount =
+            when (opt) {
+                1 -> 1
+                2 -> 5
+                3 -> 10
+                4 -> container.getItemCount(item.id)
+                5 -> it.inputInt()
+                10 -> {
+                    p.world.sendExamine(p, item.id, ExamineEntityType.ITEM)
+                    return
+                }
+                else -> return
             }
-            else -> return
-        }
         add(p = p, item = item.id, amount = amount)
     }
 
-    fun search(p: Player, item: Int) {
+    fun search(
+        p: Player,
+        item: Int,
+    ) {
         val def = getItem(item)
         val valueService = p.world.getService(ItemMarketValueService::class.java)
         val cost = valueService?.get(item) ?: def.cost
 
         p.setComponentItem(interfaceId = PRICE_GUIDE_INTERFACE_ID, component = 8, item = item, amountOrZoom = 1)
         p.runClientScript(600, 0, 1, 15, 30408716)
-        p.setComponentText(interfaceId = PRICE_GUIDE_INTERFACE_ID, component = 12, text = "${def.name}:<br><col=ffffff>${DecimalFormat().format(cost)}</col>")
+        p.setComponentText(
+            interfaceId = PRICE_GUIDE_INTERFACE_ID,
+            component = 12,
+            text = "${def.name}:<br><col=ffffff>${DecimalFormat().format(cost)}</col>",
+        )
     }
 
     fun update(p: Player) {
@@ -209,6 +249,6 @@ object PriceGuide {
         p.runClientScript(785, *costs)
         p.runClientScript(600, 1, 1, 15, 30408716)
 
-        //p.setComponentText(interfaceId = PRICE_GUIDE_INTERFACE_ID, component = 12, text = "Total guide price:<br><col=ffffff>${DecimalFormat().format(guideContainer.getNetworth(p.world))}</col>")
+        // p.setComponentText(interfaceId = PRICE_GUIDE_INTERFACE_ID, component = 12, text = "Total guide price:<br><col=ffffff>${DecimalFormat().format(guideContainer.getNetworth(p.world))}</col>")
     }
 }

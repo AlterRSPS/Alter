@@ -1,8 +1,7 @@
-/* Auto-generated file using class org.alter.service.DumpEntityIdService */
+// Auto-generated file using class org.alter.service.DumpEntityIdService
 package org.alter.api.cfg
 
 object Items {
-
     const val DWARF_REMAINS = 0
     const val TOOLKIT = 1
     const val CANNONBALL = 2
@@ -19068,5 +19067,5 @@ object Items {
     const val GOOEY_NOTE_28469 = 28469
     const val GOOEY_NOTE_28470 = 28470
     const val STINK_BOMB = 28471
-    /* Auto-generated file using class org.alter.service.DumpEntityIdService */
+    // Auto-generated file using class org.alter.service.DumpEntityIdService
 }

@@ -16,7 +16,6 @@ import org.alter.game.sync.SynchronizationTask
  * @author Tom <rspsmods@gmail.com>
  */
 object PlayerPreSynchronizationTask : SynchronizationTask<Player> {
-
     override fun run(pawn: Player) {
         pawn.handleFutureRoute()
         pawn.movementQueue.cycle()
@@ -32,38 +31,52 @@ object PlayerPreSynchronizationTask : SynchronizationTask<Player> {
 
             val xteaService = pawn.world.xteaKeyService!!
             val instance = pawn.world.instanceAllocator.getMap(current)
-            val rebuildMessage = when {
-                instance != null -> {
-                    RebuildRegion(current.x shr 3, current.z shr 3, true, object  : RebuildRegion.RebuildRegionZoneProvider {
-                        override fun provide(zoneX: Int, zoneZ: Int, level: Int): RebuildRegionZone? {
-                            val coord = InstancedChunkSet.getCoordinates(zoneX, zoneZ, level)
-                            val chunk = instance.chunks.values[coord]?: return null
-                            return RebuildRegionZone(
-                                chunk.zoneX,
-                                chunk.zoneZ,
-                                chunk.height,
-                                chunk.rot,
-                                XteaKey.ZERO
-                            )
-                        }
-                    })
+            val rebuildMessage =
+                when {
+                    instance != null -> {
+                        RebuildRegion(
+                            current.x shr 3,
+                            current.z shr 3,
+                            true,
+                            object : RebuildRegion.RebuildRegionZoneProvider {
+                                override fun provide(
+                                    zoneX: Int,
+                                    zoneZ: Int,
+                                    level: Int,
+                                ): RebuildRegionZone? {
+                                    val coord = InstancedChunkSet.getCoordinates(zoneX, zoneZ, level)
+                                    val chunk = instance.chunks.values[coord] ?: return null
+                                    return RebuildRegionZone(
+                                        chunk.zoneX,
+                                        chunk.zoneZ,
+                                        chunk.height,
+                                        chunk.rot,
+                                        XteaKey.ZERO,
+                                    )
+                                }
+                            },
+                        )
+                    }
+                    else -> RebuildNormal(current.x shr 3, current.z shr 3, -1, xteaService)
                 }
-                else -> RebuildNormal(current.x shr 3, current.z shr 3, -1, xteaService)
-            }
-            pawn.buildArea = BuildArea((current.x ushr 3) - 6, (current.z ushr 3) - 6).apply {
-                pawn.playerInfo.updateBuildArea(-1, this)
-                pawn.npcInfo.updateBuildArea(-1, this)
-                pawn.worldEntityInfo.updateBuildArea(this)
-            }
+            pawn.buildArea =
+                BuildArea((current.x ushr 3) - 6, (current.z ushr 3) - 6).apply {
+                    pawn.playerInfo.updateBuildArea(-1, this)
+                    pawn.npcInfo.updateBuildArea(-1, this)
+                    pawn.worldEntityInfo.updateBuildArea(this)
+                }
             pawn.write(rebuildMessage)
         }
     }
 
-    private fun shouldRebuildRegion(old: Coordinate, new: Tile): Boolean {
+    private fun shouldRebuildRegion(
+        old: Coordinate,
+        new: Tile,
+    ): Boolean {
         val dx = new.x - old.x
         val dz = new.z - old.z
 
-        return dx <= Player.NORMAL_VIEW_DISTANCE || dx >= Chunk.MAX_VIEWPORT - Player.NORMAL_VIEW_DISTANCE - 1
-                || dz <= Player.NORMAL_VIEW_DISTANCE || dz >= Chunk.MAX_VIEWPORT - Player.NORMAL_VIEW_DISTANCE - 1
+        return dx <= Player.NORMAL_VIEW_DISTANCE || dx >= Chunk.MAX_VIEWPORT - Player.NORMAL_VIEW_DISTANCE - 1 ||
+            dz <= Player.NORMAL_VIEW_DISTANCE || dz >= Chunk.MAX_VIEWPORT - Player.NORMAL_VIEW_DISTANCE - 1
     }
 }

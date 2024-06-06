@@ -27,13 +27,14 @@ suspend fun QueueTask.spawn2(): Item? {
     if (item == -1) {
         return null
     }
-    val amount = when (options("1", "5", "X", "Max", title = "How many would you like to spawn?")) {
-        1 -> 1
-        2 -> 5
-        3 -> inputInt("Enter amount to spawn")
-        4 -> Int.MAX_VALUE
-        else -> return null
-    }
+    val amount =
+        when (options("1", "5", "X", "Max", title = "How many would you like to spawn?")) {
+            1 -> 1
+            2 -> 5
+            3 -> inputInt("Enter amount to spawn")
+            4 -> Int.MAX_VALUE
+            else -> return null
+        }
     val add = player.inventory.add(item, amount, assureFullInsertion = false)
     return Item(item, add.completed)
 }
@@ -43,13 +44,14 @@ suspend fun QueueTask.spawn(): Item? {
     if (item == -1) {
         return null
     }
-    val amount = when (options("1", "5", "X", "Max", title = "How many would you like to spawn?")) {
-        1 -> 1
-        2 -> 5
-        3 -> inputInt("Enter amount to spawn")
-        4 -> Int.MAX_VALUE
-        else -> return null
-    }
+    val amount =
+        when (options("1", "5", "X", "Max", title = "How many would you like to spawn?")) {
+            1 -> 1
+            2 -> 5
+            3 -> inputInt("Enter amount to spawn")
+            4 -> Int.MAX_VALUE
+            else -> return null
+        }
     val add = player.inventory.add(item, amount, assureFullInsertion = false)
     return Item(item, add.completed)
 }

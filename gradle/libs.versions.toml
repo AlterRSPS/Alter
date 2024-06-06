@@ -21,6 +21,7 @@ nettyAll = "4.1.109.Final"
 slf4j = "2.0.0-alpha0"
 csv = "0.7.3"
 logback = "1.4.11"
+ktlint = "12.1.0"
 
 [libraries]
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version.ref = "fastutil" }
@@ -68,3 +69,4 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version =  "0.9.18"}
 shadow = { id ="com.github.johnrengelman.shadow", version = "8.1.1"}
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }

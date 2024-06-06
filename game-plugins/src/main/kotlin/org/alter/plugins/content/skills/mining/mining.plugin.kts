@@ -1,10 +1,10 @@
-//package org.alter.plugins.content.skills.mining
+// package org.alter.plugins.content.skills.mining
 //
-//import org.alter.api.ext.getInteractingGameObj
-//import org.alter.api.ext.player
-//import org.alter.plugins.content.skills.mining.Mining.Ore
+// import org.alter.api.ext.getInteractingGameObj
+// import org.alter.api.ext.player
+// import org.alter.plugins.content.skills.mining.Mining.Ore
 //
-//private val ORES = setOf(
+// private val ORES = setOf(
 //    // TODO: Need to find the alternate emptyOreId rock
 //    Ore(OreType.RUNE_ESSENCE, obj = 34773, emptyOreId = 0), // X = 2911 Y = 4832 - Essence Mine
 //
@@ -50,9 +50,9 @@
 //
 //    Ore(OreType.RUNITE, obj = 11376, emptyOreId = 2704),
 //    Ore(OreType.RUNITE, obj = 11377, emptyOreId = 11391)
-//)
+// )
 //
-//ORES.forEach { ore ->
+// ORES.forEach { ore ->
 //    /**
 //     * Adds ore mining logic to option 1 - "Mine $ore"
 //     */
@@ -72,4 +72,4 @@
 //            Mining.prospectOre(this, ore.type)
 //        }
 //    }
-//}
+// }

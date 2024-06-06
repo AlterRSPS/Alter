@@ -1,7 +1,11 @@
 package org.alter.plugins.content.objects.hay
 
-private val HAY_OBJECTS = setOf(
-        Objs.HAYSTACK, Objs.HAY_BALES, Objs.HAY_BALES_299)
+private val HAY_OBJECTS =
+    setOf(
+        Objs.HAYSTACK,
+        Objs.HAY_BALES,
+        Objs.HAY_BALES_299,
+    )
 
 HAY_OBJECTS.forEach { hay ->
     on_obj_option(obj = hay, option = "search") {
@@ -13,7 +17,11 @@ HAY_OBJECTS.forEach { hay ->
     }
 }
 
-suspend fun search(it: QueueTask, p: Player, obj: String) {
+suspend fun search(
+    it: QueueTask,
+    p: Player,
+    obj: String,
+) {
     p.lock()
     p.message("You search the $obj...")
     p.animate(827)

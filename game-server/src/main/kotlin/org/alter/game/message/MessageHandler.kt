@@ -11,23 +11,29 @@ import java.util.function.BiConsumer
  *
  * @author Tom <rspsmods@gmail.com>
  */
-interface MessageHandler<T>: BiConsumer<Client, T> {
-
+interface MessageHandler<T> : BiConsumer<Client, T> {
     /**
      * Handles the [message] on the game-thread with the ability to read and write
      * to the [Client].
      */
-    override fun accept(client: Client, message: T)
+    override fun accept(
+        client: Client,
+        message: T,
+    )
 
     /**
      * A default method to log the handlers.
      */
-    fun log(client: Client, format: String, vararg args: Any) {
+    fun log(
+        client: Client,
+        format: String,
+        vararg args: Any,
+    ) {
         if (client.logPackets) {
             val message = String.format(format, *args)
             client.writeMessage(message)
             val logService = client.world.getService(LoggerService::class.java, searchSubclasses = true)
-            //println("Logger-message: [$message] , client: [$client]")
+            // println("Logger-message: [$message] , client: [$client]")
             if (logService != null) {
                 logService.logPacket(client, message)
             } else {
@@ -37,6 +43,6 @@ interface MessageHandler<T>: BiConsumer<Client, T> {
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

@@ -9,15 +9,21 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 import org.alter.game.service.login.LoginService
 
-class RsModConnectionHandler(private val world: World): GameConnectionHandler<Client> {
-    override fun onLogin(responseHandler: GameLoginResponseHandler<Client>, block: LoginBlock<AuthenticationType<*>>) {
+class RsModConnectionHandler(private val world: World) : GameConnectionHandler<Client> {
+    override fun onLogin(
+        responseHandler: GameLoginResponseHandler<Client>,
+        block: LoginBlock<AuthenticationType<*>>,
+    ) {
         if (loginService == null) {
             loginService = world.getService(LoginService::class.java)
         }
         loginService!!.addLoginRequest(world, responseHandler, block)
     }
 
-    override fun onReconnect(responseHandler: GameLoginResponseHandler<Client>, block: LoginBlock<XteaKey>) {
+    override fun onReconnect(
+        responseHandler: GameLoginResponseHandler<Client>,
+        block: LoginBlock<XteaKey>,
+    ) {
         if (loginService == null) {
             loginService = world.getService(LoginService::class.java)
         }

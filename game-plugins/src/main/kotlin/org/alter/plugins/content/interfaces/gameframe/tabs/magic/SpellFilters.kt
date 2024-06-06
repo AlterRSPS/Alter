@@ -4,7 +4,6 @@ package org.alter.plugins.content.interfaces.spellfilter
  * @author Tom <rspsmods@gmail.com>
  */
 object SpellFilters {
-
     const val SPELL_FILTER_INTERFACE_ID = 218
     const val SPELL_FILTER_COMPONENT_ID = 196
 

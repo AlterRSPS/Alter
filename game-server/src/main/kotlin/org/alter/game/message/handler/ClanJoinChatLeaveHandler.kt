@@ -8,7 +8,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class ClanJoinChatLeaveHandler : MessageHandler<FriendChatJoinLeave> {
-    override fun accept(client: Client, message: FriendChatJoinLeave) {
+    override fun accept(
+        client: Client,
+        message: FriendChatJoinLeave,
+    ) {
         throw RuntimeException("Unhandled.")
     }
 }

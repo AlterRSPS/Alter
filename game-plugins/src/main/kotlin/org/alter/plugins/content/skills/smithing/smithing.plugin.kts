@@ -41,14 +41,15 @@ val smithingCurrentBarVarbit = 3216
  * A map used as a cache. This cache maps bar to a map containing
  * the possible child ids, and the meta data for the child id
  */
-val itemCache : HashMap<Bar, HashMap<Int, SmithingMetaData?>> = HashMap()
+val itemCache: HashMap<Bar, HashMap<Int, SmithingMetaData?>> = HashMap()
 
 /**
  * The set of 'standard' anvils in the game
  */
-private val standardAnvils = setOf(
-    Objs.ANVIL_2097
-)
+private val standardAnvils =
+    setOf(
+        Objs.ANVIL_2097,
+    )
 
 /**
  * For each anvil, bind the usage of a hammer (it provides information for the player about the smithing skill),
@@ -72,8 +73,9 @@ standardAnvils.forEach { anvil ->
             // Check if the player can smith the item
             player.queue(TaskPriority.WEAK) {
                 // The player can't smith the item, do nothing
-                if (!SmithingAction.canSmithBar(this, def))
+                if (!SmithingAction.canSmithBar(this, def)) {
                     return@queue
+                }
 
                 // Open the smithing interface
                 openSmithingInterface(player, def!!)
@@ -91,8 +93,9 @@ standardAnvils.forEach { anvil ->
         player.queue(TaskPriority.WEAK) {
 
             // If the player can't smith the bar, do nothing
-            if (!SmithingAction.canSmithBar(this, bar))
+            if (!SmithingAction.canSmithBar(this, bar)) {
                 return@queue
+            }
 
             // Queue the smithing interface
             openSmithingInterface(player, bar!!)
@@ -104,10 +107,9 @@ standardAnvils.forEach { anvil ->
  * Gets an available bar to smith for a player
  *
  * @param player    The player instance
- * @return          The bar to smith
+ * @return The bar to smith
  */
-fun getBar(player: Player) : Bar? {
-
+fun getBar(player: Player): Bar? {
     // The player's inventory
     val inventory = player.inventory
 
@@ -117,7 +119,9 @@ fun getBar(player: Player) : Bar? {
     return if (barDefs.containsKey(lastBar) && inventory.contains(lastBar)) {
         barDefs[lastBar]
     } else {
-        inventory.filter { barDefs.containsKey(it?.id) }.map { barDefs[it?.id]!! }.firstOrNull { player.getSkills().getCurrentLevel(Skills.SMITHING) >= it.level }
+        inventory.filter {
+            barDefs.containsKey(it?.id)
+        }.map { barDefs[it?.id]!! }.firstOrNull { player.getSkills().getCurrentLevel(Skills.SMITHING) >= it.level }
     }
 }
 
@@ -127,7 +131,10 @@ fun getBar(player: Player) : Bar? {
  * @param player    The player instance
  * @param bar       The bar definition
  */
-fun openSmithingInterface(player: Player, bar: Bar) {
+fun openSmithingInterface(
+    player: Player,
+    bar: Bar,
+) {
     player.setVarbit(smithingCurrentBarVarbit, smithingData.barIndices.getValue(bar.id))
     player.openInterface(interfaceId = smithingInterface, dest = InterfaceDestination.MAIN_SCREEN)
 }
@@ -146,12 +153,13 @@ smithingInterfaceComponents.forEach { child ->
         val barItems = itemCache.getOrPut(bar) { HashMap() }
 
         // The item in the cache for the specified child
-        val item = barItems.getOrPut(child) {
+        val item =
+            barItems.getOrPut(child) {
 
-            val barMetaItems = smithingData.barItemData[bar]
-            val type = typeForChild(child, bar)
-            type?.let { barMetaItems?.firstOrNull { it.name.endsWith(type) } }
-        }
+                val barMetaItems = smithingData.barItemData[bar]
+                val type = typeForChild(child, bar)
+                type?.let { barMetaItems?.firstOrNull { it.name.endsWith(type) } }
+            }
 
         // If the item is valid, queue the smithing action
         item?.let {
@@ -160,17 +168,18 @@ smithingInterfaceComponents.forEach { child ->
             player.queue(TaskPriority.STRONG) {
 
                 // The number of items to smith
-                val amount = when (player.attr[INTERACTING_OPT_ATTR]) {
-                    0 -> 1
-                    1 -> 5
-                    2 -> 10
-                    3 -> inputInt("Enter amount:")
-                    4 -> player.inventory.capacity
-                    else -> {
-                        world.sendExamine(player, item.id, ExamineEntityType.ITEM)
-                        return@queue
+                val amount =
+                    when (player.attr[INTERACTING_OPT_ATTR]) {
+                        0 -> 1
+                        1 -> 5
+                        2 -> 10
+                        3 -> inputInt("Enter amount:")
+                        4 -> player.inventory.capacity
+                        else -> {
+                            world.sendExamine(player, item.id, ExamineEntityType.ITEM)
+                            return@queue
+                        }
                     }
-                }
 
                 // Close the smithing interface
                 player.closeInterface(smithingInterface)
@@ -180,5 +189,4 @@ smithingInterfaceComponents.forEach { child ->
             }
         }
     }
-
 }

@@ -8,8 +8,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class EventCameraPositionHandler : MessageHandler<EventCameraPosition> {
-
-    override fun accept(client: Client, message: EventCameraPosition) {
+    override fun accept(
+        client: Client,
+        message: EventCameraPosition,
+    ) {
         client.cameraPitch = message.angleX
         client.cameraYaw = message.angleY
     }

@@ -3,10 +3,15 @@ package org.alter.plugins.content.area.varrock.objs
 val SLASH_WEP = 2500
 val SLASH_KNIFE = 2548
 
-val SLASH = intArrayOf(
-        Items.BRONZE_SCIMITAR, Items.IRON_SCIMITAR, Items.STEEL_SCIMITAR,
-        Items.MITHRIL_SCIMITAR, Items.ADAMANT_SCIMITAR, Items.RUNE_SCIMITAR
-)
+val SLASH =
+    intArrayOf(
+        Items.BRONZE_SCIMITAR,
+        Items.IRON_SCIMITAR,
+        Items.STEEL_SCIMITAR,
+        Items.MITHRIL_SCIMITAR,
+        Items.ADAMANT_SCIMITAR,
+        Items.RUNE_SCIMITAR,
+    )
 
 on_obj_option(obj = Objs.WEB_733, option = "slash") {
     slash(player, player.getInteractingGameObj())
@@ -40,7 +45,10 @@ on_item_on_obj(Objs.WEB_733, Items.KNIFE, 1) {
     }
 }
 
-fun slash(p: Player, obj: GameObject) {
+fun slash(
+    p: Player,
+    obj: GameObject,
+) {
     when (world.random(1)) {
         0 -> {
             if (p.hasEquipped(EquipmentType.WEAPON, *SLASH)) {
@@ -71,7 +79,9 @@ fun slash(p: Player, obj: GameObject) {
                     world.remove(DynamicObject(obj, Objs.SLASHED_WEB))
                     world.spawn(DynamicObject(obj))
                 }
-            } else p.message("Only a sharp blade can cut through this sticky web.")
+            } else {
+                p.message("Only a sharp blade can cut through this sticky web.")
+            }
         }
         1 -> {
             if (p.hasEquipped(EquipmentType.WEAPON, *SLASH)) {
@@ -86,7 +96,9 @@ fun slash(p: Player, obj: GameObject) {
                 p.animate(911)
                 p.message("You fail to cut through it.")
                 p.unlock()
-            } else p.message("Only a sharp blade can cut through this sticky web.")
+            } else {
+                p.message("Only a sharp blade can cut through this sticky web.")
+            }
         }
     }
 }

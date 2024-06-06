@@ -1,9 +1,5 @@
 package org.alter.plugins.content.combat
 
-import org.alter.game.model.combat.*
-import org.alter.game.model.entity.Npc
-import org.alter.game.model.entity.Pawn
-import org.alter.game.model.entity.Player
 import org.alter.api.EquipmentType
 import org.alter.api.WeaponType
 import org.alter.api.cfg.Items
@@ -11,6 +7,10 @@ import org.alter.api.ext.getAttackStyle
 import org.alter.api.ext.getEquipment
 import org.alter.api.ext.hasEquipped
 import org.alter.api.ext.hasWeaponType
+import org.alter.game.model.combat.*
+import org.alter.game.model.entity.Npc
+import org.alter.game.model.entity.Pawn
+import org.alter.game.model.entity.Player
 import org.alter.plugins.content.combat.strategy.CombatStrategy
 import org.alter.plugins.content.combat.strategy.MagicCombatStrategy
 import org.alter.plugins.content.combat.strategy.MeleeCombatStrategy
@@ -20,42 +20,64 @@ import org.alter.plugins.content.combat.strategy.RangedCombatStrategy
  * @author Tom <rspsmods@gmail.com>
  */
 object CombatConfigs {
-
     private const val PLAYER_DEFAULT_ATTACK_SPEED = 4
 
     private const val MIN_ATTACK_SPEED = 1
 
-    private val DEFENDERS = intArrayOf(
-            Items.BRONZE_DEFENDER, Items.IRON_DEFENDER, Items.STEEL_DEFENDER,
-            Items.MITHRIL_DEFENDER, Items.BLACK_DEFENDER, Items.ADAMANT_DEFENDER,
-            Items.RUNE_DEFENDER, Items.DRAGON_DEFENDER, Items.DRAGON_DEFENDER_T,
-            Items.AVERNIC_DEFENDER
-    )
+    private val DEFENDERS =
+        intArrayOf(
+            Items.BRONZE_DEFENDER,
+            Items.IRON_DEFENDER,
+            Items.STEEL_DEFENDER,
+            Items.MITHRIL_DEFENDER,
+            Items.BLACK_DEFENDER,
+            Items.ADAMANT_DEFENDER,
+            Items.RUNE_DEFENDER,
+            Items.DRAGON_DEFENDER,
+            Items.DRAGON_DEFENDER_T,
+            Items.AVERNIC_DEFENDER,
+        )
 
-    private val BOOKS = intArrayOf(
-            Items.HOLY_BOOK, Items.BOOK_OF_BALANCE, Items.UNHOLY_BOOK,
-            Items.BOOK_OF_LAW, Items.BOOK_OF_WAR, Items.BOOK_OF_DARKNESS,
-            Items.MAGES_BOOK, Items.TOME_OF_FIRE, Items.TOME_OF_FIRE_EMPTY
-    )
+    private val BOOKS =
+        intArrayOf(
+            Items.HOLY_BOOK,
+            Items.BOOK_OF_BALANCE,
+            Items.UNHOLY_BOOK,
+            Items.BOOK_OF_LAW,
+            Items.BOOK_OF_WAR,
+            Items.BOOK_OF_DARKNESS,
+            Items.MAGES_BOOK,
+            Items.TOME_OF_FIRE,
+            Items.TOME_OF_FIRE_EMPTY,
+        )
 
-    private val BOXING_GLOVES = intArrayOf(
-            Items.BOXING_GLOVES, Items.BOXING_GLOVES_7673, Items.BEACH_BOXING_GLOVES,
-            Items.BEACH_BOXING_GLOVES_11706
-    )
+    private val BOXING_GLOVES =
+        intArrayOf(
+            Items.BOXING_GLOVES,
+            Items.BOXING_GLOVES_7673,
+            Items.BEACH_BOXING_GLOVES,
+            Items.BEACH_BOXING_GLOVES_11706,
+        )
 
-    private val GODSWORDS = intArrayOf(
-            Items.ARMADYL_GODSWORD, Items.ARMADYL_GODSWORD_OR,
-            Items.BANDOS_GODSWORD, Items.BANDOS_GODSWORD_OR,
-            Items.SARADOMIN_GODSWORD, Items.SARADOMIN_GODSWORD_OR,
-            Items.ZAMORAK_GODSWORD, Items.ZAMORAK_GODSWORD_OR
-    )
+    private val GODSWORDS =
+        intArrayOf(
+            Items.ARMADYL_GODSWORD,
+            Items.ARMADYL_GODSWORD_OR,
+            Items.BANDOS_GODSWORD,
+            Items.BANDOS_GODSWORD_OR,
+            Items.SARADOMIN_GODSWORD,
+            Items.SARADOMIN_GODSWORD_OR,
+            Items.ZAMORAK_GODSWORD,
+            Items.ZAMORAK_GODSWORD_OR,
+        )
 
-    fun getCombatStrategy(pawn: Pawn): CombatStrategy = when (getCombatClass(pawn)) {
-        CombatClass.MELEE -> MeleeCombatStrategy
-        CombatClass.MAGIC -> MagicCombatStrategy
-        CombatClass.RANGED -> RangedCombatStrategy
-        else -> throw IllegalStateException("Invalid combat class: ${getCombatClass(pawn)} for $pawn")
-    }
+    fun getCombatStrategy(pawn: Pawn): CombatStrategy =
+        when (getCombatClass(pawn)) {
+            CombatClass.MELEE -> MeleeCombatStrategy
+            CombatClass.MAGIC -> MagicCombatStrategy
+            CombatClass.RANGED -> RangedCombatStrategy
+            else -> throw IllegalStateException("Invalid combat class: ${getCombatClass(pawn)} for $pawn")
+        }
 
     fun getCombatClass(pawn: Pawn): CombatClass {
         if (pawn is Npc) {
@@ -87,8 +109,7 @@ object CombatConfigs {
         throw IllegalArgumentException("Invalid pawn type.")
     }
 
-
-    fun getCombatDef(pawn: Pawn) : NpcCombatDef? {
+    fun getCombatDef(pawn: Pawn): NpcCombatDef? {
         if (pawn is Npc) {
             return pawn.combatDef
         }
@@ -120,7 +141,14 @@ object CombatConfigs {
                 pawn.hasWeaponType(WeaponType.CHINCHOMPA) -> 7618
                 pawn.hasWeaponType(WeaponType.THROWN) -> if (pawn.hasEquipped(EquipmentType.WEAPON, Items.TOKTZXILUL)) 7558 else 929
                 pawn.hasWeaponType(WeaponType.WHIP) -> 1658
-                pawn.hasWeaponType(WeaponType.SPEAR) || pawn.hasWeaponType(WeaponType.HALBERD) -> if (style == 1) 440 else if (style == 2) 429 else 428
+                pawn.hasWeaponType(WeaponType.SPEAR) || pawn.hasWeaponType(WeaponType.HALBERD) ->
+                    if (style == 1) {
+                        440
+                    } else if (style == 2) {
+                        429
+                    } else {
+                        428
+                    }
                 pawn.hasWeaponType(WeaponType.CLAWS) -> 393
                 else -> if (style == 1) 423 else 422
             }
@@ -173,68 +201,84 @@ object CombatConfigs {
             val style = pawn.getAttackStyle()
 
             return when {
+                pawn.hasWeaponType(WeaponType.NONE) ->
+                    when (style) {
+                        0 -> AttackStyle.ACCURATE
+                        1 -> AttackStyle.AGGRESSIVE
+                        3 -> AttackStyle.DEFENSIVE
+                        else -> AttackStyle.NONE
+                    }
 
-                pawn.hasWeaponType(WeaponType.NONE) -> when (style) {
-                    0 -> AttackStyle.ACCURATE
-                    1 -> AttackStyle.AGGRESSIVE
-                    3 -> AttackStyle.DEFENSIVE
-                    else -> AttackStyle.NONE
-                }
+                pawn.hasWeaponType(WeaponType.BOW, WeaponType.CROSSBOW, WeaponType.THROWN, WeaponType.CHINCHOMPA) ->
+                    when (style) {
+                        0 -> AttackStyle.ACCURATE
+                        1 -> AttackStyle.RAPID
+                        3 -> AttackStyle.LONG_RANGE
+                        else -> AttackStyle.NONE
+                    }
 
-                pawn.hasWeaponType(WeaponType.BOW, WeaponType.CROSSBOW, WeaponType.THROWN, WeaponType.CHINCHOMPA) -> when (style) {
-                    0 -> AttackStyle.ACCURATE
-                    1 -> AttackStyle.RAPID
-                    3 -> AttackStyle.LONG_RANGE
-                    else -> AttackStyle.NONE
-                }
+                pawn.hasWeaponType(WeaponType.TRIDENT) ->
+                    when (style) {
+                        0, 1 -> AttackStyle.ACCURATE
+                        3 -> AttackStyle.LONG_RANGE
+                        else -> AttackStyle.NONE
+                    }
 
-                pawn.hasWeaponType(WeaponType.TRIDENT) -> when (style) {
-                    0, 1 -> AttackStyle.ACCURATE
-                    3 -> AttackStyle.LONG_RANGE
-                    else -> AttackStyle.NONE
-                }
+                pawn.hasWeaponType(
+                    WeaponType.AXE,
+                    WeaponType.HAMMER,
+                    WeaponType.TWO_HANDED,
+                    WeaponType.PICKAXE,
+                    WeaponType.DAGGER,
+                    WeaponType.MAGIC_STAFF,
+                    WeaponType.LONG_SWORD,
+                    WeaponType.MAGIC_STAFF,
+                    WeaponType.CLAWS,
+                ) ->
+                    when (style) {
+                        0 -> AttackStyle.ACCURATE
+                        1 -> AttackStyle.AGGRESSIVE
+                        2 -> AttackStyle.CONTROLLED
+                        3 -> AttackStyle.DEFENSIVE
+                        else -> AttackStyle.NONE
+                    }
 
-                pawn.hasWeaponType(WeaponType.AXE, WeaponType.HAMMER, WeaponType.TWO_HANDED, WeaponType.PICKAXE,
-                        WeaponType.DAGGER, WeaponType.MAGIC_STAFF, WeaponType.LONG_SWORD, WeaponType.MAGIC_STAFF,
-                        WeaponType.CLAWS) -> when (style) {
-                    0 -> AttackStyle.ACCURATE
-                    1 -> AttackStyle.AGGRESSIVE
-                    2 -> AttackStyle.CONTROLLED
-                    3 -> AttackStyle.DEFENSIVE
-                    else -> AttackStyle.NONE
-                }
+                pawn.hasWeaponType(WeaponType.SPEAR) ->
+                    when (style) {
+                        3 -> AttackStyle.DEFENSIVE
+                        else -> AttackStyle.CONTROLLED
+                    }
 
-                pawn.hasWeaponType(WeaponType.SPEAR) -> when (style) {
-                    3 -> AttackStyle.DEFENSIVE
-                    else -> AttackStyle.CONTROLLED
-                }
+                pawn.hasWeaponType(WeaponType.HALBERD) ->
+                    when (style) {
+                        0 -> AttackStyle.CONTROLLED
+                        1 -> AttackStyle.AGGRESSIVE
+                        3 -> AttackStyle.DEFENSIVE
+                        else -> AttackStyle.NONE
+                    }
 
-                pawn.hasWeaponType(WeaponType.HALBERD) -> when (style) {
-                    0 -> AttackStyle.CONTROLLED
-                    1 -> AttackStyle.AGGRESSIVE
-                    3 -> AttackStyle.DEFENSIVE
-                    else -> AttackStyle.NONE
-                }
+                pawn.hasWeaponType(WeaponType.SCYTHE) ->
+                    when (style) {
+                        0 -> AttackStyle.ACCURATE
+                        1 -> AttackStyle.AGGRESSIVE
+                        2 -> AttackStyle.AGGRESSIVE
+                        3 -> AttackStyle.DEFENSIVE
+                        else -> AttackStyle.NONE
+                    }
 
-                pawn.hasWeaponType(WeaponType.SCYTHE) -> when (style) {
-                    0 -> AttackStyle.ACCURATE
-                    1 -> AttackStyle.AGGRESSIVE
-                    2 -> AttackStyle.AGGRESSIVE
-                    3 -> AttackStyle.DEFENSIVE
-                    else -> AttackStyle.NONE
-                }
+                pawn.hasWeaponType(WeaponType.WHIP) ->
+                    when (style) {
+                        0 -> AttackStyle.ACCURATE
+                        1 -> AttackStyle.CONTROLLED
+                        3 -> AttackStyle.DEFENSIVE
+                        else -> AttackStyle.NONE
+                    }
 
-                pawn.hasWeaponType(WeaponType.WHIP) -> when (style) {
-                    0 -> AttackStyle.ACCURATE
-                    1 -> AttackStyle.CONTROLLED
-                    3 -> AttackStyle.DEFENSIVE
-                    else -> AttackStyle.NONE
-                }
-
-                pawn.hasWeaponType(WeaponType.BLUDGEON) -> when (style) {
-                    0, 1, 3 -> AttackStyle.AGGRESSIVE
-                    else -> AttackStyle.NONE
-                }
+                pawn.hasWeaponType(WeaponType.BLUDGEON) ->
+                    when (style) {
+                        0, 1, 3 -> AttackStyle.AGGRESSIVE
+                        else -> AttackStyle.NONE
+                    }
 
                 pawn.hasWeaponType(WeaponType.BULWARK) -> AttackStyle.ACCURATE
 
@@ -254,97 +298,110 @@ object CombatConfigs {
             val style = pawn.getAttackStyle()
 
             return when {
-
                 pawn.attr.has(Combat.CASTING_SPELL) -> CombatStyle.MAGIC
 
-                pawn.hasWeaponType(WeaponType.NONE) -> when (style) {
-                    0 -> CombatStyle.CRUSH
-                    1 -> CombatStyle.CRUSH
-                    3 -> CombatStyle.CRUSH
-                    else -> CombatStyle.NONE
-                }
+                pawn.hasWeaponType(WeaponType.NONE) ->
+                    when (style) {
+                        0 -> CombatStyle.CRUSH
+                        1 -> CombatStyle.CRUSH
+                        3 -> CombatStyle.CRUSH
+                        else -> CombatStyle.NONE
+                    }
 
                 pawn.hasWeaponType(WeaponType.BOW, WeaponType.CROSSBOW, WeaponType.THROWN, WeaponType.CHINCHOMPA) -> CombatStyle.RANGED
 
-                pawn.hasWeaponType(WeaponType.AXE) -> when (style) {
-                    2 -> CombatStyle.CRUSH
-                    else -> CombatStyle.SLASH
-                }
+                pawn.hasWeaponType(WeaponType.AXE) ->
+                    when (style) {
+                        2 -> CombatStyle.CRUSH
+                        else -> CombatStyle.SLASH
+                    }
 
                 pawn.hasWeaponType(WeaponType.HAMMER) -> CombatStyle.CRUSH
 
-                pawn.hasWeaponType(WeaponType.CLAWS) -> when (style) {
-                    2 -> CombatStyle.STAB
-                    else -> CombatStyle.SLASH
-                }
+                pawn.hasWeaponType(WeaponType.CLAWS) ->
+                    when (style) {
+                        2 -> CombatStyle.STAB
+                        else -> CombatStyle.SLASH
+                    }
 
-                pawn.hasWeaponType(WeaponType.SALAMANDER) -> when (style) {
-                    0 -> CombatStyle.SLASH
-                    1 -> CombatStyle.RANGED
-                    else -> CombatStyle.MAGIC
-                }
+                pawn.hasWeaponType(WeaponType.SALAMANDER) ->
+                    when (style) {
+                        0 -> CombatStyle.SLASH
+                        1 -> CombatStyle.RANGED
+                        else -> CombatStyle.MAGIC
+                    }
 
-                pawn.hasWeaponType(WeaponType.LONG_SWORD) -> when (style) {
-                    2 -> CombatStyle.STAB
-                    else -> CombatStyle.SLASH
-                }
+                pawn.hasWeaponType(WeaponType.LONG_SWORD) ->
+                    when (style) {
+                        2 -> CombatStyle.STAB
+                        else -> CombatStyle.SLASH
+                    }
 
-                pawn.hasWeaponType(WeaponType.TWO_HANDED) -> when (style) {
-                    2 -> CombatStyle.CRUSH
-                    else -> CombatStyle.SLASH
-                }
+                pawn.hasWeaponType(WeaponType.TWO_HANDED) ->
+                    when (style) {
+                        2 -> CombatStyle.CRUSH
+                        else -> CombatStyle.SLASH
+                    }
 
-                pawn.hasWeaponType(WeaponType.PICKAXE) -> when (style) {
-                    2 -> CombatStyle.CRUSH
-                    else -> CombatStyle.STAB
-                }
+                pawn.hasWeaponType(WeaponType.PICKAXE) ->
+                    when (style) {
+                        2 -> CombatStyle.CRUSH
+                        else -> CombatStyle.STAB
+                    }
 
-                pawn.hasWeaponType(WeaponType.HALBERD) -> when (style) {
-                    1 -> CombatStyle.SLASH
-                    else -> CombatStyle.STAB
-                }
+                pawn.hasWeaponType(WeaponType.HALBERD) ->
+                    when (style) {
+                        1 -> CombatStyle.SLASH
+                        else -> CombatStyle.STAB
+                    }
 
                 pawn.hasWeaponType(WeaponType.STAFF) -> CombatStyle.CRUSH
 
-                pawn.hasWeaponType(WeaponType.SCYTHE) -> when (style) {
-                    2 -> CombatStyle.CRUSH
-                    else -> CombatStyle.SLASH
-                }
+                pawn.hasWeaponType(WeaponType.SCYTHE) ->
+                    when (style) {
+                        2 -> CombatStyle.CRUSH
+                        else -> CombatStyle.SLASH
+                    }
 
-                pawn.hasWeaponType(WeaponType.SPEAR) -> when (style) {
-                    1 -> CombatStyle.SLASH
-                    2 -> CombatStyle.CRUSH
-                    else -> CombatStyle.STAB
-                }
+                pawn.hasWeaponType(WeaponType.SPEAR) ->
+                    when (style) {
+                        1 -> CombatStyle.SLASH
+                        2 -> CombatStyle.CRUSH
+                        else -> CombatStyle.STAB
+                    }
 
-                pawn.hasWeaponType(WeaponType.MACE) -> when (style) {
-                    2 -> CombatStyle.STAB
-                    else -> CombatStyle.CRUSH
-                }
+                pawn.hasWeaponType(WeaponType.MACE) ->
+                    when (style) {
+                        2 -> CombatStyle.STAB
+                        else -> CombatStyle.CRUSH
+                    }
 
-                pawn.hasWeaponType(WeaponType.DAGGER) -> when (style) {
-                    2 -> CombatStyle.SLASH
-                    else -> CombatStyle.STAB
-                }
+                pawn.hasWeaponType(WeaponType.DAGGER) ->
+                    when (style) {
+                        2 -> CombatStyle.SLASH
+                        else -> CombatStyle.STAB
+                    }
 
                 pawn.hasWeaponType(WeaponType.MAGIC_STAFF) -> CombatStyle.CRUSH
 
                 pawn.hasWeaponType(WeaponType.WHIP) -> CombatStyle.SLASH
 
-                pawn.hasWeaponType(WeaponType.STAFF_HALBERD) -> when (style) {
-                    0 -> CombatStyle.STAB
-                    1 -> CombatStyle.SLASH
-                    else -> CombatStyle.CRUSH
-                }
+                pawn.hasWeaponType(WeaponType.STAFF_HALBERD) ->
+                    when (style) {
+                        0 -> CombatStyle.STAB
+                        1 -> CombatStyle.SLASH
+                        else -> CombatStyle.CRUSH
+                    }
 
                 pawn.hasWeaponType(WeaponType.TRIDENT) -> CombatStyle.MAGIC
 
                 pawn.hasWeaponType(WeaponType.BLUDGEON) -> CombatStyle.CRUSH
 
-                pawn.hasWeaponType(WeaponType.BULWARK) -> when (style) {
-                    0 -> CombatStyle.CRUSH
-                    else -> CombatStyle.NONE
-                }
+                pawn.hasWeaponType(WeaponType.BULWARK) ->
+                    when (style) {
+                        0 -> CombatStyle.CRUSH
+                        else -> CombatStyle.NONE
+                    }
 
                 else -> CombatStyle.NONE
             }
@@ -357,7 +414,6 @@ object CombatConfigs {
         val style = player.getAttackStyle()
 
         return when {
-
             player.hasWeaponType(WeaponType.NONE) -> {
                 when (style) {
                     1 -> XpMode.STRENGTH
@@ -366,8 +422,15 @@ object CombatConfigs {
                 }
             }
 
-            player.hasWeaponType(WeaponType.AXE, WeaponType.HAMMER, WeaponType.TWO_HANDED,
-                    WeaponType.PICKAXE, WeaponType.DAGGER, WeaponType.STAFF, WeaponType.MAGIC_STAFF) -> {
+            player.hasWeaponType(
+                WeaponType.AXE,
+                WeaponType.HAMMER,
+                WeaponType.TWO_HANDED,
+                WeaponType.PICKAXE,
+                WeaponType.DAGGER,
+                WeaponType.STAFF,
+                WeaponType.MAGIC_STAFF,
+            ) -> {
                 when (style) {
                     1 -> XpMode.STRENGTH
                     2 -> XpMode.STRENGTH

@@ -1,11 +1,11 @@
 package org.alter.plugins.content.areas.alkharid.chat
 
-//spawn_npc(Npcs.KARIM, 3272, 3181, 0, 3, Direction.EAST)
+// spawn_npc(Npcs.KARIM, 3272, 3181, 0, 3, Direction.EAST)
 //    on_npc_option(npc = Npcs.KARIM, option = "talk-to") {
 //        player.queue { dialog(this) }
 //    }
 //
-//suspend fun dialog(it: QueueTask) {
+// suspend fun dialog(it: QueueTask) {
 //    it.chatNpc("Would you like to buy a nice kebab? Only one gold.", animation = 567)
 //    when (it.options("I think I'll give it a miss.", "Yes please.")) {
 //        1 -> it.chatPlayer("I think I'll give it a miss.", animation = 567)
@@ -20,4 +20,4 @@ package org.alter.plugins.content.areas.alkharid.chat
 //            }
 //        }
 //    }
-//}
+// }

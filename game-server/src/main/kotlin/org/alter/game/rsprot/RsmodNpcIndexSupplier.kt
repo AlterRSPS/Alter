@@ -6,12 +6,17 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Player
 
-class RsmodNpcIndexSupplier(val world: World): NpcIndexSupplier {
-
-    override fun supply(localPlayerIndex: Int, level: Int, x: Int, z: Int, viewDistance: Int): Iterator<Int> {
+class RsmodNpcIndexSupplier(val world: World) : NpcIndexSupplier {
+    override fun supply(
+        localPlayerIndex: Int,
+        level: Int,
+        x: Int,
+        z: Int,
+        viewDistance: Int,
+    ): Iterator<Int> {
         val player = world.players[localPlayerIndex] ?: error("Player not found at index: $localPlayerIndex")
         val tile = Tile(x, z, level)
-        val chunk = world.chunks.get(tile)?: error("Invalid chunk for : $tile")
+        val chunk = world.chunks.get(tile) ?: error("Invalid chunk for : $tile")
 
         val surrounding = chunk.coords.getSurroundingCoords()
 
@@ -23,9 +28,13 @@ class RsmodNpcIndexSupplier(val world: World): NpcIndexSupplier {
     }
 }
 
-private fun shouldAdd(player: Player, npc: Npc, viewDistance: Int): Boolean =
-    npc.isSpawned() && !npc.invisible && npc.tile.isWithinRadius(
-        player.tile,
-        viewDistance
-    ) && (npc.owner == null || npc.owner == player)
-
+private fun shouldAdd(
+    player: Player,
+    npc: Npc,
+    viewDistance: Int,
+): Boolean =
+    npc.isSpawned() && !npc.invisible &&
+        npc.tile.isWithinRadius(
+            player.tile,
+            viewDistance,
+        ) && (npc.owner == null || npc.owner == player)

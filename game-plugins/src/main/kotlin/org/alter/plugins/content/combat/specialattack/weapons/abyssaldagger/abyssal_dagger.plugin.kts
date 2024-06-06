@@ -1,7 +1,7 @@
 package org.alter.plugins.content.combat.specialattack.weapons.abyssaldagger
 
-import org.alter.game.model.entity.AreaSound
 import org.alter.api.cfg.Items
+import org.alter.game.model.entity.AreaSound
 import org.alter.plugins.content.combat.dealHit
 import org.alter.plugins.content.combat.formula.MeleeCombatFormula
 import org.alter.plugins.content.combat.specialattack.SpecialAttacks

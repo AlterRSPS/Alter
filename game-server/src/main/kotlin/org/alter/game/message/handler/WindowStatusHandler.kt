@@ -9,8 +9,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class WindowStatusHandler : MessageHandler<WindowStatus> {
-
-    override fun accept(client: Client, message: WindowStatus) {
+    override fun accept(
+        client: Client,
+        message: WindowStatus,
+    ) {
         client.clientWidth = message.frameWidth
         client.clientHeight = message.frameHeight
         client.attr[DISPLAY_MODE_CHANGE_ATTR] = message.windowMode

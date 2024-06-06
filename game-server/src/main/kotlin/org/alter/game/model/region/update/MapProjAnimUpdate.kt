@@ -1,15 +1,15 @@
-//package org.alter.game.model.region.update
+// package org.alter.game.model.region.update
 //
-//import org.alter.game.message.Message
-//import org.alter.game.message.impl.MapProjAnimMessage
-//import org.alter.game.model.entity.Projectile
+// import org.alter.game.message.Message
+// import org.alter.game.message.impl.MapProjAnimMessage
+// import org.alter.game.model.entity.Projectile
 //
-///**
+// /**
 // * Represents an update where a [Projectile] is spawned.
 // *
 // * @author Tom <rspsmods@gmail.com>
 // */
-//class MapProjAnimUpdate(override val type: EntityUpdateType,
+// class MapProjAnimUpdate(override val type: EntityUpdateType,
 //                        override val entity: Projectile) : EntityUpdate<Projectile>(type, entity) {
 //
 //    override fun toMessage(): Message = if (entity.targetPawn != null) {
@@ -26,4 +26,4 @@
 //                gfx = entity.gfx, startHeight = entity.startHeight, endHeight = entity.endHeight, delay = entity.delay,
 //                lifespan = entity.lifespan, angle = entity.angle, steepness = entity.steepness)
 //    }
-//}
+// }

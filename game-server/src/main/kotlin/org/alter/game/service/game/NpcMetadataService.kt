@@ -15,10 +15,13 @@ import java.nio.file.Paths
  * @author Tom <rspsmods@gmail.com>
  */
 class NpcMetadataService : Service {
-
     private lateinit var path: Path
-    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
 
+    override fun init(
+        server: Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
         path = Paths.get(serviceProperties.getOrDefault("path", "../data/cfg/npcs.csv"))
         if (!Files.exists(path)) {
             throw FileNotFoundException("Path does not exist. $path")
@@ -26,13 +29,22 @@ class NpcMetadataService : Service {
         load(world.definitions)
     }
 
-    override fun postLoad(server: Server, world: World) {
+    override fun postLoad(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun bindNet(server: Server, world: World) {
+    override fun bindNet(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun terminate(server: Server, world: World) {
+    override fun terminate(
+        server: Server,
+        world: World,
+    ) {
     }
 
     private fun load(definitions: DefinitionSet) {

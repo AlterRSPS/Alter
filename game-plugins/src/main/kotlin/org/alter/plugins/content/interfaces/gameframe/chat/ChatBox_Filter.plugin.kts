@@ -16,36 +16,54 @@ on_login {
 
 on_button(PARENT_CHAT_BOX_INTERFACE, GAME_BUTTON_COMPONENT) {
     when (player.getInteractingOption()) {
-        1 -> { player.toggleVarbit(26) }
-        2 -> { player.queue { dialog(this) } }
+        1 -> {
+            player.toggleVarbit(26)
+        }
+        2 -> {
+            player.queue { dialog(this) }
+        }
     }
 }
+
 suspend fun dialog(it: QueueTask) {
-    when (it.options("Filter them." /* Filter or unfilter.*/ , "Do not filter them.", title = "Boss kill-counts are not blocked by the spam filter.")) {
-        1 -> { it.messageBox("Boss kill-count messages that you receive in future will not be blocked by the spam filter.") }
-        2 -> { it.messageBox("CBA For now... Later.") }
+    when (
+        it.options(
+            "Filter them." /* Filter or unfilter.*/,
+            "Do not filter them.",
+            title = "Boss kill-counts are not blocked by the spam filter.",
+        )
+    ) {
+        1 -> {
+            it.messageBox("Boss kill-count messages that you receive in future will not be blocked by the spam filter.")
+        }
+        2 -> {
+            it.messageBox("CBA For now... Later.")
+        }
     }
 }
 
 listOf(PRIVATE_BUTTON_COMPONENT, CHANNEL_BUTTON_COMPONENT, CLAN_BUTTON_COMPONENT).forEach {
     on_button(PARENT_CHAT_BOX_INTERFACE, it) {
-        player.setVarbit(when(it) {
-            PRIVATE_BUTTON_COMPONENT -> 13674
-            CHANNEL_BUTTON_COMPONENT -> 928
-            CLAN_BUTTON_COMPONENT -> 929
-            else -> {
-                return@on_button
-            }
-        }, when(player.getInteractingOption()) {
-            // Option : Varbit Value
-            4 -> 2
-            3 -> 1
-            2 -> 0
-            else -> {
-                println("[$PARENT_CHAT_BOX_INTERFACE : $it] ${player.getInteractingOption()} Interacting Option is unknown.")
-                return@on_button
-            }
-        })
+        player.setVarbit(
+            when (it) {
+                PRIVATE_BUTTON_COMPONENT -> 13674
+                CHANNEL_BUTTON_COMPONENT -> 928
+                CLAN_BUTTON_COMPONENT -> 929
+                else -> {
+                    return@on_button
+                }
+            },
+            when (player.getInteractingOption()) {
+                // Option : Varbit Value
+                4 -> 2
+                3 -> 1
+                2 -> 0
+                else -> {
+                    println("[$PARENT_CHAT_BOX_INTERFACE : $it] ${player.getInteractingOption()} Interacting Option is unknown.")
+                    return@on_button
+                }
+            },
+        )
     }
 }
 listOf(PUBLIC_BUTTON_COMPONENT, TRADE_BUTTON_COMPONENT).forEach {

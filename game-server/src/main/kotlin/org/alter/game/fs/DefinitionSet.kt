@@ -20,10 +20,13 @@ import java.io.IOException
  * @author Tom <rspsmods@gmail.com>
  */
 class DefinitionSet {
-
     private var xteaService: XteaKeyService? = null
 
-    fun loadRegions(world: World, chunks: ChunkSet, regions: IntArray) {
+    fun loadRegions(
+        world: World,
+        chunks: ChunkSet,
+        regions: IntArray,
+    ) {
         val start = System.currentTimeMillis()
 
         var loaded = 0
@@ -40,7 +43,10 @@ class DefinitionSet {
     /**
      * Creates an 8x8 [gg.rsmod.game.model.region.Chunk] region.
      */
-    fun createRegion(world: World, id: Int): Boolean {
+    fun createRegion(
+        world: World,
+        id: Int,
+    ): Boolean {
         if (xteaService == null) {
             xteaService = world.getService(XteaKeyService::class.java)
         }
@@ -103,11 +109,12 @@ class DefinitionSet {
             val landData = world.filestore.data(MAPS, "l${x}_$z", keys) ?: return false
 
             loadLocations(landData) { loc ->
-                val tile = Tile(
-                    baseX + loc.localX,
-                    baseY + loc.localY,
-                    loc.height
-                )
+                val tile =
+                    Tile(
+                        baseX + loc.localX,
+                        baseY + loc.localY,
+                        loc.height,
+                    )
                 val hasBridge = bridges.contains(tile)
                 if (hasBridge && loc.height == 0) return@loadLocations
                 val adjustedTile = if (bridges.contains(tile)) tile.transform(-1) else tile
@@ -122,6 +129,6 @@ class DefinitionSet {
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

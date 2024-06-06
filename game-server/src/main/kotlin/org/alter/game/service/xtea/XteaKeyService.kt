@@ -22,31 +22,45 @@ import java.nio.file.Paths
  * @author Tom <rspsmods@gmail.com>
  */
 class XteaKeyService : Service, XteaProvider {
-
     private val keys = Int2ObjectOpenHashMap<IntArray>()
 
     val validRegions: IntArray
         get() = keys.keys.toIntArray()
 
-    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(
+        server: Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
         val path = Paths.get(serviceProperties.getOrDefault("path", "../data/"))
         val singleFile = path.resolve("xteas.json")
         if (Files.exists(singleFile)) {
             loadSingleFile(singleFile)
         } else {
-            throw FileNotFoundException("Missing xteas.json file at $path. NOTE: You get it in same zip file from which you extracted the cache.")
+            throw FileNotFoundException(
+                "Missing xteas.json file at $path. NOTE: You get it in same zip file from which you extracted the cache.",
+            )
         }
 
         loadKeys(world)
     }
 
-    override fun postLoad(server: Server, world: World) {
+    override fun postLoad(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun bindNet(server: Server, world: World) {
+    override fun bindNet(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun terminate(server: org.alter.game.Server, world: World) {
+    override fun terminate(
+        server: org.alter.game.Server,
+        world: World,
+    ) {
     }
 
     fun get(region: Int): IntArray {
@@ -96,8 +110,12 @@ class XteaKeyService : Service, XteaProvider {
         world.xteaKeyService = this
 
         val validKeys = totalRegions - missingKeys.size
-        logger.info("Loaded {} / {} ({}%) XTEA keys.", validKeys, totalRegions,
-                String.format("%.2f", (validKeys.toDouble() * 100.0) / totalRegions.toDouble()))
+        logger.info(
+            "Loaded {} / {} ({}%) XTEA keys.",
+            validKeys,
+            totalRegions,
+            String.format("%.2f", (validKeys.toDouble() * 100.0) / totalRegions.toDouble()),
+        )
     }
 
     private fun loadSingleFile(path: Path) {
@@ -124,7 +142,6 @@ class XteaKeyService : Service, XteaProvider {
     }
 
     private data class XteaFile(val mapsquare: Int, val key: IntArray) {
-
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false
@@ -136,6 +153,7 @@ class XteaKeyService : Service, XteaProvider {
 
             return true
         }
+
         override fun hashCode(): Int {
             var result = mapsquare
             result = 31 * result + key.contentHashCode()
@@ -144,7 +162,7 @@ class XteaKeyService : Service, XteaProvider {
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
         val EMPTY_KEYS = intArrayOf(0, 0, 0, 0)
     }
 

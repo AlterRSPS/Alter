@@ -47,7 +47,6 @@ import java.util.*
  * @author Tom <rspsmods@gmail.com>
  */
 open class Player(world: World) : Pawn(world) {
-
     /**
      * A persistent and unique id. This is <strong>not</strong> the index
      * of our [Player] when registered to the [World], it is a value determined
@@ -112,12 +111,13 @@ open class Player(world: World) : Pawn(world) {
     /**
      * A map that contains all the [ItemContainer]s a player can have.
      */
-    val containers = HashMap<ContainerKey, ItemContainer>().apply {
-        put(BOND_POUCH_KEY, bonds)
-        put(INVENTORY_KEY, inventory)
-        put(EQUIPMENT_KEY, equipment)
-        put(BANK_KEY, bank)
-    }
+    val containers =
+        HashMap<ContainerKey, ItemContainer>().apply {
+            put(BOND_POUCH_KEY, bonds)
+            put(INVENTORY_KEY, inventory)
+            put(EQUIPMENT_KEY, equipment)
+            put(BANK_KEY, bank)
+        }
 
     val interfaces by lazy { InterfaceSet(PlayerInterfaceListener(this, world.plugins)) }
 
@@ -172,11 +172,18 @@ open class Player(world: World) : Pawn(world) {
 
     override val entityType: EntityType = EntityType.PLAYER
 
-    fun setBaseAnimationSet(readyAnim: Int, turnAnim: Int, walkAnim: Int, walkAnimBack: Int,
-                            walkAnimLeft: Int, walkAnimRight: Int, runAnim: Int) {
+    fun setBaseAnimationSet(
+        readyAnim: Int,
+        turnAnim: Int,
+        walkAnim: Int,
+        walkAnimBack: Int,
+        walkAnimLeft: Int,
+        walkAnimRight: Int,
+        runAnim: Int,
+    ) {
         avatar.extendedInfo.setBaseAnimationSet(
             readyAnim = readyAnim,
-            turnAnim =  turnAnim,
+            turnAnim = turnAnim,
             walkAnim = walkAnim,
             walkAnimBack = walkAnimBack,
             walkAnimLeft = walkAnimLeft,
@@ -203,7 +210,11 @@ open class Player(world: World) : Pawn(world) {
 
     val avatar: PlayerAvatar get() = playerInfo.avatar
 
-    override fun graphic(id: Int, height: Int, delay: Int) {
+    override fun graphic(
+        id: Int,
+        height: Int,
+        delay: Int,
+    ) {
         avatar.extendedInfo.setSpotAnim(0, id, delay, height)
     }
 
@@ -219,7 +230,11 @@ open class Player(world: World) : Pawn(world) {
         )
     }
 
-    suspend fun forceMove(task: QueueTask, movement: ForcedMovement, cycleDuration: Int = movement.maxDuration / 30) {
+    suspend fun forceMove(
+        task: QueueTask,
+        movement: ForcedMovement,
+        cycleDuration: Int = movement.maxDuration / 30,
+    ) {
         movementQueue.clear()
         lock = LockState.DELAY_ACTIONS
 
@@ -244,7 +259,6 @@ open class Player(world: World) : Pawn(world) {
         var calculateBonuses = false
 
         if (pendingLogout) {
-
             /*
              * If a channel is suddenly inactive (disconnected), we don't to
              * immediately unregister the player. However, we do want to
@@ -264,7 +278,10 @@ open class Player(world: World) : Pawn(world) {
              * We do allow players to disconnect even if they are in combat, but
              * only if the most recent damage dealt to them are by npcs.
              */
-            val stopLogout = timers.has(ACTIVE_COMBAT_TIMER) && damageMap.getAll(type = EntityType.PLAYER, timeFrameMs = 10_000).isNotEmpty()
+            val stopLogout =
+                timers.has(
+                    ACTIVE_COMBAT_TIMER,
+                ) && damageMap.getAll(type = EntityType.PLAYER, timeFrameMs = 10_000).isNotEmpty()
             val forceLogout = timers.exists(FORCE_DISCONNECTION_TIMER) && !timers.has(FORCE_DISCONNECTION_TIMER)
 
             if (!stopLogout || forceLogout) {
@@ -285,7 +302,15 @@ open class Player(world: World) : Pawn(world) {
 
         if (inventory.dirty) {
             val items = inventory.rawItems
-            write(UpdateInvFull(interfaceId = 149, componentId = 0, inventoryId = 93, capacity = items.size, provider = RsModObjectProvider(items)))
+            write(
+                UpdateInvFull(
+                    interfaceId = 149,
+                    componentId = 0,
+                    inventoryId = 93,
+                    capacity = items.size,
+                    provider = RsModObjectProvider(items),
+                ),
+            )
 
             inventory.dirty = false
             calculateWeight = true
@@ -298,9 +323,8 @@ open class Player(world: World) : Pawn(world) {
             calculateWeight = true
             calculateBonuses = true
 
-
             items.forEach { item ->
-                //TODO ADVO THIS IS SHIT
+                // TODO ADVO THIS IS SHIT
                 val def = item?.getDef() ?: return
                 avatar.extendedInfo.setWornObj(def.wearPos1, item.id, def.wearPos2, def.wearPos3)
             }
@@ -313,7 +337,8 @@ open class Player(world: World) : Pawn(world) {
         }
 
         if (shopDirty) {
-            attr[CURRENT_SHOP_ATTR]?.let { shop -> {
+            attr[CURRENT_SHOP_ATTR]?.let { shop ->
+                {
                     val items = shop.items.map { if (it != null) Item(it.item, it.currentAmount) else null }.toTypedArray()
                     write(UpdateInvFull(inventoryId = 13, capacity = items.size, provider = RsModObjectProvider(items)))
                 }
@@ -338,10 +363,11 @@ open class Player(world: World) : Pawn(world) {
         for (i in 0 until varps.maxVarps) {
             if (varps.isDirty(i)) {
                 val varp = varps[i]
-                val message = when {
-                    varp.state in -Byte.MAX_VALUE..Byte.MAX_VALUE -> VarpSmall(varp.id, varp.state)
-                    else -> VarpLarge(varp.id, varp.state)
-                }
+                val message =
+                    when {
+                        varp.state in -Byte.MAX_VALUE..Byte.MAX_VALUE -> VarpSmall(varp.id, varp.state)
+                        else -> VarpLarge(varp.id, varp.state)
+                    }
                 write(message)
             }
         }
@@ -349,7 +375,14 @@ open class Player(world: World) : Pawn(world) {
 
         for (i in 0 until getSkills().maxSkills) {
             if (getSkills().isDirty(i)) {
-                write(UpdateStat(stat = i, currentLevel = getSkills().getCurrentLevel(i), invisibleBoostedLevel = getSkills().getCurrentLevel(i), experience = getSkills().getCurrentXp(i).toInt()))
+                write(
+                    UpdateStat(
+                        stat = i,
+                        currentLevel = getSkills().getCurrentLevel(i),
+                        invisibleBoostedLevel = getSkills().getCurrentLevel(i),
+                        experience = getSkills().getCurrentXp(i).toInt(),
+                    ),
+                )
                 getSkills().clean(i)
             }
         }
@@ -363,7 +396,7 @@ open class Player(world: World) : Pawn(world) {
      * conditions if any logic may modify other [Pawn]s.
      */
     fun postCycle() {
-        previouslySetAnim = -1;
+        previouslySetAnim = -1
         /*
          * Flush the channel at the end.
          */
@@ -376,6 +409,7 @@ open class Player(world: World) : Pawn(world) {
     fun register(): Boolean = world.register(this)
 
     lateinit var playerInfo: PlayerInfo
+
     @OptIn(ExperimentalUnsignedTypes::class)
     lateinit var npcInfo: NpcInfo
     lateinit var worldEntityInfo: WorldEntityInfo
@@ -393,18 +427,19 @@ open class Player(world: World) : Pawn(world) {
 
         if (entityType.isHumanControlled) {
             write(RebuildLogin(tile.x ushr 3, tile.z shr 3, -1, world.xteaKeyService!!, playerInfo))
-            buildArea = BuildArea((tile.x ushr 3) - 6, (tile.z ushr 3) - 6).apply {
-                playerInfo.updateBuildArea(-1, this)
-                npcInfo.updateBuildArea(-1, this)
-                worldEntityInfo.updateBuildArea(this)
-            }
+            buildArea =
+                BuildArea((tile.x ushr 3) - 6, (tile.z ushr 3) - 6).apply {
+                    playerInfo.updateBuildArea(-1, this)
+                    npcInfo.updateBuildArea(-1, this)
+                    worldEntityInfo.updateBuildArea(this)
+                }
             world.getService(LoggerService::class.java, searchSubclasses = true)?.logLogin(this)
         }
 
         if (world.rebootTimer != -1) {
             write(UpdateRebootTimer(world.rebootTimer))
         }
-        //TODO ADVO extract this and sync appearance if dirty
+        // TODO ADVO extract this and sync appearance if dirty
         for (slot in 0..6) {
             avatar.extendedInfo.setIdentKit(slot, appearance.getLook(slot))
         }
@@ -416,7 +451,7 @@ open class Player(world: World) : Pawn(world) {
         }
         avatar.extendedInfo.setBaseAnimationSet(
             readyAnim = 808,
-            turnAnim =  823,
+            turnAnim = 823,
             walkAnim = 819,
             walkAnimBack = 820,
             walkAnimLeft = 821,
@@ -474,7 +509,10 @@ open class Player(world: World) : Pawn(world) {
         }
     }
 
-    fun addXp(skill: Int, xp: Double) {
+    fun addXp(
+        skill: Int,
+        xp: Double,
+    ) {
         val oldXp = getSkills().getCurrentXp(skill)
         if (oldXp >= SkillSet.MAX_XP) {
             return
@@ -570,11 +608,16 @@ open class Player(world: World) : Pawn(world) {
         write(MessageGame(type = 0, message = message))
     }
 
-    internal fun playSound(id: Int, volume: Int = 1, delay: Int = 0) {
+    internal fun playSound(
+        id: Int,
+        volume: Int = 1,
+        delay: Int = 0,
+    ) {
         write(SynthSound(id = id, loops = volume, delay = delay))
     }
 
-    override fun toString(): String = toStringHelper()
+    override fun toString(): String =
+        toStringHelper()
             .add("name", username)
             .add("pid", index)
             .toString()
@@ -599,5 +642,4 @@ open class Player(world: World) : Pawn(world) {
     }
 
     var social = Social()
-
 }

@@ -11,7 +11,6 @@ import org.alter.game.model.entity.Entity
  * @author Tom <rspsmods@gmail.com>
  */
 abstract class EntityUpdate<T : Entity>(open val type: EntityUpdateType, open val entity: T) {
-
     abstract fun toMessage(): ZoneProt
 
     override fun toString(): String = toStringHelper().add("type", type).add("entity", entity).toString()

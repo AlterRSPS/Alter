@@ -7,9 +7,7 @@ import spark.Request
 import spark.Response
 
 class OnlinePlayersController(req: Request, resp: Response, auth: Boolean) : Controller(req, resp, auth) {
-
     override fun init(world: World): JsonObject {
-
         val obj = JsonObject()
         val players = JsonArray()
 

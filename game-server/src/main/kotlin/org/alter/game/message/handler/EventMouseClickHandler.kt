@@ -8,7 +8,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class EventMouseClickHandler : MessageHandler<EventMouseClick> {
-    override fun accept(client: Client, message: EventMouseClick) {
+    override fun accept(
+        client: Client,
+        message: EventMouseClick,
+    ) {
         // TODO
     }
 }

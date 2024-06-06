@@ -25,33 +25,29 @@ import java.nio.file.Paths
  * service that can retrieve data from multiple worlds.
  */
 class WorldListService : Service {
-
     val bootstrap = ServerBootstrap()
 
     /**
      * The port for this [WorldListService] to listen on
      */
-    private var port : Int = 80
+    private var port: Int = 80
 
     /**
      * The [Path] to the configuration file holding the [WorldEntry] data.
      */
-    private lateinit var path : Path
+    private lateinit var path: Path
 
     /**
      * The current app's [WorldEntry].
      */
-    @Volatile private lateinit var worldEntry : WorldEntry
+    @Volatile private lateinit var worldEntry: WorldEntry
 
-    private lateinit var worldEntries : MutableList<WorldEntry>
-
+    private lateinit var worldEntries: MutableList<WorldEntry>
 
     /**
      * The [ChannelFuture] for the network service
      */
-    private lateinit var channelFuture : ChannelFuture
-
-
+    private lateinit var channelFuture: ChannelFuture
 
     /**
      * Initialises the [WorldListService] by checking that the world list configuration file exists,
@@ -61,7 +57,11 @@ class WorldListService : Service {
      * @param world             The game world instance
      * @param serviceProperties The properties for this server
      */
-    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(
+        server: Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
         port = serviceProperties.getOrDefault("port", 80)
         path = Paths.get(serviceProperties.getOrDefault("config-path", "../data/cfg/world.json"))
 
@@ -90,8 +90,10 @@ class WorldListService : Service {
      * @param server    The [Server] context
      * @param world     The [World] instance
      */
-    override fun bindNet(server: Server, world: World) {
-
+    override fun bindNet(
+        server: Server,
+        world: World,
+    ) {
         // The inbound channel handler for the world list protocol
         val handler = WorldListChannelHandler(worldEntries)
 
@@ -108,7 +110,10 @@ class WorldListService : Service {
      * @param server    The [Server] instance
      * @param world     The [World] instance
      */
-    override fun postLoad(server: Server, world: World) {
+    override fun postLoad(
+        server: Server,
+        world: World,
+    ) {
         val plugins = world.plugins
         plugins.bindLogin(incrementPlayerCount)
         plugins.bindLogout(decrementPlayerCount)
@@ -120,27 +125,30 @@ class WorldListService : Service {
      * @param server    The [Server] instance
      * @param world     The [World] instance
      */
-    override fun terminate(server: Server, world: World) {
+    override fun terminate(
+        server: Server,
+        world: World,
+    ) {
         channelFuture.channel().close().syncUninterruptibly()
     }
 
     /**
      * Increments the player count for every entry in the world list
      */
-    private val incrementPlayerCount : Plugin.() -> Unit = {
+    private val incrementPlayerCount: Plugin.() -> Unit = {
         // @TODO Add support for multi worlds
-        //worldEntry.players++
+        // worldEntry.players++
     }
 
     /**
      * Decrements the player count for every entry in the world list
      */
-    private val decrementPlayerCount : Plugin.() -> Unit = {
+    private val decrementPlayerCount: Plugin.() -> Unit = {
         // @TODO Add support for multi worlds
-        //worldEntry.players--
+        // worldEntry.players--
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

@@ -19,7 +19,7 @@ object ObjectExamineHolder {
             val type2 = ItemType2()
             val type = it.value
             EQUIPMENT_MENU.put(it.key, type2)
-            if(type.params != null) {
+            if (type.params != null) {
                 for (i in 0 until 8) {
                     val paramId = 451 + i
                     val option = type.params!!.get(paramId) as? String ?: continue

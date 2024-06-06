@@ -24,31 +24,45 @@ import java.util.concurrent.TimeUnit
  * @author Tom <rspsmods@gmail.com>
  */
 class ItemMetadataService : Service {
-    override fun postLoad(server: Server, world: World) {
+    override fun postLoad(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun bindNet(server: Server, world: World) {
+    override fun bindNet(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun terminate(server: Server, world: World) {
+    override fun terminate(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(
+        server: Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
         loadAll(world)
     }
 
     var ms: Long = 0
+
     fun loadAll(world: World) {
         val stopwatch = Stopwatch.createStarted().reset().start()
         val loaderOptions = LoaderOptions()
 
         loaderOptions.codePointLimit = 10 * 1024 * 1024 // 10 MB
 
-        val yamlFactory = YAMLFactory.builder()
-            .loaderOptions(loaderOptions)
-            .build()
+        val yamlFactory =
+            YAMLFactory.builder()
+                .loaderOptions(loaderOptions)
+                .build()
         val mapper = YAMLMapper(yamlFactory)
-
 
         val path = Paths.get("../data/cfg/items")
 
@@ -70,7 +84,6 @@ class ItemMetadataService : Service {
         ms = stopwatch.elapsed(TimeUnit.MILLISECONDS)
     }
 
-
     /**
      * Continue later. @TODO -> Removal of all default 0's
      */
@@ -80,13 +93,16 @@ class ItemMetadataService : Service {
             if (item.equipment != null) {
                 val namer = Namer()
                 val name = namer.name(item.name, item.id)?.lowercase()
-                //val file: File = File("./data/cfg/newItems/equipable/", "${item.id}_$name.yml")
+                // val file: File = File("./data/cfg/newItems/equipable/", "${item.id}_$name.yml")
                 println(item)
             }
         }
     }
 
-    private fun load(item: Metadata, world: World) {
+    private fun load(
+        item: Metadata,
+        world: World,
+    ) {
         val def = getItem(item.id)
         def.name = item.name
         def.examine = item.examine
@@ -122,56 +138,61 @@ class ItemMetadataService : Service {
             }
 // TODO ADVO add back equip sounds
 //            def.equipSound = equipment.equipSound
-            def.bonuses = intArrayOf(
-                equipment.attackStab,
-                equipment.attackSlash,
-                equipment.attackCrush,
-                equipment.attackMagic,
-                equipment.attackRanged,
-                equipment.defenceStab,
-                equipment.defenceSlash,
-                equipment.defenceCrush,
-                equipment.defenceMagic,
-                equipment.defenceRanged,
-                equipment.meleeStrength,
-                equipment.rangedStrength,
-                equipment.magicDamage,
-                equipment.prayer
-            )
+            def.bonuses =
+                intArrayOf(
+                    equipment.attackStab,
+                    equipment.attackSlash,
+                    equipment.attackCrush,
+                    equipment.attackMagic,
+                    equipment.attackRanged,
+                    equipment.defenceStab,
+                    equipment.defenceSlash,
+                    equipment.defenceCrush,
+                    equipment.defenceMagic,
+                    equipment.defenceRanged,
+                    equipment.meleeStrength,
+                    equipment.rangedStrength,
+                    equipment.magicDamage,
+                    equipment.prayer,
+                )
         }
     }
 
-    private fun getSkillId(name: String): Byte = when (name) {
-        // Need to get a better dump db. As we can see, this one has some
-        // inconsistency for some reason.
-        "attack" -> 0
-        "defence" -> 1
-        "strength" -> 2
-        "hitpoints" -> 3
-        "range", "ranged" -> 4
-        "prayer" -> 5
-        "magic" -> 6
-        "cooking" -> 7
-        "woodcutting" -> 8
-        "fletching" -> 9
-        "fishing" -> 10
-        "firemaking" -> 11
-        "crafting" -> 12
-        "smithing" -> 13
-        "mining" -> 14
-        "herblore" -> 15
-        "agility" -> 16
-        "thieving", "theiving" -> 17
-        "slayer" -> 18
-        "farming" -> 19
-        "runecrafting", "runecraft" -> 20
-        "hunter" -> 21
-        "construction", "contruction" -> 22
-        "combat" -> 3
-        else -> throw IllegalArgumentException("Illegal skill name: $name")
-    }
+    private fun getSkillId(name: String): Byte =
+        when (name) {
+            // Need to get a better dump db. As we can see, this one has some
+            // inconsistency for some reason.
+            "attack" -> 0
+            "defence" -> 1
+            "strength" -> 2
+            "hitpoints" -> 3
+            "range", "ranged" -> 4
+            "prayer" -> 5
+            "magic" -> 6
+            "cooking" -> 7
+            "woodcutting" -> 8
+            "fletching" -> 9
+            "fishing" -> 10
+            "firemaking" -> 11
+            "crafting" -> 12
+            "smithing" -> 13
+            "mining" -> 14
+            "herblore" -> 15
+            "agility" -> 16
+            "thieving", "theiving" -> 17
+            "slayer" -> 18
+            "farming" -> 19
+            "runecrafting", "runecraft" -> 20
+            "hunter" -> 21
+            "construction", "contruction" -> 22
+            "combat" -> 3
+            else -> throw IllegalArgumentException("Illegal skill name: $name")
+        }
 
-    private fun getEquipmentSlots(slot: String, id: Int? = null): EquipmentSlots {
+    private fun getEquipmentSlots(
+        slot: String,
+        id: Int? = null,
+    ): EquipmentSlots {
         val equipSlot: Int
         var equipType = -1
         when (slot) {
@@ -241,7 +262,7 @@ class ItemMetadataService : Service {
         val lowalch: Int = 0,
         val highalch: Int = 0,
         val buy_limit: Int? = null,
-        val equipment: Equipment? = null
+        val equipment: Equipment? = null,
     )
 
     private data class EquipmentSlots(val slot: Int, val secondary: Int)
@@ -267,9 +288,8 @@ class ItemMetadataService : Service {
         @JsonProperty("prayer") val prayer: Int = 0,
         @JsonProperty("render_animations") val renderAnimations: renderAnimations? = null,
         @JsonProperty("attackSounds") val attackSounds: IntArray? = null,
-        @JsonProperty("skill_reqs") val skillReqs: Array<SkillRequirement>? = null
+        @JsonProperty("skill_reqs") val skillReqs: Array<SkillRequirement>? = null,
     ) {
-
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false
@@ -295,14 +315,18 @@ class ItemMetadataService : Service {
 
             if (renderAnimations != null) {
                 if (other.renderAnimations == null) return false
-            } else if (other.renderAnimations != null) return false
+            } else if (other.renderAnimations != null) {
+                return false
+            }
 
             if (attackSounds != null) return false
 
             if (skillReqs != null) {
                 if (other.skillReqs == null) return false
                 if (!skillReqs.contentEquals(other.skillReqs)) return false
-            } else if (other.skillReqs != null) return false
+            } else if (other.skillReqs != null) {
+                return false
+            }
 
             return true
         }
@@ -331,28 +355,28 @@ class ItemMetadataService : Service {
         }
     }
 
-    private data class renderAnimations (
-        @JsonProperty("standAnimId") val standAnimId: Int = 0 ,
-        @JsonProperty("turnOnSpotAnim") val turnOnSpotAnim: Int = 0 ,
-        @JsonProperty("walkForwardAnimId") val walkForwardAnimId: Int = 0 ,
-        @JsonProperty("walkBackwardsAnimId") val walkBackwardsAnimId: Int = 0 ,
-        @JsonProperty("walkLeftAnimId") val walkLeftAnimId: Int = 0 ,
-        @JsonProperty("walkRightAnimId") val walkRightAnimId: Int = 0 ,
-        @JsonProperty("runAnimId") val runAnimId: Int = 0
-
+    private data class renderAnimations(
+        @JsonProperty("standAnimId") val standAnimId: Int = 0,
+        @JsonProperty("turnOnSpotAnim") val turnOnSpotAnim: Int = 0,
+        @JsonProperty("walkForwardAnimId") val walkForwardAnimId: Int = 0,
+        @JsonProperty("walkBackwardsAnimId") val walkBackwardsAnimId: Int = 0,
+        @JsonProperty("walkLeftAnimId") val walkLeftAnimId: Int = 0,
+        @JsonProperty("walkRightAnimId") val walkRightAnimId: Int = 0,
+        @JsonProperty("runAnimId") val runAnimId: Int = 0,
     ) {
         fun getAsArray(): IntArray {
-            val renderAnimList = listOf(standAnimId, turnOnSpotAnim, walkForwardAnimId, walkBackwardsAnimId, walkLeftAnimId, walkRightAnimId, runAnimId)
+            val renderAnimList =
+                listOf(standAnimId, turnOnSpotAnim, walkForwardAnimId, walkBackwardsAnimId, walkLeftAnimId, walkRightAnimId, runAnimId)
             return renderAnimList.toIntArray()
         }
     }
 
     private data class SkillRequirement(
         @JsonProperty("skill") val skill: String?,
-        @JsonProperty("level") val level: Int?
+        @JsonProperty("level") val level: Int?,
     )
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

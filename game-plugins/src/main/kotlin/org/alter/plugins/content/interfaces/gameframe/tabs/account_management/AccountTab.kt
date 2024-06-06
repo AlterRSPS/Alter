@@ -3,7 +3,6 @@
  */
 
 object AccountTab {
-
     const val BUTTON_ID = 109
 
     /**
@@ -14,7 +13,8 @@ object AccountTab {
     const val BENEFITS_ID = 31
     const val INBOX_ID = 38
     const val NAME_CHANGER_ID = 45
-    //const val POLL_ID = 0
+
+    // const val POLL_ID = 0
     const val HISTORY_ID = 60
     const val NEWS_ID = 67
     const val ARCHIVE_ID = 72
@@ -24,5 +24,4 @@ object AccountTab {
     const val SUPPORT_ID = 81
     const val HISCORE_ID = 83
     const val MERCH_ID = 85
-
 }

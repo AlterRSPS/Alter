@@ -11,7 +11,6 @@ import kotlin.test.*
  * @author Tom <rspsmods@gmail.com>
  */
 class ItemContainerTests {
-
     @Test
     fun createContainer() {
         val container = ItemContainer(CAPACITY, ContainerStackType.NORMAL)
@@ -125,9 +124,7 @@ class ItemContainerTests {
     }
 
     companion object {
-
         private const val CAPACITY = 28
-
 
         @BeforeClass
         @JvmStatic

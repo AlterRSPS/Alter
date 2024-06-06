@@ -655,14 +655,14 @@ enum class Song(val title: String, val id: Int) {
     SOUL_WARS("Soul Wars", 685),
     ;
 
-    companion object{
+    companion object {
         val values = values()
 
         fun getTitle(id: Int): String {
             values.forEach { song ->
                 if (song.id == id) return song.title
             }
-            return "";
+            return ""
         }
 
         fun getId(title: String): Int {
@@ -671,6 +671,5 @@ enum class Song(val title: String, val id: Int) {
             }
             return -1
         }
-
     }
 }

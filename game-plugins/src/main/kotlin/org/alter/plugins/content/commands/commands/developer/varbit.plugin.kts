@@ -10,6 +10,8 @@ on_command("varbit", Privilege.DEV_POWER, description = "Set varbit to amount") 
         val state = values[1].toInt()
         val oldState = player.getVarbit(varbit)
         player.setVarbit(varbit, state)
-        player.message("Set varbit (<col=801700>$varbit</col>) from <col=801700>$oldState</col> to <col=801700>${player.getVarbit(varbit)}</col>")
+        player.message(
+            "Set varbit (<col=801700>$varbit</col>) from <col=801700>$oldState</col> to <col=801700>${player.getVarbit(varbit)}</col>",
+        )
     }
 }

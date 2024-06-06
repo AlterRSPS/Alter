@@ -10,8 +10,10 @@ import org.alter.game.model.priv.Privilege
  * @author HolyRSPS <dagreenrs@gmail.com>
  */
 class ClickWorldMapHandler : MessageHandler<ClickWorldMap> {
-
-    override fun accept(client: Client, message: ClickWorldMap) {
+    override fun accept(
+        client: Client,
+        message: ClickWorldMap,
+    ) {
         if (client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             val dest = Tile(message.x, message.z, message.level)
             log(client, "Click world map: %s", dest.toString())

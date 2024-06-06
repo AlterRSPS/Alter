@@ -1,7 +1,7 @@
 package org.alter.plugins.content.areas.alkharid.chat.shops
 
-    on_npc_option(npc = Npcs.RANAEL, option = "talk-to") {
-        player.queue { dialog(this) }
+on_npc_option(npc = Npcs.RANAEL, option = "talk-to") {
+    player.queue { dialog(this) }
 
     on_npc_option(npc = Npcs.RANAEL, option = "trade") {
         open_shop(player)

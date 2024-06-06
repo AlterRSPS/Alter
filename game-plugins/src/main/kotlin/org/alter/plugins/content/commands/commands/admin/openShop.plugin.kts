@@ -1,5 +1,4 @@
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.commands.Commands_plugin
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
 val OpenShopCommands = listOf("openshop", "shop", "store")
@@ -19,11 +18,10 @@ OpenShopCommands.forEach {
     }
 }
 
-
 on_command("listshop", Privilege.ADMIN_POWER) {
     player.message("Shop List: ")
     var id = 0
     getPluginRepository().shops.forEach {
-        player.message("id: ${id++} shop name: ${it.key}" )
+        player.message("id: ${id++} shop name: ${it.key}")
     }
 }

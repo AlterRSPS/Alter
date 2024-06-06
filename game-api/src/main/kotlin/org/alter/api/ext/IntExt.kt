@@ -9,13 +9,36 @@ import kotlin.math.ceil
 /**
  * A map of numbers to English string literals
  */
-private val numberLiterals = hashMapOf(
-        1 to "one", 2 to "two", 3 to "three", 4 to "four", 5 to "five", 6 to "six",
-        7 to "seven", 8 to "eight", 9 to "nine", 10 to "ten", 11 to "eleven", 12 to "twelve",
-        13 to "thirteen", 14 to "fourteen", 15 to "fifteen", 16 to "sixteen", 17 to "seventeen",
-        18 to "eighteen", 19 to "nineteen", 20 to "twenty", 30 to "thirty", 40 to "forty", 50 to "fifty",
-        60 to "sixty", 70 to "seventy", 80 to "eighty", 90 to "ninety"
-)
+private val numberLiterals =
+    hashMapOf(
+        1 to "one",
+        2 to "two",
+        3 to "three",
+        4 to "four",
+        5 to "five",
+        6 to "six",
+        7 to "seven",
+        8 to "eight",
+        9 to "nine",
+        10 to "ten",
+        11 to "eleven",
+        12 to "twelve",
+        13 to "thirteen",
+        14 to "fourteen",
+        15 to "fifteen",
+        16 to "sixteen",
+        17 to "seventeen",
+        18 to "eighteen",
+        19 to "nineteen",
+        20 to "twenty",
+        30 to "thirty",
+        40 to "forty",
+        50 to "fifty",
+        60 to "sixty",
+        70 to "seventy",
+        80 to "eighty",
+        90 to "ninety",
+    )
 
 /**
  * Gets the string literal for an integer. If a literal cannot be found, this function
@@ -23,9 +46,9 @@ private val numberLiterals = hashMapOf(
  *
  * Example: 73.toLiteral() will produce the value "seventy-three"
  *
- * @return      The string literal
+ * @return The string literal
  */
-fun Int.toLiteral() : String? {
+fun Int.toLiteral(): String? {
     var literal = numberLiterals[this]
 
     if (literal == null && this > 20 && this < 100) {
@@ -48,7 +71,7 @@ fun Int.toLiteral() : String? {
  * 1_306_000 would return 1306K
  * 13_060_000 would return 13M
  */
-fun Int.formatRS2() : String {
+fun Int.formatRS2(): String {
     return when {
         this == Integer.MIN_VALUE -> "-${formatRS2()}"
         this < 0 -> "-${(-this).formatRS2()}"
@@ -61,17 +84,22 @@ fun Int.formatRS2() : String {
 fun Int.toItem(): Item = Item(this)
 
 fun Int.getItemName(lowercase: Boolean = false): String {
-    return if(lowercase)
+    return if (lowercase) {
         getItem(this).name.lowercase()
-    else
+    } else {
         getItem(this).name
+    }
 }
 
-fun Int.getObjName(definitions: DefinitionSet, lowercase: Boolean = false): String {
-    return if(lowercase)
+fun Int.getObjName(
+    definitions: DefinitionSet,
+    lowercase: Boolean = false,
+): String {
+    return if (lowercase) {
         getObject(this).name.lowercase()
-    else
+    } else {
         getObject(this).name
+    }
 }
 
 /**

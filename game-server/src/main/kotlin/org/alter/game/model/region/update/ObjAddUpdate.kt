@@ -10,9 +10,16 @@ import org.alter.game.model.entity.GroundItem
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class ObjAddUpdate(override val type: EntityUpdateType,
-                   override val entity: GroundItem) : EntityUpdate<GroundItem>(type, entity) {
-
-    override fun toMessage(): ZoneProt = ObjAdd(entity.item, entity.amount,
-        (entity.tile.x and 0x7), (entity.tile.z and 0x7), OpFlags.ALL_SHOWN)
+class ObjAddUpdate(
+    override val type: EntityUpdateType,
+    override val entity: GroundItem,
+) : EntityUpdate<GroundItem>(type, entity) {
+    override fun toMessage(): ZoneProt =
+        ObjAdd(
+            entity.item,
+            entity.amount,
+            (entity.tile.x and 0x7),
+            (entity.tile.z and 0x7),
+            OpFlags.ALL_SHOWN,
+        )
 }

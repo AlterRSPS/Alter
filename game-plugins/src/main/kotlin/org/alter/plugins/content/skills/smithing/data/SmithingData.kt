@@ -11,7 +11,6 @@ import dev.openrune.cache.CacheManager.getItem
  * @param defs  The definition set for the game world
  */
 class SmithingData {
-
     /**
      * The enum definition containing the number of items that are produced
      * when smithing a specified item
@@ -42,28 +41,30 @@ class SmithingData {
     /**
      * Maps an item id to the meta data required to craft it
      */
-    private val metaData : List<SmithingMetaData> = levelReqsEnum.values.map {
-        (id, level) -> SmithingMetaData(
-            id = id,
-            name = itemNames.getValue(id),
-            bar = getBar(itemNames.getValue(id)),
-            barCount = barCountEnum.getInt(id),
-            numProduced = producedCountEnum.getInt(id),
-            level = level as Int)
-    }
+    private val metaData: List<SmithingMetaData> =
+        levelReqsEnum.values.map {
+                (id, level) ->
+            SmithingMetaData(
+                id = id,
+                name = itemNames.getValue(id),
+                bar = getBar(itemNames.getValue(id)),
+                barCount = barCountEnum.getInt(id),
+                numProduced = producedCountEnum.getInt(id),
+                level = level as Int,
+            )
+        }
 
     /**
      * A map of bars to the smithing meta data they can be produced into
      */
-    val barItemData  = metaData.groupBy { it.bar }
+    val barItemData = metaData.groupBy { it.bar }
 
     /**
      * The map of bar item ids to their smithing index
      */
-    val barIndices : Map<Int, Int> = smithableBarsEnum.values.entries.associate { it.value as Int to it.key }
+    val barIndices: Map<Int, Int> = smithableBarsEnum.values.entries.associate { it.value as Int to it.key }
 
     companion object {
-
         /**
          * The enum id that contains the number of items that are produced, to allow for
          * items such as Nails making 15 rather than 1.

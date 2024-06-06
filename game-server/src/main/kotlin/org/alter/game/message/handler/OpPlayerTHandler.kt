@@ -10,14 +10,16 @@ import org.alter.game.model.entity.Entity
 import java.lang.ref.WeakReference
 
 class OpPlayerTHandler : MessageHandler<OpPlayerT> {
-
-    override fun accept(client: Client, message: OpPlayerT) {
+    override fun accept(
+        client: Client,
+        message: OpPlayerT,
+    ) {
         val player = client.world.players[message.index] ?: return
         val parent = message.selectedInterfaceId
         val child = message.selectedComponentId
 
         if (!client.lock.canPlayerInteract()) {
-            return;
+            return
         }
 
         log(client, "Spell on player: player=%s. index=%d, component=[%d:%d]", player.username, message.index, parent, child)

@@ -7,11 +7,12 @@ val H_MIX = Items.HERB_TEA_MIX
 val G_MIX = Items.HERB_TEA_MIX_4466
 val M_MIX = Items.HERB_TEA_MIX_4468
 
-val GUTHIX_BASE_MIXES = mapOf(
-    Items.HARRALANDER to H_MIX,
-    Items.GUAM_LEAF to G_MIX,
-    Items.MARRENTILL to M_MIX
-)
+val GUTHIX_BASE_MIXES =
+    mapOf(
+        Items.HARRALANDER to H_MIX,
+        Items.GUAM_LEAF to G_MIX,
+        Items.MARRENTILL to M_MIX,
+    )
 
 val HM_MIX = Items.HERB_TEA_MIX_4470
 val HG_MIX = Items.HERB_TEA_MIX_4472
@@ -30,35 +31,46 @@ val GHG_MIX = Items.HERB_TEA_MIX_4482
  * in each subsequent step
  */
 GUTHIX_BASE_MIXES.forEach { (herb, mix) ->
-    on_item_on_item(Items.CUP_OF_HOT_WATER, herb){
-        if(player.comboItemReplace(Items.CUP_OF_HOT_WATER, mix, herb, 0, true)){
+    on_item_on_item(Items.CUP_OF_HOT_WATER, herb) {
+        if (player.comboItemReplace(Items.CUP_OF_HOT_WATER, mix, herb, 0, true)) {
             player.addXp(Skills.HERBLORE, 14.0)
             player.message("You place the ${herb.getItemName(lowercase = true)} into the cup of hot water.")
         }
     }
 }
 
-fun bind_fail(mixItem: Int, herbItem: Int){
-    on_item_on_item(mixItem, herbItem){
-        if(player.comboItemReplace(mixItem, FAILED_TEA, herbItem, 0, true)){
+fun bind_fail(
+    mixItem: Int,
+    herbItem: Int,
+) {
+    on_item_on_item(mixItem, herbItem) {
+        if (player.comboItemReplace(mixItem, FAILED_TEA, herbItem, 0, true)) {
             player.addXp(Skills.HERBLORE, 4.0)
             player.message("You place the ${herbItem.getItemName(true)} into the steamy mixture, it ruins the tea.")
         }
     }
 }
 
-fun bind_mixture(mixItem: Int, herbItem: Int, outMix: Int, xpGain: Double){
-    on_item_on_item(mixItem, herbItem){
-        if(player.comboItemReplace(mixItem, outMix, herbItem, 0, true)){
+fun bind_mixture(
+    mixItem: Int,
+    herbItem: Int,
+    outMix: Int,
+    xpGain: Double,
+) {
+    on_item_on_item(mixItem, herbItem) {
+        if (player.comboItemReplace(mixItem, outMix, herbItem, 0, true)) {
             player.addXp(Skills.HERBLORE, xpGain)
             player.message("You place the ${herbItem.getItemName(true)} into the steamy mixture.")
         }
     }
 }
 
-fun bind_complete(mixItem: Int, herbItem: Int){
-    on_item_on_item(mixItem, herbItem){
-        if(player.comboItemReplace(mixItem, GOOD_TEA[2], herbItem, 0, true)){
+fun bind_complete(
+    mixItem: Int,
+    herbItem: Int,
+) {
+    on_item_on_item(mixItem, herbItem) {
+        if (player.comboItemReplace(mixItem, GOOD_TEA[2], herbItem, 0, true)) {
             player.addXp(Skills.HERBLORE, 15.5)
             player.message("You place the ${herbItem.getItemName(true)} into the steamy mixture and make Guthix Rest Tea.")
         }

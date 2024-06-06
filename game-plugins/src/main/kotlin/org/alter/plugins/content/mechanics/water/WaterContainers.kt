@@ -1,11 +1,14 @@
 package org.alter.plugins.content.mechanics.water
 
-import org.alter.game.model.entity.Player
 import org.alter.api.cfg.Items
 import org.alter.api.ext.*
+import org.alter.game.model.entity.Player
 
 class WaterContainer(val unfilled: Int, val filled: Int) {
-    fun fill(player: Player, message:String) {
+    fun fill(
+        player: Player,
+        message: String,
+    ) {
         // always succeeds
         player.autoReplace(unfilled, filled, growingDelay = false, slotAware = true, perform = {
             player.queue {
@@ -16,10 +19,10 @@ class WaterContainer(val unfilled: Int, val filled: Int) {
     }
 
     fun empty(player: Player) {
-        if(player.replaceItemInSlot(filled, unfilled, player.getInteractingItemSlot())){
+        if (player.replaceItemInSlot(filled, unfilled, player.getInteractingItemSlot())) {
             player.queue {
                 // only some make sounds when emptying
-                if(unfilled.getItemName().contains(Regex("Bowl|Bucket|Jug"))){
+                if (unfilled.getItemName().contains(Regex("Bowl|Bucket|Jug"))) {
                     player.playSound(2401, 1, 0)
                 }
                 player.message("You empty the contents of the ${unfilled.getItemName(lowercase = true)} on the floor.")
@@ -35,5 +38,5 @@ enum class WaterContainers(val container: WaterContainer) {
     CUP(WaterContainer(Items.EMPTY_CUP, Items.CUP_OF_WATER)),
     JUG(WaterContainer(Items.JUG, Items.JUG_OF_WATER)),
     VIAL(WaterContainer(Items.VIAL, Items.VIAL_OF_WATER)),
-    WATERSKIN(WaterContainer(Items.WATERSKIN0, Items.WATERSKIN4))
+    WATERSKIN(WaterContainer(Items.WATERSKIN0, Items.WATERSKIN4)),
 }

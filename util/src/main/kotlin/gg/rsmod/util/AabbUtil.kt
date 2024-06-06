@@ -6,9 +6,7 @@ package gg.rsmod.util
  * @author Tom <rspsmods@gmail.com>
  */
 object AabbUtil {
-
     data class Box(val x: Int, val z: Int, val width: Int, val length: Int) {
-
         val x1: Int get() = x
 
         val x2: Int get() = x + width
@@ -21,12 +19,20 @@ object AabbUtil {
     /**
      * Checks to see if two AABB are bordering, but not overlapping.
      */
-    fun areBordering(x1: Int, z1: Int, width1: Int, length1: Int,
-                     x2: Int, z2: Int, width2: Int, length2: Int): Boolean {
+    fun areBordering(
+        x1: Int,
+        z1: Int,
+        width1: Int,
+        length1: Int,
+        x2: Int,
+        z2: Int,
+        width2: Int,
+        length2: Int,
+    ): Boolean {
         val a = Box(x1, z1, width1 - 1, length1 - 1)
         val b = Box(x2, z2, width2 - 1, length2 - 1)
 
-        if (b.x1 in a.x1 .. a.x2 && b.z1 in a.z1 .. a.z2 || b.x2 in a.x1 .. a.x2 && b.z2 in a.z1 .. a.z2) {
+        if (b.x1 in a.x1..a.x2 && b.z1 in a.z1..a.z2 || b.x2 in a.x1..a.x2 && b.z2 in a.z1..a.z2) {
             return false
         }
 
@@ -48,8 +54,16 @@ object AabbUtil {
         return true
     }
 
-    fun areDiagonal(x1: Int, z1: Int, width1: Int, length1: Int,
-                    x2: Int, z2: Int, width2: Int, length2: Int): Boolean {
+    fun areDiagonal(
+        x1: Int,
+        z1: Int,
+        width1: Int,
+        length1: Int,
+        x2: Int,
+        z2: Int,
+        width2: Int,
+        length2: Int,
+    ): Boolean {
         val a = Box(x1, z1, width1 - 1, length1 - 1)
         val b = Box(x2, z2, width2 - 1, length2 - 1)
 
@@ -84,8 +98,16 @@ object AabbUtil {
         return false
     }
 
-    fun areOverlapping(x1: Int, z1: Int, width1: Int, length1: Int,
-                       x2: Int, z2: Int, width2: Int, length2: Int): Boolean {
+    fun areOverlapping(
+        x1: Int,
+        z1: Int,
+        width1: Int,
+        length1: Int,
+        x2: Int,
+        z2: Int,
+        width2: Int,
+        length2: Int,
+    ): Boolean {
         val a = Box(x1, z1, width1 - 1, length1 - 1)
         val b = Box(x2, z2, width2 - 1, length2 - 1)
 

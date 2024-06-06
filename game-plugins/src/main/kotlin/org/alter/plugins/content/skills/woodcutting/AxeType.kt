@@ -17,8 +17,8 @@ enum class AxeType(val item: Int, val level: Int, val animation: Int) {
     DRAGON(item = Items.DRAGON_AXE, level = 61, animation = Animation.WOODCUTTING_DRAGON_AXE),
     INFERNAL(item = Items.INFERNAL_AXE, level = 61, animation = Animation.WOODCUTTING_INFERNAL_AXE),
     THIRDAGE(item = Items._3RD_AGE_AXE, level = 61, animation = Animation.WOODCUTTING_THIRDAGE_AXE),
-    CRYSTAL(item = Items.CRYSTAL_AXE, level = 71, animation = Animation.WOODCUTTING_CRYSTAL_AXE);
-
+    CRYSTAL(item = Items.CRYSTAL_AXE, level = 71, animation = Animation.WOODCUTTING_CRYSTAL_AXE),
+    ;
 
     companion object {
         val values = enumValues<AxeType>()

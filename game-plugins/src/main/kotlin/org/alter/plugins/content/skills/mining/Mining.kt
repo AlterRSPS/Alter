@@ -1,17 +1,17 @@
-//package org.alter.plugins.content.skills.mining
+// package org.alter.plugins.content.skills.mining
 //
-//import org.alter.game.fs.def.ItemDef
-//import org.alter.game.model.entity.DynamicObject
-//import org.alter.game.model.entity.GameObject
-//import org.alter.game.model.entity.GroundItem
-//import org.alter.game.model.entity.Player
-//import org.alter.game.model.queue.QueueTask
-//import org.alter.api.Skills
-//import org.alter.api.cfg.Items
-//import org.alter.api.ext.*
-//import kotlin.random.Random
+// import org.alter.game.fs.def.ItemDef
+// import org.alter.game.model.entity.DynamicObject
+// import org.alter.game.model.entity.GameObject
+// import org.alter.game.model.entity.GroundItem
+// import org.alter.game.model.entity.Player
+// import org.alter.game.model.queue.QueueTask
+// import org.alter.api.Skills
+// import org.alter.api.cfg.Items
+// import org.alter.api.ext.*
+// import kotlin.random.Random
 //
-//object Mining {
+// object Mining {
 //    data class Ore(val type: OreType, val obj: Int, val emptyOreId: Int)
 //
 //    suspend fun prospectOre(it: QueueTask, ore: OreType) {
@@ -128,7 +128,7 @@
 //
 //    private fun randomGemEvent(p: Player) {
 //        // TODO: Add a gemDropRate val on OreType
-////        val level = p.getSkills().getCurrentLevel(Skills.MINING)
+// //        val level = p.getSkills().getCurrentLevel(Skills.MINING)
 //        val listOfGlorys = arrayOf(
 //            Items.AMULET_OF_GLORY1,
 //            Items.AMULET_OF_GLORY2,
@@ -222,4 +222,4 @@
 //
 //        return true
 //    }
-//}
+// }

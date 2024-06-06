@@ -1,43 +1,43 @@
-//package org.alter.plugins.content.mechanics.appearance
+// package org.alter.plugins.content.mechanics.appearance
 //
-//import org.alter.game.model.appearance.*
-//import org.alter.game.model.attr.APPEARANCE_SET_ATTR
-//import org.alter.game.sync.block.UpdateBlockType
-//import org.alter.plugins.content.mechanics.appearance.Appearance_interface_plugin.AppearanceOps.Companion.getOp
-//import org.alter.plugins.content.mechanics.appearance.Appearance_interface_plugin.AppearanceOps.Companion.isColourOp
-//import org.alter.plugins.content.mechanics.appearance.Appearance_interface_plugin.AppearanceOps.Companion.isLookOp
-//import java.lang.IllegalArgumentException
+// import org.alter.game.model.appearance.*
+// import org.alter.game.model.attr.APPEARANCE_SET_ATTR
+// import org.alter.game.sync.block.UpdateBlockType
+// import org.alter.plugins.content.mechanics.appearance.Appearance_interface_plugin.AppearanceOps.Companion.getOp
+// import org.alter.plugins.content.mechanics.appearance.Appearance_interface_plugin.AppearanceOps.Companion.isColourOp
+// import org.alter.plugins.content.mechanics.appearance.Appearance_interface_plugin.AppearanceOps.Companion.isLookOp
+// import java.lang.IllegalArgumentException
 //
-//val APPEARANCE_INTERFACE_ID = 679
+// val APPEARANCE_INTERFACE_ID = 679
 //
-///**
+// /**
 // * Change [Gender] to [Gender.MALE]
 // */
-//on_button(APPEARANCE_INTERFACE_ID, 65) {
+// on_button(APPEARANCE_INTERFACE_ID, 65) {
 //    player.setVarbit(11697, 0)
 //    player.appearance = Appearance.DEFAULT_MALE
 //    player.addBlock(UpdateBlockType.APPEARANCE)
-//}
+// }
 //
-///**
+// /**
 // * Change [Gender] to [Gender.FEMALE]
 // */
-//on_button(APPEARANCE_INTERFACE_ID, 66) {
+// on_button(APPEARANCE_INTERFACE_ID, 66) {
 //    player.setVarbit(11697, 1)
 //    player.appearance = Appearance.DEFAULT_FEMALE
 //    player.addBlock(UpdateBlockType.APPEARANCE)
-//}
+// }
 //
-///**
+// /**
 // * Confirms [Player] [Appearance] selection and closes interface
 // */
-//on_button(APPEARANCE_INTERFACE_ID, 68) {
+// on_button(APPEARANCE_INTERFACE_ID, 68) {
 //    player.attr[APPEARANCE_SET_ATTR] = true
 //    player.unlock()
 //    player.closeInterface(APPEARANCE_INTERFACE_ID)
-//}
+// }
 //
-//enum class AppearanceOps(val component: Int) {
+// enum class AppearanceOps(val component: Int) {
 //    HEAD(10),
 //    JAW(14),
 //    TORSO(18),
@@ -92,9 +92,9 @@
 //            }
 //        }
 //    }
-//}
+// }
 //
-//AppearanceOps.values().filterNot { it == AppearanceOps.NONE }.forEach { op ->
+// AppearanceOps.values().filterNot { it == AppearanceOps.NONE }.forEach { op ->
 //
 //    // decrement option
 //    on_button(APPEARANCE_INTERFACE_ID, op.component+2) {
@@ -171,9 +171,9 @@
 //            }
 //        }
 //    }
-//}
+// }
 //
-//fun getLooks(option: Int, gender: Gender): Array<Int> {
+// fun getLooks(option: Int, gender: Gender): Array<Int> {
 //    when(gender){
 //        Gender.MALE ->  {
 //            return when((option-10)/4) {
@@ -199,9 +199,9 @@
 //            }
 //        }
 //    }
-//}
+// }
 //
-//fun getColours(option: Int): Array<Int> {
+// fun getColours(option: Int): Array<Int> {
 //    return when((option-41)/4) {
 //        0 -> Colours.HAIR_COLOURS
 //        1 -> Colours.TORSO_COLOURS
@@ -210,4 +210,4 @@
 //        4 -> Colours.SKIN_COLOURS
 //        else -> return arrayOf(-1)
 //    }
-//}
+// }

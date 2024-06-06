@@ -1,12 +1,12 @@
 package org.alter.plugins.service.worldlist.io
 
-import org.alter.plugins.service.worldlist.model.WorldEntry
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageEncoder
 import io.netty.handler.codec.http.*
 import io.netty.handler.codec.http.HttpHeaders.Names.CONTENT_TYPE
+import org.alter.plugins.service.worldlist.model.WorldEntry
 
 /**
  * @author Triston Plummer ("Dread")
@@ -14,7 +14,6 @@ import io.netty.handler.codec.http.HttpHeaders.Names.CONTENT_TYPE
  * Encodes an outbound [List] of [WorldEntry]s into a [HttpResponse]
  */
 class WorldListEncoder : MessageToMessageEncoder<List<WorldEntry>>() {
-
     /**
      * Encodes the outgoing world list
      *
@@ -22,8 +21,11 @@ class WorldListEncoder : MessageToMessageEncoder<List<WorldEntry>>() {
      * @param msg   The [List] of [WorldEntry]s
      * @param out   The outgoing messages
      */
-    override fun encode(ctx: ChannelHandlerContext, msg: List<WorldEntry>, out: MutableList<Any>) {
-
+    override fun encode(
+        ctx: ChannelHandlerContext,
+        msg: List<WorldEntry>,
+        out: MutableList<Any>,
+    ) {
         // The world list buffer
         val worldList = encodeWorldList(msg)
 
@@ -50,15 +52,14 @@ class WorldListEncoder : MessageToMessageEncoder<List<WorldEntry>>() {
      * Encodes the world list
      *
      * @param list  The list of worlds
-     * @return      The encoded buffer
+     * @return The encoded buffer
      */
-    private fun encodeWorldList(list: List<WorldEntry>) : ByteBuf {
+    private fun encodeWorldList(list: List<WorldEntry>): ByteBuf {
         val buf = Unpooled.buffer()
 
         buf.writeShort(list.size)
 
         list.forEach {
-
             var mask = 0
             it.types.forEach { type -> mask = mask or type.mask }
 
@@ -84,7 +85,6 @@ class WorldListEncoder : MessageToMessageEncoder<List<WorldEntry>>() {
     }
 
     companion object {
-
         /**
          * The content type of the world list, which is just arbitrary binary data
          */

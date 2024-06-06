@@ -5,7 +5,10 @@ import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
 
 class IgnoreListDeleteHandler : MessageHandler<IgnoreListDel> {
-    override fun accept(client: Client, message: IgnoreListDel) {
+    override fun accept(
+        client: Client,
+        message: IgnoreListDel,
+    ) {
         client.social.deleteIgnore(client, message.name)
     }
 }

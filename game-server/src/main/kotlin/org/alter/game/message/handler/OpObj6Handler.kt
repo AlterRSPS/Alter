@@ -6,8 +6,10 @@ import org.alter.game.model.ExamineEntityType
 import org.alter.game.model.entity.Client
 
 class OpObj6Handler : MessageHandler<OpObj6> {
-
-    override fun accept(client: Client, message: OpObj6) {
+    override fun accept(
+        client: Client,
+        message: OpObj6,
+    ) {
         client.world.sendExamine(client, message.id, ExamineEntityType.ITEM)
     }
 }

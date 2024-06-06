@@ -31,5 +31,5 @@ enum class ChatMessageType(val id: Int) {
     SPAM(105),
     PLAYER_RELATED(106),
     TEN_SEC_TIMEOUT(107),
-    FILTERED(109)
+    FILTERED(109),
 }

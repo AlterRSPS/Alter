@@ -23,29 +23,35 @@ import java.nio.file.Paths
  * @author Tom <rspsmods@gmail.com>
  */
 class DumpEntityIdService : Service {
-
     private var dump = false
 
     private var cachePath: Path? = null
 
     private var outputPath: Path? = null
 
-    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
-       dump = serviceProperties.getOrDefault("dump", false)
-       if (dump) {
-           cachePath = Paths.get(serviceProperties.get<String>("cache-path")!!)
-           outputPath = Paths.get(serviceProperties.getOrDefault("output-path", "../ids"))
+    override fun init(
+        server: Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
+        dump = serviceProperties.getOrDefault("dump", false)
+        if (dump) {
+            cachePath = Paths.get(serviceProperties.get<String>("cache-path")!!)
+            outputPath = Paths.get(serviceProperties.getOrDefault("output-path", "../ids"))
 
-           if (!Files.exists(outputPath)) {
-               Files.createDirectory(outputPath)
-               logger.info("Output path does not exist. Creating directory: $outputPath")
-           } else if (!Files.isDirectory(outputPath)) {
-               logger.error("Output path specified is a file - it must be a directory!")
-           }
-       }
+            if (!Files.exists(outputPath)) {
+                Files.createDirectory(outputPath)
+                logger.info("Output path does not exist. Creating directory: $outputPath")
+            } else if (!Files.isDirectory(outputPath)) {
+                logger.error("Output path specified is a file - it must be a directory!")
+            }
+        }
     }
 
-    override fun postLoad(server: Server, world: World) {
+    override fun postLoad(
+        server: Server,
+        world: World,
+    ) {
         if (!dump) {
             return
         }
@@ -57,13 +63,22 @@ class DumpEntityIdService : Service {
         writeObjs(definitions, namer)
     }
 
-    override fun bindNet(server: Server, world: World) {
+    override fun bindNet(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun terminate(server: Server, world: World) {
+    override fun terminate(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    private fun writeItems(definitions: DefinitionSet, namer: Namer) {
+    private fun writeItems(
+        definitions: DefinitionSet,
+        namer: Namer,
+    ) {
         val count = itemSize()
         val items = generateWriter("Items.kt")
         for (i in 0 until count) {
@@ -83,7 +98,10 @@ class DumpEntityIdService : Service {
         endWriter(items)
     }
 
-    private fun writeNpcs(definitions: DefinitionSet, namer: Namer) {
+    private fun writeNpcs(
+        definitions: DefinitionSet,
+        namer: Namer,
+    ) {
         val count = npcSize()
         val npcs = generateWriter("Npcs.kt")
         for (i in 0 until count) {
@@ -97,7 +115,10 @@ class DumpEntityIdService : Service {
         endWriter(npcs)
     }
 
-    private fun writeObjs(definitions: DefinitionSet, namer: Namer) {
+    private fun writeObjs(
+        definitions: DefinitionSet,
+        namer: Namer,
+    ) {
         val count = CacheManager.objectSize()
         val objs = generateWriter("Objs.kt")
         for (i in 0 until count) {
@@ -121,7 +142,10 @@ class DumpEntityIdService : Service {
         return writer
     }
 
-    private fun write(writer: PrintWriter, text: String) {
+    private fun write(
+        writer: PrintWriter,
+        text: String,
+    ) {
         writer.println("    $text")
     }
 
@@ -132,6 +156,6 @@ class DumpEntityIdService : Service {
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

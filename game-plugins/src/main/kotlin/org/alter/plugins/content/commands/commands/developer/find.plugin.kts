@@ -42,7 +42,11 @@ listOf("find", "search").forEach { command ->
                         }
                         player.message("$name : ${it.second}")
                     }
-                    player.message("Found: ${list.size} results. That include `$keyword` in their name. Search time: ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms.")
+                    player.message(
+                        "Found: ${list.size} results. That include `$keyword` in their name. Search time: ${stopwatch.elapsed(
+                            TimeUnit.MILLISECONDS,
+                        )}ms.",
+                    )
                 }
                 "object", "o", "obj" -> {
                     val objDefs = (0 until objectSize()).map { getObjects().get(it) }.map { it?.id to it?.name }.toTypedArray()
@@ -51,7 +55,11 @@ listOf("find", "search").forEach { command ->
                         val name = it.first!!.replace(keyword, "<col=178000>$keyword</col>", ignoreCase = true)
                         player.message("$name : ${it.second}")
                     }
-                    player.message("Found: ${list.size} results. That include `$keyword` in their name. Search time: ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms.")
+                    player.message(
+                        "Found: ${list.size} results. That include `$keyword` in their name. Search time: ${stopwatch.elapsed(
+                            TimeUnit.MILLISECONDS,
+                        )}ms.",
+                    )
                 }
                 "npc", "n" -> {
                     val npcDefs = (0 until npcSize()).map { getNpcs().get(it) }.map { it?.id to it?.name }.toTypedArray()
@@ -60,7 +68,11 @@ listOf("find", "search").forEach { command ->
                         val name = it.first!!.replace(keyword, "<col=178000>$keyword</col>", ignoreCase = true)
                         player.message("$name : ${it.second}")
                     }
-                    player.message("Found: ${list.size} results. That include `$keyword` in their name. Search time: ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms.")
+                    player.message(
+                        "Found: ${list.size} results. That include `$keyword` in their name. Search time: ${stopwatch.elapsed(
+                            TimeUnit.MILLISECONDS,
+                        )}ms.",
+                    )
                 }
             }
         }
@@ -68,9 +80,9 @@ listOf("find", "search").forEach { command ->
 }
 
 fun search(
-        keyword: String,
-        entities: Array<Pair<Int?, String?>>
-    ) : List<Pair<String?, Int?>> {
+    keyword: String,
+    entities: Array<Pair<Int?, String?>>,
+): List<Pair<String?, Int?>> {
     val list = mutableListOf<Pair<String?, Int?>>()
     entities.forEach { item ->
         item.first?.let {
@@ -83,4 +95,3 @@ fun search(
     }
     return list
 }
-

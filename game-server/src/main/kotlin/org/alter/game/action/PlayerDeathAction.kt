@@ -14,7 +14,6 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 object PlayerDeathAction {
-
     private const val DEATH_ANIMATION = 836
 
     val deathPlugin: Plugin.() -> Unit = {

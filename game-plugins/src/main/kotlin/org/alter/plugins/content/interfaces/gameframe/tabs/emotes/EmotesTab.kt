@@ -1,20 +1,17 @@
 package org.alter.plugins.content.interfaces.emotes
 
-import org.alter.game.model.entity.Player
-import org.alter.game.model.queue.TaskPriority
 import org.alter.api.EquipmentType
 import org.alter.api.cfg.Items
 import org.alter.api.cfg.Varbit
 import org.alter.api.ext.*
+import org.alter.game.model.entity.Player
+import org.alter.game.model.queue.TaskPriority
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 object EmotesTab {
-
     const val COMPONENT_ID = 216
-
-
 
     fun unlockAll(p: Player) {
         p.setVarbit(Varbit.GOBLIN_EMOTES_VARBIT, 7)
@@ -45,7 +42,10 @@ object EmotesTab {
         p.setVarbit(Varbit.PARTY_EMOTE_VARBIT, 1)
     }
 
-    fun performEmote(p: Player, emote: Emote) {
+    fun performEmote(
+        p: Player,
+        emote: Emote,
+    ) {
         if (emote.varbit != -1 && p.getVarbit(emote.varbit) != emote.requiredVarbitValue) {
             val description = emote.unlockDescription ?: "You have not unlocked this emote yet."
             p.queue { messageBox(description) }
@@ -80,7 +80,7 @@ object EmotesTab {
          * Thanks to @ClaroJack for the skill animation/gfx id's
          */
         if (emote == Emote.SKILLCAPE) {
-            when(p.equipment[EquipmentType.CAPE.id]?.id) {
+            when (p.equipment[EquipmentType.CAPE.id]?.id) {
                 Items.MAX_CAPE_13342 -> {
                     p.animate(7121, 4)
                     p.graphic(1286, delay = 4)
@@ -194,7 +194,6 @@ object EmotesTab {
                 }
             }
         }
-
 
         if (emote == Emote.RELIC_UNLOCKED) {
             p.queue(TaskPriority.STANDARD) {

@@ -16,10 +16,11 @@ import org.alter.game.task.GameTask
  * @author Tom <rspsmods@gmail.com>
  */
 class SequentialSynchronizationTask : GameTask {
-
     @OptIn(ExperimentalUnsignedTypes::class)
-    override fun execute(world: World, service: GameService) {
-
+    override fun execute(
+        world: World,
+        service: GameService,
+    ) {
         val worldPlayers = world.players
         val worldNpcs = world.npcs
 
@@ -33,7 +34,7 @@ class SequentialSynchronizationTask : GameTask {
             }
         }
 
-        world.network.worldEntityInfoProtocol.update();
+        world.network.worldEntityInfoProtocol.update()
 
         // First off, write the world entity info to the client - it must
         // be aware of the updates before receiving the rebuild world entity packets
@@ -58,15 +59,18 @@ class SequentialSynchronizationTask : GameTask {
 
         world.players.forEach {
             /*
-            * Non-human [org.alter.game.model.entity.Player]s do not need this
-            * to send any synchronization data to their game-client as they do
-            * not have one.
-            */
+             * Non-human [org.alter.game.model.entity.Player]s do not need this
+             * to send any synchronization data to their game-client as they do
+             * not have one.
+             */
             if (it.entityType.isHumanControlled && it.initiated) {
                 it.write(it.playerInfo.toPacket(-1)) // try-catch it, this _can_ throw exceptions during .toPacket()
-                it.write(SetNpcUpdateOrigin(
-                    it.tile.x - (it.buildArea!!.zoneX shl 3),
-                    it.tile.z - (it.buildArea!!.zoneZ shl 3)))
+                it.write(
+                    SetNpcUpdateOrigin(
+                        it.tile.x - (it.buildArea!!.zoneX shl 3),
+                        it.tile.z - (it.buildArea!!.zoneZ shl 3),
+                    ),
+                )
                 it.write(it.npcInfo.toNpcInfoPacket(-1))
             }
         }

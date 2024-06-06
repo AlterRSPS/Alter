@@ -16,7 +16,6 @@ import org.alter.game.model.item.Item
  * @author Tom <rspsmods@gmail.com>
  */
 object MagicSpells {
-
     const val INF_RUNES_VARBIT = 4145
 
     private const val SPELLBOOK_POINTER_ENUM = 1981
@@ -39,11 +38,16 @@ object MagicSpells {
     private const val MISC_SPELL_TYPE = 1
     private const val TELEPORT_SPELL_TYPE = 2
 
-    private val STAFF_ITEMS = arrayOf(
-            Items.IBANS_STAFF, Items.IBANS_STAFF_U,
-            Items.SLAYERS_STAFF, Items.SLAYERS_STAFF_E,
-            Items.SARADOMIN_STAFF, Items.GUTHIX_STAFF, Items.ZAMORAK_STAFF
-    )
+    private val STAFF_ITEMS =
+        arrayOf(
+            Items.IBANS_STAFF,
+            Items.IBANS_STAFF_U,
+            Items.SLAYERS_STAFF,
+            Items.SLAYERS_STAFF_E,
+            Items.SARADOMIN_STAFF,
+            Items.GUTHIX_STAFF,
+            Items.ZAMORAK_STAFF,
+        )
 
     private val metadata = Int2ObjectOpenHashMap<SpellMetadata>()
 
@@ -51,7 +55,12 @@ object MagicSpells {
 
     fun getCombatSpells(): Map<Int, SpellMetadata> = metadata.filter { it.value.spellType == COMBAT_SPELL_TYPE }
 
-    fun canCast(p: Player, lvl: Int, items: List<Item>, requiredBook: Int): Boolean {
+    fun canCast(
+        p: Player,
+        lvl: Int,
+        items: List<Item>,
+        requiredBook: Int,
+    ): Boolean {
         if (requiredBook != -1 && p.getSpellbook().id != requiredBook) {
             p.message("You can't cast this spell.")
             return false
@@ -71,7 +80,10 @@ object MagicSpells {
         return true
     }
 
-    fun removeRunes(p: Player, items: List<Item>) {
+    fun removeRunes(
+        p: Player,
+        items: List<Item>,
+    ) {
         if (p.getVarbit(INF_RUNES_VARBIT) == 0) {
             for (item in items) {
                 /*
@@ -96,7 +108,7 @@ object MagicSpells {
 
             for (item in spellItems) {
                 val itemDef = getItem(item)
-                val params = itemDef.params?:continue
+                val params = itemDef.params ?: continue
 
                 val spellbook = params[SPELL_SPELLBOOK_KEY] as Int
                 val name = params[SPELL_NAME_KEY] as String
@@ -124,7 +136,7 @@ object MagicSpells {
         }
     }
 
-    //fun KotlinPlugin.on_magic_spell_button(name: String, plugin: Plugin.(SpellMetadata) -> Unit) {
+    // fun KotlinPlugin.on_magic_spell_button(name: String, plugin: Plugin.(SpellMetadata) -> Unit) {
     //    if (!MagicSpells.isLoaded()) {
     //        MagicSpells.loadSpellRequirements(world)
     //    }
@@ -134,5 +146,5 @@ object MagicSpells {
     //    on_button(spell.interfaceId, spell.component) {
     //        plugin(this, spell)
     //    }
-    //}
+    // }
 }

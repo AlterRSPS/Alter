@@ -11,11 +11,15 @@ suspend fun QueueTask.dialog() {
     chatPlayer("Where?")
     chatNpc("All around us! I can feel it in the air, hear it on the<br><br>wind, smell it... also in the air!")
     chatPlayer("Is there anything we can do about this doom?")
-    chatNpc("There is nothing you need to do my firend! I am the<br>Doomsayer, although my real title could be something<br>like the Danger Tutor.")
+    chatNpc(
+        "There is nothing you need to do my firend! I am the<br>Doomsayer, although my real title could be something<br>like the Danger Tutor.",
+    )
     chatPlayer("Danger Tutor?")
     chatNpc("Yes! I roam the world sensing danger.")
     chatNpc("if I find a dangerous area, then I put up warning<br>signs that will tell you what is so dangerous about that<br>area.")
-    chatNpc("If you see the signs often enough, then you can turn<br>them off; by that time you likely know what the area<br> has in store for you.")
+    chatNpc(
+        "If you see the signs often enough, then you can turn<br>them off; by that time you likely know what the area<br> has in store for you.",
+    )
     chatPlayer("But what if I want to see the warnings again?")
     chatNpc("That's why im waiting here!")
     chatNpc("If you want to see the warning messages again, I can<br><br>turn them back on for you.")

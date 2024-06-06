@@ -8,8 +8,10 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class ResumePObjDialogHandler : MessageHandler<ResumePObjDialog> {
-
-    override fun accept(client: Client, message: ResumePObjDialog) {
+    override fun accept(
+        client: Client,
+        message: ResumePObjDialog,
+    ) {
         log(client, "Searched item: item=%d", message.obj)
         client.queues.submitReturnValue(message.obj)
     }

@@ -3,12 +3,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias(libs.plugins.kotlin.jvm) apply true
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ktlint)
     idea
 }
 
 allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     group = "org.alter"
     version = "0.0.5"
@@ -17,11 +19,10 @@ allprojects {
             languageVersion.set(JavaLanguageVersion.of(17))
         }
     }
-    kotlin{
-        jvmToolchain{
+    kotlin {
+        jvmToolchain {
             languageVersion.set(JavaLanguageVersion.of(17))
         }
-
     }
     repositories {
         mavenLocal()
@@ -73,9 +74,10 @@ allprojects {
         kotlinOptions {
             languageVersion = "1.7"
             jvmTarget = "17"
-            freeCompilerArgs = listOf(
-                "-Xallow-any-scripts-in-source-roots" ,
-            )
+            freeCompilerArgs =
+                listOf(
+                    "-Xallow-any-scripts-in-source-roots",
+                )
         }
     }
 }
@@ -100,8 +102,8 @@ tasks.register<Zip>("packageServer") {
         rename("first-launch-template", "first-launch")
     }
 
-    from ("gradle/") {
-        into ("gradle")
+    from("gradle/") {
+        into("gradle")
     }
 
     from("data/") {
@@ -121,14 +123,12 @@ tasks.register<Zip>("packageServer") {
         exclude("plugins")
         exclude("src/main/java")
         exclude("src/test/java")
-
-
     }
 
     from("game-plugins/") {
         into("game-plugins/")
         include("src/main/kotlin/alter/plugins/**")
-        //include("src/main/kotlin/alter/plugins/content/osrs.kts")
+        // include("src/main/kotlin/alter/plugins/content/osrs.kts")
     }
 
     from("game-api/") {
@@ -177,5 +177,3 @@ tasks.register<Zip>("packageLibs") {
         rename("plugins-${project.version}.jar", "plugins.jar")
     }
 }
-
-

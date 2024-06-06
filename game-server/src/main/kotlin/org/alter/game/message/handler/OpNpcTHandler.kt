@@ -13,9 +13,11 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 class OpNpcTHandler : MessageHandler<OpNpcT> {
-
-    override fun accept(client: Client, message: OpNpcT) {
-        if(true) {
+    override fun accept(
+        client: Client,
+        message: OpNpcT,
+    ) {
+        if (true) {
             val npc = client.world.npcs[message.index] ?: return
             val parent = message.selectedInterfaceId
             val child = message.selectedComponentId
@@ -24,7 +26,15 @@ class OpNpcTHandler : MessageHandler<OpNpcT> {
                 return
             }
 
-            log(client, "Spell/Item on npc: npc=%d. index=%d, component=[%d:%d], movement=%d", npc.id, message.index, parent, child, message.controlKey)
+            log(
+                client,
+                "Spell/Item on npc: npc=%d. index=%d, component=[%d:%d], movement=%d",
+                npc.id,
+                message.index,
+                parent,
+                child,
+                message.controlKey,
+            )
 
             client.interruptQueues()
             client.resetInteractions()
@@ -42,7 +52,6 @@ class OpNpcTHandler : MessageHandler<OpNpcT> {
             client.attr[INTERACTING_COMPONENT_PARENT] = parent
             client.attr[INTERACTING_COMPONENT_CHILD] = child
 
-
             /**
              * @TODO
              * 1) Need to fix path
@@ -54,7 +63,7 @@ class OpNpcTHandler : MessageHandler<OpNpcT> {
                     if (client.world.devContext.debugItemActions) {
                         client.writeMessage("Unhandled item on npc [ $verify on ${npc.id}] ] ")
                     }
-                } else if (!client.world.plugins.executeItemOnNpc(client, verify)){
+                } else if (!client.world.plugins.executeItemOnNpc(client, verify)) {
                     client.writeMessage("Nothing interesting happens.")
                 }
             } else {
@@ -65,7 +74,7 @@ class OpNpcTHandler : MessageHandler<OpNpcT> {
                     }
                 }
             }
-        } else {//Old Item on NPC OpNpcU
+        } else { // Old Item on NPC OpNpcU
             val index = message.index
             val npc = client.world.npcs[index] ?: return
 
@@ -73,8 +82,8 @@ class OpNpcTHandler : MessageHandler<OpNpcT> {
                 return
             }
 
-            val itemId = message.selectedObj//TODO IDK ADVO
-            val itemSlot = message.selectedSub//TODO IDK ADVO
+            val itemId = message.selectedObj // TODO IDK ADVO
+            val itemSlot = message.selectedSub // TODO IDK ADVO
 
             val item = client.inventory[itemSlot] ?: return
 

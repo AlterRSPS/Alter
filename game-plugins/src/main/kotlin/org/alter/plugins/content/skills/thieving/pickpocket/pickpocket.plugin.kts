@@ -16,10 +16,14 @@ PickpocketNpc.values.forEach { pickpocketNpc ->
         }
     }
 }
+
 /**
  * @TODO When pickpocketing on "You attempt to pickpocket the Man... The npc faces the player. It should not do that.
  */
-suspend fun QueueTask.pickpocket(npcId: Int, npc: PickpocketNpc) {
+suspend fun QueueTask.pickpocket(
+    npcId: Int,
+    npc: PickpocketNpc,
+) {
     val playerThievingLvl = player.getSkills().getCurrentLevel(Skills.THIEVING)
     val npcName = npc.npcName ?: getNpc(npcId).name
     if (playerThievingLvl < npc.reqLevel) {
@@ -35,11 +39,11 @@ suspend fun QueueTask.pickpocket(npcId: Int, npc: PickpocketNpc) {
         return
     }
 
-    //pickpocketing animation and starting message
+    // pickpocketing animation and starting message
     player.animate(PICKPOCKET_ANIMATION)
     player.message("You attempt to pickpocket the $npcName...")
 
-    //wait 3 game cycles
+    // wait 3 game cycles
     player.lock = LockState.FULL_WITH_ITEM_INTERACTION
     wait(3)
     player.lock = LockState.NONE
@@ -49,24 +53,26 @@ suspend fun QueueTask.pickpocket(npcId: Int, npc: PickpocketNpc) {
         val reward = npc.rewardSet.getRandom()
         player.inventory.add(reward)
         player.addXp(Skills.THIEVING, npc.experience)
-
     } else {
-        //if failed, sends relevant messages
+        // if failed, sends relevant messages
         player.message("You have been Stunned.")
 
-        //damages player for a value in the npc's damage range
+        // damages player for a value in the npc's damage range
         player.hit(npc.damage.random())
 
-        //stuns the player then waits til the stun is done to continue
+        // stuns the player then waits til the stun is done to continue
         player.stun(npc.stunTicks)
     }
 }
 
-fun getPickpocketSuccess(playerThievingLvl: Int, npc: PickpocketNpc, player: Player): Boolean{
-
-    //gets whether the player has Gloves of Silence equipped, and gives the 5% bonus if they do
+fun getPickpocketSuccess(
+    playerThievingLvl: Int,
+    npc: PickpocketNpc,
+    player: Player,
+): Boolean {
+    // gets whether the player has Gloves of Silence equipped, and gives the 5% bonus if they do
     val bonus = if (player.hasEquipped(EquipmentType.GLOVES, Items.GLOVES_OF_SILENCE)) GLOVES_OF_SILENCE_BONUS else 0
 
-    //applies the interpolate function. selects a chance from 55% to 95% based on thieving level
+    // applies the interpolate function. selects a chance from 55% to 95% based on thieving level
     return playerThievingLvl.interpolate(55, 95, npc.reqLevel, 99, 100 - bonus)
 }

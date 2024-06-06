@@ -50,7 +50,10 @@ class ToStringHelper constructor(private val className: String) {
      * Adds a name/value pair to the formatted output in `name=value` format. If `value`
      * is `null`, the string `"null"` is used
      */
-    fun add(name: String, value: Any?): ToStringHelper {
+    fun add(
+        name: String,
+        value: Any?,
+    ): ToStringHelper {
         val valueHolder = ValueHolder()
         holderTail!!.next = valueHolder
         holderTail = holderTail!!.next

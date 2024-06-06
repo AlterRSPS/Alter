@@ -30,7 +30,6 @@ import java.util.concurrent.TimeUnit
  */
 @OptIn(ExperimentalStdlibApi::class)
 class Server {
-
     /**
      * The properties specific to our API.
      */
@@ -63,7 +62,13 @@ class Server {
      * Due to being decoupled from the API logic that will always be used, you
      * can start multiple servers with different game property files.
      */
-    fun startGame(filestore: Path, gameProps: Path, packets: Path, blocks: Path, devProps: Path?): World {
+    fun startGame(
+        filestore: Path,
+        gameProps: Path,
+        packets: Path,
+        blocks: Path,
+        devProps: Path?,
+    ): World {
         val stopwatch = Stopwatch.createStarted()
         val individualStopwatch = Stopwatch.createUnstarted()
 
@@ -82,36 +87,39 @@ class Server {
         /*
          * Create a game context for our configurations and services to run.
          */
-        val gameContext = GameContext(
-            initialLaunch = initialLaunch,
-            name = gameProperties.get<String>("name")!!,
-            revision = gameProperties.get<Int>("revision")!!,
-            cycleTime = gameProperties.getOrDefault("cycle-time", 600),
+        val gameContext =
+            GameContext(
+                initialLaunch = initialLaunch,
+                name = gameProperties.get<String>("name")!!,
+                revision = gameProperties.get<Int>("revision")!!,
+                cycleTime = gameProperties.getOrDefault("cycle-time", 600),
+                playerLimit = gameProperties.getOrDefault("max-players", 2048),
+                home =
+                    Tile(
+                        gameProperties.get<Int>("home-x")!!,
+                        gameProperties.get<Int>("home-z")!!,
+                        gameProperties.getOrDefault("home-height", 0),
+                    ),
+                skillCount = gameProperties.getOrDefault("skill-count", SkillSet.DEFAULT_SKILL_COUNT),
+                npcStatCount = gameProperties.getOrDefault("npc-stat-count", Npc.Stats.DEFAULT_NPC_STAT_COUNT),
+                runEnergy = gameProperties.getOrDefault("run-energy", true),
+                gItemPublicDelay =
+                    gameProperties.getOrDefault(
+                        "gitem-public-spawn-delay",
+                        GroundItem.DEFAULT_PUBLIC_SPAWN_CYCLES,
+                    ),
+                gItemDespawnDelay = gameProperties.getOrDefault("gitem-despawn-delay", GroundItem.DEFAULT_DESPAWN_CYCLES),
+                preloadMaps = gameProperties.getOrDefault("preload-maps", false),
+            )
 
-            playerLimit = gameProperties.getOrDefault("max-players", 2048),
-            home = Tile(
-                gameProperties.get<Int>("home-x")!!,
-                gameProperties.get<Int>("home-z")!!,
-                gameProperties.getOrDefault("home-height", 0)
-            ),
-            skillCount = gameProperties.getOrDefault("skill-count", SkillSet.DEFAULT_SKILL_COUNT),
-            npcStatCount = gameProperties.getOrDefault("npc-stat-count", Npc.Stats.DEFAULT_NPC_STAT_COUNT),
-            runEnergy = gameProperties.getOrDefault("run-energy", true),
-            gItemPublicDelay = gameProperties.getOrDefault(
-                "gitem-public-spawn-delay",
-                GroundItem.DEFAULT_PUBLIC_SPAWN_CYCLES
-            ),
-            gItemDespawnDelay = gameProperties.getOrDefault("gitem-despawn-delay", GroundItem.DEFAULT_DESPAWN_CYCLES),
-            preloadMaps = gameProperties.getOrDefault("preload-maps", false)
-        )
-
-        val devContext = DevContext(
-            debugExamines = devProperties.getOrDefault("debug-examines", false),
-            debugObjects = devProperties.getOrDefault("debug-objects", false),
-            debugButtons = devProperties.getOrDefault("debug-buttons", false),
-            debugItemActions = devProperties.getOrDefault("debug-items", false),
-            debugMagicSpells = devProperties.getOrDefault("debug-spells", false)
-        )
+        val devContext =
+            DevContext(
+                debugExamines = devProperties.getOrDefault("debug-examines", false),
+                debugObjects = devProperties.getOrDefault("debug-objects", false),
+                debugButtons = devProperties.getOrDefault("debug-buttons", false),
+                debugItemActions = devProperties.getOrDefault("debug-items", false),
+                debugMagicSpells = devProperties.getOrDefault("debug-spells", false),
+            )
 
         val world = World(gameContext, devContext)
 
@@ -162,9 +170,15 @@ class Server {
          */
         individualStopwatch.reset().start()
         world.plugins.init(
-                server = this, world = world,
-                jarPluginsDirectory = gameProperties.getOrDefault("plugin-packed-path", "../plugins"))
-        logger.info("Loaded {} plugins in {}ms.", DecimalFormat().format(world.plugins.getPluginCount()), individualStopwatch.elapsed(TimeUnit.MILLISECONDS))
+            server = this,
+            world = world,
+            jarPluginsDirectory = gameProperties.getOrDefault("plugin-packed-path", "../plugins"),
+        )
+        logger.info(
+            "Loaded {} plugins in {}ms.",
+            DecimalFormat().format(world.plugins.getPluginCount()),
+            individualStopwatch.elapsed(TimeUnit.MILLISECONDS),
+        )
 
         /*
          * Post load world.
@@ -203,9 +217,8 @@ class Server {
             val currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
 
             println("[ \u001B[32mCOMMAND\u001B[0m ] [ $currentTime ]: $input")
-            println("${values}")
+            println("$values")
         } while (true)
-
 
         return world
     }

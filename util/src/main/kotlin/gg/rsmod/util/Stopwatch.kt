@@ -196,7 +196,9 @@ class Stopwatch {
             }
             return if (TimeUnit.MICROSECONDS.convert(nanos, TimeUnit.NANOSECONDS) > 0) {
                 TimeUnit.MICROSECONDS
-            } else TimeUnit.NANOSECONDS
+            } else {
+                TimeUnit.NANOSECONDS
+            }
         }
 
         private fun abbreviate(unit: TimeUnit): String {

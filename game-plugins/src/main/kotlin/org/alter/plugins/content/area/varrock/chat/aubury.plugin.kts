@@ -39,11 +39,23 @@ suspend fun QueueTask.dialog() {
     }
 }
 
-suspend fun QueueTask.options(): Int = options("Can you tell me about your cape?", "Yes please!", "Oh, it's a rune shop. No thank you then.", "Can you teleport me to the Rune Essence?")
+suspend fun QueueTask.options(): Int =
+    options(
+        "Can you tell me about your cape?",
+        "Yes please!",
+        "Oh, it's a rune shop. No thank you then.",
+        "Can you teleport me to the Rune Essence?",
+    )
 
 suspend fun QueueTask.about_your_cape() {
-    chatNpc("Certainly! Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.", animation = 568)
-    chatNpc("The Cape of Runescape has been upgraded with each talisman, allowing you to access all Runecrafting altars. Is there anything else I can help you with?", animation = 554)
+    chatNpc(
+        "Certainly! Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.",
+        animation = 568,
+    )
+    chatNpc(
+        "The Cape of Runescape has been upgraded with each talisman, allowing you to access all Runecrafting altars. Is there anything else I can help you with?",
+        animation = 554,
+    )
 }
 
 fun open_shop(p: Player) {

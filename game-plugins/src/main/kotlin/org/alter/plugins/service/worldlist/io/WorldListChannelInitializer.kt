@@ -15,7 +15,6 @@ import io.netty.handler.codec.http.HttpResponseEncoder
  * @param handler   The inbound channel handler
  */
 class WorldListChannelInitializer(val handler: ChannelInboundHandlerAdapter) : ChannelInitializer<SocketChannel>() {
-
     /**
      * Initialises the [SocketChannel] pipeline
      *
@@ -29,5 +28,4 @@ class WorldListChannelInitializer(val handler: ChannelInboundHandlerAdapter) : C
         pipeline.addLast(WorldListEncoder())
         pipeline.addLast(handler)
     }
-
 }

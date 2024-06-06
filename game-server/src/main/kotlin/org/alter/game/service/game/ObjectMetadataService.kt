@@ -15,10 +15,13 @@ import java.nio.file.Paths
  * @author Tom <rspsmods@gmail.com>
  */
 class ObjectMetadataService : Service {
-
     private lateinit var path: Path
 
-    override fun init(server: Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(
+        server: Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
         path = Paths.get(serviceProperties.getOrDefault("path", "../data/cfg/locs.csv"))
         if (!Files.exists(path)) {
             throw FileNotFoundException("Path does not exist. $path")
@@ -26,13 +29,22 @@ class ObjectMetadataService : Service {
         load(world.definitions)
     }
 
-    override fun postLoad(server: Server, world: World) {
+    override fun postLoad(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun bindNet(server: Server, world: World) {
+    override fun bindNet(
+        server: Server,
+        world: World,
+    ) {
     }
 
-    override fun terminate(server: Server, world: World) {
+    override fun terminate(
+        server: Server,
+        world: World,
+    ) {
     }
 
     private fun load(definitions: DefinitionSet) {
@@ -43,10 +55,9 @@ class ObjectMetadataService : Service {
                 val examine = line.substringAfter(',').trim()
                 if (id != null) {
                     ObjectExamineHolder.EXAMINES.put(id, examine.replace("\"", ""))
-//TODO ADVO
+// TODO ADVO
 //                    val def = definitions.getNullable(ObjectDef::class.java, id) ?: return@forEachLine
 //                    def.examine = examine.replace("\"", "")
-
                 }
             }
         }

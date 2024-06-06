@@ -64,7 +64,12 @@ arrayOf(Items.LOOTING_BAG, Items.LOOTING_BAG_22586).forEach { bag ->
 
         player.queue {
             val container = player.containers[CONTAINER_KEY]
-            val destroy = destroyItem(note = if (container != null && container.hasAny) "If you destroy it, the contents will be lost." else "The bag is empty. Are you sure you want to destroy it?", item = bag, amount = 1)
+            val destroy =
+                destroyItem(
+                    note = if (container != null && container.hasAny) "If you destroy it, the contents will be lost." else "The bag is empty. Are you sure you want to destroy it?",
+                    item = bag,
+                    amount = 1,
+                )
             if (destroy) {
                 player.inventory.remove(item = bag, amount = 1, beginSlot = slot)
             }
@@ -135,7 +140,11 @@ on_button(interfaceId = 192, component = 8) {
     }
 }
 
-fun store(p: Player, slot: Int, amount: Int) {
+fun store(
+    p: Player,
+    slot: Int,
+    amount: Int,
+) {
     val item = p.inventory[slot] ?: return
 
     if (item.id == Items.LOOTING_BAG || item.id == Items.LOOTING_BAG_22586) {
@@ -156,20 +165,29 @@ fun store(p: Player, slot: Int, amount: Int) {
     store(p, item, amount)
 }
 
-fun store(p: Player, item: Item, amount: Int, beginSlot: Int = -1): Boolean {
-    //val container = p.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(world.definitions, CONTAINER_KEY) }
+fun store(
+    p: Player,
+    item: Item,
+    amount: Int,
+    beginSlot: Int = -1,
+): Boolean {
+    // val container = p.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(world.definitions, CONTAINER_KEY) }
 
-    //val transferred = p.inventory.transfer(container, item = Item(item, amount).copyAttr(item), fromSlot = beginSlot)?.completed ?: 0
-    //if (transferred == 0) {
-     //   p.message("The bag's too full.")
-        return false
-    //}
-    //p.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
-    //p.setComponentText(interfaceId = TAB_INTERFACE_ID, component = VALUE_TEXT_COMPONENT, text = "Bag value: ${p.inventory.getNetworth(world).decimalFormat()} coins")
-    //return true
+    // val transferred = p.inventory.transfer(container, item = Item(item, amount).copyAttr(item), fromSlot = beginSlot)?.completed ?: 0
+    // if (transferred == 0) {
+    //   p.message("The bag's too full.")
+    return false
+    // }
+    // p.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
+    // p.setComponentText(interfaceId = TAB_INTERFACE_ID, component = VALUE_TEXT_COMPONENT, text = "Bag value: ${p.inventory.getNetworth(world).decimalFormat()} coins")
+    // return true
 }
 
-fun bank(p: Player, slot: Int, amount: Int) {
+fun bank(
+    p: Player,
+    slot: Int,
+    amount: Int,
+) {
     val container = p.containers[CONTAINER_KEY] ?: return
     val item = container[slot] ?: return
 
@@ -181,7 +199,10 @@ fun bank(p: Player, slot: Int, amount: Int) {
     p.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
 }
 
-fun bank_all(p: Player, container: ItemContainer): Boolean {
+fun bank_all(
+    p: Player,
+    container: ItemContainer,
+): Boolean {
     var any = false
 
     container.forEach { item ->
@@ -196,14 +217,20 @@ fun bank_all(p: Player, container: ItemContainer): Boolean {
     return any
 }
 
-fun open(p: Player, slot: Int) {
+fun open(
+    p: Player,
+    slot: Int,
+) {
     val remove = p.inventory.remove(item = Items.LOOTING_BAG, beginSlot = slot)
     if (remove.hasSucceeded()) {
         p.inventory.add(item = Items.LOOTING_BAG_22586, beginSlot = slot)
     }
 }
 
-fun close(p: Player, slot: Int) {
+fun close(
+    p: Player,
+    slot: Int,
+) {
     val remove = p.inventory.remove(item = Items.LOOTING_BAG_22586, beginSlot = slot)
     if (remove.hasSucceeded()) {
         p.inventory.add(item = Items.LOOTING_BAG, beginSlot = slot)
@@ -246,7 +273,7 @@ fun deposit(p: Player) {
     p.runClientScript(495, "Add to bag", 1)
 
     /** @TODO */
-    //p.setComponentText(interfaceId = TAB_INTERFACE_ID, component = VALUE_TEXT_COMPONENT, text = "Bag value: ${p.inventory.getNetworth(world).decimalFormat()} coins")
+    // p.setComponentText(interfaceId = TAB_INTERFACE_ID, component = VALUE_TEXT_COMPONENT, text = "Bag value: ${p.inventory.getNetworth(world).decimalFormat()} coins")
     p.runClientScript(1235, INV_CONTAINER_KEY, *get_item_prices(world, p.inventory))
 
     set_queue(p)
@@ -263,7 +290,10 @@ fun set_queue(p: Player) {
     }
 }
 
-fun get_item_prices(world: World, container: ItemContainer): Array<Int> {
+fun get_item_prices(
+    world: World,
+    container: ItemContainer,
+): Array<Int> {
     val marketService = world.getService(ItemMarketValueService::class.java)
     val prices = Array(container.capacity) { -1 }
 

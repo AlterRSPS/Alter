@@ -8,8 +8,10 @@ import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.entity.Client
 
 class IfModelOp1Handler : MessageHandler<If1Button> {
-
-    override fun accept(client: Client, message: If1Button) {
+    override fun accept(
+        client: Client,
+        message: If1Button,
+    ) {
         val interfaceId = message.interfaceId
         val component = message.componentId
         val option = 0
@@ -29,7 +31,7 @@ class IfModelOp1Handler : MessageHandler<If1Button> {
         }
 
         if (client.world.devContext.debugButtons) {
-            client.writeMessage("Unhandled button action: [component=[$interfaceId:$component], option=$option, slot=${slot}, item=${item}]")
+            client.writeMessage("Unhandled button action: [component=[$interfaceId:$component], option=$option, slot=$slot, item=$item]")
         }
     }
 }

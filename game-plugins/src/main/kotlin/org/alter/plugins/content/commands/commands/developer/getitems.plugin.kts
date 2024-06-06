@@ -25,9 +25,9 @@ on_command("getitems", Privilege.DEV_POWER) {
                 }
             }
         }
-            for (i in 0 until items_list.count()) {
-                player.bank.add(items_list[i], 10)
-            }
+        for (i in 0 until items_list.count()) {
+            player.bank.add(items_list[i], 10)
+        }
         player.message("Total Count: ${items_list.count()} with keyword: $item_name in their name and examine")
     }
 }

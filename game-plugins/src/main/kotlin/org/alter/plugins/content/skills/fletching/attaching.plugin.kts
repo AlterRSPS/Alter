@@ -19,7 +19,7 @@ val attachAction = AttachAction()
  * Handles using the firstMaterial on the secondMaterial
  */
 attachedDefs.values.forEach { attached ->
-    //on_item_on_item(item1 = attached.firstMaterial, item2 = attached.secondMaterial) { makeAttached(player, attached.id) }
+    // on_item_on_item(item1 = attached.firstMaterial, item2 = attached.secondMaterial) { makeAttached(player, attached.id) }
 }
 
 /**
@@ -28,7 +28,7 @@ attachedDefs.values.forEach { attached ->
  * @param player    The player instance
  * @param attached  The attached item ID the user is trying to make
  */
-//fun makeAttached(player: Player, attached: Int) {
+// fun makeAttached(player: Player, attached: Int) {
 //    val attachedDef = attachedDefs[attached] ?: return
 //    val maxAttached = Math.min(player.inventory.getItemCount(attachedDef.firstMaterial), player.inventory.getItemCount(attachedDef.secondMaterial))
 //    when (maxAttached) {
@@ -36,7 +36,7 @@ attachedDefs.values.forEach { attached ->
 //        1 -> attach(player, attached, 1)
 //        else -> player.queue { produceItemBox(attachedDef.id, type = 10,  maxProducable = maxAttached, logic = ::attach) }
 //    }
-//}
+// }
 
 /**
  * Handles the attachment into the selected item
@@ -46,7 +46,11 @@ attachedDefs.values.forEach { attached ->
  * @param amount    The number of items the player is trying to make
  */
 
-fun attach(player: Player, item: Int, amount: Int) {
+fun attach(
+    player: Player,
+    item: Int,
+    amount: Int,
+) {
     val attachedDef = attachedDefs[item] ?: return
 
     player.interruptQueues()

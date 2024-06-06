@@ -5,7 +5,7 @@ import org.alter.plugins.content.combat.isAttacking
 
 val AGGRO_CHECK_TIMER = TimerKey()
 
-val defaultAggressiveness: (Npc, Player) -> Boolean = boolean@ { n, p ->
+val defaultAggressiveness: (Npc, Player) -> Boolean = boolean@{ n, p ->
     if (n.combatDef.aggressiveTimer == Int.MAX_VALUE) {
         return@boolean true
     } else if (n.combatDef.aggressiveTimer == Int.MIN_VALUE) {
@@ -38,8 +38,8 @@ fun checkRadius(npc: Npc) {
     val radius = npc.combatDef.aggressiveRadius
 
     mainLoop@
-    for (x in -radius .. radius) {
-        for (z in -radius .. radius) {
+    for (x in -radius..radius) {
+        for (z in -radius..radius) {
             val tile = npc.tile.transform(x, z)
             val chunk = world.chunks.get(tile, createIfNeeded = false) ?: continue
 
@@ -62,7 +62,10 @@ fun checkRadius(npc: Npc) {
     }
 }
 
-fun canAttack(npc: Npc, target: Player): Boolean {
+fun canAttack(
+    npc: Npc,
+    target: Player,
+): Boolean {
     if (!target.isOnline || target.invisible) {
         return false
     }

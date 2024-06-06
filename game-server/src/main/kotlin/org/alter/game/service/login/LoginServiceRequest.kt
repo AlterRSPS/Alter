@@ -13,5 +13,5 @@ import org.alter.game.model.entity.Client
 data class LoginServiceRequest(
     val world: World,
     val responseHandler: GameLoginResponseHandler<Client>,
-    val block: LoginBlock<*>
+    val block: LoginBlock<*>,
 )

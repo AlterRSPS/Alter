@@ -1,17 +1,17 @@
-//package org.alter.plugins.content.combat.weapons
+// package org.alter.plugins.content.combat.weapons
 //
-//import org.alter.game.model.Graphic
-//import org.alter.api.cfg.Animation
-//import org.alter.api.cfg.Sound
-//import org.alter.plugins.content.combat.dealHit
-//import org.alter.plugins.content.combat.getCombatTarget
+// import org.alter.game.model.Graphic
+// import org.alter.api.cfg.Animation
+// import org.alter.api.cfg.Sound
+// import org.alter.plugins.content.combat.dealHit
+// import org.alter.plugins.content.combat.getCombatTarget
 //
-///**
+// /**
 // * @author CloudS3c 3/17/2023
 // *
 // * This is experimental plugin.. Not some live replica..
 // */
-//set_item_combat_logic(Items.SCYTHE_OF_VITUR_UNCHARGED) {
+// set_item_combat_logic(Items.SCYTHE_OF_VITUR_UNCHARGED) {
 //    val target = player.getTarget()
 //    var gfx: Int
 //    target?.let {
@@ -31,8 +31,8 @@
 //        }
 //        world.spawn(TileGraphic(target.tile, gfx, 96, 20))
 //    }
-//}
-///**
+// }
+// /**
 // * How does the animation when npc attacks player --> Which anim gets executed first. Need better understanding in this.
 // * Special code when npc is under you
 // *
@@ -40,7 +40,7 @@
 // * But when it's melee attack he does the block animation. (Src: https://www.youtube.com/watch?v=sZ3bs8blZU8)
 // *
 // */
-//set_item_combat_logic(Items.DRAGON_HUNTER_LANCE) {
+// set_item_combat_logic(Items.DRAGON_HUNTER_LANCE) {
 //    //val defs = GetItemDef(Items.DRAGON_HUNTER_LANCE)
 //    val target = player.getCombatTarget()
 //    target?.let {
@@ -62,4 +62,4 @@
 //            }
 //        }
 //    }
-//}
+// }

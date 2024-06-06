@@ -1,19 +1,18 @@
 package org.alter.plugins.content.skills.herblore.pestle
 
-import org.alter.game.model.container.ItemContainer
-import org.alter.game.model.entity.Player
 import org.alter.api.cfg.Items
-
 import org.alter.api.ext.autoReplace
 import org.alter.api.ext.message
 import org.alter.api.ext.playSound
+import org.alter.game.model.container.ItemContainer
+import org.alter.game.model.entity.Player
 import kotlin.random.Random
 
 /**
  * @param itemIn - the 'Supplies' [Item.id] to be crushed
  * @param itemOut - the crushed/dust [Item.id] to be produced
  */
-enum class Crushables(val itemIn: Int, val itemOut: Int, val message: String = ""){
+enum class Crushables(val itemIn: Int, val itemOut: Int, val message: String = "") {
     ANCHOVIES(Items.ANCHOVIES, Items.ANCHOVY_PASTE, "You grind the anchovies into a fishy, sticky paste."),
     UNICORN_HORN(Items.UNICORN_HORN, Items.UNICORN_HORN_DUST, "You grind the unicorn horn to dust."),
     CHOCOLATE(Items.CHOCOLATE_BAR, Items.CHOCOLATE_DUST, "You grind the chocolate to dust."),
@@ -36,12 +35,13 @@ enum class Crushables(val itemIn: Int, val itemOut: Int, val message: String = "
     RUNE(Items.RUNE_SHARDS, Items.RUNE_DUST),
     KARAMBWANJI_RAW(Items.RAW_KARAMBWANJI, Items.KARAMBWANJI_PASTE),
     KARAMBWANJI_COOKED(Items.KARAMBWANJI, Items.KARAMBWANJI_PASTE_3156),
-    //BLACK_SHROOMS(Items.BLACK_MUSHROOM, Items.BLACK_MUSHROOM_INK),
+    // BLACK_SHROOMS(Items.BLACK_MUSHROOM, Items.BLACK_MUSHROOM_INK),
 
-    LAVA(Items.LAVA_SCALE, Items.LAVA_SCALE_SHARD); // special case creates multiple amount
+    LAVA(Items.LAVA_SCALE, Items.LAVA_SCALE_SHARD), // special case creates multiple amount
+    ;
 
-    fun crush(player: Player){
-        if(!player.hasPM()) {
+    fun crush(player: Player) {
+        if (!player.hasPM()) {
             player.message("You do not have the pestle and mortar required.")
             return
         }
@@ -49,11 +49,11 @@ enum class Crushables(val itemIn: Int, val itemOut: Int, val message: String = "
             player.animate(id = 364, delay = 0)
             player.playSound(2608, 1, 0)
         }, success = {
-            if(this == LAVA){
-                val shards = Random.nextInt(3,5)
+            if (this == LAVA) {
+                val shards = Random.nextInt(3, 5)
                 player.inventory.add(itemOut, shards)
                 player.message("You grind the lava dragon scale into $shards shards.")
-            } else if(message != "") {
+            } else if (message != "") {
                 player.message(message)
             }
         })
