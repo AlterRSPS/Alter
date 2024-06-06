@@ -10,10 +10,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
 import org.alter.game.model.World
 import org.alter.game.task.*
-import org.alter.game.task.sequential.SequentialNpcCycleTask
-import org.alter.game.task.sequential.SequentialPlayerCoordCycleTask
-import org.alter.game.task.sequential.SequentialPlayerCycleTask
-import org.alter.game.task.sequential.SequentialSynchronizationTask
+import org.alter.game.task.NpcCycleTask
+import org.alter.game.task.PlayerCycleTask
+import org.alter.game.task.SequentialSynchronizationTask
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -76,7 +75,7 @@ class GameService : Service {
     private val taskTimes = Object2LongOpenHashMap<Class<GameTask>>()
 
     /**
-     * The amount of time, in milliseconds, that [SequentialPlayerCycleTask]
+     * The amount of time, in milliseconds, that [PlayerCycleTask]
      * has taken for each [org.alter.game.model.entity.Player].
      */
     internal val playerTimes = Object2LongOpenHashMap<String>()
@@ -139,11 +138,10 @@ class GameService : Service {
             arrayOf(
                 MessageHandlerTask(),
                 QueueHandlerTask(),
-                SequentialPlayerCycleTask(),
+                PlayerCycleTask(),
                 ChunkCreationTask(),
                 WorldRemoveTask(),
-                SequentialNpcCycleTask(),
-                SequentialPlayerCoordCycleTask(),
+                NpcCycleTask(),
                 SequentialSynchronizationTask(),
             ),
         )

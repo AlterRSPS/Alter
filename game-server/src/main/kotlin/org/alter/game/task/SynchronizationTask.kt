@@ -1,4 +1,4 @@
-package org.alter.game.task.sequential
+package org.alter.game.task
 
 import net.rsprot.crypto.xtea.XteaKey
 import net.rsprot.protocol.game.outgoing.info.npcinfo.SetNpcUpdateOrigin
@@ -14,7 +14,6 @@ import org.alter.game.model.entity.Player
 import org.alter.game.model.instance.InstancedChunkSet
 import org.alter.game.model.region.Chunk
 import org.alter.game.service.GameService
-import org.alter.game.task.GameTask
 
 /**
  * A [GameTask] that is responsible for sending [org.alter.game.model.entity.Pawn]
@@ -36,6 +35,8 @@ class SequentialSynchronizationTask : GameTask {
         for (n in worldNpcs.entries) {
             n?.npcPreSynchronizationTask()
         }
+
+        worldPlayers.forEach(Player::playerCoordCycleTask)
 
         world.network.worldEntityInfoProtocol.update()
 
@@ -166,4 +167,14 @@ fun Npc.npcPostSynchronizationTask() {
     pawn.moved = false
     pawn.steps = null
 //        pawn.blockBuffer.clean()
+}
+
+/**
+ * Updates the coords for all players within the rsprot library. This is run after processing to properly account for
+ * displacement effects [dspear, etc]
+ */
+fun Player.playerCoordCycleTask() {
+    this.playerInfo.updateCoord(this.tile.height, this.tile.x, this.tile.z)
+    this.npcInfo.updateCoord(-1, this.tile.height, this.tile.x, this.tile.z)
+    this.worldEntityInfo.updateCoord(-1, this.tile.height, this.tile.x, this.tile.z)
 }

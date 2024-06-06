@@ -1,8 +1,7 @@
-package org.alter.game.task.sequential
+package org.alter.game.task
 
 import org.alter.game.model.World
 import org.alter.game.service.GameService
-import org.alter.game.task.GameTask
 
 /**
  * A [GameTask] responsible for executing [org.alter.game.model.entity.Player]
@@ -10,7 +9,7 @@ import org.alter.game.task.GameTask
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class SequentialPlayerCycleTask : GameTask {
+class PlayerCycleTask : GameTask {
     override fun execute(
         world: World,
         service: GameService,
