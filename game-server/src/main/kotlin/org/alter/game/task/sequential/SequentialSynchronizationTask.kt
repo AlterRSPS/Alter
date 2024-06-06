@@ -1,6 +1,5 @@
 package org.alter.game.task.sequential
 
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.rsprot.crypto.xtea.XteaKey
 import net.rsprot.protocol.game.outgoing.info.npcinfo.SetNpcUpdateOrigin
 import net.rsprot.protocol.game.outgoing.info.util.BuildArea
@@ -78,7 +77,6 @@ class SequentialSynchronizationTask : GameTask {
                 it.write(it.npcInfo.toNpcInfoPacket(-1))
             }
         }
-        worldPlayers.forEach(Player::playerPostSynchronizationTask)
 
         for (n in worldNpcs.entries) {
             n?.npcPostSynchronizationTask()
@@ -155,43 +153,6 @@ private fun shouldRebuildRegion(
 fun Npc.npcPreSynchronizationTask() {
     val pawn = this
     pawn.movementQueue.cycle()
-}
-
-fun Player.playerPostSynchronizationTask() {
-    val pawn = this
-    val oldTile = pawn.lastTile
-    val moved = oldTile == null || !oldTile.sameAs(pawn.tile)
-    val changedHeight = oldTile?.height != pawn.tile.height
-
-    if (moved) {
-        pawn.lastTile = Tile(pawn.tile)
-    }
-    pawn.moved = false
-
-    if (moved) {
-        val oldChunk = if (oldTile != null) pawn.world.chunks.get(oldTile.chunkCoords, createIfNeeded = false) else null
-        val newChunk = pawn.world.chunks.get(pawn.tile.chunkCoords, createIfNeeded = false)
-        if (newChunk != null && (oldChunk != newChunk || changedHeight)) {
-            pawn.world.getService(GameService::class.java)?.let { service ->
-                val newSurroundings = newChunk.coords.getSurroundingCoords()
-                if (!changedHeight) {
-                    val oldSurroundings = oldChunk?.coords?.getSurroundingCoords() ?: ObjectOpenHashSet()
-                    newSurroundings.removeAll(oldSurroundings)
-                }
-
-                newSurroundings.forEach { coords ->
-                    val chunk = pawn.world.chunks.get(coords, createIfNeeded = false) ?: return@forEach
-                    chunk.sendUpdates(pawn, service)
-                }
-            }
-            if (!changedHeight) {
-                if (oldChunk != null) {
-                    pawn.world.plugins.executeChunkExit(pawn, oldChunk.hashCode())
-                }
-                pawn.world.plugins.executeChunkEnter(pawn, newChunk.hashCode())
-            }
-        }
-    }
 }
 
 fun Npc.npcPostSynchronizationTask() {
