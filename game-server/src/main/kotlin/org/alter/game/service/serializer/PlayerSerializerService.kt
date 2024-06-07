@@ -28,24 +28,6 @@ abstract class PlayerSerializerService : Service {
         initSerializer(server, world, serviceProperties)
     }
 
-    override fun postLoad(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
-    }
-
-    override fun bindNet(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
-    }
-
-    override fun terminate(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
-    }
-
     fun configureNewPlayer(
         client: Client,
         block: LoginBlock<*>,

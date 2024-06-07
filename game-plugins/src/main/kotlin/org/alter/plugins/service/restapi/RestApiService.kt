@@ -22,16 +22,6 @@ class RestApiService : Service {
         RestApiRoutes().init(world, serviceProperties.getOrDefault("auth", false))
     }
 
-    override fun postLoad(
-        server: Server,
-        world: World,
-    ) {}
-
-    override fun bindNet(
-        server: Server,
-        world: World,
-    ) {}
-
     override fun terminate(
         server: Server,
         world: World,

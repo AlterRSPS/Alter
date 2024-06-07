@@ -24,23 +24,6 @@ import java.util.concurrent.TimeUnit
  * @author Tom <rspsmods@gmail.com>
  */
 class ItemMetadataService : Service {
-    override fun postLoad(
-        server: Server,
-        world: World,
-    ) {
-    }
-
-    override fun bindNet(
-        server: Server,
-        world: World,
-    ) {
-    }
-
-    override fun terminate(
-        server: Server,
-        world: World,
-    ) {
-    }
 
     override fun init(
         server: Server,

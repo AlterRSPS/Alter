@@ -45,24 +45,6 @@ class XteaKeyService : Service, XteaProvider {
         loadKeys(world)
     }
 
-    override fun postLoad(
-        server: Server,
-        world: World,
-    ) {
-    }
-
-    override fun bindNet(
-        server: Server,
-        world: World,
-    ) {
-    }
-
-    override fun terminate(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
-    }
-
     fun get(region: Int): IntArray {
         if (keys[region] == null) {
             logger.trace { "No XTEA keys found for region $region." }

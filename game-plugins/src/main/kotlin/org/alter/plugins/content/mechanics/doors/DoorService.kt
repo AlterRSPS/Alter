@@ -43,22 +43,4 @@ class DoorService : Service {
 
         logger.info { "Loaded ${doors.size.appendToString("single door")} and ${doubleDoors.size.appendToString("double door")}." }
     }
-
-    override fun postLoad(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
-    }
-
-    override fun bindNet(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
-    }
-
-    override fun terminate(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
-    }
 }

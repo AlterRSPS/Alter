@@ -34,24 +34,6 @@ class ItemMarketValueService : Service {
         logger.info("Loaded {} item values.", values.size)
     }
 
-    override fun postLoad(
-        server: Server,
-        world: World,
-    ) {
-    }
-
-    override fun bindNet(
-        server: Server,
-        world: World,
-    ) {
-    }
-
-    override fun terminate(
-        server: Server,
-        world: World,
-    ) {
-    }
-
     fun get(item: Int): Int {
         val value = values[item]
         if (value != values.defaultReturnValue()) {

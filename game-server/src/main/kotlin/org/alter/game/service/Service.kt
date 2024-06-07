@@ -1,7 +1,6 @@
 package org.alter.game.service
 
 import gg.rsmod.util.ServerProperties
-import org.alter.game.Server
 import org.alter.game.model.World
 
 /**
@@ -17,7 +16,9 @@ interface Service {
         server: org.alter.game.Server,
         world: World,
         serviceProperties: ServerProperties,
-    )
+    ) {
+        // Default implementation (no-op)
+    }
 
     /**
      * Called after the server has finished started up.
@@ -25,7 +26,9 @@ interface Service {
     fun postLoad(
         server: org.alter.game.Server,
         world: World,
-    )
+    ) {
+        // Default implementation (no-op)
+    }
 
     /**
      * Called after the server sets its bootstrap's children and parameters.
@@ -33,7 +36,9 @@ interface Service {
     fun bindNet(
         server: org.alter.game.Server,
         world: World,
-    )
+    ) {
+        // Default implementation (no-op)
+    }
 
     /**
      * Called when the server is shutting off.
@@ -41,5 +46,7 @@ interface Service {
     fun terminate(
         server: org.alter.game.Server,
         world: World,
-    )
+    ) {
+        // Default implementation (no-op)
+    }
 }

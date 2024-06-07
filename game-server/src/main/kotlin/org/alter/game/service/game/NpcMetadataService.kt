@@ -29,24 +29,6 @@ class NpcMetadataService : Service {
         load(world.definitions)
     }
 
-    override fun postLoad(
-        server: Server,
-        world: World,
-    ) {
-    }
-
-    override fun bindNet(
-        server: Server,
-        world: World,
-    ) {
-    }
-
-    override fun terminate(
-        server: Server,
-        world: World,
-    ) {
-    }
-
     private fun load(definitions: DefinitionSet) {
         path.toFile().forEachLine { line ->
             val parts = line.split(',')

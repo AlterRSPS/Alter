@@ -63,18 +63,6 @@ class DumpEntityIdService : Service {
         writeObjs(definitions, namer)
     }
 
-    override fun bindNet(
-        server: Server,
-        world: World,
-    ) {
-    }
-
-    override fun terminate(
-        server: Server,
-        world: World,
-    ) {
-    }
-
     private fun writeItems(
         definitions: DefinitionSet,
         namer: Namer,

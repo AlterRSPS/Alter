@@ -32,24 +32,6 @@ class GateService : Service {
         logger.info { "Loaded ${gates.size.appendToString("gate")}." }
     }
 
-    override fun postLoad(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
-    }
-
-    override fun bindNet(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
-    }
-
-    override fun terminate(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
-    }
-
     companion object {
         private val logger = KotlinLogging.logger {}
     }

@@ -124,12 +124,6 @@ class GameService : Service {
         executor.scheduleAtFixedRate(this::cycle, 0, world.gameContext.cycleTime.toLong(), TimeUnit.MILLISECONDS)
     }
 
-    override fun terminate(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
-    }
-
     private fun populateTasks() {
         tasks.addAll(
             arrayOf(
@@ -142,12 +136,6 @@ class GameService : Service {
                 SequentialSynchronizationTask(),
             ),
         )
-    }
-
-    override fun bindNet(
-        server: org.alter.game.Server,
-        world: World,
-    ) {
     }
 
     /**

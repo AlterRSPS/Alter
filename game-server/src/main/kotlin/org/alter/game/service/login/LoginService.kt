@@ -66,18 +66,6 @@ class LoginService : Service {
         }
     }
 
-    override fun bindNet(
-        server: Server,
-        world: World,
-    ) {
-    }
-
-    override fun terminate(
-        server: Server,
-        world: World,
-    ) {
-    }
-
     fun addLoginRequest(
         world: World,
         responseHandler: GameLoginResponseHandler<Client>,
