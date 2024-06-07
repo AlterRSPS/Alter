@@ -10,9 +10,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
 import org.alter.game.model.World
 import org.alter.game.task.*
-import org.alter.game.task.NpcCycleTask
-import org.alter.game.task.PlayerCycleTask
-import org.alter.game.task.SequentialSynchronizationTask
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -118,13 +115,13 @@ class GameService : Service {
         this.world = world
         populateTasks()
         maxMessagesPerCycle = serviceProperties.getOrDefault("messages-per-cycle", 30)
-        executor.scheduleAtFixedRate(this::cycle, 0, world.gameContext.cycleTime.toLong(), TimeUnit.MILLISECONDS)
     }
 
     override fun postLoad(
         server: org.alter.game.Server,
         world: World,
     ) {
+        executor.scheduleAtFixedRate(this::cycle, 0, world.gameContext.cycleTime.toLong(), TimeUnit.MILLISECONDS)
     }
 
     override fun terminate(
