@@ -1,7 +1,10 @@
 package org.alter.plugins.content.mechanics.inventory
 
 import org.alter.game.action.EquipAction
-import org.alter.game.model.attr.*
+import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
+import org.alter.game.model.attr.INTERACTING_OPT_ATTR
+import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
+import org.alter.game.model.attr.OTHER_ITEM_SLOT_ATTR
 
 on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
     val slot: Int? = player.attr[INTERACTING_SLOT_ATTR]
@@ -17,7 +20,7 @@ on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
         player.attr[INTERACTING_ITEM_SLOT] = slot
 
         when (option) {
-            6 -> {
+            7 -> {
                 if (world.plugins.canDropItem(player, item.id)) {
                     if (!world.plugins.executeItem(player, item.id, option)) {
                         val remove = player.inventory.remove(item, assureFullRemoval = false, beginSlot = slot)
@@ -31,13 +34,13 @@ on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
                     }
                 }
             }
-            2 -> {
+            3 -> {
                 val result = EquipAction.equip(player, item, slot)
                 if (result == EquipAction.Result.UNHANDLED && world.devContext.debugItemActions) {
                     player.message("Unhandled item action: [item=${item.id}, slot=$slot, option=$option]")
                 }
             }
-            9 -> {
+            10 -> {
                 world.sendExamine(player, item.id, ExamineEntityType.ITEM)
             }
             else -> {
