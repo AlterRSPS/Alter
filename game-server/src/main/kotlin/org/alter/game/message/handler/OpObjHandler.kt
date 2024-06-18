@@ -35,7 +35,7 @@ class OpObjHandler : MessageHandler<OpObj> {
 
         log(
             client,
-            "Ground Item action %d: item=%d, x=%d, z=%d, movement=%d",
+            "Ground Item action %d: item=%d, x=%d, z=%d, movement=%b",
             message.op,
             message.id,
             message.x,
