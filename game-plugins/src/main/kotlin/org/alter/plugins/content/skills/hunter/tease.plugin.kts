@@ -1,6 +1,4 @@
-package org.alter.plugins.content.skills.woodcutting
-
-import org.alter.api.cfg.Npcs
+package org.alter.plugins.content.skills.hunter
 
 
 private val teaseableNpcs = arrayOf(Npcs.SPINED_LARUPIA, Npcs.HORNED_GRAAHK)
