@@ -176,12 +176,12 @@ class NetworkServiceFactory(
             val chunk = world.chunks.get(tile) ?: error("Invalid chunk for : $tile")
 
             val surrounding = chunk.coords.getSurroundingCoords()
-            println("Searching!!!")
+//            println("Searching!!!")
 
             world.npcs.entries.filterNotNull().filter {
                 shouldAdd(player, it, viewDistance)
             }.map {
-                println("Found npc " + it.index)
+//                println("Found npc " + it.index)
                 it.index
             }.iterator()
         }
@@ -201,12 +201,12 @@ class NetworkServiceFactory(
             val chunk = world.chunks.get(tile) ?: error("Invalid chunk for : $tile")
 
             val surrounding = chunk.coords.getSurroundingCoords()
-            println("Searching!!!")
+//            println("Searching!!!")
 
             world.npcs.entries.filterNotNull().filter {
                 shouldAdd(player, it, viewDistance)
             }.map {
-                println("Found npc " + it.index)
+//                println("Found npc " + it.index)
                 it.index
             }.iterator()
 //            surrounding
