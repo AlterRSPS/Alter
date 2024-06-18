@@ -78,9 +78,9 @@ fun Player.message(
     username: String? = null,
 ) {
     if (username != null) {
-        MessageGame(type = type.id, message = message, name = username)
+        write(MessageGame(type = type.id, message = message, name = username))
     } else {
-        MessageGame(type = type.id, message = message)
+        write(MessageGame(type = type.id, message = message))
     }
 }
 
