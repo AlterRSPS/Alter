@@ -42,7 +42,7 @@ class OpNpcHandler : MessageHandler<OpNpc> {
         if (message.op == 2) {
             client.attack(npc)
         } else {
-            client.attr[INTERACTING_OPT_ATTR] = 1
+            client.attr[INTERACTING_OPT_ATTR] = message.op
             client.attr[INTERACTING_NPC_ATTR] = WeakReference(npc)
             client.executePlugin(PawnPathAction.walkPlugin)
         }
