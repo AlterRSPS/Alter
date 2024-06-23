@@ -305,8 +305,8 @@ open class Player(world: World) : Pawn(world) {
             val items = inventory.rawItems
             write(
                 UpdateInvFull(
-                    interfaceId = 149,
-                    componentId = 0,
+//                    interfaceId = 149,
+//                    componentId = 0,
                     inventoryId = 93,
                     capacity = items.size,
                     provider = RsModObjectProvider(items),
