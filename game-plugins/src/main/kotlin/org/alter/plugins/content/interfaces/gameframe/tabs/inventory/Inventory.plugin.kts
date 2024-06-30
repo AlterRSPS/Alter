@@ -1,4 +1,4 @@
-package org.alter.plugins.content.mechanics.inventory
+package org.alter.plugins.content.interfaces.gameframe.tabs.inventory
 
 import org.alter.game.action.EquipAction
 import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
