@@ -2,7 +2,7 @@
 # You want to edit these to fit your game.
 name: "Alter"
 game-port: 43594
-revision: 215
+revision: 222
 
 # The coordinates for the home location.
 home-x: 3218
@@ -52,5 +52,5 @@ services:
 
   - class: org.alter.game.service.login.LoginService
 
-  - class: org.alter.plugins.service.worldlist.WorldListService
-    port: 4842
+#  - class: org.alter.plugins.service.worldlist.WorldListService
+#    port: 4842
