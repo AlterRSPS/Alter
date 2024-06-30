@@ -10,7 +10,6 @@ import org.alter.game.model.World
  * @author Tom <rspsmods@gmail.com>
  */
 abstract class Entity {
-
     /**
      * The current 3D [Tile] that this [Pawn] is standing on in the [World].
      */

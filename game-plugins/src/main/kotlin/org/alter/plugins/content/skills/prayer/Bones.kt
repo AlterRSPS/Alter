@@ -5,7 +5,7 @@ import org.alter.api.cfg.Items
 /**
  * @author Fritz <frikkipafi@gmail.com>
  */
-enum class Bones(val id: Int, val xp: Double, val gilded: Double, val ecto: Double, val chaos: Double){
+enum class Bones(val id: Int, val xp: Double, val gilded: Double, val ecto: Double, val chaos: Double) {
     NORMAL(Items.BONES, 4.5, 15.7, 18.0, 31.4),
     BURNT(Items.BURNT_BONES, 4.5, 15.7, 18.0, 31.4),
     WOLF(Items.WOLF_BONES, 4.5, 15.7, 18.0, 31.4),
@@ -26,10 +26,10 @@ enum class Bones(val id: Int, val xp: Double, val gilded: Double, val ecto: Doub
     HYDRA(Items.HYDRA_BONES, 100.0, 385.0, 440.0, 770.0),
     DAGANNOTH(Items.DAGANNOTH_BONES, 125.0, 437.5, 500.0, 875.0),
     OURG(Items.OURG_BONES, 140.0, 490.0, 560.0, 980.0),
-    SUPERIOR(Items.SUPERIOR_DRAGON_BONES, 150.0, 525.0, 600.0, 1050.0);
+    SUPERIOR(Items.SUPERIOR_DRAGON_BONES, 150.0, 525.0, 600.0, 1050.0),
+    ;
 
     companion object {
         val values = enumValues<Bones>()
     }
-
 }

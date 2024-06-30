@@ -7,10 +7,12 @@ import kotlin.test.assertEquals
  * @author Tom <rspsmods@gmail.com>
  */
 class NpcStatsTests {
-
     private fun createStats(): Npc.Stats = Npc.Stats(STATS_COUNT)
 
-    private fun Npc.Stats.setBaseLevel(skill: Int, level: Int) {
+    private fun Npc.Stats.setBaseLevel(
+        skill: Int,
+        level: Int,
+    ) {
         setMaxLevel(skill, level)
         setCurrentLevel(skill, level)
     }

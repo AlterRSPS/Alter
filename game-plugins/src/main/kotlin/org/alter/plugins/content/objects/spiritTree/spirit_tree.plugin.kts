@@ -4,14 +4,11 @@ val SPIRIT_TREES = arrayOf(Objs.SPIRIT_TREE_26260, Objs.SPIRIT_TREE_26261, Objs.
 val TALKING_TREES = arrayOf(Objs.SPIRIT_TREE_26259, Objs.SPIRIT_TREE_26262, Objs.SPIRIT_TREE_35949)
 
 on_login {
-    //Unlock grand trees
-    player.setVarp(111, 9)//Quest Tree Gnome Village
-    player.setVarp(150, 160)//Quest The Grand Tree
+    // Unlock grand trees
+    player.setVarp(111, 9) // Quest Tree Gnome Village
+    player.setVarp(150, 160) // Quest The Grand Tree
     player.setVarbit(598, 2)
     player.playJingle(22)
-
-
-
 }
 
 TALKING_TREES.forEach { treeTalk ->
@@ -47,23 +44,51 @@ SPIRIT_TREES.forEach { tree ->
     }
 }
 
-fun spiritTreeTele(player: Player, endTile : Tile) {
+fun spiritTreeTele(
+    player: Player,
+    endTile: Tile,
+) {
     player.queue(TaskPriority.STRONG) {
         player.closeInterface(InterfaceDestination.MAIN_SCREEN)
         player.lock = LockState.DELAY_ACTIONS
-        itemMessage(message = "You place your hands on the dry tough bark of the<br>spirit tree, and feel a surge of energy run through<br>your veins.", item = 6063, amountOrZoom = 400)
+        itemMessage(
+            message = "You place your hands on the dry tough bark of the<br>spirit tree, and feel a surge of energy run through<br>your veins.",
+            item = 6063,
+            amountOrZoom = 400,
+        )
         player.animate(id = 828)
         wait(1)
         player.moveTo(endTile)
         wait(1)
         player.unlock()
-        itemMessageBox(message = "You place your hands on the dry tough bark of the<br>spirit tree, and feel a surge of energy run through<br>your veins.", item = 6063, amountOrZoom = 400)
+        itemMessageBox(
+            message = "You place your hands on the dry tough bark of the<br>spirit tree, and feel a surge of energy run through<br>your veins.",
+            item = 6063,
+            amountOrZoom = 400,
+        )
     }
 }
 
-fun TreeTele (player: Player) {
+fun TreeTele(player: Player) {
     player.queue(TaskPriority.STRONG) {
-        when (interfaceOptions("Tree Gnome Village", "Gnome Stronghold", "Battlefield of Khazard", "Grand Exchange", "Feldip Hills", "Prifddinas", "<col=777777>Port Sarim</col>", "<col=777777>Etceteria</col>", "<col=777777>Brimhaven</col>", "<col=777777>Hosidius</col>", "<col=777777>Farming Guild</col>", "<col=777777>Your house</col>", "Cancel", title = "Spirit Tree Locations")) {
+        when (
+            interfaceOptions(
+                "Tree Gnome Village",
+                "Gnome Stronghold",
+                "Battlefield of Khazard",
+                "Grand Exchange",
+                "Feldip Hills",
+                "Prifddinas",
+                "<col=777777>Port Sarim</col>",
+                "<col=777777>Etceteria</col>",
+                "<col=777777>Brimhaven</col>",
+                "<col=777777>Hosidius</col>",
+                "<col=777777>Farming Guild</col>",
+                "<col=777777>Your house</col>",
+                "Cancel",
+                title = "Spirit Tree Locations",
+            )
+        ) {
             0 -> spiritTreeTele(player, Tile(2542, 3169, 0))
             1 -> spiritTreeTele(player, Tile(2461, 3444, 0))
             2 -> spiritTreeTele(player, Tile(2557, 3260, 0))

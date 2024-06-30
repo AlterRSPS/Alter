@@ -3,7 +3,7 @@ package org.alter.plugins.content.skills.prayer
 
 
 Bones.values.forEach { bones ->
-    on_item_option(item = bones.id, option = "bury"){
+    on_item_option(item = bones.id, option = "bury") {
         if (!Bury.canBury(player, bones)) {
             return@on_item_option
         }

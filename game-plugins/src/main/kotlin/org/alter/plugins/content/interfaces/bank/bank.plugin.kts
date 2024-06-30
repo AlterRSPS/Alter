@@ -32,8 +32,9 @@ on_interface_open(BANK_INTERFACE_ID) {
             if (player.bank[slot] == null) {
                 player.setVarbit(BANK_TAB_ROOT_VARBIT + tab, player.getVarbit(BANK_TAB_ROOT_VARBIT + tab) - 1)
                 // check for empty tab shift
-                if (player.getVarbit(BANK_TAB_ROOT_VARBIT + tab) == 0 && tab <= numTabsUnlocked(player))
+                if (player.getVarbit(BANK_TAB_ROOT_VARBIT + tab) == 0 && tab <= numTabsUnlocked(player)) {
                     shiftTabs(player, tab)
+                }
             }
         }
         slotOffset += size
@@ -105,7 +106,7 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 42) {
             placeholderOrExistingStack = false
             var ignoreIndex = 0
             for (tab in 1..9) {
-                ignoreIndex += player.getVarbit(BANK_TAB_ROOT_VARBIT+tab)
+                ignoreIndex += player.getVarbit(BANK_TAB_ROOT_VARBIT + tab)
             }
             toSlot = to.getLastFreeSlot(ignoreIndex) // Need to filter out tabs items ->
         }
@@ -119,7 +120,7 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 42) {
 
         if (deposited > 0) {
             any = true
-            if(curTab !=0 && !placeholderOrExistingStack) {
+            if (curTab != 0 && !placeholderOrExistingStack) {
                 dropToTab(player, curTab, to.getLastFreeSlotReversed() - 1)
             }
         }
@@ -156,7 +157,7 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 44) {
         }
         if (deposited > 0) {
             any = true
-            if(curTab!=0 && !placeholder) {
+            if (curTab != 0 && !placeholder) {
                 dropToTab(player, curTab, to.getLastFreeSlot() - 1)
             }
             EquipAction.onItemUnequip(player, item.id, i)
@@ -170,7 +171,7 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 44) {
 
 // deposit
 on_button(interfaceId = INV_INTERFACE_ID, component = INV_INTERFACE_CHILD) p@{
-    val opt = player.getInteractingOption()+1
+    val opt = player.getInteractingOption() + 1
     val slot = player.getInteractingSlot()
 
     val item = player.inventory[slot] ?: return@p
@@ -184,31 +185,37 @@ on_button(interfaceId = INV_INTERFACE_ID, component = INV_INTERFACE_CHILD) p@{
     var amount: Int
 
     when {
-        quantityVarbit == 0 -> amount = when (opt) {
-            2 -> 1
-            4 -> 5
-            5 -> 10
-            6 -> player.getVarbit(LAST_X_INPUT)
-            7 -> -1 // X
-            8 -> 0 // All
-            else -> return@p
-        }
-        opt == 2 -> amount = when (quantityVarbit) {
-            1 -> 5
-            2 -> 10
-            3 -> if (player.getVarbit(LAST_X_INPUT) == 0) -1 else player.getVarbit(LAST_X_INPUT)
-            4 -> 0 // All
-            else -> return@p
-        }
-        else -> amount = when (opt) {
-            3 -> 1
-            4 -> 5
-            5 -> 10
-            6 -> player.getVarbit(LAST_X_INPUT)
-            7 -> -1 // X
-            8 -> 0 // All
-            else -> return@p
-        }
+        quantityVarbit == 0 ->
+            amount =
+                when (opt) {
+                    2 -> 1
+                    4 -> 5
+                    5 -> 10
+                    6 -> player.getVarbit(LAST_X_INPUT)
+                    7 -> -1 // X
+                    8 -> 0 // All
+                    else -> return@p
+                }
+        opt == 2 ->
+            amount =
+                when (quantityVarbit) {
+                    1 -> 5
+                    2 -> 10
+                    3 -> if (player.getVarbit(LAST_X_INPUT) == 0) -1 else player.getVarbit(LAST_X_INPUT)
+                    4 -> 0 // All
+                    else -> return@p
+                }
+        else ->
+            amount =
+                when (opt) {
+                    3 -> 1
+                    4 -> 5
+                    5 -> 10
+                    6 -> player.getVarbit(LAST_X_INPUT)
+                    7 -> -1 // X
+                    8 -> 0 // All
+                    else -> return@p
+                }
     }
 
     if (amount == 0) {
@@ -228,7 +235,7 @@ on_button(interfaceId = INV_INTERFACE_ID, component = INV_INTERFACE_CHILD) p@{
 
 // withdraw
 on_button(interfaceId = BANK_INTERFACE_ID, component = BANK_MAINTAB_COMPONENT) p@{
-    val opt = player.getInteractingOption()+1
+    val opt = player.getInteractingOption() + 1
     val slot = player.getInteractingSlot()
 
     val item = player.bank[slot] ?: return@p
@@ -243,46 +250,52 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = BANK_MAINTAB_COMPONENT) p
 
     val quantityVarbit = player.getVarbit(QUANTITY_VARBIT)
     when {
-        quantityVarbit == 0 -> amount = when (opt) {
-            1 -> 1
-            3 -> 5
-            4 -> 10
-            5 -> player.getVarbit(LAST_X_INPUT)
-            6 -> -1 // X
-            7 -> item.amount
-            8 -> item.amount - 1
-            9 -> {
-                placehold = true
-                item.amount
-            }
-            else -> return@p
-        }
-        opt == 1 -> amount = when (quantityVarbit) {
-            0 -> 1
-            1 -> 5
-            2 -> 10
-            3 -> if (player.getVarbit(LAST_X_INPUT) == 0) -1 else player.getVarbit(LAST_X_INPUT)
-            4 -> item.amount
-            8 -> {
-                placehold = true
-                item.amount
-            }
-            else -> return@p
-        }
-        else -> amount = when (opt) {
-            2 -> 1
-            3 -> 5
-            4 -> 10
-            5 -> player.getVarbit(LAST_X_INPUT)
-            6 -> -1 // X
-            7 -> item.amount
-            8 -> item.amount - 1
-            9 -> {
-                placehold = true
-                item.amount
-            }
-            else -> return@p
-        }
+        quantityVarbit == 0 ->
+            amount =
+                when (opt) {
+                    1 -> 1
+                    3 -> 5
+                    4 -> 10
+                    5 -> player.getVarbit(LAST_X_INPUT)
+                    6 -> -1 // X
+                    7 -> item.amount
+                    8 -> item.amount - 1
+                    9 -> {
+                        placehold = true
+                        item.amount
+                    }
+                    else -> return@p
+                }
+        opt == 1 ->
+            amount =
+                when (quantityVarbit) {
+                    0 -> 1
+                    1 -> 5
+                    2 -> 10
+                    3 -> if (player.getVarbit(LAST_X_INPUT) == 0) -1 else player.getVarbit(LAST_X_INPUT)
+                    4 -> item.amount
+                    8 -> {
+                        placehold = true
+                        item.amount
+                    }
+                    else -> return@p
+                }
+        else ->
+            amount =
+                when (opt) {
+                    2 -> 1
+                    3 -> 5
+                    4 -> 10
+                    5 -> player.getVarbit(LAST_X_INPUT)
+                    6 -> -1 // X
+                    7 -> item.amount
+                    8 -> item.amount - 1
+                    9 -> {
+                        placehold = true
+                        item.amount
+                    }
+                    else -> return@p
+                }
     }
 
     if (amount == -3) {
@@ -313,15 +326,14 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = BANK_MAINTAB_COMPONENT) p
     }
 }
 
-
-
-
 /**
  * Swap items in bank inventory interface.
  */
 on_component_to_component_item_swap(
-    srcInterfaceId = INV_INTERFACE_ID, srcComponent = INV_INTERFACE_CHILD,
-    dstInterfaceId = INV_INTERFACE_ID, dstComponent = INV_INTERFACE_CHILD
+    srcInterfaceId = INV_INTERFACE_ID,
+    srcComponent = INV_INTERFACE_CHILD,
+    dstInterfaceId = INV_INTERFACE_ID,
+    dstComponent = INV_INTERFACE_CHILD,
 ) {
     val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
     val dstSlot = player.attr[OTHER_ITEM_SLOT_ATTR]!!
@@ -337,8 +349,10 @@ on_component_to_component_item_swap(
  * Swap items in main bank tab.
  */
 on_component_to_component_item_swap(
-    srcInterfaceId = BANK_INTERFACE_ID, srcComponent = BANK_MAINTAB_COMPONENT,
-    dstInterfaceId = BANK_INTERFACE_ID, dstComponent = BANK_MAINTAB_COMPONENT
+    srcInterfaceId = BANK_INTERFACE_ID,
+    srcComponent = BANK_MAINTAB_COMPONENT,
+    dstInterfaceId = BANK_INTERFACE_ID,
+    dstComponent = BANK_MAINTAB_COMPONENT,
 ) {
     val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
     val dstSlot = player.attr[OTHER_ITEM_SLOT_ATTR]!!
@@ -362,18 +376,20 @@ on_component_to_component_item_swap(
             val curTab = getCurrentTab(player, srcSlot)
             val dstTab = getCurrentTab(player, dstSlot)
             if (dstTab != curTab) {
-                if ((dstTab > curTab && curTab != 0) || dstTab == 0)
+                if ((dstTab > curTab && curTab != 0) || dstTab == 0) {
                     container.insert(srcSlot, dstSlot - 1)
-                else
+                } else {
                     container.insert(srcSlot, dstSlot)
+                }
 
                 if (dstTab != 0) {
                     player.setVarbit(BANK_TAB_ROOT_VARBIT + dstTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + dstTab) + 1)
                 }
                 if (curTab != 0) {
                     player.setVarbit(BANK_TAB_ROOT_VARBIT + curTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) - 1)
-                    if (player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) == 0 && curTab <= numTabsUnlocked(player))
+                    if (player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) == 0 && curTab <= numTabsUnlocked(player)) {
                         shiftTabs(player, curTab)
+                    }
                 }
             } else {
                 container.insert(srcSlot, dstSlot)
@@ -397,7 +413,10 @@ bind_unequip(EquipmentType.GLOVES, 83)
 bind_unequip(EquipmentType.BOOTS, 84)
 bind_unequip(EquipmentType.RING, 85)
 
-fun bind_unequip(equipment: EquipmentType, component: Int) {
+fun bind_unequip(
+    equipment: EquipmentType,
+    component: Int,
+) {
     on_button(interfaceId = BANK_INTERFACE_ID, component = component) {
         val opt = player.getInteractingOption()
         if (opt == 0) {
@@ -412,13 +431,14 @@ fun bind_unequip(equipment: EquipmentType, component: Int) {
             if (!world.plugins.executeItem(player, item.id, opt)) {
                 val slot = player.getInteractingSlot()
                 if (world.devContext.debugButtons) {
-                    player.message("Unhandled button action: [component=[${BANK_INTERFACE_ID}:$component], option=$opt, slot=$slot, item=${item.id}]")
+                    player.message(
+                        "Unhandled button action: [component=[${BANK_INTERFACE_ID}:$component], option=$opt, slot=$slot, item=${item.id}]",
+                    )
                 }
             }
         }
     }
 }
-
 
 on_button(interfaceId = INV_INTERFACE_ID, component = 4) {
     val slot = player.getInteractingSlot()

@@ -1,6 +1,6 @@
 package org.alter.game.model.timer
 
-import com.google.common.base.MoreObjects
+import gg.rsmod.util.toStringHelper
 
 /**
  * A key that represents a timer in a [TimerMap].
@@ -20,8 +20,8 @@ import com.google.common.base.MoreObjects
  * @author Tom <rspsmods@gmail.com>
  */
 data class TimerKey(val persistenceKey: String? = null, val tickOffline: Boolean = true, val resetOnDeath: Boolean = false) {
-
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("persistenceKey", persistenceKey).add("ticksOffline", tickOffline).add("resetOnDeath", resetOnDeath).toString()
+    override fun toString(): String =
+        toStringHelper().add("persistenceKey", persistenceKey).add("ticksOffline", tickOffline).add("resetOnDeath", resetOnDeath).toString()
 
     override fun equals(other: Any?): Boolean {
         if (other !is TimerKey) {

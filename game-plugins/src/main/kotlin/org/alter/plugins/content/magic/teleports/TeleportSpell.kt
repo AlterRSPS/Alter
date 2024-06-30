@@ -3,8 +3,13 @@ package org.alter.plugins.content.magic.teleports
 import org.alter.game.model.Area
 import org.alter.plugins.content.magic.TeleportType
 
-enum class TeleportSpell(val spellName: String, val type: TeleportType, val endArea: Area,
-                         val xp: Double, val paramItem: Int? = null) {
+enum class TeleportSpell(
+    val spellName: String,
+    val type: TeleportType,
+    val endArea: Area,
+    val xp: Double,
+    val paramItem: Int? = null,
+) {
     /**
      * Standard.
      */
@@ -54,7 +59,7 @@ enum class TeleportSpell(val spellName: String, val type: TeleportType, val endA
     HARMONY_ISLAND("Harmony Island Teleport", TeleportType.ARCEUUS, Area(3793, 2857, 3801, 2863), 74.0),
     CEMETERY("Cemetery Teleport", TeleportType.ARCEUUS, Area(2964, 3760, 2969, 3766), 82.0),
     BARROWS("Barrows Teleport", TeleportType.ARCEUUS, Area(3563, 3312, 3566, 3315), 90.0),
-    APE_ATOLL_DUNGEON("Ape Atoll Teleport", TeleportType.ARCEUUS, Area(2764, 9102, 2767, 9104), 100.0, paramItem = 20427)
+    APE_ATOLL_DUNGEON("Ape Atoll Teleport", TeleportType.ARCEUUS, Area(2764, 9102, 2767, 9104), 100.0, paramItem = 20427),
     ;
 
     companion object {

@@ -1,4 +1,4 @@
-package org.alter.plugins.content.objects;
+package org.alter.plugins.content.objects
 
 /**
  *  @author <a href="https://github.com/CloudS3c">Cl0ud</a>
@@ -11,7 +11,7 @@ on_obj_option(obj = Objs.FLAX_14896, option = "pick", lineOfSightDistance = 0) {
     player.queue {
         val route = player.walkTo(this, obj.tile)
         if (route.success) {
-            if(player.inventory.isFull) {
+            if (player.inventory.isFull) {
                 player.message("You don't have room for this flax.")
                 return@queue
             } else {
@@ -19,5 +19,4 @@ on_obj_option(obj = Objs.FLAX_14896, option = "pick", lineOfSightDistance = 0) {
             }
         }
     }
-
 }

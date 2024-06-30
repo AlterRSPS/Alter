@@ -6,14 +6,14 @@ SqirkJuices.values().forEach { juice ->
     on_item_on_item(PaM, juice.sqirks.id) {
         juice.squirsh(player)
     }
-    on_item_on_item(PaM, juice.juice){
+    on_item_on_item(PaM, juice.juice) {
         player.nothingMessage()
     }
 
-    on_item_on_item(juice.sqirks.id, Items.VIAL){
+    on_item_on_item(juice.sqirks.id, Items.VIAL) {
         player.nothingMessage()
     }
-    on_item_on_item(juice.sqirks.id, Items.VIAL_OF_WATER){
+    on_item_on_item(juice.sqirks.id, Items.VIAL_OF_WATER) {
         player.nothingMessage()
     }
 }

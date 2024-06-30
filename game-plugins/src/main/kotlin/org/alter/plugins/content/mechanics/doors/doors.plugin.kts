@@ -21,25 +21,23 @@ val changesBeforeStick: Int
 val resetStickDelay: Int
     get() = getProperty<Int>(RESET_STICK_DELAY_TAG)!!
 
-
 load_service(DoorService())
 
 on_world_init {
     world.getService(DoorService::class.java)!!.let { service ->
         service.doors.forEach { door ->
 
-
             on_obj_option(obj = door.opened, option = "close") {
                 val obj = player.getInteractingGameObj()
-                //if (!is_stuck(world, obj)) {
-                    val newDoor = world.closeDoor(obj, closed = door.closed, invertTransform = obj.type == ObjectType.DIAGONAL_WALL.value)
-                    copy_stick_vars(obj, newDoor)
-                    //add_stick_var(world, newDoor)
-                    player.playSound(Sound.CLOSE_DOOR_SFX)
-                //} else {
+                // if (!is_stuck(world, obj)) {
+                val newDoor = world.closeDoor(obj, closed = door.closed, invertTransform = obj.type == ObjectType.DIAGONAL_WALL.value)
+                copy_stick_vars(obj, newDoor)
+                // add_stick_var(world, newDoor)
+                player.playSound(Sound.CLOSE_DOOR_SFX)
+                // } else {
                 //    player.message("The door seems to be stuck.")
                 //    player.playSound(Sound.STUCK_DOOR_SFX)
-               // }
+                // }
             }
 
             on_obj_option(obj = door.closed, option = "open") {
@@ -50,7 +48,7 @@ on_world_init {
                  * @TODO
                  * getResetStickDelay() -> Lateint property has not been initialized
                  */
-                //add_stick_var(world, newDoor)
+                // add_stick_var(world, newDoor)
                 player.playSound(Sound.OPEN_DOOR_SFX)
             }
         }
@@ -75,17 +73,23 @@ on_world_init {
     }
 }
 
-fun handle_double_doors(p: Player, obj: GameObject, doors: DoubleDoorSet, open: Boolean) {
+fun handle_double_doors(
+    p: Player,
+    obj: GameObject,
+    doors: DoubleDoorSet,
+    open: Boolean,
+) {
     val left = obj.id == doors.opened.left || obj.id == doors.closed.left
     val right = obj.id == doors.opened.right || obj.id == doors.closed.right
 
     check(left || right)
 
-    val otherDoorId = if (open) {
-        if (left) doors.closed.right else doors.closed.left
-    } else {
-        if (left) doors.opened.right else doors.opened.left
-    }
+    val otherDoorId =
+        if (open) {
+            if (left) doors.closed.right else doors.closed.left
+        } else {
+            if (left) doors.opened.right else doors.opened.left
+        }
     val otherDoor = get_neighbour_door(world, obj, otherDoorId) ?: return
 
     if (!open && (is_stuck(world, obj) || is_stuck(world, otherDoor))) {
@@ -103,8 +107,20 @@ fun handle_double_doors(p: Player, obj: GameObject, doors: DoubleDoorSet, open: 
         add_stick_var(world, door2)
         p.playSound(Sound.OPEN_DOOR_SFX)
     } else {
-        val door1 = world.closeDoor(obj, closed = if (left) doors.closed.left else doors.closed.right, invertRot = left, invertTransform = left)
-        val door2 = world.closeDoor(otherDoor, closed = if (left) doors.closed.right else doors.closed.left, invertRot = right, invertTransform = right)
+        val door1 =
+            world.closeDoor(
+                obj,
+                closed = if (left) doors.closed.left else doors.closed.right,
+                invertRot = left,
+                invertTransform = left,
+            )
+        val door2 =
+            world.closeDoor(
+                otherDoor,
+                closed = if (left) doors.closed.right else doors.closed.left,
+                invertRot = right,
+                invertTransform = right,
+            )
         copy_stick_vars(obj, door1)
         add_stick_var(world, door1)
         copy_stick_vars(obj, door2)
@@ -113,7 +129,11 @@ fun handle_double_doors(p: Player, obj: GameObject, doors: DoubleDoorSet, open: 
     }
 }
 
-fun get_neighbour_door(world: World, obj: GameObject, otherDoor: Int): GameObject? {
+fun get_neighbour_door(
+    world: World,
+    obj: GameObject,
+    otherDoor: Int,
+): GameObject? {
     val tile = obj.tile
 
     for (x in -1..1) {
@@ -131,13 +151,19 @@ fun get_neighbour_door(world: World, obj: GameObject, otherDoor: Int): GameObjec
     return null
 }
 
-fun copy_stick_vars(from: GameObject, to: GameObject) {
+fun copy_stick_vars(
+    from: GameObject,
+    to: GameObject,
+) {
     if (from.attr.has(STICK_STATE)) {
         to.attr[STICK_STATE] = from.attr[STICK_STATE]!!
     }
 }
 
-fun add_stick_var(world: World, obj: GameObject) {
+fun add_stick_var(
+    world: World,
+    obj: GameObject,
+) {
     var currentChanges = get_stick_changes(obj)
     if (obj.attr.has(STICK_STATE) && Math.abs(world.currentCycle - obj.attr[STICK_STATE]!!.lastChangeCycle) >= resetStickDelay) {
         currentChanges = 0
@@ -147,7 +173,10 @@ fun add_stick_var(world: World, obj: GameObject) {
 
 fun get_stick_changes(obj: GameObject): Int = obj.attr[STICK_STATE]?.changeCount ?: 0
 
-fun is_stuck(world: World, obj: GameObject): Boolean {
+fun is_stuck(
+    world: World,
+    obj: GameObject,
+): Boolean {
     val stuck = get_stick_changes(obj) >= changesBeforeStick
     if (stuck && Math.abs(world.currentCycle - obj.attr[STICK_STATE]!!.lastChangeCycle) >= resetStickDelay) {
         obj.attr.remove(STICK_STATE)

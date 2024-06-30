@@ -7,5 +7,5 @@ import org.alter.game.model.priv.Privilege
 on_command("img", Privilege.ADMIN_POWER, description = "Show chat images by id") {
     val args = player.getCommandArgs()
     val key = args[0].toInt()
-    player.message("<img=${key}>", ChatMessageType.ENGINE)
+    player.message("<img=$key>", ChatMessageType.ENGINE)
 }

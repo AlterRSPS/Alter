@@ -5,5 +5,4 @@ import org.alter.game.model.priv.Privilege
 
 
 on_command("getitemlist", Privilege.DEV_POWER) {
-
 }

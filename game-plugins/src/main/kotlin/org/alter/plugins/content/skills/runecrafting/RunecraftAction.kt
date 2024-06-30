@@ -1,13 +1,12 @@
 package org.alter.plugins.content.skills.runecrafting
 
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.Graphic
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.EquipmentType
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
-
 import org.alter.api.ext.*
+import org.alter.game.model.Graphic
+import org.alter.game.model.queue.QueueTask
 
 /**
  * @author Triston Plummer ("Dread")
@@ -15,7 +14,6 @@ import org.alter.api.ext.*
  * Handles the action of crafting runes at an altar
  */
 object RunecraftAction {
-
     /**
      * The animation played when crafting a rune
      */
@@ -61,12 +59,16 @@ object RunecraftAction {
      * @param it    The queued action task
      * @param combo The combination rune to craft
      */
-    suspend fun craftCombination(it: QueueTask, combo: CombinationRune) {
+    suspend fun craftCombination(
+        it: QueueTask,
+        combo: CombinationRune,
+    ) {
         val player = it.player
         val world = player.world
 
-        if (!canCraftCombo(it, combo))
+        if (!canCraftCombo(it, combo)) {
             return
+        }
 
         preCraft(it)
 
@@ -76,12 +78,20 @@ object RunecraftAction {
         val removeTalismanTrans = inventory.remove(combo.talisman)
 
         if (removeTalismanTrans.hasSucceeded()) {
-
             val removeEssTrans = inventory.remove(item = Items.PURE_ESSENCE, amount = count)
             val removeRuneTrans = inventory.remove(item = combo.rune, amount = removeEssTrans.items.size)
 
             if (removeRuneTrans.hasSucceeded()) {
-                val runeCount = if (player.hasEquipped(EquipmentType.AMULET, Items.BINDING_NECKLACE)) count else world.random(IntRange(start = 1, endInclusive = count))
+                val runeCount =
+                    if (player.hasEquipped(
+                            EquipmentType.AMULET,
+                            Items.BINDING_NECKLACE,
+                        )
+                    ) {
+                        count
+                    } else {
+                        world.random(IntRange(start = 1, endInclusive = count))
+                    }
 
                 inventory.add(item = combo.id, amount = runeCount)
                 player.addXp(Skills.RUNECRAFTING, runeCount * combo.xp)
@@ -95,11 +105,15 @@ object RunecraftAction {
      * @param it    The queued task instance
      * @param rune  The rune being crafted
      */
-    suspend fun craftRune(it: QueueTask, rune: Rune) {
+    suspend fun craftRune(
+        it: QueueTask,
+        rune: Rune,
+    ) {
         val player = it.player
 
-        if (!canCraftRune(it, rune))
+        if (!canCraftRune(it, rune)) {
             return
+        }
 
         preCraft(it)
 
@@ -121,17 +135,25 @@ object RunecraftAction {
      * @param it    The queued task instance
      * @param rune  The rune being crafted
      */
-    private suspend fun canCraftRune(it: QueueTask, rune: Rune) : Boolean {
+    private suspend fun canCraftRune(
+        it: QueueTask,
+        rune: Rune,
+    ): Boolean {
         val player = it.player
-        val def = player.world.definitions.get(ItemDef::class.java, rune.id)
+        val def = getItem(rune.id)
 
         if (player.getSkills().getBaseLevel(Skills.RUNECRAFTING) < rune.level) {
-            it.messageBox("You need a ${Skills.getSkillName(player.world, Skills.RUNECRAFTING)} level of at least ${rune.level} to craft ${def.name.lowercase()}s.")
+            it.messageBox(
+                "You need a ${Skills.getSkillName(
+                    player.world,
+                    Skills.RUNECRAFTING,
+                )} level of at least ${rune.level} to craft ${def.name.lowercase()}s.",
+            )
             return false
         }
 
         val essence = rune.essence
-        val essenceDef = player.world.definitions.get(ItemDef::class.java, essence.first())
+        val essenceDef = getItem(essence.first())
 
         if (!player.inventory.filter { it != null && essence.contains(it.id) }.any()) {
             it.messageBox("You do not have any ${essenceDef.name.lowercase()}s to bind.")
@@ -147,15 +169,23 @@ object RunecraftAction {
      * @param it    The queued action task
      * @param combo The combination rune to craft
      */
-    private suspend fun canCraftCombo(it: QueueTask, combo: CombinationRune) : Boolean {
+    private suspend fun canCraftCombo(
+        it: QueueTask,
+        combo: CombinationRune,
+    ): Boolean {
         val player = it.player
 
-        val comboName = player.world.definitions.get(ItemDef::class.java, combo.id).name.lowercase()
-        val runeName = player.world.definitions.get(ItemDef::class.java, combo.rune).name.lowercase()
-        val talismanName = player.world.definitions.get(ItemDef::class.java, combo.talisman).name.lowercase()
+        val comboName = getItem(combo.id).name.lowercase()
+        val runeName = getItem(combo.rune).name.lowercase()
+        val talismanName = getItem(combo.talisman).name.lowercase()
 
         if (player.getSkills().getBaseLevel(Skills.RUNECRAFTING) < combo.level) {
-            it.messageBox("You need a ${Skills.getSkillName(player.world, Skills.RUNECRAFTING)} level of at least ${combo.level} to craft ${comboName}s.")
+            it.messageBox(
+                "You need a ${Skills.getSkillName(
+                    player.world,
+                    Skills.RUNECRAFTING,
+                )} level of at least ${combo.level} to craft ${comboName}s.",
+            )
             return false
         }
 

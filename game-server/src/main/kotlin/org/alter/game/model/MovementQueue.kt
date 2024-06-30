@@ -1,10 +1,9 @@
 package org.alter.game.model
 
 import org.alter.game.model.MovementQueue.Step
+import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
-import org.alter.game.sync.block.UpdateBlockType
-import java.util.ArrayDeque
-import java.util.Deque
+import java.util.*
 import kotlin.math.abs
 
 /**
@@ -13,7 +12,6 @@ import kotlin.math.abs
  * @author Tom <rspsmods@gmail.com>
  */
 class MovementQueue(val pawn: Pawn) {
-
     /**
      * A [Deque] of steps.
      */
@@ -35,7 +33,11 @@ class MovementQueue(val pawn: Pawn) {
         steps.clear()
     }
 
-    fun addStep(step: Tile, type: StepType, detectCollision: Boolean) {
+    fun addStep(
+        step: Tile,
+        type: StepType,
+        detectCollision: Boolean,
+    ) {
         val current = if (steps.any()) steps.peekLast().tile else pawn.tile
         addStep(current, step, type, detectCollision)
     }
@@ -52,15 +54,24 @@ class MovementQueue(val pawn: Pawn) {
 
             walkDirection = Direction.between(tile, next.tile)
 
-            if (walkDirection != Direction.NONE && (!next.detectCollision || collision.canTraverse(tile, walkDirection, projectile = false))) {
+            if (walkDirection != Direction.NONE && (
+                    !next.detectCollision ||
+                        collision.canTraverse(
+                            tile,
+                            walkDirection,
+                            projectile = false,
+                        )
+                )
+            ) {
                 tile = Tile(next.tile)
                 pawn.lastFacingDirection = walkDirection
 
-                val running = when (next.type) {
-                    StepType.NORMAL -> pawn.isRunning()
-                    StepType.FORCED_RUN -> true
-                    StepType.FORCED_WALK -> false
-                }
+                val running =
+                    when (next.type) {
+                        StepType.NORMAL -> pawn.isRunning()
+                        StepType.FORCED_RUN -> true
+                        StepType.FORCED_WALK -> false
+                    }
                 if (running) {
                     next = steps.poll()
                     if (next != null) {
@@ -81,16 +92,25 @@ class MovementQueue(val pawn: Pawn) {
             }
 
             if (walkDirection != null && walkDirection != Direction.NONE) {
+                if (pawn.entityType.isNpc) {
+                    (pawn as Npc).avatar.walk(walkDirection.getDeltaX(), walkDirection.getDeltaZ())
+                }
                 pawn.steps = StepDirection(walkDirection, runDirection)
                 pawn.tile = Tile(tile)
-                if (runDirection != null) {
-                    pawn.addBlock(UpdateBlockType.MOVEMENT)
-                }
+                // TODO ADVO THIS IS SHIT
+//                if (runDirection != null) {
+//                    pawn.addBlock(UpdateBlockType.MOVEMENT)
+//                }
             }
         }
     }
 
-    private fun addStep(current: Tile, next: Tile, type: StepType, detectCollision: Boolean) {
+    private fun addStep(
+        current: Tile,
+        next: Tile,
+        type: StepType,
+        detectCollision: Boolean,
+    ) {
         var dx = next.x - current.x
         var dz = next.z - current.z
         val delta = Math.max(abs(dx), abs(dz))
@@ -120,6 +140,6 @@ class MovementQueue(val pawn: Pawn) {
     enum class StepType {
         NORMAL,
         FORCED_WALK,
-        FORCED_RUN
+        FORCED_RUN,
     }
 }

@@ -1,8 +1,6 @@
 package org.alter.plugins.content.commands.commands.developer
 
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.commands.Commands_plugin
-import org.alter.plugins.content.interfaces.bank.openBank
 
 
 on_command("chatanim", Privilege.DEV_POWER, description = "Chat dialogue test") {
@@ -15,5 +13,3 @@ on_command("chatanim", Privilege.DEV_POWER, description = "Chat dialogue test") 
     }
     player.message("$key opened in a dialog", ChatMessageType.ENGINE)
 }
-
-

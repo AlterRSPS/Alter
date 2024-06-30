@@ -13,7 +13,11 @@ on_command("getvarbit", Privilege.DEV_POWER, description = "Get varbit state") {
     }
 }
 
-on_command("logchanges", Privilege.DEV_POWER, description = "Will log all varbits/varps when it gets changed you will see in-game messages.") {
+on_command(
+    "logchanges",
+    Privilege.DEV_POWER,
+    description = "Will log all varbits/varps when it gets changed you will see in-game messages.",
+) {
     val varbitLogging = !(player.attr[CHANGE_LOGGING] ?: false)
     player.attr[CHANGE_LOGGING] = varbitLogging
     player.message("Change Logging: ${if (varbitLogging) "<col=178000>Enabled</col>" else "<col=801700>Disabled</col>"}")

@@ -1,15 +1,13 @@
 package org.alter.game.service.login
 
+import io.github.oshai.kotlinlogging.KotlinLogging
+import net.rsprot.protocol.common.client.OldSchoolClientType
+import net.rsprot.protocol.loginprot.outgoing.LoginResponse
+import net.rsprot.protocol.loginprot.outgoing.util.AuthenticatorResponse
 import org.alter.game.model.entity.Client
 import org.alter.game.service.GameService
 import org.alter.game.service.serializer.PlayerLoadResult
 import org.alter.game.service.world.WorldVerificationService
-import gg.rsmod.net.codec.login.LoginResponse
-import gg.rsmod.net.codec.login.LoginResultType
-import gg.rsmod.util.io.IsaacRandom
-import io.netty.channel.ChannelFutureListener
-
-import io.github.oshai.kotlinlogging.KotlinLogging
 
 /**
  * A worker for the [LoginService] that is responsible for handling the most
@@ -18,52 +16,79 @@ import io.github.oshai.kotlinlogging.KotlinLogging
  * @author Tom <rspsmods@gmail.com>
  */
 class LoginWorker(private val boss: LoginService, private val verificationService: WorldVerificationService) : Runnable {
-
     override fun run() {
         while (true) {
             val request = boss.requests.take()
             try {
                 val world = request.world
 
-                val client = Client.fromRequest(world, request.login)
-                val loadResult: PlayerLoadResult = boss.serializer.loadClientData(client, request.login)
+                val client = Client.fromRequest(world, request.responseHandler, request.block)
+
+                val loadResult: PlayerLoadResult = boss.serializer.loadClientData(client, request.block)
 
                 if (loadResult == PlayerLoadResult.LOAD_ACCOUNT || loadResult == PlayerLoadResult.NEW_ACCOUNT) {
-                    val decodeRandom = IsaacRandom(request.login.xteaKeys)
-                    val encodeRandom = IsaacRandom(IntArray(request.login.xteaKeys.size) { request.login.xteaKeys[it] + 50 })
-
                     world.getService(GameService::class.java)?.submitGameThreadJob {
-                        val interceptedLoginResult = verificationService.interceptLoginResult(world, client.uid, client.username, client.loginUsername)
-                        val loginResult: LoginResultType = interceptedLoginResult ?: if (client.register()) {
-                            LoginResultType.ACCEPTABLE
+                        val interceptedLoginResult =
+                            verificationService.interceptLoginResult(
+                                world,
+                                client.uid,
+                                client.username,
+                                client.loginUsername,
+                            )
+
+                        if (interceptedLoginResult != null) {
+                            request.responseHandler.writeFailedResponse(interceptedLoginResult)
+                            logger.info("User '{}' login denied with code {}.", client.username, interceptedLoginResult)
+                        } else if (client.register()) {
+                            request.responseHandler.writeSuccessfulResponse(
+                                LoginResponse.Ok(
+                                    authenticatorResponse = AuthenticatorResponse.NoAuthenticator,
+                                    staffModLevel = client.privilege.id,
+                                    playerMod = true,
+                                    index = client.index,
+                                    member = true,
+                                    accountHash = 0,
+                                    userId = 0,
+                                    userHash = 0,
+                                ),
+                                request.block,
+                            ).apply {
+                                if (this == null) {
+                                    return@apply
+                                }
+                                client.session = this
+                                client.playerInfo = client.world.network.playerInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
+                                client.npcInfo = client.world.network.npcInfoProtocol.alloc(client.index, OldSchoolClientType.DESKTOP)
+                                client.worldEntityInfo =
+                                    client.world.network.worldEntityInfoProtocol.alloc(
+                                        client.index,
+                                        OldSchoolClientType.DESKTOP,
+                                    )
+                                client.login()
+                            }
                         } else {
-                            LoginResultType.COULD_NOT_COMPLETE_LOGIN
-                        }
-                        if (loginResult == LoginResultType.ACCEPTABLE) {
-                            client.channel.write(LoginResponse(index = client.index, privilege = client.privilege.id))
-                            boss.successfulLogin(client, world, encodeRandom, decodeRandom)
-                        } else {
-                            request.login.channel.writeAndFlush(loginResult).addListener(ChannelFutureListener.CLOSE)
-                            logger.info("User '{}' login denied with code {}.", client.username, loginResult)
+                            request.responseHandler.writeFailedResponse(LoginResponse.InvalidSave)
+                            logger.info("User '{}' login denied with code {}.", client.username, LoginResponse.InvalidSave)
                         }
                     }
                 } else {
-                    val errorCode = when (loadResult) {
-                        PlayerLoadResult.INVALID_CREDENTIALS -> LoginResultType.INVALID_CREDENTIALS
-                        PlayerLoadResult.INVALID_RECONNECTION -> LoginResultType.BAD_SESSION_ID
-                        PlayerLoadResult.MALFORMED -> LoginResultType.ACCOUNT_LOCKED
-                        else -> LoginResultType.COULD_NOT_COMPLETE_LOGIN
-                    }
-                    request.login.channel.writeAndFlush(errorCode).addListener(ChannelFutureListener.CLOSE)
-                    logger.info("User '{}' login denied with code {} and channel {}.", client.username, loadResult, client.channel)
+                    val errorCode =
+                        when (loadResult) {
+                            PlayerLoadResult.INVALID_CREDENTIALS -> LoginResponse.InvalidUsernameOrPassword
+                            PlayerLoadResult.INVALID_RECONNECTION -> LoginResponse.BadSessionId
+                            PlayerLoadResult.MALFORMED -> LoginResponse.Locked
+                            else -> LoginResponse.InvalidSave
+                        }
+                    request.responseHandler.writeFailedResponse(errorCode)
+                    logger.info("User '{}' login denied with code {}.", client.username, loadResult)
                 }
             } catch (e: Exception) {
-                logger.error("Error when handling request from ${request.login.channel}.", e)
+                logger.error("Error when handling request from ${request.block.username}.", e)
             }
         }
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

@@ -12,5 +12,5 @@ enum class HitbarType(val id: Int, val pixelsWide: Int) {
     LARGE_2X(id = 3, pixelsWide = 140),
     LARGE_3X(id = 3, pixelsWide = 160),
     BLUE(id = 7, pixelsWide = 100),
-    ORANGE(id = 8, pixelsWide = 120)
+    ORANGE(id = 8, pixelsWide = 120),
 }

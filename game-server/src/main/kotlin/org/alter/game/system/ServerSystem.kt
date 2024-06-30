@@ -10,11 +10,13 @@ import io.netty.channel.ChannelHandlerContext
  * @author Tom <rspsmods@gmail.com>
  */
 abstract class ServerSystem(open val channel: Channel) {
-
     /**
      * Called when a message is received from the [channel].
      */
-    abstract fun receiveMessage(ctx: ChannelHandlerContext, msg: Any)
+    abstract fun receiveMessage(
+        ctx: ChannelHandlerContext,
+        msg: Any,
+    )
 
     /**
      * Called when the channel is disconnected.

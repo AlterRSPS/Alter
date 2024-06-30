@@ -1,15 +1,15 @@
 package org.alter.plugins.content.combat.strategy
 
-import org.alter.game.model.Tile
-import org.alter.game.model.combat.AttackStyle
-import org.alter.game.model.combat.PawnHit
-import org.alter.game.model.combat.XpMode
-import org.alter.game.model.entity.*
 import org.alter.api.EquipmentType
 import org.alter.api.Skills
 import org.alter.api.WeaponType
 import org.alter.api.cfg.Items
 import org.alter.api.ext.*
+import org.alter.game.model.Tile
+import org.alter.game.model.combat.AttackStyle
+import org.alter.game.model.combat.PawnHit
+import org.alter.game.model.combat.XpMode
+import org.alter.game.model.entity.*
 import org.alter.plugins.content.combat.Combat
 import org.alter.plugins.content.combat.CombatConfigs
 import org.alter.plugins.content.combat.createProjectile
@@ -26,7 +26,6 @@ import org.alter.plugins.content.combat.strategy.ranged.weapon.CrossbowType
  * @author Tom <rspsmods@gmail.com>
  */
 object RangedCombatStrategy : CombatStrategy {
-
     private const val DEFAULT_ATTACK_RANGE = 7
 
     private const val MAX_ATTACK_RANGE = 10
@@ -36,16 +35,17 @@ object RangedCombatStrategy : CombatStrategy {
             val weapon = pawn.getEquipment(EquipmentType.WEAPON)
             val attackStyle = CombatConfigs.getAttackStyle(pawn)
 
-            var range = when (weapon?.id) {
-                Items.ARMADYL_CROSSBOW -> 8
-                Items.CRAWS_BOW, Items.CRAWS_BOW_U -> 10
-                Items.CHINCHOMPA_10033, Items.RED_CHINCHOMPA_10034, Items.BLACK_CHINCHOMPA -> 9
-                in Bows.LONG_BOWS -> 9
-                in Knives.KNIVES -> 6
-                in Darts.DARTS -> 3
-                in Bows.CRYSTAL_BOWS -> 10
-                else -> DEFAULT_ATTACK_RANGE
-            }
+            var range =
+                when (weapon?.id) {
+                    Items.ARMADYL_CROSSBOW -> 8
+                    Items.CRAWS_BOW, Items.CRAWS_BOW_U -> 10
+                    Items.CHINCHOMPA_10033, Items.RED_CHINCHOMPA_10034, Items.BLACK_CHINCHOMPA -> 9
+                    in Bows.LONG_BOWS -> 9
+                    in Knives.KNIVES -> 6
+                    in Darts.DARTS -> 3
+                    in Bows.CRYSTAL_BOWS -> 10
+                    else -> DEFAULT_ATTACK_RANGE
+                }
 
             if (attackStyle == AttackStyle.LONG_RANGE) {
                 range += 2
@@ -56,7 +56,10 @@ object RangedCombatStrategy : CombatStrategy {
         return DEFAULT_ATTACK_RANGE
     }
 
-    override fun canAttack(pawn: Pawn, target: Pawn): Boolean {
+    override fun canAttack(
+        pawn: Pawn,
+        target: Pawn,
+    ): Boolean {
         if (pawn is Player) {
             val weapon = pawn.getEquipment(EquipmentType.WEAPON)
             val ammo = pawn.getEquipment(EquipmentType.AMMO)
@@ -78,7 +81,10 @@ object RangedCombatStrategy : CombatStrategy {
         return true
     }
 
-    override fun attack(pawn: Pawn, target: Pawn) {
+    override fun attack(
+        pawn: Pawn,
+        target: Pawn,
+    ) {
         val world = pawn.world
 
         val animation = CombatConfigs.getAttackAnimation(pawn)
@@ -90,7 +96,9 @@ object RangedCombatStrategy : CombatStrategy {
                 is Npc -> {
                     CombatConfigs.getCombatDef(pawn)!!.let {
                         if (it.defaultAttackSoundArea) {
-                            world.spawn(AreaSound(pawn.tile, it.defaultAttackSound, it.defaultAttackSoundRadius, it.defaultAttackSoundVolume))
+                            world.spawn(
+                                AreaSound(pawn.tile, it.defaultAttackSound, it.defaultAttackSoundRadius, it.defaultAttackSoundVolume),
+                            )
                         } else {
                             target.playSound(pawn.combatDef.defaultAttackSound, pawn.combatDef.defaultAttackSoundVolume)
                         }
@@ -106,14 +114,14 @@ object RangedCombatStrategy : CombatStrategy {
         var ammoDropAction: ((PawnHit).() -> Unit) = {}
 
         if (pawn is Player) {
-
             /*
              * Get the [EquipmentType] for the ranged weapon you're using.
              */
-            val ammoSlot = when {
-                pawn.hasWeaponType(WeaponType.THROWN) || pawn.hasWeaponType(WeaponType.CHINCHOMPA) -> EquipmentType.WEAPON
-                else -> EquipmentType.AMMO
-            }
+            val ammoSlot =
+                when {
+                    pawn.hasWeaponType(WeaponType.THROWN) || pawn.hasWeaponType(WeaponType.CHINCHOMPA) -> EquipmentType.WEAPON
+                    else -> EquipmentType.AMMO
+                }
 
             val ammo = pawn.getEquipment(ammoSlot)
 
@@ -134,11 +142,12 @@ object RangedCombatStrategy : CombatStrategy {
             if (ammo != null && (ammoProjectile == null || !ammoProjectile.breakOnImpact())) {
                 val chance = world.random(99)
                 val breakAmmo = chance in 0..19
-                val dropAmmo = when {
-                    pawn.hasEquipped(EquipmentType.CAPE, Items.AVAS_ACCUMULATOR) -> chance in 20..27
-                    pawn.hasEquipped(EquipmentType.CAPE, Items.AVAS_ASSEMBLER) -> false
-                    else -> !breakAmmo
-                }
+                val dropAmmo =
+                    when {
+                        pawn.hasEquipped(EquipmentType.CAPE, Items.AVAS_ACCUMULATOR) -> chance in 20..27
+                        pawn.hasEquipped(EquipmentType.CAPE, Items.AVAS_ASSEMBLER) -> false
+                        else -> !breakAmmo
+                    }
 
                 val amount = 1
                 if (breakAmmo || dropAmmo) {
@@ -157,19 +166,32 @@ object RangedCombatStrategy : CombatStrategy {
         val landHit = accuracy >= world.randomDouble()
         val hitDelay = getHitDelay(pawn.getCentreTile(), target.tile.transform(target.getSize() / 2, target.getSize() / 2))
         val damage =
-            pawn.dealHit(target = target, maxHit = maxHit, landHit = landHit, delay = hitDelay, onHit = ammoDropAction).hit.hitmarks.sumOf { it.damage }
+            pawn.dealHit(
+                target = target,
+                maxHit = maxHit,
+                landHit = landHit,
+                delay = hitDelay,
+                onHit = ammoDropAction,
+            ).hit.hitmarks.sumOf { it.damage }
 
         if (damage > 0 && pawn.entityType.isPlayer) {
             addCombatXp(pawn as Player, target, damage)
         }
     }
 
-    fun getHitDelay(start: Tile, target: Tile): Int {
+    fun getHitDelay(
+        start: Tile,
+        target: Tile,
+    ): Int {
         val distance = start.getDistance(target)
         return 2 + (Math.floor((3.0 + distance) / 6.0)).toInt()
     }
 
-    private fun addCombatXp(player: Player, target: Pawn, damage: Int) {
+    private fun addCombatXp(
+        player: Player,
+        target: Pawn,
+        damage: Int,
+    ) {
         val modDamage = if (target.entityType.isNpc) Math.min(target.getCurrentHp(), damage) else damage
         val mode = CombatConfigs.getXpMode(player)
         val multiplier = if (target is Npc) Combat.getNpcXpMultiplier(target) else 1.0

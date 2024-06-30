@@ -12,16 +12,16 @@ mssqlJdbc = "6.4.0.jre7"
 json = "20220320"
 jbcrypt = "0.4"
 gson = "_"
-cache = "_"
 kotlinxSerializationCore = "_"
 junit = "4.+"
 kotlinTestJunit = "_"
 kotlin = "1.8.10"
 openrs2 = "0.1.0-SNAPSHOT"
-nettyAll = "4.0.34.Final"
+nettyAll = "4.1.109.Final"
 slf4j = "2.0.0-alpha0"
 csv = "0.7.3"
 logback = "1.4.11"
+ktlint = "12.1.0"
 
 [libraries]
 fastutil = { group = "it.unimi.dsi", name = "fastutil", version.ref = "fastutil" }
@@ -43,7 +43,6 @@ json = { group = "org.json", name = "json", version.ref = "json" }
 reflection = {group = "org.reflections", name = "reflections", version = "_"}
 jbcrypt = { group = "org.mindrot", name = "jbcrypt", version.ref = "jbcrypt" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
-cache = { group = "net.runelite", name = "cache", version.ref = "cache" }
 kotlin-scripting = {group = "org.jetbrains.kotlin", name = "kotlin-scripting-common", version = "_"}
 kotlin-script-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-script-runtime", version.ref = "kotlin"}
 kotlinx-coroutines = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "_"}
@@ -70,3 +69,4 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version =  "0.9.18"}
 shadow = { id ="com.github.johnrengelman.shadow", version = "8.1.1"}
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }

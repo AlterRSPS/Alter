@@ -16,5 +16,5 @@ enum class InstancedMapAttribute {
      * The instanced map will de-allocate if its owner dies while in the map area.
      * Requires an owner for the instanced map.
      */
-    DEALLOCATE_ON_DEATH
+    DEALLOCATE_ON_DEATH,
 }

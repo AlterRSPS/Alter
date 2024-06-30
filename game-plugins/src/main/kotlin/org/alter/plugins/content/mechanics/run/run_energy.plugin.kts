@@ -1,7 +1,5 @@
 package org.alter.plugins.content.mechanics.run
 
-import org.alter.game.model.priv.Privilege
-
 on_login {
     player.timers[RunEnergy.RUN_DRAIN] = 1
 }

@@ -72,7 +72,6 @@ val DISPLAY_MODE_CHANGE_ATTR = AttributeKey<Int>()
  */
 val RESET_FACING_PAWN_DISTANCE_ATTR = AttributeKey<Int>()
 
-
 /**
  * The [Pawn] which another pawn is facing.
  */

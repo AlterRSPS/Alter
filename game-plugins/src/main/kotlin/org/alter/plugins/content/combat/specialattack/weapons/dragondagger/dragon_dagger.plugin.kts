@@ -1,7 +1,7 @@
 package org.alter.plugins.content.combat.specialattack.weapons.dragondagger
 
-import org.alter.game.model.entity.AreaSound
 import org.alter.api.cfg.Items
+import org.alter.game.model.entity.AreaSound
 import org.alter.plugins.content.combat.dealHit
 import org.alter.plugins.content.combat.formula.MeleeCombatFormula
 import org.alter.plugins.content.combat.specialattack.SpecialAttacks
@@ -21,4 +21,3 @@ SpecialAttacks.register(Items.DRAGON_DAGGER, SPECIAL_REQUIREMENT) {
         player.dealHit(target = target, maxHit = maxHit, landHit = landHit, delay = delay)
     }
 }
-

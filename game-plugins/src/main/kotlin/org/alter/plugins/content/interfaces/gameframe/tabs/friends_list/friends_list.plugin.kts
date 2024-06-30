@@ -6,8 +6,9 @@ on_button(interfaceId = Social.FRIENDS_LIST_INTERFACE_ID, component = Social.SWI
 }
 
 on_login {
-    if (player.getInterfaceAt(InterfaceDestination.SOCIAL) == Social.FRIENDS_LIST_INTERFACE_ID)
+    if (player.getInterfaceAt(InterfaceDestination.SOCIAL) == Social.FRIENDS_LIST_INTERFACE_ID) {
         player.setVarbit(Varbit.FRIEND_FACE_ID_VARBIT, 0)
-    else
+    } else {
         player.setVarbit(Varbit.FRIEND_FACE_ID_VARBIT, 1)
+    }
 }

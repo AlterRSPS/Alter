@@ -1,8 +1,6 @@
 package org.alter.game.model
 
-import com.google.common.base.MoreObjects
-import org.alter.game.model.collision.CollisionFlag
-import org.alter.game.model.entity.GroundItem
+import gg.rsmod.util.toStringHelper
 import org.alter.game.model.region.Chunk
 import org.alter.game.model.region.ChunkCoords
 
@@ -12,7 +10,6 @@ import org.alter.game.model.region.ChunkCoords
  * @author Tom <rspsmods@gmail.com>
  */
 class Tile {
-
     /**
      * A bit-packed integer that holds and represents the [x], [z] and [height] of the tile.
      */
@@ -36,7 +33,12 @@ class Tile {
     /**
      * Returns the base tile of our region relative to the current [x], [z] and [Chunk.MAX_VIEWPORT].
      */
-    val regionBase: Tile get() = Tile(((x shr 3) - (Chunk.MAX_VIEWPORT shr 4)) shl 3, ((z shr 3) - (Chunk.MAX_VIEWPORT shr 4)) shl 3, height)
+    val regionBase: Tile get() =
+        Tile(
+            ((x shr 3) - (Chunk.MAX_VIEWPORT shr 4)) shl 3,
+            ((z shr 3) - (Chunk.MAX_VIEWPORT shr 4)) shl 3,
+            height,
+        )
 
     val chunkCoords: ChunkCoords get() = ChunkCoords.fromTile(this)
 
@@ -56,17 +58,36 @@ class Tile {
 
     constructor(other: Tile) : this(other.x, other.z, other.height)
 
-    fun transform(x: Int, z: Int, height: Int) = Tile(this.x + x, this.z + z, this.height + height)
+    fun transform(
+        x: Int,
+        z: Int,
+        height: Int,
+    ) = Tile(this.x + x, this.z + z, this.height + height)
 
-    fun transform(x: Int, z: Int): Tile = Tile(this.x + x, this.z + z, this.height)
+    fun transform(
+        x: Int,
+        z: Int,
+    ): Tile = Tile(this.x + x, this.z + z, this.height)
 
     fun transform(height: Int): Tile = Tile(this.x, this.z, this.height + height)
 
-    fun viewableFrom(other: Tile, viewDistance: Int = 15): Boolean = getDistance(other) <= viewDistance
+    fun viewableFrom(
+        other: Tile,
+        viewDistance: Int = 15,
+    ): Boolean = getDistance(other) <= viewDistance
 
-    fun step(direction: Direction, num: Int = 1): Tile = Tile(this.x + (num * direction.getDeltaX()), this.z + (num * direction.getDeltaZ()), this.height)
+    fun step(
+        direction: Direction,
+        num: Int = 1,
+    ): Tile = Tile(this.x + (num * direction.getDeltaX()), this.z + (num * direction.getDeltaZ()), this.height)
 
-    fun transformAndRotate(localX: Int, localZ: Int, orientation: Int, width: Int = 1, length: Int = 1): Tile {
+    fun transformAndRotate(
+        localX: Int,
+        localZ: Int,
+        orientation: Int,
+        width: Int = 1,
+        length: Int = 1,
+    ): Tile {
         val localWidth = Chunk.CHUNK_SIZE - 1
         val localLength = Chunk.CHUNK_SIZE - 1
 
@@ -79,7 +100,12 @@ class Tile {
         }
     }
 
-    fun isWithinRadius(otherX: Int, otherZ: Int, otherHeight: Int, radius: Int): Boolean {
+    fun isWithinRadius(
+        otherX: Int,
+        otherZ: Int,
+        otherHeight: Int,
+        radius: Int,
+    ): Boolean {
         if (otherHeight != height) {
             return false
         }
@@ -97,7 +123,10 @@ class Tile {
      * @return true
      * if the tiles are on the same height and within radius of [radius] tiles.
      */
-    fun isWithinRadius(other: Tile, radius: Int): Boolean = isWithinRadius(other.x, other.z, other.height, radius)
+    fun isWithinRadius(
+        other: Tile,
+        radius: Int,
+    ): Boolean = isWithinRadius(other.x, other.z, other.height, radius)
 
     fun isInSameChunk(other: Tile): Boolean = (x shr 3) == (other.x shr 3) && (z shr 3) == (other.z shr 3)
 
@@ -122,18 +151,20 @@ class Tile {
      * A bit-packed value of the tile, in [Chunk] coordinates, which also stores
      * a rotation/orientation value.
      */
-    fun toRotatedInteger(rot: Int): Int = ((height and 0x3) shl 24) or (((x shr 3) and 0x3FF) shl 14) or (((z shr 3) and 0x7FF) shl 3) or ((rot and 0x3) shl 1)
+    fun toRotatedInteger(rot: Int): Int =
+        ((height and 0x3) shl 24) or (((x shr 3) and 0x3FF) shl 14) or (((z shr 3) and 0x7FF) shl 3) or ((rot and 0x3) shl 1)
 
     /**
      * Checks if the [other] tile has the same coordinates as this tile.
      */
     fun sameAs(other: Tile): Boolean = other.x == x && other.z == z && other.height == height
 
+    fun sameAs(
+        x: Int,
+        z: Int,
+    ): Boolean = x == this.x && z == this.z
 
-
-    fun sameAs(x: Int, z: Int): Boolean = x == this.x && z == this.z
-
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("x", x).add("z", z).add("height", height).toString()
+    override fun toString(): String = toStringHelper().add("x", x).add("z", z).add("height", height).toString()
 
     override fun hashCode(): Int = coordinate
 

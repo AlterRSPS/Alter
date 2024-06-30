@@ -1,5 +1,7 @@
 package org.alter.plugins.content.skills.runecrafting
 
+import dev.openrune.cache.CacheManager.getObject
+
 private val enterOption = "Enter"
 
 Altar.values.forEach { altar ->
@@ -10,7 +12,7 @@ Altar.values.forEach { altar ->
     altar.ruins?.forEach { ruin ->
 
         // The object definition for the Mysterious Ruins
-        val def = world.definitions.get(ObjectDef::class.java, ruin)
+        val def = getObject(ruin)
 
         // Allow using the talisman on the ruins to enter the altar
         altar.talisman?.let { talisman ->
@@ -20,7 +22,7 @@ Altar.values.forEach { altar ->
         }
 
         // If the object has the 'enter' option, we should check that the varbit is set for the player before teleporting them to the altar
-        if (def.options.contains(enterOption)) {
+        if (def.actions.contains(enterOption)) {
             on_obj_option(obj = ruin, option = enterOption) {
                 if (player.getVarbit(altar.varbit) == 1) {
                     altar.entrance?.let { player.moveTo(it) }
@@ -78,17 +80,18 @@ Altar.values.forEach { altar ->
             val pos = player.tile
 
             // The direction of the altar
-            val direction : String = when {
-                pos.z > tile.z && pos.x - 1 > tile.x -> "south-west"
-                pos.x < tile.x && pos.z > tile.z -> "south-east"
-                pos.x > tile.x + 1 && pos.z < tile.z -> "north-west"
-                pos.x < tile.x && pos.z < tile.z -> "north-east"
-                pos.z < tile.z -> "north"
-                pos.z > tile.z -> "south"
-                pos.x < tile.x + 1 -> "east"
-                pos.x > tile.x + 1 -> "west"
-                else -> "unknown"
-            }
+            val direction: String =
+                when {
+                    pos.z > tile.z && pos.x - 1 > tile.x -> "south-west"
+                    pos.x < tile.x && pos.z > tile.z -> "south-east"
+                    pos.x > tile.x + 1 && pos.z < tile.z -> "north-west"
+                    pos.x < tile.x && pos.z < tile.z -> "north-east"
+                    pos.z < tile.z -> "north"
+                    pos.z > tile.z -> "south"
+                    pos.x < tile.x + 1 -> "east"
+                    pos.x > tile.x + 1 -> "west"
+                    else -> "unknown"
+                }
 
             player.message("The talisman pulls towards the $direction.")
         }

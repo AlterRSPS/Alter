@@ -10,8 +10,10 @@ import org.alter.game.service.GameService
  * @author Tom <rspsmods@gmail.com>
  */
 class WorldRemoveTask : GameTask {
-
-    override fun execute(world: World, service: GameService) {
+    override fun execute(
+        world: World,
+        service: GameService,
+    ) {
         for (i in 0 until world.npcs.capacity) {
             val npc = world.npcs[i] ?: continue
             if (npc.owner?.isOnline == false) {

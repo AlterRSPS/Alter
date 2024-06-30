@@ -12,7 +12,6 @@ import org.alter.game.model.collision.CollisionManager
  * @author Tom <rspsmods@gmail.com>
  */
 abstract class PathFindingStrategy(val collision: CollisionManager) {
-
     /**
      * If the path finder should cancel its search.
      *

@@ -1,26 +1,15 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package org.alter.game.service
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder
-import org.alter.game.Server
-import org.alter.game.message.MessageDecoderSet
-import org.alter.game.message.MessageEncoderSet
-import org.alter.game.message.MessageStructureSet
-import org.alter.game.model.World
-import org.alter.game.task.*
-import org.alter.game.task.parallel.ParallelNpcCycleTask
-import org.alter.game.task.parallel.ParallelPlayerCycleTask
-import org.alter.game.task.parallel.ParallelPlayerPostCycleTask
-import org.alter.game.task.parallel.ParallelSynchronizationTask
-import org.alter.game.task.sequential.SequentialNpcCycleTask
-import org.alter.game.task.sequential.SequentialPlayerCycleTask
-import org.alter.game.task.sequential.SequentialPlayerPostCycleTask
-import org.alter.game.task.sequential.SequentialSynchronizationTask
 import gg.rsmod.util.ServerProperties
+import gg.rsmod.util.concurrency.ThreadFactoryBuilder
+import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
-
-import io.github.oshai.kotlinlogging.KotlinLogging
+import org.alter.game.model.World
+import org.alter.game.task.*
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -32,7 +21,6 @@ import java.util.concurrent.TimeUnit
  * @author Tom <rspsmods@gmail.com>
  */
 class GameService : Service {
-
     /**
      * The associated world with our current game.
      */
@@ -47,11 +35,13 @@ class GameService : Service {
     /**
      * The scheduler for our game cycle logic as well as coroutine dispatcher.
      */
-    private val executor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor(
+    private val executor: ScheduledExecutorService =
+        Executors.newSingleThreadScheduledExecutor(
             ThreadFactoryBuilder()
-                    .setNameFormat("game-context")
-                    .setUncaughtExceptionHandler { t, e -> logger.error("Error with thread $t", e) }
-                    .build())
+                .setNameFormat("game-context")
+                .setUncaughtExceptionHandler { t, e -> logger.error("Error with thread $t", e) }
+                .build(),
+        )
 
     /**
      * A list of jobs that will be executed on the next cycle after being
@@ -82,7 +72,7 @@ class GameService : Service {
     private val taskTimes = Object2LongOpenHashMap<Class<GameTask>>()
 
     /**
-     * The amount of time, in milliseconds, that [SequentialPlayerCycleTask]
+     * The amount of time, in milliseconds, that [PlayerCycleTask]
      * has taken for each [org.alter.game.model.entity.Player].
      */
     internal val playerTimes = Object2LongOpenHashMap<String>()
@@ -110,12 +100,6 @@ class GameService : Service {
      */
     private val tasks = mutableListOf<GameTask>()
 
-    internal val messageStructures = MessageStructureSet()
-
-    internal val messageEncoders = MessageEncoderSet()
-
-    internal val messageDecoders = MessageDecoderSet()
-
     /**
      * This flag indicates that the game cycles should pause.
      *
@@ -123,63 +107,35 @@ class GameService : Service {
      */
     internal var pause = false
 
-    override fun init(server: org.alter.game.Server, world: World, serviceProperties: ServerProperties) {
+    override fun init(
+        server: org.alter.game.Server,
+        world: World,
+        serviceProperties: ServerProperties,
+    ) {
         this.world = world
-        populateTasks(serviceProperties)
+        populateTasks()
         maxMessagesPerCycle = serviceProperties.getOrDefault("messages-per-cycle", 30)
+    }
+
+    override fun postLoad(
+        server: org.alter.game.Server,
+        world: World,
+    ) {
         executor.scheduleAtFixedRate(this::cycle, 0, world.gameContext.cycleTime.toLong(), TimeUnit.MILLISECONDS)
     }
 
-    override fun postLoad(server: org.alter.game.Server, world: World) {
-    }
-
-    override fun terminate(server: org.alter.game.Server, world: World) {
-    }
-
-    private fun populateTasks(serviceProperties: ServerProperties) {
-        /*
-         * Determine which synchronization task we're going to use based on the
-         * number of available processors we have been provided, also taking
-         * into account the amount of processors the machine has in the first
-         * place.
-         */
-        val availableProcessors = Runtime.getRuntime().availableProcessors()
-        val processors = Math.max(1, Math.min(availableProcessors, serviceProperties.getOrDefault("processors", availableProcessors)))
-        val sequentialTasks = processors == 1 || serviceProperties.getOrDefault("sequential-tasks", false)
-
-        if (sequentialTasks) {
-            tasks.addAll(arrayOf(
-                    MessageHandlerTask(),
-                    QueueHandlerTask(),
-                    SequentialPlayerCycleTask(),
-                    ChunkCreationTask(),
-                    WorldRemoveTask(),
-                    SequentialNpcCycleTask(),
-                    SequentialSynchronizationTask(),
-                    SequentialPlayerPostCycleTask()
-            ))
-            logger.info("Sequential tasks preference enabled. {} tasks will be handled per cycle.", tasks.size)
-        } else {
-            val executor = Executors.newFixedThreadPool(processors, ThreadFactoryBuilder()
-                    .setNameFormat("game-task-thread")
-                    .setUncaughtExceptionHandler { t, e -> logger.error("Error with thread $t", e) }
-                    .build())
-
-            tasks.addAll(arrayOf(
-                    MessageHandlerTask(),
-                    QueueHandlerTask(),
-                    ParallelPlayerCycleTask(executor),
-                    ChunkCreationTask(),
-                    WorldRemoveTask(),
-                    ParallelNpcCycleTask(executor),
-                    ParallelSynchronizationTask(executor),
-                    ParallelPlayerPostCycleTask(executor)
-            ))
-            logger.info("Parallel tasks preference enabled. {} tasks will be handled per cycle.", tasks.size)
-        }
-    }
-
-    override fun bindNet(server: org.alter.game.Server, world: World) {
+    private fun populateTasks() {
+        tasks.addAll(
+            arrayOf(
+                MessageHandlerTask(),
+                QueueHandlerTask(),
+                PlayerCycleTask(),
+                ChunkCreationTask(),
+                WorldRemoveTask(),
+                NpcCycleTask(),
+                SequentialSynchronizationTask(),
+            ),
+        )
     }
 
     /**
@@ -276,7 +232,7 @@ class GameService : Service {
              * R: reserved memory, in megabytes
              * M: max memory available, in megabytes
              */
-            //logger.info("[Cycle time: {}ms] [Entities: {}p / {}n] [Map: {}c / {}r / {}i] [Queues: {}p / {}n / {}w] [Mem usage: U={}MB / R={}MB / M={}MB].",
+            // logger.info("[Cycle time: {}ms] [Entities: {}p / {}n] [Map: {}c / {}r / {}i] [Queues: {}p / {}n / {}w] [Mem usage: U={}MB / R={}MB / M={}MB].",
             //        cycleTime / TICKS_PER_DEBUG_LOG, world.players.count(), world.npcs.count(),
             //        world.chunks.getActiveChunkCount(), world.chunks.getActiveRegionCount(), world.instanceAllocator.activeMapCount,
             //        totalPlayerQueues, totalNpcQueues, totalWorldQueues,
@@ -301,7 +257,7 @@ class GameService : Service {
     }
 
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
 
         /**
          * The amount of ticks that must go by for debug info to be logged.

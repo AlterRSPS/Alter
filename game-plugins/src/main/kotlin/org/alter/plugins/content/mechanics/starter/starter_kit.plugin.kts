@@ -4,7 +4,7 @@ import org.alter.game.model.attr.NEW_ACCOUNT_ATTR
 
 on_login {
     if (player.attr[NEW_ACCOUNT_ATTR] ?: return@on_login) {
-        with (player.inventory) {
+        with(player.inventory) {
             add(Items.LOGS, 5)
             add(Items.TINDERBOX)
             add(Items.BREAD, 5)

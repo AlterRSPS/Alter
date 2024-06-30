@@ -1,6 +1,6 @@
 package org.alter.game.action
 
-import org.alter.game.fs.def.ItemDef
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
 
@@ -11,18 +11,38 @@ import org.alter.game.model.item.Item
  * @author Tom <rspsmods@gmail.com>
  */
 object EquipAction {
-
     // Temporary way of loading skill names until we figure out the best solution.
     //  1) We can have a map of <skill, name> and populate it via plugins
     //  2) Execute a plugin when skill requirement is not met that will handle
     //      the messages
     //  3) Load skill names via external configs which would be used throughout
     //      the game and plugins module
-    private val SKILL_NAMES = arrayOf(
-        "attack", "defence", "strength", "hitpoints", "ranged", "prayer", "magic", "cooking",
-        "woodcutting", "fletching", "fishing", "firemaking", "crafting", "Smithing", "mining", "herblore",
-        "agility", "thieving", "slayer", "farming", "runecrafting", "hunter", "construction"
-    )
+    private val SKILL_NAMES =
+        arrayOf(
+            "attack",
+            "defence",
+            "strength",
+            "hitpoints",
+            "ranged",
+            "prayer",
+            "magic",
+            "cooking",
+            "woodcutting",
+            "fletching",
+            "fishing",
+            "firemaking",
+            "crafting",
+            "Smithing",
+            "mining",
+            "herblore",
+            "agility",
+            "thieving",
+            "slayer",
+            "farming",
+            "runecrafting",
+            "hunter",
+            "construction",
+        )
 
     /**
      * All possible results when trying to equip or unequip an item.
@@ -56,11 +76,15 @@ object EquipAction {
         /**
          * Item interaction could not be handled.
          */
-        INVALID_ITEM
+        INVALID_ITEM,
     }
 
-    fun equip(p: Player, item: Item, inventorySlot: Int = -1): Result {
-        val def = p.world.definitions.get(ItemDef::class.java, item.id)
+    fun equip(
+        p: Player,
+        item: Item,
+        inventorySlot: Int = -1,
+    ): Result {
+        val def = getItem(item.id)
         val plugins = p.world.plugins
 
         // Resets interaction when an item is equipped.
@@ -147,7 +171,7 @@ object EquipAction {
              */
             for (i in 0 until p.equipment.capacity) {
                 val equip = p.equipment[i] ?: continue
-                val otherDef = p.world.definitions.get(ItemDef::class.java, equip.id)
+                val otherDef = getItem(equip.id)
                 if (otherDef.equipType == equipSlot && otherDef.equipType != 0) {
                     unequip.add(i)
                 }
@@ -201,9 +225,10 @@ object EquipAction {
                     onItemUnequip(p, equipmentId, slot)
                 }
 
-                if (def.equipSound != null) {
-                    p.playSound(def.equipSound!!)
-                }
+// TODO ADVO add back equip sounds
+//                if (def.equipSound != null) {
+//                    p.playSound(def.equipSound!!)
+//                }
 
                 p.equipment[equipSlot] = newEquippedItem
                 plugins.executeEquipSlot(p, equipSlot)
@@ -213,7 +238,10 @@ object EquipAction {
         return Result.SUCCESS
     }
 
-    fun unequip(p: Player, equipmentSlot: Int): Result {
+    fun unequip(
+        p: Player,
+        equipmentSlot: Int,
+    ): Result {
         val item = p.equipment[equipmentSlot] ?: return Result.INVALID_ITEM
 
         val addition = p.inventory.add(item.id, item.amount, assureFullInsertion = false)
@@ -235,7 +263,11 @@ object EquipAction {
         return Result.SUCCESS
     }
 
-    fun onItemUnequip(p: Player, item: Int, slot: Int) {
+    fun onItemUnequip(
+        p: Player,
+        item: Int,
+        slot: Int,
+    ) {
         p.world.plugins.executeUnequipItem(p, item)
         p.world.plugins.executeUnequipSlot(p, slot)
     }

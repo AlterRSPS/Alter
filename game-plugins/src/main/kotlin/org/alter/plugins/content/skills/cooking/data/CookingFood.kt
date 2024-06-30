@@ -15,7 +15,15 @@ import org.alter.api.cfg.Items
  * @param xp                The amount of xp gained when successfully cooking the food.
  * @param requireRange      Boolean whether or not this food can be cooked on fires.
  */
-enum class CookingFood(val raw_item: Int, val cooked_item: Int, val burnt_item: Int, val xp: Double, val minLevel: Int, val maxLevel: Int, val requireRange: Boolean = true) {
+enum class CookingFood(
+    val raw_item: Int,
+    val cooked_item: Int,
+    val burnt_item: Int,
+    val xp: Double,
+    val minLevel: Int,
+    val maxLevel: Int,
+    val requireRange: Boolean = true,
+) {
     SHRIMP(Items.RAW_SHRIMPS, Items.SHRIMPS, Items.BURNT_SHRIMP, 30.0, 1, 34, false),
     CHICKEN(Items.RAW_CHICKEN, Items.COOKED_CHICKEN, Items.BURNT_CHICKEN, 30.0, 1, 34, false),
     BEEF(Items.RAW_BEEF, Items.COOKED_MEAT, Items.BURNT_MEAT, 30.0, 1, 31, false),
@@ -23,12 +31,12 @@ enum class CookingFood(val raw_item: Int, val cooked_item: Int, val burnt_item: 
     SARDINE(Items.RAW_SARDINE, Items.SARDINE, Items.BURNT_FISH_369, 40.0, 1, 35, false),
     HERRING(Items.RAW_HERRING, Items.HERRING, Items.BURNT_FISH_357, 50.0, 5, 41, false),
     MACKEREL(Items.RAW_MACKEREL, Items.MACKEREL, Items.BURNT_FISH_357, 40.0, 10, 45, false),
-    TROUT(Items.RAW_TROUT, Items.TROUT, Items.BURNT_FISH_343, 70.0, 15, 50,false),
+    TROUT(Items.RAW_TROUT, Items.TROUT, Items.BURNT_FISH_343, 70.0, 15, 50, false),
     ANCHOVIES(Items.RAW_ANCHOVIES, Items.ANCHOVIES, Items.BURNT_FISH, 30.0, 15, 34, false),
     COD(Items.RAW_COD, Items.COD, Items.BURNT_FISH_343, 75.0, 18, 52, false),
     PIKE(Items.RAW_PIKE, Items.PIKE, Items.BURNT_FISH_343, 80.0, 20, 64, false),
     ROAST_BEAST(Items.RAW_BEAST_MEAT, Items.ROAST_BEAST_MEAT, Items.BURNT_BEAST_MEAT, 82.5, 21, 99, false),
-    SALMON(Items.RAW_SALMON, Items.SALMON, Items.BURNT_FISH_343, 90.0, 25, 58,false),
+    SALMON(Items.RAW_SALMON, Items.SALMON, Items.BURNT_FISH_343, 90.0, 25, 58, false),
     TUNA(Items.RAW_TUNA, Items.TUNA, Items.BURNT_FISH_367, 100.0, 30, 64, false),
     RAINBOW_FISH(Items.RAW_RAINBOW_FISH, Items.RAINBOW_FISH, Items.BURNT_RAINBOW_FISH, 110.0, 35, 63, false),
     STEW(Items.UNCOOKED_STEW, Items.STEW, Items.BURNT_STEW, 117.0, 25, 58, true),
@@ -45,7 +53,8 @@ enum class CookingFood(val raw_item: Int, val cooked_item: Int, val burnt_item: 
     MANTA_RAY(Items.RAW_MANTA_RAY, Items.MANTA_RAY, Items.BURNT_MANTA_RAY, 216.3, 91, 99, false),
     DARK_CRAB(Items.RAW_DARK_CRAB, Items.DARK_CRAB, Items.BURNT_DARK_CRAB, 215.0, 90, 99, false),
     ANGLERFISH(Items.RAW_ANGLERFISH, Items.ANGLERFISH, Items.BURNT_ANGLERFISH, 230.0, 84, 99, false),
-    BREAD(Items.BREAD_DOUGH, Items.BREAD, Items.BURNT_BREAD, 40.0, 1, 34, true);
+    BREAD(Items.BREAD_DOUGH, Items.BREAD, Items.BURNT_BREAD, 40.0, 1, 34, true),
+    ;
 
     companion object {
         val values = enumValues<CookingFood>()

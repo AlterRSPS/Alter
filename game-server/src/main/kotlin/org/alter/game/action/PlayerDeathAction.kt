@@ -1,7 +1,7 @@
 package org.alter.game.action
 
-import org.alter.game.fs.def.AnimDef
-import org.alter.game.message.impl.MidiJingleMessage
+import dev.openrune.cache.CacheManager.getAnim
+import net.rsprot.protocol.game.outgoing.sound.MidiJingle
 import org.alter.game.model.attr.KILLER_ATTR
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
@@ -14,7 +14,6 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 object PlayerDeathAction {
-
     private const val DEATH_ANIMATION = 836
 
     val deathPlugin: Plugin.() -> Unit = {
@@ -31,9 +30,9 @@ object PlayerDeathAction {
 
     private suspend fun QueueTask.death(player: Player) {
         val world = player.world
-        val deathAnim = world.definitions.get(AnimDef::class.java, DEATH_ANIMATION)
+        val deathAnim = getAnim(DEATH_ANIMATION)
         val instancedMap = world.instanceAllocator.getMap(player.tile)
-        player.write(MidiJingleMessage(90))
+        player.write(MidiJingle(90))
         player.damageMap.getMostDamage()?.let { killer ->
             if (killer is Player) {
                 world.getService(LoggerService::class.java, searchSubclasses = true)?.logPlayerKill(killer, player)

@@ -28,9 +28,13 @@ import java.util.*
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class InstancedMap internal constructor(val area: Area, val chunks: InstancedChunkSet, val exitTile: Tile,
-                                        val owner: PlayerUID?, val attr: EnumSet<InstancedMapAttribute>) {
-
+class InstancedMap internal constructor(
+    val area: Area,
+    val chunks: InstancedChunkSet,
+    val exitTile: Tile,
+    val owner: PlayerUID?,
+    val attr: EnumSet<InstancedMapAttribute>,
+) {
     /**
      * Get the [InstancedChunk.packed] values in relation to the [relative] tile.
      *

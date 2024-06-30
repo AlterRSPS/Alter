@@ -8,5 +8,5 @@ package org.alter.game.model
 enum class ExamineEntityType {
     ITEM,
     NPC,
-    OBJECT
+    OBJECT,
 }

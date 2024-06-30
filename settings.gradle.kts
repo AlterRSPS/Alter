@@ -1,15 +1,13 @@
 rootProject.name = "Alter"
 
 plugins {
-    id("de.fayard.refreshVersions") version("0.51.0")
+    id("de.fayard.refreshVersions") version ("0.51.0")
 }
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":util")
-include(":net")
 include(":game-plugins")
 include(":game-api")
 include(":game-server")
-include(":Logger")
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -18,4 +16,3 @@ dependencyResolutionManagement {
         }
     }
 }
-include("Logger")

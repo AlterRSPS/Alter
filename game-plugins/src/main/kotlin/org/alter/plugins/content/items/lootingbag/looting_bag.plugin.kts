@@ -1,9 +1,8 @@
 package org.alter.plugins.content.items.others.lootingbag
 
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
-import org.alter.game.model.container.ContainerStackType
-import org.alter.game.model.container.key.ContainerKey
 import org.alter.plugins.service.marketvalue.ItemMarketValueService
 
 val CONTAINER_KEY = ContainerKey("looting_bag", capacity = 28, stackType = ContainerStackType.NORMAL)
@@ -22,7 +21,7 @@ on_login {
      * in your looting bag, the bag won't have the "view" option on it.
      */
     if (player.inventory.containsAny(Items.LOOTING_BAG, Items.LOOTING_BAG_22586)) {
-        val container = player.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(world.definitions, CONTAINER_KEY) }
+        val container = player.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(CONTAINER_KEY) }
         player.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
     }
 }
@@ -65,7 +64,12 @@ arrayOf(Items.LOOTING_BAG, Items.LOOTING_BAG_22586).forEach { bag ->
 
         player.queue {
             val container = player.containers[CONTAINER_KEY]
-            val destroy = destroyItem(note = if (container != null && container.hasAny) "If you destroy it, the contents will be lost." else "The bag is empty. Are you sure you want to destroy it?", item = bag, amount = 1)
+            val destroy =
+                destroyItem(
+                    note = if (container != null && container.hasAny) "If you destroy it, the contents will be lost." else "The bag is empty. Are you sure you want to destroy it?",
+                    item = bag,
+                    amount = 1,
+                )
             if (destroy) {
                 player.inventory.remove(item = bag, amount = 1, beginSlot = slot)
             }
@@ -82,7 +86,7 @@ on_button(interfaceId = TAB_INTERFACE_ID, component = 5) {
         3 -> store(player, slot = slot, amount = Int.MAX_VALUE)
         4 -> player.queue { store(player, slot = slot, amount = inputInt()) }
         5 -> {
-            val container = player.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(world.definitions, CONTAINER_KEY) }
+            val container = player.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(CONTAINER_KEY) }
             val item = container[slot] ?: return@on_button
             world.sendExamine(player, item.id, ExamineEntityType.ITEM)
         }
@@ -136,7 +140,11 @@ on_button(interfaceId = 192, component = 8) {
     }
 }
 
-fun store(p: Player, slot: Int, amount: Int) {
+fun store(
+    p: Player,
+    slot: Int,
+    amount: Int,
+) {
     val item = p.inventory[slot] ?: return
 
     if (item.id == Items.LOOTING_BAG || item.id == Items.LOOTING_BAG_22586) {
@@ -144,7 +152,7 @@ fun store(p: Player, slot: Int, amount: Int) {
         return
     }
 
-    if (!item.toUnnoted(world.definitions).getDef(world.definitions).tradeable) {
+    if (!item.toUnnoted().getDef().isTradeable) {
         p.message("Only tradeable items can be put in the bag.")
         return
     }
@@ -157,20 +165,29 @@ fun store(p: Player, slot: Int, amount: Int) {
     store(p, item, amount)
 }
 
-fun store(p: Player, item: Item, amount: Int, beginSlot: Int = -1): Boolean {
-    //val container = p.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(world.definitions, CONTAINER_KEY) }
+fun store(
+    p: Player,
+    item: Item,
+    amount: Int,
+    beginSlot: Int = -1,
+): Boolean {
+    // val container = p.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(world.definitions, CONTAINER_KEY) }
 
-    //val transferred = p.inventory.transfer(container, item = Item(item, amount).copyAttr(item), fromSlot = beginSlot)?.completed ?: 0
-    //if (transferred == 0) {
-     //   p.message("The bag's too full.")
-        return false
-    //}
-    //p.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
-    //p.setComponentText(interfaceId = TAB_INTERFACE_ID, component = VALUE_TEXT_COMPONENT, text = "Bag value: ${p.inventory.getNetworth(world).decimalFormat()} coins")
-    //return true
+    // val transferred = p.inventory.transfer(container, item = Item(item, amount).copyAttr(item), fromSlot = beginSlot)?.completed ?: 0
+    // if (transferred == 0) {
+    //   p.message("The bag's too full.")
+    return false
+    // }
+    // p.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
+    // p.setComponentText(interfaceId = TAB_INTERFACE_ID, component = VALUE_TEXT_COMPONENT, text = "Bag value: ${p.inventory.getNetworth(world).decimalFormat()} coins")
+    // return true
 }
 
-fun bank(p: Player, slot: Int, amount: Int) {
+fun bank(
+    p: Player,
+    slot: Int,
+    amount: Int,
+) {
     val container = p.containers[CONTAINER_KEY] ?: return
     val item = container[slot] ?: return
 
@@ -182,7 +199,10 @@ fun bank(p: Player, slot: Int, amount: Int) {
     p.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
 }
 
-fun bank_all(p: Player, container: ItemContainer): Boolean {
+fun bank_all(
+    p: Player,
+    container: ItemContainer,
+): Boolean {
     var any = false
 
     container.forEach { item ->
@@ -197,14 +217,20 @@ fun bank_all(p: Player, container: ItemContainer): Boolean {
     return any
 }
 
-fun open(p: Player, slot: Int) {
+fun open(
+    p: Player,
+    slot: Int,
+) {
     val remove = p.inventory.remove(item = Items.LOOTING_BAG, beginSlot = slot)
     if (remove.hasSucceeded()) {
         p.inventory.add(item = Items.LOOTING_BAG_22586, beginSlot = slot)
     }
 }
 
-fun close(p: Player, slot: Int) {
+fun close(
+    p: Player,
+    slot: Int,
+) {
     val remove = p.inventory.remove(item = Items.LOOTING_BAG_22586, beginSlot = slot)
     if (remove.hasSucceeded()) {
         p.inventory.add(item = Items.LOOTING_BAG, beginSlot = slot)
@@ -226,7 +252,7 @@ fun settings(p: Player) {
 }
 
 fun check(p: Player) {
-    val container = p.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(world.definitions, CONTAINER_KEY) }
+    val container = p.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(CONTAINER_KEY) }
 
     p.runClientScript(149, 81 shl 16 or 5, LOOTING_BAG_CONTAINER_ID, 4, 7, 0, -1, "", "", "", "", "Examine")
     p.openInterface(dest = InterfaceDestination.TAB_AREA, interfaceId = TAB_INTERFACE_ID)
@@ -247,7 +273,7 @@ fun deposit(p: Player) {
     p.runClientScript(495, "Add to bag", 1)
 
     /** @TODO */
-    //p.setComponentText(interfaceId = TAB_INTERFACE_ID, component = VALUE_TEXT_COMPONENT, text = "Bag value: ${p.inventory.getNetworth(world).decimalFormat()} coins")
+    // p.setComponentText(interfaceId = TAB_INTERFACE_ID, component = VALUE_TEXT_COMPONENT, text = "Bag value: ${p.inventory.getNetworth(world).decimalFormat()} coins")
     p.runClientScript(1235, INV_CONTAINER_KEY, *get_item_prices(world, p.inventory))
 
     set_queue(p)
@@ -264,13 +290,16 @@ fun set_queue(p: Player) {
     }
 }
 
-fun get_item_prices(world: World, container: ItemContainer): Array<Int> {
+fun get_item_prices(
+    world: World,
+    container: ItemContainer,
+): Array<Int> {
     val marketService = world.getService(ItemMarketValueService::class.java)
     val prices = Array(container.capacity) { -1 }
 
     container.forEachIndexed { index, item ->
         if (item != null) {
-            prices[index] = marketService?.get(item.id) ?: world.definitions.get(ItemDef::class.java, item.id).cost
+            prices[index] = marketService?.get(item.id) ?: getItem(item.id).cost
         }
     }
 

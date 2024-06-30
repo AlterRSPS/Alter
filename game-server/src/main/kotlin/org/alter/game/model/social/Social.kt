@@ -1,14 +1,12 @@
 package org.alter.game.model.social
 
-import org.alter.game.message.impl.*
-import org.alter.game.model.entity.Player
-
 import io.github.oshai.kotlinlogging.KotlinLogging
+import net.rsprot.protocol.game.outgoing.social.FriendListLoaded
+import org.alter.game.model.entity.Player
 import java.nio.file.Files
 import java.nio.file.Paths
 
 class Social {
-
     private val friends = mutableListOf<String>()
     private val ignores = mutableListOf<String>()
 
@@ -25,20 +23,20 @@ class Social {
         }
         val world = player.world
 
-        if (friends.isEmpty()) {
-            player.write(FriendListLoadedMessage())
+        if (friends.isEmpty() || true) {
+            player.write(FriendListLoaded)
         } else {
             friends.forEach {
-                val user = world.getPlayerForName(it)
-                if (user != null && !user.social.ignores.contains(player.username))
-                    player.write(UpdateFriendListMessage(0, user.username, "", 304, 0, 0))
-                else
-                /**
-                 * @TODO
-                 * When implementing name change -> save old user name for [previousUsername]
-                 * Actually forgot if it was a list of usernames or only latest
-                 */
-                player.write(UpdateFriendListMessage(0, it, "", 0, 0, 0))
+//                val user = world.getPlayerForName(it)
+//                if (user != null && !user.social.ignores.contains(player.username))
+//                    player.write(UpdateFriendListMessage(0, user.username, "", 304, 0, 0))
+//                else
+//                /**
+//                 * @TODO
+//                 * When implementing name change -> save old user name for [previousUsername]
+//                 * Actually forgot if it was a list of usernames or only latest
+//                 */
+//                player.write(UpdateFriendListMessage(0, it, "", 0, 0, 0))
             }
         }
     }
@@ -47,14 +45,18 @@ class Social {
      * TODO Add support for old display name if current isn't previous/original one
      */
     fun pushIgnores(player: Player) {
-        ignores.forEach {
-            player.write(UpdateIgnoreListMessage(0, it, ""))
-        }
+//        ignores.forEach {
+//            player.write(UpdateIgnoreListMessage(0, it, ""))
+//        }
     }
 
-    fun addFriend(player: Player, name: String) {
-        if (friends.contains(name))
+    fun addFriend(
+        player: Player,
+        name: String,
+    ) {
+        if (friends.contains(name)) {
             return
+        }
         val path = Paths.get("../data/saves/")
         val save = path.resolve(name)
         if (!Files.exists(save)) {
@@ -66,9 +68,13 @@ class Social {
         updateStatus(player)
     }
 
-    fun addIgnore(player: Player, name: String) {
-        if (ignores.contains(name))
+    fun addIgnore(
+        player: Player,
+        name: String,
+    ) {
+        if (ignores.contains(name)) {
             return
+        }
         val path = Paths.get("../data/saves/")
         val save = path.resolve(name)
         if (!Files.exists(save)) {
@@ -80,44 +86,64 @@ class Social {
         updateStatus(player)
     }
 
-    fun deleteIgnore(player: Player, name: String) {
+    fun deleteIgnore(
+        player: Player,
+        name: String,
+    ) {
         ignores.remove(name)
         pushIgnores(player)
         updateStatus(player)
     }
 
-    fun deleteFriend(player: Player, name: String) {
+    fun deleteFriend(
+        player: Player,
+        name: String,
+    ) {
         friends.remove(name)
         pushFriends(player)
         updateStatus(player)
     }
 
-    //TODO Add support for having private off/friends/etc...
+    // TODO Add support for having private off/friends/etc...
     fun updateStatus(player: Player) {
         player.world.players.forEach {
-            if (it == player)
+            if (it == player) {
                 return@forEach
-            if (it.social.ignores.contains(player.username))
+            }
+            if (it.social.ignores.contains(player.username)) {
                 return@forEach
+            }
             if (it.social.friends.contains(player.username)) {
                 it.social.pushFriends(it)
             }
         }
     }
 
-    fun sendPrivateMessage(player: Player, target: Player, length: Int, message: ByteArray) {
-        val decompressed = ByteArray(230)
-        val huffman = player.world.huffman
-        huffman.decompress(message, decompressed, length)
-        val unpacked = String(decompressed, 0, length)
-
+    fun sendPrivateMessage(
+        player: Player,
+        target: Player,
+        unpacked: String,
+    ) {
         logger.info { "${player.username} is attempting to message: ${target.username} with message: $unpacked" }
-
-        target.write(MessagePrivateReceiverMessage(player.username, 255, 0, player.privilege.icon, "Testing"))
-        player.write(MessagePrivateReceiverMessage(target.username, 255, -1, 0, "Testing"))
-
+//        target.write(MessagePrivate(
+//            sender = player.username,
+//            worldId = 1,
+//            worldMessageCounter = 0,
+//            chatCrownType = player.privilege.icon,
+//            message = "Testing",
+//        ))
+//        player.write(MessagePrivate(
+//            sender = target.username,
+//            worldId = 1,
+//            worldMessageCounter = 0,
+//            chatCrownType = 0,
+//            message = "Testing",
+//        ))
+//        target.write(MessagePrivateReceiverMessage(player.username, 255, 0, player.privilege.icon, "Testing"))
+//        player.write(MessagePrivateReceiverMessage(target.username, 255, -1, 0, "Testing"))
     }
+
     companion object {
-        private val logger = KotlinLogging.logger{}
+        private val logger = KotlinLogging.logger {}
     }
 }

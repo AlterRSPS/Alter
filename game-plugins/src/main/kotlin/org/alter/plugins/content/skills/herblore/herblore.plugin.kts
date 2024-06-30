@@ -1,7 +1,6 @@
 package org.alter.plugins.content.skills.herblore
 
 import org.alter.plugins.content.skills.herblore.pots.Pots
-import org.alter.game.model.priv.Privilege
 
 /**
  * Registers each of the dirty [Herbs] for cleaning option
@@ -24,7 +23,7 @@ Herbs.values().forEach { h ->
         val numWaterVials = player.inventory.getItemCount(Items.VIAL_OF_WATER)
         val maxCount = Math.min(numClean, numWaterVials)
 
-        player.produceItemBoxMessage(h.herb.unfinished, max = maxCount){
+        player.produceItemBoxMessage(h.herb.unfinished, max = maxCount) {
             h.herb.apoth(player)
         }
     }
@@ -33,13 +32,13 @@ Herbs.values().forEach { h ->
      * herb on herb actions do nothing.
      */
     Herbs.values().filter { it.ordinal >= hCleanMapped++ }.forEach { h2 ->
-        on_item_on_item(h.herb.clean, h2.herb.clean){
+        on_item_on_item(h.herb.clean, h2.herb.clean) {
             player.nothingMessage()
         }
-        on_item_on_item(h.herb.clean, h2.herb.dirty){
+        on_item_on_item(h.herb.clean, h2.herb.dirty) {
             player.nothingMessage()
         }
-        on_item_on_item(h.herb.dirty, h2.herb.dirty){
+        on_item_on_item(h.herb.dirty, h2.herb.dirty) {
             player.nothingMessage()
         }
     }

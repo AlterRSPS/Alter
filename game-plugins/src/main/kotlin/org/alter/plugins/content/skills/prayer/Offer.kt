@@ -1,21 +1,27 @@
 package org.alter.plugins.content.skills.prayer
 
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.entity.Player
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
 import org.alter.api.cfg.Animation
 import org.alter.api.ext.message
+import org.alter.game.model.entity.Player
 
 /**
  * @author Fritz <frikkipafi@gmail.com>
  */
 object Offer {
-
-    fun canOffer(p: Player, bones: Bones): Boolean = true
+    fun canOffer(
+        p: Player,
+        bones: Bones,
+    ): Boolean = true
 
     // Altar = 1(gilded), Altar = 2(ecto), Altar = 3(chaos)
-    fun OfferBones(p: Player, bones: Bones, Altar: Int) {
-        val boneName = p.world.definitions.get(ItemDef::class.java, bones.id).name
+    fun OfferBones(
+        p: Player,
+        bones: Bones,
+        Altar: Int,
+    ) {
+        val boneName = getItem(bones.id).name
         val altars = arrayOf(bones.gilded, bones.ecto, bones.chaos)
         p.queue {
             p.lock()
@@ -25,11 +31,10 @@ object Offer {
             wait(3)
             p.unlock()
         }
-        when(bones){
+        when (bones) {
             else -> {
                 p.message("You offer the ${boneName.lowercase()} to Gilded altar")
             }
         }
     }
-
 }

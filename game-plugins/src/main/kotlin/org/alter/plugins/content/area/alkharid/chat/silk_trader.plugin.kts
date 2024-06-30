@@ -1,12 +1,12 @@
-//package org.alter.plugins.content.areas.alkharid.chat
+// package org.alter.plugins.content.areas.alkharid.chat
 //
-//spawn_npc(Npcs.SILK_TRADER, 3299, 3204, 0, 2, Direction.EAST)
+// spawn_npc(Npcs.SILK_TRADER, 3299, 3204, 0, 2, Direction.EAST)
 //
 //    on_npc_option(npc = Npcs.SILK_TRADER, option = "talk-to") {
 //        player.queue { dialog(this) }
 //    }
 //
-//suspend fun dialog(it: QueueTask) {
+// suspend fun dialog(it: QueueTask) {
 //    it.chatNpc("Do you want to buy any fine silks?", animation = 567)
 //    when (it.options("How much are they?", "No. silk doesn't suit me.")) {
 //        1 -> {
@@ -48,4 +48,4 @@
 //        }
 //        2 -> it.chatPlayer("No. silk doesn't suit me.", animation = 567)
 //    }
-//}
+// }

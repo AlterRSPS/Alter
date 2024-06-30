@@ -11,14 +11,18 @@ import kotlin.coroutines.createCoroutine
  * @author Tom <rspsmods@gmail.com>
  */
 abstract class QueueTaskSet {
-
     protected val queue: LinkedList<QueueTask> = LinkedList()
 
     val size: Int get() = queue.size
 
     abstract fun cycle()
 
-    fun queue(ctx: Any, dispatcher: CoroutineDispatcher, priority: TaskPriority, block: suspend QueueTask.(CoroutineScope) -> Unit) {
+    fun queue(
+        ctx: Any,
+        dispatcher: CoroutineDispatcher,
+        priority: TaskPriority,
+        block: suspend QueueTask.(CoroutineScope) -> Unit,
+    ) {
         val task = QueueTask(ctx, priority)
         val suspendBlock = suspend { block(task, CoroutineScope(dispatcher)) }
 

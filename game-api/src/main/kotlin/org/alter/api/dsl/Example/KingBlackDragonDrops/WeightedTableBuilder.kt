@@ -1,35 +1,35 @@
-//package org.alter.api.dsl.Example.KingBlackDragonDrops
+// package org.alter.api.dsl.Example.KingBlackDragonDrops
 //
-//import org.apollo.cache.def.ItemDef
-//import org.apollo.cache.def.ItemDefBase
-//import org.apollo.game.BaseItem
-//import org.apollo.model.skills.herblore.Herb
-//import org.apollo.plugin.api.id
-//import org.apollo.plugin.api.noted
-//import org.alter.api.dsl.Example.KingBlackDragonDrops.WeightedTableType.*
-//import org.apollo.plugin.api.ui.noneItemType
-//import org.apollo.table.WeightedTableDenominatorInteger
-//import org.apollo.table.WeightedTableInteger
-//import org.apollo.utility.random
+// import org.apollo.cache.def.ItemDef
+// import org.apollo.cache.def.ItemDefBase
+// import org.apollo.game.BaseItem
+// import org.apollo.model.skills.herblore.Herb
+// import org.apollo.plugin.api.id
+// import org.apollo.plugin.api.noted
+// import org.alter.api.dsl.Example.KingBlackDragonDrops.WeightedTableType.*
+// import org.apollo.plugin.api.ui.noneItemType
+// import org.apollo.table.WeightedTableDenominatorInteger
+// import org.apollo.table.WeightedTableInteger
+// import org.apollo.utility.random
 //
-//import org.apollo.utility.constants.ItemTypeString
-//import org.apollo.utility.constants.generated.ItemTypeConstants
-//import kotlin.math.roundToInt
+// import org.apollo.utility.constants.ItemTypeString
+// import org.apollo.utility.constants.generated.ItemTypeConstants
+// import kotlin.math.roundToInt
 //
 //
-//val Int.noted: Int
+// val Int.noted: Int
 //    get() = ItemDefBase.note(this)
-//val Int.unnoted: Int
+// val Int.unnoted: Int
 //    get() = ItemDefBase.unnote(this)
 //
-//enum class WeightedTableType {
+// enum class WeightedTableType {
 //    ALWAYS,
 //    PRE_ROLL,
 //    MAIN,
 //    TERTIARY
-//}
+// }
 //
-//class ConditionalItem<T>(
+// class ConditionalItem<T>(
 //    val id: ItemTypeString,
 //    val minAmount: Int,
 //    val maxAmount: Int,
@@ -37,14 +37,14 @@
 //    val denominator: Int,
 //    description: String?,
 //    block: T.() -> Boolean
-//) :
+// ) :
 //    WeightedPredicate<T>(description, { block(this) }) {
 //    constructor(id: ItemTypeString, minAmount: Int, maxAmount: Int) : this(id, minAmount, maxAmount, 1, 1, null, { true })
-//}
+// }
 //
-//open class WeightedPredicate<T>(val description: String?, val block: T.(list: MutableList<ConditionalItem<T>>) -> Boolean)
+// open class WeightedPredicate<T>(val description: String?, val block: T.(list: MutableList<ConditionalItem<T>>) -> Boolean)
 //
-//open class WeightedTableEntriesBase<T>(private val rolls: Int) : Rollable<T>() {
+// open class WeightedTableEntriesBase<T>(private val rolls: Int) : Rollable<T>() {
 //
 //    val builder = WeightedTableDenominatorInteger<WeightedPredicate<T>>()
 //    lateinit var table: WeightedTableInteger<WeightedPredicate<T>>
@@ -86,9 +86,9 @@
 //            block(entry, numerator, denominator)
 //        }
 //    }
-//}
+// }
 //
-//open class WeightedTableEntries<T>(rolls: Int) : WeightedTableEntriesBase<T>(rolls) {
+// open class WeightedTableEntries<T>(rolls: Int) : WeightedTableEntriesBase<T>(rolls) {
 //
 //    fun add(numerator: Int, denominator: Int, description: String? = null, block: T.(list: MutableList<ConditionalItem<T>>) -> Boolean) {
 //        builder.add(numerator = numerator, denominator = denominator, item = WeightedPredicate(description, block))
@@ -155,9 +155,9 @@
 //
 //    fun add(id: ItemTypeString, amount: Int, denominator: Int) = add(id, amount, amount, denominator)
 //
-//}
+// }
 //
-//class MainWeightedTableEntries<T>(private val total: Int, rolls: Int) : WeightedTableEntriesBase<T>(rolls) {
+// class MainWeightedTableEntries<T>(private val total: Int, rolls: Int) : WeightedTableEntriesBase<T>(rolls) {
 //
 //    fun add(weight: Int, description: String? = null, block: T.(list: MutableList<ConditionalItem<T>>) -> Boolean) {
 //        builder.add(weight, total, WeightedPredicate(description, block))
@@ -200,9 +200,9 @@
 //        }
 //    }
 //
-//}
+// }
 //
-//class TertiaryTableBuilder<T>(private val rolls: Int) : WeightedTableEntries<T>(rolls) {
+// class TertiaryTableBuilder<T>(private val rolls: Int) : WeightedTableEntries<T>(rolls) {
 //
 //    private val tables = mutableListOf<TertiaryTableEntries<T>>()
 //
@@ -243,9 +243,9 @@
 //    override fun build(type: WeightedTableType) {
 //        tables.forEach { it.build(type) }
 //    }
-//}
+// }
 //
-//class TertiaryTableEntries<T>(val name: String, rolls: Int, private val predicate: T.() -> Boolean) : WeightedTableEntries<T>(rolls) {
+// class TertiaryTableEntries<T>(val name: String, rolls: Int, private val predicate: T.() -> Boolean) : WeightedTableEntries<T>(rolls) {
 //
 //    override fun roll(list: MutableList<ConditionalItem<T>>, type: T): Boolean {
 //        if (!predicate(type)) {
@@ -256,9 +256,9 @@
 //    }
 //
 //
-//}
+// }
 //
-//open class AlwaysTableEntries<T> : Rollable<T>() {
+// open class AlwaysTableEntries<T> : Rollable<T>() {
 //
 //    protected val backing = mutableListOf<ConditionalItem<T>>()
 //
@@ -291,17 +291,17 @@
 //    override fun all(block: (entry: WeightedPredicate<T>, numerator: Int, denominator: Int) -> Unit) {
 //        backing.forEach { block(it, 1, 1) }
 //    }
-//}
+// }
 //
-//abstract class Rollable<T> {
+// abstract class Rollable<T> {
 //    internal val linked: MutableList<Rollable<T>> by lazy { mutableListOf() }
 //
 //    abstract fun roll(list: MutableList<ConditionalItem<T>>, type: T): Boolean
 //    abstract fun build(type: WeightedTableType)
 //    abstract fun all(block: (entry: WeightedPredicate<T>, numerator: Int, denominator: Int) -> Unit)
-//}
+// }
 //
-//class WeightedTableBuilder<T> {
+// class WeightedTableBuilder<T> {
 //
 //    private val entries: MutableMap<WeightedTableType, Rollable<T>> = mutableMapOf()
 //
@@ -437,31 +437,31 @@
 //        entries[MAIN]?.let { iterate(it) }
 //        entries[TERTIARY]?.let { iterate(it) }
 //    }
-//}
+// }
 //
-//fun <T> WeightedPredicate<T>.isNone(): Boolean {
+// fun <T> WeightedPredicate<T>.isNone(): Boolean {
 //    if (this is ConditionalItem) {
 //        return id == noneItemType && minAmount == -1 && maxAmount == -1
 //    }
 //    return false
-//}
+// }
 //
-//private fun <T> WeightedPredicate<T>.tableIndex(): Int {
+// private fun <T> WeightedPredicate<T>.tableIndex(): Int {
 //    if (this is ConditionalItem) {
 //        if (id != noneItemType) return -1
 //        return minAmount
 //    }
 //    return -2
-//}
+// }
 //
-//fun <T> mainTable(total: Int, rolls: Int = 1, block: MainWeightedTableEntries<T>.() -> Unit): WeightedTableBuilder<T> {
+// fun <T> mainTable(total: Int, rolls: Int = 1, block: MainWeightedTableEntries<T>.() -> Unit): WeightedTableBuilder<T> {
 //    val builder = WeightedTableBuilder<T>()
 //    builder.main(total, rolls, block)
 //    return builder
-//}
+// }
 //
-//fun <T> table(block: WeightedTableBuilder<T>.() -> Unit): WeightedTableBuilder<T> {
+// fun <T> table(block: WeightedTableBuilder<T>.() -> Unit): WeightedTableBuilder<T> {
 //    val builder = WeightedTableBuilder<T>()
 //    block(builder)
 //    return builder
-//}
+// }

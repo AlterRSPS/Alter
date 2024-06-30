@@ -1,6 +1,7 @@
 package org.alter.game.action
 
-import org.alter.game.message.impl.SetMapFlagMessage
+import gg.rsmod.util.AabbUtil
+import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.model.MovementQueue
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.*
@@ -15,14 +16,12 @@ import org.alter.game.model.timer.FROZEN_TIMER
 import org.alter.game.model.timer.RESET_PAWN_FACING_TIMER
 import org.alter.game.model.timer.STUN_TIMER
 import org.alter.game.plugin.Plugin
-import gg.rsmod.util.AabbUtil
 import java.lang.ref.WeakReference
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 object PawnPathAction {
-
     private const val ITEM_USE_OPCODE = -1
 
     val walkPlugin: Plugin.() -> Unit = {
@@ -43,7 +42,7 @@ object PawnPathAction {
             terminateAction = {
                 pawn.stopMovement()
                 if (pawn is Player) {
-                    pawn.write(SetMapFlagMessage(255, 255))
+                    pawn.write(SetMapFlag(255, 255))
                 }
             }
 
@@ -51,7 +50,7 @@ object PawnPathAction {
         }
     }
 
-    val itemUsePlugin: Plugin.() -> Unit = s@ {
+    val itemUsePlugin: Plugin.() -> Unit = s@{
         val pawn = ctx as Pawn
         val world = pawn.world
         val other = pawn.attr[INTERACTING_NPC_ATTR]?.get() ?: pawn.attr[INTERACTING_PLAYER_ATTR]?.get()!!
@@ -68,7 +67,7 @@ object PawnPathAction {
             terminateAction = {
                 pawn.stopMovement()
                 if (pawn is Player) {
-                    pawn.write(SetMapFlagMessage(255, 255))
+                    pawn.write(SetMapFlag(255, 255))
                 }
             }
 
@@ -76,7 +75,13 @@ object PawnPathAction {
         }
     }
 
-    private suspend fun walk(it: QueueTask, pawn: Pawn, other: Pawn, opt: Int, lineOfSightRange: Int?) {
+    private suspend fun walk(
+        it: QueueTask,
+        pawn: Pawn,
+        other: Pawn,
+        opt: Int,
+        lineOfSightRange: Int?,
+    ) {
         val world = pawn.world
         val initialTile = Tile(other.tile)
 
@@ -91,7 +96,7 @@ object PawnPathAction {
                     pawn.timers.has(STUN_TIMER) -> pawn.writeMessage(Entity.YOURE_STUNNED)
                     else -> pawn.writeMessage(Entity.YOU_CANT_REACH_THAT)
                 }
-                pawn.write(SetMapFlagMessage(255, 255))
+                pawn.write(SetMapFlag(255, 255))
             }
             pawn.resetFacePawn()
             return
@@ -113,7 +118,6 @@ object PawnPathAction {
             }
 
             if (other is Npc) {
-
                 /*
                  * On 07, only one npc can be facing the player at a time,
                  * so if the last pawn that faced the player is still facing
@@ -138,12 +142,13 @@ object PawnPathAction {
                 }
 
                 val npcId = other.getTransform(pawn)
-                val handled = if (opt != ITEM_USE_OPCODE) {
-                    world.plugins.executeNpc(pawn, npcId, opt)
-                } else {
-                    val item = pawn.attr[INTERACTING_ITEM]?.get() ?: return
-                    world.plugins.executeItemOnNpc(pawn, npcId, item.id)
-                }
+                val handled =
+                    if (opt != ITEM_USE_OPCODE) {
+                        world.plugins.executeNpc(pawn, npcId, opt)
+                    } else {
+                        val item = pawn.attr[INTERACTING_ITEM]?.get() ?: return
+                        world.plugins.executeItemOnNpc(pawn, npcId, item.id)
+                    }
 
                 if (!handled) {
                     pawn.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
@@ -164,7 +169,13 @@ object PawnPathAction {
         }
     }
 
-    suspend fun walkTo(it: QueueTask, pawn: Pawn, target: Pawn, interactionRange: Int, lineOfSight: Boolean): Boolean {
+    suspend fun walkTo(
+        it: QueueTask,
+        pawn: Pawn,
+        target: Pawn,
+        interactionRange: Int,
+        lineOfSight: Boolean,
+    ): Boolean {
         val sourceSize = pawn.getSize()
         val targetSize = target.getSize()
         val sourceTile = pawn.tile
@@ -191,13 +202,19 @@ object PawnPathAction {
                 return if (!lineOfSight) {
                     bordering(sourceTile, sourceSize, targetTile, interactionRange)
                 } else {
-                    overlap(sourceTile, sourceSize, targetTile, interactionRange) && (interactionRange == 0 || !sourceTile.sameAs(targetTile))
-                            && pawn.world.collision.raycast(sourceTile, targetTile, lineOfSight)
+                    overlap(
+                        sourceTile,
+                        sourceSize,
+                        targetTile,
+                        interactionRange,
+                    ) && (interactionRange == 0 || !sourceTile.sameAs(targetTile)) &&
+                        pawn.world.collision.raycast(sourceTile, targetTile, lineOfSight)
                 }
             }
         }
 
-        val builder = PathRequest.Builder()
+        val builder =
+            PathRequest.Builder()
                 .setPoints(sourceTile, targetTile)
                 .setSourceSize(sourceSize, sourceSize)
                 .setTargetSize(targetSize, targetSize)
@@ -222,7 +239,17 @@ object PawnPathAction {
         return route.success
     }
 
-    private fun overlap(tile1: Tile, size1: Int, tile2: Tile, size2: Int): Boolean = AabbUtil.areOverlapping(tile1.x, tile1.z, size1, size1, tile2.x, tile2.z, size2, size2)
+    private fun overlap(
+        tile1: Tile,
+        size1: Int,
+        tile2: Tile,
+        size2: Int,
+    ): Boolean = AabbUtil.areOverlapping(tile1.x, tile1.z, size1, size1, tile2.x, tile2.z, size2, size2)
 
-    private fun bordering(tile1: Tile, size1: Int, tile2: Tile, size2: Int): Boolean = AabbUtil.areBordering(tile1.x, tile1.z, size1, size1, tile2.x, tile2.z, size2, size2)
+    private fun bordering(
+        tile1: Tile,
+        size1: Int,
+        tile2: Tile,
+        size2: Int,
+    ): Boolean = AabbUtil.areBordering(tile1.x, tile1.z, size1, size1, tile2.x, tile2.z, size2, size2)
 }

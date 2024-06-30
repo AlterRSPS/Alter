@@ -10,7 +10,10 @@ BOOKCASES.forEach { case ->
     }
 }
 
-suspend fun search(it: QueueTask, p: Player) {
+suspend fun search(
+    it: QueueTask,
+    p: Player,
+) {
     p.lock()
     p.message("You search the books...")
     it.wait(3)

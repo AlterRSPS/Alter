@@ -7,7 +7,7 @@ import kotlin.system.exitProcess
 
 on_command("shutdown", Privilege.DEV_POWER, description = "Shutdown Server expected @param1 Int: How long till shutdown.") {
     val args = player.getCommandArgs()
-    tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::shutdown 500</col>"){ values ->
+    tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::shutdown 500</col>") { values ->
         val cycles = values[0].toInt()
         world.queue {
             world.rebootTimer = cycles

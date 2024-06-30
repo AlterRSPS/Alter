@@ -6,7 +6,6 @@ package org.alter.game.model.queue
  * @author Tom <rspsmods@gmail.com>
  */
 enum class TaskPriority {
-
     /**
      * A weak priority task is cancelled if the player clicks away.
      */
@@ -21,5 +20,5 @@ enum class TaskPriority {
     /**
      * A strong priority task will close menus to execute itself sooner.
      */
-    STRONG
+    STRONG,
 }

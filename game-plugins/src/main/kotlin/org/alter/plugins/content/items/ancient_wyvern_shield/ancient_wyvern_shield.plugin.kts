@@ -22,7 +22,7 @@ arrayOf(Items.WYVERN_VISAGE, Items.ELEMENTAL_SHIELD).forEach { item ->
                     if (player.getSkills().getCurrentLevel(Skills.MAGIC) >= 66) {
                         if (player.inventory.contains(Items.HAMMER)) {
                             player.queue {
-                                //player.animation
+                                // player.animation
                                 player.inventory.remove(Items.WYVERN_VISAGE, 1, true)
                                 player.inventory.remove(Items.ELEMENTAL_SHIELD, 1, true)
                                 player.inventory.add(Items.ANCIENT_WYVERN_SHIELD_21634, 1, true)

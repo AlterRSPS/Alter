@@ -6,7 +6,6 @@ import org.alter.api.cfg.Items
  * @author Tom <rspsmods@gmail.com>
  */
 object Darts {
-
     val BRONZE_DARTS = arrayOf(Items.BRONZE_DART, Items.BRONZE_DARTP, Items.BRONZE_DARTP_5628, Items.BRONZE_DARTP_5635)
     val IRON_DARTS = arrayOf(Items.IRON_DART, Items.IRON_DARTP/*, Items.IRON_DARTP_5629 */, Items.IRON_DARTP_5636)
     val STEEL_DARTS = arrayOf(Items.STEEL_DART, Items.STEEL_DARTP, Items.STEEL_DARTP_5630, Items.STEEL_DARTP_5637)

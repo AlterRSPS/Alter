@@ -2,11 +2,12 @@ package org.alter.plugins.content.objects.ladder
 
 /**Stairs*/
 
-val stairs = arrayOf(
-    Objs.STAIRCASE_16672,
-    Objs.STAIRCASE_16673,
-    Objs.STAIRCASE_16671
-)
+val stairs =
+    arrayOf(
+        Objs.STAIRCASE_16672,
+        Objs.STAIRCASE_16673,
+        Objs.STAIRCASE_16671,
+    )
 
 stairs.forEach { stairs ->
     if (objHasOption(obj = stairs, option = "climb")) {
@@ -28,14 +29,15 @@ stairs.forEach { stairs ->
 
 /**Ladders*/
 
-val ladders = arrayOf(
-    Objs.LADDER_12964,
-    Objs.LADDER_12965,
-    Objs.LADDER_16683,
-    Objs.LADDER_12966,
-    Objs.LADDER_16679,
-    Objs.LADDER_16684,
-)
+val ladders =
+    arrayOf(
+        Objs.LADDER_12964,
+        Objs.LADDER_12965,
+        Objs.LADDER_16683,
+        Objs.LADDER_12966,
+        Objs.LADDER_16679,
+        Objs.LADDER_16684,
+    )
 
 ladders.forEach { ladder ->
     if (objHasOption(obj = ladder, option = "climb")) {
@@ -57,7 +59,7 @@ ladders.forEach { ladder ->
 
 /**Function for ladders.*/
 
-fun climbupladder(player : Player) {
+fun climbupladder(player: Player) {
     player.queue {
         player.animate(828)
         player.lock()
@@ -67,7 +69,7 @@ fun climbupladder(player : Player) {
     }
 }
 
-fun climbdownladder(player : Player) {
+fun climbdownladder(player: Player) {
     player.queue {
         player.animate(828)
         player.lock()
@@ -93,7 +95,7 @@ fun climbupstairs(player: Player) {
 }
 
 fun climbdownstairs(player: Player) {
-    player.moveTo(player.tile.x, player.tile.z, player.tile.height -1)
+    player.moveTo(player.tile.x, player.tile.z, player.tile.height - 1)
 }
 
 fun climbstairs(player: Player) {

@@ -1,12 +1,12 @@
 package org.alter.plugins.content.skills.fletching.action
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
-
-import org.alter.api.ext.*
+import org.alter.api.ext.messageBox
+import org.alter.api.ext.player
+import org.alter.game.fs.DefinitionSet
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.fletching.data.Feathered
 
 /**
@@ -15,21 +15,26 @@ import org.alter.plugins.content.skills.fletching.data.Feathered
  * Handles the action of adding feathers to an item
  */
 class FeatherAction(private val defs: DefinitionSet) {
-
     /**
      * A map of feathered items to their item names
      */
-    private val itemNames = Feathered.featheredDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val itemNames = Feathered.featheredDefinitions.keys.associate { it to getItem(it).name.lowercase() }
 
     /**
      * A map of the unfeathered items to their item names
      */
-    private val unfeatheredNames = Feathered.featheredDefinitions.values.associate { it.unfeathered to defs.get(ItemDef::class.java, it.unfeathered).name.lowercase() }
+    private val unfeatheredNames =
+        Feathered.featheredDefinitions.values.associate {
+            it.unfeathered to
+                getItem(
+                    it.unfeathered,
+                ).name.lowercase()
+        }
 
     /**
      * A map of feathers to their item names
      */
-    //private val featherNames = Feathered.feathers.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    // private val featherNames = Feathered.feathers.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
 
     /**
      * Handles the attachment of feathers to a item
@@ -38,15 +43,21 @@ class FeatherAction(private val defs: DefinitionSet) {
      * @param feathered The feathered item definition
      * @param feather   The item ID of the type of feather being used
      */
-    suspend fun feather(task: QueueTask, feathered: Feathered, feather: Int, amount: Int) {
+    suspend fun feather(
+        task: QueueTask,
+        feathered: Feathered,
+        feather: Int,
+        amount: Int,
+    ) {
         val player = task.player
         val inventory = player.inventory
 
         var completed = 0
         do {
             // Pause 2 ticks between each iteration if im making headless arrows (Only case where amount > 1)
-            if(feathered.id == Items.HEADLESS_ARROW || feathered.id == Items.FLIGHTED_OGRE_ARROW)
+            if (feathered.id == Items.HEADLESS_ARROW || feathered.id == Items.FLIGHTED_OGRE_ARROW) {
                 task.wait(2)
+            }
 
             player.lock()
             if (!canFeather(task, feathered, feather, sendMessageBox = (completed == 0))) {
@@ -56,7 +67,7 @@ class FeatherAction(private val defs: DefinitionSet) {
 
             val unfeatheredCount = inventory.getItemCount(feathered.unfeathered)
             val featherCount = inventory.getItemCount(feather)
-            val amountToFeather = Math.min(Math.min(unfeatheredCount, (featherCount/feathered.feathersNeeded)), feathered.amount)
+            val amountToFeather = Math.min(Math.min(unfeatheredCount, (featherCount / feathered.feathersNeeded)), feathered.amount)
             val feathersUsed = feathered.feathersNeeded * amountToFeather
 
             val unfeatheredIndex = inventory.getItemIndex(feathered.unfeathered, true)
@@ -87,18 +98,32 @@ class FeatherAction(private val defs: DefinitionSet) {
      * @param feathered The feathered definition
      * @param feather   The feather ID of the type of feather being used
      */
-    private suspend fun canFeather(task: QueueTask, feathered: Feathered, feather: Int, sendMessageBox: Boolean = true) : Boolean {
+    private suspend fun canFeather(
+        task: QueueTask,
+        feathered: Feathered,
+        feather: Int,
+        sendMessageBox: Boolean = true,
+    ): Boolean {
         val player = task.player
         val inventory = player.inventory
         if (inventory.getItemCount(feathered.unfeathered) < 1 || inventory.getItemCount(feather) < feathered.amount) {
-            if(sendMessageBox)
-                task.messageBox("You need 1 ${unfeatheredNames[feathered.unfeathered]} and ${feathered.amount} to make a ${itemNames[feathered.id]}")
+            if (sendMessageBox) {
+                task.messageBox(
+                    "You need 1 ${unfeatheredNames[feathered.unfeathered]} and ${feathered.amount} to make a ${itemNames[feathered.id]}",
+                )
+            }
             return false
         }
 
         if (player.getSkills().getCurrentLevel(Skills.FLETCHING) < feathered.level) {
-            if(sendMessageBox)
-                task.messageBox("You need a ${Skills.getSkillName(player.world, Skills.FLETCHING)} level of at least ${feathered.level} to fletch ${itemNames[feathered.id]}.")
+            if (sendMessageBox) {
+                task.messageBox(
+                    "You need a ${Skills.getSkillName(
+                        player.world,
+                        Skills.FLETCHING,
+                    )} level of at least ${feathered.level} to fletch ${itemNames[feathered.id]}.",
+                )
+            }
             return false
         }
 

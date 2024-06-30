@@ -2,9 +2,9 @@ package org.alter.plugins.content.area.dwarven_mines.chats
 
 spawn_npc(Npcs.NURMOF, 2998, 9849, 0, walkRadius = 17)
 
-    on_npc_option(Npcs.NURMOF, option = "talk-to") { player.queue { dialog() } }
+on_npc_option(Npcs.NURMOF, option = "talk-to") { player.queue { dialog() } }
 
-    on_npc_option(Npcs.NURMOF, option = "trade") { open_shop(player) }
+on_npc_option(Npcs.NURMOF, option = "trade") { open_shop(player) }
 
 suspend fun QueueTask.dialog() {
     chatNpc("Greetings and welcome to my pickaxe shop. Do you<br>want to buy my premium quality pickaxes?")
@@ -13,9 +13,13 @@ suspend fun QueueTask.dialog() {
         2 -> chatPlayer("No, thank you.")
         3 -> {
             chatPlayer("Are your pickaxes better then other pickaxes, then?")
-            chatNpc("Of course they are! My pickaxes are made of highter<br>grade metal then your ordinary bronze pickaxes,<br>allowing you to mine that ore just a little bit faster than<br>normal.")
+            chatNpc(
+                "Of course they are! My pickaxes are made of highter<br>grade metal then your ordinary bronze pickaxes,<br>allowing you to mine that ore just a little bit faster than<br>normal.",
+            )
         }
     }
 }
 
-fun open_shop(p: Player) { p.openShop("Nurmof's Pickaxe Shop.") }
+fun open_shop(p: Player) {
+    p.openShop("Nurmof's Pickaxe Shop.")
+}

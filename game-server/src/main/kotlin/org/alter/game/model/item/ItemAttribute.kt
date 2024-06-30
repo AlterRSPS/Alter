@@ -8,7 +8,6 @@ package org.alter.game.model.item
  * @author Tom <rspsmods@gmail.com>
  */
 enum class ItemAttribute {
-
     /**
      * Can represent any type of charge on an item.
      */

@@ -1,6 +1,8 @@
 package org.alter.plugins.content.mechanics.shops
 
-import org.alter.game.fs.def.ItemDef
+import dev.openrune.cache.CacheManager.getItem
+import org.alter.api.cfg.Items
+import org.alter.api.ext.message
 import org.alter.game.model.World
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
@@ -8,24 +10,28 @@ import org.alter.game.model.shop.PurchasePolicy
 import org.alter.game.model.shop.Shop
 import org.alter.game.model.shop.ShopCurrency
 import org.alter.game.model.shop.ShopItem
-import org.alter.api.cfg.Items
-import org.alter.api.ext.message
-import org.alter.game.model.container.ItemContainer
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-open class ItemCurrency(private val currencyItem: Int, private val singularCurrency: String, private val pluralCurrency: String) : ShopCurrency {
-
+open class ItemCurrency(
+    private val currencyItem: Int,
+    private val singularCurrency: String,
+    private val pluralCurrency: String,
+) : ShopCurrency {
     private data class AcceptItemState(val acceptable: Boolean, val errorMessage: String)
 
-    private fun canAcceptItem(shop: Shop, world: World, item: Int): AcceptItemState {
+    private fun canAcceptItem(
+        shop: Shop,
+        world: World,
+        item: Int,
+    ): AcceptItemState {
         if (item == Items.COINS_995 || item == Items.BLOOD_MONEY) {
             return AcceptItemState(acceptable = false, errorMessage = "You can't sell this item to a shop.")
         }
         when {
             shop.purchasePolicy == PurchasePolicy.BUY_TRADEABLES -> {
-                if (!Item(item).getDef(world.definitions).tradeable) {
+                if (!Item(item).getDef().isTradeable) {
                     return AcceptItemState(acceptable = false, errorMessage = "You can't sell this item.")
                 }
             }
@@ -35,27 +41,37 @@ open class ItemCurrency(private val currencyItem: Int, private val singularCurre
                 }
             }
             shop.purchasePolicy == PurchasePolicy.BUY_ALL -> return AcceptItemState(acceptable = true, errorMessage = "")
-            shop.purchasePolicy == PurchasePolicy.BUY_NONE -> return AcceptItemState(acceptable = false, errorMessage = "You can't sell any items to this shop.")
+            shop.purchasePolicy == PurchasePolicy.BUY_NONE -> return AcceptItemState(
+                acceptable = false,
+                errorMessage = "You can't sell any items to this shop.",
+            )
             else -> throw RuntimeException("Unhandled purchase policy. [shop=${shop.name}, policy=${shop.purchasePolicy}]")
         }
         return AcceptItemState(acceptable = true, errorMessage = "")
     }
 
-    override fun onSellValueMessage(p: Player, shopItem: ShopItem) {
-        val unnoted = Item(shopItem.item).toUnnoted(p.world.definitions)
+    override fun onSellValueMessage(
+        p: Player,
+        shopItem: ShopItem,
+    ) {
+        val unnoted = Item(shopItem.item).toUnnoted()
         val value = shopItem.sellPrice ?: getSellPrice(p.world, unnoted.id)
-        val name = unnoted.getName(p.world.definitions)
+        val name = unnoted.getName()
         val currency = if (value != 1) pluralCurrency else singularCurrency
         p.message("$name: currently costs $value $currency")
     }
 
-    override fun onBuyValueMessage(p: Player, shop: Shop, item: Int) {
-        val unnoted = Item(item).toUnnoted(p.world.definitions)
+    override fun onBuyValueMessage(
+        p: Player,
+        shop: Shop,
+        item: Int,
+    ) {
+        val unnoted = Item(item).toUnnoted()
         val acceptance = canAcceptItem(shop, p.world, unnoted.id)
         if (acceptance.acceptable) {
-            val shopItem = shop.items.filterNotNull().firstOrNull { it.item == item}
+            val shopItem = shop.items.filterNotNull().firstOrNull { it.item == item }
             val value = shopItem?.buyPrice ?: getBuyPrice(p.world, unnoted.id)
-            val name = unnoted.getName(p.world.definitions)
+            val name = unnoted.getName()
             val currency = if (value != 1) pluralCurrency else singularCurrency
             p.message("$name: shop will buy for $value $currency")
         } else {
@@ -63,11 +79,22 @@ open class ItemCurrency(private val currencyItem: Int, private val singularCurre
         }
     }
 
-    override fun getSellPrice(world: World, item: Int): Int = Math.max(1, world.definitions.get(ItemDef::class.java, item).cost)
+    override fun getSellPrice(
+        world: World,
+        item: Int,
+    ): Int = Math.max(1, getItem(item).cost)
 
-    override fun getBuyPrice(world: World, item: Int): Int = (world.definitions.get(ItemDef::class.java, item).cost * 0.6).toInt()
+    override fun getBuyPrice(
+        world: World,
+        item: Int,
+    ): Int = (getItem(item).cost * 0.6).toInt()
 
-    override fun sellToPlayer(p: Player, shop: Shop, slot: Int, amt: Int) {
+    override fun sellToPlayer(
+        p: Player,
+        shop: Shop,
+        slot: Int,
+        amt: Int,
+    ) {
         val shopItem = shop.items[slot] ?: return
 
         val currencyCost = shopItem.sellPrice ?: getSellPrice(p.world, shopItem.item)
@@ -132,9 +159,14 @@ open class ItemCurrency(private val currencyItem: Int, private val singularCurre
         }
     }
 
-    override fun buyFromPlayer(p: Player, shop: Shop, slot: Int, amt: Int) {
+    override fun buyFromPlayer(
+        p: Player,
+        shop: Shop,
+        slot: Int,
+        amt: Int,
+    ) {
         val item = p.inventory[slot] ?: return
-        val unnoted = item.toUnnoted(p.world.definitions).id
+        val unnoted = item.toUnnoted().id
         val acceptance = canAcceptItem(shop, p.world, unnoted)
 
         if (!acceptance.acceptable) {

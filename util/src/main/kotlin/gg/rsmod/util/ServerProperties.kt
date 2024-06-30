@@ -11,7 +11,6 @@ import java.io.File
  * @author Tom <rspsmods@gmail.com>
  */
 class ServerProperties {
-
     private val properties = hashMapOf<String, Any?>()
 
     /**
@@ -19,7 +18,10 @@ class ServerProperties {
      * return the [default] value instead.
      */
     @Suppress("UNCHECKED_CAST")
-    fun <T> getOrDefault(key: String, default: T): T = properties[key] as? T ?: default
+    fun <T> getOrDefault(
+        key: String,
+        default: T,
+    ): T = properties[key] as? T ?: default
 
     /**
      * Gets the property associated with the [key]. If it cannot be found, it will

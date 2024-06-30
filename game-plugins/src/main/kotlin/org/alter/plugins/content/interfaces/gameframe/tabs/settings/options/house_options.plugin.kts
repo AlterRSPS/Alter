@@ -1,6 +1,6 @@
 package org.alter.plugins.content.interfaces.options
 
-//on_button(interfaceId = OPTIONS_INTERFACE_ID, component = HOUSE_OPT_BUTTON_ID) {
+// on_button(interfaceId = OPTIONS_INTERFACE_ID, component = HOUSE_OPT_BUTTON_ID) {
 //    /**
 //     Teleport inside + doors: varp 1047
 //     */
@@ -9,11 +9,11 @@ package org.alter.plugins.content.interfaces.options
 //    }
 //    player.openInterface(interfaceId = HOUSE_OPT_INTERFACE_ID, dest = InterfaceDestination.TAB_AREA)
 //    player.setComponentText(interfaceId = HOUSE_OPT_INTERFACE_ID, component = 20, text = "Number of rooms: 9")
-//}
+// }
 //
-///**
+// /**
 // * Close.
 // */
-//on_button(interfaceId = HOUSE_OPT_INTERFACE_ID, component = 21) {
+// on_button(interfaceId = HOUSE_OPT_INTERFACE_ID, component = 21) {
 //    player.closeInterface(interfaceId = HOUSE_OPT_INTERFACE_ID)
-//}
+// }

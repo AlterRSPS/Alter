@@ -6,7 +6,6 @@ package org.alter.game.model.skill
  * @author Tom <rspsmods@gmail.com>
  */
 class SkillSet(val maxSkills: Int) {
-
     private val skills = Array(maxSkills) { index -> Skill(index) }
 
     /**
@@ -51,7 +50,10 @@ class SkillSet(val maxSkills: Int) {
      */
     fun getBaseLevel(skill: Int): Int = getLevelForXp(skills[skill].xp)
 
-    fun setXp(skill: Int, xp: Double) {
+    fun setXp(
+        skill: Int,
+        xp: Double,
+    ) {
         get(skill).xp = xp
         dirty[skill] = true
     }
@@ -59,7 +61,10 @@ class SkillSet(val maxSkills: Int) {
     /**
      * Sets the 'current'/temporary level of the [skill].
      */
-    fun setCurrentLevel(skill: Int, level: Int) {
+    fun setCurrentLevel(
+        skill: Int,
+        level: Int,
+    ) {
         get(skill).currentLevel = level
         dirty[skill] = true
     }
@@ -67,7 +72,10 @@ class SkillSet(val maxSkills: Int) {
     /**
      * Sets the base, or real, level of the skill.
      */
-    fun setBaseLevel(skill: Int, level: Int) {
+    fun setBaseLevel(
+        skill: Int,
+        level: Int,
+    ) {
         setBaseXp(skill, getXpForLevel(level))
     }
 
@@ -75,7 +83,10 @@ class SkillSet(val maxSkills: Int) {
      * Sets the xp of the skill while also setting the current level
      * to the level respective to [xp].
      */
-    fun setBaseXp(skill: Int, xp: Double) {
+    fun setBaseXp(
+        skill: Int,
+        xp: Double,
+    ) {
         setXp(skill, xp)
         setCurrentLevel(skill, getLevelForXp(xp))
     }
@@ -92,15 +103,20 @@ class SkillSet(val maxSkills: Int) {
      * in the skill. For example, if this value is set to [3] on a skill that
      * has is [99], that means that the level can be altered from [99] to [102].
      */
-    fun alterCurrentLevel(skill: Int, value: Int, capValue: Int = 0) {
+    fun alterCurrentLevel(
+        skill: Int,
+        value: Int,
+        capValue: Int = 0,
+    ) {
         check(capValue == 0 || capValue < 0 && value < 0 || capValue > 0 && value >= 0) {
             "Cap value and alter value must always be the same signum (+ or -)."
         }
-        val altered = when {
-            capValue > 0 -> Math.min(getCurrentLevel(skill) + value, getBaseLevel(skill) + capValue)
-            capValue < 0 -> Math.max(getCurrentLevel(skill) + value, getBaseLevel(skill) + capValue)
-            else -> Math.min(getBaseLevel(skill), getCurrentLevel(skill) + value)
-        }
+        val altered =
+            when {
+                capValue > 0 -> Math.min(getCurrentLevel(skill) + value, getBaseLevel(skill) + capValue)
+                capValue < 0 -> Math.max(getCurrentLevel(skill) + value, getBaseLevel(skill) + capValue)
+                else -> Math.min(getBaseLevel(skill), getCurrentLevel(skill) + value)
+            }
         val newLevel = Math.max(0, altered)
         val curLevel = getCurrentLevel(skill)
 
@@ -120,7 +136,11 @@ class SkillSet(val maxSkills: Int) {
      * @param capped if true, the [skill] level cannot decrease further than
      * [getBaseLevel] - [value].
      */
-    fun decrementCurrentLevel(skill: Int, value: Int, capped: Boolean) = alterCurrentLevel(skill, -value, if (capped) -value else 0)
+    fun decrementCurrentLevel(
+        skill: Int,
+        value: Int,
+        capped: Boolean,
+    ) = alterCurrentLevel(skill, -value, if (capped) -value else 0)
 
     /**
      * Increase the level of [skill].
@@ -133,7 +153,11 @@ class SkillSet(val maxSkills: Int) {
      * @param capped if true, the [skill] level cannot increase further than
      * [getBaseLevel].
      */
-    fun incrementCurrentLevel(skill: Int, value: Int, capped: Boolean) = alterCurrentLevel(skill, value, if (capped) 0 else value)
+    fun incrementCurrentLevel(
+        skill: Int,
+        value: Int,
+        capped: Boolean,
+    ) = alterCurrentLevel(skill, value, if (capped) 0 else value)
 
     /**
      * Set [skill] level to [getBaseLevel].
@@ -152,7 +176,6 @@ class SkillSet(val maxSkills: Int) {
     }
 
     companion object {
-
         /**
          * The maximum amount of xp that can be set on a skill.
          */
@@ -166,7 +189,7 @@ class SkillSet(val maxSkills: Int) {
         /**
          * The default amount of trainable skills by players.
          */
-        const val DEFAULT_SKILL_COUNT = 25 //23
+        const val DEFAULT_SKILL_COUNT = 25 // 23
 
         /**
          * Gets the level correspondent to the [xp] given.
@@ -188,12 +211,13 @@ class SkillSet(val maxSkills: Int) {
         /**
          * A table of the amount of xp needed to achieve 99 levels in a skill.
          */
-        private val XP_TABLE = IntArray(99).apply {
-            var points = 0
-            for (level in 1 until size) {
-                points += Math.floor(level + 300 * Math.pow(2.0, level / 7.0)).toInt()
-                set(level, points / 4)
+        private val XP_TABLE =
+            IntArray(99).apply {
+                var points = 0
+                for (level in 1 until size) {
+                    points += Math.floor(level + 300 * Math.pow(2.0, level / 7.0)).toInt()
+                    set(level, points / 4)
+                }
             }
-        }
     }
 }

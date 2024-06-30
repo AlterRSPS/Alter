@@ -1,7 +1,9 @@
 package org.alter.plugins.content.npcs.sheep
 
+import dev.openrune.cache.CacheManager.getNpc
+
 Sheep.SHEEP_NPCS.forEach { sheep ->
-    if (world.definitions.get(NpcDef::class.java, sheep).options.contains("Shear")) {
+    if (getNpc(sheep).actions.contains("Shear")) {
 
         on_npc_option(npc = sheep, option = "shear") {
             val npc = player.getInteractingNpc()
@@ -17,7 +19,11 @@ Sheep.SHEEP_NPCS.forEach { sheep ->
     }
 }
 
-suspend fun shear(it: QueueTask, p: Player, n: Npc) {
+suspend fun shear(
+    it: QueueTask,
+    p: Player,
+    n: Npc,
+) {
     val flee = world.percentChance(15.0)
 
     p.lock()
@@ -55,7 +61,10 @@ fun flee(n: Npc) {
     n.walkTo(dest)
 }
 
-suspend fun transmog_sheep(it: QueueTask, n: Npc) {
+suspend fun transmog_sheep(
+    it: QueueTask,
+    n: Npc,
+) {
     n.setTransmogId(if (n.id == 2788) Npcs.SHEEP_2691 else Npcs.SHEEP_2692)
     it.wait(100)
     n.setTransmogId(n.id)

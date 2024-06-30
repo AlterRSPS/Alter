@@ -11,30 +11,36 @@ object Animation {
     const val LOOK_AT_MINIMAP_WHEN_FULLSCREEN = 5354
     const val CLOSE_MINIMAP_FULLSCREEN = 7551
     const val DIG_WITH_SPADE = 831
+
     /**
      * Prayer Animations
      */
     const val BURY_BONE_ANIM = 827
-    const val OFFER_BONES_TO_ALTER_ANIM = 896;
+    const val OFFER_BONES_TO_ALTER_ANIM = 896
     const val PRAY_AT_ALTAR_ANIM = 645
+
     /**
      * Firemaking Animations
      */
     const val FIREMAKING_TINDERBOX = 733
+
     /**
      * Cooking Animations
      */
     const val COOKING_ON_FIRE = 883
     const val COOKING_ON_RANGE = 897
+
     /**
      * Runecrafting Animations
      */
     const val RUNECRAFTING_CRAFT_RUNES = 791
+
     /**
      * Herblore Animations
      */
     const val HERBLORE_POTION_MAKING = 363
     const val HERBLORE_CLEAN_HERB = 7531
+
     /**
      * Fishing Animations
      */
@@ -44,6 +50,7 @@ object Animation {
     const val FISHING_DRAGON_HARPOON = 7401
     const val FISHING_KARAMBWAN = 1193
     const val FISHING_LOBSTER_POT = 619
+
     /**
      * Woodcutting Animations
      */
@@ -58,6 +65,7 @@ object Animation {
     const val WOODCUTTING_INFERNAL_AXE = 2117
     const val WOODCUTTING_THIRDAGE_AXE = 7264
     const val WOODCUTTING_CRYSTAL_AXE = 8324
+
     /**
      * Mining Animations
      */
@@ -74,12 +82,14 @@ object Animation {
     const val MINING_CRYSTAL_PICKAXE = 8347
 
     const val NEED_ANIMATION_ID = 625
+
     /**
      * Smithing Animations
      */
     const val SMITHING_HAMMER = 3676
     const val SMITHING_ANVIL = 898
     const val SMITHING_SMELT = 896
+
     /**
      * Crafting Animations
      */
@@ -95,6 +105,7 @@ object Animation {
     const val CRAFTING_CUT_DRAGONSTONE = 885
     const val CRAFTING_CUT_ONYX = 2717
     const val CRAFTING_CUT_ZENYTE = 2717
+
     /**
      * Fletching Animations
      */
@@ -127,6 +138,7 @@ object Animation {
     const val FLETCHING_ADAMANT_CBOW_STRING = 6688
     const val FLETCHING_RUNITE_CBOW_STRING = 6683
     const val FLETCHING_DRAGON_CBOW_STRING = 6689
+
     /**
      * Farming Animations
      */
@@ -139,16 +151,19 @@ object Animation {
     const val FARMING_FILLING_POT = 2287
     const val FARMING_PLANTING_POT = 2272
     const val FARMING_PRUNING = 2275
+
     /**
      * Hunter Animations
      */
     const val HUNTER_TRAP = 827
     const val HUNTER_BUTTERFLY_NET = 6606
+
     /**
      * Thieving Animations
      */
     const val THIEVING_PICKPOCKET = 881
     const val THIEVING_STALL = 832
+
     /**
      * Agility Animations
      */
@@ -166,10 +181,9 @@ object Animation {
     const val AGILITY_CROSS_LEDGE_LEFT = 754
     const val AGILITY_JUMP = 3067
     const val AGILITY_STEPPING_STONE = 741
-    const val AGILITY_PIPE_START =746
+    const val AGILITY_PIPE_START = 746
     const val AGILITY_PIPE_CRAWL = 749
     const val AGILITY_PIPE_EXIT = 748
-
 
     const val ABHORRENT_SPECTRE_ATTACK = 7550
     const val ABYSSAL_BLUDGEON_SPECIAL = 3299

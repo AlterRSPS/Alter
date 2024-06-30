@@ -1,12 +1,11 @@
 package org.alter.plugins.content.skills.fletching.action
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
 import org.alter.api.cfg.Items
-
-import org.alter.api.ext.*
+import org.alter.api.ext.messageBox
+import org.alter.api.ext.player
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.fletching.data.Chiseled
 
 /**
@@ -14,16 +13,22 @@ import org.alter.plugins.content.skills.fletching.data.Chiseled
  *
  * Handles the action of chiseling items with a chisel
  */
-class ChiselAction(private val defs: DefinitionSet) {
+class ChiselAction {
     /**
      * A map of chiseled ids to their item names
      */
-    private val chiseledNames = Chiseled.chiseledDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val chiseledNames = Chiseled.chiseledDefinitions.keys.associate { it to getItem(it).name.lowercase() }
 
     /**
      * A map of unchiseled item ids to their item names
      */
-    private val unchiseledNames = Chiseled.chiseledDefinitions.values.associate { it.unchiseled to defs.get(ItemDef::class.java, it.unchiseled).name.lowercase() }
+    private val unchiseledNames =
+        Chiseled.chiseledDefinitions.values.associate {
+            it.unchiseled to
+                getItem(
+                    it.unchiseled,
+                ).name.lowercase()
+        }
 
     /**
      * Handles the chiseling of a chiseled
@@ -32,9 +37,14 @@ class ChiselAction(private val defs: DefinitionSet) {
      * @param chiseled  The Chiseled definition
      * @param amount    The amount the player is trying to chisel
      */
-    suspend fun chisel(task: QueueTask, chiseled: Chiseled, amount: Int) {
-        if (!canChisel(task, chiseled))
+    suspend fun chisel(
+        task: QueueTask,
+        chiseled: Chiseled,
+        amount: Int,
+    ) {
+        if (!canChisel(task, chiseled)) {
             return
+        }
 
         val player = task.player
         val inventory = player.inventory
@@ -44,19 +54,19 @@ class ChiselAction(private val defs: DefinitionSet) {
         // Wait two ticks to follow OSRS behavior
         task.wait(2)
         var completed = 0
-        while(completed < maxCount) {
+        while (completed < maxCount) {
             player.animate(chiseled.animation)
             task.wait(4)
 
             player.lock()
             // This is here to prevent a TOCTTOU attack
-            if (!canChisel(task, chiseled, sendMessageBox = false)){
+            if (!canChisel(task, chiseled, sendMessageBox = false)) {
                 player.unlock()
                 break
             }
 
             val removeUnchiseled = inventory.remove(item = chiseled.unchiseled, amount = 1, assureFullRemoval = true)
-            if (removeUnchiseled.hasFailed()){
+            if (removeUnchiseled.hasFailed()) {
                 player.unlock()
                 break
             }
@@ -75,18 +85,29 @@ class ChiselAction(private val defs: DefinitionSet) {
      * @param chiseled          The chiseled item being created
      * @param sendMessageBox    Whether or not to send the error message
      */
-    private suspend fun canChisel(task: QueueTask, chiseled: Chiseled, sendMessageBox: Boolean = true) : Boolean {
+    private suspend fun canChisel(
+        task: QueueTask,
+        chiseled: Chiseled,
+        sendMessageBox: Boolean = true,
+    ): Boolean {
         val player = task.player
         val inventory = player.inventory
         if (!inventory.contains(chiseled.unchiseled) || !inventory.contains(Items.CHISEL)) {
-            if(sendMessageBox)
+            if (sendMessageBox) {
                 task.messageBox("You need a chisel and ${unchiseledNames[chiseled.unchiseled]} to make ${chiseledNames[chiseled.id]}")
+            }
             return false
         }
 
         if (player.getSkills().getCurrentLevel(Skills.FLETCHING) < chiseled.level) {
-            if(sendMessageBox)
-                task.messageBox("You need a ${Skills.getSkillName(player.world, Skills.FLETCHING)} level of at least ${chiseled.level} to fletch ${chiseledNames[chiseled.id]}.")
+            if (sendMessageBox) {
+                task.messageBox(
+                    "You need a ${Skills.getSkillName(
+                        player.world,
+                        Skills.FLETCHING,
+                    )} level of at least ${chiseled.level} to fletch ${chiseledNames[chiseled.id]}.",
+                )
+            }
             return false
         }
 

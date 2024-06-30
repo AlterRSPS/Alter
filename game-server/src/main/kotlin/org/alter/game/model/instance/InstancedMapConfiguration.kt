@@ -30,11 +30,13 @@ import java.util.*
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class InstancedMapConfiguration private constructor(val exitTile: Tile, val owner: PlayerUID?, val attributes: EnumSet<InstancedMapAttribute>,
-                                                    val bypassObjectChunkBounds: Boolean) {
-
+class InstancedMapConfiguration private constructor(
+    val exitTile: Tile,
+    val owner: PlayerUID?,
+    val attributes: EnumSet<InstancedMapAttribute>,
+    val bypassObjectChunkBounds: Boolean,
+) {
     class Builder {
-
         private var exitTile: Tile? = null
 
         private var owner: PlayerUID? = null
@@ -62,7 +64,10 @@ class InstancedMapConfiguration private constructor(val exitTile: Tile, val owne
             return this
         }
 
-        fun addAttribute(attribute: InstancedMapAttribute, vararg others: InstancedMapAttribute): Builder {
+        fun addAttribute(
+            attribute: InstancedMapAttribute,
+            vararg others: InstancedMapAttribute,
+        ): Builder {
             attributes.add(attribute)
             attributes.addAll(others)
             return this

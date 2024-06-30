@@ -17,5 +17,5 @@ enum class GameframeTab(val id: Int) {
     LOG_OUT(id = 10),
     SETTINGS(id = 11),
     EMOTES(id = 12),
-    MUSIC(id = 13)
+    MUSIC(id = 13),
 }

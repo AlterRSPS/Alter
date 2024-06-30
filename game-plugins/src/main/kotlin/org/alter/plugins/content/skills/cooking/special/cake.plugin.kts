@@ -1,10 +1,12 @@
 package org.alter.plugins.content.skills.cooking.special
 
+import dev.openrune.cache.CacheManager.getItem
+
 val INGREDIENTS = intArrayOf(Items.EGG, Items.POT_OF_FLOUR, Items.BUCKET_OF_MILK)
 
 INGREDIENTS.forEach { ingredient ->
     on_item_on_item(Items.CAKE_TIN, ingredient) {
-        if(!checkIngredients(player)) {
+        if (!checkIngredients(player)) {
             return@on_item_on_item
         }
         createUncookedCake(player)
@@ -12,26 +14,28 @@ INGREDIENTS.forEach { ingredient ->
 }
 
 fun checkIngredients(player: Player): Boolean {
-    val defs = world.definitions
-    val names = INGREDIENTS.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    val names = INGREDIENTS.associate { it to getItem(it).name.lowercase() }
 
     val missing = arrayListOf<Int>()
     INGREDIENTS.forEach { ingredient ->
-        if(!player.inventory.contains(ingredient)) {
+        if (!player.inventory.contains(ingredient)) {
             missing.add(ingredient)
         }
     }
 
-    if(missing.size > 0) {
+    if (missing.size > 0) {
         var msg: String
-        if(missing.size == 1) { msg = "You also need ${names[missing.get(0)]} to make a cake." }
-        else { msg = "You also need ${names[missing.get(0)]} and ${names[missing.get(1)]} to make a cake." }
+        if (missing.size == 1) {
+            msg = "You also need ${names[missing.get(0)]} to make a cake."
+        } else {
+            msg = "You also need ${names[missing.get(0)]} and ${names[missing.get(1)]} to make a cake."
+        }
         player.queue { messageBox(msg) }
         return false
     }
 
-    if(player.getSkills().getCurrentLevel(Skills.COOKING) < 40) {
-       player.filterableMessage("You need at least ${Skills.getSkillName(player.world, Skills.COOKING)} level of 40 to make a cake.")
+    if (player.getSkills().getCurrentLevel(Skills.COOKING) < 40) {
+        player.filterableMessage("You need at least ${Skills.getSkillName(player.world, Skills.COOKING)} level of 40 to make a cake.")
         return false
     }
     return true

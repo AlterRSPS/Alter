@@ -12,4 +12,11 @@ import java.util.*
  * @param location  The location of the world
  * @param players   The number of players on this world
  */
-data class WorldEntry(val id: Int, val types: EnumSet<WorldType>, val address: String, val activity: String, val location: WorldLocation, var players: Int)
+data class WorldEntry(
+    val id: Int,
+    val types: EnumSet<WorldType>,
+    val address: String,
+    val activity: String,
+    val location: WorldLocation,
+    var players: Int,
+)

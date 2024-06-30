@@ -1,6 +1,6 @@
 package org.alter.game.model.entity
 
-import com.google.common.base.MoreObjects
+import gg.rsmod.util.toStringHelper
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 
@@ -38,19 +38,26 @@ import org.alter.game.model.Tile
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class Projectile private constructor(val targetPawn: Pawn?, val targetTile: Tile,
-                                     val gfx: Int, val startHeight: Int, val endHeight: Int,
-                                     val steepness: Int, val angle: Int, val delay: Int, val lifespan: Int) : Entity() {
-
+class Projectile private constructor(
+    val targetPawn: Pawn?,
+    val targetTile: Tile,
+    val gfx: Int,
+    val startHeight: Int,
+    val endHeight: Int,
+    val steepness: Int,
+    val angle: Int,
+    val delay: Int,
+    val lifespan: Int,
+) : Entity() {
     override val entityType: EntityType = EntityType.PROJECTILE
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("start", tile).add("targetPawn", targetPawn)
+    override fun toString(): String =
+        toStringHelper().add("start", tile).add("targetPawn", targetPawn)
             .add("targetTile", targetTile).add("gfx", gfx).add("startHeight", startHeight)
             .add("endHeight", endHeight).add("angle", angle).add("steepness", steepness)
             .add("delay", delay).add("lifespan", lifespan).toString()
 
     class Builder {
-
         private var start: Tile? = null
 
         private var targetPawn: Pawn? = null
@@ -158,31 +165,46 @@ class Projectile private constructor(val targetPawn: Pawn?, val targetTile: Tile
             return this
         }
 
-        fun setTiles(start: Tile, target: Tile): Builder {
+        fun setTiles(
+            start: Tile,
+            target: Tile,
+        ): Builder {
             this.start = start
             this.targetTile = target
             return this
         }
 
-        fun setTiles(start: Tile, target: Pawn): Builder {
+        fun setTiles(
+            start: Tile,
+            target: Pawn,
+        ): Builder {
             this.start = start
             this.targetPawn = target
             return this
         }
 
-        fun setHeights(startHeight: Int, endHeight: Int): Builder {
+        fun setHeights(
+            startHeight: Int,
+            endHeight: Int,
+        ): Builder {
             this.startHeight = startHeight
             this.endHeight = endHeight
             return this
         }
 
-        fun setSlope(angle: Int, steepness: Int): Builder {
+        fun setSlope(
+            angle: Int,
+            steepness: Int,
+        ): Builder {
             this.angle = angle
             this.steepness = steepness
             return this
         }
 
-        fun setTimes(delay: Int, lifespan: Int): Builder {
+        fun setTimes(
+            delay: Int,
+            lifespan: Int,
+        ): Builder {
             this.delay = delay
             this.lifespan = lifespan
             return this

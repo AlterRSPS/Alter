@@ -9,12 +9,13 @@ package org.alter.plugins.content.items.shattered_cane
  * Meanwhile on osrs -> It does not get executed only FACE_PAWN if needed when doing the emote.
  */
 
-val required_items = intArrayOf(
-    Items.SHATTERED_HOOD_T3,
-    Items.SHATTERED_TOP_T3,
-    Items.SHATTERED_BOOTS_T3,
-    Items.SHATTERED_TROUSERS_T3
-)
+val required_items =
+    intArrayOf(
+        Items.SHATTERED_HOOD_T3,
+        Items.SHATTERED_TOP_T3,
+        Items.SHATTERED_BOOTS_T3,
+        Items.SHATTERED_TROUSERS_T3,
+    )
 
 on_equipment_option(Items.SHATTERED_CANE, "Skill Emote") {
     if (checkForItems(player)) {
@@ -37,23 +38,26 @@ on_equipment_option(Items.SHATTERED_CANE, "Fragment Emote") {
             player.lock()
             player.graphic(2020, 92)
             player.animate(8524, 60)
-            player.playSound(4215, 100,8)
-            player.playSound(4211, 100,44)
-            player.playSound(4213, 100,80)
-            player.playSound(4212, 100,104)
+            player.playSound(4215, 100, 8)
+            player.playSound(4211, 100, 44)
+            player.playSound(4213, 100, 80)
+            player.playSound(4212, 100, 104)
             player.unlock()
         }
     }
 }
 
-fun doEmote(player: Player, gfx: Int) {
+fun doEmote(
+    player: Player,
+    gfx: Int,
+) {
     player.queue {
         player.lock()
         player.graphic(gfx, 0)
         player.animate(9208, 60)
-        player.playSound(2344, 100,116)
-        player.playSound(2330, 100,241)
-        player.playSound(2331, 100,273)
+        player.playSound(2344, 100, 116)
+        player.playSound(2330, 100, 241)
+        player.playSound(2331, 100, 273)
         player.unlock()
     }
 }

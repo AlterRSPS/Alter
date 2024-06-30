@@ -9,21 +9,27 @@ import org.alter.plugins.content.magic.TeleportType
 import org.alter.plugins.content.magic.canTeleport
 import org.alter.plugins.content.magic.teleport
 
-val GLORY = intArrayOf(
-        Items.AMULET_OF_GLORY1, Items.AMULET_OF_GLORY2, Items.AMULET_OF_GLORY3,
-        Items.AMULET_OF_GLORY4, Items.AMULET_OF_GLORY5, Items.AMULET_OF_GLORY6
-)
+val GLORY =
+    intArrayOf(
+        Items.AMULET_OF_GLORY1,
+        Items.AMULET_OF_GLORY2,
+        Items.AMULET_OF_GLORY3,
+        Items.AMULET_OF_GLORY4,
+        Items.AMULET_OF_GLORY5,
+        Items.AMULET_OF_GLORY6,
+    )
 
 private val SOUNDAREA_ID = 200
 private val SOUNDAREA_RADIUS = 5
 private val SOUNDAREA_VOLUME = 1
 
-private val LOCATIONS = mapOf(
+private val LOCATIONS =
+    mapOf(
         "Edgeville" to Tile(3086, 3500),
         "Karamja" to Tile(2917, 3176),
         "Draynor Village" to Tile(3103, 3249),
-        "Al kharid" to Tile(3292, 3165)
-)
+        "Al kharid" to Tile(3292, 3165),
+    )
 
 GLORY.forEach { glory ->
     LOCATIONS.forEach { location, tile ->
@@ -47,10 +53,10 @@ GLORY.forEach { glory ->
     }
 }
 
-fun Player.teleport(endTile : Tile) {
+fun Player.teleport(endTile: Tile) {
     if (canTeleport(TeleportType.GLORY)) {
         world.spawn(AreaSound(tile, SOUNDAREA_ID, SOUNDAREA_RADIUS, SOUNDAREA_VOLUME))
-        if(hasEquipped(EquipmentType.AMULET, *GLORY)) {
+        if (hasEquipped(EquipmentType.AMULET, *GLORY)) {
             equipment[EquipmentType.AMULET.id] = getAmuletReplacement()
         }
         message(getAmuletChargeMessage())
@@ -58,7 +64,7 @@ fun Player.teleport(endTile : Tile) {
     }
 }
 
-fun Player.getAmuletReplacement(): Item ? {
+fun Player.getAmuletReplacement(): Item? {
     return when {
         hasEquipped(EquipmentType.AMULET, Items.AMULET_OF_GLORY6) -> Item(Items.AMULET_OF_GLORY5)
         hasEquipped(EquipmentType.AMULET, Items.AMULET_OF_GLORY5) -> Item(Items.AMULET_OF_GLORY4)
@@ -70,7 +76,7 @@ fun Player.getAmuletReplacement(): Item ? {
     }
 }
 
-fun Player.getGloryReplacement(): Item ? {
+fun Player.getGloryReplacement(): Item? {
     return when {
         inventory.hasAt(getInteractingItemSlot(), Items.AMULET_OF_GLORY6) -> Item(Items.AMULET_OF_GLORY5)
         inventory.hasAt(getInteractingItemSlot(), Items.AMULET_OF_GLORY5) -> Item(Items.AMULET_OF_GLORY4)

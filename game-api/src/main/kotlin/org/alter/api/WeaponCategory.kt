@@ -1,6 +1,6 @@
 package org.alter.api
 
-enum class WeaponCategory(val id : List<Int>, val weaponName : String) {
+enum class WeaponCategory(val id: List<Int>, val weaponName: String) {
     BOW(listOf(64, 106), "Bow"),
     SLASH_SWORD(listOf(21), "Slash sword"),
     TWO_HANDED(listOf(61), "Two-handed sword"),
@@ -22,14 +22,15 @@ enum class WeaponCategory(val id : List<Int>, val weaponName : String) {
     GUN(listOf(96), "Gun"),
     THROWN(listOf(24), "Thrown"),
     STAFF(listOf(1), "Staff"),
-    SALAMANDER(listOf(586), "Salamander");
+    SALAMANDER(listOf(586), "Salamander"),
+    ;
 
     companion object {
         val values = values()
 
         fun get(id: Int): String {
             values.forEach {
-                if(it.id.contains(id)) {
+                if (it.id.contains(id)) {
                     return it.weaponName
                 }
             }

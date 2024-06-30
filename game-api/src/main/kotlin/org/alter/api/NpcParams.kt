@@ -1,10 +1,8 @@
 package org.alter.api
 
-import org.alter.game.model.combat.NpcCombatDef
-import org.alter.game.model.weightedTableBuilder.TableTypes
-import org.alter.game.model.weightedTableBuilder.itemDrop
-import org.alter.game.model.weightedTableBuilder.tableDrops
 import org.alter.api.ext.enumSetOf
+import org.alter.game.model.combat.NpcCombatDef
+import org.alter.game.model.weightedTableBuilder.tableDrops
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -29,15 +27,13 @@ enum class NpcSpecies {
     BASIC_DRAGON,
     BRUTAL_DRAGON,
     FIERY,
-    UNDEAD
+    UNDEAD,
 }
-
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 class NpcCombatBuilder {
-
     private var maxHealth = -1
 
     private var attackSpeed = -1
@@ -55,18 +51,15 @@ class NpcCombatBuilder {
     private var defaultAttackSoundRadius: Int = -1
     private var defaultAttackSoundVolume: Int = -1
 
-
     private var defaultBlockSound = -1
     private var defaultBlockSoundArea: Boolean = false
     private var defaultBlockSoundRadius: Int = -1
     private var defaultBlockSoundVolume: Int = -1
 
-
     private var defaultDeathSound = -1
     private var defaultDeathSoundArea: Boolean = false
     private var defaultDeathSoundRadius: Int = -1
     private var defaultDeathSoundVolume: Int = -1
-
 
     private var respawnDelay = -1
 
@@ -122,22 +115,18 @@ class NpcCombatBuilder {
             defaultAttackAnim,
             defaultBlockAnim,
             deathAnimList,
-
             defaultAttackSound,
             defaultAttackSoundArea,
             defaultAttackSoundRadius,
             defaultAttackSoundVolume,
-
             defaultBlockSound,
             defaultBlockSoundArea,
             defaultBlockSoundRadius,
             defaultBlockSoundVolume,
-
             defaultDeathSound,
             defaultDeathSoundArea,
             defaultDeathSoundRadius,
             defaultDeathSoundVolume,
-
             respawnDelay,
             aggroRadius,
             aggroTargetDelay,
@@ -150,34 +139,42 @@ class NpcCombatBuilder {
             slayerXp,
             bonuses.toList(),
             speciesSet,
-            dropTable.toSet()
+            dropTable.toSet(),
         )
     }
 
     fun setAttackSoundArea(attackSoundArea: Boolean) {
         defaultAttackSoundArea = attackSoundArea
     }
+
     fun setAttackSoundRadius(soundRadius: Int) {
         defaultAttackSoundRadius = soundRadius
     }
+
     fun setAttackSoundVolume(soundVolume: Int) {
         defaultAttackSoundVolume = soundVolume
     }
+
     fun setBlockSoundArea(blockSoundArea: Boolean) {
         defaultBlockSoundArea = blockSoundArea
     }
+
     fun setBlockSoundRadius(blockSoundRadius: Int) {
         defaultBlockSoundRadius = blockSoundRadius
     }
+
     fun setBlockSoundVolume(blockSoundVolume: Int) {
         defaultBlockSoundVolume = blockSoundVolume
     }
+
     fun setDeathSoundArea(deathSoundArea: Boolean) {
         defaultDeathSoundArea = deathSoundArea
     }
+
     fun setDeathSoundRadius(DeathSoundRadius: Int) {
         defaultDeathSoundRadius = DeathSoundRadius
     }
+
     fun setDeathSoundVolume(DeathSoundVolume: Int) {
         defaultDeathSoundVolume = DeathSoundVolume
     }
@@ -227,13 +224,22 @@ class NpcCombatBuilder {
         return this
     }
 
-    fun setLevel(index: Int, level: Int): NpcCombatBuilder {
+    fun setLevel(
+        index: Int,
+        level: Int,
+    ): NpcCombatBuilder {
         check(stats[index] == -1) { "Level [$index] already set." }
         stats[index] = level
         return this
     }
 
-    fun setLevels(attack: Int, strength: Int, defence: Int, magic: Int, ranged: Int): NpcCombatBuilder {
+    fun setLevels(
+        attack: Int,
+        strength: Int,
+        defence: Int,
+        magic: Int,
+        ranged: Int,
+    ): NpcCombatBuilder {
         setAttackLevel(attack)
         setDefenceLevel(defence)
         setStrengthLevel(strength)
@@ -269,13 +275,19 @@ class NpcCombatBuilder {
         return this
     }
 
-    fun setCombatAnimations(attackAnimation: Int, blockAnimation: Int): NpcCombatBuilder {
+    fun setCombatAnimations(
+        attackAnimation: Int,
+        blockAnimation: Int,
+    ): NpcCombatBuilder {
         setDefaultAttackAnimation(attackAnimation)
         setDefaultBlockAnimation(blockAnimation)
         return this
     }
 
-    fun setCombatSounds(attackSound: Int, blockSound: Int) {
+    fun setCombatSounds(
+        attackSound: Int,
+        blockSound: Int,
+    ) {
         setDefaultAttackSound(attackSound)
         setDefaultBlockSound(blockSound)
     }
@@ -347,13 +359,19 @@ class NpcCombatBuilder {
         return this
     }
 
-    fun setSlayerParams(levelReq: Int, xp: Double): NpcCombatBuilder {
+    fun setSlayerParams(
+        levelReq: Int,
+        xp: Double,
+    ): NpcCombatBuilder {
         setSlayerRequirement(levelReq)
         setSlayerXp(xp)
         return this
     }
 
-    fun setBonus(index: Int, value: Int): NpcCombatBuilder {
+    fun setBonus(
+        index: Int,
+        value: Int,
+    ): NpcCombatBuilder {
         check(bonuses[index] == 0) { "Bonus [$index] already set." }
         bonuses[index] = value
         return this
@@ -440,10 +458,8 @@ class NpcCombatBuilder {
         return this
     }
 
-
     companion object {
         private const val BONUS_COUNT = 14
         private const val DEFAULT_AGGRO_TIMER = 1000 // 10 minutes
     }
-
 }

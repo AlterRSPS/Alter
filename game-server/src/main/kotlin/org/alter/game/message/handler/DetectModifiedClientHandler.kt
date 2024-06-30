@@ -1,16 +1,17 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.misc.client.DetectModifiedClient
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.DetectModifiedClientMessage
-import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-class DetectModifiedClientHandler : MessageHandler<DetectModifiedClientMessage> {
-
-    override fun handle(client: Client, world: World, message: DetectModifiedClientMessage) {
-        log(client, "Detected modified client for player %s (%s).", client.username, client.channel)
+class DetectModifiedClientHandler : MessageHandler<DetectModifiedClient> {
+    override fun accept(
+        client: Client,
+        message: DetectModifiedClient,
+    ) {
+        log(client, "Detected modified client for player %s.", client.username)
     }
 }

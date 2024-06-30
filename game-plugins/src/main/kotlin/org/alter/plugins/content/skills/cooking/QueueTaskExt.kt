@@ -1,24 +1,30 @@
 package org.alter.plugins.content.skills.cooking
 
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.message.impl.ResumePauseButtonMessage
+import dev.openrune.cache.CacheManager.getItem
+import net.rsprot.protocol.game.incoming.resumed.ResumePauseButton
+import org.alter.api.ext.*
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
-import org.alter.api.ext.*
 import org.alter.plugins.content.skills.cooking.data.CookingObj
 
 private val closeCookingDialog: QueueTask.() -> Unit = {
     player.closeComponent(parent = 162, child = 561)
 }
 
-suspend fun QueueTask.cookingMessageBox(vararg items: Int, title: String = "What would you like to cook?", maxItems: Int = player.inventory.capacity, obj: CookingObj?, logic: Player.(Int, Int, CookingObj?) -> Unit) {
+suspend fun QueueTask.cookingMessageBox(
+    vararg items: Int,
+    title: String = "What would you like to cook?",
+    maxItems: Int = player.inventory.capacity,
+    obj: CookingObj?,
+    logic: Player.(Int, Int, CookingObj?) -> Unit,
+) {
     val defs = player.world.definitions
-    val itemDefs = items.map { defs.get(ItemDef::class.java, it) }
+    val itemDefs = items.map { getItem(it) }
 
     val itemArray = Array(10) { -1 }
     val nameArray = Array(10) { "|" }
 
-    itemDefs.withIndex().forEach{
+    itemDefs.withIndex().forEach {
         val def = it.value
         itemArray[it.index] = def.id
         nameArray[it.index] = "|${def.name}"
@@ -35,15 +41,15 @@ suspend fun QueueTask.cookingMessageBox(vararg items: Int, title: String = "What
     waitReturnValue()
     terminateAction!!(this)
 
-    val result = requestReturnValue as? ResumePauseButtonMessage ?: return
-    val child = result.component
+    val result = requestReturnValue as? ResumePauseButton ?: return
+    val child = result.componentId
 
-    if(child < 14 || child >= 14 + items.size) {
+    if (child < 14 || child >= 14 + items.size) {
         return
     }
 
     val item = items[child - 14]
-    val qty = result.slot
+    val qty = result.sub
 
     logic(player, item, qty, obj)
 }

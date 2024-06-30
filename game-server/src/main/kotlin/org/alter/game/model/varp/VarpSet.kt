@@ -9,12 +9,12 @@ import it.unimi.dsi.fastutil.shorts.ShortOpenHashSet
  * @author Tom <rspsmods@gmail.com>
  */
 class VarpSet(val maxVarps: Int) {
-
-    private val varps = mutableListOf<Varp>().apply {
-        for (i in 0 until maxVarps) {
-            add(Varp(id = i, state = 0))
+    private val varps =
+        mutableListOf<Varp>().apply {
+            for (i in 0 until maxVarps) {
+                add(Varp(id = i, state = 0))
+            }
         }
-    }
 
     /**
      * A collection of dirty varps which will be sent to the client on the next cycle.
@@ -27,7 +27,10 @@ class VarpSet(val maxVarps: Int) {
 
     fun getState(id: Int): Int = varps[id].state
 
-    fun setState(id: Int, state: Int): VarpSet {
+    fun setState(
+        id: Int,
+        state: Int,
+    ): VarpSet {
         varps[id].state = state
         dirty.add(id.toShort())
         return this
@@ -46,7 +49,11 @@ class VarpSet(val maxVarps: Int) {
      * @param endBit
      * The end of the bits to get the value from.
      */
-    fun getBit(id: Int, startBit: Int, endBit: Int): Int = BitManipulation.getBit(getState(id), startBit, endBit)
+    fun getBit(
+        id: Int,
+        startBit: Int,
+        endBit: Int,
+    ): Int = BitManipulation.getBit(getState(id), startBit, endBit)
 
     /**
      * Set the bits ranging from [startBit] to [endBit] to equal [value].
@@ -66,7 +73,12 @@ class VarpSet(val maxVarps: Int) {
      * The value that will be stored from [startBit] to [endBit].
      *
      */
-    fun setBit(id: Int, startBit: Int, endBit: Int, value: Int): VarpSet {
+    fun setBit(
+        id: Int,
+        startBit: Int,
+        endBit: Int,
+        value: Int,
+    ): VarpSet {
         return setState(id, BitManipulation.setBit(getState(id), startBit, endBit, value))
     }
 

@@ -1,11 +1,27 @@
 package org.alter.game.model.entity
 
-import com.google.common.base.MoreObjects
-import org.alter.game.fs.def.VarpDef
-import org.alter.game.message.Message
-import org.alter.game.message.impl.*
+import dev.openrune.cache.CacheManager.varpSize
+import gg.rsmod.util.toStringHelper
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import net.rsprot.protocol.api.Session
+import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcInfo
+import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerAvatar
+import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerInfo
+import net.rsprot.protocol.game.outgoing.info.util.BuildArea
+import net.rsprot.protocol.game.outgoing.info.worldentityinfo.WorldEntityInfo
+import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
+import net.rsprot.protocol.game.outgoing.map.RebuildLogin
+import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
+import net.rsprot.protocol.game.outgoing.misc.player.MessageGame
+import net.rsprot.protocol.game.outgoing.misc.player.UpdateRunWeight
+import net.rsprot.protocol.game.outgoing.misc.player.UpdateStat
+import net.rsprot.protocol.game.outgoing.sound.SynthSound
+import net.rsprot.protocol.game.outgoing.varp.VarpLarge
+import net.rsprot.protocol.game.outgoing.varp.VarpSmall
+import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
+import org.alter.game.model.appearance.Gender
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
 import org.alter.game.model.attr.LEVEL_UP_INCREMENT
 import org.alter.game.model.attr.LEVEL_UP_OLD_XP
@@ -22,9 +38,8 @@ import org.alter.game.model.social.Social
 import org.alter.game.model.timer.ACTIVE_COMBAT_TIMER
 import org.alter.game.model.timer.FORCE_DISCONNECTION_TIMER
 import org.alter.game.model.varp.VarpSet
+import org.alter.game.rsprot.RsModObjectProvider
 import org.alter.game.service.log.LoggerService
-import org.alter.game.sync.block.UpdateBlockType
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import java.util.*
 
 /**
@@ -33,7 +48,6 @@ import java.util.*
  * @author Tom <rspsmods@gmail.com>
  */
 open class Player(world: World) : Pawn(world) {
-
     /**
      * A persistent and unique id. This is <strong>not</strong> the index
      * of our [Player] when registered to the [World], it is a value determined
@@ -87,27 +101,28 @@ open class Player(world: World) : Pawn(world) {
      */
     @Volatile private var setDisconnectionTimer = false
 
-    val bonds = ItemContainer(world.definitions, BOND_POUCH_KEY)
+    val bonds = ItemContainer(BOND_POUCH_KEY)
 
-    val inventory = ItemContainer(world.definitions, INVENTORY_KEY)
+    val inventory = ItemContainer(INVENTORY_KEY)
 
-    val equipment = ItemContainer(world.definitions, EQUIPMENT_KEY)
+    val equipment = ItemContainer(EQUIPMENT_KEY)
 
-    val bank = ItemContainer(world.definitions, BANK_KEY)
+    val bank = ItemContainer(BANK_KEY)
 
     /**
      * A map that contains all the [ItemContainer]s a player can have.
      */
-    val containers = HashMap<ContainerKey, ItemContainer>().apply {
-        put(BOND_POUCH_KEY, bonds)
-        put(INVENTORY_KEY, inventory)
-        put(EQUIPMENT_KEY, equipment)
-        put(BANK_KEY, bank)
-    }
+    val containers =
+        HashMap<ContainerKey, ItemContainer>().apply {
+            put(BOND_POUCH_KEY, bonds)
+            put(INVENTORY_KEY, inventory)
+            put(EQUIPMENT_KEY, equipment)
+            put(BANK_KEY, bank)
+        }
 
     val interfaces by lazy { InterfaceSet(PlayerInterfaceListener(this, world.plugins)) }
 
-    val varps = VarpSet(maxVarps = world.definitions.getCount(VarpDef::class.java))
+    val varps = VarpSet(maxVarps = varpSize())
 
     private val skillSet = SkillSet(maxSkills = world.gameContext.skillCount)
 
@@ -128,62 +143,7 @@ open class Player(world: World) : Pawn(world) {
      */
     private var largeViewport = false
 
-    /**
-     * The players in our viewport, including ourselves. This list should not
-     * be used outside of our synchronization task.
-     */
-    internal val gpiLocalPlayers = arrayOfNulls<Player>(2048)
-
-    /**
-     * The indices of any possible local player in the world.
-     */
-    internal val gpiLocalIndexes = IntArray(2048)
-
-    /**
-     * The current local player count.
-     */
-    internal var gpiLocalCount = 0
-
-    /**
-     * The indices of players outside of our viewport in the world.
-     */
-    internal val gpiExternalIndexes = IntArray(2048)
-
-    /**
-     * The amount of players outside of our viewport.
-     */
-    internal var gpiExternalCount = 0
-
-    /**
-     * The inactivity flags for players.
-     */
-    internal val gpiInactivityFlags = IntArray(2048)
-
-    /**
-     * GPI tile hash multipliers.
-     *
-     * The player synchronization task will send [Tile.x] and [Tile.z] as 13-bit
-     * values, which is 2^13 (8192). To send a player position higher than said
-     * value in either direction, we must also send a multiplier.
-     */
-    internal val gpiTileHashMultipliers = IntArray(2048)
-
-    /**
-     * The npcs in our viewport. This list should not be used outside of our
-     * synchronization task.
-     */
-    internal val localNpcs = ObjectArrayList<Npc>()
-
     var appearance = Appearance.DEFAULT_MALE
-
-    /**
-     * A flag to indicate whether [anims] should be sent
-     *  in place of the default animation appearance
-     *   Note| "forced" because it's embedded in the [PlayerUpdateBlock]
-     */
-    private var appearimation = false
-
-    val anims = arrayOf(808, 823, 819, 820, 821, 822, 824)
 
     var weight = 0.0
 
@@ -213,24 +173,24 @@ open class Player(world: World) : Pawn(world) {
 
     override val entityType: EntityType = EntityType.PLAYER
 
-    fun isAppearimation(): Boolean = appearimation
-
-    fun setAppearimation(forced: Boolean) {
-        this.appearimation = forced
-        addBlock(UpdateBlockType.APPEARANCE)
-    }
-
-    fun appearimate(idleSequence: Int, turnLeftSequence: Int, turnRightSequence: Int,
-            walkBackSequence: Int, walkLeftSequence: Int, walkRightSequence: Int, runSequence: Int) {
-        anims[0] = idleSequence
-        anims[1] = turnLeftSequence
-        anims[2] = turnRightSequence
-        anims[3] = walkBackSequence
-        anims[4] = walkLeftSequence
-        anims[5] = walkRightSequence
-        anims[6] = runSequence
-        appearimation = true
-        addBlock(UpdateBlockType.APPEARANCE)
+    fun setBaseAnimationSet(
+        readyAnim: Int,
+        turnAnim: Int,
+        walkAnim: Int,
+        walkAnimBack: Int,
+        walkAnimLeft: Int,
+        walkAnimRight: Int,
+        runAnim: Int,
+    ) {
+        avatar.extendedInfo.setBaseAnimationSet(
+            readyAnim = readyAnim,
+            turnAnim = turnAnim,
+            walkAnim = walkAnim,
+            walkAnimBack = walkAnimBack,
+            walkAnimLeft = walkAnimLeft,
+            walkAnimRight = walkAnimRight,
+            runAnim = runAnim,
+        )
     }
 
     /**
@@ -249,22 +209,33 @@ open class Player(world: World) : Pawn(world) {
         getSkills().setCurrentLevel(3, level)
     }
 
-    override fun addBlock(block: UpdateBlockType) {
-        val bits = world.playerUpdateBlocks.updateBlocks[block]!!
-        blockBuffer.addBit(bits.bit)
-    }
+    val avatar: PlayerAvatar get() = playerInfo.avatar
 
-    override fun hasBlock(block: UpdateBlockType): Boolean {
-        val bits = world.playerUpdateBlocks.updateBlocks[block]!!
-        return blockBuffer.hasBit(bits.bit)
+    override fun graphic(
+        id: Int,
+        height: Int,
+        delay: Int,
+    ) {
+        avatar.extendedInfo.setSpotAnim(0, id, delay, height)
     }
 
     fun forceMove(movement: ForcedMovement) {
-        blockBuffer.forceMovement = movement
-        addBlock(UpdateBlockType.FORCE_MOVEMENT)
+        avatar.extendedInfo.setExactMove(
+            deltaX1 = movement.diffX1,
+            deltaZ1 = movement.diffZ1,
+            delay1 = movement.clientDuration1,
+            deltaX2 = movement.diffX2,
+            deltaZ2 = movement.diffZ2,
+            delay2 = movement.clientDuration2,
+            angle = movement.directionAngle,
+        )
     }
 
-    suspend fun forceMove(task: QueueTask, movement: ForcedMovement, cycleDuration: Int = movement.maxDuration / 30) {
+    suspend fun forceMove(
+        task: QueueTask,
+        movement: ForcedMovement,
+        cycleDuration: Int = movement.maxDuration / 30,
+    ) {
         movementQueue.clear()
         lock = LockState.DELAY_ACTIONS
 
@@ -289,7 +260,6 @@ open class Player(world: World) : Pawn(world) {
         var calculateBonuses = false
 
         if (pendingLogout) {
-
             /*
              * If a channel is suddenly inactive (disconnected), we don't to
              * immediately unregister the player. However, we do want to
@@ -309,7 +279,10 @@ open class Player(world: World) : Pawn(world) {
              * We do allow players to disconnect even if they are in combat, but
              * only if the most recent damage dealt to them are by npcs.
              */
-            val stopLogout = timers.has(ACTIVE_COMBAT_TIMER) && damageMap.getAll(type = EntityType.PLAYER, timeFrameMs = 10_000).isNotEmpty()
+            val stopLogout =
+                timers.has(
+                    ACTIVE_COMBAT_TIMER,
+                ) && damageMap.getAll(type = EntityType.PLAYER, timeFrameMs = 10_000).isNotEmpty()
             val forceLogout = timers.exists(FORCE_DISCONNECTION_TIMER) && !timers.has(FORCE_DISCONNECTION_TIMER)
 
             if (!stopLogout || forceLogout) {
@@ -329,28 +302,47 @@ open class Player(world: World) : Pawn(world) {
         }
 
         if (inventory.dirty) {
-            write(UpdateInvFullMessage(interfaceId = 149, component = 0, containerKey = 93, items = inventory.rawItems))
+            val items = inventory.rawItems
+            write(
+                UpdateInvFull(
+//                    interfaceId = 149,
+//                    componentId = 0,
+                    inventoryId = 93,
+                    capacity = items.size,
+                    provider = RsModObjectProvider(items),
+                ),
+            )
+
             inventory.dirty = false
             calculateWeight = true
         }
 
         if (equipment.dirty) {
-            write(UpdateInvFullMessage(containerKey = 94, items = equipment.rawItems))
+            val items = equipment.rawItems
+            write(UpdateInvFull(inventoryId = 94, capacity = items.size, provider = RsModObjectProvider(items)))
             equipment.dirty = false
             calculateWeight = true
             calculateBonuses = true
 
-            addBlock(UpdateBlockType.APPEARANCE)
+            items.forEach { item ->
+                // TODO ADVO THIS IS SHIT
+                val def = item?.getDef() ?: return
+                avatar.extendedInfo.setWornObj(def.wearPos1, item.id, def.wearPos2, def.wearPos3)
+            }
         }
 
         if (bank.dirty) {
-            write(UpdateInvFullMessage(containerKey = 95, items = bank.rawItems))
+            val items = bank.rawItems
+            write(UpdateInvFull(inventoryId = 95, capacity = items.size, provider = RsModObjectProvider(items)))
             bank.dirty = false
         }
 
         if (shopDirty) {
             attr[CURRENT_SHOP_ATTR]?.let { shop ->
-                write(UpdateInvFullMessage(containerKey = 13, items = shop.items.map { if (it != null) Item(it.item, it.currentAmount) else null }.toTypedArray()))
+                {
+                    val items = shop.items.map { if (it != null) Item(it.item, it.currentAmount) else null }.toTypedArray()
+                    write(UpdateInvFull(inventoryId = 13, capacity = items.size, provider = RsModObjectProvider(items)))
+                }
             }
             shopDirty = false
         }
@@ -372,10 +364,11 @@ open class Player(world: World) : Pawn(world) {
         for (i in 0 until varps.maxVarps) {
             if (varps.isDirty(i)) {
                 val varp = varps[i]
-                val message = when {
-                    varp.state in -Byte.MAX_VALUE..Byte.MAX_VALUE -> VarpSmallMessage(varp.id, varp.state)
-                    else -> VarpLargeMessage(varp.id, varp.state)
-                }
+                val message =
+                    when {
+                        varp.state in -Byte.MAX_VALUE..Byte.MAX_VALUE -> VarpSmall(varp.id, varp.state)
+                        else -> VarpLarge(varp.id, varp.state)
+                    }
                 write(message)
             }
         }
@@ -383,20 +376,56 @@ open class Player(world: World) : Pawn(world) {
 
         for (i in 0 until getSkills().maxSkills) {
             if (getSkills().isDirty(i)) {
-                write(UpdateStatMessage(skill = i, level = getSkills().getCurrentLevel(i), xp = getSkills().getCurrentXp(i).toInt()))
+                write(
+                    UpdateStat(
+                        stat = i,
+                        currentLevel = getSkills().getCurrentLevel(i),
+                        invisibleBoostedLevel = getSkills().getCurrentLevel(i),
+                        experience = getSkills().getCurrentXp(i).toInt(),
+                    ),
+                )
                 getSkills().clean(i)
             }
         }
     }
 
     /**
-     * Logic that should be executed every game cycle, after
-     * [org.alter.game.sync.task.PlayerSynchronizationTask].
-     *
-     * Note that this method may be handled in parallel, so be careful with race
-     * conditions if any logic may modify other [Pawn]s.
+     * Logic that should be executed every game cycle, after updating occurs.
      */
     fun postCycle() {
+        val oldTile = this.lastTile
+        val moved = oldTile == null || !oldTile.sameAs(this.tile)
+        val changedHeight = oldTile?.height != this.tile.height
+
+        if (moved) {
+            this.lastTile = Tile(this.tile)
+        }
+        this.moved = false
+
+        if (moved) {
+            val oldChunk = if (oldTile != null) this.world.chunks.get(oldTile.chunkCoords, createIfNeeded = false) else null
+            val newChunk = this.world.chunks.get(this.tile.chunkCoords, createIfNeeded = false)
+            if (newChunk != null && (oldChunk != newChunk || changedHeight)) {
+                val newSurroundings = newChunk.coords.getSurroundingCoords()
+                if (!changedHeight) {
+                    val oldSurroundings = oldChunk?.coords?.getSurroundingCoords() ?: ObjectOpenHashSet()
+                    newSurroundings.removeAll(oldSurroundings)
+                }
+
+                newSurroundings.forEach { coords ->
+                    val chunk = this.world.chunks.get(coords, createIfNeeded = false) ?: return@forEach
+                    chunk.sendUpdates(this)
+                }
+                if (!changedHeight) {
+                    if (oldChunk != null) {
+                        this.world.plugins.executeChunkExit(this, oldChunk.hashCode())
+                    }
+                    this.world.plugins.executeChunkEnter(this, newChunk.hashCode())
+                }
+            }
+        }
+
+        previouslySetAnim = -1
         /*
          * Flush the channel at the end.
          */
@@ -408,33 +437,61 @@ open class Player(world: World) : Pawn(world) {
      */
     fun register(): Boolean = world.register(this)
 
+    lateinit var playerInfo: PlayerInfo
+
+    @OptIn(ExperimentalUnsignedTypes::class)
+    lateinit var npcInfo: NpcInfo
+    lateinit var worldEntityInfo: WorldEntityInfo
+    var session: Session<Client>? = null
+    var buildArea: BuildArea = BuildArea.INVALID
+
     /**
      * Handles any logic that should be executed upon log in.
      */
+    @OptIn(ExperimentalUnsignedTypes::class)
     fun login() {
+        playerInfo.updateCoord(tile.height, tile.x, tile.z)
+        npcInfo.updateCoord(-1, tile.height, tile.x, tile.z)
+        worldEntityInfo.updateCoord(-1, tile.height, tile.x, tile.z)
+
         if (entityType.isHumanControlled) {
-            gpiLocalPlayers[index] = this
-            gpiLocalIndexes[gpiLocalCount++] = index
-
-            for (i in 1 until 2048) {
-                if (i == index) {
-                    continue
+            write(RebuildLogin(tile.x ushr 3, tile.z shr 3, -1, world.xteaKeyService!!, playerInfo))
+            buildArea =
+                BuildArea((tile.x ushr 3) - 6, (tile.z ushr 3) - 6).apply {
+                    playerInfo.updateBuildArea(-1, this)
+                    npcInfo.updateBuildArea(-1, this)
+                    worldEntityInfo.updateBuildArea(this)
                 }
-                gpiExternalIndexes[gpiExternalCount++] = i
-                gpiTileHashMultipliers[i] = if (i < world.players.capacity) world.players[i]?.tile?.asTileHashMultiplier ?: 0 else 0
-            }
-
-            val tiles = IntArray(gpiTileHashMultipliers.size)
-            System.arraycopy(gpiTileHashMultipliers, 0, tiles, 0, tiles.size)
-
-            write(RebuildLoginMessage(index, tile, tiles, world.xteaKeyService))
             world.getService(LoggerService::class.java, searchSubclasses = true)?.logLogin(this)
         }
 
         if (world.rebootTimer != -1) {
-            write(UpdateRebootTimerMessage(world.rebootTimer))
+            write(UpdateRebootTimer(world.rebootTimer))
         }
-
+        // TODO ADVO extract this and sync appearance if dirty
+        for (slot in 0..6) {
+            avatar.extendedInfo.setIdentKit(slot, appearance.getLook(slot))
+        }
+        for (slot in 0..11) {
+            avatar.extendedInfo.setWornObj(slot, -1, -1, -1)
+        }
+        for (slot in 0..4) {
+            avatar.extendedInfo.setColour(slot, appearance.colors[slot])
+        }
+        avatar.extendedInfo.setBaseAnimationSet(
+            readyAnim = 808,
+            turnAnim = 823,
+            walkAnim = 819,
+            walkAnimBack = 820,
+            walkAnimLeft = 821,
+            walkAnimRight = 822,
+            runAnim = 824,
+        )
+        avatar.extendedInfo.setName(username)
+        avatar.extendedInfo.setCombatLevel(combatLevel)
+        avatar.extendedInfo.setMale(appearance.gender == Gender.MALE)
+        avatar.extendedInfo.setOverheadIcon(prayerIcon)
+        avatar.extendedInfo.setSkullIcon(-1)
         initiated = true
         world.plugins.executeLogin(this)
         social.updateStatus(this)
@@ -466,22 +523,25 @@ open class Player(world: World) : Pawn(world) {
     }
 
     fun calculateWeight() {
-        val inventoryWeight = inventory.filterNotNull().sumOf { it.getDef(world.definitions).weight }
-        val equipmentWeight = equipment.filterNotNull().sumOf { it.getDef(world.definitions).weight }
+        val inventoryWeight = inventory.filterNotNull().sumOf { it.getDef().weight }
+        val equipmentWeight = equipment.filterNotNull().sumOf { it.getDef().weight }
         this.weight = inventoryWeight + equipmentWeight
-        write(UpdateRunWeightMessage(this.weight.toInt()))
+        write(UpdateRunWeight(this.weight.toInt()))
     }
 
     fun calculateBonuses() {
         Arrays.fill(equipmentBonuses, 0)
         for (i in 0 until equipment.capacity) {
             val item = equipment[i] ?: continue
-            val def = item.getDef(world.definitions)
+            val def = item.getDef()
             def.bonuses.forEachIndexed { index, bonus -> equipmentBonuses[index] += bonus }
         }
     }
 
-    fun addXp(skill: Int, xp: Double) {
+    fun addXp(
+        skill: Int,
+        xp: Double,
+    ) {
         val oldXp = getSkills().getCurrentXp(skill)
         if (oldXp >= SkillSet.MAX_XP) {
             return
@@ -550,7 +610,7 @@ open class Player(world: World) : Pawn(world) {
      * Default method to write [Message]s to the attached channel that won't
      * be handled unless the [Player] is controlled by a [Client] user.
      */
-    open fun write(vararg messages: Message) {
+    open fun write(vararg messages: OutgoingGameMessage) {
     }
 
     open fun write(vararg messages: Any) {
@@ -574,14 +634,19 @@ open class Player(world: World) : Pawn(world) {
      * Write a [MessageGameMessage] to the client.
      */
     internal fun writeMessage(message: String) {
-        write(MessageGameMessage(type = 0, message = message, username = null))
+        write(MessageGame(type = 0, message = message))
     }
 
-    internal fun playSound(id: Int, volume: Int = 1, delay: Int = 0) {
-        write(SynthSoundMessage(sound = id, volume = volume, delay = delay))
+    internal fun playSound(
+        id: Int,
+        volume: Int = 1,
+        delay: Int = 0,
+    ) {
+        write(SynthSound(id = id, loops = volume, delay = delay))
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this)
+    override fun toString(): String =
+        toStringHelper()
             .add("name", username)
             .add("pid", index)
             .toString()
@@ -606,5 +671,4 @@ open class Player(world: World) : Pawn(world) {
     }
 
     var social = Social()
-
 }

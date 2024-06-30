@@ -1,9 +1,6 @@
 package org.alter.plugins.content.commands.commands.admin
 
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.magic.TeleportType
-import org.alter.plugins.content.magic.canTeleport
-import org.alter.plugins.content.magic.teleport
 
 
 on_command("home", Privilege.ADMIN_POWER, description = "Teleports you home") {

@@ -6,7 +6,6 @@ import org.alter.game.model.bits.BitStorage
  * @author Tom <rspsmods@gmail.com>
  */
 object OptionsTab {
-
     const val SETTINGS_INTERFACE_TAB = 116
     const val SETTINGS_TAB_SELECTED_VARBIT = 9683
     const val ALL_SETTINGS_BUTTON_ID = 75

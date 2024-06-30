@@ -1,26 +1,25 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.buttons.IfButtonT
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.IfButtonDMessage
-import org.alter.game.message.impl.IfButtonTMessage
-import org.alter.game.model.World
 import org.alter.game.model.attr.*
 import org.alter.game.model.entity.Client
 import java.lang.ref.WeakReference
 
-class IfButtonTHandler : MessageHandler<IfButtonTMessage> {
-    override fun handle(client: Client, world: World, message: IfButtonTMessage) {
-        val fromComponentHash = message.fromComponentHash
-        val fromInterfaceId = fromComponentHash shr 16
-        val fromComponent = fromComponentHash and 0xFFFF
-        val fromSlot = message.fromSlot
-        val fromItemId = message.fromItem
+class IfButtonTHandler : MessageHandler<IfButtonT> {
+    override fun accept(
+        client: Client,
+        message: IfButtonT,
+    ) {
+        val fromInterfaceId = message.selectedInterfaceId
+        val fromComponent = message.selectedComponentId
+        val fromSlot = message.selectedSub
+        val fromItemId = message.selectedObj
 
-        val toComponentHash = message.toComponentHash
-        val toInterfaceId = toComponentHash shr 16
-        val toComponent = toComponentHash and 0xFFFF
-        val toSlot = message.toSlot
-        val toItemId = message.toItem
+        val toInterfaceId = message.targetInterfaceId
+        val toComponent = message.targetComponentId
+        val toSlot = message.targetSub
+        val toItemId = message.targetObj
 
         /**
          * @TODO
@@ -33,7 +32,6 @@ class IfButtonTHandler : MessageHandler<IfButtonTMessage> {
         val fromItem = client.inventory[fromSlot] ?: return
         val toItem = client.inventory[toSlot] ?: return
 
-
         if (fromItem.id != fromItemId || toItem.id != toItemId) {
             return
         }
@@ -42,8 +40,18 @@ class IfButtonTHandler : MessageHandler<IfButtonTMessage> {
             return
         }
 
-        log(client, "ButtonT: from_component=[%d,%d], to_component=[%d,%d], from_item=%d, from_slot=%d, to_item=%d, to_slot=%d",
-            fromInterfaceId, fromComponent, toInterfaceId, toComponent, fromItem.id, fromSlot, toItem.id, toSlot)
+        log(
+            client,
+            "ButtonT: from_component=[%d,%d], to_component=[%d,%d], from_item=%d, from_slot=%d, to_item=%d, to_slot=%d",
+            fromInterfaceId,
+            fromComponent,
+            toInterfaceId,
+            toComponent,
+            fromItem.id,
+            fromSlot,
+            toItem.id,
+            toSlot,
+        )
 
         client.attr[INTERACTING_ITEM] = WeakReference(fromItem)
         client.attr[INTERACTING_ITEM_ID] = fromItem.id
@@ -53,7 +61,7 @@ class IfButtonTHandler : MessageHandler<IfButtonTMessage> {
         client.attr[OTHER_ITEM_ID_ATTR] = toItem.id
         client.attr[OTHER_ITEM_SLOT_ATTR] = toSlot
 
-        var handled = world.plugins.executeItemOnItem(client, fromItem.id, toItem.id)
+        var handled = client.world.plugins.executeItemOnItem(client, fromItem.id, toItem.id)
 
         /**
          * simple catchall registration to allow customizable fallback
@@ -61,17 +69,21 @@ class IfButtonTHandler : MessageHandler<IfButtonTMessage> {
          * not explicitly registered
          *   Note| should be used with prejudice or for flavour
          */
-        if(!handled){
-            handled = world.plugins.executeItemOnItem(client, fromItem.id, -1)
-            if (handled && world.devContext.debugItemActions) {
-                client.writeMessage("Unhandled item on item: [from_item=${fromItem.id}, to_item=${toItem.id}, from_slot=$fromSlot, to_slot=$toSlot, " +
-                        "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]")
+        if (!handled) {
+            handled = client.world.plugins.executeItemOnItem(client, fromItem.id, -1)
+            if (handled && client.world.devContext.debugItemActions) {
+                client.writeMessage(
+                    "Unhandled item on item: [from_item=${fromItem.id}, to_item=${toItem.id}, from_slot=$fromSlot, to_slot=$toSlot, " +
+                        "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]",
+                )
             }
         }
 
-        if (!handled && world.devContext.debugItemActions) {
-            client.writeMessage("Unhandled item on item: [from_item=${fromItem.id}, to_item=${toItem.id}, from_slot=$fromSlot, to_slot=$toSlot, " +
-                    "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]")
+        if (!handled && client.world.devContext.debugItemActions) {
+            client.writeMessage(
+                "Unhandled item on item: [from_item=${fromItem.id}, to_item=${toItem.id}, from_slot=$fromSlot, to_slot=$toSlot, " +
+                    "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]",
+            )
         }
     }
 }

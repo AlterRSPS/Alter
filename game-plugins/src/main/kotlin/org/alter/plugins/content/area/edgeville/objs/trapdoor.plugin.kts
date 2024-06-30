@@ -15,13 +15,19 @@ on_obj_option(obj = Objs.TRAPDOOR_1581, option = "climb-down") {
     player.moveTo(3096, 9867)
 }
 
-fun open(p: Player, obj: GameObject) {
+fun open(
+    p: Player,
+    obj: GameObject,
+) {
     p.playSound(OPEN_SFX)
     p.filterableMessage("You close the trapdoor.")
     world.spawn(DynamicObject(obj, Objs.TRAPDOOR_1581))
 }
 
-fun close(p: Player, obj: GameObject) {
+fun close(
+    p: Player,
+    obj: GameObject,
+) {
     p.playSound(CLOSE_SFX)
     p.filterableMessage("The trapdoor opens...")
     world.spawn(DynamicObject(obj, Objs.TRAPDOOR_1579))

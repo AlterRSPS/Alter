@@ -1,10 +1,10 @@
 package org.alter.plugins.content.skills.fletching.action
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.model.queue.QueueTask
+import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.Skills
-import org.alter.api.ext.*
+import org.alter.api.ext.messageBox
+import org.alter.api.ext.player
+import org.alter.game.model.queue.QueueTask
 import org.alter.plugins.content.skills.fletching.data.Attached
 
 /**
@@ -12,17 +12,22 @@ import org.alter.plugins.content.skills.fletching.data.Attached
  *
  * Handles the action of attaching one item to another (with or without a required third item)
  */
-class AttachAction(private val defs: DefinitionSet) {
-
+class AttachAction {
     /**
      * A map of attached items to their item names
      */
-    private val itemNames = Attached.attachedDefinitions.keys.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val itemNames = Attached.attachedDefinitions.keys.associate { it to getItem(it).name.lowercase() }
 
     /**
      * A map of material ids to their item names
      */
-    private val materialNames = Attached.attachedDefinitions.values.flatMap { listOf(it.firstMaterial, it.secondMaterial) }.associate { it to defs.get(ItemDef::class.java, it).name.lowercase() }
+    private val materialNames =
+        Attached.attachedDefinitions.values.flatMap { listOf(it.firstMaterial, it.secondMaterial) }.associate {
+            it to
+                getItem(
+                    it,
+                ).name.lowercase()
+        }
 
     /**
      * Handles the attachment of item one to item two
@@ -31,9 +36,14 @@ class AttachAction(private val defs: DefinitionSet) {
      * @param attached  The attached definition
      * @param amount    The amount of items the player is trying to make
      */
-    suspend fun attach(task: QueueTask, attached: Attached, amount: Int) {
-        if (!canAttach(task, attached))
+    suspend fun attach(
+        task: QueueTask,
+        attached: Attached,
+        amount: Int,
+    ) {
+        if (!canAttach(task, attached)) {
             return
+        }
 
         val player = task.player
         val inventory = player.inventory
@@ -45,26 +55,26 @@ class AttachAction(private val defs: DefinitionSet) {
         // Wait two ticks to follow OSRS behavior
         task.wait(2)
         var completed = 0
-        while(completed < maxCount) {
+        while (completed < maxCount) {
             player.animate(attached.animation)
             task.wait(2)
 
             player.lock()
             // This is here again to prevent a TOCTTOU attack
-            if (!canAttach(task, attached, sendMessageBox = false)){
+            if (!canAttach(task, attached, sendMessageBox = false)) {
                 player.unlock()
                 break
             }
 
             val firstMaterialIndex = inventory.getItemIndex(attached.firstMaterial, true)
             val removeFirstMaterial = inventory.remove(item = attached.firstMaterial, assureFullRemoval = true)
-            if (removeFirstMaterial.hasFailed()){
+            if (removeFirstMaterial.hasFailed()) {
                 player.unlock()
                 break
             }
 
             val removeSecondMaterial = inventory.remove(item = attached.secondMaterial, assureFullRemoval = true)
-            if (removeSecondMaterial.hasFailed()){
+            if (removeSecondMaterial.hasFailed()) {
                 inventory.add(item = attached.firstMaterial, beginSlot = firstMaterialIndex)
                 player.unlock()
                 break
@@ -84,24 +94,42 @@ class AttachAction(private val defs: DefinitionSet) {
      * @param attached          The attached definition
      * @param sendMessageBox    Whether or not to send the error message
      */
-    private suspend fun canAttach(task: QueueTask, attached: Attached, sendMessageBox: Boolean = true) : Boolean {
+    private suspend fun canAttach(
+        task: QueueTask,
+        attached: Attached,
+        sendMessageBox: Boolean = true,
+    ): Boolean {
         val player = task.player
         val inventory = player.inventory
         if (inventory.getItemCount(attached.firstMaterial) < 1 || inventory.getItemCount(attached.secondMaterial) < 1) {
-            if (sendMessageBox)
-                task.messageBox("You need ${materialNames[attached.firstMaterial]} and a ${materialNames[attached.secondMaterial]} to make a ${itemNames[attached.id]}")
+            if (sendMessageBox) {
+                task.messageBox(
+                    "You need ${materialNames[attached.firstMaterial]} and a ${materialNames[attached.secondMaterial]} to make a ${itemNames[attached.id]}",
+                )
+            }
             return false
         }
 
         if (attached.toolRequired >= 0 && !inventory.contains(attached.toolRequired)) {
-            if(sendMessageBox)
-                task.messageBox("You need a ${defs.get(ItemDef::class.java, attached.toolRequired).name.lowercase()} to attach ${materialNames[attached.firstMaterial]} and ${materialNames[attached.secondMaterial]}")
+            if (sendMessageBox) {
+                task.messageBox(
+                    "You need a ${getItem(
+                        attached.toolRequired,
+                    ).name.lowercase()} to attach ${materialNames[attached.firstMaterial]} and ${materialNames[attached.secondMaterial]}",
+                )
+            }
             return false
         }
 
         if (player.getSkills().getCurrentLevel(Skills.FLETCHING) < attached.level) {
-            if(sendMessageBox)
-                task.messageBox("You need a ${Skills.getSkillName(player.world, Skills.FLETCHING)} level of at least ${attached.level} to fletch ${itemNames[attached.id]}.")
+            if (sendMessageBox) {
+                task.messageBox(
+                    "You need a ${Skills.getSkillName(
+                        player.world,
+                        Skills.FLETCHING,
+                    )} level of at least ${attached.level} to fletch ${itemNames[attached.id]}.",
+                )
+            }
             return false
         }
 

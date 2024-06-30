@@ -2,7 +2,7 @@ package org.alter.plugins.content.area.dwarven_mines.chats
 
 spawn_npc(Npcs.BOOT, 2985, 9812, 0, walkRadius = 5)
 
-    on_npc_option(Npcs.BOOT, option = "talk-to") { player.queue { dialog() } }
+on_npc_option(Npcs.BOOT, option = "talk-to") { player.queue { dialog() } }
 
 suspend fun QueueTask.dialog() {
     chatNpc("Hello tall person.")

@@ -16,7 +16,3 @@ spawn_npc(npc = Npcs.SCORPION_3024, x = 3038, z = 9771, walkRadius = 13)
 
 spawn_npc(npc = Npcs.KING_SCORPION, x = 3047, z = 9771, walkRadius = 13)
 spawn_npc(npc = Npcs.KING_SCORPION, x = 3040, z = 9775, walkRadius = 13)
-
-
-
-

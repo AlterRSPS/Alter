@@ -1,5 +1,8 @@
 package org.alter.plugins.content.combat
 
+import org.alter.api.HitType
+import org.alter.api.ProjectileType
+import org.alter.api.ext.hit
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import org.alter.game.model.combat.CombatClass
@@ -9,9 +12,6 @@ import org.alter.game.model.entity.Player
 import org.alter.game.model.entity.Projectile
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.timer.ACTIVE_COMBAT_TIMER
-import org.alter.api.HitType
-import org.alter.api.ProjectileType
-import org.alter.api.ext.hit
 import org.alter.plugins.content.combat.formula.CombatFormula
 import java.lang.ref.WeakReference
 
@@ -31,34 +31,57 @@ fun Pawn.removeCombatTarget() = attr.remove(COMBAT_TARGET_FOCUS_ATTR)
 
 fun Pawn.canEngageCombat(target: Pawn): Boolean = Combat.canEngage(this, target)
 
-fun Pawn.canAttack(target: Pawn, combatClass: CombatClass): Boolean = Combat.canAttack(this, target, combatClass)
+fun Pawn.canAttack(
+    target: Pawn,
+    combatClass: CombatClass,
+): Boolean = Combat.canAttack(this, target, combatClass)
 
 fun Pawn.isAttackDelayReady(): Boolean = Combat.isAttackDelayReady(this)
 
-fun Pawn.combatRaycast(target: Pawn, distance: Int, projectile: Boolean): Boolean = Combat.raycast(this, target, distance, projectile)
+fun Pawn.combatRaycast(
+    target: Pawn,
+    distance: Int,
+    projectile: Boolean,
+): Boolean = Combat.raycast(this, target, distance, projectile)
 
-suspend fun Pawn.canAttackMelee(it: QueueTask, target: Pawn, moveIfNeeded: Boolean): Boolean =
-        Combat.areBordering(tile.x, tile.z, getSize(), getSize(), target.tile.x, target.tile.z, target.getSize(), target.getSize())
-                || moveIfNeeded && moveToAttackRange(it, target, distance = 0, projectile = false)
+suspend fun Pawn.canAttackMelee(
+    it: QueueTask,
+    target: Pawn,
+    moveIfNeeded: Boolean,
+): Boolean =
+    Combat.areBordering(tile.x, tile.z, getSize(), getSize(), target.tile.x, target.tile.z, target.getSize(), target.getSize()) ||
+        moveIfNeeded && moveToAttackRange(it, target, distance = 0, projectile = false)
 
-fun Pawn.dealHit(target: Pawn, formula: CombatFormula, delay: Int, onHit: (PawnHit) -> Unit = {}): PawnHit {
+fun Pawn.dealHit(
+    target: Pawn,
+    formula: CombatFormula,
+    delay: Int,
+    onHit: (PawnHit) -> Unit = {},
+): PawnHit {
     val accuracy = formula.getAccuracy(this, target)
     val maxHit = formula.getMaxHit(this, target)
     val landHit = accuracy >= world.randomDouble()
     return dealHit(target, maxHit, landHit, delay, onHit)
 }
 
-fun Pawn.dealHit(target: Pawn, maxHit: Int, landHit: Boolean, delay: Int, onHit: (PawnHit) -> Unit = {}): PawnHit {
-    val hit = if (landHit) {
-        val hit = world.random(maxHit)
-        if (hit == maxHit && this@dealHit is Player) {
-            target.hit(damage = hit, type = HitType.HIT_MAX, delay = delay) // maxhit type
+fun Pawn.dealHit(
+    target: Pawn,
+    maxHit: Int,
+    landHit: Boolean,
+    delay: Int,
+    onHit: (PawnHit) -> Unit = {},
+): PawnHit {
+    val hit =
+        if (landHit) {
+            val hit = world.random(maxHit)
+            if (hit == maxHit && this@dealHit is Player) {
+                target.hit(damage = hit, type = HitType.HIT_MAX, delay = delay) // maxhit type
+            } else {
+                target.hit(damage = hit, delay = delay)
+            }
         } else {
-            target.hit(damage = hit, delay = delay)
+            target.hit(damage = 0, type = HitType.BLOCK, delay = delay)
         }
-    } else {
-        target.hit(damage = 0, type = HitType.BLOCK, delay = delay)
-    }
 
     val pawnHit = PawnHit(hit, landHit)
 
@@ -77,12 +100,23 @@ fun Pawn.dealHit(target: Pawn, maxHit: Int, landHit: Boolean, delay: Int, onHit:
     return pawnHit
 }
 
-suspend fun Pawn.moveToAttackRange(it: QueueTask, target: Pawn, distance: Int, projectile: Boolean): Boolean = Combat.moveToAttackRange(it, this, target, distance, projectile)
+suspend fun Pawn.moveToAttackRange(
+    it: QueueTask,
+    target: Pawn,
+    distance: Int,
+    projectile: Boolean,
+): Boolean = Combat.moveToAttackRange(it, this, target, distance, projectile)
 
 fun Pawn.postAttackLogic(target: Pawn) = Combat.postAttack(this, target)
 
-fun Pawn.createProjectile(target: Tile, gfx: Int, type: ProjectileType, endHeight: Int = -1): Projectile {
-    val builder = Projectile.Builder()
+fun Pawn.createProjectile(
+    target: Tile,
+    gfx: Int,
+    type: ProjectileType,
+    endHeight: Int = -1,
+): Projectile {
+    val builder =
+        Projectile.Builder()
             .setTiles(start = tile, target = target)
             .setGfx(gfx = gfx)
             .setHeights(startHeight = type.startHeight, endHeight = if (endHeight != -1) endHeight else type.endHeight)
@@ -92,8 +126,14 @@ fun Pawn.createProjectile(target: Tile, gfx: Int, type: ProjectileType, endHeigh
     return builder.build()
 }
 
-fun Pawn.createProjectile(target: Pawn, gfx: Int, type: ProjectileType, endHeight: Int = -1): Projectile {
-    val builder = Projectile.Builder()
+fun Pawn.createProjectile(
+    target: Pawn,
+    gfx: Int,
+    type: ProjectileType,
+    endHeight: Int = -1,
+): Projectile {
+    val builder =
+        Projectile.Builder()
             .setTiles(start = tile, target = target)
             .setGfx(gfx = gfx)
             .setHeights(startHeight = type.startHeight, endHeight = if (endHeight != -1) endHeight else type.endHeight)

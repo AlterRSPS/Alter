@@ -25,7 +25,11 @@ MagicSpells.getCombatSpells().forEach { entry ->
     }
 }
 
-fun castCombatSpellOnPawn(player: Player, pawn: Pawn, spellMetadata: SpellMetadata) {
+fun castCombatSpellOnPawn(
+    player: Player,
+    pawn: Pawn,
+    spellMetadata: SpellMetadata,
+) {
     val combatSpell = CombatSpell.values.firstOrNull { spell -> spell.id == spellMetadata.paramItem }
     if (combatSpell != null) {
         player.attr[Combat.CASTING_SPELL] = combatSpell

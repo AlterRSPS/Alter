@@ -10,7 +10,6 @@ import kotlin.test.assertTrue
  * @author Tom <rspsmods@gmail.com>
  */
 class TimerTests {
-
     @Test
     fun persistenceTests() {
         val timers = TimerMap()

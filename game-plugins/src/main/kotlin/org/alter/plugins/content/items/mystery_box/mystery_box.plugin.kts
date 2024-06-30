@@ -1,5 +1,7 @@
-package org.alter.plugins.content.items.mystery_box;
+package org.alter.plugins.content.items.mystery_box
 
+import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.itemSize
 import org.alter.game.model.priv.Privilege
 
 /**
@@ -9,15 +11,15 @@ import org.alter.game.model.priv.Privilege
  */
 
 on_item_option(Items.MYSTERY_BOX, "open") {
-    val itemLimit = world.definitions.getCount(ItemDef::class.java)
+    val itemLimit = itemSize()
     val item = world.random(0..itemLimit)
-    val itemDef = world.definitions.get(ItemDef::class.java, item)
+    val itemDef = getItem(item)
     if (itemDef.name == "" || itemDef.name.lowercase() == "null" || itemDef.isPlaceholder || itemDef.name.isEmpty() || itemDef.noted) {
         return@on_item_option
     }
 
     if (player.inventory.freeSlotCount > 0) {
-        player.inventory.add(item,1, true)
+        player.inventory.add(item, 1, true)
     } else {
         player.bank.add(item, 1000, true)
     }
@@ -25,9 +27,9 @@ on_item_option(Items.MYSTERY_BOX, "open") {
 
 on_command("randbank") {
     repeat(700) {
-        val getItemRange = world.definitions.getCount(ItemDef::class.java)
-        var getRandId= world.random(0..getItemRange)
-        val itemDefs = world.definitions.get(ItemDef::class.java, getRandId)
+        val getItemRange = itemSize()
+        var getRandId = world.random(0..getItemRange)
+        val itemDefs = getItem(getRandId)
         if (!itemDefs.isPlaceholder && !itemDefs.noted && itemDefs.name != "" && itemDefs.name.isNotEmpty() && itemDefs.name != "null") {
             player.bank.add(getRandId, 10000)
         }

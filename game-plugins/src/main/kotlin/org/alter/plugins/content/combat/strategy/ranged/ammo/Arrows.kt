@@ -6,7 +6,6 @@ import org.alter.api.cfg.Items
  * @author Tom <rspsmods@gmail.com>
  */
 object Arrows {
-
     val TRAINING_ARROWS = arrayOf(Items.TRAINING_ARROWS)
     val OGRE_ARROWS = arrayOf(Items.OGRE_ARROW)
 

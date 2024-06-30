@@ -1,8 +1,8 @@
 package org.alter.plugins.content.interfaces.kod
 
 import org.alter.api.EquipmentType.Companion.EQUIPMENT_INTERFACE_ID
-import org.alter.plugins.content.interfaces.kod.KeptOnDeath.KOD_INTERFACE_ID
 import org.alter.plugins.content.interfaces.kod.KeptOnDeath.KOD_COMPONENT_ID
+import org.alter.plugins.content.interfaces.kod.KeptOnDeath.KOD_INTERFACE_ID
 
 on_button(interfaceId = EQUIPMENT_INTERFACE_ID, component = KOD_COMPONENT_ID) {
     if (!player.lock.canInterfaceInteract()) {

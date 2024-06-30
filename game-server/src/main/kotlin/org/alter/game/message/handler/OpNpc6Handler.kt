@@ -1,17 +1,18 @@
 package org.alter.game.message.handler
 
+import net.rsprot.protocol.game.incoming.npcs.OpNpc6
 import org.alter.game.message.MessageHandler
-import org.alter.game.message.impl.OpNpc6Message
 import org.alter.game.model.ExamineEntityType
-import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-class OpNpc6Handler : MessageHandler<OpNpc6Message> {
-
-    override fun handle(client: Client, world: World, message: OpNpc6Message) {
-        world.sendExamine(client, message.npcId, ExamineEntityType.NPC)
+class OpNpc6Handler : MessageHandler<OpNpc6> {
+    override fun accept(
+        client: Client,
+        message: OpNpc6,
+    ) {
+        client.world.sendExamine(client, message.id, ExamineEntityType.NPC)
     }
 }

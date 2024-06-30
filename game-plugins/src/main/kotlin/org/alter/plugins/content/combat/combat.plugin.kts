@@ -86,7 +86,7 @@ suspend fun cycle(it: QueueTask): Boolean {
 
     pawn.stopMovement()
 
-    //if (pawn is Player && pawn.getEquipment(EquipmentType.WEAPON) != null && world.plugins.executeWeaponCombatLogic(pawn, pawn.getEquipment(EquipmentType.WEAPON)!!.id)) else
+    // if (pawn is Player && pawn.getEquipment(EquipmentType.WEAPON) != null && world.plugins.executeWeaponCombatLogic(pawn, pawn.getEquipment(EquipmentType.WEAPON)!!.id)) else
 
     if (Combat.isAttackDelayReady(pawn)) {
         if (Combat.canAttack(pawn, target, strategy)) {
@@ -119,4 +119,3 @@ suspend fun cycle(it: QueueTask): Boolean {
     }
     return true
 }
-

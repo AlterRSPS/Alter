@@ -1,23 +1,21 @@
 package org.alter.game.model.collision
 
-import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ObjectDef
-import org.alter.game.model.Direction
-import org.alter.game.model.Tile
-import org.alter.game.model.entity.GameObject
+import dev.openrune.cache.CacheManager.getObject
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectList
+import org.alter.game.fs.DefinitionSet
+import org.alter.game.model.Direction
+import org.alter.game.model.Tile
+import org.alter.game.model.entity.GameObject
 
 class CollisionUpdate private constructor(val type: Type, val flags: Object2ObjectOpenHashMap<Tile, ObjectList<DirectionFlag>>) {
-
     enum class Type {
         ADD,
-        REMOVE
+        REMOVE,
     }
 
     class Builder {
-
         private val flags = Object2ObjectOpenHashMap<Tile, ObjectList<DirectionFlag>>()
 
         private var type: Type? = null
@@ -32,19 +30,31 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
             this.type = type
         }
 
-        fun putTile(tile: Tile, impenetrable: Boolean, vararg directions: Direction) {
+        fun putTile(
+            tile: Tile,
+            impenetrable: Boolean,
+            vararg directions: Direction,
+        ) {
             check(directions.isNotEmpty()) { "Directions must not be empty." }
             val flags = flags[tile] ?: ObjectArrayList<DirectionFlag>()
             directions.forEach { dir -> flags.add(DirectionFlag(dir, impenetrable)) }
             this.flags[tile] = flags
         }
 
-        private fun putWall(tile: Tile, impenetrable: Boolean, orientation: Direction) {
+        private fun putWall(
+            tile: Tile,
+            impenetrable: Boolean,
+            orientation: Direction,
+        ) {
             putTile(tile, impenetrable, orientation)
             putTile(tile.step(orientation), impenetrable, orientation.getOpposite())
         }
 
-        private fun putLargeCornerWall(tile: Tile, impenetrable: Boolean, orientation: Direction) {
+        private fun putLargeCornerWall(
+            tile: Tile,
+            impenetrable: Boolean,
+            orientation: Direction,
+        ) {
             val directions = orientation.getDiagonalComponents()
             putTile(tile, impenetrable, *directions)
 
@@ -53,8 +63,11 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
             }
         }
 
-        fun putObject(definitions: DefinitionSet, obj: GameObject) {
-            val def = definitions.get(ObjectDef::class.java, obj.id)
+        fun putObject(
+            definitions: DefinitionSet,
+            obj: GameObject,
+        ) {
+            val def = getObject(obj.id)
             val type = obj.type
             val tile = obj.tile
 
@@ -65,18 +78,18 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
             val x = tile.x
             val z = tile.z
             val height = tile.height
-            var width = def.width
-            var length = def.length
-            val impenetrable = def.blockProjectile
+            var width = def.sizeX
+            var length = def.sizeY
+            val impenetrable = def.impenetrable
             val orientation = obj.rot
 
             if (orientation == 1 || orientation == 3) {
-                width = def.length
-                length = def.width
+                width = def.sizeY
+                length = def.sizeX
             }
 
             if (type == ObjectType.FLOOR_DECORATION.value) {
-                if (def.interactType && def.solid) {
+                if (def.interactive == 1 && def.solid == 1) {
                     putTile(Tile(x, z, height), impenetrable, *Direction.NESW)
                 }
             } else if (type >= ObjectType.DIAGONAL_WALL.value && type < ObjectType.FLOOR_DECORATION.value) {
@@ -94,11 +107,14 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
             }
         }
 
-        private fun unwalkable(def: ObjectDef, type: Int): Boolean {
-            val isSolidFloorDecoration = type == ObjectType.FLOOR_DECORATION.value && def.interactType
-            val isRoof = type > ObjectType.DIAGONAL_INTERACTABLE.value && type < ObjectType.FLOOR_DECORATION.value && def.solid
-            val isWall = (type >= ObjectType.LENGTHWISE_WALL.value && type <= ObjectType.RECTANGULAR_CORNER.value || type == ObjectType.DIAGONAL_WALL.value) && def.solid
-            val isSolidInteractable = (type == ObjectType.DIAGONAL_INTERACTABLE.value || type == ObjectType.INTERACTABLE.value) && def.solid
+        private fun unwalkable(
+            def: dev.openrune.cache.filestore.definition.data.ObjectType,
+            type: Int,
+        ): Boolean {
+            val isSolidFloorDecoration = type == ObjectType.FLOOR_DECORATION.value && def.interactive == 1
+            val isRoof = type > ObjectType.DIAGONAL_INTERACTABLE.value && type < ObjectType.FLOOR_DECORATION.value && def.solid != 1
+            val isWall = (type >= ObjectType.LENGTHWISE_WALL.value && type <= ObjectType.RECTANGULAR_CORNER.value || type == ObjectType.DIAGONAL_WALL.value) && def.solid != 1
+            val isSolidInteractable = (type == ObjectType.DIAGONAL_INTERACTABLE.value || type == ObjectType.INTERACTABLE.value) && def.solid != 1
 
             return isWall || isRoof || isSolidInteractable || isSolidFloorDecoration
         }

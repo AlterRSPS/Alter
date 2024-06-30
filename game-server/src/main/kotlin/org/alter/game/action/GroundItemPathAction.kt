@@ -1,7 +1,7 @@
 package org.alter.game.action
 
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.message.impl.SetMapFlagMessage
+import dev.openrune.cache.CacheManager.getItem
+import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.model.MovementQueue
 import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_GROUNDITEM_ATTR
@@ -23,7 +23,6 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 object GroundItemPathAction {
-
     /**
      * The option used to specify that a walk action should execute item on
      * ground item plugins when destination is reached.
@@ -42,14 +41,17 @@ object GroundItemPathAction {
             p.queue(TaskPriority.STANDARD) {
                 terminateAction = {
                     p.stopMovement()
-                    p.write(SetMapFlagMessage(255, 255))
+                    p.write(SetMapFlag(255, 255))
                 }
                 awaitArrival(item, opt)
             }
         }
     }
 
-    private suspend fun QueueTask.awaitArrival(item: GroundItem, opt: Int) {
+    private suspend fun QueueTask.awaitArrival(
+        item: GroundItem,
+        opt: Int,
+    ) {
         val p = ctx as Player
         val destination = p.movementQueue.peekLast()
         if (destination == null) {
@@ -70,7 +72,11 @@ object GroundItemPathAction {
         }
     }
 
-    private fun handleAction(p: Player, groundItem: GroundItem, opt: Int) {
+    private fun handleAction(
+        p: Player,
+        groundItem: GroundItem,
+        opt: Int,
+    ) {
         if (!p.world.isSpawned(groundItem)) {
             return
         }
@@ -101,8 +107,8 @@ object GroundItemPathAction {
             val remainder = groundItem.amount - (after - before)
             p.world.remove(groundItem)
 
-            if(remainder != 0) {
-                if(groundItem.ownerUID == null) {
+            if (remainder != 0) {
+                if (groundItem.ownerUID == null) {
                     p.world.spawn(GroundItem(groundItem.item, remainder, groundItem.tile))
                 } else {
                     p.world.spawn(
@@ -110,8 +116,8 @@ object GroundItemPathAction {
                             groundItem.item,
                             remainder,
                             groundItem.tile,
-                            p.world.getPlayerForUid(groundItem.ownerUID!!)
-                        )
+                            p.world.getPlayerForUid(groundItem.ownerUID!!),
+                        ),
                     )
                 }
             }
@@ -129,8 +135,8 @@ object GroundItemPathAction {
         } else {
             val handled = p.world.plugins.executeGroundItem(p, groundItem.item, opt)
             if (!handled && p.world.devContext.debugItemActions) {
-                val definition = p.world.definitions.get(ItemDef::class.java, groundItem.item)
-                p.writeMessage("Unhandled ground item action: [item=${groundItem.item}, option=[$opt, ${definition.groundMenu[opt - 1]}]]")
+                val definition = getItem(groundItem.item)
+                p.writeMessage("Unhandled ground item action: [item=${groundItem.item}, option=[$opt, ${definition.options[opt - 1]}]]")
             }
         }
     }

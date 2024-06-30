@@ -1,20 +1,23 @@
 package org.alter.game.model.entity
 
-import com.google.common.base.MoreObjects
-import org.alter.game.fs.def.NpcDef
-import org.alter.game.fs.def.VarbitDef
+import dev.openrune.cache.CacheManager.getNpc
+import dev.openrune.cache.CacheManager.getVarbit
+import dev.openrune.cache.filestore.definition.data.NpcType
+import gg.rsmod.util.toStringHelper
+import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcAvatar
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 import org.alter.game.model.World
-import org.alter.game.model.combat.*
+import org.alter.game.model.combat.AttackStyle
+import org.alter.game.model.combat.CombatClass
+import org.alter.game.model.combat.CombatStyle
+import org.alter.game.model.combat.NpcCombatDef
 import org.alter.game.model.weightedTableBuilder.tableDrops
-import org.alter.game.sync.block.UpdateBlockType
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : Pawn(world) {
-
     constructor(id: Int, tile: Tile, world: World) : this(id, world, spawnTile = Tile(tile)) {
         this.tile = tile
     }
@@ -23,6 +26,8 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
         this.tile = tile
         this.owner = owner
     }
+
+    lateinit var avatar: NpcAvatar
 
     /**
      * This flag indicates whether or not this npc's AI should be processed.
@@ -89,9 +94,9 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
     var aggroCheck: ((Npc, Player) -> Boolean)? = null
 
     /**
-     * Gets the [NpcDef] corresponding to our [id].
+     * Gets the [NpcType] corresponding to our [id].
      */
-    val def: NpcDef = world.definitions.get( NpcDef::class.java, id)
+    val def: NpcType = getNpc(id)
 
     var pathsIndex = 0
 
@@ -115,7 +120,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
 
     override fun isRunning(): Boolean = false
 
-    override fun getSize(): Int = world.definitions.get(NpcDef::class.java, id).size
+    override fun getSize(): Int = getNpc(id).size // TODO ADVO can we just do def.size() ?
 
     override fun getCurrentHp(): Int = hitpoints
 
@@ -125,14 +130,12 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
         this.hitpoints = health
     }
 
-    override fun addBlock(block: UpdateBlockType) {
-        val bits = world.npcUpdateBlocks.updateBlocks[block]!!
-        blockBuffer.addBit(bits.bit)
-    }
-
-    override fun hasBlock(block: UpdateBlockType): Boolean {
-        val bits = world.npcUpdateBlocks.updateBlocks[block]!!
-        return blockBuffer.hasBit(bits.bit)
+    override fun graphic(
+        id: Int,
+        height: Int,
+        delay: Int,
+    ) {
+        avatar.extendedInfo.setSpotAnim(0, id, delay, height)
     }
 
     override fun cycle() {
@@ -147,17 +150,17 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      * [player]'s view point.
      *
      * Npcs can change their appearance for each player depending on their
-     * [NpcDef.transforms] and [NpcDef.transformVarp]/[NpcDef.transformVarbit].
+     * [NpcType.transforms] and [NpcType.transformVarp]/[NpcType.transformVarbit].
      */
     fun getTransform(player: Player): Int {
-        if (def.transformVarbit != -1) {
-            val varbitDef = world.definitions.get(VarbitDef::class.java, def.transformVarbit)
+        if (def.varbit != -1) {
+            val varbitDef = getVarbit(def.varbit)
             val state = player.varps.getBit(varbitDef.varp, varbitDef.startBit, varbitDef.endBit)
             return def.transforms!![state]
         }
 
-        if (def.transformVarp != -1) {
-            val state = player.varps.getState(def.transformVarp)
+        if (def.varp != -1) {
+            val state = player.varps.getState(def.varp)
             return def.transforms!![state]
         }
 
@@ -181,7 +184,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      */
     fun isSpawned(): Boolean = index > 0
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("id", id).add("name", name).add("index", index).add("active", active).toString()
+    override fun toString(): String = toStringHelper().add("id", id).add("name", name).add("index", index).add("active", active).toString()
 
     companion object {
         internal const val RESET_PAWN_FACE_DELAY = 25
@@ -191,7 +194,6 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      * @param nStats the max amount of stats an npc has.
      */
     class Stats(val nStats: Int) {
-
         private val currentLevels = Array(nStats) { 1 }
 
         private val maxLevels = Array(nStats) { 1 }
@@ -200,11 +202,17 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
 
         fun getMaxLevel(skill: Int): Int = maxLevels[skill]
 
-        fun setCurrentLevel(skill: Int, level: Int) {
+        fun setCurrentLevel(
+            skill: Int,
+            level: Int,
+        ) {
             currentLevels[skill] = level
         }
 
-        fun setMaxLevel(skill: Int, level: Int) {
+        fun setMaxLevel(
+            skill: Int,
+            level: Int,
+        ) {
             maxLevels[skill] = level
         }
 
@@ -221,15 +229,20 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
          * skill that has is [99], that means that the level can be altered
          * from [99] to [102].
          */
-        fun alterCurrentLevel(skill: Int, value: Int, capValue: Int = 0) {
+        fun alterCurrentLevel(
+            skill: Int,
+            value: Int,
+            capValue: Int = 0,
+        ) {
             check(capValue == 0 || capValue < 0 && value < 0 || capValue > 0 && value >= 0) {
                 "Cap value and alter value must always be the same signum (+ or -)."
             }
-            val altered = when {
-                capValue > 0 -> Math.min(getCurrentLevel(skill) + value, getMaxLevel(skill) + capValue)
-                capValue < 0 -> Math.max(getCurrentLevel(skill) + value, getMaxLevel(skill) + capValue)
-                else -> Math.min(getMaxLevel(skill), getCurrentLevel(skill) + value)
-            }
+            val altered =
+                when {
+                    capValue > 0 -> Math.min(getCurrentLevel(skill) + value, getMaxLevel(skill) + capValue)
+                    capValue < 0 -> Math.max(getCurrentLevel(skill) + value, getMaxLevel(skill) + capValue)
+                    else -> Math.min(getMaxLevel(skill), getCurrentLevel(skill) + value)
+                }
             val newLevel = Math.max(0, altered)
             val curLevel = getCurrentLevel(skill)
 
@@ -249,7 +262,11 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
          * @param capped if true, the [skill] level cannot decrease further than
          * [getMaxLevel] - [value].
          */
-        fun decrementCurrentLevel(skill: Int, value: Int, capped: Boolean) = alterCurrentLevel(skill, -value, if (capped) -value else 0)
+        fun decrementCurrentLevel(
+            skill: Int,
+            value: Int,
+            capped: Boolean,
+        ) = alterCurrentLevel(skill, -value, if (capped) -value else 0)
 
         /**
          * Increase the level of [skill].
@@ -262,7 +279,11 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
          * @param capped if true, the [skill] level cannot increase further than
          * [getMaxLevel].
          */
-        fun incrementCurrentLevel(skill: Int, value: Int, capped: Boolean) = alterCurrentLevel(skill, value, if (capped) 0 else value)
+        fun incrementCurrentLevel(
+            skill: Int,
+            value: Int,
+            capped: Boolean,
+        ) = alterCurrentLevel(skill, value, if (capped) 0 else value)
 
         companion object {
             /**

@@ -1,8 +1,7 @@
-/* Auto-generated file using class org.alter.service.DumpEntityIdService */
+// Auto-generated file using class org.alter.service.DumpEntityIdService
 package org.alter.api.cfg
 
 object Npcs {
-
     const val TOOL_LEPRECHAUN = 0
     const val MOLANISK_1 = 1
     const val ABERRANT_SPECTRE_2 = 2
@@ -10418,5 +10417,5 @@ object Npcs {
     const val TAIL_12436 = 12436
     const val TAIL_12437 = 12437
     const val TAIL_12438 = 12438
-    /* Auto-generated file using class org.alter.service.DumpEntityIdService */
+    // Auto-generated file using class org.alter.service.DumpEntityIdService
 }

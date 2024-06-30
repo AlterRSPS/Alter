@@ -1,7 +1,6 @@
 package org.alter.api.cache
 
 public object Js5Archives {
-
     public const val TOTAL_ARCHIVES: Int = 22
 
     public const val ANIMS: Int = 0

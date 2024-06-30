@@ -18,24 +18,53 @@ import org.alter.game.service.Service
  * @author Tom <rspsmods@gmail.com>
  */
 interface LoggerService : Service {
-
-    fun logPacket(client: Client, message: String)
+    fun logPacket(
+        client: Client,
+        message: String,
+    )
 
     fun logLogin(player: Player)
 
-    fun logPublicChat(player: Player, message: String)
+    fun logPublicChat(
+        player: Player,
+        message: String,
+    )
 
-    fun logClanChat(player: Player, clan: String, message: String)
+    fun logClanChat(
+        player: Player,
+        clan: String,
+        message: String,
+    )
 
-    fun logCommand(player: Player, command: String, vararg args: String)
+    fun logCommand(
+        player: Player,
+        command: String,
+        vararg args: String,
+    )
 
-    fun logItemDrop(player: Player, item: Item, slot: Int)
+    fun logItemDrop(
+        player: Player,
+        item: Item,
+        slot: Int,
+    )
 
-    fun logItemPickUp(player: Player, item: Item)
+    fun logItemPickUp(
+        player: Player,
+        item: Item,
+    )
 
-    fun logNpcKill(player: Player, npc: Npc)
+    fun logNpcKill(
+        player: Player,
+        npc: Npc,
+    )
 
-    fun logPlayerKill(killer: Player, killed: Player)
+    fun logPlayerKill(
+        killer: Player,
+        killed: Player,
+    )
 
-    fun logEvent(pawn: Pawn, event: Event)
+    fun logEvent(
+        pawn: Pawn,
+        event: Event,
+    )
 }

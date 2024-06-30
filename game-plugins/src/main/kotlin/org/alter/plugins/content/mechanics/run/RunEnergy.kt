@@ -1,13 +1,13 @@
 package org.alter.plugins.content.mechanics.run
 
-import org.alter.game.model.bits.INFINITE_VARS_STORAGE
-import org.alter.game.model.bits.InfiniteVarsType
-import org.alter.game.model.entity.Player
-import org.alter.game.model.timer.TimerKey
 import org.alter.api.EquipmentType
 import org.alter.api.Skills
 import org.alter.api.cfg.Varp
 import org.alter.api.ext.*
+import org.alter.game.model.bits.INFINITE_VARS_STORAGE
+import org.alter.game.model.bits.InfiniteVarsType
+import org.alter.game.model.entity.Player
+import org.alter.game.model.timer.TimerKey
 import kotlin.math.max
 import kotlin.math.min
 
@@ -15,7 +15,6 @@ import kotlin.math.min
  * @author Tom <rspsmods@gmail.com>
  */
 object RunEnergy {
-
     val RUN_DRAIN = TimerKey()
 
     /**
@@ -49,7 +48,7 @@ object RunEnergy {
                 p.sendRunEnergy(p.runEnergy.toInt())
             }
         } else if (p.runEnergy < 10000.0 && p.lock.canRestoreRunEnergy()) {
-            var recovery = (800.0 + (p.getSkills().getCurrentLevel(Skills.AGILITY)*100 / 600.0)) / 10000.0
+            var recovery = (800.0 + (p.getSkills().getCurrentLevel(Skills.AGILITY) * 100 / 600.0)) / 10000.0
             if (isWearingFullGrace(p)) {
                 recovery *= 130
             }
@@ -60,11 +59,11 @@ object RunEnergy {
 
     private fun isWearingFullGrace(p: Player): Boolean =
         (p.equipment[EquipmentType.HEAD.id]?.id ?: -1) in GRACEFUL_HOODS &&
-                (p.equipment[EquipmentType.CAPE.id]?.id ?: -1) in GRACEFUL_CAPE &&
-                (p.equipment[EquipmentType.CHEST.id]?.id ?: -1) in GRACEFUL_TOP &&
-                (p.equipment[EquipmentType.LEGS.id]?.id ?: -1) in GRACEFUL_LEGS &&
-                (p.equipment[EquipmentType.GLOVES.id]?.id ?: -1) in GRACEFUL_GLOVES &&
-                (p.equipment[EquipmentType.BOOTS.id]?.id ?: -1) in GRACEFUL_BOOTS
+            (p.equipment[EquipmentType.CAPE.id]?.id ?: -1) in GRACEFUL_CAPE &&
+            (p.equipment[EquipmentType.CHEST.id]?.id ?: -1) in GRACEFUL_TOP &&
+            (p.equipment[EquipmentType.LEGS.id]?.id ?: -1) in GRACEFUL_LEGS &&
+            (p.equipment[EquipmentType.GLOVES.id]?.id ?: -1) in GRACEFUL_GLOVES &&
+            (p.equipment[EquipmentType.BOOTS.id]?.id ?: -1) in GRACEFUL_BOOTS
 
     private val GRACEFUL_HOODS = intArrayOf(11850, 13579, 13591, 13603, 13615, 13627, 13667, 21061)
 

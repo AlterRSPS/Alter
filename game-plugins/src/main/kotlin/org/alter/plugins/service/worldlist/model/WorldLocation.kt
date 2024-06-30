@@ -15,5 +15,5 @@ enum class WorldLocation(val id: Int) {
     NETHERLANDS(4),
     SWEDEN(5),
     FINLAND(6),
-    GERMANY(7)
+    GERMANY(7),
 }

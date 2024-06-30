@@ -4,14 +4,20 @@ import org.alter.game.model.container.ItemContainer
 import org.alter.game.model.container.ItemTransaction
 import org.alter.game.model.item.Item
 
-
 /**
  * Transfer [item] from [this] container to [to] container.
  *
  * @return
  * The removal [ItemTransaction].
  */
-fun ItemContainer.transfer(to: ItemContainer, item: Item, fromSlot: Int = -1, toSlot: Int = -1, note: Boolean = false, unnote: Boolean = false): ItemTransaction? {
+fun ItemContainer.transfer(
+    to: ItemContainer,
+    item: Item,
+    fromSlot: Int = -1,
+    toSlot: Int = -1,
+    note: Boolean = false,
+    unnote: Boolean = false,
+): ItemTransaction? {
     check(item.amount > 0)
 
     /*
@@ -35,7 +41,14 @@ fun ItemContainer.transfer(to: ItemContainer, item: Item, fromSlot: Int = -1, to
      * Turn the initial item into its noted or unnoted form, depending on [note]
      * and [unnote].
      */
-    val finalItem = if (note) copy.toNoted(definitions) else if (unnote) copy.toUnnoted(definitions) else copy
+    val finalItem =
+        if (note) {
+            copy.toNoted()
+        } else if (unnote) {
+            copy.toUnnoted()
+        } else {
+            copy
+        }
 
     val add = to.add(finalItem.id, finalItem.amount, assureFullInsertion = false, beginSlot = toSlot)
     if (add.completed == 0) {

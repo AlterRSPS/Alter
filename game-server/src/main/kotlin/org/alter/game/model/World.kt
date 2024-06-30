@@ -1,15 +1,26 @@
 package org.alter.game.model
 
-import com.google.common.base.Stopwatch
+import com.displee.cache.CacheLibrary
+import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getNpc
+import gg.rsmod.util.ServerProperties
+import gg.rsmod.util.Stopwatch
+import io.github.oshai.kotlinlogging.KotlinLogging
+import io.netty.buffer.Unpooled
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import net.rsprot.compression.HuffmanCodec
+import net.rsprot.protocol.api.NetworkService
+import net.rsprot.protocol.api.js5.Js5GroupProvider
+import net.rsprot.protocol.game.outgoing.logout.Logout
+import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
 import org.alter.game.DevContext
 import org.alter.game.GameContext
 import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
-import org.alter.game.fs.def.NpcDef
-import org.alter.game.fs.def.ObjectDef
-import org.alter.game.message.impl.LogoutFullMessage
-import org.alter.game.message.impl.UpdateRebootTimerMessage
+import org.alter.game.fs.ObjectExamineHolder
 import org.alter.game.model.attr.AttributeMap
 import org.alter.game.model.attr.TERMINAL_ARGS
 import org.alter.game.model.collision.CollisionManager
@@ -29,22 +40,8 @@ import org.alter.game.plugin.PluginRepository
 import org.alter.game.service.GameService
 import org.alter.game.service.Service
 import org.alter.game.service.xtea.XteaKeyService
-import org.alter.game.sync.block.UpdateBlockSet
-import gg.rsmod.util.HuffmanCodec
-import gg.rsmod.util.ServerProperties
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-
-import io.github.oshai.kotlinlogging.KotlinLogging
-import net.runelite.cache.IndexType
-import net.runelite.cache.fs.Store
-import java.io.File
 import java.security.SecureRandom
-import java.util.ArrayList
-import java.util.LinkedHashMap
-import java.util.Random
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -54,27 +51,28 @@ import java.util.concurrent.TimeUnit
  * @author Tom <rspsmods@gmail.com>
  */
 class World(val gameContext: GameContext, val devContext: DevContext) {
+    lateinit var network: NetworkService<Client, Js5GroupProvider.ByteBufJs5GroupType>
 
     /**
-     * The [Store] is responsible for handling the data in our cache.
+     * The [CacheLibrary] is responsible for handling the data in our cache.
      */
-    lateinit var filestore: Store
+    lateinit var filestore: CacheLibrary
 
     /**
      * The [DefinitionSet] that holds general filestore data.
      */
     val definitions = DefinitionSet()
 
-    lateinit var settings : Any
+    lateinit var settings: Any
 
     /**
      * The [HuffmanCodec] used to compress and decompress public chat messages.
      */
     val huffman by lazy {
-        val binary = filestore.getIndex(IndexType.BINARY)!!
-        val archive = binary.findArchiveByName("huffman")!!
-        val file = archive.getFiles(filestore.storage.loadArchive(archive)!!).files[0]
-        HuffmanCodec(file.contents)
+        val binary = filestore.index(10)!!
+        val archive = binary.archive("huffman")!!
+        val file = archive.files[0]
+        HuffmanCodec.create(Unpooled.wrappedBuffer(file?.data!!))
     }
 
     /**
@@ -113,16 +111,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      * when [XteaKeyService.init] is called.
      */
     var xteaKeyService: XteaKeyService? = null
-
-    /**
-     * The [UpdateBlockSet] for players.
-     */
-    internal val playerUpdateBlocks = UpdateBlockSet()
-
-    /**
-     * The [UpdateBlockSet] for npcs.
-     */
-    internal val npcUpdateBlocks = UpdateBlockSet()
 
     /**
      * A [Random] implementation used for pseudo-random purposes through-out
@@ -335,7 +323,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
                 for (i in 0 until players.capacity) {
                     players[i]?.let { player ->
                         player.handleLogout()
-                        player.write(LogoutFullMessage())
+                        player.write(Logout)
                         player.channelClose()
                     }
                 }
@@ -348,7 +336,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      */
     fun sendRebootTimer(cycles: Int = rebootTimer) {
         players.forEach { p ->
-            p.write(UpdateRebootTimerMessage(cycles))
+            p.write(UpdateRebootTimer(cycles))
         }
     }
 
@@ -362,6 +350,10 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     }
 
     fun unregister(p: Player) {
+        network.playerInfoProtocol.dealloc(p.playerInfo)
+        network.npcInfoProtocol.dealloc(p.npcInfo)
+        network.worldEntityInfoProtocol.dealloc(p.worldEntityInfo)
+
         players.remove(p)
         chunks.get(p.tile)?.removeEntity(this, p, p.tile)
     }
@@ -369,6 +361,16 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     fun spawn(npc: Npc): Boolean {
         val added = npcs.add(npc)
         if (added) {
+            npc.avatar =
+                network.npcAvatarFactory.alloc(
+                    npc.index,
+                    npc.id,
+                    npc.tile.height,
+                    npc.tile.x,
+                    npc.tile.z,
+                    0,
+                    npc.faceDirection.orientationValue,
+                )
             setNpcDefaults(npc)
             plugins.executeNpcSpawn(npc)
         }
@@ -384,7 +386,12 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         val tile = obj.tile
         val chunk = chunks.getOrCreate(tile)
 
-        val oldObj = chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull { it.type == obj.type }
+        val oldObj =
+            chunk.getEntities<GameObject>(
+                tile,
+                EntityType.STATIC_OBJECT,
+                EntityType.DYNAMIC_OBJECT,
+            ).firstOrNull { it.type == obj.type }
         if (oldObj != null) {
             chunk.removeEntity(this, oldObj, tile)
         }
@@ -401,9 +408,12 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     fun spawn(item: GroundItem) {
         val tile = item.tile
         val chunk = chunks.getOrCreate(tile)
-        val def = definitions.get(ItemDef::class.java, item.item)
+        val def = getItem(item.item)
         if (def.stackable) {
-            val oldItem = chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull { it.item == item.item && it.ownerUID == item.ownerUID }
+            val oldItem =
+                chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull {
+                    it.item == item.item && it.ownerUID == item.ownerUID
+                }
             if (oldItem != null) {
                 val oldAmount = oldItem.amount
                 val newAmount = Math.min(Int.MAX_VALUE.toLong(), item.amount.toLong() + oldItem.amount.toLong()).toInt()
@@ -469,9 +479,11 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         }
     }
 
-    fun isSpawned(obj: GameObject): Boolean = chunks.getOrCreate(obj.tile).getEntities<GameObject>(obj.tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).contains(obj)
+    fun isSpawned(obj: GameObject): Boolean =
+        chunks.getOrCreate(obj.tile).getEntities<GameObject>(obj.tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).contains(obj)
 
-    fun isSpawned(item: GroundItem): Boolean = chunks.getOrCreate(item.tile).getEntities<GroundItem>(item.tile, EntityType.GROUND_ITEM).contains(item)
+    fun isSpawned(item: GroundItem): Boolean =
+        chunks.getOrCreate(item.tile).getEntities<GroundItem>(item.tile, EntityType.GROUND_ITEM).contains(item)
 
     /**
      * Get any [GroundItem] that matches the [predicate].
@@ -487,7 +499,16 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      * @return
      * null if no [GameObject] with [type] was found in [tile].
      */
-    fun getObject(tile: Tile, type: Int): GameObject? = chunks.get(tile, createIfNeeded = true)!!.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull { it.type == type }
+    fun getObject(
+        tile: Tile,
+        type: Int,
+    ): GameObject? =
+        chunks.get(
+            tile,
+            createIfNeeded = true,
+        )!!.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull {
+            it.type == type
+        }
 
     fun getPlayerForName(username: String): Player? {
         for (i in 0 until players.capacity) {
@@ -515,7 +536,10 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
 
     fun randomDouble(): Double = random.nextDouble()
 
-    fun chance(chance: Int, probability: Int): Boolean {
+    fun chance(
+        chance: Int,
+        probability: Int,
+    ): Boolean {
         check(chance in 1..probability) { "Chance must be within range of (0 - probability]" }
         return random.nextInt(probability) <= chance - 1
     }
@@ -525,7 +549,12 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         return random.nextDouble() <= (chance / 100.0)
     }
 
-    fun findRandomTileAround(centre: Tile, radius: Int, centreWidth: Int = 0, centreLength: Int = 0): Tile? {
+    fun findRandomTileAround(
+        centre: Tile,
+        radius: Int,
+        centreWidth: Int = 0,
+        centreLength: Int = 0,
+    ): Tile? {
         val tiles = mutableListOf<Tile>()
         for (x in -radius..radius) {
             for (z in -radius..radius) {
@@ -546,17 +575,27 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         queues.queue(this, coroutineDispatcher, TaskPriority.STANDARD, logic)
     }
 
-    fun executePlugin(ctx: Any, logic: (Plugin).() -> Unit) {
+    fun executePlugin(
+        ctx: Any,
+        logic: (Plugin).() -> Unit,
+    ) {
         val plugin = Plugin(ctx)
         logic(plugin)
     }
 
-    fun sendExamine(p: Player, id: Int, type: ExamineEntityType) {
-        val examine = when (type) {
-            ExamineEntityType.ITEM -> definitions.get(ItemDef::class.java, id).examine
-            ExamineEntityType.NPC -> definitions.get(NpcDef::class.java, id).examine
-            ExamineEntityType.OBJECT -> definitions.get(ObjectDef::class.java, id).examine
-        }
+    fun sendExamine(
+        p: Player,
+        id: Int,
+        type: ExamineEntityType,
+    ) {
+        val examine =
+            when (type) {
+                ExamineEntityType.ITEM -> getItem(id).examine
+                ExamineEntityType.NPC -> getNpc(id).examine
+// TODO ADVO fix examines
+//            ExamineEntityType.OBJECT -> definitions.get(ObjectDef::class.java, id).examine
+                ExamineEntityType.OBJECT -> ObjectExamineHolder.EXAMINES.get(id)
+            }
 
         if (examine != null) {
             val extension = if (devContext.debugExamines) " ($id)" else ""
@@ -587,7 +626,10 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      * When [searchSubclasses] is false: the service class must be equal to the [type].
      */
     @Suppress("UNCHECKED_CAST")
-    fun <T : Service> getService(type: Class<out T>, searchSubclasses: Boolean = false): T? {
+    fun <T : Service> getService(
+        type: Class<out T>,
+        searchSubclasses: Boolean = false,
+    ): T? {
         if (searchSubclasses) {
             return services.firstOrNull { type.isAssignableFrom(it::class.java) } as T?
         }
@@ -597,7 +639,10 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     /**
      * Loads all the services listed on our game properties file.
      */
-    internal fun loadServices(server: Server, gameProperties: ServerProperties) {
+    internal fun loadServices(
+        server: Server,
+        gameProperties: ServerProperties,
+    ) {
         val stopwatch = Stopwatch.createUnstarted()
         val foundServices = gameProperties.get<ArrayList<Any>>("services")!!
         foundServices.forEach { s ->
@@ -623,33 +668,19 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     }
 
     /**
-     * Load the external [UpdateBlockSet] data.
-     */
-    internal fun loadUpdateBlocks(blocksFile: File) {
-        val properties = ServerProperties().loadYaml(blocksFile)
-
-        if (properties.has("players")) {
-            playerUpdateBlocks.load(properties.extract("players"))
-        }
-
-        if (properties.has("npcs")) {
-            npcUpdateBlocks.load(properties.extract("npcs"))
-        }
-    }
-
-    /**
      * Invoke network related logic for all services.
      */
     internal fun bindServices(server: Server) {
         services.forEach { it.bindNet(server, this) }
     }
 
-    fun getTerminalArgs() : Array<String>? {
+    fun getTerminalArgs(): Array<String>? {
         return this.attr[TERMINAL_ARGS]
     }
 
     companion object {
-        val logger = KotlinLogging.logger{}
+        val logger = KotlinLogging.logger {}
+
         /**
          * If the [rebootTimer] is active and is less than this value, we will
          * begin to reject any log-in.

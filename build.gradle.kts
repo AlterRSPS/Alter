@@ -3,27 +3,25 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias(libs.plugins.kotlin.jvm) apply true
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ktlint)
     idea
 }
 
 allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     group = "org.alter"
     version = "0.0.5"
     java {
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(17))
-            vendor.set(JvmVendorSpec.ORACLE)
-            implementation.set(JvmImplementation.VENDOR_SPECIFIC)
         }
     }
-    kotlin{
-        jvmToolchain{
+    kotlin {
+        jvmToolchain {
             languageVersion.set(JavaLanguageVersion.of(17))
-            vendor.set(JvmVendorSpec.ORACLE)
-            implementation.set(JvmImplementation.VENDOR_SPECIFIC)
         }
     }
     repositories {
@@ -31,7 +29,8 @@ allprojects {
         mavenCentral()
         maven("https://repo.maven.apache.org/maven2")
         maven("https://jitpack.io")
-        maven("https://repo.runelite.net/")
+//        maven("https://raw.githubusercontent.com/MatthewBishop/hosting/main/")
+        maven("https://raw.githubusercontent.com/OpenRune/hosting/master")
     }
 
     val lib = rootProject.project.libs
@@ -47,11 +46,15 @@ allprojects {
         implementation(lib.json)
         implementation(lib.jbcrypt)
         implementation(lib.gson)
-        implementation(lib.cache)
         implementation(lib.netty.all)
         implementation(lib.kotlinx.serialization.core)
         testImplementation(lib.junit)
         testImplementation(lib.kotlin.test.junit)
+
+        implementation("dev.openrune:filestore:1.3.0")
+//        implementation("net.rsprot:osrs-221-api:1.0-SNAPSHOT")
+        implementation("com.displee:rs-cache-library:7.1.3")
+        implementation("net.rsprot:osrs-222-api:1.0.0-ALPHA-20240605")
     }
 
     idea {
@@ -71,9 +74,10 @@ allprojects {
         kotlinOptions {
             languageVersion = "1.7"
             jvmTarget = "17"
-            freeCompilerArgs = listOf(
-                "-Xallow-any-scripts-in-source-roots" ,
-            )
+            freeCompilerArgs =
+                listOf(
+                    "-Xallow-any-scripts-in-source-roots",
+                )
         }
     }
 }
@@ -98,8 +102,8 @@ tasks.register<Zip>("packageServer") {
         rename("first-launch-template", "first-launch")
     }
 
-    from ("gradle/") {
-        into ("gradle")
+    from("gradle/") {
+        into("gradle")
     }
 
     from("data/") {
@@ -119,14 +123,12 @@ tasks.register<Zip>("packageServer") {
         exclude("plugins")
         exclude("src/main/java")
         exclude("src/test/java")
-
-
     }
 
     from("game-plugins/") {
         into("game-plugins/")
         include("src/main/kotlin/alter/plugins/**")
-        //include("src/main/kotlin/alter/plugins/content/osrs.kts")
+        // include("src/main/kotlin/alter/plugins/content/osrs.kts")
     }
 
     from("game-api/") {
@@ -175,5 +177,3 @@ tasks.register<Zip>("packageLibs") {
         rename("plugins-${project.version}.jar", "plugins.jar")
     }
 }
-
-

@@ -2,11 +2,14 @@ package org.alter.plugins.content.items.food
 
 import org.alter.api.cfg.Items
 
-
-enum class Food(val item: Int, val heal: Int = 0, val overheal: Boolean = false,
-                val replacement: Int = -1, val tickDelay: Int = 3,
-                val comboFood: Boolean = false) {
-
+enum class Food(
+    val item: Int,
+    val heal: Int = 0,
+    val overheal: Boolean = false,
+    val replacement: Int = -1,
+    val tickDelay: Int = 3,
+    val comboFood: Boolean = false,
+) {
     /**
      * Sea food.
      */
@@ -48,7 +51,9 @@ enum class Food(val item: Int, val heal: Int = 0, val overheal: Boolean = false,
     /**
      * Other.
      */
-    ONION(item = Items.ONION, heal = 1);
+    ONION(item = Items.ONION, heal = 1),
+    ;
+
     companion object {
         val values = enumValues<Food>()
     }

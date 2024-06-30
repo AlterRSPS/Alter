@@ -8,12 +8,11 @@ import spark.Request
 import spark.Response
 
 class CommandsController(req: Request, resp: Response, auth: Boolean) : Controller(req, resp, auth) {
-
     val req = req
     val auth = auth
 
     override fun init(world: World): JsonObject {
-        if(!super.authState && auth) {
+        if (!super.authState && auth) {
             val arr = JsonArray()
             val obj = JsonObject()
             obj.addProperty("error", "Auth code not supplied or invalid.")

@@ -1,13 +1,12 @@
 package org.alter.api
 
-import org.alter.game.fs.def.EnumDef
+import dev.openrune.cache.CacheManager.getEnum
 import org.alter.game.model.World
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 object Skills {
-
     const val ATTACK = 0
     const val DEFENCE = 1
     const val STRENGTH = 2
@@ -35,18 +34,27 @@ object Skills {
     const val MIN_COMBAT_LVL = 3
     const val MAX_COMBAT_LVL = 126
 
-    fun getSkillName(world: World, skill: Int): String {
-        val enum = world.definitions.get(EnumDef::class.java, 680)
+    fun getSkillName(
+        world: World,
+        skill: Int,
+    ): String {
+        val enum = getEnum(680)
         return enum.getString(skill)
     }
 
-    fun isCombat(skill: Int): Boolean = when (skill) {
-        ATTACK, DEFENCE, HITPOINTS, STRENGTH,
-        RANGED, PRAYER, MAGIC -> true
-        else -> false
-    }
+    fun isCombat(skill: Int): Boolean =
+        when (skill) {
+            ATTACK, DEFENCE, HITPOINTS, STRENGTH,
+            RANGED, PRAYER, MAGIC,
+            -> true
+            else -> false
+        }
 
-    fun getSkillForName(world: World, maxSkills: Int, skillName: String): Int {
+    fun getSkillForName(
+        world: World,
+        maxSkills: Int,
+        skillName: String,
+    ): Int {
         for (i in 0 until maxSkills) {
             if (getSkillName(world, i).lowercase() == skillName) {
                 return i

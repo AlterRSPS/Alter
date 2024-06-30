@@ -18,13 +18,15 @@ import org.alter.game.model.Tile
  * @author Tom <rspsmods@gmail.com>
  */
 class InstancedChunkSet(val regionSize: Int, val values: Map<Int, InstancedChunk>) {
-
     companion object {
-        fun getCoordinates(x: Int, z: Int, height: Int): Int = ((height and 0x3) shl 28) or ((x and 0x3FF) shl 14) or (z and 0x7FF)
+        fun getCoordinates(
+            x: Int,
+            z: Int,
+            height: Int,
+        ): Int = ((height and 0x3) shl 28) or ((x and 0x3FF) shl 14) or (z and 0x7FF)
     }
 
     class Builder {
-
         private var regionSize = -1
 
         private val chunks = hashMapOf<Int, InstancedChunk>()
@@ -37,7 +39,13 @@ class InstancedChunkSet(val regionSize: Int, val values: Map<Int, InstancedChunk
             return InstancedChunkSet(regionSize, chunks)
         }
 
-        fun set(chunkX: Int, chunkZ: Int, height: Int = 0, rot: Int = 0, copy: Tile): Builder {
+        fun set(
+            chunkX: Int,
+            chunkZ: Int,
+            height: Int = 0,
+            rot: Int = 0,
+            copy: Tile,
+        ): Builder {
             check(height in 0 until Tile.TOTAL_HEIGHT_LEVELS) { "Height must be in bounds [0-3]" }
             check(rot in 0..3) { "Rotation must be in bounds [0-3]" }
 

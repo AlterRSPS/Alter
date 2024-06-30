@@ -1,9 +1,9 @@
 package org.alter.plugins.service.worldlist.io
 
-import org.alter.plugins.service.worldlist.model.WorldEntry
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
+import org.alter.plugins.service.worldlist.model.WorldEntry
 
 /**
  * @author Triston Plummer ("Dread")
@@ -12,7 +12,6 @@ import io.netty.channel.ChannelInboundHandlerAdapter
  */
 @ChannelHandler.Sharable
 class WorldListChannelHandler(val list: List<WorldEntry>) : ChannelInboundHandlerAdapter() {
-
     /**
      * When a message is received from the client, send the [List] of [WorldEntry]s, in
      * the form of a HTTP response with the content as the encoded buffer.
@@ -20,7 +19,10 @@ class WorldListChannelHandler(val list: List<WorldEntry>) : ChannelInboundHandle
      * @param ctx   The channel handler context
      * @param msg   The inbound message
      */
-    override fun channelRead(ctx: ChannelHandlerContext?, msg: Any?) {
+    override fun channelRead(
+        ctx: ChannelHandlerContext?,
+        msg: Any?,
+    ) {
         ctx?.writeAndFlush(list)
     }
 
@@ -30,7 +32,10 @@ class WorldListChannelHandler(val list: List<WorldEntry>) : ChannelInboundHandle
      * @param ctx   The [ChannelHandlerContext] instance
      * @param cause The exception thrown
      */
-    override fun exceptionCaught(ctx: ChannelHandlerContext?, cause: Throwable?) {
+    override fun exceptionCaught(
+        ctx: ChannelHandlerContext?,
+        cause: Throwable?,
+    ) {
         ctx?.close()
     }
 }

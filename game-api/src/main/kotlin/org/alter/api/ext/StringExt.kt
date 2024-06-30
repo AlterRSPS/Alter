@@ -1,11 +1,10 @@
 package org.alter.api.ext
 
 import org.alter.game.fs.DefinitionSet
-import org.alter.game.fs.def.ItemDef
 
 private const val vowels = "aeiou"
 
-fun String.pluralPrefix(amount: Int) : String {
+fun String.pluralPrefix(amount: Int): String {
     return if (amount > 1) "are $this" else "is $this"
 }
 
@@ -20,19 +19,23 @@ fun String.pluralSuffix(amount: Int): String {
  * Prefixes the string with either "a" or "an" depending on whether
  * the string starts with a vowel
  */
-fun String.prefixAn() : String {
+fun String.prefixAn(): String {
     return if (vowels.indexOf(Character.toLowerCase(this[0])) != -1) "an $this" else "a $this"
 }
 
 /**
- * very specific string operation to replace "#ITEM" in a string with the [ItemDef.name]
+ * very specific string operation to replace "#ITEM" in a string with the [ItemType.name]
  * of the supplied [Item.id] as found in the supplied [DefinitionSet]
  *
  * @param item - [Item.id] of the [Item] to lookup
- * @param definitions - [DefinitionSet] to search for [ItemDef.name] against
+ * @param definitions - [DefinitionSet] to search for [ItemType.name] against
  */
-fun String.replaceItemName(item: Int, definitions: DefinitionSet, lowercase: Boolean = true): String {
-    return this.replace("#ITEM", item.getItemName(definitions, lowercase))
+fun String.replaceItemName(
+    item: Int,
+    definitions: DefinitionSet,
+    lowercase: Boolean = true,
+): String {
+    return this.replace("#ITEM", item.getItemName(lowercase))
 }
 
 /**
@@ -42,6 +45,10 @@ fun String.replaceItemName(item: Int, definitions: DefinitionSet, lowercase: Boo
  * @param obj - [GameObject.id] of the [GameObject] to lookup
  * @param definitions - [DefinitionSet] to search for [ObjectDef.name] against
  */
-fun String.replaceObjName(obj: Int, definitions: DefinitionSet, lowercase: Boolean = true): String {
+fun String.replaceObjName(
+    obj: Int,
+    definitions: DefinitionSet,
+    lowercase: Boolean = true,
+): String {
     return this.replace("#OBJ", obj.getObjName(definitions, lowercase))
 }

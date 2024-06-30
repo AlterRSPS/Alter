@@ -23,7 +23,6 @@ package org.alter.game.model.collision
  * @author Scu11
  */
 enum class ObjectGroup(val value: Int) {
-
     /**
      * The wall object group, which may block a tile.
      */
@@ -42,5 +41,5 @@ enum class ObjectGroup(val value: Int) {
     /**
      * The ground decoration object group, which may block a tile.
      */
-    GROUND_DECORATION(3);
+    GROUND_DECORATION(3),
 }

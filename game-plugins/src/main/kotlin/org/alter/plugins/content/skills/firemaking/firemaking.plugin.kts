@@ -5,7 +5,7 @@ LogData.values().forEach { log ->
         player.queue { Firemaking.burnLog(this, log) }
     }
     on_ground_item_option(log.log, "Light") {
-        player.graphic(555);
+        player.graphic(555)
         player.message("Seems to be working?")
     }
 }

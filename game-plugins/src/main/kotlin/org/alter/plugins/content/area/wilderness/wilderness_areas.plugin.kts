@@ -45,3 +45,5 @@ fun set_in_wild(player: Player, inWilderness: Boolean) {
 }
 
 fun in_wilderness(tile: Tile): Boolean = tile.getWildernessLevel() > 0
+
+

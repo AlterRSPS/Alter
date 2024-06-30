@@ -1,10 +1,5 @@
 package org.alter.plugins.content.combat.formula
 
-import org.alter.game.model.attr.ANTIFIRE_POTION_CHARGES_ATTR
-import org.alter.game.model.attr.DRAGONFIRE_IMMUNITY_ATTR
-import org.alter.game.model.entity.Npc
-import org.alter.game.model.entity.Pawn
-import org.alter.game.model.entity.Player
 import org.alter.api.EquipmentType
 import org.alter.api.NpcSpecies
 import org.alter.api.PrayerIcon
@@ -12,17 +7,30 @@ import org.alter.api.cfg.Items
 import org.alter.api.ext.hasEquipped
 import org.alter.api.ext.hasPrayerIcon
 import org.alter.api.ext.isSpecies
+import org.alter.game.model.attr.ANTIFIRE_POTION_CHARGES_ATTR
+import org.alter.game.model.attr.DRAGONFIRE_IMMUNITY_ATTR
+import org.alter.game.model.entity.Npc
+import org.alter.game.model.entity.Pawn
+import org.alter.game.model.entity.Player
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 class DragonfireFormula(val maxHit: Int, val minHit: Int = 0) : CombatFormula {
-
-    override fun getAccuracy(pawn: Pawn, target: Pawn, specialAttackMultiplier: Double): Double {
+    override fun getAccuracy(
+        pawn: Pawn,
+        target: Pawn,
+        specialAttackMultiplier: Double,
+    ): Double {
         return MagicCombatFormula.getAccuracy(pawn, target, specialAttackMultiplier)
     }
 
-    override fun getMaxHit(pawn: Pawn, target: Pawn, specialAttackMultiplier: Double, specialPassiveMultiplier: Double): Int {
+    override fun getMaxHit(
+        pawn: Pawn,
+        target: Pawn,
+        specialAttackMultiplier: Double,
+        specialPassiveMultiplier: Double,
+    ): Int {
         var max = maxHit.toDouble()
 
         if (target is Player) {

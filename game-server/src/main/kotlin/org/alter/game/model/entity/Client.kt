@@ -1,13 +1,14 @@
 package org.alter.game.model.entity
 
-import com.google.common.base.MoreObjects
-import org.alter.game.message.Message
+import gg.rsmod.util.toStringHelper
+import net.rsprot.protocol.api.login.GameLoginResponseHandler
+import net.rsprot.protocol.game.outgoing.map.RebuildLogin
+import net.rsprot.protocol.game.outgoing.map.RebuildNormal
+import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
+import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.model.EntityType
 import org.alter.game.model.World
 import org.alter.game.service.serializer.PlayerSerializerService
-import org.alter.game.system.GameSystem
-import gg.rsmod.net.codec.login.LoginRequest
-import io.netty.channel.Channel
 
 /**
  * A [Player] that is controlled by a human. A [Client] is responsible for
@@ -15,21 +16,12 @@ import io.netty.channel.Channel
  *
  * Anything other than network logic should be added to [Player] instead.
  *
- * @param channel
- * The [Channel] used to write and read [Message]s to and from the client.
- *
  * @param world
  * The [World] that this client is registered to.
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class Client(val channel: Channel, world: World) : Player(world) {
-
-    /**
-     * The [System] that will handle [Message]s, write [Message]s and flush the
-     * [Channel].
-     */
-    lateinit var gameSystem: GameSystem
+class Client(world: World) : Player(world) {
     /**
      * The username that was used to register the [Player]. This username should
      * never be changed through the player's end.
@@ -90,44 +82,65 @@ class Client(val channel: Channel, world: World) : Player(world) {
     }
 
     override fun handleMessages() {
-        gameSystem.handleMessages()
+        session?.processIncomingPackets(this)
     }
 
-    override fun write(vararg messages: Message) {
-        messages.forEach { m -> gameSystem.write(m) }
+    private var rebuildNormalMessageWritten = false
+    private val pendingMessages = mutableListOf<OutgoingGameMessage>()
+
+    private fun onRebuildNormalMessageWritten() {
+        pendingMessages.forEach { message ->
+            session?.queue(message)
+        }
+        pendingMessages.clear()
     }
 
-    override fun write(vararg messages: Any) {
-        messages.forEach { m -> channel.write(m) }
+    override fun write(vararg messages: OutgoingGameMessage) {
+        messages.forEach { message ->
+            if (!rebuildNormalMessageWritten && (message is RebuildNormal || message is RebuildLogin)) {
+                session?.queue(message)
+                rebuildNormalMessageWritten = true
+                onRebuildNormalMessageWritten()
+            } else if (rebuildNormalMessageWritten) {
+                session?.queue(message)
+            } else {
+                println(message)
+                pendingMessages.add(message)
+            }
+//                m -> session?.queue(m)
+        }
     }
 
     override fun channelFlush() {
-        gameSystem.flush()
+        session?.flush()
     }
 
     override fun channelClose() {
-        gameSystem.close()
+        world.network.playerInfoProtocol.dealloc(info = playerInfo)
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this)
+    override fun toString(): String =
+        toStringHelper()
             .add("login_username", loginUsername)
             .add("username", username)
-            .add("channel", channel)
             .toString()
 
     companion object {
-
         /**
          * Constructs a [Client] based on the [LoginRequest].
          */
-        fun fromRequest(world: World, request: LoginRequest): Client {
-            val client = Client(request.channel, world)
-            client.clientWidth = request.clientWidth
-            client.clientHeight = request.clientHeight
-            client.loginUsername = request.username
-            client.username = request.username
-            client.uuid = request.uuid
-            client.currentXteaKeys = request.xteaKeys
+        fun fromRequest(
+            world: World,
+            request: GameLoginResponseHandler<Client>,
+            block: LoginBlock<*>,
+        ): Client {
+            val client = Client(world)
+            client.clientWidth = block.width
+            client.clientHeight = block.height
+            client.loginUsername = block.username
+            client.username = block.username
+            client.uuid = block.uuid.toString()
+            client.currentXteaKeys = block.seed
             return client
         }
     }

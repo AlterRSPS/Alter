@@ -1,7 +1,6 @@
 package org.alter.api.ext
 
-
-enum class InterfaceEvent (val flag: Int) {
+enum class InterfaceEvent(val flag: Int) {
     /**
      * Enabled the component to be a "pause_button", clicking it sends {@link DialogueReader}.
      */
@@ -131,7 +130,9 @@ enum class InterfaceEvent (val flag: Int) {
     /**
      * Enables the ability of {@link #BUTTONT} enabled components to target the component.
      */
-    ComponentTargetable(1 shl 21);
+    ComponentTargetable(1 shl 21),
+    ;
+
     companion object {
         infix fun from(value: Int): InterfaceEvent? = InterfaceEvent.values().firstOrNull { it.flag == value }
     }

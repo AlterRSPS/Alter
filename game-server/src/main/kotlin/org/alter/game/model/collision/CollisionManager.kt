@@ -11,12 +11,19 @@ import org.alter.game.model.region.ChunkSet
  * @author Tom <rspsmods@gmail.com>
  */
 class CollisionManager(val chunks: ChunkSet, val createChunksIfNeeded: Boolean = true) {
-
     fun isClipped(tile: Tile): Boolean = chunks.get(tile, createChunksIfNeeded)!!.isClipped(tile)
 
-    fun isBlocked(tile: Tile, direction: Direction, projectile: Boolean): Boolean = chunks.get(tile, createChunksIfNeeded)!!.isBlocked(tile, direction, projectile)
+    fun isBlocked(
+        tile: Tile,
+        direction: Direction,
+        projectile: Boolean,
+    ): Boolean = chunks.get(tile, createChunksIfNeeded)!!.isBlocked(tile, direction, projectile)
 
-    fun canTraverse(tile: Tile, direction: Direction, projectile: Boolean): Boolean {
+    fun canTraverse(
+        tile: Tile,
+        direction: Direction,
+        projectile: Boolean,
+    ): Boolean {
         val chunk = chunks.get(tile, createChunksIfNeeded)!!
 
         if (chunk.isBlocked(tile, direction, projectile)) {
@@ -45,7 +52,11 @@ class CollisionManager(val chunks: ChunkSet, val createChunksIfNeeded: Boolean =
      * Projectiles have a higher tolerance for certain objects when the object's
      * metadata explicitly allows them to.
      */
-    fun raycast(start: Tile, target: Tile, projectile: Boolean): Boolean {
+    fun raycast(
+        start: Tile,
+        target: Tile,
+        projectile: Boolean,
+    ): Boolean {
         check(start.height == target.height) { "Tiles must be on the same height level." }
 
         var x0 = start.x
@@ -93,7 +104,10 @@ class CollisionManager(val chunks: ChunkSet, val createChunksIfNeeded: Boolean =
      * Gets the shortest path using Bresenham's Line Algorithm from [start] to [target],
      * in tiles.
      */
-    fun raycastTiles(start: Tile, target: Tile): Int {
+    fun raycastTiles(
+        start: Tile,
+        target: Tile,
+    ): Int {
         check(start.height == target.height) { "Tiles must be on the same height level." }
 
         var x0 = start.x
@@ -130,7 +144,13 @@ class CollisionManager(val chunks: ChunkSet, val createChunksIfNeeded: Boolean =
         return tiles
     }
 
-    private fun flag(type: CollisionUpdate.Type, matrix: CollisionMatrix, localX: Int, localY: Int, flag: CollisionFlag) {
+    private fun flag(
+        type: CollisionUpdate.Type,
+        matrix: CollisionMatrix,
+        localX: Int,
+        localY: Int,
+        flag: CollisionFlag,
+    ) {
         if (type == CollisionUpdate.Type.ADD) {
             matrix.addFlag(localX, localY, flag)
         } else {
@@ -138,7 +158,11 @@ class CollisionManager(val chunks: ChunkSet, val createChunksIfNeeded: Boolean =
         }
     }
 
-    fun applyCollision(definitions: DefinitionSet, obj: GameObject, updateType: CollisionUpdate.Type) {
+    fun applyCollision(
+        definitions: DefinitionSet,
+        obj: GameObject,
+        updateType: CollisionUpdate.Type,
+    ) {
         val builder = CollisionUpdate.Builder()
         builder.setType(updateType)
         builder.putObject(definitions, obj)

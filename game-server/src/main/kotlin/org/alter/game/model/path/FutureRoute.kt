@@ -1,9 +1,8 @@
 package org.alter.game.model.path
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder
-import org.alter.game.model.MovementQueue
-
+import gg.rsmod.util.concurrency.ThreadFactoryBuilder
 import io.github.oshai.kotlinlogging.KotlinLogging
+import org.alter.game.model.MovementQueue
 import java.util.concurrent.Executors
 
 /**
@@ -22,8 +21,11 @@ import java.util.concurrent.Executors
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class FutureRoute private constructor(val strategy: PathFindingStrategy, val stepType: MovementQueue.StepType, val detectCollision: Boolean) {
-
+class FutureRoute private constructor(
+    val strategy: PathFindingStrategy,
+    val stepType: MovementQueue.StepType,
+    val detectCollision: Boolean,
+) {
     /**
      * This flag lets us know if the [FutureRoute.route] has finished.
      */
@@ -31,14 +33,22 @@ class FutureRoute private constructor(val strategy: PathFindingStrategy, val ste
 
     lateinit var route: Route
 
-        companion object {
+    companion object {
+        private val logger = KotlinLogging.logger {}
 
-        private val logger = KotlinLogging.logger{}
         /**
          * Future routes are handled on a separate thread. This should be defined
          * else-where, but for now we'll keep it here!
          */
-        private val executor = Executors.newSingleThreadExecutor(ThreadFactoryBuilder().setNameFormat("pathfinding-thread").setUncaughtExceptionHandler { t, e -> logger.error("Error with thread $t", e) }.build())
+        private val executor =
+            Executors.newSingleThreadExecutor(
+                ThreadFactoryBuilder().setNameFormat("pathfinding-thread").setUncaughtExceptionHandler {
+                        t,
+                        e,
+                    ->
+                    logger.error("Error with thread $t", e)
+                }.build(),
+            )
 
         /**
          * Creates a [FutureRoute] with the given parameters and executes it on
@@ -56,7 +66,12 @@ class FutureRoute private constructor(val strategy: PathFindingStrategy, val ste
          * @param detectCollision if true, the [MovementQueue.Step]s in the
          * route will detect collision.
          */
-        fun of(strategy: PathFindingStrategy, request: PathRequest, stepType: MovementQueue.StepType, detectCollision: Boolean): FutureRoute {
+        fun of(
+            strategy: PathFindingStrategy,
+            request: PathRequest,
+            stepType: MovementQueue.StepType,
+            detectCollision: Boolean,
+        ): FutureRoute {
             val future = FutureRoute(strategy, stepType, detectCollision)
             executor.execute {
                 future.route = strategy.calculateRoute(request)

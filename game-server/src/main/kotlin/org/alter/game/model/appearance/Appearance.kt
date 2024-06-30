@@ -12,7 +12,6 @@ import org.alter.game.model.appearance.Looks.getTorsos
  * @author Tom <rspsmods@gmail.com>
  */
 data class Appearance(val looks: IntArray, val colors: IntArray, var gender: Gender) {
-
     /**
      * @param option - the specified look to select from the [Appearance]'s [looks]
      *      with valid options explicitly as follows:
@@ -29,9 +28,9 @@ data class Appearance(val looks: IntArray, val colors: IntArray, var gender: Gen
      *      based on the supplies option
      */
     fun getLook(option: Int): Int {
-        return when(gender) {
+        return when (gender) {
             Gender.MALE -> {
-                when(option) {
+                when (option) {
                     0 -> getHeads(gender)[looks[0]]
                     1 -> getJaws(gender)[looks[1]]
                     2 -> getTorsos(gender)[looks[2]]
@@ -43,7 +42,7 @@ data class Appearance(val looks: IntArray, val colors: IntArray, var gender: Gen
                 }
             }
             Gender.FEMALE -> {
-                when(option) {
+                when (option) {
                     0 -> getHeads(gender)[looks[0]]
                     2 -> getTorsos(gender)[looks[1]]
                     3 -> getArms(gender)[looks[2]]
@@ -84,6 +83,5 @@ data class Appearance(val looks: IntArray, val colors: IntArray, var gender: Gen
 
         private val DEFAULT_FEMALE_LOOKS = intArrayOf(0, 0, 0, 0, 0, 0) // 45, 56, 61, 67, 70, 79
         val DEFAULT_FEMALE = Appearance(DEFAULT_FEMALE_LOOKS, DEFAULT_COLORS, Gender.FEMALE)
-
     }
 }

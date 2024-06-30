@@ -11,18 +11,24 @@ on_obj_option(obj = Objs.MANHOLE_882, option = "close") {
 }
 
 on_obj_option(obj = Objs.MANHOLE_882, option = "climb-down") {
-    val direction : Direction = Direction.SOUTH
+    val direction: Direction = Direction.SOUTH
     player.faceTile(player.tile.transform(direction.getDeltaX(), direction.getDeltaZ()))
     player.moveTo(3237, 9858)
 }
 
-fun open(p: Player, obj: GameObject) {
+fun open(
+    p: Player,
+    obj: GameObject,
+) {
     p.playSound(OPEN_SFX)
     p.filterableMessage("You pull back the cover from over the manhole.")
     world.spawn(DynamicObject(obj, Objs.MANHOLE_882))
 }
 
-fun close(p: Player, obj: GameObject) {
+fun close(
+    p: Player,
+    obj: GameObject,
+) {
     p.filterableMessage("You place the cover back over the manhole.")
     world.spawn(DynamicObject(obj, Objs.MANHOLE))
 }

@@ -149,15 +149,16 @@ enum class HitType(val id: Int) {
     PRAYER_DRAIN_MAX(id = 61),
     PRAYER_DRAIN_U(id = 62),
     PRAYER_DRAIN_U_T(id = 63),
-    PRAYER_DRAIN_U_MAX(id = 64);
-
+    PRAYER_DRAIN_U_MAX(id = 64),
+    ;
 
     companion object {
         val TINTED_HITMARK_VARBIT = 10236
         val values = values()
+
         fun get(id: Int): HitType? {
             HitType.values.forEach {
-                if(it.id == id) return it
+                if (it.id == id) return it
             }
             return null
         }

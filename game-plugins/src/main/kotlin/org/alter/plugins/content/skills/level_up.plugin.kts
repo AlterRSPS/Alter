@@ -21,7 +21,7 @@ set_level_up_logic {
      * Show the level-up chatbox interface.
      */
     player.queue {
-        if(player.getSkills()[skill].currentLevel == 99) {
+        if (player.getSkills()[skill].currentLevel == 99) {
             player.graphic(1388)
         } else {
             /**
@@ -32,7 +32,12 @@ set_level_up_logic {
             var levelupJingles = listOf(29, 67, 50)
             player.playJingle(levelupJingles[Random.nextInt(levelupJingles.size)])
             player.graphic(199, 124)
-            player.message("Congratulations, you've just advanced your ${Skills.getSkillName(world, skill)} level. You are now level ${player.getSkills().getBaseLevel(skill)}.")
+            player.message(
+                "Congratulations, you've just advanced your ${Skills.getSkillName(
+                    world,
+                    skill,
+                )} level. You are now level ${player.getSkills().getBaseLevel(skill)}.",
+            )
             world.spawn(AreaSound(player.tile, 2396, 1, 1))
         }
         levelUpMessageBox(skill, increment)

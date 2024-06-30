@@ -1,6 +1,5 @@
 package org.alter.api.cfg
 
-
 object Varbit {
     const val ALL_SETTINGS_TAB = 9656
     const val ACTIVITIES_HITSPLAT_TINTING = 10236
@@ -89,7 +88,7 @@ object Varbit {
     const val EXPLORE_VARBIT = 10115
     const val FLEX_EMOTE_VARBIT = 12062
     const val RELIC_UNLOCKED_EMOTE_VARBIT = 11757
-    const val FRIEND_FACE_ID_VARBIT = 6516 //varbit for smiley or sad face.
+    const val FRIEND_FACE_ID_VARBIT = 6516 // varbit for smiley or sad face.
     const val MUSIC_SLIDER_POSITION_LOCK = 12426
     const val AUDIO_SOUND_SLIDER_POSITION_LOCK = 12427
     const val AREA_SOUND_SLIDER_POSITION_LOCK = 12428
@@ -1077,8 +1076,6 @@ object Varbit {
     const val PRESET_RUNE_POUCH_8_RUNE_2_AMOUNT = 65366
     const val PRESET_RUNE_POUCH_8_RUNE_1_AMOUNT = 65367
     const val PRESET_RUNE_POUCH_8_RUNE_4_INDEX = 65368
-
-
 
     // SpellBook filter tab @TODO
     const val SHOW_COMBAT_SPELLS_STATE = 6605

@@ -23,10 +23,10 @@ enum class PickAxeType(val item: Int, val level: Int, val animation: Int) {
     DRAGON_OR_TRAILBLAZER(Items.DRAGON_PICKAXE_OR_25376, level = 61, Animation.NEED_ANIMATION_ID),
     INFERNAL(Items.INFERNAL_PICKAXE, level = 61, Animation.MINING_INFERNAL_PICKAXE),
     INFERNAL_PICKAXE_OR(Items.INFERNAL_PICKAXE_OR, level = 61, Animation.NEED_ANIMATION_ID),
-    CRYSTAL(Items.CRYSTAL_PICKAXE, level = 71, Animation.MINING_CRYSTAL_PICKAXE);
+    CRYSTAL(Items.CRYSTAL_PICKAXE, level = 71, Animation.MINING_CRYSTAL_PICKAXE),
+    ;
+
     companion object {
         val values = enumValues<PickAxeType>()
     }
 }
-
-

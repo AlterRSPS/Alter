@@ -2,7 +2,6 @@ package org.alter.plugins.content.interfaces.xpdrops
 
 val INTERFACE_ID = 122
 
-
 on_button(interfaceId = 160, component = 5) {
     val option = player.getInteractingOption()
     player.playSound(Sound.INTERFACE_SELECT1)

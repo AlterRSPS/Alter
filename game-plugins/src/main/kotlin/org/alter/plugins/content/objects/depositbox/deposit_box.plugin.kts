@@ -8,11 +8,21 @@ private val DEPOSIT_INTERFACE_ID = 192
 private val DEPOSIT_EQUIPMENT_SFX = 2238
 private val DEPOSIT_ANIMATION = 834
 
-private val DEPOSIT_BOXES = setOf(
-        Objs.BANK_DEPOSIT_BOX, Objs.BANK_DEPOSIT_BOX_25937, Objs.BANK_DEPOSIT_BOX_26254,
-        Objs.BANK_DEPOSIT_BOX_29103, Objs.BANK_DEPOSIT_BOX_29104, Objs.BANK_DEPOSIT_BOX_29105, Objs.BANK_DEPOSIT_BOX_29106,
-        Objs.BANK_DEPOSIT_BOX_29327, Objs.BANK_DEPOSIT_BOX_30268, Objs.BANK_DEPOSIT_BOX_31726, Objs.BANK_DEPOSIT_BOX_32665,
-        Objs.BANK_DEPOSIT_BOX_34344)
+private val DEPOSIT_BOXES =
+    setOf(
+        Objs.BANK_DEPOSIT_BOX,
+        Objs.BANK_DEPOSIT_BOX_25937,
+        Objs.BANK_DEPOSIT_BOX_26254,
+        Objs.BANK_DEPOSIT_BOX_29103,
+        Objs.BANK_DEPOSIT_BOX_29104,
+        Objs.BANK_DEPOSIT_BOX_29105,
+        Objs.BANK_DEPOSIT_BOX_29106,
+        Objs.BANK_DEPOSIT_BOX_29327,
+        Objs.BANK_DEPOSIT_BOX_30268,
+        Objs.BANK_DEPOSIT_BOX_31726,
+        Objs.BANK_DEPOSIT_BOX_32665,
+        Objs.BANK_DEPOSIT_BOX_34344,
+    )
 
 DEPOSIT_BOXES.forEach { box ->
     on_obj_option(obj = box, option = "deposit") {
@@ -49,8 +59,11 @@ on_button(interfaceId = DEPOSIT_INTERFACE_ID, component = 6) {
 }
 
 on_component_to_component_item_swap(
-        srcInterfaceId = DEPOSIT_INTERFACE_ID, srcComponent = 2,
-        dstInterfaceId = DEPOSIT_INTERFACE_ID, dstComponent = 2) {
+    srcInterfaceId = DEPOSIT_INTERFACE_ID,
+    srcComponent = 2,
+    dstInterfaceId = DEPOSIT_INTERFACE_ID,
+    dstComponent = 2,
+) {
     val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
     val dstSlot = player.attr[OTHER_ITEM_SLOT_ATTR]!!
 
@@ -77,7 +90,11 @@ fun close_deposit_box(p: Player) {
     p.openInterface(InterfaceDestination.EQUIPMENT)
 }
 
-fun deposit_item(p: Player, slot: Int, amt: Int) {
+fun deposit_item(
+    p: Player,
+    slot: Int,
+    amt: Int,
+) {
     val from = p.inventory
     val to = p.bank
 
@@ -170,8 +187,11 @@ fun deposit_equipment(player: Player) {
     }
 }
 
-fun ItemContainer.removePlaceholder(world: World, item: Item): Int {
-    val def = item.toUnnoted(world.definitions).getDef(world.definitions)
+fun ItemContainer.removePlaceholder(
+    world: World,
+    item: Item,
+): Int {
+    val def = item.toUnnoted().getDef()
     val slot = if (def.placeholderLink > 0) indexOfFirst { it?.id == def.placeholderLink && it.amount == 0 } else -1
     if (slot != -1) {
         this[slot] = null

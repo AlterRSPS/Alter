@@ -1,13 +1,13 @@
 package org.alter.game.model.entity
 
-import com.google.common.base.MoreObjects
+import gg.rsmod.util.toStringHelper
 import org.alter.game.model.EntityType
 import org.alter.game.model.PlayerUID
 import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.item.Item
 import org.alter.game.model.item.ItemAttribute
-import java.util.EnumMap
+import java.util.*
 
 /**
  * An item that is spawned on the ground.
@@ -20,7 +20,6 @@ import java.util.EnumMap
  * @author Tom <rspsmods@gmail.com>
  */
 class GroundItem private constructor(val item: Int, var amount: Int, internal var ownerUID: PlayerUID?) : Entity() {
-
     constructor(item: Int, amount: Int, tile: Tile, owner: Player? = null) : this(item, amount, owner?.uid) {
         this.tile = tile
     }
@@ -52,7 +51,8 @@ class GroundItem private constructor(val item: Int, var amount: Int, internal va
 
     fun isSpawned(world: World): Boolean = world.isSpawned(this)
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("item", item).add("amount", amount).add("tile", tile.toString()).add("owner", ownerUID).toString()
+    override fun toString(): String =
+        toStringHelper().add("item", item).add("amount", amount).add("tile", tile.toString()).add("owner", ownerUID).toString()
 
     companion object {
         /**

@@ -1,7 +1,7 @@
 package org.alter.game.model.region.update
 
-import com.google.common.base.MoreObjects
-import org.alter.game.message.Message
+import gg.rsmod.util.toStringHelper
+import net.rsprot.protocol.message.ZoneProt
 import org.alter.game.model.entity.Entity
 
 /**
@@ -11,8 +11,7 @@ import org.alter.game.model.entity.Entity
  * @author Tom <rspsmods@gmail.com>
  */
 abstract class EntityUpdate<T : Entity>(open val type: EntityUpdateType, open val entity: T) {
+    abstract fun toMessage(): ZoneProt
 
-    abstract fun toMessage(): Message
-
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("type", type).add("entity", entity).toString()
+    override fun toString(): String = toStringHelper().add("type", type).add("entity", entity).toString()
 }

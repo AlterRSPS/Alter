@@ -7,10 +7,12 @@ WaterSources.values().forEach { source ->
     source.waterObjIds.forEach { obj ->
         WaterContainers.values().forEach {
             on_item_on_obj(obj = obj, item = it.container.unfilled) {
-                val message = if(it.container.unfilled.getItemName(world.definitions).contains("Cup"))
-                    "You fill the cup."
-                else
-                    source.message.replaceItemName(it.container.unfilled, world.definitions)
+                val message =
+                    if (it.container.unfilled.getItemName().contains("Cup")) {
+                        "You fill the cup."
+                    } else {
+                        source.message.replaceItemName(it.container.unfilled, world.definitions)
+                    }
                 it.container.fill(player, message)
             }
         }
@@ -42,11 +44,11 @@ WaterContainers.values().forEach {
     /**
      * Toy sink item!
      */
-    on_item_on_item(Items.SINK, it.container.unfilled){
-        it.container.fill(player, "The cute sink fills the ${it.container.unfilled.getItemName(world.definitions, lowercase = true)} to the brim.")
+    on_item_on_item(Items.SINK, it.container.unfilled) {
+        it.container.fill(player, "The cute sink fills the ${it.container.unfilled.getItemName(lowercase = true)} to the brim.")
     }
-    on_item_on_item(Items.SINK, it.container.filled){
-        player.message("The ${it.container.unfilled.getItemName(world.definitions, lowercase = true)} cannot hold any more water.")
+    on_item_on_item(Items.SINK, it.container.filled) {
+        player.message("The ${it.container.unfilled.getItemName(lowercase = true)} cannot hold any more water.")
     }
 }
 
@@ -56,7 +58,7 @@ WaterContainers.values().forEach {
  * also prevents from dropping item from inventory, but could be done here
  */
 canDropItem(Items.SINK) {
-    val obj = DynamicObject(Objs.TOY_SINK, 10, 3, player.tile.transform(0,1))
+    val obj = DynamicObject(Objs.TOY_SINK, 10, 3, player.tile.transform(0, 1))
     world.spawn(obj)
     player.world.queue {
         wait(300)
@@ -70,8 +72,15 @@ canDropItem(Items.SINK) {
  * here would require knowing all the fire sources so we'll ignore lack of ability
  * to make for now; this is mostly used for testing Guthix rest teas without heat plugins.
  */
-on_item_on_item(Items.BOWL_OF_HOT_WATER, Items.EMPTY_CUP){
-    if(player.comboItemReplace(oldItem = Items.EMPTY_CUP, newItem = Items.CUP_OF_HOT_WATER,
-            otherOld = Items.BOWL_OF_HOT_WATER, otherNew = Items.BOWL, slotAware = true))
+on_item_on_item(Items.BOWL_OF_HOT_WATER, Items.EMPTY_CUP) {
+    if (player.comboItemReplace(
+            oldItem = Items.EMPTY_CUP,
+            newItem = Items.CUP_OF_HOT_WATER,
+            otherOld = Items.BOWL_OF_HOT_WATER,
+            otherNew = Items.BOWL,
+            slotAware = true,
+        )
+    ) {
         player.message("You pour the hot water into the tea cup.")
+    }
 }

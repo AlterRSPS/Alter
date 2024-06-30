@@ -1,12 +1,12 @@
 package org.alter.plugins.content.areas.alkharid.chat.shops
 
-    on_npc_option(npc = Npcs.LOUIE_LEGS, option = "talk-to") {
-        player.queue { dialog(this) }
-    }
+on_npc_option(npc = Npcs.LOUIE_LEGS, option = "talk-to") {
+    player.queue { dialog(this) }
+}
 
-    on_npc_option(npc = Npcs.LOUIE_LEGS, option = "trade") {
-        open_shop(player)
-    }
+on_npc_option(npc = Npcs.LOUIE_LEGS, option = "trade") {
+    open_shop(player)
+}
 
 suspend fun dialog(it: QueueTask) {
     it.chatNpc("Hey, wanna buy some armour?", animation = 567)
