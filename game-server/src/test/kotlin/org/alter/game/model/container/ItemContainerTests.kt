@@ -131,7 +131,7 @@ class ItemContainerTests {
         fun loadCache() {
             val path = Paths.get("..", "data", "cache")
 
-            CacheManager.init(path, 221)
+            CacheManager.init(path, 222)
 
             assertNotEquals(itemSize(), 0)
         }

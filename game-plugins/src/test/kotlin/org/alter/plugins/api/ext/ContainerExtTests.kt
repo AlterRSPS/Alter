@@ -78,7 +78,7 @@ class ContainerExtTests {
             val path = Paths.get("../data", "cache")
             check(Files.exists(path)) { "Path does not exist: ${path.toAbsolutePath()}" }
 
-            CacheManager.init(path, 221)
+            CacheManager.init(path, 222)
 
             assertNotEquals(itemSize(), 0)
         }

@@ -133,7 +133,7 @@ class Server {
         /*
          * Load the definitions.
          */
-        CacheManager.init(filestore, 221)
+        CacheManager.init(filestore, 222)
         ObjectExamineHolder.load()
 
         /*
