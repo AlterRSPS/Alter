@@ -116,7 +116,10 @@ class Server {
                 debugButtons = devProperties.getOrDefault("debug-buttons", false),
                 debugItemActions = devProperties.getOrDefault("debug-items", false),
                 debugMagicSpells = devProperties.getOrDefault("debug-spells", false),
+                debugPackets = devProperties.getOrDefault("debug-packets", false)
             )
+
+        System.setProperty("net.rsprot.protocol.internal.networkLogging", devContext.debugPackets.toString())
 
         val world = World(gameContext, devContext)
 

@@ -9,4 +9,5 @@ data class DevContext(
     val debugButtons: Boolean,
     val debugItemActions: Boolean,
     val debugMagicSpells: Boolean,
+    val debugPackets: Boolean,
 )
