@@ -64,8 +64,6 @@ class Server {
     fun startGame(
         filestore: Path,
         gameProps: Path,
-        packets: Path,
-        blocks: Path,
         devProps: Path?,
     ): World {
         val stopwatch = Stopwatch.createStarted()
