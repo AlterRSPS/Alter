@@ -1,6 +1,7 @@
 package org.alter.game.rsprot
 
-import com.displee.cache.CacheLibrary
+import dev.openrune.cache.CacheManager
+import dev.openrune.cache.filestore.Cache
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import io.netty.handler.codec.DecoderException
@@ -14,11 +15,10 @@ import net.rsprot.protocol.api.js5.ByteBufJs5GroupProvider
 import net.rsprot.protocol.api.js5.Js5GroupProvider
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import java.nio.file.Path
 import kotlin.math.min
 import kotlin.math.pow
 
-class DispleeJs5GroupProvider : ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
+class CacheJs5GroupProvider : ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
     override fun provide(
         archive: Int,
         group: Int,
@@ -39,70 +39,52 @@ class DispleeJs5GroupProvider : ByteBufJs5GroupProvider(), Js5GroupSizeProvider 
     private val groups: Int2ObjectMap<ByteBuf> = Int2ObjectOpenHashMap(2.toDouble().pow(17).toInt())
     private val sizes: Int2IntMap = Int2IntOpenHashMap(2.toDouble().pow(17).toInt())
 
-    fun load(path: Path) {
-        val cache = CacheLibrary(path.toString())
+    fun load() {
+        val cache = CacheManager.cache
 
-        encodeMasterIndex(cache)
+        encodeMasterIndex(cache) //TODO set to versiontable from filestore lib
 
-        for (test in cache.indices()) {
-            encodeArchive(cache, test.id)
+        for (index in cache.indices()) {
+            encodeArchive(cache, index)
         }
-        encodeArchiveMasterIndex(cache, 255)
+        encodeArchiveMasterIndex(cache)
 
         logger.info("Loaded {} JS5 responses", groups.size)
 
-        cache.close()
     }
 
-    private fun encodeMasterIndex(cache: CacheLibrary) {
-        Unpooled.directBuffer().use { output ->
-            output.writeByte(0)
-
-            val highestIndex = cache.indices().maxOf { it.id }
-            val indices = cache.indices()
-
-            output.writeInt(8 + highestIndex * 8)
-
-            for (id in 0..highestIndex) {
-                val index = indices.find { it.id == id }
-
-                if (index != null) {
-                    output.writeInt(index.crc).writeInt(index.revision)
-                } else {
-                    output.writeLong(0)
-                }
-            }
-
-            encodeGroup(255, 255, output)
+    private fun encodeMasterIndex(cache: Cache) {
+        Unpooled.directBuffer().use { uncompressed ->
+            uncompressed.writeBytes(cache.versionTable)
+            encodeGroup(255, 255, uncompressed)
         }
     }
 
     private fun encodeArchiveMasterIndex(
-        cache: CacheLibrary,
-        index: Int,
+        cache: Cache,
     ) {
         for (archive in cache.indices()) {
-            if (archive.id == 255) continue // this is the prebuilt versiontable.
-            val data = cache.index255?.readArchiveSector(archive.id)?.data ?: continue
+            if (archive == 255) continue // this is the prebuilt versiontable.
+            val data = cache.sector(255, archive) ?: continue
 
             Unpooled.directBuffer().use { uncompressed ->
                 uncompressed.writeBytes(data)
-                encodeGroup(index, archive.id, uncompressed)
+                encodeGroup(255, archive, uncompressed)
             }
         }
     }
 
     private fun encodeArchive(
-        cache: CacheLibrary,
+        cache: Cache,
         index: Int,
     ) {
-        for (archive in cache.index(index).archives()) {
-            val data = cache.index(index).readArchiveSector(archive.id)?.data ?: continue
+        for (archive in cache.archives(index)) {
+            val data = cache.sector(index, archive) ?: continue
 
             Unpooled.directBuffer().use { uncompressed ->
                 uncompressed.writeBytes(data)
                 strip(uncompressed)
-                encodeGroup(index, archive.id, uncompressed)
+                encodeGroup(index, archive, uncompressed)
             }
         }
     }
@@ -154,7 +136,7 @@ class DispleeJs5GroupProvider : ByteBufJs5GroupProvider(), Js5GroupSizeProvider 
         private const val BYTES_BEFORE_BLOCK = BLOCK_SIZE - BLOCK_HEADER_SIZE
         private const val BYTES_AFTER_BLOCK = BLOCK_SIZE - BLOCK_DELIMITER_SIZE
 
-        private val logger: Logger = LoggerFactory.getLogger(DispleeJs5GroupProvider::class.java)
+        private val logger: Logger = LoggerFactory.getLogger(CacheJs5GroupProvider::class.java)
 
         fun bitpack(
             archive: Int,

@@ -1,6 +1,5 @@
 package org.alter.game
 
-import com.displee.cache.CacheLibrary
 import dev.openrune.cache.CacheManager
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
@@ -12,7 +11,7 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.skill.SkillSet
-import org.alter.game.rsprot.DispleeJs5GroupProvider
+import org.alter.game.rsprot.CacheJs5GroupProvider
 import org.alter.game.rsprot.NetworkServiceFactory
 import org.alter.game.service.xtea.XteaKeyService
 import java.nio.file.Files
@@ -127,13 +126,12 @@ class Server {
          * Load the file store.
          */
         individualStopwatch.reset().start()
-        world.filestore = CacheLibrary(filestore.toFile().toString())
+        CacheManager.init(filestore, 222)
         logger.info("Loaded filestore from path {} in {}ms.", filestore, individualStopwatch.elapsed(TimeUnit.MILLISECONDS))
 
         /*
          * Load the definitions.
          */
-        CacheManager.init(filestore, 222)
         ObjectExamineHolder.load()
 
         /*
@@ -141,8 +139,8 @@ class Server {
          */
         world.loadServices(this, gameProperties)
 
-        val groupProvider = DispleeJs5GroupProvider()
-        groupProvider.load(filestore)
+        val groupProvider = CacheJs5GroupProvider()
+        groupProvider.load()
         val port = gameProperties.getOrDefault("game-port", 43594)
         val network = NetworkServiceFactory(groupProvider, world, listOf(port), listOf(OldSchoolClientType.DESKTOP))
         world.network = network.build()

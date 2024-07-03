@@ -54,7 +54,7 @@ class DefinitionSet {
         val x = id shr 8
         val z = id and 0xFF
 
-        val mapData = world.filestore.data(MAPS, "m${x}_$z") ?: return false
+        val mapData = CacheManager.cache.data(MAPS, "m${x}_$z") ?: return false
 
         val baseX: Int = id shr 8 and 255 shl 6
         val baseY: Int = id and 255 shl 6
@@ -106,7 +106,7 @@ class DefinitionSet {
 
         val keys = xteaService?.get(id) ?: XteaKeyService.EMPTY_KEYS
         try {
-            val landData = world.filestore.data(MAPS, "l${x}_$z", keys) ?: return false
+            val landData = CacheManager.cache.data(MAPS, "l${x}_$z", keys) ?: return false
 
             loadLocations(landData) { loc ->
                 val tile =

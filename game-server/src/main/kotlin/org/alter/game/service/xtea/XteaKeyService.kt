@@ -1,6 +1,7 @@
 package org.alter.game.service.xtea
 
 import com.google.gson.Gson
+import dev.openrune.cache.CacheManager
 import dev.openrune.cache.MAPS
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -61,7 +62,7 @@ class XteaKeyService : Service, XteaProvider {
         var totalRegions = 0
         val missingKeys = mutableListOf<Int>()
 
-        val library = world.filestore
+        val cache = CacheManager.cache
         for (regionId in 0 until maxRegions) {
             val x = regionId shr 8
             val z = regionId and 0xFF
@@ -70,7 +71,7 @@ class XteaKeyService : Service, XteaProvider {
              * Check if the region corresponding to the x and z can be
              * found in our cache.
              */
-            library.data(MAPS, "m${x}_$z") ?: continue
+            cache.data(MAPS, "m${x}_$z") ?: continue
 
             /*
              * The region was found in the regionIndex.

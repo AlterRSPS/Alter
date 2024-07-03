@@ -1,17 +1,14 @@
 package org.alter.game.model
 
-import com.displee.cache.CacheLibrary
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.getNpc
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
 import io.github.oshai.kotlinlogging.KotlinLogging
-import io.netty.buffer.Unpooled
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import net.rsprot.compression.HuffmanCodec
 import net.rsprot.protocol.api.NetworkService
 import net.rsprot.protocol.api.js5.Js5GroupProvider
 import net.rsprot.protocol.game.outgoing.logout.Logout
@@ -54,26 +51,11 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     lateinit var network: NetworkService<Client, Js5GroupProvider.ByteBufJs5GroupType>
 
     /**
-     * The [CacheLibrary] is responsible for handling the data in our cache.
-     */
-    lateinit var filestore: CacheLibrary
-
-    /**
      * The [DefinitionSet] that holds general filestore data.
      */
     val definitions = DefinitionSet()
 
     lateinit var settings: Any
-
-    /**
-     * The [HuffmanCodec] used to compress and decompress public chat messages.
-     */
-    val huffman by lazy {
-        val binary = filestore.index(10)!!
-        val archive = binary.archive("huffman")!!
-        val file = archive.files[0]
-        HuffmanCodec.create(Unpooled.wrappedBuffer(file?.data!!))
-    }
 
     /**
      * A collection of our [Service]s specified in our game [ServerProperties]
