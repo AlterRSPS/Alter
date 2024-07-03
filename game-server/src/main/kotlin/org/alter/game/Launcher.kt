@@ -13,8 +13,6 @@ object Launcher {
         server.startGame(
             filestore = Paths.get("../data", "cache"),
             gameProps = Paths.get("../game.yml"),
-            packets = Paths.get("../data", "packets.yml"),
-            blocks = Paths.get("../data", "blocks.yml"),
             devProps = Paths.get("../dev-settings.yml"),
         )
     }
