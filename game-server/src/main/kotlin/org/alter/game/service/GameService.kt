@@ -117,7 +117,7 @@ class GameService : Service {
         maxMessagesPerCycle = serviceProperties.getOrDefault("messages-per-cycle", 30)
     }
 
-    override fun postLoad(
+    override fun bindNet(
         server: org.alter.game.Server,
         world: World,
     ) {
