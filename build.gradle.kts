@@ -14,14 +14,17 @@ allprojects {
 
     group = "org.alter"
     version = "0.0.5"
+    extra["requiredJdkVersion"] = 17
+    val REQUIRED_JDK_VERSION = rootProject.extra["requiredJdkVersion"] as Int
+
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion.set(JavaLanguageVersion.of(REQUIRED_JDK_VERSION))
         }
     }
     kotlin {
         jvmToolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion.set(JavaLanguageVersion.of(REQUIRED_JDK_VERSION))
         }
     }
     repositories {
@@ -69,7 +72,7 @@ allprojects {
     tasks.withType<KotlinCompile>().all {
         kotlinOptions {
             languageVersion = "1.7"
-            jvmTarget = "17"
+            jvmTarget = REQUIRED_JDK_VERSION.toString()
             freeCompilerArgs =
                 listOf(
                     "-Xallow-any-scripts-in-source-roots",
