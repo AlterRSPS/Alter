@@ -127,7 +127,7 @@ class Server {
          * Load the file store.
          */
         individualStopwatch.reset().start()
-        CacheManager.init(filestore, 222)
+        CacheManager.init(filestore, gameContext.revision)
         logger.info("Loaded filestore from path {} in {}ms.", filestore, individualStopwatch.elapsed(TimeUnit.MILLISECONDS))
 
         /*
