@@ -8,9 +8,6 @@ Due to the plugin capabilities, even owners without programming experience can j
 #### I found a bug, where can I report it?
 - You can report them by creating Issue on [GitHub](https://github.com/AlterRSPS/Alter/issues) or in Alter's [Discord Server](https://discord.gg/kdhBuRaduw)
 
-> [!NOTE]
-> The documentation for this framework is still in progress.
-
 #### Setting up the server:
 * Youtube tutorial: https://www.youtube.com/watch?v=2Tu-NTzMbf0
 
@@ -18,7 +15,10 @@ Due to the plugin capabilities, even owners without programming experience can j
 * ### First of all Download:
 * [2024-06-19-rev222.tar.gz](https://archive.runestats.com/osrs/2024-06-19-rev222.tar.gz) , And make sure you're using correct Java Version.
 * Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o)
-  * Side note: Better use `Intellij 2023.2.6` : https://download.jetbrains.com/idea/ideaIU-2023.2.6.exe , as most of us noticed alot of flaws with kotlin script on newer Intellij versions
+
+
+> [!NOTE]
+> Side note: Better use `Intellij 2023.2.6` : https://download.jetbrains.com/idea/ideaIU-2023.2.6.exe , as most of us noticed alot of flaws with kotlin script on newer Intellij versions
 
 * Secondly open Intellij, (If you already have a project open, either do `File -> Close`, or `File -> New -> Project from Version Control`)
 * If you decided to use `Close method` you will see this window, click on `Get from VCS`
@@ -28,7 +28,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Hit `Clone` and Let the project fully load.
 * Now open the `2023-08-03-rev215.tar.gz` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
   ![tutor6](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor6.png)
-- Xtea.json has to be in same folder like: Data /`api.yml` , `blocks.yml` , etc..
+- `Xtea.json` has to be in same folder like: Data /`api.yml`, etc..
 * Now click on `Gradle` button on right side. </br>
   ![tutor4](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Tutor4.png)
 * Expand `Alter` -> `other` and double click `install`
@@ -43,8 +43,6 @@ Due to the plugin capabilities, even owners without programming experience can j
 
 # What client do i use?
 * https://github.com/AlterRSPS/devious-client-rsps
-> [!WARNING]
-> Please ensure that the client is on Revision 222. This should be noted in the README. The latest changes have not yet been pushed.
 
 * ### Tools:
 * [CS2 Editor](https://github.com/blurite/cs2-editor), Big thanks to [Blurite Team](https://github.com/blurite) for maintaining such good tool.
