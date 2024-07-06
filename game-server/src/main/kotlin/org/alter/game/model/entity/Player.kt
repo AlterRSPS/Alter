@@ -473,7 +473,11 @@ open class Player(world: World) : Pawn(world) {
             avatar.extendedInfo.setIdentKit(slot, appearance.getLook(slot))
         }
         for (slot in 0..11) {
-            avatar.extendedInfo.setWornObj(slot, -1, -1, -1)
+            val item = equipment[slot] ?: continue
+            val itemDef = Item(item.id).getDef()
+            with(itemDef) {
+                avatar.extendedInfo.setWornObj(slot, id, wearPos2, wearPos3)
+            }
         }
         for (slot in 0..4) {
             avatar.extendedInfo.setColour(slot, appearance.colors[slot])

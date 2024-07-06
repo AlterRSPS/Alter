@@ -143,6 +143,12 @@ object EquipAction {
             } else {
                 p.equipment[equipSlot] = Item(replace.id, add + replace.amount)
             }
+            /**
+             * @TODO Could add refresh() for extendedInfo so when equipment changes we could just refresh it, but this should work for now.
+             */
+            val defs = Item(replace.id).getDef()
+            p.avatar.extendedInfo.setWornObj(equipSlot, replace.id, defs.wearPos2, defs.wearPos3)
+
             plugins.executeEquipSlot(p, equipSlot)
             plugins.executeEquipItem(p, replace.id)
         } else {
@@ -231,6 +237,13 @@ object EquipAction {
 //                }
 
                 p.equipment[equipSlot] = newEquippedItem
+
+                /**
+                 * @TODO Could add refresh() for extendedInfo so when equipment changes we could just refresh it, but this should work for now.
+                 */
+                val defs = Item(newEquippedItem.id).getDef()
+                p.avatar.extendedInfo.setWornObj(equipSlot, newEquippedItem.id, defs.wearPos2, defs.wearPos3)
+
                 plugins.executeEquipSlot(p, equipSlot)
                 plugins.executeEquipItem(p, newEquippedItem.id)
             }
@@ -258,6 +271,10 @@ object EquipAction {
             val leftover = Item(item, addition.getLeftOver())
             p.equipment[equipmentSlot] = leftover
         }
+        /**
+         * @TODO Could add refresh() for extendedInfo so when equipment changes we could just refresh it, but this should work for now.
+         */
+        p.avatar.extendedInfo.setWornObj(equipmentSlot, -1, -1,-1)
 
         onItemUnequip(p, item.id, equipmentSlot)
         return Result.SUCCESS
