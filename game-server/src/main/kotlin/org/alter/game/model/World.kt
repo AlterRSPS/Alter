@@ -19,7 +19,6 @@ import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.ObjectExamineHolder
 import org.alter.game.model.attr.AttributeMap
-import org.alter.game.model.attr.TERMINAL_ARGS
 import org.alter.game.model.collision.CollisionManager
 import org.alter.game.model.combat.NpcCombatDef
 import org.alter.game.model.entity.*
@@ -654,10 +653,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      */
     internal fun bindServices(server: Server) {
         services.forEach { it.bindNet(server, this) }
-    }
-
-    fun getTerminalArgs(): Array<String>? {
-        return this.attr[TERMINAL_ARGS]
     }
 
     companion object {
