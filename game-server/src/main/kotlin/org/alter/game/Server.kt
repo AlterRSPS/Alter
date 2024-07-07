@@ -119,14 +119,14 @@ class Server {
 
         System.setProperty("net.rsprot.protocol.internal.networkLogging", devContext.debugPackets.toString())
 
-        val world = World(gameContext, devContext)
-
         /*
          * Load the file store.
          */
         individualStopwatch.reset().start()
         CacheManager.init(filestore, gameContext.revision)
         logger.info("Loaded filestore from path {} in {}ms.", filestore, individualStopwatch.elapsed(TimeUnit.MILLISECONDS))
+
+        val world = World(gameContext, devContext)
 
         /*
          * Load the definitions.
