@@ -279,9 +279,9 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
                     ObjDelUpdate(EntityUpdateType.REMOVE_GROUND_ITEM, entity as GroundItem)
                 }
 
-//        EntityType.PROJECTILE ->
-//            if (spawn) MapProjAnimUpdate(EntityUpdateType.SPAWN_PROJECTILE, entity as Projectile)
-//            else throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
+        EntityType.PROJECTILE ->
+            if (spawn) MapProjAnimUpdate(EntityUpdateType.SPAWN_PROJECTILE, entity as Projectile)
+            else throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
 
             EntityType.AREA_SOUND ->
                 if (spawn) {
