@@ -528,24 +528,17 @@ abstract class Pawn(val world: World) : Entity() {
         delay: Int = 0,
         interruptable: Boolean = false,
     ) {
-        if (entityType.isPlayer && previouslySetAnim == -1 || interruptable) {
+        if (previouslySetAnim == -1 || interruptable) {
             if (entityType.isPlayer) {
                 previouslySetAnim = id
             }
             if (this is Player) {
                 world.plugins.executeOnAnimation(this, id)
             }
-            animateSend(-1, 0)
-            animateSend(id, delay)
         }
+        animateSend(-1, 0)
+        animateSend(id, delay)
     }
-
-    abstract fun graphic(
-        id: Int,
-        height: Int = 0,
-        delay: Int = 0,
-    )
-
     /**
      * @param id = Animation id
      * @param startDelay = when to start anim
@@ -560,10 +553,13 @@ abstract class Pawn(val world: World) : Entity() {
         } else if (entityType.isPlayer) {
             (this as Player).avatar.extendedInfo.setSequence(id, startDelay)
         }
-        if (this is Player) {
-            world.plugins.onAnimList[id]
-        }
     }
+
+    abstract fun graphic(
+        id: Int,
+        height: Int = 0,
+        delay: Int = 0,
+    )
 
     fun applyTint(
         hue: Int = 0,
