@@ -95,6 +95,8 @@ open class Player(world: World) : Pawn(world) {
      */
     @Volatile private var pendingLogout = false
 
+    fun getPendingLogout() = pendingLogout
+
     /**
      * A flag which indicates that our [FORCE_DISCONNECTION_TIMER] must be set
      * when [pendingLogout] logic is handled.

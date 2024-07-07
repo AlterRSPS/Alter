@@ -8,9 +8,12 @@ import org.alter.game.model.entity.Client
  */
 class DisconnectionHook(var client: Client) : Runnable {
     override fun run() {
-        logger.info { "Channel disconnected ${client.username}" }
-        client.world.unregister(client.world.getPlayerForUid(client.uid)!!)
-        client.channelFlush()
+        val player = client.world.getPlayerForUid(client.uid) ?: return
+        if (!player.getPendingLogout()) {
+            logger.info { "Channel `${client.username}` disconnected " }
+            client.world.unregister(player)
+            client.channelFlush()
+        }
     }
 
     companion object {
