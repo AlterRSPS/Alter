@@ -18,8 +18,6 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.text.DecimalFormat
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
 import java.util.concurrent.TimeUnit
 
 /**
@@ -173,11 +171,13 @@ class Server {
             world = world,
             jarPluginsDirectory = gameProperties.getOrDefault("plugin-packed-path", "../plugins"),
         )
-        logger.info(
-            "Loaded {} plugins in {}ms.",
-            DecimalFormat().format(world.plugins.getPluginCount()),
-            individualStopwatch.elapsed(TimeUnit.MILLISECONDS),
-        )
+        logger.info {
+            "${"Loaded {} plugins in {}ms."} ${DecimalFormat().format(world.plugins.getPluginCount())} ${
+                individualStopwatch.elapsed(
+                    TimeUnit.MILLISECONDS
+                )
+            }"
+        }
 
         /*
          * Post load world.
@@ -187,7 +187,7 @@ class Server {
         /*
          * Inform the time it took to load up all non-network logic.
          */
-        logger.info("${gameProperties.get<String>("name")!!} loaded up in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms.")
+        logger.info { "${gameProperties.get<String>("name")!!} loaded up in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms." }
 
         /*
          * Bind all service networks, if applicable.
@@ -198,27 +198,7 @@ class Server {
          * Bind the game port.
          */
         world.network.start()
-        logger.info("Now listening for incoming connections on port $port...")
-        System.gc()
-        logger.info("For commands, type `help` or `?` ")
-
-        var input: String?
-        do {
-            val name = gameProperties.getOrDefault("name", "Alter")
-            // Can add print("") here but keep in mind that it will merge with other lines.
-            input = readLine() /** @TODO Don't know but readlnOrNull() shows that it does not exist. */
-            if (input == null) {
-                break
-            }
-            print("\u001B[32m$name\u001B[0m@Live:~$ ")
-            val values = input.split(" ")
-            val args = if (values.size > 1) values.slice(1 until values.size).filter { it.isNotEmpty() }.toTypedArray() else null
-            val currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
-
-            println("[ \u001B[32mCOMMAND\u001B[0m ] [ $currentTime ]: $input")
-            println("$values")
-        } while (true)
-
+        logger.info { "Now listening for incoming connections on port $port..." }
         return world
     }
 
