@@ -305,7 +305,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
                     players[i]?.let { player ->
                         player.handleLogout()
                         player.write(Logout)
-                        player.channelClose()
+                        player.channelFlush()
                     }
                 }
             }

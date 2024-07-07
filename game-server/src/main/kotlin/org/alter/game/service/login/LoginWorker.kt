@@ -4,6 +4,7 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.protocol.common.client.OldSchoolClientType
 import net.rsprot.protocol.loginprot.outgoing.LoginResponse
 import net.rsprot.protocol.loginprot.outgoing.util.AuthenticatorResponse
+import org.alter.game.message.DisconnectionHook
 import org.alter.game.model.entity.Client
 import org.alter.game.service.GameService
 import org.alter.game.service.serializer.PlayerLoadResult
@@ -38,7 +39,7 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
 
                         if (interceptedLoginResult != null) {
                             request.responseHandler.writeFailedResponse(interceptedLoginResult)
-                            logger.info("User '{}' login denied with code {}.", client.username, interceptedLoginResult)
+                            logger.info("User '{}' 1 login denied with code {}.", client.username, interceptedLoginResult)
                         } else if (client.register()) {
                             request.responseHandler.writeSuccessfulResponse(
                                 LoginResponse.Ok(
@@ -64,11 +65,12 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
                                         client.index,
                                         OldSchoolClientType.DESKTOP,
                                     )
+                                setDisconnectionHook(DisconnectionHook(client))
                                 client.login()
                             }
                         } else {
                             request.responseHandler.writeFailedResponse(LoginResponse.InvalidSave)
-                            logger.info("User '{}' login denied with code {}.", client.username, LoginResponse.InvalidSave)
+                            logger.info("User '{}' 2 login denied with code {}.", client.username, LoginResponse.InvalidSave)
                         }
                     }
                 } else {
@@ -80,7 +82,7 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
                             else -> LoginResponse.InvalidSave
                         }
                     request.responseHandler.writeFailedResponse(errorCode)
-                    logger.info("User '{}' login denied with code {}.", client.username, loadResult)
+                    logger.info("User '{}' 3 login denied with code {}.", client.username, loadResult)
                 }
             } catch (e: Exception) {
                 logger.error("Error when handling request from ${request.block.username}.", e)
