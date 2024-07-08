@@ -52,32 +52,26 @@ object NpcDeathAction {
         } else {
             (killer as? Player)?.playSound(deathSound, npc.combatDef.defaultDeathSoundVolume)
         }
-
-        deathAnimation.forEach { anim ->
-            val def = getAnim(anim)
-            npc.animate(def.id)
-            wait(def.cycleLength + 1)
-        }
-
-        npc.animate(-1)
-        world.plugins.executeNpcDeath(npc)
-
-        if (npc.respawns) {
-            npc.invisible = true
-            npc.reset()
-            wait(respawnDelay)
-            npc.invisible = false
-            world.plugins.executeNpcSpawn(npc)
-        } else {
-            world.remove(npc)
-        }
+            deathAnimation.forEach { anim ->
+                val def = getAnim(anim)
+                npc.animate(def.id, def.cycleLength)
+                wait(def.cycleLength + 1)
+            }
+            world.plugins.executeNpcDeath(npc)
+            if (npc.respawns) {
+                npc.reset()
+                wait(respawnDelay)
+                npc.avatar.setInaccessible(false)
+                world.plugins.executeNpcSpawn(npc)
+            } else {
+                world.remove(npc)
+            }
     }
 
     private fun Npc.reset() {
         lock = LockState.NONE
         tile = spawnTile
-        setTransmogId(-1)
-
+        avatar.setInaccessible(true)
         attr.clear()
         timers.clear()
         world.setNpcDefaults(this)
