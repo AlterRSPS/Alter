@@ -138,27 +138,6 @@ bind_setting(child = NPC_ATTACK_OPTION) {
     val slot = player.attr[INTERACTING_SLOT_ATTR]!!.toInt() - 1
     player.setVarp(Varp.NPC_ATTACK_PRIORITY_VARP, slot)
 }
-val BOND_INTERFACE = 65
-bind_setting(child = BOND_BUTTON) {
-    with(player) {
-        openInterface(interfaceId = BOND_INTERFACE, dest = InterfaceDestination.MAIN_SCREEN)
-        runClientScript(2498, 1, 0, 0)
-        runClientScript(2524, -1, -1)
-        setComponentText(
-            interfaceId = 65,
-            component = 25,
-            text = "Redeem bonds for packages of <col=ffffff>14, 29 or 45 days</col>, or<br>up to <col=ffffff>a year</col> of Premier Membership.",
-        )
-        runClientScript(3650, 0)
-        runClientScript(733, 0, 0, 0, 0, 0, 0, 0, 0)
-    }
-}
-on_button(BOND_INTERFACE, 90) {
-    player.setVarbit(Varbit.BOND_INTERFACE_FOCUS_TAB, 0)
-}
-on_button(BOND_INTERFACE, 89) {
-    player.setVarbit(Varbit.BOND_INTERFACE_FOCUS_TAB, 1)
-}
 
 bind_setting(child = RUN_MODE_BUTTON) {
     player.toggleVarp(Varp.RUN_MODE_VARP)
@@ -192,6 +171,10 @@ bind_setting(SOUND_BAR) {
 bind_setting(AREA_SOUND_BAR) {
     player.setVarp(Varp.AUDIO_AREA_SOUND_VOLUME, player.getInteractingSlot() * 5)
 }
+
+
+
+
 
 bind_setting(ZOOM_TOGGLE_BUTTON) {
     player.toggleVarbit(Varbit.DISABLE_ZOOM)
