@@ -89,7 +89,7 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
             }
 
             if (type == ObjectType.FLOOR_DECORATION.value) {
-                if (def.interactive == 1 && def.solid == 1) {
+                if (def.interactive == 1 && def.solid != 1) {
                     putTile(Tile(x, z, height), impenetrable, *Direction.NESW)
                 }
             } else if (type >= ObjectType.DIAGONAL_WALL.value && type < ObjectType.FLOOR_DECORATION.value) {
