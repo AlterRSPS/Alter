@@ -296,21 +296,41 @@ abstract class Pawn(val world: World) : Entity() {
                         if (hitmark.damage > hp) {
                             hitmark.damage = hp
                         }
+                        /**
+                         * @TODO
+                         * Come up w some solution for attackerIndex, If im not mistaking at God wars / Nex you suppose to see other's HitSplats need to research this shit.
+                         * As for hitbar types we add them later onto Npc Class, assign em from (set_npc_combat_def)
+                         */
                         if (entityType.isNpc) {
-                            (this as Npc).avatar.extendedInfo.addHitMark(
-                                sourceIndex = -1,
+                            val npc = this as Npc
+                            npc.avatar.extendedInfo.addHitMark(
+                                sourceIndex = hitmark.attackerIndex,
                                 selfType = hitmark.type,
                                 value = hitmark.damage,
                                 delay = hit.clientDelay,
+                            )
+                            npc.avatar.extendedInfo.addHeadBar(
+                                sourceIndex = hitmark.attackerIndex,
+                                selfType = 0,
+                                endFill = 30,
+                                startFill = calculateFill((((this.getCurrentHp().toDouble() - hitmark.damage) / this.getMaxHp().toDouble()) * 100), 30)
                             )
                         } else if (entityType.isPlayer) {
-                            (this as Player).avatar.extendedInfo.addHitMark(
-                                sourceIndex = -1,
+                            val player = this as Player
+                            player.avatar.extendedInfo.addHitMark(
+                                sourceIndex = hitmark.attackerIndex,
                                 selfType = hitmark.type,
                                 value = hitmark.damage,
                                 delay = hit.clientDelay,
                             )
+                            player.avatar.extendedInfo.addHeadBar(
+                                sourceIndex = hitmark.attackerIndex,
+                                selfType = 0,
+                                endFill = 30,
+                                startFill = calculateFill((((this.getCurrentHp().toDouble() - hitmark.damage) / this.getMaxHp().toDouble()) * 100), 30)
+                            )
                         }
+
                         /*
                          * Only lower the pawn's hp if they do not have infinite
                          * health enabled.
@@ -334,6 +354,7 @@ abstract class Pawn(val world: World) : Entity() {
                         }
                     }
                     hit.actions.forEach { action -> action(hit) }
+
                 }
                 hitIterator.remove()
             }
@@ -342,7 +363,10 @@ abstract class Pawn(val world: World) : Entity() {
             pendingHits.clear()
         }
     }
-
+    fun calculateFill(percentage: Double, width: Int): Int {
+        val fill = (width * percentage / 100.0).toInt()
+        return if (fill == 0 && percentage != 0.0) return 0 else fill
+    }
     /**
      * Handle the [futureRoute] if necessary.
      */

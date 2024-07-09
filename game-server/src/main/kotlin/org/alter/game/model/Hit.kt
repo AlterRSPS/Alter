@@ -64,11 +64,13 @@ class Hit private constructor(val hitmarks: List<Hitmark>, val hitbar: Hitbar?, 
         return this
     }
 
-    data class Hitmark(val type: Int, var damage: Int)
+    data class Hitmark(val type: Int, var damage: Int, var attackerIndex: Int)
 
     data class Hitbar(val type: Int, val percentage: Int, val maxPercentage: Int, val depleteSpeed: Int, val delay: Int)
 
     class Builder {
+        private var attacker_index = -1
+
         private val hitmarks = mutableListOf<Hitmark>()
 
         private var onlyShowHitbar = false
@@ -140,8 +142,9 @@ class Hit private constructor(val hitmarks: List<Hitmark>, val hitbar: Hitbar?, 
         fun addHit(
             damage: Int,
             type: Int,
+            attackerSource: Int
         ): Builder {
-            hitmarks.add(Hitmark(type, damage))
+            hitmarks.add(Hitmark(type, damage, attackerSource))
             return this
         }
 
@@ -206,6 +209,11 @@ class Hit private constructor(val hitmarks: List<Hitmark>, val hitbar: Hitbar?, 
          */
         fun setHitbarMaxPercentage(percentage: Int): Builder {
             this.hitbarMaxPercentage = percentage
+            return this
+        }
+
+        fun setAttackerIndex(index: Int) : Builder {
+            this.attacker_index = index
             return this
         }
 

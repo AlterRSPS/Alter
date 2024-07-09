@@ -40,12 +40,14 @@ fun Pawn.hit(
     damage: Int,
     type: HitType = if (damage == 0) HitType.BLOCK else HitType.HIT,
     delay: Int = 0,
+    attackersIndex: Int = -1
 ): Hit {
     val hit =
         Hit.Builder()
             .setDamageDelay(delay)
-            .addHit(damage = damage, type = type.id)
+            .addHit(damage = damage, type = type.id, attackersIndex)
             .setHitbarMaxPercentage(HitbarType.NORMAL.pixelsWide)
+            .setAttackerIndex(attackersIndex)
             .build()
     addHit(hit)
     return hit

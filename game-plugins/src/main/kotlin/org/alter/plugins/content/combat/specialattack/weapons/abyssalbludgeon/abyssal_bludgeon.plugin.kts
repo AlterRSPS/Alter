@@ -1,6 +1,7 @@
 package org.alter.plugins.content.combat.specialattack.weapons.abyssalbludgeon
 
 import org.alter.api.Skills
+import org.alter.api.cfg.Graphic
 import org.alter.api.cfg.Items
 import org.alter.game.model.entity.AreaSound
 import org.alter.plugins.content.combat.dealHit
@@ -20,4 +21,12 @@ SpecialAttacks.register(Items.ABYSSAL_BLUDGEON, SPECIAL_REQUIREMENT) {
     val maxHit = MeleeCombatFormula.getMaxHit(player, target, specialAttackMultiplier = dmgBonus)
     val landHit = MeleeCombatFormula.getAccuracy(player, target) >= world.randomDouble()
     player.dealHit(target = target, maxHit = maxHit, landHit = landHit, delay = 1)
+}
+
+set_item_combat_logic(Items.ABYSSAL_BLUDGEON) {
+    val target = player.getTarget()
+    if (target != null) {
+        target.graphic(Graphic.ABYSSAL_BLUDGEON_SPECIAL)
+        player.dealHit(target = target, maxHit = 10, landHit = true, delay = 1)
+    }
 }

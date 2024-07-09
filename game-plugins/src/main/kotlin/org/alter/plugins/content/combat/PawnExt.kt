@@ -75,12 +75,12 @@ fun Pawn.dealHit(
         if (landHit) {
             val hit = world.random(maxHit)
             if (hit == maxHit && this@dealHit is Player) {
-                target.hit(damage = hit, type = HitType.HIT_MAX, delay = delay) // maxhit type
+                target.hit(damage = hit, type = HitType.HIT_MAX, delay = delay, attackersIndex = this.index) // maxhit type
             } else {
-                target.hit(damage = hit, delay = delay)
+                target.hit(damage = hit, delay = delay, attackersIndex = this.index)
             }
         } else {
-            target.hit(damage = 0, type = HitType.BLOCK, delay = delay)
+            target.hit(damage = 0, type = HitType.BLOCK, delay = delay, attackersIndex = this.index)
         }
 
     val pawnHit = PawnHit(hit, landHit)
