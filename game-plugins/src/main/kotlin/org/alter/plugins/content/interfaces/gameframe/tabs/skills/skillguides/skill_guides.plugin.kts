@@ -5,6 +5,10 @@ val SUB_SECTION_VARBIT = 4372
 val NEW_SKILL_GUIDE_INTERFACE = 860
 val NEW_SKILL_GUIDE_INTERFACE_CLOSE_COMPONENT = 4
 
+on_login {
+    player.setVarbit(Varbit.NEW_STYLE_SKILL_GUIDE_INTERFACE, 1)
+}
+
 SkillGuide.values.forEach { guide ->
     on_button(320, guide.child) {
         if (!player.lock.canInterfaceInteract()) {
@@ -18,7 +22,7 @@ SkillGuide.values.forEach { guide ->
             player.openInterface(interfaceId = 214, dest = InterfaceDestination.MAIN_SCREEN)
         } else {
             player.openInterface(interfaceId = NEW_SKILL_GUIDE_INTERFACE, dest = InterfaceDestination.MAIN_SCREEN)
-            player.runClientScript(1902, 1, 0)
+            player.runClientScript(1902, guide.bit, 0)
             //player.setInterfaceEvents(interfaceId = 860, component = 8, 0..2000) /* @TODO support setInterfaceEvents w empty InterfaceEvent list. */
             player.setInterfaceEvents(interfaceId = 860, component = 7, 0..200, InterfaceEvent.ClickOp1)
         }
