@@ -37,19 +37,19 @@ class Server {
      * before the game can be launched properly.
      */
     fun startServer(apiProps: Path) {
-        Thread.setDefaultUncaughtExceptionHandler { t, e -> logger.error("Uncaught server exception in thread $t!", e) }
+        Thread.setDefaultUncaughtExceptionHandler { t, e -> logger.error{"Uncaught server exception in thread $t! $e"} }
         val stopwatch = Stopwatch.createStarted()
 
         /*
          * Load the API property file.
          */
         apiProperties.loadYaml(apiProps.toFile())
-        logger.info("Preparing ${getApiName()}...")
+        logger.info{"Preparing ${getApiName()}..."}
 
         /*
          * Inform the time it took to load the API related logic.
          */
-        logger.info("${getApiName()} loaded up in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms.")
+        logger.info { "${getApiName()} loaded up in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms." }
     }
 
     /**
@@ -77,7 +77,7 @@ class Server {
         if (devProps != null && Files.exists(devProps)) {
             devProperties.loadYaml(devProps.toFile())
         }
-        logger.info("Loaded properties for ${gameProperties.get<String>("name")!!}.")
+        logger.info{"Loaded properties for ${gameProperties.get<String>("name")!!}."}
 
         /*
          * Create a game context for our configurations and services to run.
@@ -124,7 +124,7 @@ class Server {
          */
         individualStopwatch.reset().start()
         CacheManager.init(filestore, gameContext.revision)
-        logger.info("Loaded filestore from path {} in {}ms.", filestore, individualStopwatch.elapsed(TimeUnit.MILLISECONDS))
+        logger.info{"Loaded filestore from path ${filestore} in ${individualStopwatch.elapsed(TimeUnit.MILLISECONDS)}ms."}
 
         val world = World(gameContext, devContext)
 
@@ -160,7 +160,7 @@ class Server {
          */
         individualStopwatch.reset().start()
         world.privileges.load(gameProperties)
-        logger.info("Loaded {} privilege levels in {}ms.", world.privileges.size(), individualStopwatch.elapsed(TimeUnit.MILLISECONDS))
+        logger.info { "Loaded ${world.privileges.size()} privilege levels in ${individualStopwatch.elapsed(TimeUnit.MILLISECONDS)}ms." }
 
         /*
          * Load the plugins for game content.

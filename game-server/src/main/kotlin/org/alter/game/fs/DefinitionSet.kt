@@ -123,7 +123,7 @@ class DefinitionSet {
             }
             return true
         } catch (e: IOException) {
-            logger.error("Could not decrypt map region {}.", id)
+            logger.error { "${"Could not decrypt map region {}."} $id" }
             return false
         }
     }

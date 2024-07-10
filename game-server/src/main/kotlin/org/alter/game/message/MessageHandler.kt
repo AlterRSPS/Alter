@@ -37,7 +37,7 @@ interface MessageHandler<T> : BiConsumer<Client, T> {
             if (logService != null) {
                 logService.logPacket(client, message)
             } else {
-                logger.trace(message)
+                logger.trace { message }
             }
         }
     }

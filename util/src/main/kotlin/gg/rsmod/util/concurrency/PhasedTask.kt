@@ -13,7 +13,7 @@ object PhasedTask {
         try {
             task()
         } catch (e: Exception) {
-            logger.error("Error with phased task.", e)
+            logger.error(e) { "Error with phased task." }
         } finally {
             phaser.arriveAndDeregister()
         }

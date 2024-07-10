@@ -52,7 +52,7 @@ class RsaService : Service {
 
             val create = if (scanner.hasNext()) scanner.nextLine() in arrayOf("yes", "y", "true") else true
             if (create) {
-                logger.info("Generating RSA key pair...")
+                logger.info { "Generating RSA key pair..." }
                 createPair(bitCount = serviceProperties.getOrDefault("bit-count", 2048))
                 println("Please follow the instructions on console and continue once you've done so.")
                 scanner.next()
@@ -112,7 +112,7 @@ class RsaService : Service {
             writer.println("modulus: " + publicKey.modulus.toString(radix))
             writer.close()
         } catch (e: Exception) {
-            logger.error(e.toString())
+            logger.error { e.toString() }
         }
 
         try {
@@ -146,7 +146,7 @@ class RsaService : Service {
                 Files.createDirectory(directory)
             }
 
-            logger.info("Generating RSA key pair...")
+            logger.info { "Generating RSA key pair..." }
             service.createPair(bitCount)
         }
     }

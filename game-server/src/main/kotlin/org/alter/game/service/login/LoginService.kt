@@ -59,7 +59,7 @@ class LoginService : Service {
                 threadCount,
                 ThreadFactoryBuilder().setNameFormat(
                     "login-worker",
-                ).setUncaughtExceptionHandler { t, e -> logger.error("Error with thread $t", e) }.build(),
+                ).setUncaughtExceptionHandler { t, e -> logger.error(e) { "Error with thread $t" } }.build(),
             )
         for (i in 0 until threadCount) {
             executorService.execute(LoginWorker(this, worldVerificationService))

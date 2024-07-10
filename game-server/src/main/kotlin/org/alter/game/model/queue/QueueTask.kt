@@ -49,7 +49,7 @@ data class QueueTask(val ctx: Any, val priority: TaskPriority) : Continuation<Un
      */
     override fun resumeWith(result: Result<Unit>) {
         nextStep = null
-        result.exceptionOrNull()?.let { e -> logger.error("Error with plugin!", e) }
+        result.exceptionOrNull()?.let { e -> logger.error(e) { "Error with plugin!" } }
     }
 
     /**

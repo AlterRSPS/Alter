@@ -67,7 +67,7 @@ class WorldListService : Service {
 
         // If the world configuration file doesn't exist, spit out a warning and do nothing
         if (!Files.exists(path)) {
-            logger.warn("World list configuration file does not exist: $path")
+            logger.warn{"World list configuration file does not exist: $path"}
             return
         }
 

@@ -198,7 +198,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     internal fun cycle() {
         if (currentCycle++ >= Int.MAX_VALUE - 1) {
             currentCycle = 0
-            logger.info("World cycle has been reset.")
+            logger.info {"World cycle has been reset." }
         }
 
         /*
@@ -642,10 +642,16 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
             stopwatch.stop()
 
             services.add(service)
-            logger.info("Initiated service '{}' in {}ms.", service.javaClass.simpleName, stopwatch.elapsed(TimeUnit.MILLISECONDS))
+            logger.info {
+                "${"Initiated service '{}' in {}ms."} ${service.javaClass.simpleName} ${
+                    stopwatch.elapsed(
+                        TimeUnit.MILLISECONDS
+                    )
+                }"
+            }
         }
         services.forEach { s -> s.postLoad(server, this) }
-        logger.info("Loaded {} game services.", services.size)
+        logger.info { "${"Loaded {} game services."} ${services.size}" }
     }
 
     /**

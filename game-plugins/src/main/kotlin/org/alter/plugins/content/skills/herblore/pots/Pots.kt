@@ -31,7 +31,7 @@ class Pot(val unfinished: Int, val secondary: Int, val finished: IntArray, val m
             }
         } else { // all other values are invalid for charging pots
             // could only happen from improperly managed pot
-            logger.error("invalid chargeCount for pot at ${player.inventory[dstSlot]} with charges = $chargeCount")
+            logger.error{"invalid chargeCount for pot at ${player.inventory[dstSlot]} with charges = $chargeCount"}
         }
     }
 
@@ -54,7 +54,7 @@ class Pot(val unfinished: Int, val secondary: Int, val finished: IntArray, val m
             player.message("You have ${chargeCount - 1} doses of potion left.")
         } else { // not valid charge config
             // could only happen if [Pot.consume()] was called from an invalid pot registration
-            logger.error("invalid pot registration for ${player.getInteractingItem().id}")
+            logger.error{"invalid pot registration for ${player.getInteractingItem().id}"}
         }
     }
 

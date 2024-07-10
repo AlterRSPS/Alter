@@ -46,7 +46,7 @@ class FutureRoute private constructor(
                         t,
                         e,
                     ->
-                    logger.error("Error with thread $t", e)
+                    logger.error(e) { "Error with thread $t" }
                 }.build(),
             )
 

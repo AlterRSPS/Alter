@@ -39,7 +39,7 @@ class GameService : Service {
         Executors.newSingleThreadScheduledExecutor(
             ThreadFactoryBuilder()
                 .setNameFormat("game-context")
-                .setUncaughtExceptionHandler { t, e -> logger.error("Error with thread $t", e) }
+                .setUncaughtExceptionHandler { t, e -> logger.error(e) { "Error with thread $t" } }
                 .build(),
         )
 
@@ -164,7 +164,7 @@ class GameService : Service {
             try {
                 job()
             } catch (e: Exception) {
-                logger.error("Error executing game-thread job.", e)
+                logger.error(e) { "Error executing game-thread job." }
             }
         }
         /*
@@ -183,7 +183,7 @@ class GameService : Service {
             try {
                 task.execute(world, this)
             } catch (e: Exception) {
-                logger.error("Error with task ${task.javaClass.simpleName}.", e)
+                logger.error(e) { "Error with task ${task.javaClass.simpleName}." }
             }
             taskTimes[task.javaClass] = System.currentTimeMillis() - taskStart
         }

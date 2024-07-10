@@ -123,7 +123,7 @@ class InterfaceSet(private val listener: InterfaceListener) {
             listener.onInterfaceClose(found)
             return found
         }
-        logger.warn("No interface visible in pane ({}, {}).", hash shr 16, hash and 0xFFFF)
+        logger.warn { "${"No interface visible in pane ({}, {})."} ${hash shr 16} ${hash and 0xFFFF}" }
         return -1
     }
 
