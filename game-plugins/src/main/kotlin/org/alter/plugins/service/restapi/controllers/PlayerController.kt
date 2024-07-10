@@ -16,9 +16,9 @@ class PlayerController(req: Request, resp: Response, auth: Boolean) : Controller
         val obj = JsonObject()
         val user = JsonArray()
 
-        logger.info("Username: {}", req.params("name"))
+        logger.info { "Username: ${req.params("name")}"  }
 
-        logger.info("params: {}", req.params())
+        logger.info { "params: ${req.params()}"  }
 
         val username = req.params("name")
 

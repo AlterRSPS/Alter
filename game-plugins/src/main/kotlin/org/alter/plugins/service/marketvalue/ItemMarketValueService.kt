@@ -31,7 +31,7 @@ class ItemMarketValueService : Service {
                 }
             }
         }
-        logger.info("Loaded {} item values.", values.size)
+        logger.info { "Loaded ${values.size} item values." }
     }
 
     fun get(item: Int): Int {

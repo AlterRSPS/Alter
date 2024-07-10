@@ -101,7 +101,7 @@ class WorldListService : Service {
         val bootstrap = bootstrap.clone()
         bootstrap.childHandler(WorldListChannelInitializer(handler))
         channelFuture = bootstrap.bind(port).syncUninterruptibly()
-        logger.info("World list service listening on port $port, ${worldEntries.size} loaded.")
+        logger.info {"World list service listening on port $port, ${worldEntries.size} loaded."}
     }
 
     /**

@@ -41,9 +41,9 @@ class DumpEntityIdService : Service {
 
             if (!Files.exists(outputPath)) {
                 Files.createDirectory(outputPath)
-                logger.info("Output path does not exist. Creating directory: $outputPath")
+                logger.info { "Output path does not exist. Creating directory: $outputPath" }
             } else if (!Files.isDirectory(outputPath)) {
-                logger.error("Output path specified is a file - it must be a directory!")
+                logger.error { "Output path specified is a file - it must be a directory!" }
             }
         }
     }
