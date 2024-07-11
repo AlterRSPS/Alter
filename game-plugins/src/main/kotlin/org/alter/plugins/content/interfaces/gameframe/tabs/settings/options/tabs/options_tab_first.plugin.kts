@@ -186,7 +186,7 @@ val AREA_SOUND_VOLUME = AttributeKey<Int>()
 
 bind_setting(MUTE_MUSIC) {
     if (player.getVarp(Varp.AUDIO_MUSIC_VOLUME) == 0) {
-        player.setVarp(Varp.AUDIO_MUSIC_VOLUME, player.attr[AUDIO_MUSIC_VOLUME]!!)
+        player.setVarp(Varp.AUDIO_MUSIC_VOLUME, player.attr[AUDIO_MUSIC_VOLUME] ?: 100)
     } else {
         player.attr[AUDIO_MUSIC_VOLUME] = player.getVarp(Varp.AUDIO_MUSIC_VOLUME)
         player.setVarp(Varp.AUDIO_MUSIC_VOLUME, 0)
@@ -195,7 +195,7 @@ bind_setting(MUTE_MUSIC) {
 
 bind_setting(MUTE_SOUND) {
     if (player.getVarp(Varp.AUDIO_SOUND_EFFECT_VOLUME) == 0) {
-        player.setVarp(Varp.AUDIO_SOUND_EFFECT_VOLUME, player.attr[SOUND_EFFECT_VOLUME]!!)
+        player.setVarp(Varp.AUDIO_SOUND_EFFECT_VOLUME, player.attr[SOUND_EFFECT_VOLUME] ?: 100)
     } else {
         player.attr[SOUND_EFFECT_VOLUME] = player.getVarp(Varp.AUDIO_SOUND_EFFECT_VOLUME)
         player.setVarp(Varp.AUDIO_SOUND_EFFECT_VOLUME, 0)
@@ -204,7 +204,7 @@ bind_setting(MUTE_SOUND) {
 
 bind_setting(MUTE_AREA_SOUND) {
     if (player.getVarp(Varp.AUDIO_AREA_SOUND_VOLUME) == 0) {
-        player.setVarp(Varp.AUDIO_AREA_SOUND_VOLUME, player.attr[AREA_SOUND_VOLUME]!!)
+        player.setVarp(Varp.AUDIO_AREA_SOUND_VOLUME, player.attr[AREA_SOUND_VOLUME] ?: 100)
     } else {
         player.attr[AREA_SOUND_VOLUME] = player.getVarp(Varp.AUDIO_AREA_SOUND_VOLUME)
         player.setVarp(Varp.AUDIO_AREA_SOUND_VOLUME, 0)
