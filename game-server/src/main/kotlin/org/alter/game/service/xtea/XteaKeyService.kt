@@ -93,15 +93,13 @@ class XteaKeyService : Service, XteaProvider {
         world.xteaKeyService = this
 
         val validKeys = totalRegions - missingKeys.size
-        logger.info {
-            "${"Loaded {} / {} ({}%) XTEA keys."} ${
-                arrayOf<Any?>(
-                    validKeys,
-                    totalRegions,
-                    String.format("%.2f", (validKeys.toDouble() * 100.0) / totalRegions.toDouble())
-                )
-            }"
-        }
+        val xteaInfo = arrayOf<Any?>(
+            validKeys,
+            totalRegions,
+            String.format("%.2f", (validKeys.toDouble() * 100.0) / totalRegions.toDouble())
+        )
+
+        logger.info {"Loaded ${xteaInfo[0]} / ${xteaInfo[1]} (${xteaInfo[2]}%) XTEA keys."}
     }
 
     private fun loadSingleFile(path: Path) {

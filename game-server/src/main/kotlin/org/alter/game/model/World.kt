@@ -642,16 +642,10 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
             stopwatch.stop()
 
             services.add(service)
-            logger.info {
-                "${"Initiated service '{}' in {}ms."} ${service.javaClass.simpleName} ${
-                    stopwatch.elapsed(
-                        TimeUnit.MILLISECONDS
-                    )
-                }"
-            }
+            logger.info { "Initiated service '${service.javaClass.simpleName}' in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms." }
         }
         services.forEach { s -> s.postLoad(server, this) }
-        logger.info { "${"Loaded {} game services."} ${services.size}" }
+        logger.info { "Loaded ${services.size} game services." }
     }
 
     /**

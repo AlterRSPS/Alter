@@ -172,11 +172,7 @@ class Server {
             jarPluginsDirectory = gameProperties.getOrDefault("plugin-packed-path", "../plugins"),
         )
         logger.info {
-            "${"Loaded {} plugins in {}ms."} ${DecimalFormat().format(world.plugins.getPluginCount())} ${
-                individualStopwatch.elapsed(
-                    TimeUnit.MILLISECONDS
-                )
-            }"
+            "Loaded ${DecimalFormat().format(world.plugins.getPluginCount())} plugins in ${individualStopwatch.elapsed(TimeUnit.MILLISECONDS)}ms."
         }
 
         /*
