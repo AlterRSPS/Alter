@@ -2,6 +2,7 @@ package org.alter.api
 
 import org.alter.api.ext.enumSetOf
 import org.alter.game.model.combat.NpcCombatDef
+import org.alter.game.model.weightedTableBuilder.LootTable
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -84,6 +85,8 @@ class NpcCombatBuilder {
 
     private val speciesSet = enumSetOf<NpcSpecies>()
 
+    var LootTable: MutableSet<LootTable> = mutableSetOf()
+
     fun build(): NpcCombatDef {
         /**
          * @TODO Add indentifier if check fails
@@ -136,6 +139,7 @@ class NpcCombatBuilder {
             slayerXp,
             bonuses.toList(),
             speciesSet,
+            LootTable
         )
     }
 

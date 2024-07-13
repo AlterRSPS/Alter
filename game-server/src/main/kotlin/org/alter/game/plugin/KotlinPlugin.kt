@@ -511,6 +511,12 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     ) = r.bindNpcDeath(npc, plugin)
 
     /**
+     * Invoked when any npc finishes their death task and is de-registered
+     * from the world.
+     */
+    fun on_any_npc_death(plugin: Plugin.() -> Unit) = r.bindAnyNpcDeath(plugin)
+
+    /**
      * Completely overrides the npc death mechanic.
      */
     fun full_npc_death(

@@ -343,6 +343,9 @@ class PluginRepository(val world: World) {
      */
     private val npcDeathPlugins = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
 
+    internal val anyNpcDeath = mutableListOf<Plugin.() -> Unit>()
+
+
     /**
      * A map of plugins that occur when an [Event] is triggered.
      */
@@ -660,6 +663,10 @@ class PluginRepository(val world: World) {
         plugin: Plugin.() -> Unit,
     ) {
         npcDeathPlugins[npc] = plugin
+    }
+
+    fun bindAnyNpcDeath(plugin: Plugin.() -> Unit) {
+        anyNpcDeath.add(plugin)
     }
 
     fun executeNpcDeath(npc: Npc) {

@@ -58,6 +58,13 @@ object NpcDeathAction {
                 wait(def.cycleLength + 1)
             }
             world.plugins.executeNpcDeath(npc)
+
+        /**
+         * @TODO Remove this from plugin and convert it into it's own block.
+         */
+        world.plugins.anyNpcDeath.forEach {
+                npc.executePlugin(it)
+            }
             if (npc.respawns) {
                 npc.reset()
                 wait(respawnDelay)

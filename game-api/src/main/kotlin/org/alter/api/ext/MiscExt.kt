@@ -5,13 +5,14 @@ import org.alter.game.model.Tile
 import org.alter.game.model.timer.TimeConstants
 import org.alter.game.model.timer.TimerKey
 import org.alter.game.model.timer.TimerMap
+import java.security.SecureRandom
 import java.text.DecimalFormat
 import java.text.Format
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 
 private val RANDOM = ThreadLocalRandom.current()
-
+val random: Random = SecureRandom()
 fun Number.appendToString(string: String): String = "$this $string" + (if (this != 1) "s" else "")
 
 fun Number.format(format: Format): String = format.format(this)
@@ -25,6 +26,19 @@ fun String.parseAmount(): Long =
         endsWith("b") -> substring(0, length - 1).toLong() * 1_000_000_000
         else -> substring(0, length).toLong()
     }
+
+
+fun random(boundInclusive: Int) = random.nextInt(boundInclusive)
+
+fun random(range: IntRange): Int = random.nextInt(range.endInclusive - range.start) + range.start
+fun randomStep(start: Int, stop: Int, step: Int): Int {
+    val result = (start..stop step step).toList()
+    if (result.isEmpty()) {
+        return start
+    }
+    return (start..stop step step).toList().random()
+}
+
 
 fun Int.interpolate(
     minChance: Int,
