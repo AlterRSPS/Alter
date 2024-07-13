@@ -48,11 +48,6 @@ object NpcCombatDsl {
             combatBuilder.setVenomChance(builder.venomChance)
         }
 
-        fun drops(init: WeightedTable.WeightedTableBuilder.() -> Unit) {
-            val builder = WeightedTable.WeightedTableBuilder(combatBuilder)
-            init(builder)
-        }
-
         fun aggro(init: AggressivenessBuilder.() -> Unit) {
             val builder = AggressivenessBuilder()
             init(builder)
@@ -125,6 +120,9 @@ object NpcCombatDsl {
             init(builder)
             /**
              * @TODO Forgot if it's true or not but => Theres some monsters that can only be attacked on task.
+             * Addition: Yh, so there are mobs that can only be attacked during Slayer task / If you have paid your way in,
+             *          ^ Add a way to block out attacking if code block returns false.
+             *          So that we could reuse it for other shit and slayer.
              */
             combatBuilder.setSlayerParams(builder.levelRequirement, builder.xp)
         }

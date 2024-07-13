@@ -38,7 +38,6 @@ data class NpcCombatDef(
     val slayerXp: Double,
     val bonuses: List<Int>,
     val species: Set<Any>,
-    val drops: Set<tableDrops>?,
 ) {
     companion object {
         private const val DEFAULT_HITPOINTS = 10
@@ -80,7 +79,6 @@ data class NpcCombatDef(
                 slayerXp = 0.0,
                 bonuses = emptyList(),
                 species = emptySet(),
-                drops = null,
             )
     }
 }

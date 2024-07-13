@@ -848,4 +848,16 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         val npcDefs = getNpc(npc)
         return npcDefs.actions.contains(option)
     }
+
+    fun on_item_on_any_npc(Item: Int) {
+        /** Run this block -> if Npc does not have specific handling for it refering to ['on_item_on_npc']
+         **/
+    }
+
+    fun on_item_on_any_obj(Item: Int) {
+        /**
+         * Run this block -> if Object does not have specific handling for it refering to ['on_item_on_obj']
+         */
+    }
+
 }

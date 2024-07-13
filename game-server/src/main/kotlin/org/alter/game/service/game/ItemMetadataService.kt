@@ -348,9 +348,7 @@ class ItemMetadataService : Service {
         @JsonProperty("runAnimId") val runAnimId: Int = 0,
     ) {
         fun getAsArray(): IntArray {
-            val renderAnimList =
-                listOf(standAnimId, turnOnSpotAnim, walkForwardAnimId, walkBackwardsAnimId, walkLeftAnimId, walkRightAnimId, runAnimId)
-            return renderAnimList.toIntArray()
+            return listOf(standAnimId, turnOnSpotAnim, walkForwardAnimId, walkBackwardsAnimId, walkLeftAnimId, walkRightAnimId, runAnimId).toIntArray()
         }
     }
 
@@ -358,8 +356,4 @@ class ItemMetadataService : Service {
         @JsonProperty("skill") val skill: String?,
         @JsonProperty("level") val level: Int?,
     )
-
-    companion object {
-        private val logger = KotlinLogging.logger {}
-    }
 }
