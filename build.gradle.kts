@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias(libs.plugins.kotlin.jvm) apply true
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.ktlint)
+    //alias(libs.plugins.ktlint)
     idea
 }
 
