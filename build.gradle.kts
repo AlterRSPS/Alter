@@ -10,7 +10,7 @@ plugins {
 allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    //apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     group = "org.alter"
     version = "0.0.5"
