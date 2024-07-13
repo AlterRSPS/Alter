@@ -1,7 +1,5 @@
 package org.alter.game.model.combat
 
-import org.alter.game.model.weightedTableBuilder.tableDrops
-
 /**
  * Represents the combat definition for an npc.
  *
