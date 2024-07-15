@@ -32,6 +32,7 @@ import java.nio.file.Paths
  *
  * @author Tom <rspsmods@gmail.com>
  */
+@Suppress("UNUSED")
 class PluginRepository(val world: World) {
     /**
      * The total amount of plugins.
@@ -52,7 +53,7 @@ class PluginRepository(val world: World) {
      * The plugin that will be executed when the core module wants
      * close the main modal the player has opened.
      *
-     * This is used for things such as the [org.alter.game.message.impl.MoveGameClickMessage].
+     * This is used for things such as the [net.rsprot.protocol.game.incoming.misc.user.MoveGameClick].
      */
     private var closeModalPlugin: (Plugin.() -> Unit)? = null
 
@@ -395,9 +396,7 @@ class PluginRepository(val world: World) {
      */
     internal val services = mutableListOf<Service>()
 
-    internal val onAnimList = hashMapOf<Int, Plugin.() -> Unit>()
-
-    internal val terminalCommands = hashMapOf<String, Pair<String?, Plugin.() -> Unit>>()
+    private val onAnimList = hashMapOf<Int, Plugin.() -> Unit>()
 
     /**
      * Holds all container keys set from plugins for this [PluginRepository].
@@ -441,10 +440,8 @@ class PluginRepository(val world: World) {
         server: Server,
         world: World,
     ) {
-        /**
-         * There are two Mains?
-         */
-        ClassGraph().enableAllInfo().whitelistModules().scan().use { result ->
+        ClassGraph().enableAllInfo().scan().use { result ->
+        //ClassGraph().enableAllInfo().whitelistModules().scan().use { result ->
             val plugins = result.getSubclasses(KotlinPlugin::class.java.name).directOnly()
             plugins.forEach { p ->
                 val pluginClass = p.loadClass(KotlinPlugin::class.java)
@@ -941,7 +938,7 @@ class PluginRepository(val world: World) {
         plugin: Plugin.() -> Unit,
     ) {
         if (interfaceClosePlugins.containsKey(interfaceId)) {
-            logger.error("Component id is already bound to a plugin: $interfaceId")
+            logger.error { "Component id is already bound to a plugin: $interfaceId" }
             throw IllegalStateException("Component id is already bound to a plugin: $interfaceId")
         }
         interfaceClosePlugins[interfaceId] = plugin
@@ -1605,7 +1602,7 @@ class PluginRepository(val world: World) {
         return true
     }
 
-    private final val ItemOnNpcGlobal = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
+    private val ItemOnNpcGlobal = Int2ObjectOpenHashMap<Plugin.() -> Unit>()
 
     /**
      *  Will execute if the item was used on any Npc

@@ -23,6 +23,7 @@ import kotlin.script.experimental.annotations.KotlinScript
  *
  * @author Tom <rspsmods@gmail.com>
  */
+@Suppress("UNUSED")
 @KotlinScript(
     displayName = "Kotlin Plugin",
     fileExtension = "plugin.kts",
@@ -301,7 +302,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     /**
-     * Checks if a [NPC] has [option]
+     * Checks if a [Npc] has [option]
      */
     fun npcHasOption(
         npc: Int,
@@ -396,13 +397,14 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     ) = r.bindItemOnGroundItem(item, groundItem, plugin)
 
     /**
-     * Set the logic to execute when [org.alter.game.message.impl.WindowStatusMessage]
+     * Set the logic to execute when Message Class -> WindowStateMessage
      * is handled.
+     * @TODO
      */
     fun set_window_status_logic(logic: (Plugin).() -> Unit) = r.bindWindowStatus(logic)
 
     /**
-     * Set the logic to execute when [org.alter.game.message.impl.CloseModalMessage]
+     * Set the logic to execute when [net.rsprot.protocol.game.incoming.misc.user.CloseModal]
      * is handled.
      */
     fun set_modal_close_logic(logic: (Plugin).() -> Unit) = r.bindModalClose(logic)
@@ -538,7 +540,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     /**
-     * Invoke [logic] when [org.alter.game.message.impl.OpNpcTMessage] is handled.
+     * Invoke [logic] when [net.rsprot.protocol.game.incoming.npcs.OpNpcT] is handled.
      */
     fun on_spell_on_npc(
         parent: Int,
@@ -547,7 +549,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     ) = r.bindSpellOnNpc(parent, child, logic)
 
     /**
-     * Invoke [logic] when [org.alter.game.message.impl.OpNpcTMessage] is handled.
+     * Invoke [logic] when [net.rsprot.protocol.game.incoming.npcs.OpNpcT] is handled.
      */
     fun on_spell_on_player(
         parent: Int,
