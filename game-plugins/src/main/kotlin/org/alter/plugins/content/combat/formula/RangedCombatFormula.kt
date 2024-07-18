@@ -438,7 +438,7 @@ object RangedCombatFormula : CombatFormula {
 
     private fun isDragon(pawn: Pawn): Boolean {
         if (pawn.entityType.isNpc) {
-            return (pawn as Npc).isSpecies(NpcSpecies.DRAGON)
+            return (pawn as Npc).isSpecies(NpcSpecies.DRACONIC)
         }
         return false
     }

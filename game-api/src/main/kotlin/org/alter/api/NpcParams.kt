@@ -17,17 +17,24 @@ object NpcSkills {
 
 /**
  * @author Tom <rspsmods@gmail.com>
+ * https://oldschool.runescape.wiki/w/Monster_attribute
  */
 enum class NpcSpecies {
     DEMON,
     SHADE,
     KALPHITE,
     SCARAB,
-    DRAGON,
+    DRACONIC,
     BASIC_DRAGON,
     BRUTAL_DRAGON,
     FIERY,
     UNDEAD,
+    XERICIAN,
+    GOLEM,
+    PENANCE,
+    RAT,
+    SPECTRAL,
+    VAMPYRE
 }
 
 /**

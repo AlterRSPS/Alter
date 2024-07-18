@@ -6,7 +6,7 @@ spawn_npc(Npcs.KING_BLACK_DRAGON, x = 2274, z = 4698, walkRadius = 5)
 
 set_combat_def(Npcs.KING_BLACK_DRAGON) {
     species {
-        +NpcSpecies.DRAGON
+        +NpcSpecies.DRACONIC
         +NpcSpecies.BASIC_DRAGON
     }
 
