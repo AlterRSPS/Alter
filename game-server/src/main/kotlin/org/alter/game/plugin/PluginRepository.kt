@@ -443,6 +443,9 @@ class PluginRepository(
     ) {
         ClassGraph().enableAllInfo().scan().use { result ->
             // ClassGraph().enableAllInfo().whitelistModules().scan().use { result ->
+            /**
+             * @TODO Needs to be inspected
+             */
             val plugins = result.getSubclasses(KotlinPlugin::class.java.name).directOnly()
             plugins.forEach { p ->
                 val pluginClass = p.loadClass(KotlinPlugin::class.java)
