@@ -32,13 +32,15 @@ data class NpcCombatDef(
     val aggressiveTimer: Int,
     val poisonChance: Double,
     val venomChance: Double,
-    val poisonImmunity: Boolean,
-    val venomImmunity: Boolean,
     val slayerReq: Int,
     val slayerXp: Double,
     val bonuses: List<Int>,
     val species: Set<Any>,
-    val LootTables: MutableSet<LootTable>?
+    val LootTables: MutableSet<LootTable>?,
+    val immunePoison: Boolean,
+    val immuneVenom: Boolean,
+    val immuneCannons: Boolean,
+    val immuneThralls: Boolean
 ) {
     companion object {
         private const val DEFAULT_HITPOINTS = 10
@@ -74,13 +76,15 @@ data class NpcCombatDef(
                 respawnDelay = DEFAULT_RESPAWN_DELAY,
                 poisonChance = 0.0,
                 venomChance = 0.0,
-                poisonImmunity = false,
-                venomImmunity = false,
                 slayerReq = 1,
                 slayerXp = 0.0,
                 bonuses = emptyList(),
                 species = emptySet(),
-                LootTables = null
+                LootTables = null,
+                immunePoison = false,
+                immuneVenom = false,
+                immuneCannons = false,
+                immuneThralls = false
             )
     }
 }

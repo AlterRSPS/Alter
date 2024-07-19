@@ -47,6 +47,21 @@ object NpcCombatDsl {
             combatBuilder.setPoisonChance(builder.poisonChance)
             combatBuilder.setVenomChance(builder.venomChance)
         }
+        @CombatDslMarker
+        class ImmunitiesBuilder {
+            var poison = false
+            var venom = false
+            var cannon = false
+            var thralls = false
+        }
+        fun immunities(init: ImmunitiesBuilder.() -> Unit) {
+            val builder = ImmunitiesBuilder()
+            init(builder)
+            combatBuilder.setPoisonImmunity(builder.poison)
+            combatBuilder.setVenomImmunity(builder.venom)
+            combatBuilder.setCannonImmunity(builder.cannon)
+            combatBuilder.setThrallsImmunity(builder.thralls)
+        }
 
         fun aggro(init: AggressivenessBuilder.() -> Unit) {
             val builder = AggressivenessBuilder()
