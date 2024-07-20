@@ -14,6 +14,7 @@ application {
 }
 
 dependencies {
+    implementation("org.jsoup:jsoup:1.14.3")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 

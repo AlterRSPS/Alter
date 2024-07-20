@@ -6,7 +6,10 @@ plugins {
     alias(libs.plugins.ktlint)
     idea
 }
-
+/**
+ * @TODO Sort out dependencies
+ * Into projects as it makes huge mess.
+ */
 allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
