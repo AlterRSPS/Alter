@@ -462,22 +462,22 @@ class NpcCombatBuilder {
     }
 
     fun setPoisonImmunity(state: Boolean): NpcCombatBuilder {
-        check(immunePoison) { "Poison immunity was already applied."}
+        check(!immunePoison) { "Poison immunity was already applied."}
         immunePoison = state
         return this
     }
     fun setVenomImmunity(state: Boolean): NpcCombatBuilder {
-        check(immuneVenom) { "Venom immunity was already applied."}
+        check(!immuneVenom) { "Venom immunity was already applied."}
         immuneVenom = state
         return this
     }
     fun setCannonImmunity(state: Boolean): NpcCombatBuilder {
-        check(immuneCannons) { "Cannon immunity was already applied."}
+        check(!immuneCannons) { "Cannon immunity was already applied."}
         immuneCannons = state
         return this
     }
     fun setThrallsImmunity(state: Boolean): NpcCombatBuilder {
-        check(immuneThralls) { "Thralls immunity was already applied."}
+        check(!immuneThralls) { "Thralls immunity was already applied."}
         immuneThralls = state
         return this
     }
