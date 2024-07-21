@@ -20,8 +20,11 @@ object Poison {
 
     fun isImmune(pawn: Pawn): Boolean =
         when (pawn) {
+            /**
+             * :lolbert: Nigga, just make it attribute dependent. @TODO Uhh will do this when we wip combat/weapon logic
+             */
             is Player -> pawn.hasEquipped(EquipmentType.HEAD, Items.SERPENTINE_HELM, Items.TANZANITE_HELM, Items.MAGMA_HELM)
-            is Npc -> pawn.combatDef.poisonImmunity
+            is Npc -> pawn.combatDef.immunePoison
             else -> false
         }
 
@@ -46,9 +49,9 @@ object Poison {
     ) {
         val value =
             when (state) {
-                Poison.OrbState.NONE -> 0
-                Poison.OrbState.POISON -> 1
-                Poison.OrbState.VENOM -> 1_000_000
+                OrbState.NONE -> 0
+                OrbState.POISON -> 1
+                OrbState.VENOM -> 1_000_000
             }
         player.setVarp(HP_ORB_VARP, value)
     }

@@ -17,17 +17,24 @@ object NpcSkills {
 
 /**
  * @author Tom <rspsmods@gmail.com>
+ * https://oldschool.runescape.wiki/w/Monster_attribute
  */
 enum class NpcSpecies {
     DEMON,
     SHADE,
     KALPHITE,
     SCARAB,
-    DRAGON,
+    DRACONIC,
     BASIC_DRAGON,
     BRUTAL_DRAGON,
     FIERY,
     UNDEAD,
+    XERICIAN,
+    GOLEM,
+    PENANCE,
+    RAT,
+    SPECTRAL,
+    VAMPYRE
 }
 
 /**
@@ -85,6 +92,12 @@ class NpcCombatBuilder {
 
     private val speciesSet = enumSetOf<NpcSpecies>()
 
+    private var immunePoison = false
+    private var immuneVenom = false
+    private var immuneCannons = false
+    private var immuneThralls = false
+
+
     var LootTable: MutableSet<LootTable> = mutableSetOf()
 
     fun build(): NpcCombatDef {
@@ -133,13 +146,15 @@ class NpcCombatBuilder {
             aggroTimer,
             poisonChance,
             venomChance,
-            poisonImmunity,
-            venomImmunity,
             slayerReq,
             slayerXp,
             bonuses.toList(),
             speciesSet,
-            LootTable
+            LootTable,
+            immunePoison,
+            immuneVenom,
+            immuneCannons,
+            immuneThralls
         )
     }
 
@@ -335,18 +350,6 @@ class NpcCombatBuilder {
         return this
     }
 
-    fun setPoisonImmunity(): NpcCombatBuilder {
-        check(!poisonImmunity) { "Poison immunity already set." }
-        poisonImmunity = true
-        return this
-    }
-
-    fun setVenomImmunity(): NpcCombatBuilder {
-        check(!venomImmunity) { "Venom immunity already set." }
-        venomImmunity = true
-        return this
-    }
-
     fun setSlayerRequirement(levelReq: Int): NpcCombatBuilder {
         check(slayerReq == -1) { "Slayer requirement already set." }
         slayerReq = levelReq
@@ -457,6 +460,33 @@ class NpcCombatBuilder {
         speciesSet.addAll(species)
         return this
     }
+
+    fun setPoisonImmunity(state: Boolean): NpcCombatBuilder {
+        check(immunePoison) { "Poison immunity was already applied."}
+        immunePoison = state
+        return this
+    }
+    fun setVenomImmunity(state: Boolean): NpcCombatBuilder {
+        check(immuneVenom) { "Venom immunity was already applied."}
+        immuneVenom = state
+        return this
+    }
+    fun setCannonImmunity(state: Boolean): NpcCombatBuilder {
+        check(immuneCannons) { "Cannon immunity was already applied."}
+        immuneCannons = state
+        return this
+    }
+    fun setThrallsImmunity(state: Boolean): NpcCombatBuilder {
+        check(immuneThralls) { "Thralls immunity was already applied."}
+        immuneThralls = state
+        return this
+    }
+
+
+
+
+
+
 
     companion object {
         private const val BONUS_COUNT = 14

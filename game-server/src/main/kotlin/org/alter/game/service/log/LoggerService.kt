@@ -18,6 +18,8 @@ import org.alter.game.service.Service
  * @author Tom <rspsmods@gmail.com>
  */
 interface LoggerService : Service {
+    fun init() {}
+
     fun logPacket(
         client: Client,
         message: String,
