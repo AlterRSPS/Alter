@@ -4,9 +4,13 @@ import org.alter.api.cfg.Graphic
 
 
 val imp = Npcs.IMP_3134
-val tile = Tile(3235, 3220, 0)
-for (i in 0 until 5) {
-    spawn_npc(imp, x = tile.x + i, z = tile.z)
+val tile = Tile(3235, 3219, 0)
+
+
+for (x in -2 until 2) {
+    for (z in -2 until 2) {
+        spawn_npc(imp, x = tile.x + x, z = tile.z + z)
+    }
 }
 
 set_combat_def(imp) {
@@ -59,7 +63,7 @@ set_combat_def(imp) {
      *
      */
     stats {
-        hitpoints = 100
+        hitpoints = 10
         defence = -100 // @TODO Rework and implement new defence system
     }
 
