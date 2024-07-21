@@ -1,8 +1,5 @@
 package org.alter.plugins.content
 
-import org.alter.api.cfg.Graphic
-
-
 val imp = Npcs.IMP_3134
 val tile = Tile(3235, 3219, 0)
 
@@ -22,39 +19,26 @@ set_combat_def(imp) {
         poison = true
         venom = true
     }
-   /* defence {
+    defence {
         melee {
             stab = -42
             slash = -42
             crush = -42
         }
-        /**
         magic {
             magic = -42
-            /**
-             * @TODO As i seen on wiki , all weaknesses involve only single elements,
-             * I guess we could just support Multiple
-             */
-            elementWeaknes = {
-                /**
-                 * Element.EARTH
-                 * Element.AIR
-                 * Element.WATER
-                 * Element.FIRE
-                 * Element.FIRE
-                  */
-                200
-            }
+            elementWeakness = ElementalWeakness(Elements.AIR, 200)
         }
-        */
         range {
             darts = -42
             arrows = -42
             bolts = -42
         }
-    } */
+    }
+
     species {
-        NpcSpecies.DEMON
+        +NpcSpecies.DEMON
+        +NpcSpecies.DRACONIC
     }
     /**
      * @TODO
@@ -66,7 +50,6 @@ set_combat_def(imp) {
         hitpoints = 10
         defence = -100 // @TODO Rework and implement new defence system
     }
-
     bonuses {
         attackStab = -42
         strengthBonus = -37
@@ -75,8 +58,6 @@ set_combat_def(imp) {
         attackRanged = 0
         rangedStrengthBonus = 0
     }
-
-
     /**
      * @TODO
      * New defence system, 3 DSL Builders
@@ -94,8 +75,6 @@ set_combat_def(imp) {
      * Bolts + 70
      *
      */
-
-
     anims {
         attack = Animation.IMP_ATTACK
         block = Animation.IMP_DEFEND
@@ -106,39 +85,57 @@ set_combat_def(imp) {
         blockSound = Sound.IMP_HIT
         deathSound = Sound.IMP_DEATH
     }
-}
-val mm = Npcs.MANIACAL_MONKEY_6803
-on_npc_death(imp) {
-    world.spawn(Npc(mm, npc.tile, npc.world))
-}
-on_npc_spawn(mm) {
-    /**
-     * Hmm maybe would be nice to freeze spawn till this one dies
-     */
-    for (x in -3..3) {
-        for (z in -3..3) {
-            val gfx_tile = Tile(npc.tile.x + x, npc.tile.z + z, npc.tile.height)
-            world.spawn(TileGraphic(tile = gfx_tile, id = Graphic.ALCHEMICAL_HYDRA_FIRE,99, 0))
+    drops {
+        always {
+            add(Items.FIENDISH_ASHES, 1)
         }
-    }
-}
-set_combat_def(mm) {
-    configs {
-        attackSpeed = 6
-        respawnDelay = 0
-    }
-    stats {
-        hitpoints = 250
-        defence = 99
-    }
-    anims {
-        attack = Animation.MONKEY_ATTACK
-        block = Animation.MONKEY_HIT
-        death = Animation.MONKEY_ARCHER_DEATH
-    }
-    sound {
-        attackSound = Sound.MONKEY_ATTACK
-        blockSound = Sound.MONKEY_HIT
-        deathSound = Sound.MONKEY_DEATH
+        main(128) {
+            add(Items.BLACK_BEAD, weight = 5)
+            add(Items.RED_BEAD, weight = 5)
+            add(Items.WHITE_BEAD, weight = 5)
+            add(Items.YELLOW_BEAD, weight = 5)
+            add(Items.BRONZE_BOLTS, weight = 8)
+            add(Items.BLUE_WIZARD_HAT, weight = 8)
+            add(Items.EGG, weight = 5)
+            add(Items.RAW_CHICKEN, weight = 5)
+            add(Items.BURNT_BREAD, weight = 4)
+            add(Items.BURNT_MEAT, weight = 4)
+            add(Items.CABBAGE, weight = 2)
+            add(Items.BREAD_DOUGH, weight = 2)
+            add(Items.BREAD, weight = 1)
+            add(Items.COOKED_MEAT, weight = 1)
+            add(Items.HAMMER, weight = 8)
+            add(Items.TINDERBOX, weight = 5)
+            add(Items.SHEARS, weight = 4)
+            add(Items.BUCKET, weight = 4)
+            add(Items.BUCKET_OF_WATER, weight = 2)
+            add(Items.JUG, weight = 2)
+            add(Items.JUG_OF_WATER, weight = 2)
+            add(Items.POT, weight = 2)
+            add(Items.POT_OF_FLOUR, weight = 2)
+            add(Items.BALL_OF_WOOL, weight = 8)
+            add(Items.MIND_TALISMAN, weight = 7)
+            add(Items.ASHES, weight = 6)
+            add(Items.CLAY, weight = 4)
+            add(Items.CADAVA_BERRIES, weight = 4)
+            add(Items.GRAIN, weight = 3)
+            add(Items.CHEFS_HAT, weight = 2)
+            add(Items.FLYER, weight = 2)
+            add(Items.POTION, weight = 1)
+        }
+        tertiary(5000) {
+            add(Items.ENSOULED_IMP_HEAD, 1, 25)
+            add(Items.ECUMENICAL_KEY, 1, 60)
+            add(Items.IMP_CHAMPION_SCROLL, 1, 5000)
+        }
+        /**
+         * [13:17:28.097] ERROR GameService - Cycle took longer than expected: 654ms / 600ms!
+         * [13:17:28.099] ERROR GameService - {class org.alter.game.task.SequentialSynchronizationTask=1, class org.alter.game.task.ChunkCreationTask=0, class org.alter.game.task.WorldRemoveTask=0, class org.alter.game.task.QueueHandlerTask=0, class org.alter.game.task.MessageHandlerTask=0, class org.alter.game.task.PlayerCycleTask=0, class org.alter.game.task.NpcCycleTask=0}
+         * [13:17:28.100] ERROR GameService - {123=0}
+         *
+         *
+         * @TODO Add code block for --> OnDrop()
+         * And make so that we could create rollable table
+         */
     }
 }
