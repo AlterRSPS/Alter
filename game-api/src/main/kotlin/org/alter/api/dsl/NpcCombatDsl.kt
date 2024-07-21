@@ -1,9 +1,6 @@
 package org.alter.api.dsl
 
-import org.alter.api.BonusSlot
-import org.alter.api.NpcCombatBuilder
-import org.alter.api.NpcSkills
-import org.alter.api.NpcSpecies
+import org.alter.api.*
 import org.alter.api.ext.NPC_ATTACK_BONUS_INDEX
 import org.alter.api.ext.NPC_MAGIC_DAMAGE_BONUS_INDEX
 import org.alter.api.ext.NPC_RANGED_STRENGTH_BONUS_INDEX
@@ -47,6 +44,67 @@ object NpcCombatDsl {
             combatBuilder.setPoisonChance(builder.poisonChance)
             combatBuilder.setVenomChance(builder.venomChance)
         }
+
+        /**
+         * @TODO Add multiple element weakness support
+         */
+        @CombatDslMarker
+        class defenceMagicBuilder {
+            var magic: Int = 0
+            var elementWeakness: ElementalWeakness? = null
+
+            fun build(): MagicDefence {
+                return MagicDefence(magic, elementWeakness)
+            }
+        }
+        @CombatDslMarker
+        class defenceMeleeBuilder {
+            var stab: Int = 0
+            var slash: Int = 0
+            var crush: Int = 0
+
+            fun build(): MeleeDefence {
+                return MeleeDefence(stab, slash, crush)
+            }
+        }
+
+        @CombatDslMarker
+        class defenceRangeBuilder {
+            var darts = 0
+            var arrows = 0
+            var bolts = 0
+            fun build(): RangeDefence {
+                return RangeDefence(darts, arrows, bolts)
+            }
+        }
+        class DefenceBuilder {
+            var meleeDefence: MeleeDefence? = null
+            var rangeDefence: RangeDefence? = null
+            var magicDefence: MagicDefence? = null
+            fun melee(init: defenceMeleeBuilder.() -> Unit) {
+                val builder = defenceMeleeBuilder()
+                builder.init()
+                meleeDefence = builder.build()
+            }
+
+            fun range(init: defenceRangeBuilder.() -> Unit) {
+                val builder = defenceRangeBuilder()
+                builder.init()
+                rangeDefence = builder.build()
+            }
+
+            fun magic(init: defenceMagicBuilder.() -> Unit) {
+                val builder = defenceMagicBuilder()
+                builder.init()
+                magicDefence = builder.build()
+            }
+        }
+        fun defence(init: DefenceBuilder.() -> Unit) {
+            val builder = DefenceBuilder()
+            builder.init()
+
+        }
+
         @CombatDslMarker
         class ImmunitiesBuilder {
             var poison = false
@@ -140,6 +198,12 @@ object NpcCombatDsl {
              *          So that we could reuse it for other shit and slayer.
              */
             combatBuilder.setSlayerParams(builder.levelRequirement, builder.xp)
+        }
+
+        fun drops(init: WeightedTableBuilder.() -> Unit) {
+            val builder = WeightedTableBuilder()
+            builder.combatBuilder = combatBuilder
+            init(builder)
         }
     }
 

@@ -5,6 +5,26 @@ import org.alter.game.model.combat.NpcCombatDef
 import org.alter.game.model.weightedTableBuilder.LootTable
 
 /**
+ * @author Cl0udS3c
+ */
+data class MeleeDefence(val stab: Int, val slash: Int, val crush: Int)
+data class RangeDefence(val darts: Int, val arrows: Int, val bolts: Int)
+
+data class MagicDefence(val magic: Int, val elementsWeakness: ElementalWeakness?)
+
+enum class Elements {
+    EARTH,
+    AIR,
+    WATER,
+    FIRE
+}
+data class ElementalWeakness(var element: Elements, var percent: Int)
+
+
+
+
+
+/**
  * @author Tom <rspsmods@gmail.com>
  */
 object NpcSkills {
