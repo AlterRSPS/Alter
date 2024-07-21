@@ -18,10 +18,12 @@ object KotlinPluginConfiguration : ScriptCompilationConfiguration({
         "org.alter.game.model.shop.PurchasePolicy",
         "org.alter.game.model.shop.StockType",
         "org.alter.game.plugin.Plugin",
-        "org.alter.game.**",
+        "org.alter.game.*",
         "org.alter.api.*",
         "org.alter.api.ext.*",
         "org.alter.api.cfg.*",
         "org.alter.api.dsl.*",
     )
-})
+}) {
+    private fun readResolve(): Any = KotlinPluginConfiguration
+}

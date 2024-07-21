@@ -12,7 +12,6 @@ import org.alter.game.model.combat.AttackStyle
 import org.alter.game.model.combat.CombatClass
 import org.alter.game.model.combat.CombatStyle
 import org.alter.game.model.combat.NpcCombatDef
-import org.alter.game.model.weightedTableBuilder.tableDrops
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -112,9 +111,6 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      */
     val species: Set<Any>
         get() = combatDef.species
-
-    val dropTable: Set<tableDrops>?
-        get() = combatDef.drops
 
     override val entityType: EntityType = EntityType.NPC
 

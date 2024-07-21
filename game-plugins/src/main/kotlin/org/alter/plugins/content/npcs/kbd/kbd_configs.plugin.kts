@@ -6,7 +6,7 @@ spawn_npc(Npcs.KING_BLACK_DRAGON, x = 2274, z = 4698, walkRadius = 5)
 
 set_combat_def(Npcs.KING_BLACK_DRAGON) {
     species {
-        +NpcSpecies.DRAGON
+        +NpcSpecies.DRACONIC
         +NpcSpecies.BASIC_DRAGON
     }
 
@@ -45,38 +45,36 @@ set_combat_def(Npcs.KING_BLACK_DRAGON) {
         levelRequirement = 50
         xp = 258.0
     }
-    /**
-     * @TODO Uhh need to implement checks for [Player]
-     */
-    drops {
-        position = Tile(x = 3222, z = 3222)
 
-        always {
-            add(Items.DRAGON_BONES, 1)
-            add(Items.BLACK_DRAGON_LEATHER, 1)
-        }
-
-        main(tableWeight = 128) {
-            add(itemid = Items.RUNE_LONGSWORD, min = 1, weight = 10)
-            add(itemid = Items.ADAMANT_PLATEBODY, min = 1, weight = 9)
-            add(itemid = Items.ADAMANT_KITESHIELD, min = 1, weight = 3)
-            add(itemid = Items.DRAGON_MED_HELM, min = 1, weight = 1)
-            add(itemid = Items.FIRE_RUNE, min = 300, weight = 5)
-            add(itemid = Items.AIR_RUNE, min = 300, weight = 10)
-            add(itemid = Items.IRON_ARROW, min = 690, weight = 10)
-            add(itemid = Items.RUNITE_BOLTS, min = 10, weight = 10)
-            add(itemid = Items.LAW_RUNE, min = 30, weight = 5)
-            add(itemid = Items.BLOOD_RUNE, min = 30, weight = 5)
-            add(itemid = Items.YEW_LOGS_NOTED, min = 150, weight = 10)
-            add(itemid = Items.ADAMANTITE_BAR, min = 3, weight = 5)
-            add(itemid = Items.RUNITE_BAR, min = 1, weight = 3)
-            add(itemid = Items.GOLD_ORE_NOTED, min = 100, weight = 2)
-            add(itemid = Items.AMULET_OF_POWER, min = 1, weight = 7)
-            add(itemid = Items.DRAGON_ARROWTIPS, min = 5, weight = 5)
-            add(itemid = Items.DRAGON_DART_TIP, min = 5, weight = 5)
-            add(itemid = Items.DRAGON_JAVELIN_HEADS, min = 15, weight = 5)
-            add(itemid = Items.RUNITE_LIMBS, min = 1, weight = 4)
-            add(itemid = Items.SHARK, min = 4, weight = 4)
-        }
-    }
+//    drops {
+//        position = Tile(x = 3222, z = 3222)
+//
+//        always {
+//            add(Items.DRAGON_BONES, 1)
+//            add(Items.BLACK_DRAGON_LEATHER, 1)
+//        }
+//
+//        main(tableWeight = 128) {
+//            add(itemid = Items.RUNE_LONGSWORD, min = 1, weight = 10)
+//            add(itemid = Items.ADAMANT_PLATEBODY, min = 1, weight = 9)
+//            add(itemid = Items.ADAMANT_KITESHIELD, min = 1, weight = 3)
+//            add(itemid = Items.DRAGON_MED_HELM, min = 1, weight = 1)
+//            add(itemid = Items.FIRE_RUNE, min = 300, weight = 5)
+//            add(itemid = Items.AIR_RUNE, min = 300, weight = 10)
+//            add(itemid = Items.IRON_ARROW, min = 690, weight = 10)
+//            add(itemid = Items.RUNITE_BOLTS, min = 10, weight = 10)
+//            add(itemid = Items.LAW_RUNE, min = 30, weight = 5)
+//            add(itemid = Items.BLOOD_RUNE, min = 30, weight = 5)
+//            add(itemid = Items.YEW_LOGS_NOTED, min = 150, weight = 10)
+//            add(itemid = Items.ADAMANTITE_BAR, min = 3, weight = 5)
+//            add(itemid = Items.RUNITE_BAR, min = 1, weight = 3)
+//            add(itemid = Items.GOLD_ORE_NOTED, min = 100, weight = 2)
+//            add(itemid = Items.AMULET_OF_POWER, min = 1, weight = 7)
+//            add(itemid = Items.DRAGON_ARROWTIPS, min = 5, weight = 5)
+//            add(itemid = Items.DRAGON_DART_TIP, min = 5, weight = 5)
+//            add(itemid = Items.DRAGON_JAVELIN_HEADS, min = 15, weight = 5)
+//            add(itemid = Items.RUNITE_LIMBS, min = 1, weight = 4)
+//            add(itemid = Items.SHARK, min = 4, weight = 4)
+//        }
+//    }
 }

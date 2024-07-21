@@ -744,7 +744,9 @@ fun Player.hasWeaponType(
     type: WeaponType,
     vararg others: WeaponType,
 ): Boolean =
-    getWeaponType() == type.id || others.isNotEmpty() && getWeaponType() in
+    getWeaponType() == type.id ||
+        others.isNotEmpty() &&
+        getWeaponType() in
         others.map {
             it.id
         }
@@ -863,6 +865,4 @@ fun Player.getMagicDamageBonus(): Int = equipmentBonuses[12]
 
 fun Player.getPrayerBonus(): Int = equipmentBonuses[13]
 
-fun Player.format_bonus_with_sign(value: Int): String {
-    return if (value < 0) value.toString() else "+$value"
-}
+fun Player.format_bonus_with_sign(value: Int): String = if (value < 0) value.toString() else "+$value"

@@ -6,10 +6,16 @@ import dev.openrune.cache.CacheManager.getObject
 import org.alter.game.Server
 import org.alter.game.event.Event
 import org.alter.game.fs.ObjectExamineHolder
-import org.alter.game.model.*
+import org.alter.game.model.Direction
+import org.alter.game.model.EntityType
+import org.alter.game.model.Tile
+import org.alter.game.model.World
 import org.alter.game.model.combat.NpcCombatDef
 import org.alter.game.model.container.key.ContainerKey
-import org.alter.game.model.entity.*
+import org.alter.game.model.entity.DynamicObject
+import org.alter.game.model.entity.GroundItem
+import org.alter.game.model.entity.Npc
+import org.alter.game.model.entity.Player
 import org.alter.game.model.shop.PurchasePolicy
 import org.alter.game.model.shop.Shop
 import org.alter.game.model.shop.ShopCurrency
@@ -23,12 +29,17 @@ import kotlin.script.experimental.annotations.KotlinScript
  *
  * @author Tom <rspsmods@gmail.com>
  */
+@Suppress("UNUSED", "Underscore", "ktlint:standard:function-naming")
 @KotlinScript(
     displayName = "Kotlin Plugin",
     fileExtension = "plugin.kts",
     compilationConfiguration = KotlinPluginConfiguration::class,
 )
-abstract class KotlinPlugin(private val r: PluginRepository, val world: World, val server: Server) {
+abstract class KotlinPlugin(
+    private val r: PluginRepository,
+    val world: World,
+    val server: Server,
+) {
     /**
      * A map of properties that will be copied from the [PluginMetadata] and
      * exposed to the plugin.
@@ -238,7 +249,9 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         val slot = def.equipmentMenu.indexOfFirst { it?.lowercase() == opt }
 
         check(slot != -1) {
-            "Option \"$option\" not found for item equipment $item [options=${def.equipmentMenu.filterNotNull().filter { it.isNotBlank() }}]"
+            "Option \"$option\" not found for item equipment $item [options=${def.equipmentMenu.filterNotNull().filter {
+                it.isNotBlank()
+            }}]"
         }
 
         r.bindEquipmentOption(item, slot + 1, logic)
@@ -301,7 +314,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     /**
-     * Checks if a [NPC] has [option]
+     * Checks if a [Npc] has [option]
      */
     fun npcHasOption(
         npc: Int,
@@ -396,13 +409,14 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     ) = r.bindItemOnGroundItem(item, groundItem, plugin)
 
     /**
-     * Set the logic to execute when [org.alter.game.message.impl.WindowStatusMessage]
+     * Set the logic to execute when Message Class -> WindowStateMessage
      * is handled.
+     * @TODO
      */
     fun set_window_status_logic(logic: (Plugin).() -> Unit) = r.bindWindowStatus(logic)
 
     /**
-     * Set the logic to execute when [org.alter.game.message.impl.CloseModalMessage]
+     * Set the logic to execute when [net.rsprot.protocol.game.incoming.misc.user.CloseModal]
      * is handled.
      */
     fun set_modal_close_logic(logic: (Plugin).() -> Unit) = r.bindModalClose(logic)
@@ -511,6 +525,12 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     ) = r.bindNpcDeath(npc, plugin)
 
     /**
+     * Invoked when any npc finishes their death task and is de-registered
+     * from the world.
+     */
+    fun on_any_npc_death(plugin: Plugin.() -> Unit) = r.bindAnyNpcDeath(plugin)
+
+    /**
      * Completely overrides the npc death mechanic.
      */
     fun full_npc_death(
@@ -532,7 +552,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     }
 
     /**
-     * Invoke [logic] when [org.alter.game.message.impl.OpNpcTMessage] is handled.
+     * Invoke [logic] when [net.rsprot.protocol.game.incoming.npcs.OpNpcT] is handled.
      */
     fun on_spell_on_npc(
         parent: Int,
@@ -541,7 +561,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     ) = r.bindSpellOnNpc(parent, child, logic)
 
     /**
-     * Invoke [logic] when [org.alter.game.message.impl.OpNpcTMessage] is handled.
+     * Invoke [logic] when [net.rsprot.protocol.game.incoming.npcs.OpNpcT] is handled.
      */
     fun on_spell_on_player(
         parent: Int,
@@ -550,7 +570,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     ) = r.bindSpellOnPlayer(parent, child, logic)
 
     /**
-     * Invoke [logic] when [org.alter.game.message.impl.IfOpenSubMessage] is handled.
+     * Invoke [logic] when [net.rsprot.protocol.game.outgoing.interfaces.IfOpenSub] is handled.
      */
     fun on_interface_open(
         interfaceId: Int,
@@ -567,7 +587,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     ) = r.bindInterfaceClose(interfaceId, logic)
 
     /**
-     * Invoke [logic] when [org.alter.game.message.impl.IfButtonMessage] is handled.
+     * Invoke [logic] when [net.rsprot.protocol.game.incoming.buttons.If1Button] is handled.
      */
     fun on_button(
         interfaceId: Int,
@@ -613,7 +633,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
     ) = r.bindNpcSpawn(npc, logic)
 
     /**
-     * Invoke [logic] when [org.alter.game.message.impl.ClientCheatMessage] is handled.
+     * Invoke [logic] when [net.rsprot.protocol.game.incoming.misc.user.ClientCheat] is handled.
      */
     fun on_command(
         command: String,
@@ -800,9 +820,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         plugin: Plugin.() -> Unit,
     ) = r.bindOnAnimation(animid, plugin)
 
-    fun getNpcCombatDef(npc: Int): NpcCombatDef? {
-        return world.plugins.npcCombatDefs.getOrDefault(npc, null)
-    }
+    fun getNpcCombatDef(npc: Int): NpcCombatDef? = world.plugins.npcCombatDefs.getOrDefault(npc, null)
 
     fun getNpcFromTile(tile: Tile): Npc? {
         val chunk = world.chunks.get(tile)
@@ -829,9 +847,7 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         return times
     }
 
-    fun getPluginRepository(): PluginRepository {
-        return r
-    }
+    fun getPluginRepository(): PluginRepository = r
 
     fun obj_has_option(
         obj: Int,
@@ -848,4 +864,15 @@ abstract class KotlinPlugin(private val r: PluginRepository, val world: World, v
         val npcDefs = getNpc(npc)
         return npcDefs.actions.contains(option)
     }
+
+//    fun on_item_on_any_npc(Item: Int) {
+//        /** Run this block -> if Npc does not have specific handling for it refering to ['on_item_on_npc']
+//         **/
+//    }
+//
+//    fun on_item_on_any_obj(Item: Int) {
+//        /**
+//         * Run this block -> if Object does not have specific handling for it refering to ['on_item_on_obj']
+//         */
+//    }
 }

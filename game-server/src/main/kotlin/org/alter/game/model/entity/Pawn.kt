@@ -312,7 +312,7 @@ abstract class Pawn(val world: World) : Entity() {
                             npc.avatar.extendedInfo.addHeadBar(
                                 sourceIndex = hitmark.attackerIndex,
                                 selfType = 0,
-                                endFill = 30,
+                                //endFill = 30,
                                 startFill = calculateFill((((this.getCurrentHp().toDouble() - hitmark.damage) / this.getMaxHp().toDouble()) * 100), 30)
                             )
                         } else if (entityType.isPlayer) {
@@ -326,7 +326,7 @@ abstract class Pawn(val world: World) : Entity() {
                             player.avatar.extendedInfo.addHeadBar(
                                 sourceIndex = hitmark.attackerIndex,
                                 selfType = 0,
-                                endFill = 30,
+                                //endFill = 30,
                                 startFill = calculateFill((((this.getCurrentHp().toDouble() - hitmark.damage) / this.getMaxHp().toDouble()) * 100), 30)
                             )
                         }
