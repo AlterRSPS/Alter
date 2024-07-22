@@ -1,5 +1,9 @@
 package org.alter.plugins.content
 
+import org.alter.game.model.weightedTableBuilder.Loot
+import org.alter.game.model.weightedTableBuilder.LootTable
+import org.alter.game.model.weightedTableBuilder.TableType
+
 val imp = Npcs.IMP_3134
 val tile = Tile(3235, 3219, 0)
 
@@ -88,6 +92,7 @@ set_combat_def(imp) {
     drops {
         always {
             add(Items.FIENDISH_ASHES, 1)
+            add(test())
         }
         main(128) {
             add(Items.BLACK_BEAD, weight = 5)
@@ -138,4 +143,14 @@ set_combat_def(imp) {
          * And make so that we could create rollable table
          */
     }
+}
+
+
+fun test() : LootTable {
+    val loot = mutableSetOf<Loot>()
+    loot.add(Loot(Items.TWISTED_BOW, 1))
+    return LootTable(
+        tableType = TableType.ALWAYS,
+        drops = loot
+    )
 }
