@@ -92,7 +92,14 @@ set_combat_def(imp) {
     drops {
         always {
             add(Items.FIENDISH_ASHES, 1)
-            add(test())
+            add(test()) {
+                if (it.inventory.contains(1215)) {
+                    true
+                } else {
+                    false
+                }
+            }
+
         }
         main(128) {
             add(Items.BLACK_BEAD, weight = 5)
@@ -133,24 +140,16 @@ set_combat_def(imp) {
             add(Items.ECUMENICAL_KEY, 1, 60)
             add(Items.IMP_CHAMPION_SCROLL, 1, 5000)
         }
-        /**
-         * [13:17:28.097] ERROR GameService - Cycle took longer than expected: 654ms / 600ms!
-         * [13:17:28.099] ERROR GameService - {class org.alter.game.task.SequentialSynchronizationTask=1, class org.alter.game.task.ChunkCreationTask=0, class org.alter.game.task.WorldRemoveTask=0, class org.alter.game.task.QueueHandlerTask=0, class org.alter.game.task.MessageHandlerTask=0, class org.alter.game.task.PlayerCycleTask=0, class org.alter.game.task.NpcCycleTask=0}
-         * [13:17:28.100] ERROR GameService - {123=0}
-         *
-         *
-         * @TODO Add code block for --> OnDrop()
-         * And make so that we could create rollable table
-         */
     }
 }
 
 
 fun test() : LootTable {
     val loot = mutableSetOf<Loot>()
-    loot.add(Loot(Items.TWISTED_BOW, 1))
+    loot.add(Loot(Items.TWISTED_BOW, 1, 1,1,5))
     return LootTable(
         tableType = TableType.ALWAYS,
+        tableWeight = 10,
         drops = loot
     )
 }
