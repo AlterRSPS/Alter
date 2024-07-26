@@ -19,7 +19,7 @@ object ItemSets {
         p.setInterfaceEvents(
             ITEMSETS_INTERFACE,
             component = 2,
-            range = 0..105,
+            range = 0..109,
             setting = arrayOf(InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp10),
         )
         p.setInterfaceEvents(
