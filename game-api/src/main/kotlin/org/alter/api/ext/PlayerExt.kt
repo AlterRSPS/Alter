@@ -239,6 +239,18 @@ fun Player.openInterface(
     openInterface(parent, child, interfaceId, if (dest.clickThrough) 1 else 0, isModal = dest == InterfaceDestination.MAIN_SCREEN)
 }
 
+fun Player.openInterface(
+    interfaceId: Int,
+    dest: InterfaceDestination,
+    fullscreen: Boolean = false,
+    isModal: Boolean = false
+) {
+    val displayMode = if (!fullscreen || dest.fullscreenChildId == -1) interfaces.displayMode else DisplayMode.FULLSCREEN
+    val child = getChildId(dest, displayMode)
+    val parent = getDisplayComponentId(displayMode)
+    openInterface(parent, child, interfaceId, if (dest.clickThrough) 1 else 0, isModal = isModal)
+}
+
 /**
  * Use this method to "re-open" an [InterfaceDestination]. This method should always
  * be preferred over
