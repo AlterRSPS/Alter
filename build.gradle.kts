@@ -3,17 +3,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias(libs.plugins.kotlin.jvm) apply true
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.ktlint)
+    //alias(libs.plugins.ktlint)
     idea
 }
-/**
- * @TODO Sort out dependencies
- * Into projects as it makes huge mess.
- */
 allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    //apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     group = "org.alter"
     version = "0.0.5"
