@@ -44,8 +44,6 @@ object Bank {
         val to = p.inventory
         val amount = Math.min(from.getItemCount(id), amt)
         val note = p.getVarbit(WITHDRAW_AS_VARBIT) == 1
-        val oldItemArray = BankTabs.buildBankGrid(p)
-
         for (i in slot until from.capacity) {
             val item = from[i] ?: continue
             if (item.id != id) {
@@ -54,16 +52,13 @@ object Bank {
             if (withdrawn >= amount) {
                 break
             }
-
             val left = amount - withdrawn
             val copy = Item(item.id, Math.min(left, item.amount))
             if (copy.amount >= item.amount) {
                 copy.copyAttr(item)
             }
-            val transfer = from.transfer(to, item = copy, fromSlot = i, note = note, unnote = !note)
-
+            val transfer = from.transfer(to, item = copy, fromSlot = i, note = note, unnote = false)
             withdrawn += transfer?.completed ?: 0
-
             if (from[i] == null) {
                 if (placehold || p.getVarbit(ALWAYS_PLACEHOLD_VARBIT) == 1) {
                     val def = item.getDef()
@@ -74,27 +69,6 @@ object Bank {
                     if (def.placeholderLink > 0) {
                         p.bank[i] = Item(def.placeholderLink, -2)
                     }
-                } else {
-//                    var itemsTab: Int = -1
-//                    if (oldItemArray != null) {
-//                        itemsTab = getTabByItem(p, item.id, oldItemArray)
-//                    }
-//
-//                    val tabed = oldItemArray?.filter { it.tabId == itemsTab }
-//                    if (tabed!![0].item!!.id == item.id && tabed[0].item!!.amount == 0) {
-//                        val tabVarbit = BANK_TAB_ROOT_VARBIT + itemsTab
-//
-//                        val remove = from.shiftV2(tabed[0].slot)
-//                        val setVarsValue = p.getVarbit(tabVarbit)
-//
-//                        if (itemsTab != 0) {
-//                            p.setVarbit(tabVarbit, setVarsValue - remove)
-//                            if (setVarsValue == 0) {
-//                                BankTabs.shiftTabs(p, itemsTab)
-//                                p.setVarbit(SELECTED_TAB_VARBIT, 0)
-//                            }
-//                        }
-//                    }
                 }
             }
         }
@@ -113,48 +87,37 @@ object Bank {
         val from = player.inventory
         val to = player.bank
         val amount = from.getItemCount(id).coerceAtMost(amt)
-
         var deposited = 0
-
         for (i in 0 until from.capacity) {
             val item = from[i] ?: continue
             if (item.id != id) {
                 continue
             }
-
             if (deposited >= amount) {
                 break
             }
-
             val left = amount - deposited
-
             val copy = Item(item.id, Math.min(left, item.amount))
             if (copy.amount >= item.amount) {
                 copy.copyAttr(item)
             }
-
             var toSlot = to.removePlaceholder(player.world, copy)
             var placeholderOrExistingStack = true
             val curTab = player.getVarbit(SELECTED_TAB_VARBIT)
-
             if (toSlot == -1 && !to.contains(item.id)) {
                 placeholderOrExistingStack = false
                 toSlot = to.getLastFreeSlot()
             }
-
             val transaction = from.transfer(to, item = copy, fromSlot = i, toSlot = toSlot, note = false, unnote = true)
-
             if (transaction != null) {
                 deposited += transaction.completed
             }
-
             if (deposited > 0) {
                 if (curTab != 0 && !placeholderOrExistingStack) {
                     BankTabs.dropToTab(player, curTab, to.getLastFreeSlotReversed() - 1)
                 }
             }
         }
-
         if (deposited == 0) {
             player.message("Bank full.")
         }
@@ -173,7 +136,6 @@ object Bank {
             786549,
         )
         sendBonuses(p)
-        // ^ This we can make method.
         p.setInterfaceEvents(
             interfaceId = INV_INTERFACE_ID,
             component = 3,

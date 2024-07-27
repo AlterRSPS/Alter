@@ -92,13 +92,9 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 47) {
 on_button(interfaceId = BANK_INTERFACE_ID, component = 42) {
     val from = player.inventory
     val to = player.bank
-
-    var any = false
     for (i in 0 until from.capacity) {
         val item = from[i] ?: continue
-
         val total = item.amount
-
         var toSlot = to.removePlaceholder(world, item)
         var placeholderOrExistingStack = true
         val curTab = player.getVarbit(SELECTED_TAB_VARBIT)
@@ -110,24 +106,30 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 42) {
             }
             toSlot = to.getLastFreeSlot(ignoreIndex) // Need to filter out tabs items ->
         }
+        println(toSlot)
 
-        val transaction = from.transfer(to, item, fromSlot = i, toSlot = toSlot, note = false, unnote = true)
-        val deposited = transaction?.completed ?: 0
-
+        /**
         if (total != deposited) {
             // Was not able to deposit the whole stack of [item].
         }
+        */
 
-        if (deposited > 0) {
-            any = true
-            if (curTab != 0 && !placeholderOrExistingStack) {
-                dropToTab(player, curTab, to.getLastFreeSlotReversed() - 1)
-            }
+        println("curTab: $curTab")
+        println("placeholderOrExistingStack: $placeholderOrExistingStack")
+        if (curTab != 0 && !placeholderOrExistingStack) {
+            println("code went in")
+            dropToTab(player, curTab, to.getLastFreeSlotReversed() - 1)
+        } else {
+            val transaction = from.transfer(to, item, fromSlot = i, toSlot = toSlot, note = false, unnote = true)
+            val deposited = transaction?.completed ?: 0
         }
     }
 
-    if (!any && !from.isEmpty) {
-        player.message("Bank full.")
+    if (!from.isEmpty) {
+        /**
+         * @TODO
+         */
+        player.message("Bank full. || theres ${Int.MAX_VALUE} of some item.")
     }
 }
 
@@ -171,7 +173,7 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 44) {
 
 // deposit
 on_button(interfaceId = INV_INTERFACE_ID, component = INV_INTERFACE_CHILD) p@{
-    val opt = player.getInteractingOption() + 1
+    val opt = player.getInteractingOption()
     val slot = player.getInteractingSlot()
 
     val item = player.inventory[slot] ?: return@p
@@ -235,7 +237,7 @@ on_button(interfaceId = INV_INTERFACE_ID, component = INV_INTERFACE_CHILD) p@{
 
 // withdraw
 on_button(interfaceId = BANK_INTERFACE_ID, component = BANK_MAINTAB_COMPONENT) p@{
-    val opt = player.getInteractingOption() + 1
+    val opt = player.getInteractingOption()
     val slot = player.getInteractingSlot()
 
     val item = player.bank[slot] ?: return@p
@@ -335,6 +337,7 @@ on_component_to_component_item_swap(
     dstInterfaceId = INV_INTERFACE_ID,
     dstComponent = INV_INTERFACE_CHILD,
 ) {
+    println("Here")
     val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
     val dstSlot = player.attr[OTHER_ITEM_SLOT_ATTR]!!
 
@@ -354,6 +357,7 @@ on_component_to_component_item_swap(
     dstInterfaceId = BANK_INTERFACE_ID,
     dstComponent = BANK_MAINTAB_COMPONENT,
 ) {
+    println("Here2")
     val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
     val dstSlot = player.attr[OTHER_ITEM_SLOT_ATTR]!!
 
