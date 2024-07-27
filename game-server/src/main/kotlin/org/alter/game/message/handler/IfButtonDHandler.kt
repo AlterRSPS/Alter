@@ -22,9 +22,9 @@ class IfButtonDHandler : MessageHandler<IfButtonD> {
         val toItemId = message.targetObj
 
         val fromInterfaceId = message.selectedInterfaceId
-        val fromComponent = message.selectedSub
+        val fromComponent = message.selectedComponentId
         val toInterfaceId = message.targetInterfaceId
-        val toComponent = message.targetSub
+        val toComponent = message.targetComponentId
 
         log(
             client,
