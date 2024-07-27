@@ -325,12 +325,7 @@ open class Player(world: World) : Pawn(world) {
             equipment.dirty = false
             calculateWeight = true
             calculateBonuses = true
-
-            items.forEach { item ->
-                // TODO ADVO THIS IS SHIT
-                val def = item?.getDef() ?: return
-                avatar.extendedInfo.setWornObj(def.wearPos1, item.id, def.wearPos2, def.wearPos3)
-            }
+            org.alter.game.info.PlayerInfo(this).syncAppearance()
         }
 
         if (bank.dirty) {
@@ -466,38 +461,10 @@ open class Player(world: World) : Pawn(world) {
                 }
             world.getService(LoggerService::class.java, searchSubclasses = true)?.logLogin(this)
         }
-
         if (world.rebootTimer != -1) {
             write(UpdateRebootTimer(world.rebootTimer))
         }
-        // TODO ADVO extract this and sync appearance if dirty
-        for (slot in 0..6) {
-            avatar.extendedInfo.setIdentKit(slot, appearance.getLook(slot))
-        }
-        for (slot in 0..11) {
-            val item = equipment[slot] ?: continue
-            val itemDef = Item(item.id).getDef()
-            with(itemDef) {
-                avatar.extendedInfo.setWornObj(slot, id, wearPos2, wearPos3)
-            }
-        }
-        for (slot in 0..4) {
-            avatar.extendedInfo.setColour(slot, appearance.colors[slot])
-        }
-        avatar.extendedInfo.setBaseAnimationSet(
-            readyAnim = 808,
-            turnAnim = 823,
-            walkAnim = 819,
-            walkAnimBack = 820,
-            walkAnimLeft = 821,
-            walkAnimRight = 822,
-            runAnim = 824,
-        )
-        avatar.extendedInfo.setName(username)
-        avatar.extendedInfo.setCombatLevel(combatLevel)
-        avatar.extendedInfo.setMale(appearance.gender == Gender.MALE)
-        avatar.extendedInfo.setOverheadIcon(prayerIcon)
-        avatar.extendedInfo.setSkullIcon(-1)
+        org.alter.game.info.PlayerInfo(this).syncAppearance()
         initiated = true
         world.plugins.executeLogin(this)
         social.updateStatus(this)
