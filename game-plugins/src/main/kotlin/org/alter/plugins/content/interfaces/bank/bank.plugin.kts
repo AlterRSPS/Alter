@@ -106,18 +106,12 @@ on_button(interfaceId = BANK_INTERFACE_ID, component = 42) {
             }
             toSlot = to.getLastFreeSlot(ignoreIndex) // Need to filter out tabs items ->
         }
-        println(toSlot)
-
         /**
         if (total != deposited) {
             // Was not able to deposit the whole stack of [item].
         }
         */
-
-        println("curTab: $curTab")
-        println("placeholderOrExistingStack: $placeholderOrExistingStack")
         if (curTab != 0 && !placeholderOrExistingStack) {
-            println("code went in")
             dropToTab(player, curTab, to.getLastFreeSlotReversed() - 1)
         } else {
             val transaction = from.transfer(to, item, fromSlot = i, toSlot = toSlot, note = false, unnote = true)
@@ -357,7 +351,6 @@ on_component_to_component_item_swap(
     dstInterfaceId = BANK_INTERFACE_ID,
     dstComponent = BANK_MAINTAB_COMPONENT,
 ) {
-    println("Here2")
     val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
     val dstSlot = player.attr[OTHER_ITEM_SLOT_ATTR]!!
 
