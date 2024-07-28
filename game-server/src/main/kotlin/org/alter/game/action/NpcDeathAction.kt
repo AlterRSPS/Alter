@@ -71,6 +71,8 @@ object NpcDeathAction {
             roll(player, lootTables).forEach {
                 it.ownerUID = player.uid
                 it.tile = npc.getCentreTile()
+                it.timeUntilPublic = world.gameContext.gItemPublicDelay
+                it.timeUntilDespawn = world.gameContext.gItemDespawnDelay
                 world.spawn(it)
             }
         }
