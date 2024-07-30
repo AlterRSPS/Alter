@@ -256,8 +256,8 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
                  * @TODO Hmm weird cuz it just vanished and appeared.
                  * And second : When [gItemPublicDelay] matches currentCycle some different update happens need to do more research on it.
                  */
-                //groundItem.timeUntilPublic = 0
-                //groundItem.timeUntilDespawn -= gameContext.gItemPublicDelay
+                groundItem.timeUntilPublic = 0
+                groundItem.timeUntilDespawn -= gameContext.gItemPublicDelay
                 chunks.get(groundItem.tile)?.let { chunk ->
                     chunk.removeEntity(this, groundItem, groundItem.tile)
                     chunk.addEntity(this, groundItem, groundItem.tile)
