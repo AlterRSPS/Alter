@@ -1,25 +1,22 @@
 package org.alter.game.info
 
 import dev.openrune.cache.CacheManager
+import org.alter.game.model.AnimationSet
 import org.alter.game.model.appearance.Gender
 import org.alter.game.model.entity.Player
-/**
- * @TODO Extract to it's own class so that it could be reused
- */
-data class AnimationSet(
-    val readyAnim: Int,
-    val turnAnim: Int,
-    val walkAnim: Int,
-    val walkAnimBack: Int,
-    val walkAnimLeft: Int,
-    val walkAnimRight: Int,
-    val runAnim: Int
-)
 
-/**
- * @TODO Improve
- */
 class PlayerInfo(var player: Player) {
+
+    val DEFAULT_ANIM_SET = AnimationSet(
+        readyAnim = 808,
+        turnAnim = 823,
+        walkAnim = 819,
+        walkAnimBack = 820,
+        walkAnimLeft = 821,
+        walkAnimRight = 822,
+        runAnim = 824
+    )
+
     fun syncAppearance() {
         val info = player.avatar.extendedInfo
         if (player.getTransmogId() == -1) {
@@ -43,15 +40,7 @@ class PlayerInfo(var player: Player) {
                     info.setWornObj(i, obj.id, wearPos2, wearPos3)
                 }
             }
-            var animSequance = AnimationSet(
-                readyAnim = 808,
-                turnAnim = 823,
-                walkAnim = 819,
-                walkAnimBack = 820,
-                walkAnimLeft = 821,
-                walkAnimRight = 822,
-                runAnim = 824
-            )
+            var animSequance = DEFAULT_ANIM_SET
             val weapon = player.equipment[3]
             if (weapon != null) {
                 val renderAnimationSet = CacheManager.getItem(weapon.id).renderAnimations
@@ -108,4 +97,7 @@ class PlayerInfo(var player: Player) {
         info.transformToNpc(player.getTransmogId())
         info.setHidden(player.invisible)
     }
+
+
+
 }
