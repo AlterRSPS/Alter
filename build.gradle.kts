@@ -1,9 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm")
+    kotlin("jvm") apply true
     alias(libs.plugins.kotlin.serialization)
     //alias(libs.plugins.ktlint)
+    idea
 }
 allprojects {
     apply(plugin = "idea")
