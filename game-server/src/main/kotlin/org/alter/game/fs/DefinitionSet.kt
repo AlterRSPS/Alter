@@ -11,6 +11,7 @@ import org.alter.game.model.collision.CollisionUpdate
 import org.alter.game.model.entity.StaticObject
 import org.alter.game.model.region.ChunkSet
 import org.alter.game.service.xtea.XteaKeyService
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import java.io.IOException
 
 /**
@@ -89,9 +90,25 @@ class DefinitionSet {
         blocked.forEach { tile ->
             world.chunks.getOrCreate(tile).blockedTiles.add(tile)
             blockedTileBuilder.putTile(tile, false, *Direction.NESW)
+            world.collisionFlags.add(
+                absoluteX = tile.x,
+                absoluteZ = tile.z,
+                level = tile.height,
+                // Not impenetrable, so not adding projectile block flags
+                // No need to add direction blocking either, as this is just a tile that's blocked.
+                mask = CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION,
+            )
         }
         world.collision.applyUpdate(blockedTileBuilder.build())
-
+        /**
+         * EDIT: turns out i was wrong. the assumption made here didn't pan out as expected. the bandos godwars room door ended up having different flags to before.
+         *
+         * instead, i just use
+         * world.collisionFlags.applyUpdate(update)
+         *
+         * like in the other places, and that works
+         *
+         */
         if (xteaService == null) {
             /*
              * If we don't have an [XteaKeyService], then we assume we don't

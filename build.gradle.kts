@@ -37,6 +37,7 @@ allprojects {
         implementation(lib.netty.all)
         implementation(lib.kotlinx.serialization.core)
         implementation(lib.rsprot)
+        implementation(lib.pathfinder)
         testImplementation(lib.junit)
         testImplementation(lib.kotlin.test.junit)
     }

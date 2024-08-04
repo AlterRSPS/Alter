@@ -174,6 +174,3 @@ publishing {
         }
     }
 }
-tasks.named("run") {
-
-}
