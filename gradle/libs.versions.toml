@@ -22,7 +22,7 @@ slf4j = "2.0.0-alpha0"
 csv = "0.7.3"
 logback = "1.4.11"
 ktlint = "12.1.0"
-openrune-filestore = "1.3.4"
+openrune-filestore = "1.3.6"
 rsprot = "1.0.0-ALPHA-20240629"
 pathfinder = "4.2.1"
 

@@ -1,5 +1,6 @@
 package org.alter.plugins.content.mechanics.shops
 
+import org.alter.api.CommonClientScripts
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
 
 val SHOP_INTERFACE_ID = 300
@@ -17,7 +18,7 @@ val OPTION_5 = "Sell ${BUY_OPTS[3]}"
 on_interface_open(interfaceId = SHOP_INTERFACE_ID) {
     player.attr[CURRENT_SHOP_ATTR]?.let { shop ->
         player.runClientScript(
-            149,
+            CommonClientScripts.INTERFACE_INV_INIT,
             19726336,
             93,
             4,

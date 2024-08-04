@@ -1,6 +1,9 @@
 package org.alter.plugins.content.items.others.lootingbag
 
 import dev.openrune.cache.CacheManager.getItem
+import org.alter.api.ClientScript
+import org.alter.api.CommonClientScripts
+import org.alter.api.ext.runClientScript
 import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
 import org.alter.plugins.service.marketvalue.ItemMarketValueService
@@ -254,15 +257,15 @@ fun settings(p: Player) {
 fun check(p: Player) {
     val container = p.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(CONTAINER_KEY) }
 
-    p.runClientScript(149, 81 shl 16 or 5, LOOTING_BAG_CONTAINER_ID, 4, 7, 0, -1, "", "", "", "", "Examine")
+    p.runClientScript(CommonClientScripts.INTERFACE_INV_INIT, 81 shl 16 or 5, LOOTING_BAG_CONTAINER_ID, 4, 7, 0, -1, "", "", "", "", "Examine")
     p.openInterface(dest = InterfaceDestination.TAB_AREA, interfaceId = TAB_INTERFACE_ID)
     p.setInterfaceEvents(interfaceId = TAB_INTERFACE_ID, component = 5, range = 0..27, setting = 32)
 
-    p.runClientScript(495, "Looting bag", 0)
+    p.runClientScript(CommonClientScripts.LOOTING_BAG_SETUP, "Looting bag", 0)
     p.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
     /** @TODO */
     // p.setComponentText(interfaceId = TAB_INTERFACE_ID, component = VALUE_TEXT_COMPONENT, text = "Value: ${container.getNetworth(world).decimalFormat()} coins")
-    p.runClientScript(1235, LOOTING_BAG_CONTAINER_ID, *get_item_prices(world, container))
+    p.runClientScript(ClientScript(id = 1235), LOOTING_BAG_CONTAINER_ID, *get_item_prices(world, container))
 
     set_queue(p)
 }
@@ -270,11 +273,11 @@ fun check(p: Player) {
 fun deposit(p: Player) {
     p.openInterface(dest = InterfaceDestination.TAB_AREA, interfaceId = TAB_INTERFACE_ID)
     p.setInterfaceEvents(interfaceId = TAB_INTERFACE_ID, component = 5, range = 0..27, setting = 542)
-    p.runClientScript(495, "Add to bag", 1)
+    p.runClientScript(CommonClientScripts.LOOTING_BAG_SETUP, "Add to bag", 1)
 
     /** @TODO */
     // p.setComponentText(interfaceId = TAB_INTERFACE_ID, component = VALUE_TEXT_COMPONENT, text = "Bag value: ${p.inventory.getNetworth(world).decimalFormat()} coins")
-    p.runClientScript(1235, INV_CONTAINER_KEY, *get_item_prices(world, p.inventory))
+    p.runClientScript(ClientScript(id = 1235), INV_CONTAINER_KEY, *get_item_prices(world, p.inventory))
 
     set_queue(p)
 }

@@ -88,7 +88,7 @@ class ItemMetadataService : Service {
     ) {
         val def = getItem(item.id)
         def.name = item.name
-        def.examine = item.examine
+        def.examine = item.examine?: ""
         def.isTradeable = item.tradeable
         def.weight = item.weight
         if (item.equipment != null) {

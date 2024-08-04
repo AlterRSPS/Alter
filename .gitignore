@@ -10,7 +10,6 @@ gradlew.bat
 /data/rsa/
 /data/xteas.json
 /cfg/
-/plugins/
 
 error.log
 modulus

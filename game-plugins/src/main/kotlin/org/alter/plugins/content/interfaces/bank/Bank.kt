@@ -1,6 +1,7 @@
 package org.alter.plugins.content.interfaces.bank
 
 import org.alter.api.BonusSlot
+import org.alter.api.ClientScript
 import org.alter.api.InterfaceDestination
 import org.alter.api.ext.*
 import org.alter.game.model.World
@@ -130,7 +131,7 @@ object Bank {
         p.setVarp(262, -1)
         p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 9, text = p.bank.capacity.toString())
         p.runClientScript(
-            1495,
+            ClientScript(id = 1495),
             "Non-members' capacity: 400<br>Become a member for 400 more.<br>A banker can sell you up to 360 more.<br>+20 for your PIN.<br>Set an Authenticator for 20 more.",
             786439,
             786549,
@@ -302,7 +303,7 @@ object Bank {
         )
         p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 106, text = "Undead: 0%") // @TODO
         p.runClientScript(
-            7065,
+            ClientScript(id = 7065),
             786549,
             786538,
             "Increases your effective accuracy and damage against undead creatures. For multi-target Ranged and Magic attacks, this applies only to the primary target. It does not stack with the Slayer multiplier.",
