@@ -174,3 +174,6 @@ publishing {
         }
     }
 }
+tasks.named("run") {
+
+}

@@ -16,10 +16,7 @@ import org.alter.game.model.timer.FROZEN_TIMER
 import org.alter.game.model.timer.RESET_PAWN_FACING_TIMER
 import org.alter.game.model.timer.STUN_TIMER
 import org.alter.game.plugin.Plugin
-import org.rsmod.game.pathfinder.PathFinder
-import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import java.lang.ref.WeakReference
-import java.util.*
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -216,28 +213,30 @@ object PawnPathAction {
             }
         }
 
-        val pathFinder = PathFinder(pawn.world.collisionFlags)
-        val newRoute = pathFinder.findPath(
-            level = pawn.tile.height,
-            srcX = sourceTile.x,
-            srcZ = sourceTile.z,
-            destX = targetTile.x,
-            destZ = targetTile.z,
-            srcSize = sourceSize,
-            destWidth = targetSize,
-            destHeight = targetSize,
-            collision = CollisionStrategies.Normal,
-        )
-        //val tileQueue: Queue<Tile> = ArrayDeque(newRoute.waypoints.map { Tile(it.x, it.z, it.level) })
-        val tileQueue: Queue<Tile> = ArrayDeque(newRoute.waypoints.map { Tile(it.x, it.z, it.level) })
-        pawn.walkPath(tileQueue, MovementQueue.StepType.NORMAL, detectCollision = true)
-//        while (!pawn.tile.sameAs(route.tail)) {
-//            if (!targetTile.sameAs(target.tile)) {
-//                return walkTo(it, pawn, target, interactionRange, lineOfSight)
-//            }
-//            it.wait(1)
-//        }
-        return newRoute.success
+        val builder =
+            PathRequest.Builder()
+                .setPoints(sourceTile, targetTile)
+                .setSourceSize(sourceSize, sourceSize)
+                .setTargetSize(targetSize, targetSize)
+                .setProjectilePath(lineOfSight || projectile)
+                .setTouchRadius(interactionRange)
+                .clipPathNodes(node = true, link = true)
+
+        if (!lineOfSight && !projectile) {
+            builder.clipOverlapTiles().clipDiagonalTiles()
+        }
+
+        val route = pawn.createPathFindingStrategy().calculateRoute(builder.build())
+        pawn.walkPath(route.path, MovementQueue.StepType.NORMAL, detectCollision = true)
+
+        while (!pawn.tile.sameAs(route.tail)) {
+            if (!targetTile.sameAs(target.tile)) {
+                return walkTo(it, pawn, target, interactionRange, lineOfSight)
+            }
+            it.wait(1)
+        }
+
+        return route.success
     }
 
     private fun overlap(

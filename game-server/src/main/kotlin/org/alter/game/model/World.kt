@@ -36,7 +36,6 @@ import org.alter.game.plugin.PluginRepository
 import org.alter.game.service.GameService
 import org.alter.game.service.Service
 import org.alter.game.service.xtea.XteaKeyService
-import org.rsmod.game.pathfinder.collision.CollisionFlagMap
 import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -65,7 +64,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
 
     lateinit var coroutineDispatcher: CoroutineDispatcher
 
-
     internal var queues: QueueTaskSet = WorldQueueTaskSet()
 
     val players = PawnList(arrayOfNulls<Player>(gameContext.playerLimit))
@@ -75,8 +73,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     val chunks = ChunkSet(this)
 
     val collision = CollisionManager(chunks)
-
-    val collisionFlags = CollisionFlagMap()
 
     val instanceAllocator = InstancedMapAllocator()
 
@@ -195,8 +191,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     internal fun postLoad() {
         plugins.executeWorldInit(this)
     }
-
-
 
     /**
      * Executed every game cycle.
