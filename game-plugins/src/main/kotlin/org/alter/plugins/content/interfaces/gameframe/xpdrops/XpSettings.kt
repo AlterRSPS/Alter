@@ -1,5 +1,6 @@
 package org.alter.plugins.content.interfaces.xpdrops
 
+import org.alter.api.CommonClientScripts
 import org.alter.api.InterfaceDestination
 import org.alter.api.cfg.Varbit
 import org.alter.api.ext.*
@@ -9,7 +10,7 @@ object XpSettings {
     val SETUP_INTERFACE_ID = 137
 
     fun open(p: Player) {
-        p.runClientScript(2524, -1, -1)
+        p.runClientScript(CommonClientScripts.MAIN_MODAL_OPEN, -1, -1)
         p.openInterface(dest = InterfaceDestination.MAIN_SCREEN, interfaceId = SETUP_INTERFACE_ID)
         p.setInterfaceEvents(interfaceId = 137, component = 59, 1..2, org.alter.api.ext.InterfaceEvent.ClickOp1)
         p.setInterfaceEvents(interfaceId = 137, component = 58, 1..3, org.alter.api.ext.InterfaceEvent.ClickOp1)
