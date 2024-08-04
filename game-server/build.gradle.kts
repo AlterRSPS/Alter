@@ -3,7 +3,6 @@ plugins {
     application
     `maven-publish`
 }
-val REQUIRED_JDK_VERSION = rootProject.extra["requiredJdkVersion"] as Int
 description = "Alter Game Server Launcher"
 application {
     apply(plugin = "maven-publish")
@@ -38,7 +37,6 @@ sourceSets {
 @Suppress("ktlint:standard:max-line-length")
 tasks.register("install") {
     description = "Install Alter"
-    checkJdkVersion()
     val cacheList =
         listOf(
             "/cache/main_file_cache.dat2",
@@ -171,16 +169,5 @@ publishing {
             name.set("Alter")
             description.set("AlterServer All")
         }
-    }
-}
-tasks.named("run") {
-    doFirst {
-        checkJdkVersion()
-    }
-}
-fun checkJdkVersion() {
-    val version = Runtime.version().version()
-    if (version[0] != REQUIRED_JDK_VERSION) {
-        throw GradleException("Fella, you're running ${version[0]} JDK! , Go back to README.MD!!!")
     }
 }

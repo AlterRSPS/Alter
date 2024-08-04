@@ -262,7 +262,7 @@ class BFSPathFindingStrategy(collision: CollisionManager) : PathFindingStrategy(
      * A [Node] represents an single tile in a path, which can have the previous
      * tile in the path attached to it as a parent node.
      */
-    private data class Node(val tile: Tile, var parent: Node?) {
+    data class Node(val tile: Tile, var parent: Node?) {
         /**
          * The amount of interconnected nodes from this node to its parents,
          * and their parents, and their parents ...
