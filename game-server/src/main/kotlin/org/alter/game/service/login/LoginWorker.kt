@@ -7,7 +7,8 @@ import net.rsprot.protocol.loginprot.outgoing.util.AuthenticatorResponse
 import org.alter.game.message.DisconnectionHook
 import org.alter.game.model.entity.Client
 import org.alter.game.service.GameService
-import org.alter.game.service.serializer.PlayerLoadResult
+import org.alter.game.playersaving.PlayerLoadResult
+import org.alter.game.playersaving.PlayerSerialization
 import org.alter.game.service.world.WorldVerificationService
 
 /**
@@ -25,7 +26,7 @@ class LoginWorker(private val boss: LoginService, private val verificationServic
 
                 val client = Client.fromRequest(world, request.responseHandler, request.block)
 
-                val loadResult: PlayerLoadResult = boss.serializer.loadClientData(client, request.block)
+                val loadResult: PlayerLoadResult = PlayerSerialization.loadPlayer(client, request.block)
 
                 if (loadResult == PlayerLoadResult.LOAD_ACCOUNT || loadResult == PlayerLoadResult.NEW_ACCOUNT) {
                     world.getService(GameService::class.java)?.submitGameThreadJob {
