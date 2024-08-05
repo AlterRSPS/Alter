@@ -26,6 +26,12 @@ dependencies {
         implementation(kotlin.csv)
         testImplementation(junit)
     }
+
+    implementation("org.mongodb:bson:5.1.2")
+    implementation("org.mongodb:mongo-java-driver:3.12.14")
+
+
+
 }
 sourceSets {
     named("main") {
