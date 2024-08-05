@@ -28,7 +28,6 @@ dependencies {
         implementation(mongo.driver)
         testImplementation(junit)
     }
-
 }
 sourceSets {
     named("main") {
