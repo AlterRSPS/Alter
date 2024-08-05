@@ -3,12 +3,10 @@ package org.alter.game.playersaving.impl
 import org.alter.game.model.entity.Client
 import org.alter.game.model.skill.Skill
 import org.alter.game.model.skill.SkillSet
-import org.alter.game.model.varp.Varp
-import org.alter.game.playersaving.DocumentDecoder
-import org.alter.game.playersaving.DocumentEncoder
+import org.alter.game.playersaving.DocumentHandler
 import org.bson.Document
 
-class SkillSerialisation(override val name: String = "skills") : DocumentDecoder, DocumentEncoder {
+class SkillSerialisation(override val name: String = "skills") : DocumentHandler {
 
     override fun fromDocument(client: Client, doc: Document) = doc.forEach { _, skillDoc ->
         client.getSkills().setSkill(Skill.fromDocument(skillDoc as Document))

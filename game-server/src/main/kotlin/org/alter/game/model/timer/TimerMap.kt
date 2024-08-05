@@ -1,6 +1,9 @@
 package org.alter.game.model.timer
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import org.alter.game.model.appearance.Appearance
+import org.alter.game.model.appearance.Gender
+import org.bson.Document
 
 /**
  * A system responsible for storing and exposing [TimerKey]s and their associated
@@ -61,5 +64,24 @@ class TimerMap {
         @JsonProperty("tickOffline") val tickOffline: Boolean = true,
         @JsonProperty("timeLeft") val timeLeft: Int,
         @JsonProperty("currentMs") val currentMs: Long,
-    )
+    ) {
+        fun asDocument(): Document {
+            return Document()
+                .append("tickOffline", tickOffline)
+                .append("timeLeft", timeLeft)
+                .append("currentMs", currentMs)
+        }
+
+        companion object {
+            fun fromDocument(identifier : String, doc: Document): PersistentTimer {
+                return PersistentTimer(
+                    identifier,
+                    doc.getBoolean("tickOffline"),
+                    doc.getInteger("timeLeft"),
+                    doc.getLong("currentMs")
+                )
+            }
+        }
+
+    }
 }

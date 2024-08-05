@@ -1,11 +1,10 @@
 package org.alter.game.playersaving.impl
 
 import org.alter.game.model.entity.Client
-import org.alter.game.playersaving.DocumentDecoder
-import org.alter.game.playersaving.DocumentEncoder
+import org.alter.game.playersaving.DocumentHandler
 import org.bson.Document
 
-class VarpSerialisation(override val name: String = "varps") : DocumentDecoder, DocumentEncoder {
+class VarpSerialisation(override val name: String = "varps") : DocumentHandler {
 
     override fun fromDocument(client: Client, doc: Document) = doc.forEach { stateKey, idValue ->
         stateKey.toIntOrNull()?.let { state ->

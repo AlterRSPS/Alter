@@ -4,14 +4,13 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.crypto.xtea.XteaKey
 import net.rsprot.protocol.loginprot.incoming.util.AuthenticationType
 import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
+import org.alter.game.GameContext
 import org.alter.game.model.PlayerUID
 import org.alter.game.model.attr.APPEARANCE_SET_ATTR
 import org.alter.game.model.attr.NEW_ACCOUNT_ATTR
 import org.alter.game.model.entity.Client
-import org.alter.game.playersaving.impl.DetailSerialisation
-import org.alter.game.playersaving.impl.SkillSerialisation
-import org.alter.game.playersaving.impl.VarpSerialisation
-import org.alter.game.playersaving.seralizationTypes.impl.JsonSerialization
+import org.alter.game.playersaving.impl.*
+import org.alter.game.playersaving.formats.FormatHandler
 import org.bson.Document
 import org.mindrot.jbcrypt.BCrypt
 
@@ -19,19 +18,26 @@ object PlayerSerialization {
 
     private val logger = KotlinLogging.logger {}
 
-    private val serialization = JsonSerialization()
+    private lateinit var serialization : FormatHandler
 
-    private val documentDecoders = hashSetOf<DocumentDecoder>(
+    private val documents = linkedSetOf(
         DetailSerialisation(),
+        AppearanceSerialisation(),
+        SkillSerialisation(),
+        AttributeSerialisation(),
+        TimerSerialisation(),
+        ContainersSerialisation(),
         VarpSerialisation(),
-        SkillSerialisation()
     )
 
-    private val documentEncoders = hashSetOf<DocumentEncoder>(
-        DetailSerialisation(),
-        VarpSerialisation(),
-        SkillSerialisation()
-    )
+    fun init(gameContext: GameContext) {
+        serialization = gameContext.saveFormat.createInstance()
+
+        logger.info { "Player Save Format : ${gameContext.saveFormat.name}" }
+
+        serialization.init()
+
+    }
 
     fun savePlayer(player: Client) {
         val doc = Document().apply {
@@ -39,8 +45,9 @@ object PlayerSerialization {
             append("loginUsername", player.loginUsername)
             append("passwordHash", player.passwordHash)
             append("previousXteas", player.currentXteaKeys.asList())
+
             append("attributes", Document().also { attrs ->
-                documentEncoders.forEach { encoder ->
+                documents.forEach { encoder ->
                     attrs.append(encoder.name, encoder.asDocument(player))
                 }
             })
@@ -49,7 +56,7 @@ object PlayerSerialization {
     }
 
     fun loadPlayer(client: Client, block: LoginBlock<*>): PlayerLoadResult {
-        if (!serialization.playerExist(client.loginUsername)) {
+        if (!serialization.playerExists(client)) {
             configureNewPlayer(client, block)
             client.uid = PlayerUID(client.loginUsername)
             savePlayer(client)
@@ -68,6 +75,7 @@ object PlayerSerialization {
 
             client.username = document.getString("displayName")
             client.loginUsername = document.getString("loginUsername")
+
             client.uid = PlayerUID(client.username)
 
             if (!loadAttributes(client, document.get("attributes", Document::class.java))) {
@@ -100,7 +108,7 @@ object PlayerSerialization {
     private fun loadAttributes(client: Client, attributes: Document?): Boolean {
         return try {
             attributes?.let {
-                documentDecoders.forEach { decoder ->
+                documents.forEach { decoder ->
                     attributes.get(decoder.name, Document::class.java)?.let { attrDoc ->
                         decoder.fromDocument(client, attrDoc)
                     } ?: return false

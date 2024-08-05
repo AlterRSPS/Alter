@@ -24,13 +24,10 @@ dependencies {
         implementation(jackson.module.kotlin)
         implementation(jackson.dataformat.yaml)
         implementation(kotlin.csv)
+        implementation(mongo.bson)
+        implementation(mongo.driver)
         testImplementation(junit)
     }
-
-    implementation("org.mongodb:bson:5.1.2")
-    implementation("org.mongodb:mongo-java-driver:3.12.14")
-
-
 
 }
 sourceSets {

@@ -11,6 +11,8 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.skill.SkillSet
+import org.alter.game.playersaving.PlayerSerialization
+import org.alter.game.playersaving.formats.SaveFormatType
 import org.alter.game.rsprot.CacheJs5GroupProvider
 import org.alter.game.rsprot.NetworkServiceFactory
 import org.alter.game.service.xtea.XteaKeyService
@@ -87,6 +89,7 @@ class Server {
                 initialLaunch = initialLaunch,
                 name = gameProperties.get<String>("name")!!,
                 revision = gameProperties.get<Int>("revision")!!,
+                saveFormat = SaveFormatType.valueOf(gameProperties.get<String>("saveFormat")?: "JSON"),
                 cycleTime = gameProperties.getOrDefault("cycle-time", 600),
                 playerLimit = gameProperties.getOrDefault("max-players", 2048),
                 home =
@@ -118,6 +121,8 @@ class Server {
             )
 
         System.setProperty("net.rsprot.protocol.internal.networkLogging", devContext.debugPackets.toString())
+
+        PlayerSerialization.init(gameContext)
 
         /*
          * Load the file store.

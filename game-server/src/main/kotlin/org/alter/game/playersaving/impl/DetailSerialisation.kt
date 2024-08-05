@@ -4,11 +4,10 @@ import org.alter.game.model.Tile
 import org.alter.game.model.entity.Client
 import org.alter.game.model.interf.DisplayMode
 import org.alter.game.model.priv.Privilege
-import org.alter.game.playersaving.DocumentDecoder
-import org.alter.game.playersaving.DocumentEncoder
+import org.alter.game.playersaving.DocumentHandler
 import org.bson.Document
 
-class DetailSerialisation(override val name: String = "details") : DocumentDecoder, DocumentEncoder {
+class DetailSerialisation(override val name: String = "details") : DocumentHandler {
 
     override fun fromDocument(client: Client, doc: Document) {
         client.tile = Tile(doc["tile"] as List<Int>)

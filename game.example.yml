@@ -3,6 +3,7 @@
 name: "Alter"
 game-port: 43594
 revision: 223
+saveFormat: "JSON"
 
 # The coordinates for the home location.
 home-x: 3218
