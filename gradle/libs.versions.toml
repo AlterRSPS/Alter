@@ -13,6 +13,7 @@ json = "20220320"
 jbcrypt = "0.4"
 gson = "_"
 kotlinxSerializationCore = "_"
+mongo = "5.1.2"
 junit = "4.+"
 kotlinTestJunit = "_"
 kotlin = "1.9.23"
@@ -67,6 +68,9 @@ netty-all = { group = "io.netty", name = "netty-all", version.ref = "nettyAll" }
 logback-classic = { group ="ch.qos.logback", name = "logback-classic", version.ref = "logback"}
 openrune-filestore = { group = "dev.openrune", name = "filestore", version.ref = "openrune-filestore"}
 rsprot = { group = "net.rsprot", name = "osrs-223-api", version.ref = "rsprot"}
+
+mongo-bson = { group = "org.mongodb", name = "bson", version.ref = "mongo"}
+mongo-driver = { group = "org.mongodb", name = "mongodb-driver-sync", version.ref = "mongo"}
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

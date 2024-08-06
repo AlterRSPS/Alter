@@ -31,7 +31,6 @@ privileges:
 # Game services
 # You can pick and choose which services you want to run.
 services:
-  - class: org.alter.game.service.serializer.json.JsonPlayerSerializer
 
   - class: org.alter.game.service.xtea.XteaKeyService
 
