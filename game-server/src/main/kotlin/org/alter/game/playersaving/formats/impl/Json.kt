@@ -6,16 +6,19 @@ import org.bson.Document
 import org.bson.json.JsonWriterSettings
 import java.nio.file.Files
 import java.nio.file.Path
-import kotlin.io.path.Path
-import kotlin.io.path.readText
-import kotlin.io.path.writeText
+import kotlin.io.path.*
 
 class Json : FormatHandler() {
 
-    private var prettyPrintSettings: JsonWriterSettings = JsonWriterSettings.builder().indent(true).build()
-
     private var path: Path = Path("../data/saves/")
 
+    private var prettyPrintSettings: JsonWriterSettings = JsonWriterSettings.builder().indent(true).build()
+
+    init {
+        if (!path.exists()) {
+            path.createDirectory()
+        }
+    }
 
     override fun saveDocument(client: Client, document: Document) {
         path.resolve(client.loginUsername).writeText(document.toJson(prettyPrintSettings))
