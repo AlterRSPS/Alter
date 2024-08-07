@@ -11,8 +11,9 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.skill.SkillSet
-import org.alter.game.playersaving.PlayerSerialization
-import org.alter.game.playersaving.formats.SaveFormatType
+import org.alter.game.saving.PlayerDetails
+import org.alter.game.saving.PlayerSaving
+import org.alter.game.saving.formats.SaveFormatType
 import org.alter.game.rsprot.CacheJs5GroupProvider
 import org.alter.game.rsprot.NetworkServiceFactory
 import org.alter.game.service.xtea.XteaKeyService
@@ -39,7 +40,7 @@ class Server {
      * before the game can be launched properly.
      */
     fun startServer(apiProps: Path) {
-        Thread.setDefaultUncaughtExceptionHandler { t, e -> logger.error{"Uncaught server exception in thread $t! $e"} }
+        Thread.setDefaultUncaughtExceptionHandler { t, e -> e.printStackTrace() }
         val stopwatch = Stopwatch.createStarted()
 
         /*
@@ -122,7 +123,8 @@ class Server {
 
         System.setProperty("net.rsprot.protocol.internal.networkLogging", devContext.debugPackets.toString())
 
-        PlayerSerialization.init(gameContext)
+        PlayerDetails.init(gameContext)
+        PlayerSaving.init(gameContext)
 
         /*
          * Load the file store.

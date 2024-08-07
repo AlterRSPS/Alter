@@ -1,9 +1,9 @@
-package org.alter.game.playersaving.formats
+package org.alter.game.saving.formats
 
 import org.alter.game.model.entity.Client
 import org.bson.Document
 
-abstract class FormatHandler {
+abstract class FormatHandler(open val collectionName : String) {
 
     open fun init() {}
 
@@ -13,6 +13,7 @@ abstract class FormatHandler {
 
     abstract fun parseDocument(client : Client) : Document
 
+    abstract fun loadAll() : Map<String,Document>
 
 
 }

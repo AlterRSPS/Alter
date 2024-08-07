@@ -1,15 +1,13 @@
-package org.alter.game.playersaving.formats.impl.mongo
+package org.alter.game.saving.formats.impl
 
 import com.mongodb.client.model.Filters.regex
 import com.mongodb.client.model.Updates.set
 import org.alter.game.model.entity.Client
-import org.alter.game.playersaving.formats.FormatHandler
+import org.alter.game.saving.formats.FormatHandler
 import org.bson.Document
 import org.bson.conversions.Bson
 
-class Mongo : FormatHandler() {
-
-    private val COLLECTION_NAME = "players"
+class Mongo(override val collectionName: String) : FormatHandler(collectionName) {
 
     override fun init() {
         DatabaseManager.connect()
@@ -17,22 +15,26 @@ class Mongo : FormatHandler() {
 
     override fun saveDocument(client: Client, document: Document) {
         if (!playerExists(client)) {
-            DatabaseManager.getCollection(COLLECTION_NAME).insertOne(document)
+            DatabaseManager.getCollection(collectionName).insertOne(document)
         } else {
             val caseInsensitiveFilter = createCaseInsensitiveFilter(client)
             val attrs = document.get("attributes", Document::class.java)
-            DatabaseManager.getCollection(COLLECTION_NAME).updateOne(caseInsensitiveFilter, set("attributes", attrs))
+            DatabaseManager.getCollection(collectionName).updateOne(caseInsensitiveFilter, set("attributes", attrs))
         }
     }
 
     override fun parseDocument(client : Client): Document {
         val caseInsensitiveFilter = createCaseInsensitiveFilter(client)
-        return DatabaseManager.getCollection(COLLECTION_NAME).find(caseInsensitiveFilter).first()!!
+        return DatabaseManager.getCollection(collectionName).find(caseInsensitiveFilter).first()!!
+    }
+
+    override fun loadAll(): Map<String, Document> {
+        TODO("Not yet implemented")
     }
 
     override fun playerExists(client: Client): Boolean {
         val caseInsensitiveFilter = createCaseInsensitiveFilter(client)
-        return DatabaseManager.getCollection(COLLECTION_NAME)
+        return DatabaseManager.getCollection(collectionName)
             .find(caseInsensitiveFilter)
             .toList()
             .isNotEmpty()

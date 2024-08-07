@@ -1,4 +1,4 @@
-package org.alter.game.playersaving
+package org.alter.game.saving
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.crypto.xtea.XteaKey
@@ -9,16 +9,16 @@ import org.alter.game.model.PlayerUID
 import org.alter.game.model.attr.APPEARANCE_SET_ATTR
 import org.alter.game.model.attr.NEW_ACCOUNT_ATTR
 import org.alter.game.model.entity.Client
-import org.alter.game.playersaving.impl.*
-import org.alter.game.playersaving.formats.FormatHandler
+import org.alter.game.saving.impl.*
+import org.alter.game.saving.formats.FormatHandler
 import org.bson.Document
 import org.mindrot.jbcrypt.BCrypt
 
-object PlayerSerialization {
+object PlayerSaving {
 
     private val logger = KotlinLogging.logger {}
 
-    private lateinit var serialization : FormatHandler
+    lateinit var serialization : FormatHandler
 
     private val documents = linkedSetOf(
         DetailSerialisation(),
@@ -31,7 +31,7 @@ object PlayerSerialization {
     )
 
     fun init(gameContext: GameContext) {
-        serialization = gameContext.saveFormat.createInstance()
+        serialization = gameContext.saveFormat.createInstance("details")
 
         logger.info { "Player Save Format : ${gameContext.saveFormat.name}" }
 
@@ -41,7 +41,6 @@ object PlayerSerialization {
 
     fun savePlayer(player: Client) {
         val doc = Document().apply {
-            append("displayName", player.username)
             append("loginUsername", player.loginUsername)
             append("passwordHash", player.passwordHash)
             append("previousXteas", player.currentXteaKeys.asList())
@@ -56,7 +55,11 @@ object PlayerSerialization {
     }
 
     fun loadPlayer(client: Client, block: LoginBlock<*>): PlayerLoadResult {
-        if (!serialization.playerExists(client)) {
+        if (!PlayerDetails.playerExists(client)) {
+            val registered = PlayerDetails.registerAccount(client)
+            if (!registered) {
+                return PlayerLoadResult.INVALID_CREDENTIALS
+            }
             configureNewPlayer(client, block)
             client.uid = PlayerUID(client.loginUsername)
             savePlayer(client)
@@ -64,7 +67,13 @@ object PlayerSerialization {
         }
 
         return try {
+
+            if (PlayerDetails.getDisplayName(client.loginUsername) == null) {
+                return PlayerLoadResult.INVALID_CREDENTIALS
+            }
+
             val document = serialization.parseDocument(client)
+            client.loginUsername = document.getString("loginUsername")
             client.passwordHash = document.getString("passwordHash")
             val previousXteas = document.getList("previousXteas", Any::class.java).map { it as Int }.toIntArray()
 
@@ -73,8 +82,7 @@ object PlayerSerialization {
                 return authentication
             }
 
-            client.username = document.getString("displayName")
-            client.loginUsername = document.getString("loginUsername")
+            client.username = PlayerDetails.getDisplayName(client.loginUsername)?.currentDisplayName?: client.loginUsername
 
             client.uid = PlayerUID(client.username)
 

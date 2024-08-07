@@ -1,7 +1,7 @@
-package org.alter.game.playersaving.impl
+package org.alter.game.saving.impl
 
 import org.alter.game.model.entity.Client
-import org.alter.game.playersaving.DocumentHandler
+import org.alter.game.saving.DocumentHandler
 import org.bson.Document
 
 class VarpSerialisation(override val name: String = "varps") : DocumentHandler {

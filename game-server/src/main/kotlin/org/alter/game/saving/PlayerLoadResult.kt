@@ -1,4 +1,4 @@
-package org.alter.game.playersaving
+package org.alter.game.saving
 
 /**
  * Possible results when trying to decode player data.

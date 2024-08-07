@@ -1,4 +1,4 @@
-package org.alter.game.playersaving.formats.impl.mongo
+package org.alter.game.saving.formats.impl
 
 import com.mongodb.MongoException
 import com.mongodb.client.MongoClient
@@ -43,6 +43,9 @@ object DatabaseManager {
     private var database: MongoDatabase? = null
 
     fun connect() {
+        if (client != null) {
+            return
+        }
         logger.info { "Connecting to MongoDB" }
 
         try {

@@ -1,10 +1,10 @@
-package org.alter.game.playersaving.impl
+package org.alter.game.saving.impl
 
 import org.alter.game.model.Tile
 import org.alter.game.model.entity.Client
 import org.alter.game.model.interf.DisplayMode
 import org.alter.game.model.priv.Privilege
-import org.alter.game.playersaving.DocumentHandler
+import org.alter.game.saving.DocumentHandler
 import org.bson.Document
 
 class DetailSerialisation(override val name: String = "details") : DocumentHandler {

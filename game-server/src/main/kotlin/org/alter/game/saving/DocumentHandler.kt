@@ -1,4 +1,4 @@
-package org.alter.game.playersaving
+package org.alter.game.saving
 
 import org.alter.game.model.entity.Client
 import org.bson.Document

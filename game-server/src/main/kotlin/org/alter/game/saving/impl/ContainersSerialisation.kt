@@ -1,10 +1,10 @@
-package org.alter.game.playersaving.impl
+package org.alter.game.saving.impl
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.model.container.ItemContainer
 import org.alter.game.model.entity.Client
 import org.alter.game.model.item.Item
-import org.alter.game.playersaving.DocumentHandler
+import org.alter.game.saving.DocumentHandler
 import org.bson.Document
 
 private val logger = KotlinLogging.logger {}
