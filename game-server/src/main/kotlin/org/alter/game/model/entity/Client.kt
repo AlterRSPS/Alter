@@ -8,7 +8,7 @@ import net.rsprot.protocol.loginprot.incoming.util.LoginBlock
 import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.model.EntityType
 import org.alter.game.model.World
-import org.alter.game.service.serializer.PlayerSerializerService
+import org.alter.game.saving.PlayerSaving
 
 /**
  * A [Player] that is controlled by a human. A [Client] is responsible for
@@ -78,7 +78,7 @@ class Client(world: World) : Player(world) {
 
     override fun handleLogout() {
         super.handleLogout()
-        world.getService(PlayerSerializerService::class.java, searchSubclasses = true)?.saveClientData(this)
+        PlayerSaving.savePlayer(this)
     }
 
     override fun handleMessages() {

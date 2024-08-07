@@ -7,11 +7,15 @@ import org.alter.game.model.appearance.Looks.getHeads
 import org.alter.game.model.appearance.Looks.getJaws
 import org.alter.game.model.appearance.Looks.getLegs
 import org.alter.game.model.appearance.Looks.getTorsos
+import org.alter.game.model.item.Item
+import org.bson.Document
+
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 data class Appearance(val looks: IntArray, val colors: IntArray, var gender: Gender) {
+
     /**
      * @param option - the specified look to select from the [Appearance]'s [looks]
      *      with valid options explicitly as follows:
@@ -75,7 +79,25 @@ data class Appearance(val looks: IntArray, val colors: IntArray, var gender: Gen
         return result
     }
 
+
+    //TODO MAP Appearance of HEAD:VALUE
+    fun asDocument(): Document {
+        return Document()
+            .append("looks", looks.toList())
+            .append("colors", colors.toList())
+            .append("gender", gender.name)
+    }
+
     companion object {
+
+        fun fromDocument(doc: Document): Appearance {
+            return Appearance(
+                doc.getList("looks", Integer::class.java).map { it.toInt() }.toIntArray(),
+                doc.getList("colors", Integer::class.java).map { it.toInt() }.toIntArray(),
+                Gender.valueOf(doc.getString("gender") ?: "MALE")
+            )
+        }
+
         private val DEFAULT_COLORS = intArrayOf(0, 27, 9, 0, 0)
 
         private val DEFAULT_MALE_LOOKS = intArrayOf(15, 9, 3, 8, 0, 3, 1) // 133, 113, 21, 86, 33, 39, 43
