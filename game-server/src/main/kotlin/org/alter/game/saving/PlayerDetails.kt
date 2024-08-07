@@ -67,21 +67,20 @@ object PlayerDetails {
     }
 
 
-    private fun isNameAvailable(displayName: String?): Boolean {
-        val currentDate = System.currentTimeMillis()
-
+    private fun isNameAvailable(displayName: String): Boolean {
         if (displayNames.isEmpty()) {
             return true
         }
 
-        for ((currentDisplayName, previousDisplayName, dateChanged) in displayNames.values) {
-            if (currentDisplayName.equals(displayName, ignoreCase = true)) {
-                return false
-            }
-            if (previousDisplayName.equals(displayName, ignoreCase = true) && currentDate - dateChanged <= timeToNewNameChange) {
-                return false
+        val currentDate = System.currentTimeMillis()
+
+        displayNames.values.forEach { (currentDisplayName, previousDisplayName, dateChanged) ->
+            when {
+                currentDisplayName.equals(displayName, ignoreCase = true) -> return false
+                previousDisplayName.equals(displayName, ignoreCase = true) && (dateChanged.toInt() == -1 || currentDate - dateChanged <= timeToNewNameChange) -> return false
             }
         }
+
         return true
     }
 
