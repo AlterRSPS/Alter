@@ -15,12 +15,12 @@ import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.path.PathRequest
-import org.alter.game.model.path.Route
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.timer.FROZEN_TIMER
 import org.alter.game.model.timer.STUN_TIMER
 import org.alter.game.plugin.Plugin
+import org.rsmod.game.pathfinder.Route
 import java.util.*
 
 /**
@@ -197,7 +197,10 @@ object ObjectPathAction {
                             )
                     )
                 ) {
-                    return Route(ArrayDeque(), success = true, tail = pawn.tile)
+                    /**
+                     * @TODO TILE
+                     */
+                    //return Route(ArrayDeque(), success = true, tail = pawn.tile)
                 }
             }
 
@@ -233,11 +236,15 @@ object ObjectPathAction {
         if (!wall && (lineOfSightRange == null || lineOfSightRange > 0)) {
             builder.clipOverlapTiles()
         }
-
-        val route = pawn.createPathFindingStrategy().calculateRoute(builder.build())
+        /**
+         * @TODO Tile
+        //val route = pawn.createPathFindingStrategy().calculateRoute(builder.build())
 
         if (pawn.timers.has(FROZEN_TIMER) && !pawn.tile.sameAs(route.tail)) {
-            return Route(ArrayDeque(), success = false, tail = pawn.tile)
+            /**
+             * @TODO TILE
+              */
+        //return Route(ArrayDeque(), success = false, tail = pawn.tile)
         }
 
         pawn.walkPath(route.path, MovementQueue.StepType.NORMAL, detectCollision = true)
@@ -253,18 +260,26 @@ object ObjectPathAction {
 
         if (pawn.timers.has(STUN_TIMER)) {
             pawn.stopMovement()
+            /** @TODO Tile
             return Route(ArrayDeque(), success = false, tail = pawn.tile)
-        }
+            */
+            }
 
         if (pawn.timers.has(FROZEN_TIMER) && !pawn.tile.sameAs(route.tail)) {
+            /** @TODO Tile
             return Route(ArrayDeque(), success = false, tail = pawn.tile)
-        }
+            */
+            }
 
         if (wall && !route.success && pawn.tile.isWithinRadius(tile, 1) && Direction.between(tile, pawn.tile) !in blockedWallDirections) {
+            /** @TODO Tile
             return Route(route.path, success = true, tail = route.tail)
-        }
+            */
+            }
 
         return route
+        */
+
     }
 
     private fun faceObj(

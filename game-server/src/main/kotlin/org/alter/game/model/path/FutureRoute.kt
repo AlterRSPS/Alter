@@ -30,8 +30,10 @@ class FutureRoute private constructor(
      * This flag lets us know if the [FutureRoute.route] has finished.
      */
     @Volatile var completed = false
-
-    lateinit var route: Route
+    /**
+     * @TODO TILE
+      */
+    //lateinit var route: Route
 
     companion object {
         private val logger = KotlinLogging.logger {}
@@ -74,7 +76,10 @@ class FutureRoute private constructor(
         ): FutureRoute {
             val future = FutureRoute(strategy, stepType, detectCollision)
             executor.execute {
-                future.route = strategy.calculateRoute(request)
+                /**
+                 * @TODO TILE
+                 */
+                //future.route = strategy.calculateRoute(request)
                 future.completed = true
             }
             return future

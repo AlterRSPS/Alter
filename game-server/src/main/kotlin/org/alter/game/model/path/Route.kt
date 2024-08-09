@@ -20,4 +20,4 @@ import java.util.*
  *
  * @author Tom <rspsmods@gmail.com>
  */
-data class Route(val path: Queue<Tile>, val success: Boolean, val tail: Tile)
+//data class Route(val path: Queue<Tile>, val success: Boolean, val tail: Tile)

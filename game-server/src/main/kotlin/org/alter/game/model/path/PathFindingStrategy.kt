@@ -22,7 +22,7 @@ abstract class PathFindingStrategy(val collision: CollisionManager) {
     /**
      * Calculate the most appropriate route given a [PathRequest].
      */
-    abstract fun calculateRoute(request: PathRequest): Route
+    //abstract fun calculateRoute(request: PathRequest): Route
 
     companion object {
         /**
