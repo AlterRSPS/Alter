@@ -26,7 +26,6 @@ include(":game-api")
 include(":game-server")
 include(":data-builder")
 include(":plugins")
-
 includePlugins(project(":plugins"))
 fun includePlugins(pluginProject: ProjectDescriptor) {
     val pluginPath = pluginProject.projectDir.toPath()
