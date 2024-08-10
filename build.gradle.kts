@@ -37,7 +37,7 @@ allprojects {
         implementation(lib.kotlinx.serialization.core)
         implementation(lib.rsprot)
         implementation(lib.pathfinder)
-        if (name != "plugins") {
+        if (name != "filestore") {
             implementation(rootProject.projects.plugins.filestore)
         }
         testImplementation(lib.junit)

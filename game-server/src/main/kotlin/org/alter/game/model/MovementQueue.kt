@@ -3,6 +3,7 @@ package org.alter.game.model
 import org.alter.game.model.MovementQueue.Step
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
+import org.alter.game.model.entity.Player
 import java.util.*
 import kotlin.math.abs
 
@@ -54,15 +55,30 @@ class MovementQueue(val pawn: Pawn) {
 
             walkDirection = Direction.between(tile, next.tile)
 
-            if (walkDirection != Direction.NONE && (
-                    !next.detectCollision ||
-                        collision.canTraverse(
-                            tile,
-                            walkDirection,
-                            projectile = false,
-                        )
-                )
+            if (walkDirection != Direction.NONE &&
+                (!next.detectCollision || pawn.world.canTraverse(tile, walkDirection, pawn))
             ) {
+                if (pawn is Npc) {
+                    val entitiesClipped = mutableListOf<Pawn>()
+
+                    pawn.world.chunks
+                        .get(next.tile, createIfNeeded = true)!!
+                        .getEntities<Npc>(next.tile, EntityType.NPC)
+                        .filter { it.tile == next.tile }
+                        .let { entitiesClipped.addAll(it) }
+
+                    pawn.world.chunks
+                        .get(next.tile, createIfNeeded = true)!!
+                        .getEntities<Player>(next.tile, EntityType.CLIENT)
+                        .filter { it.tile == next.tile }
+                        .let { entitiesClipped.addAll(it) }
+
+                    if (entitiesClipped.isNotEmpty()) {
+                        entitiesClipped.clear()
+                        clear()
+                        return
+                    }
+                }
                 tile = Tile(next.tile)
                 pawn.lastFacingDirection = walkDirection
 
@@ -77,7 +93,7 @@ class MovementQueue(val pawn: Pawn) {
                     if (next != null) {
                         runDirection = Direction.between(tile, next.tile)
 
-                        if (!next.detectCollision || collision.canTraverse(tile, runDirection, projectile = false)) {
+                        if (!next.detectCollision || pawn.world.canTraverse(tile, runDirection, pawn)) {
                             tile = Tile(next.tile)
                             pawn.lastFacingDirection = runDirection
                         } else {
@@ -92,15 +108,14 @@ class MovementQueue(val pawn: Pawn) {
             }
 
             if (walkDirection != null && walkDirection != Direction.NONE) {
-                if (pawn.entityType.isNpc) {
-                    (pawn as Npc).avatar.walk(walkDirection.getDeltaX(), walkDirection.getDeltaZ())
-                }
                 pawn.steps = StepDirection(walkDirection, runDirection)
                 pawn.tile = Tile(tile)
-                // TODO ADVO THIS IS SHIT
-//                if (runDirection != null) {
-//                    pawn.addBlock(UpdateBlockType.MOVEMENT)
-//                }
+                /**
+                 * @TODO Fix this
+                 */
+                //if (pawn is Player) {
+               //    pawn.addBlock(UpdateBlockType.MOVEMENT)
+               //}
             }
         }
     }

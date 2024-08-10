@@ -5,11 +5,11 @@ import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.model.MovementQueue
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.*
+import org.alter.game.model.collision.raycast
 import org.alter.game.model.entity.Entity
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
-import org.alter.game.model.path.PathRequest
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.timer.FROZEN_TIMER
@@ -90,7 +90,16 @@ object PawnPathAction {
 
         pawn.facePawn(other)
 
-        val pathFound = walkTo(it, pawn, other, interactionRange = lineOfSightRange ?: 1, lineOfSight = lineOfSightRange != null)
+
+        val pathFound =
+            walkTo(
+                it,
+                pawn,
+                other,
+                lineOfSightRange = lineOfSightRange ?: 1,
+                lineOfSight =
+                lineOfSightRange != null,
+            )
         if (!pathFound) {
             pawn.movementQueue.clear()
             if (pawn is Player) {
@@ -137,12 +146,13 @@ object PawnPathAction {
                 /*
                  * Stop the npc from walking while the player talks to it
                  * for [Npc.RESET_PAWN_FACE_DELAY] cycles.
+                 * @TODO review
                  */
-                other.stopMovement()
-                if (other.attr[FACING_PAWN_ATTR]?.get() != pawn) {
-                    other.facePawn(pawn)
-                    other.timers[RESET_PAWN_FACING_TIMER] = Npc.RESET_PAWN_FACE_DELAY
-                }
+                //other.stopMovement()
+                //if (other.attr[FACING_PAWN_ATTR]?.get() != pawn && !other.static) {
+                //    other.facePawn(pawn)
+                //    other.timers[RESET_PAWN_FACING_TIMER] = Npc.RESET_PAWN_FACE_DELAY
+                //}
 
                 val npcId = other.getTransform(pawn)
                 val handled =
@@ -159,11 +169,13 @@ object PawnPathAction {
             }
 
             if (other is Player) {
-                val option = pawn.options[opt - 1]
-                if (option != null) {
-                    val handled = world.plugins.executePlayerOption(pawn, option)
-                    if (!handled) {
-                        pawn.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
+                if (opt != ITEM_USE_OPCODE) {
+                    val option = pawn.options[opt - 1]
+                    if (option != null) {
+                        val handled = world.plugins.executePlayerOption(pawn, option)
+                        if (!handled) {
+                            pawn.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
+                        }
                     }
                 }
             }
@@ -176,14 +188,14 @@ object PawnPathAction {
         it: QueueTask,
         pawn: Pawn,
         target: Pawn,
-        interactionRange: Int,
+        lineOfSightRange: Int,
         lineOfSight: Boolean,
     ): Boolean {
         val sourceSize = pawn.getSize()
         val targetSize = target.getSize()
         val sourceTile = pawn.tile
         val targetTile = target.tile
-        val projectile = interactionRange > 2
+        val projectile = lineOfSightRange > 2
 
         val frozen = pawn.timers.has(FROZEN_TIMER)
         val stunned = pawn.timers.has(STUN_TIMER)
@@ -203,34 +215,53 @@ object PawnPathAction {
 
             if (!projectile) {
                 return if (!lineOfSight) {
-                    bordering(sourceTile, sourceSize, targetTile, interactionRange)
+                    bordering(sourceTile, sourceSize, targetTile, lineOfSightRange)
                 } else {
-                    overlap(
-                        sourceTile,
-                        sourceSize,
-                        targetTile,
-                        interactionRange,
-                    ) && (interactionRange == 0 || !sourceTile.sameAs(targetTile)) &&
-                        pawn.world.collision.raycast(sourceTile, targetTile, lineOfSight)
+                    overlap(sourceTile, sourceSize, targetTile, lineOfSightRange) &&
+                            (lineOfSightRange == 0 || !sourceTile.sameAs(targetTile)) &&
+                            pawn.world.collision.raycast(sourceTile, targetTile, lineOfSight)
                 }
             }
         }
 
-        val pathFinder = PathFinder(pawn.world.collisionFlags)
-        val newRoute = pathFinder.findPath(
-            level = pawn.tile.height,
-            srcX = sourceTile.x,
-            srcZ = sourceTile.z,
-            destX = targetTile.x,
-            destZ = targetTile.z,
-            srcSize = sourceSize,
-            destWidth = targetSize,
-            destHeight = targetSize,
-            collision = CollisionStrategies.Normal,
-        )
-        //val tileQueue: Queue<Tile> = ArrayDeque(newRoute.waypoints.map { Tile(it.x, it.z, it.level) })
+        val newRoute =
+            pawn.world.pathFinder.findPath(
+                level = pawn.tile.height,
+                srcX = sourceTile.x,
+                srcZ = sourceTile.z,
+                destX = targetTile.x,
+                destZ = targetTile.z,
+                srcSize = sourceSize,
+                destWidth = targetSize,
+                destHeight = targetSize,
+                collision = CollisionStrategies.Normal,
+            )
         val tileQueue: Queue<Tile> = ArrayDeque(newRoute.waypoints.map { Tile(it.x, it.z, it.level) })
-        pawn.walkPath(tileQueue, MovementQueue.StepType.NORMAL, detectCollision = true)
+
+        pawn.walkPath(tileQueue, MovementQueue.StepType.NORMAL, detectCollision = false)
+
+        /*val builder = PathRequest.Builder()
+            .setPoints(sourceTile, targetTile)
+            .setSourceSize(sourceSize, sourceSize)
+            .setTargetSize(targetSize, targetSize)
+            .setProjectilePath(lineOfSight || projectile)
+            .setTouchRadius(interactionRange)
+            .clipPathNodes(node = true, link = true)
+*/
+//        if (!lineOfSight && !projectile) {
+//            builder.clipDiagonalTiles()
+//        }
+//
+//        builder.clipOverlapTiles()
+//
+//        val route = pawn.createPathFindingStrategy().calculateRoute(builder.build())
+//
+//        pawn.walkPath(route.path, MovementQueue.StepType.NORMAL, detectCollision = true)
+//
+        if (pawn.hasLineOfSightTo(target, true, lineOfSightRange) && projectile) {
+            return newRoute.success
+        }
+//
 //        while (!pawn.tile.sameAs(route.tail)) {
 //            if (!targetTile.sameAs(target.tile)) {
 //                return walkTo(it, pawn, target, interactionRange, lineOfSight)

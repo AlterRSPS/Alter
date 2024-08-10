@@ -7,10 +7,10 @@ import net.rsprot.protocol.common.client.OldSchoolClientType
 import net.rsprot.protocol.game.outgoing.zone.header.UpdateZonePartialEnclosed
 import net.rsprot.protocol.game.outgoing.zone.header.UpdateZonePartialFollows
 import net.rsprot.protocol.message.ZoneProt
-import org.alter.game.ext.applyUpdate
 import org.alter.game.model.*
 import org.alter.game.model.collision.CollisionMatrix
-import org.alter.game.model.collision.CollisionUpdate
+import org.alter.game.model.collision.addObjectCollision
+import org.alter.game.model.collision.removeObjectCollision
 import org.alter.game.model.entity.*
 import org.alter.game.model.region.update.*
 
@@ -97,14 +97,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
          * Objects will affect the collision map.
          */
         if (entity.entityType.isObject) {
-            val update = CollisionUpdate.Builder()
-                .also {
-                    it.setType(CollisionUpdate.Type.ADD)
-                    it.putObject(world.definitions, entity as GameObject)
-                }
-                .build()
-            world.collision.applyUpdate(update)
-            world.collisionFlags.applyUpdate(update)
+            world.collision.addObjectCollision(entity as GameObject)
         }
 
         /*
@@ -159,18 +152,8 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
          * [EntityType]s that are considered objects will be removed from our
          * collision map.
          */
-//        if (entity.entityType.isObject) {
-//            world.collision.applyCollision(world.definitions, entity as GameObject, CollisionUpdate.Type.REMOVE)
-//        }
         if (entity.entityType.isObject) {
-            val update = CollisionUpdate.Builder()
-                .also {
-                    it.setType(CollisionUpdate.Type.REMOVE)
-                    it.putObject(world.definitions, entity as GameObject)
-                }
-                .build()
-            world.collision.applyUpdate(update)
-            world.collisionFlags.applyUpdate(update)
+            world.collision.removeObjectCollision(entity as GameObject)
         }
 
         entities[tile]?.remove(entity)

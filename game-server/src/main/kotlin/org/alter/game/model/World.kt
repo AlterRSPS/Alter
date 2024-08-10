@@ -20,6 +20,7 @@ import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.ObjectExamineHolder
 import org.alter.game.model.attr.AttributeMap
 import org.alter.game.model.collision.CollisionManager
+import org.alter.game.model.collision.isClipped
 import org.alter.game.model.combat.NpcCombatDef
 import org.alter.game.model.entity.*
 import org.alter.game.model.instance.InstancedMapAllocator
@@ -36,7 +37,10 @@ import org.alter.game.plugin.PluginRepository
 import org.alter.game.service.GameService
 import org.alter.game.service.Service
 import org.alter.game.service.xtea.XteaKeyService
+import org.rsmod.game.pathfinder.PathFinder
+import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionFlagMap
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -65,7 +69,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
 
     lateinit var coroutineDispatcher: CoroutineDispatcher
 
-
     internal var queues: QueueTaskSet = WorldQueueTaskSet()
 
     val players = PawnList(arrayOfNulls<Player>(gameContext.playerLimit))
@@ -74,9 +77,34 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
 
     val chunks = ChunkSet(this)
 
-    val collision = CollisionManager(chunks)
+    val collision: CollisionFlagMap = CollisionFlagMap()
 
-    val collisionFlags = CollisionFlagMap()
+    val stepValidator = StepValidator(collision)
+    val pathFinder = PathFinder(collision)
+
+    fun canTraverse(
+        source: Tile,
+        direction: Direction,
+        pawn: Pawn,
+        srcSize: Int = 1,
+    ): Boolean {
+        val nextTile = source.step(direction)
+        val collisionFlags = collision[nextTile.x, nextTile.z, nextTile.height]
+
+        return if (pawn is Npc && pawn.canSwim) {
+            // Allow movement if the FLOOR flag is set, regardless of other flags
+            (collisionFlags and CollisionFlag.FLOOR) != 0
+        } else {
+            stepValidator.canTravel(
+                level = source.height,
+                x = source.x,
+                z = source.z,
+                offsetX = direction.getDeltaX(),
+                offsetZ = direction.getDeltaZ(),
+                size = srcSize,
+            )
+        }
+    }
 
     val instanceAllocator = InstancedMapAllocator()
 

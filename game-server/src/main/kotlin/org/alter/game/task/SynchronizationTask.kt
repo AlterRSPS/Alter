@@ -88,7 +88,7 @@ class SequentialSynchronizationTask : GameTask {
 
 fun Player.playerPreSynchronizationTask() {
     val pawn = this
-    pawn.handleFutureRoute()
+   // pawn.handleFutureRoute()
     pawn.movementQueue.cycle()
 
     val last = pawn.lastKnownRegionBase

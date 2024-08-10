@@ -85,21 +85,10 @@ class DefinitionSet {
         /*
          * Apply the blocked tiles to the collision detection.
          */
-        val blockedTileBuilder = CollisionUpdate.Builder()
-        blockedTileBuilder.setType(CollisionUpdate.Type.ADD)
         blocked.forEach { tile ->
-            world.chunks.getOrCreate(tile).blockedTiles.add(tile)
-            blockedTileBuilder.putTile(tile, false, *Direction.NESW)
-            world.collisionFlags.add(
-                absoluteX = tile.x,
-                absoluteZ = tile.z,
-                level = tile.height,
-                // Not impenetrable, so not adding projectile block flags
-                // No need to add direction blocking either, as this is just a tile that's blocked.
-                mask = CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION,
-            )
+            world.chunks.getOrCreate(tile)
+            world.collision.add(tile.x, tile.z, tile.height, CollisionFlag.FLOOR)
         }
-        world.collision.applyUpdate(blockedTileBuilder.build())
         /**
          * EDIT: turns out i was wrong. the assumption made here didn't pan out as expected. the bandos godwars room door ended up having different flags to before.
          *

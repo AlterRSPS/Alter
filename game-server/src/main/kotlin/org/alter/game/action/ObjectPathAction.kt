@@ -6,6 +6,7 @@ import gg.rsmod.util.DataConstants
 import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.model.Direction
 import org.alter.game.model.MovementQueue
+import org.alter.game.model.Tile
 import org.alter.game.model.attr.INTERACTING_ITEM
 import org.alter.game.model.attr.INTERACTING_OBJ_ATTR
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
@@ -14,13 +15,13 @@ import org.alter.game.model.entity.Entity
 import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
-import org.alter.game.model.path.PathRequest
-import org.alter.game.model.path.Route
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.timer.FROZEN_TIMER
 import org.alter.game.model.timer.STUN_TIMER
 import org.alter.game.plugin.Plugin
+import org.rsmod.game.pathfinder.Route
+import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import java.util.*
 
 /**
@@ -183,90 +184,118 @@ object ObjectPathAction {
              */
             if (pawn.tile.isWithinRadius(tile, 1)) {
                 val dir = Direction.between(tile, pawn.tile)
-                if (dir !in blockedWallDirections && (
-                        diagonal ||
-                            !AabbUtil.areDiagonal(
-                                pawn.tile.x,
-                                pawn.tile.z,
-                                pawn.getSize(),
-                                pawn.getSize(),
-                                tile.x,
-                                tile.z,
-                                width,
-                                length,
+                if (dir !in blockedWallDirections &&
+                    (
+                            diagonal ||
+                                    !AabbUtil.areDiagonal(
+                                        pawn.tile.x,
+                                        pawn.tile.z,
+                                        pawn.getSize(),
+                                        pawn.getSize(),
+                                        tile.x,
+                                        tile.z,
+                                        width,
+                                        length,
+                                    )
                             )
-                    )
                 ) {
-                    return Route(ArrayDeque(), success = true, tail = pawn.tile)
+                    return Route(Pawn.EMPTY_TILE_DEQUE, alternative = false, success = true)
                 }
             }
 
             blockDirections.addAll(blockedWallDirections)
         }
 
-        val builder =
-            PathRequest.Builder()
-                .setPoints(pawn.tile, tile)
-                .setSourceSize(pawn.getSize(), pawn.getSize())
-                .setProjectilePath(lineOfSightRange != null)
-                .setTargetSize(width, length)
-                .clipPathNodes(node = true, link = true)
-                .clipDirections(*blockDirections.toTypedArray())
-
-        if (lineOfSightRange != null) {
-            builder.setTouchRadius(lineOfSightRange)
-        }
-
-        /*
-         * If the object is not a 'diagonal' object, you shouldn't be able to
-         * interact with them from diagonal tiles.
-         */
-        if (!diagonal) {
-            builder.clipDiagonalTiles()
-        }
-
-        /*
-         * If the object is not a wall object, or if we have a line of sight range
-         * set for the object, then we shouldn't clip the tiles that overlap the
-         * object; otherwise we do clip them.
-         */
-        if (!wall && (lineOfSightRange == null || lineOfSightRange > 0)) {
-            builder.clipOverlapTiles()
-        }
-
-        val route = pawn.createPathFindingStrategy().calculateRoute(builder.build())
-
-        if (pawn.timers.has(FROZEN_TIMER) && !pawn.tile.sameAs(route.tail)) {
-            return Route(ArrayDeque(), success = false, tail = pawn.tile)
-        }
-
-        pawn.walkPath(route.path, MovementQueue.StepType.NORMAL, detectCollision = true)
+        val route = pawn.world.pathFinder.findPath(
+                level = pawn.tile.height,
+                srcX = pawn.tile.x,
+                srcZ = pawn.tile.z,
+                destX = tile.x,
+                destZ = tile.z,
+                destWidth = def.sizeX,
+                destHeight = def.sizeY,
+                srcSize = pawn.getSize(),
+                collision = CollisionStrategies.Normal,
+                objRot = obj.rot,
+                objShape = obj.type,
+                blockAccessFlags = def.clipMask,
+            )
+        val tileQueue: Queue<Tile> = ArrayDeque(route.waypoints.map { Tile(it.x, it.z, it.level) })
+        pawn.walkPath(tileQueue, MovementQueue.StepType.NORMAL, detectCollision = true)
 
         val last = pawn.movementQueue.peekLast()
+
         while (last != null &&
-            !pawn.tile.sameAs(
-                last,
-            ) && !pawn.timers.has(FROZEN_TIMER) && !pawn.timers.has(STUN_TIMER) && pawn.lock.canMove()
+            !pawn.tile.sameAs(last) &&
+            !pawn.timers.has(FROZEN_TIMER) &&
+            !pawn.timers.has(STUN_TIMER) &&
+            pawn.lock.canMove()
         ) {
             wait(1)
         }
 
         if (pawn.timers.has(STUN_TIMER)) {
             pawn.stopMovement()
-            return Route(ArrayDeque(), success = false, tail = pawn.tile)
+            return Route.FAILED
         }
 
-        if (pawn.timers.has(FROZEN_TIMER) && !pawn.tile.sameAs(route.tail)) {
-            return Route(ArrayDeque(), success = false, tail = pawn.tile)
+        if (pawn.timers.has(FROZEN_TIMER)) {
+            pawn.stopMovement()
+            return Route.FAILED
         }
 
-        if (wall && !route.success && pawn.tile.isWithinRadius(tile, 1) && Direction.between(tile, pawn.tile) !in blockedWallDirections) {
-            return Route(route.path, success = true, tail = route.tail)
+        if (wall && !route.success && Direction.between(tile, pawn.tile) !in blockedWallDirections) {
+            // Here we assume that route.waypoints is already of type List<RouteCoordinates>
+            return Route(route.waypoints, alternative = false, success = true)
         }
+        // Find the nearest tile within the object's dimensions to the player
+        val nearestTile = findNearestTile(pawn.tile, tile, width, length, rot)
 
-        return route
+        /**
+         * @TODO Inspect
+         */
+        //if (def.name.contains("Furnace")) {
+        //    tile =
+        //        when (rot) {
+        //            0 -> tile.transform(0, width shr 1)
+        //            1 -> tile.transform(width shr 1, 0)
+        //            else -> tile
+        //        }
+        //}
+
+        val isPathBlocked =
+            if (def.name.contains("Furnace")) {
+                pawn.isPathBlocked(tile)
+            } else {
+                pawn.isPathBlocked(nearestTile)
+            }
+
+        val radius = lineOfSightRange ?: 1
+
+        val isWithinRadius = pawn.tile.isWithinRadius(nearestTile, radius)
+        // Ensure the route is successful only if the player is within interaction range to the nearest object tile
+        if (route.success && (isWithinRadius) && (!isPathBlocked || wall || wallDeco)) {
+            // println("isBlocked: $isPathBlocked, nearestTile: $nearestTile, isWithinRadius: $isWithinRadius, radius: $radius")
+            return route
+        }
+        // println("isBlocked: $isPathBlocked, nearestTile: $nearestTile, isWithinRadius: $isWithinRadius, radius: $radius")
+        return Route.FAILED
     }
+    private fun findNearestTile(
+        playerTile: Tile,
+        objectTile: Tile,
+        width: Int,
+        length: Int,
+        rotation: Int,
+    ): Tile {
+        val adjustedWidth = if (rotation == 1 || rotation == 3) length else width
+        val adjustedLength = if (rotation == 1 || rotation == 3) width else length
 
+        val nearestX = playerTile.x.coerceIn(objectTile.x..objectTile.x + adjustedWidth)
+        val nearestZ = playerTile.z.coerceIn(objectTile.z..objectTile.z + adjustedLength)
+
+        return Tile(nearestX, nearestZ, objectTile.height)
+    }
     private fun faceObj(
         pawn: Pawn,
         obj: GameObject,
