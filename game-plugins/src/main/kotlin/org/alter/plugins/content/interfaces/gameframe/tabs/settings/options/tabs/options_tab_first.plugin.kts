@@ -1,3 +1,4 @@
+import org.alter.api.ClientScript
 import org.alter.game.model.attr.DISPLAY_MODE_CHANGE_ATTR
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.interf.DisplayMode
@@ -124,7 +125,7 @@ bind_setting(child = DISPLAY_MODE) {
             else -> DisplayMode.FIXED
         }
     if (!(mode.isResizable() && player.interfaces.displayMode.isResizable())) {
-        player.runClientScript(3998, slot - 1)
+        player.runClientScript(ClientScript("settings_client_mode"), slot - 1)
     }
     player.toggleDisplayInterface(mode)
 }

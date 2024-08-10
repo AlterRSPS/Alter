@@ -31,11 +31,11 @@ class PlayerInfo(var player: Player) {
                     val config = CacheManager.getItem(obj.id)
                     var wearPos2 = -1
                     var wearPos3 = -1
-                    if (config.wearPos2 != 0) {
-                        wearPos2 = config.wearPos2
+                    if (config.appearanceOverride1 != 0) {
+                        wearPos2 = config.appearanceOverride1
                     }
-                    if (config.wearPos3 != 0) {
-                        wearPos3 = config.wearPos3
+                    if (config.appearanceOverride2 != 0) {
+                        wearPos3 = config.appearanceOverride2
                     }
                     info.setWornObj(i, obj.id, wearPos2, wearPos3)
                 }

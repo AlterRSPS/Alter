@@ -1,3 +1,4 @@
+import org.alter.api.CommonClientScripts
 import org.alter.game.model.priv.Privilege
 import org.alter.game.plugin.PluginRepository
 
@@ -9,7 +10,7 @@ on_command(command = "cmds", powerRequired = Privilege.ADMIN_POWER, description 
      * ClientScript(id = 217, converted = ["Debug", "Teleports|All Gear|Gear Loadouts|New Items|Swap Prayerbook|Swap Spellbook", true], raw = ["Debug", "Teleports|All Gear|Gear Loadouts|New Items|Swap Prayerbook|Swap Spellbook", 1], types = [ss1])
      * IfSetEvents(interfaceId = 187, componentId = 3, startIndex = 0, endIndex = 127, events = Continue)
      */
-    player.runClientScript(217, "Command List:", getCommands(getPluginRepository()).joinToString("|").removePrefix("(").removePrefix(")"))
+    player.runClientScript(CommonClientScripts.INTERFACE_MENU, "Command List:", getCommands(getPluginRepository()).joinToString("|").removePrefix("(").removePrefix(")"))
 }
 
 fun getCommands(r: PluginRepository): List<String> {

@@ -1,5 +1,6 @@
 package org.alter.plugins.content
 
+import org.alter.api.CommonClientScripts
 import org.alter.api.InterfaceDestination
 
 /**
@@ -58,7 +59,7 @@ on_login {
         player.openDefaultInterfaces()
         setVarbit(Varbit.COMBAT_LEVEL_VARBIT, combatLevel)
         setVarbit(Varbit.CHATBOX_UNLOCKED, 1)
-        runClientScript(5840)
+        runClientScript(CommonClientScripts.INTRO_MUSIC_RESTORE)
         if (getVarp(Varp.PLAYER_HAS_DISPLAY_NAME) == 0 && username.isNotBlank()) {
             syncVarp(Varp.PLAYER_HAS_DISPLAY_NAME)
         }

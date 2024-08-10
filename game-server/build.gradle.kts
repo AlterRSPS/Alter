@@ -156,6 +156,9 @@ tasks.named<Jar>("jar") {
 tasks.withType<ProcessResources> {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
+
+
+
 /**
  * @TODO Forgot about this one.
  */

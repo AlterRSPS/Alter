@@ -1,6 +1,8 @@
 package org.alter.plugins.content.interfaces.priceguide
 
 import dev.openrune.cache.CacheManager.getItem
+import org.alter.api.ClientScript
+import org.alter.api.CommonClientScripts
 import org.alter.api.InterfaceDestination
 import org.alter.api.ext.*
 import org.alter.game.model.ExamineEntityType
@@ -34,7 +36,7 @@ object PriceGuide {
 
         p.setInterfaceEvents(interfaceId = PRICE_GUIDE_INTERFACE_ID, component = 2, range = 0..27, setting = 1086)
         p.runClientScript(
-            149,
+            CommonClientScripts.INTERFACE_INV_INIT,
             15597568,
             93,
             4,
@@ -220,7 +222,7 @@ object PriceGuide {
         val cost = valueService?.get(item) ?: def.cost
 
         p.setComponentItem(interfaceId = PRICE_GUIDE_INTERFACE_ID, component = 8, item = item, amountOrZoom = 1)
-        p.runClientScript(600, 0, 1, 15, 30408716)
+        p.runClientScript(CommonClientScripts.SET_TEXT_ALIGN, 0, 1, 15, 30408716)
         p.setComponentText(
             interfaceId = PRICE_GUIDE_INTERFACE_ID,
             component = 12,
@@ -246,8 +248,8 @@ object PriceGuide {
             }
         }
 
-        p.runClientScript(785, *costs)
-        p.runClientScript(600, 1, 1, 15, 30408716)
+        p.runClientScript(ClientScript("ge_pricechecker_prices"), *costs)
+        p.runClientScript(CommonClientScripts.SET_TEXT_ALIGN, 1, 1, 15, 30408716)
 
         // p.setComponentText(interfaceId = PRICE_GUIDE_INTERFACE_ID, component = 12, text = "Total guide price:<br><col=ffffff>${DecimalFormat().format(guideContainer.getNetworth(p.world))}</col>")
     }

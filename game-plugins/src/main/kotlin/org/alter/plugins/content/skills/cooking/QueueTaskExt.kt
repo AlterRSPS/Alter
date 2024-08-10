@@ -2,6 +2,7 @@ package org.alter.plugins.content.skills.cooking
 
 import dev.openrune.cache.CacheManager.getItem
 import net.rsprot.protocol.game.incoming.resumed.ResumePauseButton
+import org.alter.api.CommonClientScripts
 import org.alter.api.ext.*
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
@@ -31,11 +32,11 @@ suspend fun QueueTask.cookingMessageBox(
     }
 
     player.sendTempVarbit(5983, 1)
-    player.runClientScript(2379)
+    player.runClientScript(CommonClientScripts.CHATBOX_RESET_BACKGROUND)
     player.openInterface(parent = 162, child = 559, interfaceId = 270, isModal = true)
     player.setInterfaceEvents(interfaceId = 270, component = 14, range = (1..10), setting = 1)
     player.setInterfaceEvents(interfaceId = 270, component = 15, range = (1..10), setting = 1)
-    player.runClientScript(2046, 6, "$title${nameArray.joinToString("")}", maxItems, *itemArray, maxItems)
+    player.runClientScript(CommonClientScripts.SKILL_MULTI_SETUP, 6, "$title${nameArray.joinToString("")}", maxItems, *itemArray, maxItems)
 
     terminateAction = closeCookingDialog
     waitReturnValue()

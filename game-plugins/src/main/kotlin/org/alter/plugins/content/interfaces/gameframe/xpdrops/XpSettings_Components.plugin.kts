@@ -1,5 +1,6 @@
 
 import dev.openrune.cache.CacheManager.getEnum
+import org.alter.api.ClientScript
 import org.alter.game.model.skill.SkillSet
 import org.alter.plugins.content.interfaces.xpdrops.XpSettings
 import kotlin.math.roundToInt
@@ -40,7 +41,7 @@ listOf(
 ).forEach { (button, varbit) ->
     on_xp_button(button) {
         player.setVarbit(varbit, player.getInteractingSlot() - 1)
-        player.runClientScript(2091, 3, 20000001) // @TODO
+        player.runClientScript(ClientScript("xpdrops_fake"), 3, 20000001) // @TODO
     }
 }
 

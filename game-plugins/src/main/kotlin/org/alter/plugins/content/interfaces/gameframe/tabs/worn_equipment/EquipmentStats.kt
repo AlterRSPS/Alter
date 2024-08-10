@@ -1,6 +1,7 @@
 package org.alter.plugins.content.interfaces.equipstats
 
 import org.alter.api.BonusSlot
+import org.alter.api.ClientScript
 import org.alter.api.cfg.Items
 import org.alter.api.ext.*
 import org.alter.game.model.entity.Player
@@ -118,7 +119,7 @@ object EquipmentStats {
 
         p.setComponentText(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, component = 40, text = "Undead: $undead%")
         p.runClientScript(
-            7065,
+            ClientScript(id = 7065),
             5505075,
             5505064,
             "Increases your effective accuracy and damage against undead creatures. For multi-target Ranged and Magic attacks, this applies only to the primary target. It does not stack with the Slayer multiplier.",

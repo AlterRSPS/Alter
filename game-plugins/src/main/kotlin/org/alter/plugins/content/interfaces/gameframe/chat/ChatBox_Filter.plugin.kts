@@ -1,3 +1,5 @@
+import org.alter.api.CommonClientScripts
+
 /**
  * @author CloudS3c
  */
@@ -73,9 +75,10 @@ listOf(PUBLIC_BUTTON_COMPONENT, TRADE_BUTTON_COMPONENT).forEach {
 }
 
 on_button(PARENT_CHAT_BOX_INTERFACE, REPORT_BUG_BUTTON_COMPONENT) {
-    player.runClientScript(2524, -1, -1)
+    player.runClientScript(CommonClientScripts.MAIN_MODAL_OPEN, -1, -1)
     player.openInterface(553, InterfaceDestination.MAIN_SCREEN)
-    player.runClientScript(1104, 1, 1)
+    //TODO This script is no longer used
+    //player.runClientScript(1104, 1, 1)
 }
 /**
  * @TODO Needs BUG_REPPORT packet.
