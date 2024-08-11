@@ -19,7 +19,6 @@ import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.ObjectExamineHolder
 import org.alter.game.model.attr.AttributeMap
-import org.alter.game.model.collision.CollisionManager
 import org.alter.game.model.collision.isClipped
 import org.alter.game.model.combat.NpcCombatDef
 import org.alter.game.model.entity.*
