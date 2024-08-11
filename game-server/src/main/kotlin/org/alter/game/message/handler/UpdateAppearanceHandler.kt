@@ -11,7 +11,7 @@ import java.util.*
  * @author Tom <rspsmods@gmail.com>
  */
 class UpdateAppearanceHandler : MessageHandler<UpdatePlayerModel> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: UpdatePlayerModel,
     ) {

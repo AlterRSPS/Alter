@@ -13,7 +13,7 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 class OpNpcHandler : MessageHandler<OpNpc> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpNpc,
     ) {

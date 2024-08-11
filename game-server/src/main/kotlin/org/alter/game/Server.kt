@@ -109,12 +109,12 @@ class Server {
 
         val devContext =
             DevContext(
-                debugExamines = devProperties.getOrDefault("debug-examines", false),
-                debugObjects = devProperties.getOrDefault("debug-objects", false),
-                debugButtons = devProperties.getOrDefault("debug-buttons", false),
-                debugItemActions = devProperties.getOrDefault("debug-items", false),
-                debugMagicSpells = devProperties.getOrDefault("debug-spells", false),
-                debugPackets = devProperties.getOrDefault("debug-packets", false)
+                debugExamines = devProperties.getOrDefault("debug-examines", "off"),
+                debugObjects = devProperties.getOrDefault("debug-objects", "off"),
+                debugButtons = devProperties.getOrDefault("debug-buttons", "off"),
+                debugItemActions = devProperties.getOrDefault("debug-items", "off"),
+                debugMagicSpells = devProperties.getOrDefault("debug-spells", "off"),
+                debugPackets = devProperties.getOrDefault("debug-packets", "off")
             )
 
         System.setProperty("net.rsprot.protocol.internal.networkLogging", devContext.debugPackets.toString())

@@ -12,7 +12,7 @@ import java.lang.ref.WeakReference
  * @author Triston Plummer ("Dread")
  */
 class OpPlayerHandler : MessageHandler<OpPlayer> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpPlayer,
     ) {

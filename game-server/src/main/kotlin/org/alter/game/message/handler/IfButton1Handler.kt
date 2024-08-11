@@ -11,7 +11,7 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class IfButton1Handler : MessageHandler<If3Button> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: If3Button,
     ) {
@@ -39,7 +39,7 @@ class IfButton1Handler : MessageHandler<If3Button> {
             return
         }
 
-        if (client.world.devContext.debugButtons) {
+        if (client.world.devContext.debugButtons != "off") {
             client.writeMessage(
                 "Unhandled button action: [component=[$interfaceId:$component], option=$option, slot=${message.sub}, item=${message.obj}]",
             )

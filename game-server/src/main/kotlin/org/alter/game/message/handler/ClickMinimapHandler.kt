@@ -14,7 +14,7 @@ import org.alter.game.model.timer.STUN_TIMER
  * @author Tom <rspsmods@gmail.com>
  */
 class ClickMinimapHandler : MessageHandler<MoveMinimapClick> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: MoveMinimapClick,
     ) {

@@ -70,7 +70,7 @@ object ObjectPathAction {
         walk(player, obj, lineOfSightRange) {
             if (!player.world.plugins.executeItemOnObject(player, obj.getTransform(player), item.id)) {
                 player.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
-                if (player.world.devContext.debugObjects) {
+                if (player.world.devContext.debugObjects != "off") {
                     player.writeMessage(
                         "Unhandled item on object: [item=$item, id=${obj.id}, type=${obj.type}, rot=${obj.rot}, x=${obj.tile.x}, z=${obj.tile.z}]",
                     )
@@ -89,7 +89,7 @@ object ObjectPathAction {
         walk(player, obj, lineOfSightRange) {
             if (!player.world.plugins.executeObject(player, obj.getTransform(player), opt!!)) {
                 player.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
-                if (player.world.devContext.debugObjects) {
+                if (player.world.devContext.debugObjects != "off") {
                     player.writeMessage(
                         "Unhandled object action: [opt=$opt, id=${obj.id}, type=${obj.type}, rot=${obj.rot}, x=${obj.tile.x}, z=${obj.tile.z}]",
                     )

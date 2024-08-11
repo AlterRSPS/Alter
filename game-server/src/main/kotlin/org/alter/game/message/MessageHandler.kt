@@ -1,9 +1,10 @@
 package org.alter.game.message
 
 import io.github.oshai.kotlinlogging.KotlinLogging
+import net.rsprot.protocol.message.IncomingGameMessage
+import net.rsprot.protocol.message.codec.incoming.MessageConsumer
 import org.alter.game.model.entity.Client
 import org.alter.game.service.log.LoggerService
-import java.util.function.BiConsumer
 
 /**
  * A [MessageHandler] is responsible for executing [Message] logic on the
@@ -11,12 +12,12 @@ import java.util.function.BiConsumer
  *
  * @author Tom <rspsmods@gmail.com>
  */
-interface MessageHandler<T> : BiConsumer<Client, T> {
+interface MessageHandler<T : IncomingGameMessage> : MessageConsumer<Client, T> {
     /**
      * Handles the [message] on the game-thread with the ability to read and write
      * to the [Client].
      */
-    override fun accept(
+    override fun consume(
         client: Client,
         message: T,
     )

@@ -9,7 +9,7 @@ import org.alter.game.model.queue.QueueTask
  * @author Tom <rspsmods@gmail.com>
  */
 class ResumePNameDialogHandler : MessageHandler<ResumePNameDialog> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: ResumePNameDialog,
     ) {

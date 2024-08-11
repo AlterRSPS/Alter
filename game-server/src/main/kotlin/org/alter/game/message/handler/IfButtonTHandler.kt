@@ -7,7 +7,7 @@ import org.alter.game.model.entity.Client
 import java.lang.ref.WeakReference
 
 class IfButtonTHandler : MessageHandler<IfButtonT> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: IfButtonT,
     ) {
@@ -71,7 +71,7 @@ class IfButtonTHandler : MessageHandler<IfButtonT> {
          */
         if (!handled) {
             handled = client.world.plugins.executeItemOnItem(client, fromItem.id, -1)
-            if (handled && client.world.devContext.debugItemActions) {
+            if (handled && client.world.devContext.debugItemActions != "off") {
                 client.writeMessage(
                     "Unhandled item on item: [from_item=${fromItem.id}, to_item=${toItem.id}, from_slot=$fromSlot, to_slot=$toSlot, " +
                         "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]",
@@ -79,7 +79,7 @@ class IfButtonTHandler : MessageHandler<IfButtonT> {
             }
         }
 
-        if (!handled && client.world.devContext.debugItemActions) {
+        if (!handled && client.world.devContext.debugItemActions != "off") {
             client.writeMessage(
                 "Unhandled item on item: [from_item=${fromItem.id}, to_item=${toItem.id}, from_slot=$fromSlot, to_slot=$toSlot, " +
                     "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]",

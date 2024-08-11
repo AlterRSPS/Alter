@@ -10,7 +10,7 @@ import org.alter.game.model.entity.Entity
 import java.lang.ref.WeakReference
 
 class OpPlayerTHandler : MessageHandler<OpPlayerT> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpPlayerT,
     ) {
@@ -35,7 +35,7 @@ class OpPlayerTHandler : MessageHandler<OpPlayerT> {
         // TODO: add verification of active spellbook add in 196
         if (!client.world.plugins.executeSpellOnPlayer(client, parent, child)) {
             client.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
-            if (client.world.devContext.debugMagicSpells) {
+            if (client.world.devContext.debugMagicSpells != "off") {
                 client.writeMessage("Unhandled magic spell: [$parent, $child]")
             }
         }

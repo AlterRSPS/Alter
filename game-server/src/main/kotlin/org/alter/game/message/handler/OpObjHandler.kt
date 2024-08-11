@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 class OpObjHandler : MessageHandler<OpObj> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpObj,
     ) {

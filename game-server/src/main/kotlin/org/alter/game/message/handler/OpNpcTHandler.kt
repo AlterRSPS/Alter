@@ -13,7 +13,7 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 class OpNpcTHandler : MessageHandler<OpNpcT> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpNpcT,
     ) {
@@ -60,7 +60,7 @@ class OpNpcTHandler : MessageHandler<OpNpcT> {
              */
             if (child == 0) {
                 if (!client.world.plugins.executeItemOnNpc(client, npc.id, verify)) {
-                    if (client.world.devContext.debugItemActions) {
+                    if (client.world.devContext.debugItemActions != "off") {
                         client.writeMessage("Unhandled item on npc [ $verify on ${npc.id}] ] ")
                     }
                 } else if (!client.world.plugins.executeItemOnNpc(client, verify)) {
@@ -69,7 +69,7 @@ class OpNpcTHandler : MessageHandler<OpNpcT> {
             } else {
                 if (!client.world.plugins.executeSpellOnNpc(client, parent, child)) {
                     client.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
-                    if (client.world.devContext.debugMagicSpells) {
+                    if (client.world.devContext.debugMagicSpells != "off") {
                         client.writeMessage("Unhandled magic spell: [$parent, $child] out here")
                     }
                 }

@@ -68,7 +68,7 @@ class NetworkServiceFactory(
     val world: World,
     override val ports: List<Int>,
     override val supportedClientTypes: List<OldSchoolClientType>,
-) : AbstractNetworkServiceFactory<Client, Js5GroupProvider.ByteBufJs5GroupType>() {
+) : AbstractNetworkServiceFactory<Client>() {
     override fun getBootstrapFactory(): BootstrapFactory {
         return BootstrapFactory(PooledByteBufAllocator.DEFAULT)
     }
@@ -143,14 +143,9 @@ class NetworkServiceFactory(
         return DefaultHuffmanCodecProvider(huffman)
     }
 
-    override fun getJs5GroupProvider(): Js5GroupProvider<Js5GroupProvider.ByteBufJs5GroupType> {
+    override fun getJs5GroupProvider(): Js5GroupProvider {
         return groupProvider
     }
-
-    override fun getJs5GroupSizeProvider(): Js5GroupSizeProvider {
-        return groupProvider
-    }
-
     override fun getNpcInfoSupplier(): NpcInfoSupplier {
         // val npcIndexSupplier: NpcIndexSupplier = RsmodNpcIndexSupplier(world)
         val npcIndexSupplier = npcIndexSupplier()

@@ -9,7 +9,7 @@ import org.alter.game.model.priv.Privilege
  * @author Tom <rspsmods@gmail.com>
  */
 class TeleportHandler : MessageHandler<Teleport> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: Teleport,
     ) {

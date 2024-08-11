@@ -47,7 +47,7 @@ import java.util.concurrent.TimeUnit
  * @author Tom <rspsmods@gmail.com>
  */
 class World(val gameContext: GameContext, val devContext: DevContext) {
-    lateinit var network: NetworkService<Client, Js5GroupProvider.ByteBufJs5GroupType>
+    lateinit var network: NetworkService<Client>
 
     /**
      * The [DefinitionSet] that holds general filestore data.
@@ -586,7 +586,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
             }
 
         if (examine != null) {
-            val extension = if (devContext.debugExamines) " ($id)" else ""
+            val extension = if (devContext.debugExamines != "off") " ($id)" else ""
             p.writeMessage(examine + extension)
         } else {
             logger.warn { "No examine info found for entity [$type, $id]" }

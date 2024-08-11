@@ -11,7 +11,7 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class IfButtonDHandler : MessageHandler<IfButtonD> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: IfButtonD,
     ) {
@@ -49,7 +49,7 @@ class IfButtonDHandler : MessageHandler<IfButtonD> {
                 toInterfaceId,
                 toComponent,
             )
-        if (!swapped && client.world.devContext.debugButtons) {
+        if (!swapped && client.world.devContext.debugButtons != "off") {
             client.writeMessage(
                 "[IfButtonDHandler] Unhandled component to component swap: [from_item=$fromItemId, to_item=$toItemId, from_slot=$fromSlot, to_slot=$toSlot, " +
                     "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]",

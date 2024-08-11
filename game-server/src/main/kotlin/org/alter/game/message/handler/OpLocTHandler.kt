@@ -15,7 +15,7 @@ import org.alter.game.model.priv.Privilege
 import java.lang.ref.WeakReference
 
 class OpLocTHandler : MessageHandler<OpLocT> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpLocT,
     ) {

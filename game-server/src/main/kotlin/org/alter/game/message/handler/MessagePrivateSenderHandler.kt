@@ -9,7 +9,7 @@ import org.alter.game.model.entity.Client
  * @TODO
  */
 class MessagePrivateSenderHandler : MessageHandler<MessagePrivate> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: MessagePrivate,
     ) {

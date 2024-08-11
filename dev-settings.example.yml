@@ -1,6 +1,6 @@
-debug-examines: false
-debug-objects: false
-debug-buttons: false
-debug-items: false
-debug-spells: false
-debug-packets: false
+debug-examines: off
+debug-objects: off
+debug-buttons: off
+debug-items: off
+debug-spells: off
+debug-packets: off
