@@ -488,18 +488,22 @@ class PluginRepository(
         world: World,
         path: Path,
     ) {
-        val urls = arrayOf(path.toFile().toURI().toURL())
-        val classLoader = URLClassLoader(urls, PluginRepository::class.java.classLoader)
+        /**
+         * @TODO
+         * Dublicates plugins
+         */
+      // val urls = arrayOf(path.toFile().toURI().toURL())
+      // val classLoader = URLClassLoader(urls, PluginRepository::class.java.classLoader)
 
-        ClassGraph().ignoreParentClassLoaders().addClassLoader(classLoader).enableAllInfo().scan().use { result ->
-            val plugins = result.getSubclasses(KotlinPlugin::class.java.name).directOnly()
-            plugins.forEach { p ->
-                val pluginClass = p.loadClass(KotlinPlugin::class.java)
-                val constructor = pluginClass.getConstructor(PluginRepository::class.java, World::class.java, Server::class.java)
-                constructor.newInstance(this, world, server)
-                pluginCount++
-            }
-        }
+      // ClassGraph().ignoreParentClassLoaders().addClassLoader(classLoader).enableAllInfo().scan().use { result ->
+      //     val plugins = result.getSubclasses(KotlinPlugin::class.java.name).directOnly()
+      //     plugins.forEach { p ->
+      //         val pluginClass = p.loadClass(KotlinPlugin::class.java)
+      //         val constructor = pluginClass.getConstructor(PluginRepository::class.java, World::class.java, Server::class.java)
+      //         constructor.newInstance(this, world, server)
+      //         pluginCount++
+      //     }
+      // }
     }
 
     /**
