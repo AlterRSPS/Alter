@@ -1,6 +1,9 @@
-package org.alter.game.model
+package org.alter.game.model.move
 
-import org.alter.game.model.MovementQueue.Step
+import org.alter.game.model.Direction
+import org.alter.game.model.EntityType
+import org.alter.game.model.Tile
+import org.alter.game.model.move.MovementQueue.Step
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
@@ -110,6 +113,7 @@ class MovementQueue(val pawn: Pawn) {
             if (walkDirection != null && walkDirection != Direction.NONE) {
                 pawn.steps = StepDirection(walkDirection, runDirection)
                 pawn.tile = Tile(tile)
+
                 /**
                  * @TODO Fix this
                  */

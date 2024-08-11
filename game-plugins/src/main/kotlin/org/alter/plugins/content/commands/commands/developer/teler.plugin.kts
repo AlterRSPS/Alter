@@ -1,3 +1,4 @@
+import org.alter.game.model.move.moveTo
 import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 

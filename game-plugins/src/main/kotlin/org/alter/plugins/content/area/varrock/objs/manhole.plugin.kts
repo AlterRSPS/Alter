@@ -1,5 +1,7 @@
 package org.alter.plugins.content.area.varrock.objs
 
+import org.alter.game.model.move.moveTo
+
 val OPEN_SFX = 54
 
 on_obj_option(obj = Objs.MANHOLE, option = "open") {

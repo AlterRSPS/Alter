@@ -4,6 +4,7 @@ import net.rsprot.protocol.game.incoming.misc.user.ClickWorldMap
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.Tile
 import org.alter.game.model.entity.Client
+import org.alter.game.model.move.moveTo
 import org.alter.game.model.priv.Privilege
 
 /**

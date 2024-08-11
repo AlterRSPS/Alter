@@ -1,6 +1,7 @@
 package org.alter.plugins.content.npcs.sheep
 
 import dev.openrune.cache.CacheManager.getNpc
+import org.alter.game.model.move.walkTo
 
 Sheep.SHEEP_NPCS.forEach { sheep ->
     if (getNpc(sheep).actions.contains("Shear")) {

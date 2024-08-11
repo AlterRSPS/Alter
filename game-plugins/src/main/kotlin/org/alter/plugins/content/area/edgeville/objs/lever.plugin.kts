@@ -1,5 +1,7 @@
 package org.alter.plugins.content.area.edgeville.objs
 
+import org.alter.game.model.move.moveTo
+
 on_obj_option(Objs.LEVER_26761, "pull") {
     val obj = player.getInteractingGameObj()
 

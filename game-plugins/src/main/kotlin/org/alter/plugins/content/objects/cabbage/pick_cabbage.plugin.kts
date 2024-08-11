@@ -1,5 +1,7 @@
 package org.alter.plugins.content.objects.cabbage
 
+import org.alter.game.model.move.walkTo
+
 val RESPAWN_DELAY = 75
 
 on_obj_option(obj = Objs.CABBAGE_1161, option = "pick", lineOfSightDistance = 0) {

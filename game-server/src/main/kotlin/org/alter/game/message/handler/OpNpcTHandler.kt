@@ -1,11 +1,13 @@
 package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.npcs.OpNpcT
-import org.alter.game.action.PawnPathAction
+import org.alter.game.model.move.PawnPathAction
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.attr.*
 import org.alter.game.model.entity.Client
 import org.alter.game.model.entity.Entity
+import org.alter.game.model.move.moveTo
+import org.alter.game.model.move.walkTo
 import org.alter.game.model.priv.Privilege
 import java.lang.ref.WeakReference
 
@@ -43,6 +45,7 @@ class OpNpcTHandler : MessageHandler<OpNpcT> {
                 client.moveTo(client.world.findRandomTileAround(npc.tile, 1) ?: npc.tile)
             }
             client.walkTo(client.world.findRandomTileAround(npc.tile, 1) ?: npc.tile)
+
             client.closeInterfaceModal()
             client.interruptQueues()
             client.resetInteractions()

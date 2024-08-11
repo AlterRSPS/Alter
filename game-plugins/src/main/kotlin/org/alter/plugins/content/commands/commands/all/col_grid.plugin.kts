@@ -1,3 +1,4 @@
+import org.alter.game.model.collision.isClipped
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
 on_command("col_grid") {

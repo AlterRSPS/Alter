@@ -1,11 +1,10 @@
-package org.alter.game.action
+package org.alter.game.model.move
 
 import dev.openrune.cache.CacheManager.getObject
 import gg.rsmod.util.AabbUtil
 import gg.rsmod.util.DataConstants
 import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.model.Direction
-import org.alter.game.model.MovementQueue
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.INTERACTING_ITEM
 import org.alter.game.model.attr.INTERACTING_OBJ_ATTR

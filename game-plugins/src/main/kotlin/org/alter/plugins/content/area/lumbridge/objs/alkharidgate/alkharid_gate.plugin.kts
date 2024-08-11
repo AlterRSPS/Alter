@@ -1,4 +1,7 @@
 package org.alter.plugins.content.area.lumbridge.objs.alkharidgate
+
+import org.alter.game.model.move.moveTo
+
 /**
  * Thanks to Tomm for the movement code
  * Thanks to Desetude for gate open and close code

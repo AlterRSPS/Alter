@@ -2,12 +2,14 @@ package org.alter.plugins.content.combat
 
 import org.alter.api.*
 import org.alter.api.ext.*
-import org.alter.game.action.PawnPathAction
+import org.alter.game.model.move.PawnPathAction
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.AttributeKey
 import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import org.alter.game.model.attr.LAST_HIT_ATTR
 import org.alter.game.model.attr.LAST_HIT_BY_ATTR
+import org.alter.game.model.collision.raycast
+import org.alter.game.model.collision.raycastTiles
 import org.alter.game.model.combat.CombatClass
 import org.alter.game.model.entity.AreaSound
 import org.alter.game.model.entity.Npc
@@ -168,7 +170,7 @@ object Combat {
                 areBordering(start.x, start.z, srcSize, srcSize, end.x, end.z, dstSize, dstSize)
             }
         val withinRange = touching && world.collision.raycast(start, end, projectile = projectile)
-        return withinRange || PawnPathAction.walkTo(it, pawn, target, interactionRange = distance, lineOfSight = false)
+        return withinRange || PawnPathAction.walkTo(it, pawn, target, lineOfSightRange = distance, lineOfSight = false)
     }
 
     fun getProjectileLifespan(
@@ -178,7 +180,7 @@ object Combat {
     ): Int =
         when (type) {
             ProjectileType.MAGIC -> {
-                val fastPath = source.world.collision.raycastTiles(source.tile, target)
+                val fastPath = raycastTiles(source.tile, target)
                 5 + (fastPath * 10)
             }
             else -> {

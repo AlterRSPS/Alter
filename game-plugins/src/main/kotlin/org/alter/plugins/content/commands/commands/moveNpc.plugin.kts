@@ -1,3 +1,5 @@
+import org.alter.game.model.move.walkTo
+
 val paths =
     listOf(
         Tile(3219, 3222),

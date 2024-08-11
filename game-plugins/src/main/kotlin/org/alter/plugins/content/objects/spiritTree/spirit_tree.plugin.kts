@@ -1,5 +1,7 @@
 package org.alter.plugins.content.objs.spirittree
 
+import org.alter.game.model.move.moveTo
+
 val SPIRIT_TREES = arrayOf(Objs.SPIRIT_TREE_26260, Objs.SPIRIT_TREE_26261, Objs.SPIRIT_TREE_26263, Objs.SPIRIT_TREE_35950)
 val TALKING_TREES = arrayOf(Objs.SPIRIT_TREE_26259, Objs.SPIRIT_TREE_26262, Objs.SPIRIT_TREE_35949)
 

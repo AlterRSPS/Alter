@@ -52,7 +52,7 @@ set_combat_def(imp) {
      */
     stats {
         hitpoints = 10
-        defence = -100 // @TODO Rework and implement new defence system
+        defence = -100
     }
     bonuses {
         attackStab = -42
@@ -152,4 +152,9 @@ fun test() : LootTable {
         tableWeight = 10,
         drops = loot
     )
+}
+
+
+on_command("runn") {
+    player.avatar.extendedInfo.setTempMoveSpeed(2)
 }

@@ -3,6 +3,7 @@ package org.alter.game.message.handler
 import net.rsprot.protocol.game.incoming.misc.user.Teleport
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
+import org.alter.game.model.move.moveTo
 import org.alter.game.model.priv.Privilege
 
 /**

@@ -21,7 +21,6 @@ import net.rsprot.protocol.game.outgoing.varp.VarpSmall
 import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
-import org.alter.game.model.appearance.Gender
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
 import org.alter.game.model.attr.LEVEL_UP_INCREMENT
 import org.alter.game.model.attr.LEVEL_UP_OLD_XP
@@ -31,6 +30,8 @@ import org.alter.game.model.container.key.*
 import org.alter.game.model.interf.InterfaceSet
 import org.alter.game.model.interf.listener.PlayerInterfaceListener
 import org.alter.game.model.item.Item
+import org.alter.game.model.move.MovementQueue
+import org.alter.game.model.move.moveTo
 import org.alter.game.model.priv.Privilege
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.skill.SkillSet
@@ -174,26 +175,6 @@ open class Player(world: World) : Pawn(world) {
     fun getSkills(): SkillSet = skillSet
 
     override val entityType: EntityType = EntityType.PLAYER
-
-    fun setBaseAnimationSet(
-        readyAnim: Int,
-        turnAnim: Int,
-        walkAnim: Int,
-        walkAnimBack: Int,
-        walkAnimLeft: Int,
-        walkAnimRight: Int,
-        runAnim: Int,
-    ) {
-        avatar.extendedInfo.setBaseAnimationSet(
-            readyAnim = readyAnim,
-            turnAnim = turnAnim,
-            walkAnim = walkAnim,
-            walkAnimBack = walkAnimBack,
-            walkAnimLeft = walkAnimLeft,
-            walkAnimRight = walkAnimRight,
-            runAnim = runAnim,
-        )
-    }
 
     /**
      * Checks if the player is running. We assume that the varp with id of
@@ -436,7 +417,6 @@ open class Player(world: World) : Pawn(world) {
 
     lateinit var playerInfo: PlayerInfo
 
-    @OptIn(ExperimentalUnsignedTypes::class)
     lateinit var npcInfo: NpcInfo
     lateinit var worldEntityInfo: WorldEntityInfo
     var session: Session<Client>? = null
@@ -445,7 +425,6 @@ open class Player(world: World) : Pawn(world) {
     /**
      * Handles any logic that should be executed upon log in.
      */
-    @OptIn(ExperimentalUnsignedTypes::class)
     fun login() {
         playerInfo.updateCoord(tile.height, tile.x, tile.z)
         npcInfo.updateCoord(-1, tile.height, tile.x, tile.z)

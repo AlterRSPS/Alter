@@ -7,6 +7,7 @@ import org.alter.api.ext.*
 import org.alter.game.model.bits.INFINITE_VARS_STORAGE
 import org.alter.game.model.bits.InfiniteVarsType
 import org.alter.game.model.entity.Player
+import org.alter.game.model.move.hasMoveDestination
 import org.alter.game.model.timer.TimerKey
 import kotlin.math.max
 import kotlin.math.min
