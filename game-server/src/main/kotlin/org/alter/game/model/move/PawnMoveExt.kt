@@ -20,6 +20,9 @@ import java.util.ArrayDeque
 /**
  * Walk to all the tiles specified in our [path] queue, using [stepType] as
  * the [MovementQueue.StepType].
+ *
+ * Seems like @detectCollision is not needed any more as we detect it before we search for path all thoooo,
+ * could be still used incase when a collision is added during pathing
  */
 fun Pawn.walkPath(
     path: Queue<Tile>,
@@ -36,7 +39,7 @@ fun Pawn.walkPath(
     var tail: Tile? = null
     var next = path.poll()
     while (next != null) {
-        movementQueue.addStep(next, MovementQueue.StepType.NORMAL, detectCollision)
+        movementQueue.addStep(next, stepType, detectCollision)
         val poll = path.poll()
         if (poll == null) {
             tail = next
@@ -50,7 +53,6 @@ fun Pawn.walkPath(
         movementQueue.clear()
         return
     }
-
     if (this is Player && lastKnownRegionBase != null) {
         write(SetMapFlag(tail.x - lastKnownRegionBase!!.x, tail.z - lastKnownRegionBase!!.z))
     }
@@ -142,6 +144,10 @@ private fun Pawn.findRoute(
         collision = collisionStrategy,
     )
 }
+
+/**
+ * :hmm:
+ */
 fun Pawn.moveTo(
     x: Int,
     z: Int,
