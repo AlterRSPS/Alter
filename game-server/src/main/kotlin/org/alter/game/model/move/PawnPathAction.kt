@@ -5,10 +5,8 @@ import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.*
 import org.alter.game.model.collision.raycast
-import org.alter.game.model.entity.Entity
-import org.alter.game.model.entity.Npc
-import org.alter.game.model.entity.Pawn
-import org.alter.game.model.entity.Player
+import org.alter.game.model.entity.*
+import org.alter.game.model.entity.Entity.Companion.YOU_CANT_REACH_THAT
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.timer.FROZEN_TIMER
@@ -194,56 +192,37 @@ object PawnPathAction {
         val targetSize = target.getSize()
         val sourceTile = pawn.tile
         val targetTile = target.tile
-        val projectile = lineOfSightRange > 2 /** @TODO What kind of retard wrote this??? **/
-        println("lineOfSightRange: $lineOfSightRange")
+        val projectile = lineOfSightRange > 2
         val frozen = pawn.timers.has(FROZEN_TIMER)
         val stunned = pawn.timers.has(STUN_TIMER)
-
         if (pawn.attr[FACING_PAWN_ATTR]?.get() != target) {
             return false
         }
-
-        if (stunned) {
-            return false
-        }
-
-        if (frozen) {
-            if (overlap(sourceTile, sourceSize, targetTile, targetSize)) {
-                return false
-            }
-
-            if (!projectile) {
-                return if (!lineOfSight) {
-                    bordering(sourceTile, sourceSize, targetTile, lineOfSightRange)
-                } else {
-                    overlap(sourceTile, sourceSize, targetTile, lineOfSightRange) &&
-                            (lineOfSightRange == 0 || !sourceTile.sameAs(targetTile)) &&
-                            pawn.world.collision.raycast(sourceTile, targetTile, lineOfSight)
-                }
-            }
-        }
-
-        val newRoute =
-            pawn.world.pathFinder.findPath(
+        val newRoute = pawn.world.pathFinder.findPath(
                 level = pawn.tile.height,
                 srcX = sourceTile.x,
                 srcZ = sourceTile.z,
                 destX = targetTile.x,
                 destZ = targetTile.z,
                 srcSize = sourceSize,
+                objShape = -2,
                 destWidth = targetSize,
                 destHeight = targetSize,
+                moveNear = true,
                 collision = CollisionStrategies.Normal,
             )
-        val tileQueue: Queue<Tile> = ArrayDeque(newRoute.waypoints.map { Tile(it.x, it.z, it.level) })
-
-        pawn.walkPath(tileQueue, MovementQueue.StepType.NORMAL, detectCollision = false)
+        pawn.walkPath(newRoute.toTileQueue(), MovementQueue.StepType.NORMAL, detectCollision = false)
         if (pawn.hasLineOfSightTo(target, true, lineOfSightRange) && projectile) {
             return newRoute.success
         }
         while (!pawn.tile.isWithinRadius(targetTile, lineOfSightRange)) {
-            if (!targetTile.sameAs(target.tile)) {
-                return walkTo(it, pawn, target, lineOfSightRange, lineOfSight)
+            if (!pawn.movementQueue.hasDestination()) {
+                pawn.resetInteractions()
+                pawn.faceTile(targetTile)
+                if (pawn is Player) {
+                    pawn.writeMessage(YOU_CANT_REACH_THAT)
+                }
+                return false
             }
             it.wait(1)
         }
@@ -264,29 +243,9 @@ object PawnPathAction {
         size2: Int,
     ): Boolean = AabbUtil.areBordering(tile1.x, tile1.z, size1, size1, tile2.x, tile2.z, size2, size2)
 
-
-
-
-    fun Pawn.combatPath(target: Pawn) {
-        val route = world.pathFinder.findPath(
-            level = this.tile.height,
-            srcX = this.tile.x,
-            srcZ = this.tile.z,
-            destX = target.tile.x,
-            destZ = target.tile.z,
-            moveNear = true,
-            objShape = -2
-        )
-        if (route == Route.FAILED) {
-            return
-        }
-        val tileQueue: Queue<Tile> = ArrayDeque(route.waypoints.map { Tile(it.x, it.z, it.level) })
-        this.walkPath(tileQueue, MovementQueue.StepType.NORMAL, detectCollision = true)
-        /**
-         * @TODO
-         */
-        if (this.tile.isWithinRadius(target.tile, target.getSize())) {
-            attack(target)
-        }
+    fun Route.toTileQueue() : Queue<Tile> {
+        return ArrayDeque(this.waypoints.map{ Tile(it.x, it.z, it.level) })
     }
+
+
 }

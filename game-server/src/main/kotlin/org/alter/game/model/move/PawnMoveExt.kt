@@ -2,20 +2,16 @@ package org.alter.game.model.move
 
 import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.model.Tile
-import org.alter.game.model.entity.Entity
+import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
-import org.alter.game.model.timer.FROZEN_TIMER
-import org.alter.game.model.timer.STUN_TIMER
 import org.rsmod.game.pathfinder.Route
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import java.util.*
 import java.util.ArrayDeque
-
-
 
 /**
  * Walk to all the tiles specified in our [path] queue, using [stepType] as
@@ -162,13 +158,9 @@ fun Pawn.moveTo(
         (this as Player).avatar.extendedInfo.setTempMoveSpeed(127)
     }
 }
-
 fun Pawn.moveTo(tile: Tile) {
     moveTo(tile.x, tile.z, tile.height)
 }
-
-
-
 
 fun Pawn.hasMoveDestination(): Boolean = movementQueue.hasDestination()
 
