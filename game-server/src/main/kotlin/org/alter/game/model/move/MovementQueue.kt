@@ -1,5 +1,7 @@
 package org.alter.game.model.move
 
+import org.alter.game.info.MovementType
+import org.alter.game.info.PlayerInfo
 import org.alter.game.model.Direction
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
@@ -47,17 +49,12 @@ class MovementQueue(val pawn: Pawn) {
     }
 
     fun cycle() {
-        val collision = pawn.world.collision
-
         var next = steps.poll()
         if (next != null) {
             var tile = pawn.tile
-
             var walkDirection: Direction?
             var runDirection: Direction? = null
-
             walkDirection = Direction.between(tile, next.tile)
-
             if (walkDirection != Direction.NONE &&
                 (!next.detectCollision || pawn.world.canTraverse(tile, walkDirection, pawn))
             ) {
@@ -84,7 +81,6 @@ class MovementQueue(val pawn: Pawn) {
                 }
                 tile = Tile(next.tile)
                 pawn.lastFacingDirection = walkDirection
-
                 val running =
                     when (next.type) {
                         StepType.NORMAL -> pawn.isRunning()
@@ -95,7 +91,6 @@ class MovementQueue(val pawn: Pawn) {
                     next = steps.poll()
                     if (next != null) {
                         runDirection = Direction.between(tile, next.tile)
-
                         if (!next.detectCollision || pawn.world.canTraverse(tile, runDirection, pawn)) {
                             tile = Tile(next.tile)
                             pawn.lastFacingDirection = runDirection
@@ -113,13 +108,9 @@ class MovementQueue(val pawn: Pawn) {
             if (walkDirection != null && walkDirection != Direction.NONE) {
                 pawn.steps = StepDirection(walkDirection, runDirection)
                 pawn.tile = Tile(tile)
-
-                /**
-                 * @TODO Fix this
-                 */
-                //if (pawn is Player) {
-               //    pawn.addBlock(UpdateBlockType.MOVEMENT)
-               //}
+                if (pawn is Player) {
+                    PlayerInfo(pawn).setMoveSpeed(if (pawn.isRunning()) MovementType.RUN else MovementType.WALK)
+                }
             }
         }
     }
