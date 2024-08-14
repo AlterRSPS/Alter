@@ -24,6 +24,8 @@ dependencies {
         implementation(jackson.module.kotlin)
         implementation(jackson.dataformat.yaml)
         implementation(kotlin.csv)
+        implementation(mongo.bson)
+        implementation(mongo.driver)
         testImplementation(junit)
     }
 }

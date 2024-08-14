@@ -1,6 +1,7 @@
 package org.alter.game
 
 import org.alter.game.model.Tile
+import org.alter.game.saving.formats.SaveFormatType
 
 /**
  * Holds vital information that the game needs in order to run (properly).
@@ -43,6 +44,7 @@ data class GameContext(
     var initialLaunch: Boolean,
     val name: String,
     val revision: Int,
+    val saveFormat: SaveFormatType,
     val cycleTime: Int,
     val playerLimit: Int,
     val home: Tile,

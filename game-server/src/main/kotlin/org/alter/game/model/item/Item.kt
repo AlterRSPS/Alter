@@ -2,6 +2,7 @@ package org.alter.game.model.item
 
 import dev.openrune.cache.CacheManager.getItem
 import gg.rsmod.util.toStringHelper
+import org.bson.Document
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -71,4 +72,36 @@ class Item(val id: Int, var amount: Int = 1) {
     }
 
     override fun toString(): String = toStringHelper().add("id", id).add("amount", amount).toString()
+
+    fun asDocument(): Document {
+        return Document("id", id).apply {
+            append("amount", amount)
+
+            if (attr.isNotEmpty()) {
+                val attributesDoc = attr.map { (attribute, value) ->
+                    attribute.name to value
+                }.toMap()
+                append("attributes", attributesDoc)
+            }
+        }
+    }
+
+    companion object {
+        fun fromDocument(doc: Document): Item {
+            val id = doc.getInteger("id")
+            val amount = doc.getInteger("amount")
+            val item = Item(id, amount)
+
+            val attributesDoc = doc.get("attributes", Document::class.java)
+            attributesDoc?.forEach { (key, value) ->
+                if (value is Int) {
+                    val attribute = ItemAttribute.valueOf(key)
+                    item.putAttr(attribute, value)
+                }
+            }
+
+            return item
+        }
+    }
+
 }
