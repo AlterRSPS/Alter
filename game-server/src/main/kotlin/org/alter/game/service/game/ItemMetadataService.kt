@@ -50,7 +50,7 @@ class ItemMetadataService : Service {
         val path = Paths.get("../data/cfg/items")
 
         try {
-            Files.newBufferedReader(path.resolve("_Items.yml")).use { reader ->
+            Files.newBufferedReader(path.resolve("_items.yml")).use { reader ->
                 val data = mapper.readValue(reader, Array<Metadata>::class.java)
                 data.forEach { item ->
                     load(item, world)
