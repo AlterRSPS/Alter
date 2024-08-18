@@ -21,6 +21,11 @@
 - [ ] Handler for `Caused by: java.lang.IllegalStateException: Invalid RSA check '79'. This typically means the RSA in the client does not match up with the server.`
 - [ ] rename all KotlinPlugin.kt methods from snake_case to camelCase @Grian
 - [ ] Add Clip flags to Npc/Player, flags if they can go above water / objects
+## Path Finder / Walk wip
+- [ ] Remove current one completely : We need to start from scratch <-- Should be better.
+  - [ ] Implement new path methods with detection
+## Encountered bugs:
+- [ ] Ran into lumby picked up Mind rune and it did not get removed.
 
 ##
 - Instead of Kts make it EventBus

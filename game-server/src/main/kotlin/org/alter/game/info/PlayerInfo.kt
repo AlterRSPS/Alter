@@ -1,16 +1,14 @@
 package org.alter.game.info
 
 import dev.openrune.cache.CacheManager
-import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerInfo
 import org.alter.game.model.AnimationSet
-import org.alter.game.model.Direction
 import org.alter.game.model.ForcedMovement
 import org.alter.game.model.Tile
 import org.alter.game.model.appearance.Gender
 import org.alter.game.model.entity.Player
 
 class PlayerInfo(var player: Player) {
-    private val info = player.playerInfo.avatar.extendedInfo
+    val info = player.playerInfo.avatar.extendedInfo
 
     val DEFAULT_ANIM_SET = AnimationSet(readyAnim = 808, turnAnim = 823, walkAnim = 819, walkAnimBack = 820, walkAnimLeft = 821, walkAnimRight = 822, runAnim = 824)
     var animSequance = DEFAULT_ANIM_SET
@@ -137,4 +135,17 @@ class PlayerInfo(var player: Player) {
         )
     }
 
+    fun setMoveSpeed(movementType: MovementType) {
+        info.setMoveSpeed(movementType.value)
+    }
+}
+
+/**
+ * @TODO Separate to it's own class.
+ */
+enum class MovementType(val value: Int) {
+    STATIONARY(-1),
+    CRAWL(0),
+    WALK(1),
+    RUN(2)
 }
