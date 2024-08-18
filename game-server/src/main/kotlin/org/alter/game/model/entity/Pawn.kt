@@ -1,7 +1,6 @@
 package org.alter.game.model.entity
 
 import kotlinx.coroutines.CoroutineScope
-import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.action.NpcDeathAction
 import org.alter.game.action.PlayerDeathAction
 import org.alter.game.event.Event
@@ -13,7 +12,6 @@ import org.alter.game.model.bits.InfiniteVarsType
 import org.alter.game.model.collision.raycast
 import org.alter.game.model.combat.DamageMap
 import org.alter.game.model.move.MovementQueue
-import org.alter.game.model.move.walkPath
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.QueueTaskSet
 import org.alter.game.model.queue.TaskPriority
@@ -21,10 +19,7 @@ import org.alter.game.model.queue.impl.PawnQueueTaskSet
 import org.alter.game.model.timer.*
 import org.alter.game.plugin.Plugin
 import org.alter.game.service.log.LoggerService
-import org.rsmod.game.pathfinder.Route
 import org.rsmod.game.pathfinder.RouteCoordinates
-import org.rsmod.game.pathfinder.collision.CollisionStrategies
-import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import java.lang.ref.WeakReference
 import java.util.*
 

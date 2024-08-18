@@ -1,20 +1,11 @@
-package org.alter.plugins.content
+package org.alter.plugins.content._testingContent
 
-import org.alter.game.model.weightedTableBuilder.Loot
-import org.alter.game.model.weightedTableBuilder.LootTable
-import org.alter.game.model.weightedTableBuilder.TableType
-
-val imp = Npcs.IMP_3134
-val tile = Tile(3235, 3219, 0)
-
-
-for (x in -2 until 2) {
-    for (z in -2 until 2) {
-        spawn_npc(imp, x = tile.x + x, z = tile.z + z)
-    }
+val test_dummy_imp = Npcs.IMP_3134
+val testTile = Tile(3204, 3216, 0)
+for (z in 0..5) {
+    spawn_npc(test_dummy_imp, testTile.x, testTile.z + z, testTile.height)
 }
-
-set_combat_def(imp) {
+set_combat_def(test_dummy_imp) {
     configs {
         attackSpeed = 6
         respawnDelay = 40
@@ -92,14 +83,6 @@ set_combat_def(imp) {
     drops {
         always {
             add(Items.FIENDISH_ASHES, 1)
-            add(test()) {
-                if (it.inventory.contains(1215)) {
-                    true
-                } else {
-                    false
-                }
-            }
-
         }
         main(128) {
             add(Items.BLACK_BEAD, weight = 5)
@@ -144,17 +127,6 @@ set_combat_def(imp) {
 }
 
 
-fun test() : LootTable {
-    val loot = mutableSetOf<Loot>()
-    loot.add(Loot(Items.TWISTED_BOW, 1, 1,1,5))
-    return LootTable(
-        tableType = TableType.ALWAYS,
-        tableWeight = 10,
-        drops = loot
-    )
-}
-
-
-on_command("runn") {
-    player.avatar.extendedInfo.setTempMoveSpeed(2)
-}
+val test_size_npc = Npcs.GENERAL_GRAARDOR
+val test_size_tile = Tile(3201,3221,0)
+spawn_npc(test_size_npc, test_size_tile)

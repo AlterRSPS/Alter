@@ -50,6 +50,7 @@ class MovementQueue(val pawn: Pawn) {
 
     fun cycle() {
         var next = steps.poll()
+        val pathSize = steps.size
         if (next != null) {
             var tile = pawn.tile
             var walkDirection: Direction?
@@ -104,12 +105,11 @@ class MovementQueue(val pawn: Pawn) {
                 walkDirection = null
                 clear()
             }
-
             if (walkDirection != null && walkDirection != Direction.NONE) {
                 pawn.steps = StepDirection(walkDirection, runDirection)
                 pawn.tile = Tile(tile)
                 if (pawn is Player) {
-                    PlayerInfo(pawn).setMoveSpeed(if (pawn.isRunning()) MovementType.RUN else MovementType.WALK)
+                    PlayerInfo(pawn).setMoveSpeed(if (pawn.isRunning() && pathSize > 0) MovementType.RUN else MovementType.WALK)
                 }
             }
         }

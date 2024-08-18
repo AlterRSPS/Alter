@@ -1,10 +1,10 @@
 package org.alter.plugins.content.combat
 
-import org.alter.game.model.move.PawnPathAction
 import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import org.alter.game.model.attr.FACING_PAWN_ATTR
 import org.alter.game.model.attr.INTERACTING_PLAYER_ATTR
 import org.alter.game.model.move.stopMovement
+import org.alter.game.model.move.walkToInteract
 import org.alter.game.model.timer.FROZEN_TIMER
 import org.alter.game.model.timer.STUN_TIMER
 import org.alter.plugins.content.combat.specialattack.SpecialAttacks
@@ -59,7 +59,7 @@ suspend fun cycle(it: QueueTask): Boolean {
     val strategy = CombatConfigs.getCombatStrategy(pawn)
     val attackRange = strategy.getAttackRange(pawn)
 
-    val pathFound = PawnPathAction.walkTo(it, pawn, target, lineOfSightRange = attackRange, lineOfSight = true)
+    val pathFound = pawn.walkToInteract(it, target, lineOfSightRange = attackRange)
     if (target != pawn.attr[FACING_PAWN_ATTR]?.get()) {
         return false
     }

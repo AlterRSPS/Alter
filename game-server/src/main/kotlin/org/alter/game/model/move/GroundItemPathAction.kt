@@ -1,7 +1,7 @@
 package org.alter.game.model.move
 
 import dev.openrune.cache.CacheManager.getItem
-import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
+import org.alter.game.model.Tile
 import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_GROUNDITEM_ATTR
 import org.alter.game.model.attr.INTERACTING_ITEM
@@ -32,45 +32,38 @@ object GroundItemPathAction {
         val p = ctx as Player
         val item = p.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
         val opt = p.attr[INTERACTING_OPT_ATTR]!!
-
-        if (p.tile.sameAs(item.tile)) {
-            handleAction(p, item, opt)
-        } else {
-            p.walkTo(item.tile, MovementQueue.StepType.NORMAL)
+        var arrived = true
+        if (!p.tile.isWithinRadius(item.tile, 1)) {
+            p.walkToInteract(item.tile, MovementQueue.StepType.NORMAL)
             p.queue(TaskPriority.STANDARD) {
                 terminateAction = {
                     p.stopMovement()
-                    p.write(SetMapFlag(255, 255))
+                    p.setMapFlag()
                 }
-                awaitArrival(item, opt)
+                arrived = this.awaitArrival(item.tile, 1)
             }
         }
-    }
-
-    private suspend fun QueueTask.awaitArrival(
-        item: GroundItem,
-        opt: Int,
-    ) {
-        val p = ctx as Player
-        val destination = p.movementQueue.peekLast()
-        if (destination == null) {
-            p.writeMessage(Entity.YOU_CANT_REACH_THAT)
-            return
+            p.forceChat("St $arrived")
+        if (p.tile.sameAs(item.tile)) {
+            handleAction(p, item, opt)
         }
-        while (true) {
-            if (!p.tile.sameAs(destination)) {
+        /**
+         * @note Should execute this even if player is frozen
+         */
+        if (p.tile.isWithinRadius(item.tile, 1)) {
+            p.queue {
+                p.faceTile(item.tile)
+                wait(2)
+                p.animate(832, 4)
                 wait(1)
-                continue
-            }
-            if (p.tile.sameAs(item.tile)) {
                 handleAction(p, item, opt)
-            } else {
-                p.writeMessage(Entity.YOU_CANT_REACH_THAT)
             }
-            break
         }
     }
 
+    /**
+     * @TODO Max_Int value handling
+     */
     private fun handleAction(
         p: Player,
         groundItem: GroundItem,
