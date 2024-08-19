@@ -220,7 +220,7 @@ object ObjectPathAction {
                 blockAccessFlags = def.clipMask,
             )
         val tileQueue: Queue<Tile> = ArrayDeque(route.waypoints.map { Tile(it.x, it.z, it.level) })
-        pawn.walkPath(tileQueue, MovementQueue.StepType.NORMAL, detectCollision = true)
+        pawn.walkPath(tileQueue, MovementQueue.StepType.NORMAL)
 
         val last = pawn.movementQueue.peekLast()
 

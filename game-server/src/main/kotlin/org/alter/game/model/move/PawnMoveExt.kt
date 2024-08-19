@@ -52,7 +52,6 @@ fun Pawn.setMapFlag(
 fun Pawn.walkPath(
     path: Queue<Tile>,
     stepType: MovementQueue.StepType,
-    detectCollision: Boolean,
 ) {
     if (path.isEmpty()) {
         setMapFlag()
@@ -62,7 +61,7 @@ fun Pawn.walkPath(
     var tail: Tile? = null
     var next = path.poll()
     while (next != null) {
-        movementQueue.addStep(next, stepType, detectCollision)
+        movementQueue.addStep(next, stepType)
         val poll = path.poll()
         if (poll == null) {
             tail = next
@@ -85,8 +84,7 @@ fun Pawn.walkPath(
 fun Pawn.walkPath(
     path: Route,
     stepType: MovementQueue.StepType,
-    detectCollision: Boolean,
-) = this.walkPath(path.toTileQueue(), stepType, detectCollision)
+) = this.walkPath(path.toTileQueue(), stepType)
 
 
 fun Route.toTileQueue() : Queue<Tile> {
@@ -145,8 +143,7 @@ suspend fun Pawn.walkToInteract(
         moveNear = true,
         collision = CollisionStrategies.Normal,
     )
-    walkPath(newRoute, MovementQueue.StepType.NORMAL, detectCollision = true)
-    println("${movementQueue.peekLastStep()}")
+    walkPath(newRoute, MovementQueue.StepType.NORMAL)
     return true
 }
 
@@ -154,7 +151,6 @@ fun Pawn.walkToInteract(
     targetX: Int,
     targetZ: Int,
     stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
-    detectCollision: Boolean = true
 ) {
     val route = world.pathFinder.findPath(
         level = tile.height,
@@ -163,23 +159,30 @@ fun Pawn.walkToInteract(
         destX = targetX,
         destZ = targetZ,
     )
-    walkPath(route, stepType, detectCollision)
+    walkPath(route, stepType)
 }
-fun Pawn.walkToInteract(tile: Tile, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL, detectCollision: Boolean = true) = walkToInteract(targetX = tile.x, targetZ = tile.z, stepType = stepType, detectCollision = detectCollision)
+fun Pawn.walkToInteract(tile: Tile, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL) = walkToInteract(targetX = tile.x, targetZ = tile.z, stepType = stepType)
 fun Pawn.hasMoveDestination(): Boolean = movementQueue.hasDestination()
 
-fun QueueTask.awaitArrival(
+suspend fun QueueTask.awaitArrivalInteraction(
     tile: Tile,
-    range: Int = 1
+    range: Int = 1,
 ) : Boolean {
     val p = ctx as Player
+    val fullDestination = p.movementQueue
     val destination = p.movementQueue.peekLast()
     while (true) {
-        if (!p.tile.isWithinRadius(tile, range) && destination == null) {
-            p.writeMessage(Entity.YOU_CANT_REACH_THAT)
+        if (!p.tile.isWithinRadius(tile, range) && destination != null) {
+            p.writeMessage("1")
+            wait(1)
+            continue
+        }
+        if (destination == null && !p.tile.isWithinRadius(tile, range)) {
+            p.writeMessage("2")
             return false
         }
         if (p.tile.isWithinRadius(tile, range)) {
+            p.writeMessage("3")
             return true
         }
         break

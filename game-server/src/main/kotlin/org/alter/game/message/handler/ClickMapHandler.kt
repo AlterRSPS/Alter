@@ -12,6 +12,6 @@ class ClickMapHandler : MessageHandler<MoveGameClick> {
         message: MoveGameClick
     ) {
         log(client, "Click map: x=%d, z=%d, type=%d", message.x, message.z, message.keyCombination)
-        client.walkToInteract(message.x, message.z, stepType = MovementQueue.StepType.NORMAL, detectCollision = true)
+        client.walkToInteract(message.x, message.z, stepType = MovementQueue.StepType.NORMAL)
     }
 }

@@ -12,6 +12,6 @@ class ClickMinimapHandler : MessageHandler<MoveMinimapClick> {
         message: MoveMinimapClick,
     ) {
        log(client, "Click minimap: x=%d, z=%d, type=%d", message.x, message.z, message.keyCombination)
-       client.walkToInteract(message.x, message.z, MovementQueue.StepType.NORMAL, detectCollision = true)
+       client.walkToInteract(message.x, message.z, MovementQueue.StepType.NORMAL)
     }
 }

@@ -42,10 +42,9 @@ class MovementQueue(val pawn: Pawn) {
     fun addStep(
         step: Tile,
         type: StepType,
-        detectCollision: Boolean,
     ) {
         val current = if (steps.any()) steps.peekLast().tile else pawn.tile
-        addStep(current, step, type, detectCollision)
+        addStep(current, step, type)
     }
 
     fun cycle() {
@@ -57,7 +56,7 @@ class MovementQueue(val pawn: Pawn) {
             var runDirection: Direction? = null
             walkDirection = Direction.between(tile, next.tile)
             if (walkDirection != Direction.NONE &&
-                (!next.detectCollision || pawn.world.canTraverse(tile, walkDirection, pawn))
+                (pawn.world.canTraverse(tile, walkDirection, pawn))
             ) {
                 if (pawn is Npc) {
                     val entitiesClipped = mutableListOf<Pawn>()
@@ -92,7 +91,7 @@ class MovementQueue(val pawn: Pawn) {
                     next = steps.poll()
                     if (next != null) {
                         runDirection = Direction.between(tile, next.tile)
-                        if (!next.detectCollision || pawn.world.canTraverse(tile, runDirection, pawn)) {
+                        if (pawn.world.canTraverse(tile, runDirection, pawn)) {
                             tile = Tile(next.tile)
                             pawn.lastFacingDirection = runDirection
                         } else {
@@ -119,7 +118,6 @@ class MovementQueue(val pawn: Pawn) {
         current: Tile,
         next: Tile,
         type: StepType,
-        detectCollision: Boolean,
     ) {
         var dx = next.x - current.x
         var dz = next.z - current.z
@@ -139,13 +137,13 @@ class MovementQueue(val pawn: Pawn) {
             }
 
             val step = next.transform(-dx, -dz)
-            steps.add(Step(step, type, detectCollision))
+            steps.add(Step(step, type))
         }
     }
 
     data class StepDirection(val walkDirection: Direction?, val runDirection: Direction?)
 
-    data class Step(val tile: Tile, val type: StepType, val detectCollision: Boolean)
+    data class Step(val tile: Tile, val type: StepType)
 
     enum class StepType {
         NORMAL,
