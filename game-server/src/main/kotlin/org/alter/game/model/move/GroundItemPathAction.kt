@@ -32,7 +32,6 @@ object GroundItemPathAction {
         val p = ctx as Player
         val item = p.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
         val opt = p.attr[INTERACTING_OPT_ATTR]!!
-        var arrived = true
         if (!p.tile.isWithinRadius(item.tile, 1)) {
             p.walkToInteract(item.tile, MovementQueue.StepType.NORMAL)
             p.queue(TaskPriority.STANDARD) {
@@ -40,10 +39,16 @@ object GroundItemPathAction {
                     p.stopMovement()
                     p.setMapFlag()
                 }
-                arrived = this.awaitArrival(item.tile, 1)
+                if (awaitArrivalInteraction(item.tile, 1)) {
+                    handleInteraction(p,item,opt)
+                }
             }
+        } else {
+            handleInteraction(p, item,opt)
         }
-            p.forceChat("St $arrived")
+
+    }
+    fun handleInteraction(p: Player, item: GroundItem, opt: Int) {
         if (p.tile.sameAs(item.tile)) {
             handleAction(p, item, opt)
         }
@@ -52,6 +57,7 @@ object GroundItemPathAction {
          */
         if (p.tile.isWithinRadius(item.tile, 1)) {
             p.queue {
+                wait(1)
                 p.faceTile(item.tile)
                 wait(2)
                 p.animate(832, 4)
@@ -60,7 +66,6 @@ object GroundItemPathAction {
             }
         }
     }
-
     /**
      * @TODO Max_Int value handling
      */
