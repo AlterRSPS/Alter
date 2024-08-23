@@ -111,6 +111,7 @@ fun Pawn.walkToInteract(
     )
     if (attr[CLIENT_KEY_COMBINATION] == 2 && this is Player && world.privileges.isEligible(privilege, Privilege.ADMIN_POWER)) {
         moveTo(Tile(targetX, targetZ, tile.height))
+        attr[CLIENT_KEY_COMBINATION] = 0
     } else {
         walkPath(route, stepType)
     }
