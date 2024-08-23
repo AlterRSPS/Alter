@@ -1,12 +1,10 @@
 package org.alter.game.model.move
 
 import dev.openrune.cache.CacheManager.getItem
-import org.alter.game.model.Tile
 import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_GROUNDITEM_ATTR
 import org.alter.game.model.attr.INTERACTING_ITEM
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
-import org.alter.game.model.collision.isClipped
 import org.alter.game.model.entity.Entity
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Player
@@ -28,20 +26,23 @@ object GroundItemPathAction {
      */
     internal const val ITEM_ON_GROUND_ITEM_OPTION = -1
     val walkPlugin: Plugin.() -> Unit = {
-        val p = ctx as Player
-        val item = p.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
-        val opt = p.attr[INTERACTING_OPT_ATTR]!!
-        val route = p.walkToInteract(item.tile)
-        p.queue(TaskPriority.STANDARD) {
+        val player = ctx as Player
+        player.closeInterfaceModal()
+        player.interruptQueues()
+        player.resetInteractions()
+        val item = player.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
+        val opt = player.attr[INTERACTING_OPT_ATTR]!!
+        val route = player.walkToInteract(item.tile)
+        player.queue(TaskPriority.STANDARD) {
             terminateAction = {
-                p.stopMovement()
-                p.setMapFlag()
+                player.stopMovement()
+                player.setMapFlag()
             }
             if (route.waypoints.isEmpty()) {
-                handleInteraction(p,item,opt)
+                handleInteraction(player,item,opt)
             } else if (awaitArrivalInteraction(route)) {
                 wait(1)
-                handleInteraction(p,item,opt)
+                handleInteraction(player,item,opt)
             }
         }
     }
