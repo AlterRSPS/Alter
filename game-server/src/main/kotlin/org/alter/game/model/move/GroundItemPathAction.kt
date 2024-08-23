@@ -6,11 +6,11 @@ import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_GROUNDITEM_ATTR
 import org.alter.game.model.attr.INTERACTING_ITEM
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
+import org.alter.game.model.collision.isClipped
 import org.alter.game.model.entity.Entity
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
-import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
 import org.alter.game.plugin.Plugin
 import org.alter.game.service.log.LoggerService
@@ -27,42 +27,39 @@ object GroundItemPathAction {
      * ground item plugins when destination is reached.
      */
     internal const val ITEM_ON_GROUND_ITEM_OPTION = -1
-
     val walkPlugin: Plugin.() -> Unit = {
         val p = ctx as Player
         val item = p.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
         val opt = p.attr[INTERACTING_OPT_ATTR]!!
-        if (!p.tile.isWithinRadius(item.tile, 1)) {
-            p.walkToInteract(item.tile, MovementQueue.StepType.NORMAL)
-            p.queue(TaskPriority.STANDARD) {
-                terminateAction = {
-                    p.stopMovement()
-                    p.setMapFlag()
-                }
-                if (awaitArrivalInteraction(item.tile, 1)) {
-                    handleInteraction(p,item,opt)
-                }
+        val route = p.walkToInteract(item.tile)
+        p.queue(TaskPriority.STANDARD) {
+            terminateAction = {
+                p.stopMovement()
+                p.setMapFlag()
             }
-        } else {
-            handleInteraction(p, item,opt)
+            if (route.waypoints.isEmpty()) {
+                handleInteraction(p,item,opt)
+            } else if (awaitArrivalInteraction(route)) {
+                wait(1)
+                handleInteraction(p,item,opt)
+            }
         }
-
     }
-    fun handleInteraction(p: Player, item: GroundItem, opt: Int) {
+    private fun handleInteraction(p: Player, item: GroundItem, opt: Int) {
         if (p.tile.sameAs(item.tile)) {
             handleAction(p, item, opt)
-        }
-        /**
-         * @note Should execute this even if player is frozen
-         */
-        if (p.tile.isWithinRadius(item.tile, 1)) {
+        } else if (p.tile.isWithinRadius(item.tile, 1)) {
             p.queue {
-                wait(1)
+                p.lock
                 p.faceTile(item.tile)
-                wait(2)
-                p.animate(832, 4)
-                wait(1)
-                handleAction(p, item, opt)
+                if (!p.isPathBlocked(item.tile)) {
+                        p.animate(832, 4)
+                        wait(1)
+                        handleAction(p, item, opt)
+                } else {
+                    p.writeMessage(Entity.YOU_CANT_REACH_THAT)
+                }
+                p.unlock()
             }
         }
     }
@@ -75,13 +72,13 @@ object GroundItemPathAction {
         opt: Int,
     ) {
         if (!p.world.isSpawned(groundItem)) {
+            p.writeMessage(Entity.TOO_LATE)
             return
         }
         if (opt == 3) {
             if (!p.world.plugins.canPickupGroundItem(p, groundItem.item)) {
                 return
             }
-
             /**
              * added partial pickup requires tracking player inventory amount before and after
              * as the leftover amount must be derived after transaction in order to properly
@@ -118,7 +115,6 @@ object GroundItemPathAction {
                     )
                 }
             }
-
             p.attr[GROUNDITEM_PICKUP_TRANSACTION] = WeakReference(add)
             p.world.plugins.executeGlobalGroundItemPickUp(p)
             p.world.getService(LoggerService::class.java, searchSubclasses = true)?.logItemPickUp(p, Item(groundItem.item, add.completed))
