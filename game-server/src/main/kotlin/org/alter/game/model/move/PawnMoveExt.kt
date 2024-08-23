@@ -2,7 +2,9 @@ package org.alter.game.model.move
 
 import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.model.Tile
+import org.alter.game.model.attr.CLIENT_KEY_COMBINATION
 import org.alter.game.model.entity.*
+import org.alter.game.model.priv.Privilege
 import org.alter.game.model.queue.QueueTask
 import org.rsmod.game.pathfinder.Route
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
@@ -95,8 +97,55 @@ fun Pawn.stopMovement() {
     movementQueue.clear()
 }
 
-fun Pawn.stepTile() {
-    TODO("Move to a directory one tile.")
+fun Pawn.walkToInteract(
+    targetX: Int,
+    targetZ: Int,
+    stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
+) : Route {
+    val route = world.pathFinder.findPath(
+        level = tile.height,
+        srcX = tile.x,
+        srcZ = tile.z,
+        destX = targetX,
+        destZ = targetZ,
+    )
+    if (attr[CLIENT_KEY_COMBINATION] == 2 && this is Player && world.privileges.isEligible(privilege, Privilege.ADMIN_POWER)) {
+        moveTo(Tile(targetX, targetZ, tile.height))
+    } else {
+        walkPath(route, stepType)
+    }
+    return route
+}
+fun Pawn.walkToInteract(tile: Tile, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL) = walkToInteract(targetX = tile.x, targetZ = tile.z, stepType = stepType)
+fun Pawn.hasMoveDestination(): Boolean = movementQueue.hasDestination()
+
+suspend fun QueueTask.awaitArrivalInteraction(
+    route: Route,
+) : Boolean {
+    val p = ctx as Player
+    val destination = p.movementQueue.peekLast()
+    var tile = route.toTileQueue().last()
+    while (true) {
+        if (!p.movementQueue.hasDestination() && !p.tile.sameAs(tile)) {
+            println()
+            return false
+        }
+        if (!p.tile.sameAs(tile) && destination != null) {
+            println()
+            wait(1)
+            continue
+        }
+        if (destination == null && !p.tile.sameAs(tile)) {
+            println()
+            return false
+        }
+        if (p.tile.sameAs(tile)) {
+            println()
+            return true
+        }
+        break
+    }
+    return false
 }
 /**
  * Move / StepTile()
@@ -107,7 +156,6 @@ fun Pawn.stepTile() {
  *
  * When player gets attacked during his Running it does not stop to retaliate or does it (?)
  */
-
 /**
  * @property pawn
  */
@@ -127,9 +175,7 @@ suspend fun Pawn.walkToInteract(
     /**
      * Add validation for Projectiles
      */
-    if (tile.isWithinRadius(target.tile, lineOfSightRange)) {
-        return true
-    }
+    TODO("Fix this shit.")
     val newRoute = world.pathFinder.findPath(
         level = tile.height,
         srcX = tile.x,
@@ -138,54 +184,12 @@ suspend fun Pawn.walkToInteract(
         destZ = targetTile.z,
         srcSize = sourceSize,
         objShape = -1,
-        destWidth = 0,
+        destWidth = 3,
         destHeight = 0,
         moveNear = true,
         collision = CollisionStrategies.Normal,
     )
     walkPath(newRoute, MovementQueue.StepType.NORMAL)
-    return true
-}
-
-fun Pawn.walkToInteract(
-    targetX: Int,
-    targetZ: Int,
-    stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
-) {
-    val route = world.pathFinder.findPath(
-        level = tile.height,
-        srcX = tile.x,
-        srcZ = tile.z,
-        destX = targetX,
-        destZ = targetZ,
-    )
-    walkPath(route, stepType)
-}
-fun Pawn.walkToInteract(tile: Tile, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL) = walkToInteract(targetX = tile.x, targetZ = tile.z, stepType = stepType)
-fun Pawn.hasMoveDestination(): Boolean = movementQueue.hasDestination()
-
-suspend fun QueueTask.awaitArrivalInteraction(
-    tile: Tile,
-    range: Int = 1,
-) : Boolean {
-    val p = ctx as Player
-    val fullDestination = p.movementQueue
-    val destination = p.movementQueue.peekLast()
-    while (true) {
-        if (!p.tile.isWithinRadius(tile, range) && destination != null) {
-            p.writeMessage("1")
-            wait(1)
-            continue
-        }
-        if (destination == null && !p.tile.isWithinRadius(tile, range)) {
-            p.writeMessage("2")
-            return false
-        }
-        if (p.tile.isWithinRadius(tile, range)) {
-            p.writeMessage("3")
-            return true
-        }
-        break
-    }
-    return false
+    val state = it.awaitArrivalInteraction(newRoute)
+    return state
 }
