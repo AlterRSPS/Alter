@@ -27,9 +27,6 @@ object GroundItemPathAction {
     internal const val ITEM_ON_GROUND_ITEM_OPTION = -1
     val walkPlugin: Plugin.() -> Unit = {
         val player = ctx as Player
-        player.closeInterfaceModal()
-        player.interruptQueues()
-        player.resetInteractions()
         val item = player.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
         val opt = player.attr[INTERACTING_OPT_ATTR]!!
         val route = player.walkToInteract(item.tile)

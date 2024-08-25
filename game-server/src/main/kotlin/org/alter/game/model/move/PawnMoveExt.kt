@@ -102,6 +102,11 @@ fun Pawn.walkToInteract(
     targetZ: Int,
     stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
 ) : Route {
+    if (this is Player) {
+        this.closeInterfaceModal()
+        this.interruptQueues()
+        this.resetInteractions()
+    }
     val route = world.pathFinder.findPath(
         level = tile.height,
         srcX = tile.x,
@@ -128,20 +133,46 @@ suspend fun QueueTask.awaitArrivalInteraction(
     var tile = route.toTileQueue().last()
     while (true) {
         if (!p.movementQueue.hasDestination() && !p.tile.sameAs(tile)) {
-            println()
             return false
         }
         if (!p.tile.sameAs(tile) && destination != null) {
-            println()
             wait(1)
             continue
         }
         if (destination == null && !p.tile.sameAs(tile)) {
-            println()
             return false
         }
         if (p.tile.sameAs(tile)) {
-            println()
+            return true
+        }
+        break
+    }
+    return false
+}
+
+suspend fun QueueTask.awaitArrivalRanged(
+    route: Route,
+    lineOfSightRange: Int,
+) : Boolean {
+    val pawn = ctx as Pawn
+    val destination = pawn.movementQueue.peekLast()
+    val tile = route.toTileQueue().last()
+    val nextTile = pawn.movementQueue.steps.peek().tile
+    while (true) {
+        /**
+         * Player has no move steps nor is within the range.
+         */
+        if (!pawn.movementQueue.hasDestination() && !pawn.tile.isWithinRadius(tile, lineOfSightRange)) {
+            println("failure")
+            return false
+        }
+        if (!pawn.tile.isWithinRadius(tile, lineOfSightRange) && destination != null) {
+            wait(1)
+            continue
+        }
+        if (pawn.tile.isWithinRadius(nextTile, lineOfSightRange)) {
+            println("Stoped on: ${pawn.tile} : ${nextTile}")
+            pawn.stopMovement()
             return true
         }
         break
