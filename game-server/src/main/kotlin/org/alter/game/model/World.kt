@@ -467,10 +467,12 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         chunk.addEntity(this, projectile, tile)
     }
 
+    /**
+     * @TODO fix AreaSound baget
+     */
     fun spawn(sound: AreaSound) {
         val tile = sound.tile
         val chunk = chunks.getOrCreate(tile)
-        println("fix AreaSound bagget")
         //chunk.addEntity(this, sound, tile)
     }
 
