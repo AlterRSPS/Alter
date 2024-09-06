@@ -4,10 +4,10 @@ import dev.openrune.cache.*
 import dev.openrune.cache.filestore.loadLocations
 import dev.openrune.cache.filestore.loadTerrain
 import io.github.oshai.kotlinlogging.KotlinLogging
-import org.alter.game.model.Direction
 import org.alter.game.model.Tile
 import org.alter.game.model.World
-import org.alter.game.model.collision.CollisionUpdate
+import org.alter.game.model.collision.CollisionManager.Companion.BLOCKED_TILE
+import org.alter.game.model.collision.CollisionManager.Companion.BRIDGE_TILE
 import org.alter.game.model.entity.StaticObject
 import org.alter.game.model.region.ChunkSet
 import org.alter.game.service.xtea.XteaKeyService
@@ -60,6 +60,20 @@ class DefinitionSet {
         val baseX: Int = id shr 8 and 255 shl 6
         val baseY: Int = id and 255 shl 6
 
+        // Allocates all of the chunks within the region
+        // TODO only allocate if the tiles are walkable.
+        //val baseX = x * 64 // TODO perhaps just call cacheRegion.baseX
+        //val baseZ = z * 64 // TODO perhaps just call cacheRegion.baseY
+        for (cx in 0 until 8) {
+            for (cz in 0 until 8) {
+                val chunkBaseX = baseX + cx * 8
+                val chunkBaseZ = baseY + cz * 8
+                for (level in 0 until 4) {
+                    world.collision.allocateIfAbsent(chunkBaseX, chunkBaseZ, level)
+                }
+            }
+        }
+
         val blocked = hashSetOf<Tile>()
         val bridges = hashSetOf<Tile>()
 
@@ -68,11 +82,11 @@ class DefinitionSet {
         for (height in 0 until 4) {
             for (lx in 0 until 64) {
                 for (lz in 0 until 64) {
-                    val bridge = tiles[1][lx][lz].settings.toInt() and 0x2 != 0
+                    val bridge = tiles[1][lx][lz].settings.toInt() and BRIDGE_TILE != 0
                     if (bridge) {
                         bridges.add(Tile(baseX + lx, baseY + lz, height))
                     }
-                    val blockedTile = tiles[height][lx][lz].settings.toInt() and 0x1 != 0
+                    val blockedTile = tiles[height][lx][lz].settings.toInt() and BLOCKED_TILE != 0
                     if (blockedTile) {
                         val level = if (bridge) (height - 1) else height
                         if (level < 0) continue
@@ -113,7 +127,6 @@ class DefinitionSet {
         val keys = xteaService?.get(id) ?: XteaKeyService.EMPTY_KEYS
         try {
             val landData = CacheManager.cache.data(MAPS, "l${x}_$z", keys) ?: return false
-
             loadLocations(landData) { loc ->
                 val tile =
                     Tile(
