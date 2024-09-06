@@ -3,8 +3,7 @@ package org.alter.plugins.content.combat
 import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import org.alter.game.model.attr.FACING_PAWN_ATTR
 import org.alter.game.model.attr.INTERACTING_PLAYER_ATTR
-import org.alter.game.model.move.stopMovement
-import org.alter.game.model.move.walkToInteract
+import org.alter.game.model.move.*
 import org.alter.game.model.timer.FROZEN_TIMER
 import org.alter.game.model.timer.STUN_TIMER
 import org.alter.plugins.content.combat.specialattack.SpecialAttacks
@@ -15,7 +14,6 @@ set_combat_logic {
     pawn.attr[COMBAT_TARGET_FOCUS_ATTR]?.get()?.let { target ->
         pawn.facePawn(target)
     }
-
     pawn.queue {
         while (true) {
             if (!cycle(this)) {
@@ -50,55 +48,67 @@ suspend fun cycle(it: QueueTask): Boolean {
     if (pawn is Player) {
         pawn.setVarp(Combat.PRIORITY_PID_VARP, target.index)
         if (!pawn.attr.has(Combat.CASTING_SPELL) && pawn.getVarbit(Combat.SELECTED_AUTOCAST_VARBIT) != 0) {
-            val spell = CombatSpell.values.firstOrNull { it.autoCastId == pawn.getVarbit(Combat.SELECTED_AUTOCAST_VARBIT) }
+            val spell =
+                CombatSpell.values.firstOrNull { it.autoCastId == pawn.getVarbit(Combat.SELECTED_AUTOCAST_VARBIT) }
             if (spell != null) {
                 pawn.attr[Combat.CASTING_SPELL] = spell
             }
         }
     }
-    val strategy = CombatConfigs.getCombatStrategy(pawn)
-    val attackRange = strategy.getAttackRange(pawn)
-
-    val pathFound = pawn.walkToInteract(it, target, lineOfSightRange = attackRange)
     if (target != pawn.attr[FACING_PAWN_ATTR]?.get()) {
         return false
     }
-    if (!pathFound) {
-        pawn.stopMovement()
-        if (pawn.entityType.isNpc) {
-            /**
-             * Npcs will keep trying to find a path to engage in combat.
-             */
-            return true
-        }
-        if (pawn is Player) {
-            when {
-                pawn.timers.has(FROZEN_TIMER) -> pawn.message(Entity.MAGIC_STOPS_YOU_FROM_MOVING)
-                pawn.timers.has(STUN_TIMER) -> pawn.message(Entity.YOURE_STUNNED)
-                else -> pawn.message(Entity.YOU_CANT_REACH_THAT)
+
+    val strategy = CombatConfigs.getCombatStrategy(pawn)
+    val attackRange = strategy.getAttackRange(pawn)
+    if (target != pawn.attr[FACING_PAWN_ATTR]?.get()) { return false }
+    if (!pawn.tile.isWithinRadius(target.tile, attackRange)) {
+        val route = pawn.pathToRange(target)
+        var state = it.awaitArrivalRanged(route, attackRange)
+        if (!state) {
+            if (pawn.entityType.isNpc) {
+                /**
+                 * Npcs will keep trying to find a path to engage in combat.
+                 */
+                return true
             }
-            pawn.clearMapFlag()
-        }
-        pawn.resetFacePawn()
-        Combat.reset(pawn)
-        return false
-    }
-    if (Combat.isAttackDelayReady(pawn)) {
-        if (Combat.canAttack(pawn, target, strategy)) {
-            if (pawn is Player && AttackTab.isSpecialEnabled(pawn) && pawn.getEquipment(EquipmentType.WEAPON) != null) {
-                AttackTab.disableSpecial(pawn)
-                if (SpecialAttacks.execute(pawn, target, world)) {
-                    Combat.postAttack(pawn, target)
-                    return true
-                }
-                pawn.message("You don't have enough power left.")
-            }
-            strategy.attack(pawn, target)
-            Combat.postAttack(pawn, target)
-        } else {
+             if (pawn is Player) {
+                 when {
+                     pawn.timers.has(FROZEN_TIMER) -> pawn.message(Entity.MAGIC_STOPS_YOU_FROM_MOVING)
+                     pawn.timers.has(STUN_TIMER) -> pawn.message(Entity.YOURE_STUNNED)
+                     else -> pawn.message(Entity.YOU_CANT_REACH_THAT)
+                 }
+                 pawn.clearMapFlag()
+             }
+            pawn.resetFacePawn()
             Combat.reset(pawn)
             return false
         }
     }
+    if (pawn.hasMoveDestination() && !pawn.tile.isWithinRadius(target.tile, attackRange)) {
+        return false
+    }
+    if (pawn.tile.isWithinRadius(target.tile, attackRange)) {
+        if (Combat.isAttackDelayReady(pawn)) {
+            if (Combat.canAttack(pawn, target, strategy)) {
+                if (pawn is Player && AttackTab.isSpecialEnabled(pawn) && pawn.getEquipment(EquipmentType.WEAPON) != null) {
+                    AttackTab.disableSpecial(pawn)
+                    if (SpecialAttacks.execute(pawn, target, world)) {
+                        Combat.postAttack(pawn, target)
+                        return true
+                    }
+                    pawn.message("You don't have enough power left.")
+                }
+                strategy.attack(pawn, target)
+                Combat.postAttack(pawn, target)
+            } else {
+                Combat.reset(pawn)
+                return false
+            }
+        }
+    } else {
+        println("You fucked somewhere up")
+    }
     return true
+    //if (pawn is Player && pawn.getEquipment(EquipmentType.WEAPON) != null && world.plugins.executeWeaponCombatLogic(pawn, pawn.getEquipment(EquipmentType.WEAPON)!!.id)) else
 }

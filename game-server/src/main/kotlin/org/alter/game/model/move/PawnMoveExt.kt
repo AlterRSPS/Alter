@@ -59,7 +59,7 @@ fun Pawn.walkPath(
         setMapFlag()
         return
     }
-    movementQueue.clear() // @TODO Hmm weird logic (?)
+    movementQueue.clear()
     var tail: Tile? = null
     var next = path.poll()
     while (next != null) {
@@ -156,25 +156,29 @@ suspend fun QueueTask.awaitArrivalRanged(
 ) : Boolean {
     val pawn = ctx as Pawn
     val destination = pawn.movementQueue.peekLast()
+    /**
+     * Will be empty if next to the route.
+     */
+    if (route.isEmpty()) {
+        return true
+    }
     val tile = route.toTileQueue().last()
-    val nextTile = pawn.movementQueue.steps.peek().tile
     while (true) {
-        /**
-         * Player has no move steps nor is within the range.
-         */
         if (!pawn.movementQueue.hasDestination() && !pawn.tile.isWithinRadius(tile, lineOfSightRange)) {
-            println("failure")
             return false
         }
-        if (!pawn.tile.isWithinRadius(tile, lineOfSightRange) && destination != null) {
-            wait(1)
-            continue
-        }
-        if (pawn.tile.isWithinRadius(nextTile, lineOfSightRange)) {
-            println("Stoped on: ${pawn.tile} : ${nextTile}")
+        if (destination != null && pawn.tile.isWithinRadius(destination, lineOfSightRange)) {
+            println("This fucker cancels run away : $lineOfSightRange")
             pawn.stopMovement()
             return true
         }
+        if (pawn.hasMoveDestination()/**destination != null**/) {
+            wait(1)
+            continue
+        } else {
+            println("Pawn does not have any move destinations: ${pawn.hasMoveDestination()}")
+        }
+        println("Break was executed")
         break
     }
     return false
@@ -188,40 +192,21 @@ suspend fun QueueTask.awaitArrivalRanged(
  *
  * When player gets attacked during his Running it does not stop to retaliate or does it (?)
  */
-/**
- * @property pawn
- */
-suspend fun Pawn.walkToInteract(
-    it: QueueTask,
-    target: Entity,
-    lineOfSightRange: Int,
-): Boolean {
-    val sourceSize = getSize()
-    val targetSize = when (target) {
-        is Player -> getSize()
-        is Npc -> getSize()
-        is GameObject -> getSize()
-        else -> 1
-    }
+fun Pawn.pathToRange(
+    target: Entity): Route {
     val targetTile = target.tile
-    /**
-     * Add validation for Projectiles
-     */
-    TODO("Fix this shit.")
-    val newRoute = world.pathFinder.findPath(
+    val route = world.pathFinder.findPath(
         level = tile.height,
         srcX = tile.x,
         srcZ = tile.z,
         destX = targetTile.x,
         destZ = targetTile.z,
-        srcSize = sourceSize,
         objShape = -1,
-        destWidth = 3,
+        destWidth = 0,
         destHeight = 0,
         moveNear = true,
         collision = CollisionStrategies.Normal,
     )
-    walkPath(newRoute, MovementQueue.StepType.NORMAL)
-    val state = it.awaitArrivalInteraction(newRoute)
-    return state
+    walkPath(route, MovementQueue.StepType.NORMAL)
+    return route
 }

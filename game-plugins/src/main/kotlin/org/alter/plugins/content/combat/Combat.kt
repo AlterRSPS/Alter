@@ -14,8 +14,11 @@ import org.alter.game.model.entity.AreaSound
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
+import org.alter.game.model.move.awaitArrivalRanged
+import org.alter.game.model.move.pathToRange
 import org.alter.game.model.move.walkToInteract
 import org.alter.game.model.queue.QueueTask
+import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.timer.ACTIVE_COMBAT_TIMER
 import org.alter.game.model.timer.ATTACK_DELAY
 import org.alter.plugins.content.combat.strategy.CombatStrategy
@@ -111,8 +114,15 @@ object Combat {
                     target.attack(pawn)
                 }
             } else if (target is Player) {
-                if (target.getVarp(AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn) {
+                val strategy = CombatConfigs.getCombatStrategy(target)
+                val attackRange = strategy.getAttackRange(target)
+                if (target.getVarp(AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn && target.tile.isWithinRadius(pawn.tile, attackRange)) {
                     target.attack(pawn)
+                } else {
+                    val route = target.pathToRange(pawn)
+                    target.queue(TaskPriority.WEAK) {
+                        awaitArrivalRanged(route, attackRange)
+                    }
                 }
             }
         }
@@ -170,7 +180,7 @@ object Combat {
                 areBordering(start.x, start.z, srcSize, srcSize, end.x, end.z, dstSize, dstSize)
             }
         val withinRange = touching && world.collision.raycast(start, end, projectile = projectile)
-        return withinRange || pawn.walkToInteract(it, target, lineOfSightRange = distance)
+        return withinRange //|| pawn.walkToInteract(it, target, lineOfSightRange = distance)
     }
 
     fun getProjectileLifespan(
