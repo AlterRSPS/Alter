@@ -24,7 +24,7 @@ class Item(val id: Int, var amount: Int = 1) {
      */
     fun toNoted(): Item {
         val def = getDef()
-        return if (def.noteTemplateId == 0 && def.noteLinkId > 0) Item(def.noteLinkId, amount).copyAttr(this) else Item(this).copyAttr(this)
+        return if (def.noteTemplateId == -1 && def.noteLinkId > -1) Item(def.noteLinkId, amount).copyAttr(this) else Item(this).copyAttr(this)
     }
 
     /**

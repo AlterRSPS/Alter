@@ -9,6 +9,7 @@ import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
+import org.alter.game.model.weightedTableBuilder.roll
 import org.alter.game.plugin.Plugin
 import org.alter.game.service.log.LoggerService
 import java.lang.ref.WeakReference
@@ -52,27 +53,37 @@ object NpcDeathAction {
         } else {
             (killer as? Player)?.playSound(deathSound, npc.combatDef.defaultDeathSoundVolume)
         }
-            deathAnimation.forEach { anim ->
-                val def = getAnim(anim)
-                npc.animate(def.id, def.cycleLength)
-                wait(def.cycleLength + 1)
-            }
-            world.plugins.executeNpcDeath(npc)
-
-        /**
-         * @TODO Remove this from plugin and convert it into it's own block.
-         */
+        deathAnimation.forEach { anim ->
+            val def = getAnim(anim)
+            npc.animate(def.id, def.cycleLength)
+            wait(def.cycleLength + 1)
+        }
+        world.plugins.executeNpcDeath(npc)
         world.plugins.anyNpcDeath.forEach {
-                npc.executePlugin(it)
+            npc.executePlugin(it)
+        }
+        /**
+         * 10 took 0ms.
+         */
+        npc.damageMap.getMostDamage()?.let {    pawn ->
+            val player = pawn as Player
+            val lootTables = npc.combatDef.LootTables ?: return@let
+            roll(player, lootTables).forEach {
+                it.ownerUID = player.uid
+                it.tile = npc.getCentreTile()
+                it.timeUntilPublic = world.gameContext.gItemPublicDelay
+                it.timeUntilDespawn = world.gameContext.gItemDespawnDelay
+                world.spawn(it)
             }
-            if (npc.respawns) {
-                npc.reset()
-                wait(respawnDelay)
-                npc.avatar.setInaccessible(false)
-                world.plugins.executeNpcSpawn(npc)
-            } else {
-                world.remove(npc)
-            }
+        }
+        if (npc.respawns) {
+            npc.reset()
+            wait(respawnDelay)
+            npc.avatar.setInaccessible(false)
+            world.plugins.executeNpcSpawn(npc)
+        } else {
+            world.remove(npc)
+        }
     }
 
     private fun Npc.reset() {

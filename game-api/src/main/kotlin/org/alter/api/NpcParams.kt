@@ -100,10 +100,6 @@ class NpcCombatBuilder {
 
     private var venomChance = -1.0
 
-    private var poisonImmunity = false
-
-    private var venomImmunity = false
-
     private var slayerReq = -1
 
     private var slayerXp = -1.0
@@ -116,8 +112,6 @@ class NpcCombatBuilder {
     private var immuneVenom = false
     private var immuneCannons = false
     private var immuneThralls = false
-
-
     var LootTable: MutableSet<LootTable> = mutableSetOf()
 
     fun build(): NpcCombatDef {

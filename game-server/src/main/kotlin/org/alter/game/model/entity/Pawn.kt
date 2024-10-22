@@ -5,6 +5,7 @@ import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.action.NpcDeathAction
 import org.alter.game.action.PlayerDeathAction
 import org.alter.game.event.Event
+import org.alter.game.info.PlayerInfo
 import org.alter.game.model.*
 import org.alter.game.model.attr.*
 import org.alter.game.model.bits.INFINITE_VARS_STORAGE
@@ -108,6 +109,12 @@ abstract class Pawn(val world: World) : Entity() {
     var prayerIcon = -1
 
     /**
+     * Transmog is the action of turning into an npc. This value is equal to the
+     * npc id of the npc you want to turn into, visually.
+     */
+    private var transmogId = -1
+
+    /**
      * A list of pending [Hit]s.
      */
     private val pendingHits = mutableListOf<Hit>()
@@ -165,12 +172,12 @@ abstract class Pawn(val world: World) : Entity() {
      * Checks if the pawn has any lock state set.
      */
     fun isLocked(): Boolean = lock != LockState.NONE
+    fun getTransmogId(): Int = transmogId
 
     fun setTransmogId(transmogId: Int) {
-        if (entityType.isNpc) {
-            (this as Npc).avatar.extendedInfo.transformation(transmogId)
-        } else if (entityType.isPlayer) {
-            (this as Player).avatar.extendedInfo.transformToNpc(transmogId)
+        this.transmogId = transmogId
+        if (entityType.isPlayer) {
+            PlayerInfo(this as Player).syncAppearance()
         }
     }
 

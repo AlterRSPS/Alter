@@ -1,5 +1,8 @@
 package org.alter.plugins.content.interfaces.skillguides
 
+import org.alter.api.ClientScript
+import org.alter.api.CommonClientScripts
+
 val SKILL_ID_VARBIT = 4371
 val SUB_SECTION_VARBIT = 4372
 val NEW_SKILL_GUIDE_INTERFACE = 860
@@ -21,9 +24,9 @@ SkillGuide.values.forEach { guide ->
             player.setInterfaceUnderlay(color = -1, transparency = -1)
             player.openInterface(interfaceId = 214, dest = InterfaceDestination.MAIN_SCREEN)
         } else {
-            player.openInterface(interfaceId = NEW_SKILL_GUIDE_INTERFACE, dest = InterfaceDestination.MAIN_SCREEN)
-            player.runClientScript(1902, guide.bit, 0)
-            //player.setInterfaceEvents(interfaceId = 860, component = 8, 0..2000) /* @TODO support setInterfaceEvents w empty InterfaceEvent list. */
+            player.runClientScript(CommonClientScripts.MAIN_MODAL_OPEN, -1, -3)
+            player.openInterface(interfaceId = NEW_SKILL_GUIDE_INTERFACE, dest = InterfaceDestination.MAIN_SCREEN, isModal = true)
+            player.runClientScript(ClientScript("skill_guide_v2_init"), guide.bit, 0)
             player.setInterfaceEvents(interfaceId = 860, component = 7, 0..200, InterfaceEvent.ClickOp1)
         }
     }

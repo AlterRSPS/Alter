@@ -40,7 +40,7 @@ import kotlin.math.floor
  *
  * https://github.com/RuneStar/cs2-scripts/blob/master/scripts/[clientscript,interface_inv_init_big].cs2
  */
-const val INTERFACE_INV_INIT_BIG = 150
+val INTERFACE_INV_INIT_BIG = ClientScript("interface_inv_init_big")
 
 fun Player.openShop(shop: String) {
     val s = world.getShop(shop)
@@ -49,7 +49,7 @@ fun Player.openShop(shop: String) {
         shopDirty = true
         openInterface(interfaceId = 300, dest = InterfaceDestination.MAIN_SCREEN)
         openInterface(interfaceId = 301, dest = InterfaceDestination.TAB_AREA)
-        runClientScript(1074, 13, s.name)
+        runClientScript(CommonClientScripts.SHOP_INIT, 13, s.name)
         setInterfaceEvents(interfaceId = 300, component = 16, range = 0..s.items.size, setting = 1086)
         setInterfaceEvents(interfaceId = 301, component = 0, range = 0 until inventory.capacity, setting = 1086)
     } else {
@@ -64,7 +64,7 @@ fun Player.openShop(shopId: Int) {
         shopDirty = true
         openInterface(interfaceId = 300, dest = InterfaceDestination.MAIN_SCREEN)
         openInterface(interfaceId = 301, dest = InterfaceDestination.TAB_AREA)
-        runClientScript(1074, 13, s.name)
+        runClientScript(CommonClientScripts.SHOP_INIT, 13, s.name)
         setInterfaceEvents(interfaceId = 300, component = 16, range = 0..s.items.size, setting = 1086)
         setInterfaceEvents(interfaceId = 301, component = 0, range = 0 until inventory.capacity, setting = 1086)
     } else {
@@ -109,23 +109,24 @@ fun Player.openUrl(url: String) {
     write(UrlOpen(url))
 }
 
-fun Player.runClientScript(
-    id: Int,
-    vararg args: Any,
-) {
-    write(RunClientScript(id, args.toList()))
+fun Player.runClientScript(script: CommonClientScripts, vararg args: Any) {
+    write(RunClientScript(script.script.id, args.toList()))
+}
+
+fun Player.runClientScript(script: ClientScript, vararg args: Any) {
+    write(RunClientScript(script.id, args.toList()))
 }
 
 fun Player.focusTab(tab: GameframeTab) {
-    runClientScript(915, tab.id)
+    runClientScript(CommonClientScripts.FOCUS_TAB, tab.id)
 }
 
 fun Player.setInterfaceUnderlay(
     color: Int,
     transparency: Int,
 ) {
-    runClientScript(917, color, transparency)
-    runClientScript(2524, color, transparency)
+    runClientScript(CommonClientScripts.MAIN_MODAL_BACKGROUND, color, transparency)
+    runClientScript(CommonClientScripts.MAIN_MODAL_OPEN, color, transparency)
 }
 
 fun Player.setInterfaceEvents(
@@ -237,6 +238,18 @@ fun Player.openInterface(
     val child = getChildId(dest, displayMode)
     val parent = getDisplayComponentId(displayMode)
     openInterface(parent, child, interfaceId, if (dest.clickThrough) 1 else 0, isModal = dest == InterfaceDestination.MAIN_SCREEN)
+}
+
+fun Player.openInterface(
+    interfaceId: Int,
+    dest: InterfaceDestination,
+    fullscreen: Boolean = false,
+    isModal: Boolean = false
+) {
+    val displayMode = if (!fullscreen || dest.fullscreenChildId == -1) interfaces.displayMode else DisplayMode.FULLSCREEN
+    val child = getChildId(dest, displayMode)
+    val parent = getDisplayComponentId(displayMode)
+    openInterface(parent, child, interfaceId, if (dest.clickThrough) 1 else 0, isModal = isModal)
 }
 
 /**
@@ -784,7 +797,7 @@ fun Player.isClientResizable(): Boolean =
 fun Player.inWilderness(): Boolean = getInterfaceAt(InterfaceDestination.OVERLAY) != -1
 
 fun Player.sendWorldMapTile() {
-    runClientScript(1749, tile.as30BitInteger)
+    runClientScript(CommonClientScripts.WORLD_MAP_TILE, tile.as30BitInteger)
 }
 
 fun Player.sendCombatLevelText() {
@@ -839,7 +852,7 @@ fun Player.calculateAndSetCombatLevel(): Boolean {
 
     val changed = combatLevel != old
 
-    runClientScript(3954, 46661634, 46661635, combatLevel)
+    runClientScript(CommonClientScripts.COMABT_LEVEL_SUMMARY, 46661634, 46661635, combatLevel)
     if (changed) {
         sendCombatLevelText()
         avatar.extendedInfo.setCombatLevel(combatLevel)

@@ -11,7 +11,7 @@ fun bind_unequip(
     on_button(interfaceId = EQUIPMENT_INTERFACE_ID, component = child) {
         val opt = player.getInteractingOption()
         when (opt) {
-            0 -> {
+            1 -> {
                 val result = EquipAction.unequip(player, equipment.id)
                 if (equipment == EquipmentType.WEAPON && result == EquipAction.Result.SUCCESS) {
                     player.sendWeaponComponentInformation()
@@ -26,7 +26,6 @@ fun bind_unequip(
                 val menuOpt = opt
                 if (!world.plugins.executeEquipmentOption(player, item.id, menuOpt) && world.devContext.debugItemActions) {
                     val action = ObjectExamineHolder.EQUIPMENT_MENU.get(item.id).equipmentMenu[menuOpt]
-                    // TODO ADVO was val action = item.getDef(world.definitions).equipmentMenu[menuOpt]
                     player.message("Unhandled equipment action: [item=${item.id}, option=$menuOpt, action=$action]")
                 }
             }

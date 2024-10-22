@@ -25,7 +25,10 @@ on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
                     if (!world.plugins.executeItem(player, item.id, option)) {
                         val remove = player.inventory.remove(item, assureFullRemoval = false, beginSlot = slot)
                         if (remove.completed > 0) {
-                            val floor = GroundItem(item.id, remove.completed, player.tile, player)
+                            val floor = GroundItem(item.id, remove.completed,player.tile, player)
+                            floor.timeUntilPublic = world.gameContext.gItemPublicDelay
+                            floor.timeUntilDespawn = world.gameContext.gItemDespawnDelay
+                            floor.ownerShipType = 1
                             remove.firstOrNull()?.let { removed ->
                                 floor.copyAttr(removed.item.attr)
                             }

@@ -1,33 +1,17 @@
 package org.alter.api.dsl
 
-import org.alter.game.model.Tile
 import org.alter.api.NpcCombatBuilder
 import org.alter.game.model.entity.Player
-import org.alter.game.model.weightedTableBuilder.*
-import java.lang.Math.random
-import kotlin.random.Random
-/**
- * @TODO For now it's only set up to work with NpcCombatBuilder, we want to make it work with Item Builder as well.
- * @TODO Most likely will be removed in the future.
- */
+import org.alter.game.model.weightedTableBuilder.Loot
+import org.alter.game.model.weightedTableBuilder.LootTable
+import org.alter.game.model.weightedTableBuilder.TableType
+
 class WeightedTableBuilder {
     var combatBuilder: NpcCombatBuilder? = null
-    /**
-     * At what position to drop the item.
-     * or if null, drop at the npcs position.
-     */
-    var position: Tile? = null
-    /**
-     * How many times to do a roll for drop, excluding the always table.
-     */
-    var rolls = 1
     /**
      * Collection of drop tables.
      */
     var LootTables = mutableSetOf<LootTable>()
-
-
-
 
     inner class AlwaysTableBuilder {
         fun add(item: Any?, min: Int = 1, max: Int = 1, steepness: Int = 1, description: String ? = null, announce : Boolean = false, block: (Player) -> Boolean = { true }) {
@@ -88,23 +72,26 @@ class WeightedTableBuilder {
     }
 
     /**
-     * @TODO Cleanup :kappa:
+     * @TODO Should improve how we are structuring tables above. As rn it's retarded af.
      */
     private fun addToTable(table: TableType, loot: Loot, weight: Int = 0) {
-        if (LootTables.firstOrNull { it.tableType == table } != null) {
-            LootTables.firstOrNull { it.tableType == table }!!.drops.add(loot)
+        val lootTable = LootTables.find { it.tableType == table }
+        if (lootTable != null) {
+            lootTable.drops.add(loot)
         } else {
             LootTables.add(LootTable(
                 tableType = table,
                 tableWeight = weight,
-                dropPosition = position,
-                rolls = rolls,
                 drops = mutableSetOf(loot)
             ))
         }
-        combatBuilder.let {
+
+        if (combatBuilder != null) {
             combatBuilder?.LootTable = LootTables
+        } else {
+            // @TODO Hmm
         }
+
     }
 
 

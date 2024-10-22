@@ -24,11 +24,25 @@ class GroundItem private constructor(val item: Int, var amount: Int, internal va
         this.tile = tile
     }
 
+    /**
+     * @TODO Need to implement this.
+     *  * | Id | Ownership Type |
+     *  * |----|:--------------:|
+     *  * | 0  |      None      |
+     *  * | 1  |   Self Player  |
+     *  * | 2  |  Other Player  |
+     *  * | 3  |  Group Ironman |
+     */
+    var ownerShipType = 0
+
     constructor(item: Item, tile: Tile, owner: Player? = null) : this(item.id, item.amount, tile, owner)
 
-    internal var currentCycle = 0
+    var currentCycle = 0
 
     var respawnCycles = -1
+
+    var timeUntilPublic = 0
+    var timeUntilDespawn = 0
 
     internal val attr = EnumMap<ItemAttribute, Int>(ItemAttribute::class.java)
 
@@ -62,6 +76,10 @@ class GroundItem private constructor(val item: Int, var amount: Int, internal va
         const val DEFAULT_RESPAWN_CYCLES = 50
 
         /**
+         * @TODO
+         * Validate if these values are correct.
+         */
+        /**
          * The default amount of cycles for this item to be publicly visible.
          */
         const val DEFAULT_PUBLIC_SPAWN_CYCLES = 100
@@ -69,6 +87,6 @@ class GroundItem private constructor(val item: Int, var amount: Int, internal va
         /**
          * The default amount of cycles for this item to despawn from the world.
          */
-        const val DEFAULT_DESPAWN_CYCLES = 600
+        const val DEFAULT_DESPAWN_CYCLES = 300
     }
 }

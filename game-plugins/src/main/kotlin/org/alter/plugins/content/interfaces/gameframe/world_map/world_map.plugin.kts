@@ -17,10 +17,11 @@ on_button(interfaceId = 160, component = 53) {
         player.sendWorldMapTile()
         player.playSound(Sound.INTERFACE_SELECT1, 100)
 
-        if (opt != 2) {
+        if (opt != 1) {
             player.openInterface(interfaceId = WORLD_MAP_INTERFACE_ID, dest = InterfaceDestination.WORLD_MAP, fullscreen = false)
             player.setInterfaceEvents(interfaceId = WORLD_MAP_INTERFACE_ID, component = 21, range = 0..4, setting = InterfaceEvent.ClickOp1)
         } else {
+            //  160:53 -> opt 3 for FullScreen
             player.queue {
                 player.animate(Animation.LOOK_AT_MINIMAP_WHEN_FULLSCREEN)
                 wait(1)

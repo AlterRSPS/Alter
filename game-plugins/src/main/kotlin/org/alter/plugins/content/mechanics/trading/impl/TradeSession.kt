@@ -1,5 +1,6 @@
 package org.alter.plugins.content.mechanics.trading.impl
 
+import org.alter.api.ClientScript
 import org.alter.api.InterfaceDestination
 import org.alter.api.ext.*
 import org.alter.api.ext.getInterfaceHash
@@ -394,12 +395,12 @@ class TradeSession(private val player: Player, private val partner: Player) {
         /**
          * The script id used to update the item price of each item in the container
          */
-        private const val UPDATE_PLAYER_ITEM_PRICE_SCRIPT = 1216
+        private val UPDATE_PLAYER_ITEM_PRICE_SCRIPT = ClientScript(id = 1216)
 
         /**
          * The script id used to update the item price of each item in the partner's container
          */
-        private const val UPDATE_PARTNER_ITEM_PRICE_SCRIPT = 1217
+        private val UPDATE_PARTNER_ITEM_PRICE_SCRIPT = ClientScript(id = 1217)
 
         /**
          * The hash of this player's trade offer component
@@ -450,6 +451,6 @@ class TradeSession(private val player: Player, private val partner: Player) {
          * The id of the ClientScript used to display the red exclamation marks when
          * an item has been removed from the trade container
          */
-        const val TRADE_MODIFIED_SCRIPT = 765
+        val TRADE_MODIFIED_SCRIPT = ClientScript("trade_slot_changed")
     }
 }

@@ -8,6 +8,9 @@ import org.alter.game.model.entity.GroundItem
 /**
  * Represents an update where a [GroundItem] is spawned.
  *
+ * Items placed on a table appears to others after 60s, if they were in the same world as when you placed the items.
+ * Items will despawn after 10 minutes.
+ *
  * @author Tom <rspsmods@gmail.com>
  */
 class ObjAddUpdate(
@@ -16,10 +19,14 @@ class ObjAddUpdate(
 ) : EntityUpdate<GroundItem>(type, entity) {
     override fun toMessage(): ZoneProt =
         ObjAdd(
-            entity.item,
-            entity.amount,
+            id = entity.item,
+            quantity = entity.amount,
             (entity.tile.x and 0x7),
             (entity.tile.z and 0x7),
-            OpFlags.ALL_SHOWN,
+            opFlags = OpFlags.ALL_SHOWN,
+            timeUntilPublic = entity.timeUntilPublic,
+            timeUntilDespawn = entity.timeUntilDespawn,
+            ownershipType = entity.ownerShipType,
+            neverBecomesPublic = true
         )
 }

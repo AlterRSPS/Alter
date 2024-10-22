@@ -1,4 +1,5 @@
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 description = "Alter game-api used by Plugins and Server"
 
@@ -18,4 +19,8 @@ tasks.withType<DokkaTask> {
             suppress = true
         }
     }
+}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    languageVersion = "1.9"
 }
