@@ -426,14 +426,14 @@ open class Player(world: World) : Pawn(world) {
      * Handles any logic that should be executed upon log in.
      */
     fun login() {
-        playerInfo.updateCoord(tile.height, tile.x, tile.z)
-        npcInfo.updateCoord(-1, tile.height, tile.x, tile.z)
-        worldEntityInfo.updateCoord(-1, tile.height, tile.x, tile.z)
+        playerInfo.updateCoord(tile.height, tile.x, tile.y)
+        npcInfo.updateCoord(-1, tile.height, tile.x, tile.y)
+        worldEntityInfo.updateCoord(-1, tile.height, tile.x, tile.y)
 
         if (entityType.isHumanControlled) {
-            write(RebuildLogin(tile.x ushr 3, tile.z shr 3, -1, world.xteaKeyService!!, playerInfo))
+            write(RebuildLogin(tile.x ushr 3, tile.y shr 3, -1, world.xteaKeyService!!, playerInfo))
             buildArea =
-                BuildArea((tile.x ushr 3) - 6, (tile.z ushr 3) - 6).apply {
+                BuildArea((tile.x ushr 3) - 6, (tile.y ushr 3) - 6).apply {
                     playerInfo.updateBuildArea(-1, this)
                     npcInfo.updateBuildArea(-1, this)
                     worldEntityInfo.updateBuildArea(this)

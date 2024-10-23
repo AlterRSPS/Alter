@@ -15,7 +15,7 @@ data class JsonPlayerSaveData(
     val displayName: String,
     val previousXteas: IntArray,
     val x: Int,
-    val z: Int,
+    val y: Int,
     val height: Int,
     val privilege: Int,
     val displayMode: Int,
@@ -39,7 +39,7 @@ data class JsonPlayerSaveData(
         if (displayName != other.displayName) return false
         if (!previousXteas.contentEquals(other.previousXteas)) return false
         if (x != other.x) return false
-        if (z != other.z) return false
+        if (y != other.y) return false
         if (height != other.height) return false
         if (privilege != other.privilege) return false
         if (displayMode != other.displayMode) return false
@@ -61,7 +61,7 @@ data class JsonPlayerSaveData(
         result = 31 * result + displayName.hashCode()
         result = 31 * result + previousXteas.contentHashCode()
         result = 31 * result + x
-        result = 31 * result + z
+        result = 31 * result + y
         result = 31 * result + height
         result = 31 * result + privilege
         result = 31 * result + displayMode

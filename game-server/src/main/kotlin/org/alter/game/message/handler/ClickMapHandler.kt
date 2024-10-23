@@ -12,7 +12,7 @@ class ClickMapHandler : MessageHandler<MoveGameClick> {
         client: Client,
         message: MoveGameClick
     ) {
-        log(client, "Click map: x=%d, z=%d, type=%d", message.x, message.z, message.keyCombination)
+        log(client, "Click map: x=%d, y=%d, type=%d", message.x, message.z, message.keyCombination)
         client.attr[CLIENT_KEY_COMBINATION] = message.keyCombination
         client.walkToInteract(message.x, message.z, stepType = MovementQueue.StepType.NORMAL)
     }

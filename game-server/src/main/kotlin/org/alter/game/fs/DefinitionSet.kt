@@ -53,9 +53,9 @@ class DefinitionSet {
         }
 
         val x = id shr 8
-        val z = id and 0xFF
+        val y = id and 0xFF
 
-        val mapData = CacheManager.cache.data(MAPS, "m${x}_$z") ?: return false
+        val mapData = CacheManager.cache.data(MAPS, "m${x}_$y") ?: return false
 
         val baseX: Int = id shr 8 and 255 shl 6
         val baseY: Int = id and 255 shl 6
@@ -65,9 +65,9 @@ class DefinitionSet {
         //val baseX = x * 64 // TODO perhaps just call cacheRegion.baseX
         //val baseZ = z * 64 // TODO perhaps just call cacheRegion.baseY
         for (cx in 0 until 8) {
-            for (cz in 0 until 8) {
+            for (cy in 0 until 8) {
                 val chunkBaseX = baseX + cx * 8
-                val chunkBaseZ = baseY + cz * 8
+                val chunkBaseZ = baseY + cy * 8
                 for (level in 0 until 4) {
                     world.collision.allocateIfAbsent(chunkBaseX, chunkBaseZ, level)
                 }
@@ -81,16 +81,16 @@ class DefinitionSet {
 
         for (height in 0 until 4) {
             for (lx in 0 until 64) {
-                for (lz in 0 until 64) {
-                    val bridge = tiles[1][lx][lz].settings.toInt() and BRIDGE_TILE != 0
+                for (ly in 0 until 64) {
+                    val bridge = tiles[1][lx][ly].settings.toInt() and BRIDGE_TILE != 0
                     if (bridge) {
-                        bridges.add(Tile(baseX + lx, baseY + lz, height))
+                        bridges.add(Tile(baseX + lx, baseY + ly, height))
                     }
-                    val blockedTile = tiles[height][lx][lz].settings.toInt() and BLOCKED_TILE != 0
+                    val blockedTile = tiles[height][lx][ly].settings.toInt() and BLOCKED_TILE != 0
                     if (blockedTile) {
                         val level = if (bridge) (height - 1) else height
                         if (level < 0) continue
-                        blocked.add(Tile(baseX + lx, baseY + lz, level))
+                        blocked.add(Tile(baseX + lx, baseY + ly, level))
                     }
                 }
             }
@@ -101,7 +101,7 @@ class DefinitionSet {
          */
         blocked.forEach { tile ->
             world.chunks.getOrCreate(tile)
-            world.collision.add(tile.x, tile.z, tile.height, CollisionFlag.FLOOR)
+            world.collision.add(tile.x, tile.y, tile.height, CollisionFlag.FLOOR)
         }
         /**
          * EDIT: turns out i was wrong. the assumption made here didn't pan out as expected. the bandos godwars room door ended up having different flags to before.
@@ -126,7 +126,7 @@ class DefinitionSet {
 
         val keys = xteaService?.get(id) ?: XteaKeyService.EMPTY_KEYS
         try {
-            val landData = CacheManager.cache.data(MAPS, "l${x}_$z", keys) ?: return false
+            val landData = CacheManager.cache.data(MAPS, "l${x}_$y", keys) ?: return false
             loadLocations(landData) { loc ->
                 val tile =
                     Tile(

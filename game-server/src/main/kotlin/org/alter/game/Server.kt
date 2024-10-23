@@ -92,7 +92,7 @@ class Server {
                 home =
                     Tile(
                         gameProperties.get<Int>("home-x")!!,
-                        gameProperties.get<Int>("home-z")!!,
+                        gameProperties.get<Int>("home-y")!!,
                         gameProperties.getOrDefault("home-height", 0),
                     ),
                 skillCount = gameProperties.getOrDefault("skill-count", SkillSet.DEFAULT_SKILL_COUNT),

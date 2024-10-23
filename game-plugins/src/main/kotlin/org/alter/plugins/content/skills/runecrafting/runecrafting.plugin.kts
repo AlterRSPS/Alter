@@ -83,12 +83,12 @@ Altar.values.forEach { altar ->
             // The direction of the altar
             val direction: String =
                 when {
-                    pos.z > tile.z && pos.x - 1 > tile.x -> "south-west"
-                    pos.x < tile.x && pos.z > tile.z -> "south-east"
-                    pos.x > tile.x + 1 && pos.z < tile.z -> "north-west"
-                    pos.x < tile.x && pos.z < tile.z -> "north-east"
-                    pos.z < tile.z -> "north"
-                    pos.z > tile.z -> "south"
+                    pos.y > tile.y && pos.x - 1 > tile.x -> "south-west"
+                    pos.x < tile.x && pos.y > tile.y -> "south-east"
+                    pos.x > tile.x + 1 && pos.y < tile.y -> "north-west"
+                    pos.x < tile.x && pos.y < tile.y -> "north-east"
+                    pos.y < tile.y -> "north"
+                    pos.y > tile.y -> "south"
                     pos.x < tile.x + 1 -> "east"
                     pos.x > tile.x + 1 -> "west"
                     else -> "unknown"

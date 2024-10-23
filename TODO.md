@@ -30,6 +30,8 @@
 - 
 - [ ] Uhh so all this time path finder was not the problem it was the MovementQueue :face_palm:
     - [ ] <-- Figure out way for line of sight ex: Grand Exchange nuggets <-- Will be same as attack range
+- [ ] Chat is still some times vanishing on login
+
 ##
 - Instead of Kts make it EventBus
   - Ofc need to learn more...

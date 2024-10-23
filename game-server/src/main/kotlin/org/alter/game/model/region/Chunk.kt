@@ -84,9 +84,9 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
         tile: Tile,
         direction: Direction,
         projectile: Boolean,
-    ): Boolean = matrices[tile.height].isBlocked(tile.x % CHUNK_SIZE, tile.z % CHUNK_SIZE, direction, projectile)
+    ): Boolean = matrices[tile.height].isBlocked(tile.x % CHUNK_SIZE, tile.y % CHUNK_SIZE, direction, projectile)
 
-    fun isClipped(tile: Tile): Boolean = matrices[tile.height].isClipped(tile.x % CHUNK_SIZE, tile.z % CHUNK_SIZE)
+    fun isClipped(tile: Tile): Boolean = matrices[tile.height].isClipped(tile.x % CHUNK_SIZE, tile.y % CHUNK_SIZE)
 
     fun addEntity(
         world: World,
@@ -218,7 +218,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
                     continue
                 }
                 val local = client.lastKnownRegionBase!!.toLocal(this.coords.toTile())
-                client.write(UpdateZonePartialFollows(local.x, local.z, local.height))
+                client.write(UpdateZonePartialFollows(local.x, local.y, local.height))
                 client.write(update.toMessage())
             }
         }
@@ -240,7 +240,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
         val computed = p.world.network.computeUpdateZonePartialEnclosedCache(messages)
         if (messages.isNotEmpty()) {
             val local = p.lastKnownRegionBase!!.toLocal(coords.toTile())
-            p.write(UpdateZonePartialEnclosed(local.x, local.z, local.height, computed[OldSchoolClientType.DESKTOP]!!))
+            p.write(UpdateZonePartialEnclosed(local.x, local.y, local.height, computed[OldSchoolClientType.DESKTOP]!!))
         }
     }
 

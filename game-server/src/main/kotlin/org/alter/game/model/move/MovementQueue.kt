@@ -3,10 +3,8 @@ package org.alter.game.model.move
 import org.alter.game.info.MovementType
 import org.alter.game.info.PlayerInfo
 import org.alter.game.model.Direction
-import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 import org.alter.game.model.move.MovementQueue.Step
-import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import java.util.*
@@ -46,6 +44,15 @@ class MovementQueue(val pawn: Pawn) {
         val current = if (steps.any()) steps.peekLast().tile else pawn.tile
         addStep(current, step, type)
     }
+
+    fun nextStep(): Step? {
+        if (!this.hasDestination()) return null
+        val curX = pawn.tile.x
+        val curZ = pawn.tile.y
+        //val dest
+        return null
+    }
+
 
     /**
      * @TODO
@@ -141,8 +148,8 @@ class MovementQueue(val pawn: Pawn) {
         type: StepType,
     ) {
         var dx = next.x - current.x
-        var dz = next.z - current.z
-        val delta = Math.max(abs(dx), abs(dz))
+        var dy = next.y - current.y
+        val delta = Math.max(abs(dx), abs(dy))
 
         for (i in 0 until delta) {
             if (dx < 0) {
@@ -151,13 +158,14 @@ class MovementQueue(val pawn: Pawn) {
                 dx--
             }
 
-            if (dz < 0) {
-                dz++
-            } else if (dz > 0) {
-                dz--
+            if (dy < 0) {
+                dy++
+            } else if (dy > 0) {
+                dy--
             }
 
-            val step = next.transform(-dx, -dz)
+            val step = next.transform(-dx, -dy)
+            println("Adding a step: $step")
             steps.add(Step(step, type))
         }
     }

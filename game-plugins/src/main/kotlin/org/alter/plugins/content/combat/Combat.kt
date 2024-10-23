@@ -174,9 +174,9 @@ object Combat {
 
         val touching =
             if (distance > 1) {
-                areOverlapping(start.x, start.z, srcSize, srcSize, end.x, end.z, dstSize, dstSize)
+                areOverlapping(start.x, start.y, srcSize, srcSize, end.x, end.y, dstSize, dstSize)
             } else {
-                areBordering(start.x, start.z, srcSize, srcSize, end.x, end.z, dstSize, dstSize)
+                areBordering(start.x, start.y, srcSize, srcSize, end.x, end.y, dstSize, dstSize)
             }
         val withinRange = touching && world.collision.raycast(start, end, projectile = projectile)
         return withinRange //|| pawn.walkToInteract(it, target, lineOfSightRange = distance)
@@ -359,13 +359,13 @@ object Combat {
         return true
     }
 
-    data class Box(val x: Int, val z: Int, val width: Int, val length: Int) {
+    data class Box(val x: Int, val y: Int, val width: Int, val length: Int) {
         val x1: Int get() = x
 
         val x2: Int get() = x + width
 
-        val z1: Int get() = z
+        val z1: Int get() = y
 
-        val z2: Int get() = z + length
+        val z2: Int get() = y + length
     }
 }

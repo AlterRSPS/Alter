@@ -20,6 +20,6 @@ class MapAnimUpdate(
             entity.delay,
             entity.height,
             (entity.tile.x and 0x7),
-            (entity.tile.z and 0x7),
+            (entity.tile.y and 0x7),
         )
 }

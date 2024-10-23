@@ -1,6 +1,6 @@
 package org.alter.plugins.content.area.lumbridge.chat
 
-spawn_npc(Npcs.BARFY_BILL, x = 3243, z = 3237, walkRadius = 3, height = 0)
+spawn_npc(Npcs.BARFY_BILL, x = 3243, y = 3237, walkRadius = 3, height = 0)
 
 on_npc_option(Npcs.BARFY_BILL, option = "talk-to") {
     player.queue { dialog() }

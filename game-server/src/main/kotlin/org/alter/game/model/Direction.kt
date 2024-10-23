@@ -39,7 +39,7 @@ enum class Direction(
             else -> 0
         }
 
-    fun getDeltaZ(): Int =
+    fun getDeltaY(): Int =
         when (this) {
             NORTH_WEST, NORTH_EAST, NORTH -> 1
             SOUTH_WEST, SOUTH_EAST, SOUTH -> -1
@@ -101,31 +101,31 @@ enum class Direction(
             next: Tile,
         ): Direction {
             val deltaX = next.x - current.x
-            val deltaZ = next.z - current.z
+            val deltaY = next.y - current.y
 
-            return fromDeltas(deltaX, deltaZ)
+            return fromDeltas(deltaX, deltaY)
         }
 
         private fun fromDeltas(
             deltaX: Int,
-            deltaZ: Int,
+            deltaY: Int,
         ): Direction {
             if (deltaX < 0) {
-                if (deltaZ < 0) {
+                if (deltaY < 0) {
                     return SOUTH_WEST
-                } else if (deltaZ > 0) {
+                } else if (deltaY > 0) {
                     return NORTH_WEST
                 }
                 return WEST
             } else if (deltaX > 0) {
-                if (deltaZ < 0) {
+                if (deltaY < 0) {
                     return SOUTH_EAST
-                } else if (deltaZ > 0) {
+                } else if (deltaY > 0) {
                     return NORTH_EAST
                 }
                 return EAST
             }
-            return if (deltaZ < 0) SOUTH else NORTH
+            return if (deltaY < 0) SOUTH else NORTH
         }
 
         fun getDirectionFlag(direction: Direction): Int {
@@ -146,12 +146,12 @@ enum class Direction(
             npc: Tile,
             player: Tile,
         ): Direction {
-            // Calculate the difference in X and Z coordinates between the NPC and the player
+            // Calculate the difference in X and Y coordinates between the NPC and the player
             val deltaX = player.x - npc.x
-            val deltaZ = player.z - npc.z
+            val deltaY = player.y - npc.y
 
             // Return the direction from the NPC to the player
-            return fromDeltas(deltaX, deltaZ)
+            return fromDeltas(deltaX, deltaY)
         }
     }
 }

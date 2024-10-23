@@ -5,7 +5,7 @@ package org.alter.plugins.content.area.edgeville.chat
  * based on its varbit state for each player.
  */
 
-spawn_npc(npc = Npcs.EMBLEM_TRADER, x = 3096, z = 3504, walkRadius = 2)
+spawn_npc(npc = Npcs.EMBLEM_TRADER, x = 3096, y = 3504, walkRadius = 2)
 
 val HIDE_STREAK_VARBIT = 1621
 val LIMIT_TARGETS_VARBIT = 6503

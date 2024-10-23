@@ -136,7 +136,7 @@ spawn_npc(Npcs.DOMMIK, ShopTile)
 
 
 val ObjectTile = Tile(3185, 3484, 0)
-spawn_obj(Objs.DOOR_30364, ObjectTile.x, ObjectTile.z)
+spawn_obj(Objs.DOOR_30364, ObjectTile.x, ObjectTile.y)
 
 
 

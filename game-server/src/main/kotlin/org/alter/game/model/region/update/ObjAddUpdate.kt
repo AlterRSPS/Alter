@@ -22,7 +22,7 @@ class ObjAddUpdate(
             id = entity.item,
             quantity = entity.amount,
             (entity.tile.x and 0x7),
-            (entity.tile.z and 0x7),
+            (entity.tile.y and 0x7),
             opFlags = OpFlags.ALL_SHOWN,
             timeUntilPublic = entity.timeUntilPublic,
             timeUntilDespawn = entity.timeUntilDespawn,

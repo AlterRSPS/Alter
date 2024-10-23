@@ -14,5 +14,5 @@ class SoundAreaUpdate(
     override val entity: AreaSound,
 ) : EntityUpdate<AreaSound>(type, entity) {
     override fun toMessage(): ZoneProt =
-        SoundArea(entity.id, entity.delay, entity.volume, entity.radius, 1, (entity.tile.x and 0x7), (entity.tile.z and 0x7))
+        SoundArea(entity.id, entity.delay, entity.volume, entity.radius, 1, (entity.tile.x and 0x7), (entity.tile.y and 0x7))
 }

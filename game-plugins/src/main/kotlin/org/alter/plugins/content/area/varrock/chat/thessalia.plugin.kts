@@ -1,7 +1,7 @@
 package org.alter.plugins.content.area.varrock.chat
 
-spawn_npc(npc = Npcs.IFFIE, x = 3204, z = 3419, direction = Direction.SOUTH)
-spawn_npc(npc = Npcs.THESSALIA, x = 3205, z = 3417, walkRadius = 3, direction = Direction.EAST)
+spawn_npc(npc = Npcs.IFFIE, x = 3204, y = 3419, direction = Direction.SOUTH)
+spawn_npc(npc = Npcs.THESSALIA, x = 3205, y = 3417, walkRadius = 3, direction = Direction.EAST)
 
 on_npc_option(npc = Npcs.THESSALIA, option = "talk-to") {
     player.queue { dialog(this) }

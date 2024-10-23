@@ -72,7 +72,7 @@ class SequentialSynchronizationTask : GameTask {
                 it.write(
                     SetNpcUpdateOrigin(
                         it.tile.x - (it.buildArea!!.zoneX shl 3),
-                        it.tile.z - (it.buildArea!!.zoneZ shl 3),
+                        it.tile.y - (it.buildArea!!.zoneZ shl 3),
                     ),
                 )
                 it.write(it.npcInfo.toNpcInfoPacket(-1))
@@ -96,7 +96,7 @@ fun Player.playerPreSynchronizationTask() {
 
     if (last == null || shouldRebuildRegion(last, current)) {
         val regionX = ((current.x shr 3) - (Chunk.MAX_VIEWPORT shr 4)) shl 3
-        val regionZ = ((current.z shr 3) - (Chunk.MAX_VIEWPORT shr 4)) shl 3
+        val regionZ = ((current.y shr 3) - (Chunk.MAX_VIEWPORT shr 4)) shl 3
         // @TODO UpdateZoneFullFollowsMessage
         pawn.lastKnownRegionBase = Coordinate(regionX, regionZ, current.height)
 
@@ -107,19 +107,19 @@ fun Player.playerPreSynchronizationTask() {
                 instance != null -> {
                     RebuildRegion(
                         current.x shr 3,
-                        current.z shr 3,
+                        current.y shr 3,
                         true,
                         object : RebuildRegion.RebuildRegionZoneProvider {
                             override fun provide(
                                 zoneX: Int,
-                                zoneZ: Int,
+                                zoneY: Int,
                                 level: Int,
                             ): RebuildRegionZone? {
-                                val coord = InstancedChunkSet.getCoordinates(zoneX, zoneZ, level)
+                                val coord = InstancedChunkSet.getCoordinates(zoneX, zoneY, level)
                                 val chunk = instance.chunks.values[coord] ?: return null
                                 return RebuildRegionZone(
                                     chunk.zoneX,
-                                    chunk.zoneZ,
+                                    chunk.zoneY,
                                     chunk.height,
                                     chunk.rot,
                                     XteaKey.ZERO,
@@ -128,10 +128,10 @@ fun Player.playerPreSynchronizationTask() {
                         },
                     )
                 }
-                else -> RebuildNormal(current.x shr 3, current.z shr 3, -1, xteaService)
+                else -> RebuildNormal(current.x shr 3, current.y shr 3, -1, xteaService)
             }
         pawn.buildArea =
-            BuildArea((current.x ushr 3) - 6, (current.z ushr 3) - 6).apply {
+            BuildArea((current.x ushr 3) - 6, (current.y ushr 3) - 6).apply {
                 pawn.playerInfo.updateBuildArea(-1, this)
                 pawn.npcInfo.updateBuildArea(-1, this)
                 pawn.worldEntityInfo.updateBuildArea(this)
@@ -145,7 +145,7 @@ private fun shouldRebuildRegion(
     new: Tile,
 ): Boolean {
     val dx = new.x - old.x
-    val dz = new.z - old.z
+    val dz = new.y - old.y
 
     return dx <= Player.NORMAL_VIEW_DISTANCE || dx >= Chunk.MAX_VIEWPORT - Player.NORMAL_VIEW_DISTANCE - 1 ||
         dz <= Player.NORMAL_VIEW_DISTANCE || dz >= Chunk.MAX_VIEWPORT - Player.NORMAL_VIEW_DISTANCE - 1
@@ -174,7 +174,7 @@ fun Npc.npcPostSynchronizationTask() {
  * displacement effects [dspear, etc]
  */
 fun Player.playerCoordCycleTask() {
-    this.playerInfo.updateCoord(this.tile.height, this.tile.x, this.tile.z)
-    this.npcInfo.updateCoord(-1, this.tile.height, this.tile.x, this.tile.z)
-    this.worldEntityInfo.updateCoord(-1, this.tile.height, this.tile.x, this.tile.z)
+    this.playerInfo.updateCoord(this.tile.height, this.tile.x, this.tile.y)
+    this.npcInfo.updateCoord(-1, this.tile.height, this.tile.x, this.tile.y)
+    this.worldEntityInfo.updateCoord(-1, this.tile.height, this.tile.x, this.tile.y)
 }

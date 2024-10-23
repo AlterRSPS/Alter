@@ -7,10 +7,10 @@ import org.alter.game.model.move.moveTo
  * Thanks to Desetude for gate open and close code
  */
 
-spawn_npc(Npcs.BORDER_GUARD, x = 3267, z = 3226, direction = Direction.WEST)
-spawn_npc(Npcs.BORDER_GUARD, x = 3267, z = 3229, direction = Direction.WEST)
-spawn_npc(Npcs.BORDER_GUARD_4288, x = 3268, z = 3226, direction = Direction.EAST)
-spawn_npc(Npcs.BORDER_GUARD_4288, x = 3268, z = 3229, direction = Direction.EAST)
+spawn_npc(Npcs.BORDER_GUARD, x = 3267, y = 3226, direction = Direction.WEST)
+spawn_npc(Npcs.BORDER_GUARD, x = 3267, y = 3229, direction = Direction.WEST)
+spawn_npc(Npcs.BORDER_GUARD_4288, x = 3268, y = 3226, direction = Direction.EAST)
+spawn_npc(Npcs.BORDER_GUARD_4288, x = 3268, y = 3229, direction = Direction.EAST)
 
 on_npc_option(Npcs.BORDER_GUARD, option = "talk-to") {
     player.queue { dialog() }

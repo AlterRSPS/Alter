@@ -1,6 +1,6 @@
 package org.alter.plugins.content.area.lumbridge.chat
 
-spawn_npc(Npcs.DOOMSAYER, x = 3232, z = 3223, direction = Direction.EAST)
+spawn_npc(Npcs.DOOMSAYER, x = 3232, y = 3223, direction = Direction.EAST)
 
 on_npc_option(npc = Npcs.DOOMSAYER, option = "Talk-to") {
     player.queue { dialog() }

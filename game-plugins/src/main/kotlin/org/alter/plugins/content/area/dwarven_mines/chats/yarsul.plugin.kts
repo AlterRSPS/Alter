@@ -1,6 +1,6 @@
 package org.alter.plugins.content.area.dwarven_mines.chats
 
-spawn_npc(npc = Npcs.YARSUL, x = 3031, z = 9747, walkRadius = 3, direction = Direction.SOUTH)
+spawn_npc(npc = Npcs.YARSUL, x = 3031, y = 9747, walkRadius = 3, direction = Direction.SOUTH)
 
 on_npc_option(Npcs.YARSUL, option = "talk-to") { player.queue { dialog() } }
 

@@ -7,7 +7,7 @@ data class InstancedChunkCoords(val chunkX: Int, val chunkZ: Int, val height: In
     val tile: Tile get() = Tile(chunkX shl 3, chunkZ shl 3, height)
 }
 
-fun Tile.toInstancedChunk(rot: Int): InstancedChunkCoords = InstancedChunkCoords(x shr 3, z shr 3, height, rot)
+fun Tile.toInstancedChunk(rot: Int): InstancedChunkCoords = InstancedChunkCoords(x shr 3, y shr 3, height, rot)
 
 operator fun InstancedChunkSet.Builder.set(
     chunkX: Int,

@@ -66,7 +66,7 @@ fun climbupladder(player: Player) {
         player.animate(828)
         player.lock()
         wait(2)
-        player.moveTo(player.tile.x, player.tile.z, player.tile.height + 1)
+        player.moveTo(player.tile.x, player.tile.y, player.tile.height + 1)
         player.unlock()
     }
 }
@@ -76,7 +76,7 @@ fun climbdownladder(player: Player) {
         player.animate(828)
         player.lock()
         wait(2)
-        player.moveTo(player.tile.x, player.tile.z, player.tile.height - 1)
+        player.moveTo(player.tile.x, player.tile.y, player.tile.height - 1)
         player.unlock()
     }
 }
@@ -93,11 +93,11 @@ fun climbladder(player: Player) {
 /**Function for stairs.*/
 
 fun climbupstairs(player: Player) {
-    player.moveTo(player.tile.x, player.tile.z, player.tile.height + 1)
+    player.moveTo(player.tile.x, player.tile.y, player.tile.height + 1)
 }
 
 fun climbdownstairs(player: Player) {
-    player.moveTo(player.tile.x, player.tile.z, player.tile.height - 1)
+    player.moveTo(player.tile.x, player.tile.y, player.tile.height - 1)
 }
 
 fun climbstairs(player: Player) {

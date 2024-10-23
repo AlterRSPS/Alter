@@ -4,7 +4,7 @@ on_command("clip", Privilege.DEV_POWER) {
     val chunk = world.chunks.getOrCreate(player.tile)
     val matrix = chunk.getMatrix(player.tile.height)
     val lx = player.tile.x % 8
-    val lz = player.tile.z % 8
+    val lz = player.tile.y % 8
     player.message("Tile flags: ${chunk.getMatrix(player.tile.height).get(lx, lz)}")
     Direction.RS_ORDER.forEach { dir ->
         val walkBlocked = matrix.isBlocked(lx, lz, dir, projectile = false)

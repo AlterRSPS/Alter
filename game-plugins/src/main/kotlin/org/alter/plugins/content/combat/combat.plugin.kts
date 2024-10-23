@@ -8,7 +8,7 @@ import org.alter.plugins.content.combat.specialattack.SpecialAttacks
 import org.alter.plugins.content.combat.strategy.magic.CombatSpell
 import org.alter.plugins.content.interfaces.attack.AttackTab
 import org.rsmod.game.pathfinder.PathFinder
-import org.rsmod.game.pathfinder.collision.CollisionStrategies
+
 set_combat_logic {
     pawn.attr[COMBAT_TARGET_FOCUS_ATTR]?.get()?.let { target ->
         pawn.facePawn(target)
@@ -25,9 +25,9 @@ set_combat_logic {
             val route = routeFinding.findPath(
                 level = pawn.tile.height,
                 srcX = pawn.tile.x,
-                srcZ = pawn.tile.z,
+                srcZ = pawn.tile.y,
                 destX = target.tile.x,
-                destZ = target.tile.z,
+                destZ = target.tile.y,
                 destWidth = 0,
                 destHeight = 0,
                 moveNear = true,

@@ -6,14 +6,14 @@ package gg.rsmod.util
  * @author Tom <rspsmods@gmail.com>
  */
 object AabbUtil {
-    data class Box(val x: Int, val z: Int, val width: Int, val length: Int) {
+    data class Box(val x: Int, val y: Int, val width: Int, val length: Int) {
         val x1: Int get() = x
 
         val x2: Int get() = x + width
 
-        val z1: Int get() = z
+        val y1: Int get() = y
 
-        val z2: Int get() = z + length
+        val y2: Int get() = y + length
     }
 
     /**
@@ -21,18 +21,18 @@ object AabbUtil {
      */
     fun areBordering(
         x1: Int,
-        z1: Int,
+        y1: Int,
         width1: Int,
         length1: Int,
         x2: Int,
-        z2: Int,
+        y2: Int,
         width2: Int,
         length2: Int,
     ): Boolean {
-        val a = Box(x1, z1, width1 - 1, length1 - 1)
-        val b = Box(x2, z2, width2 - 1, length2 - 1)
+        val a = Box(x1, y1, width1 - 1, length1 - 1)
+        val b = Box(x2, y2, width2 - 1, length2 - 1)
 
-        if (b.x1 in a.x1..a.x2 && b.z1 in a.z1..a.z2 || b.x2 in a.x1..a.x2 && b.z2 in a.z1..a.z2) {
+        if (b.x1 in a.x1..a.x2 && b.y1 in a.y1..a.y2 || b.x2 in a.x1..a.x2 && b.y2 in a.y1..a.y2) {
             return false
         }
 
@@ -44,11 +44,11 @@ object AabbUtil {
             return false
         }
 
-        if (b.z1 > a.z2 + 1) {
+        if (b.y1 > a.y2 + 1) {
             return false
         }
 
-        if (b.z2 < a.z1 - 1) {
+        if (b.y2 < a.y1 - 1) {
             return false
         }
         return true
@@ -56,42 +56,42 @@ object AabbUtil {
 
     fun areDiagonal(
         x1: Int,
-        z1: Int,
+        y1: Int,
         width1: Int,
         length1: Int,
         x2: Int,
-        z2: Int,
+        y2: Int,
         width2: Int,
         length2: Int,
     ): Boolean {
-        val a = Box(x1, z1, width1 - 1, length1 - 1)
-        val b = Box(x2, z2, width2 - 1, length2 - 1)
+        val a = Box(x1, y1, width1 - 1, length1 - 1)
+        val b = Box(x2, y2, width2 - 1, length2 - 1)
 
         /**
          * South-west diagonal tile.
          */
-        if (a.x1 - 1 == b.x2 && a.z1 - 1 == b.z2) {
+        if (a.x1 - 1 == b.x2 && a.y1 - 1 == b.y2) {
             return true
         }
 
         /**
          * South-east diagonal tile.
          */
-        if (a.x2 + 1 == b.x2 && a.z1 - 1 == b.z2) {
+        if (a.x2 + 1 == b.x2 && a.y1 - 1 == b.y2) {
             return true
         }
 
         /**
          * North-west diagonal tile.
          */
-        if (a.x1 - 1 == b.x2 && a.z2 + 1 == b.z2) {
+        if (a.x1 - 1 == b.x2 && a.y2 + 1 == b.y2) {
             return true
         }
 
         /**
          * North-east diagonal tile.
          */
-        if (a.x2 + 1 == b.x2 && a.z2 + 1 == b.z2) {
+        if (a.x2 + 1 == b.x2 && a.y2 + 1 == b.y2) {
             return true
         }
 
@@ -100,22 +100,22 @@ object AabbUtil {
 
     fun areOverlapping(
         x1: Int,
-        z1: Int,
+        y1: Int,
         width1: Int,
         length1: Int,
         x2: Int,
-        z2: Int,
+        y2: Int,
         width2: Int,
         length2: Int,
     ): Boolean {
-        val a = Box(x1, z1, width1 - 1, length1 - 1)
-        val b = Box(x2, z2, width2 - 1, length2 - 1)
+        val a = Box(x1, y1, width1 - 1, length1 - 1)
+        val b = Box(x2, y2, width2 - 1, length2 - 1)
 
         if (a.x1 > b.x2 || b.x1 > a.x2) {
             return false
         }
 
-        if (a.z1 > b.z2 || b.z1 > a.z2) {
+        if (a.y1 > b.y2 || b.y1 > a.y2) {
             return false
         }
 

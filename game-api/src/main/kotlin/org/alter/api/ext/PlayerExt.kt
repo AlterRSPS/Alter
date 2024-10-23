@@ -668,9 +668,9 @@ fun Player.toggleVarbit(id: Int) {
 
 fun Player.setMapFlag(
     x: Int,
-    z: Int,
+    y: Int,
 ) {
-    write(SetMapFlag(x, z))
+    write(SetMapFlag(x, y))
 }
 
 fun Player.clearMapFlag() {

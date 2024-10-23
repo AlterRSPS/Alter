@@ -1,6 +1,6 @@
 package org.alter.plugins.content.area.lumbridge.chat
 
-spawn_npc(Npcs.COOKING_TUTOR, x = 3233, z = 3195, walkRadius = 3, height = 0)
+spawn_npc(Npcs.COOKING_TUTOR, x = 3233, y = 3195, walkRadius = 3, height = 0)
 
 on_npc_option(Npcs.COOKING_TUTOR, option = "talk-to") {
     player.queue { menu() }

@@ -6,7 +6,7 @@ revision: 223
 
 # The coordinates for the home location.
 home-x: 3218
-home-z: 3218
+home-y: 3218
 
 # Privileges
 # Any privilege you want to be represented in-game you define here.

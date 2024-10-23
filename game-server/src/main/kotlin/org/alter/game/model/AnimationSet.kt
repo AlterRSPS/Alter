@@ -1,4 +1,5 @@
 package org.alter.game.model
+
 data class AnimationSet(
     val readyAnim: Int,
     val turnAnim: Int,

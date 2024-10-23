@@ -105,9 +105,9 @@ class PlayerInfo(var player: Player) {
         length: Int = 1,
     ) {
         val srcX = player.tile.x * 64
-        val srcZ = player.tile.z * 64
+        val srcZ = player.tile.y * 64
         val dstX = face.x * 64
-        val dstZ = face.z * 64
+        val dstZ = face.y * 64
         var degreesX = (srcX - dstX).toDouble()
         var degreesZ = (srcZ - dstZ).toDouble()
         degreesX += (Math.floor(width / 2.0)) * 32

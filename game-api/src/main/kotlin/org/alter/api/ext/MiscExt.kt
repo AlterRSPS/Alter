@@ -82,5 +82,5 @@ inline fun <reified T : Enum<T>> enumSetOf(vararg values: T) = EnumSet.noneOf(T:
 val Area.randomTile: Tile get() =
     Tile(
         bottomLeftX + RANDOM.nextInt((topRightX - bottomLeftX) + 1),
-        bottomLeftZ + RANDOM.nextInt((topRightZ - bottomLeftZ) + 1),
+        bottomLeftY + RANDOM.nextInt((topRightY - bottomLeftY) + 1),
     )

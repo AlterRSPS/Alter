@@ -72,7 +72,7 @@ object ObjectPathAction {
                 player.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
                 if (player.world.devContext.debugObjects) {
                     player.writeMessage(
-                        "Unhandled item on object: [item=$item, id=${obj.id}, type=${obj.type}, rot=${obj.rot}, x=${obj.tile.x}, z=${obj.tile.z}]",
+                        "Unhandled item on object: [item=$item, id=${obj.id}, type=${obj.type}, rot=${obj.rot}, x=${obj.tile.x}, z=${obj.tile.y}]",
                     )
                 }
             }
@@ -91,7 +91,7 @@ object ObjectPathAction {
                 player.writeMessage(Entity.NOTHING_INTERESTING_HAPPENS)
                 if (player.world.devContext.debugObjects) {
                     player.writeMessage(
-                        "Unhandled object action: [opt=$opt, id=${obj.id}, type=${obj.type}, rot=${obj.rot}, x=${obj.tile.x}, z=${obj.tile.z}]",
+                        "Unhandled object action: [opt=$opt, id=${obj.id}, type=${obj.type}, rot=${obj.rot}, x=${obj.tile.x}, z=${obj.tile.y}]",
                     )
                 }
             }
@@ -188,11 +188,11 @@ object ObjectPathAction {
                             diagonal ||
                                     !AabbUtil.areDiagonal(
                                         pawn.tile.x,
-                                        pawn.tile.z,
+                                        pawn.tile.y,
                                         pawn.getSize(),
                                         pawn.getSize(),
                                         tile.x,
-                                        tile.z,
+                                        tile.y,
                                         width,
                                         length,
                                     )
@@ -208,9 +208,9 @@ object ObjectPathAction {
         val route = pawn.world.pathFinder.findPath(
                 level = pawn.tile.height,
                 srcX = pawn.tile.x,
-                srcZ = pawn.tile.z,
+                srcZ = pawn.tile.y,
                 destX = tile.x,
-                destZ = tile.z,
+                destZ = tile.y,
                 destWidth = def.sizeX,
                 destHeight = def.sizeY,
                 srcSize = pawn.getSize(),
@@ -290,7 +290,7 @@ object ObjectPathAction {
         val adjustedLength = if (rotation == 1 || rotation == 3) width else length
 
         val nearestX = playerTile.x.coerceIn(objectTile.x..objectTile.x + adjustedWidth)
-        val nearestZ = playerTile.z.coerceIn(objectTile.z..objectTile.z + adjustedLength)
+        val nearestZ = playerTile.y.coerceIn(objectTile.y..objectTile.y + adjustedLength)
 
         return Tile(nearestX, nearestZ, objectTile.height)
     }

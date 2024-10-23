@@ -15,35 +15,35 @@ import java.util.*
  */
 fun Pawn.moveTo(
     x: Int,
-    z: Int,
+    y: Int,
     height: Int = 0,
 ) {
-    tile = Tile(x, z, height)
+    tile = Tile(x, y, height)
     movementQueue.clear()
 
     if (entityType.isNpc) {
-        (this as Npc).avatar.teleport(height, x, z, true)
+        (this as Npc).avatar.teleport(height, x, y, true)
     } else if (entityType.isPlayer) {
         (this as Player).avatar.extendedInfo.setTempMoveSpeed(127)
     }
 }
-fun Pawn.moveTo(tile: Tile) = moveTo(tile.x, tile.z, tile.height)
+fun Pawn.moveTo(tile: Tile) = moveTo(tile.x, tile.y, tile.height)
 
 
 /**
  * @property x = xInBuildArea the x coordinate within the build area
  *  to render the map flag at.
- * @property z = zInBuildArea the z coordinate within the build area
+ * @property y = zInBuildArea the z coordinate within the build area
  *  to render the map flag at.
  * If nothing gets passed, it will assign x to 255 and z to 255
  * which is used to remove the map flag.
  */
 fun Pawn.setMapFlag(
     x: Int = 255,
-    z: Int = 255,
+    y: Int = 255,
 ) {
     if (this is Player) {
-        write(SetMapFlag(x,z))
+        write(SetMapFlag(x,y))
     }
 }
 
@@ -83,7 +83,7 @@ fun Pawn.walkPath(
         return
     }
     if (this is Player && lastKnownRegionBase != null) {
-        setMapFlag(tail.x - lastKnownRegionBase!!.x, tail.z - lastKnownRegionBase!!.z)
+        setMapFlag(tail.x - lastKnownRegionBase!!.x, tail.y - lastKnownRegionBase!!.y)
     }
 }
 
@@ -104,7 +104,7 @@ fun Pawn.stopMovement() {
 
 fun Pawn.walkToInteract(
     targetX: Int,
-    targetZ: Int,
+    targetY: Int,
     stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
 ) : Route {
     if (this is Player) {
@@ -115,19 +115,19 @@ fun Pawn.walkToInteract(
     val route = world.pathFinder.findPath(
         level = tile.height,
         srcX = tile.x,
-        srcZ = tile.z,
+        srcZ = tile.y,
         destX = targetX,
-        destZ = targetZ,
+        destZ = targetY,
     )
     if (attr[CLIENT_KEY_COMBINATION] == 2 && this is Player && world.privileges.isEligible(privilege, Privilege.ADMIN_POWER)) {
-        moveTo(Tile(targetX, targetZ, tile.height))
+        moveTo(Tile(targetX, targetY, tile.height))
         attr[CLIENT_KEY_COMBINATION] = 0
     } else {
         walkPath(route, stepType)
     }
     return route
 }
-fun Pawn.walkToInteract(tile: Tile, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL) = walkToInteract(targetX = tile.x, targetZ = tile.z, stepType = stepType)
+fun Pawn.walkToInteract(tile: Tile, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL) = walkToInteract(targetX = tile.x, targetY = tile.y, stepType = stepType)
 fun Pawn.hasMoveDestination(): Boolean = movementQueue.hasDestination()
 suspend fun QueueTask.awaitArrivalInteraction(
     route: Route,
@@ -205,9 +205,9 @@ fun Pawn.pathToInteract(target: Entity, range: Int = 0, tTile: Tile? = null) : R
     val route = world.pathFinder.findPath(
         level = tile.height,
         srcX = tile.x,
-        srcZ = tile.z,
+        srcZ = tile.y,
         destX = targetTile.x,
-        destZ = targetTile.z,
+        destZ = targetTile.y,
         objShape = -1,
         destWidth = 0,
         destHeight = 0,

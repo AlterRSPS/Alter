@@ -431,7 +431,7 @@ class PluginRepository(
         jarPluginsDirectory: String,
     ) {
         scanPackageForPlugins(server, world)
-        scanJarDirectoryForPlugins(server, world, Paths.get(jarPluginsDirectory))
+        //scanJarDirectoryForPlugins(server, world, Paths.get(jarPluginsDirectory))
     }
 
     /**
