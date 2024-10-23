@@ -221,7 +221,6 @@ object ObjectPathAction {
             )
         val tileQueue: Queue<Tile> = ArrayDeque(route.waypoints.map { Tile(it.x, it.z, it.level) })
         pawn.walkPath(tileQueue, MovementQueue.StepType.NORMAL)
-
         val last = pawn.movementQueue.peekLast()
 
         while (last != null &&

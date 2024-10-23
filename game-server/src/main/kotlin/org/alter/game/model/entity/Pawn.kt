@@ -30,6 +30,19 @@ import java.util.*
  * @author Tom <rspsmods@gmail.com>
  */
 abstract class Pawn(val world: World) : Entity() {
+
+
+    /**
+     * @TODO Move out if this end up being good decision :kekw:
+     * Interaction goal passed within Pawn class ??
+     * When reached null on new path assign null (?)
+     * @param [type] - Targets type [Npc] [Player] [GameObject]
+     * @param [range] - Tile range before stop
+     * @param [goal] - Tile of target
+     */
+    data class Interaction(val type: EntityType, val range: Int, val goal: Tile)
+    var pathGoal: Interaction? = null
+
     /**
      * The index assigned when this [Pawn] is successfully added to a [PawnList].
      */
@@ -217,6 +230,9 @@ abstract class Pawn(val world: World) : Entity() {
          * Players always have the default combat, and npcs will use default
          * combat <strong>unless</strong> they have a custom npc combat plugin
          * bound to their npc id.
+         */
+        /**
+         * @TODO Testing
          */
         if (entityType.isPlayer || this is Npc && !world.plugins.executeNpcCombat(this)) {
             world.plugins.executeCombat(this)

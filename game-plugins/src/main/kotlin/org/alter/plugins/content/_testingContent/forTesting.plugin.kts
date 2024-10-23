@@ -1,10 +1,7 @@
 package org.alter.plugins.content._testingContent
 
 val test_dummy_imp = Npcs.IMP_3134
-val testTile = Tile(3204, 3216, 0)
-for (z in 0..5) {
-    spawn_npc(test_dummy_imp, testTile.x, testTile.z + z, testTile.height)
-}
+
 set_combat_def(test_dummy_imp) {
     configs {
         attackSpeed = 6
@@ -128,5 +125,29 @@ set_combat_def(test_dummy_imp) {
 
 
 val test_size_npc = Npcs.GENERAL_GRAARDOR
-val test_size_tile = Tile(3201,3221,0)
+val test_size_tile = Tile(3166,3472,0)
 spawn_npc(test_size_npc, test_size_tile)
+
+
+
+
+val ShopTile = Tile(3185, 3482, 0)
+spawn_npc(Npcs.DOMMIK, ShopTile)
+
+
+val ObjectTile = Tile(3185, 3484, 0)
+spawn_obj(Objs.DOOR_30364, ObjectTile.x, ObjectTile.z)
+
+
+
+spawn_npc(test_dummy_imp, Tile(3178, 3477,0))
+spawn_npc(test_dummy_imp, Tile(3178, 3475,0))
+spawn_npc(test_dummy_imp, Tile(3176, 3475,0))
+spawn_npc(test_dummy_imp, Tile(3176, 3477,0))
+
+
+for (x in 0..2) {
+    for (z in 0..2) {
+        spawn_npc(test_dummy_imp, Tile(3172-x, 3476-z, 0))
+    }
+}

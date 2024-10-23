@@ -26,7 +26,10 @@
   - [ ] Implement new path methods with detection
 ## Encountered bugs:
 - [x] Ran into lumby picked up Mind rune and it did not get removed.
-
+- [ ] Bind death coffen so that in instances we could do "Set_players_death_coffen_loc" <-- If death is within house player appears at House and revives
+- 
+- [ ] Uhh so all this time path finder was not the problem it was the MovementQueue :face_palm:
+    - [ ] <-- Figure out way for line of sight ex: Grand Exchange nuggets <-- Will be same as attack range
 ##
 - Instead of Kts make it EventBus
   - Ofc need to learn more...
@@ -41,6 +44,36 @@
 # Unsure need to decide yet:
 - [ ] All plugin methods currently contain alot of `_` for example: `on_npc_option` we could just rename all of them to onNpcOption which looks nicer and easier to write.
 - [ ] Move npc combat script into `set_combat_def` but still support separate option to assign combat script to npc <-- Maybe even let overriding it or ye unsure yet.
+
+
+
+
+
+
+
+
+
+
+
+----
+|   '
+|
+|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

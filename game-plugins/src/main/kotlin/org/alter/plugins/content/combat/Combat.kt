@@ -14,11 +14,7 @@ import org.alter.game.model.entity.AreaSound
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
-import org.alter.game.model.move.awaitArrivalRanged
-import org.alter.game.model.move.pathToRange
-import org.alter.game.model.move.walkToInteract
 import org.alter.game.model.queue.QueueTask
-import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.timer.ACTIVE_COMBAT_TIMER
 import org.alter.game.model.timer.ATTACK_DELAY
 import org.alter.plugins.content.combat.strategy.CombatStrategy
@@ -26,7 +22,6 @@ import org.alter.plugins.content.combat.strategy.MagicCombatStrategy
 import org.alter.plugins.content.combat.strategy.MeleeCombatStrategy
 import org.alter.plugins.content.combat.strategy.RangedCombatStrategy
 import org.alter.plugins.content.combat.strategy.magic.CombatSpell
-import org.alter.plugins.content.interfaces.attack.AttackTab
 import java.lang.ref.WeakReference
 
 /**
@@ -116,14 +111,18 @@ object Combat {
             } else if (target is Player) {
                 val strategy = CombatConfigs.getCombatStrategy(target)
                 val attackRange = strategy.getAttackRange(target)
-                if (target.getVarp(AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn && target.tile.isWithinRadius(pawn.tile, attackRange)) {
+                if (/** target.getVarp(AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && */ target.getCombatTarget() != pawn && target.tile.isWithinRadius(pawn.tile, attackRange)) {
                     target.attack(pawn)
-                } else {
-                    val route = target.pathToRange(pawn)
-                    target.queue(TaskPriority.WEAK) {
-                        awaitArrivalRanged(route, attackRange)
-                    }
-                }
+                } /**
+                    * @TODO Auto Retaliate
+                    */
+                    //else {
+                  //  val route = target.pathToRange(pawn)
+                  //  target.queue(TaskPriority.WEAK) {
+                  //      println("From here 124")
+                  //      awaitArrivalRanged(route, attackRange)
+                  //  }
+               // }
             }
         }
     }

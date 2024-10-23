@@ -63,15 +63,14 @@ object PawnPathAction {
         val initialTile = Tile(other.tile)
         val lineOfSight = lineOfSightRange ?: 1
         pawn.facePawn(other)
-        //val pathFound = walkTo(it, pawn, other, interactionRange = lineOfSightRange ?: 1, lineOfSight = lineOfSightRange != null)
         if (!pawn.tile.isWithinRadius(other.tile, lineOfSight)) {
             val route = pawn.walkToInteract(other.tile)
             val result = it.awaitArrivalRanged(route, lineOfSight)
+            println("From here 70")
             if (!result) {
                 return
             }
         }
-
         pawn.stopMovement()
         if (pawn is Player) {
             if (pawn.attr[FACING_PAWN_ATTR]?.get() != other) {

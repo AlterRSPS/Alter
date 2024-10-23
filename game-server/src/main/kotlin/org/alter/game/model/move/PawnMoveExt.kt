@@ -50,6 +50,9 @@ fun Pawn.setMapFlag(
 /**
  * Walk to all the tiles specified in our [path] queue, using [stepType] as
  * the [MovementQueue.StepType].
+ *
+ *
+ * Cancel out the walk logic when within @param [target]
  */
 fun Pawn.walkPath(
     path: Queue<Tile>,
@@ -83,6 +86,8 @@ fun Pawn.walkPath(
         setMapFlag(tail.x - lastKnownRegionBase!!.x, tail.z - lastKnownRegionBase!!.z)
     }
 }
+
+
 fun Pawn.walkPath(
     path: Route,
     stepType: MovementQueue.StepType,
@@ -124,7 +129,6 @@ fun Pawn.walkToInteract(
 }
 fun Pawn.walkToInteract(tile: Tile, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL) = walkToInteract(targetX = tile.x, targetZ = tile.z, stepType = stepType)
 fun Pawn.hasMoveDestination(): Boolean = movementQueue.hasDestination()
-
 suspend fun QueueTask.awaitArrivalInteraction(
     route: Route,
 ) : Boolean {
@@ -150,6 +154,9 @@ suspend fun QueueTask.awaitArrivalInteraction(
     return false
 }
 
+/**
+ * Why Route tho, why not tile when is within range?
+ */
 suspend fun QueueTask.awaitArrivalRanged(
     route: Route,
     lineOfSightRange: Int,
@@ -164,13 +171,13 @@ suspend fun QueueTask.awaitArrivalRanged(
     }
     val tile = route.toTileQueue().last()
     while (true) {
-        if (!pawn.movementQueue.hasDestination() && !pawn.tile.isWithinRadius(tile, lineOfSightRange)) {
-            return false
-        }
         if (destination != null && pawn.tile.isWithinRadius(destination, lineOfSightRange)) {
             println("This fucker cancels run away : $lineOfSightRange")
             pawn.stopMovement()
             return true
+        }
+        if (!pawn.movementQueue.hasDestination() && !pawn.tile.isWithinRadius(tile, lineOfSightRange)) {
+            return false
         }
         if (pawn.hasMoveDestination()/**destination != null**/) {
             wait(1)
@@ -178,7 +185,6 @@ suspend fun QueueTask.awaitArrivalRanged(
         } else {
             println("Pawn does not have any move destinations: ${pawn.hasMoveDestination()}")
         }
-        println("Break was executed")
         break
     }
     return false
@@ -191,9 +197,10 @@ suspend fun QueueTask.awaitArrivalRanged(
  * If can: Face it and interact if no, walk to it till it's within Lineofsight view
  *
  * When player gets attacked during his Running it does not stop to retaliate or does it (?)
+ *
+ * @param range How far away till the target. 0 Would be same tile
  */
-fun Pawn.pathToRange(
-    target: Entity): Route {
+fun Pawn.pathToInteract(target: Entity, range: Int = 0, tTile: Tile? = null) : Route {
     val targetTile = target.tile
     val route = world.pathFinder.findPath(
         level = tile.height,
@@ -207,6 +214,5 @@ fun Pawn.pathToRange(
         moveNear = true,
         collision = CollisionStrategies.Normal,
     )
-    walkPath(route, MovementQueue.StepType.NORMAL)
     return route
 }

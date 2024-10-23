@@ -47,6 +47,9 @@ class MovementQueue(val pawn: Pawn) {
         addStep(current, step, type)
     }
 
+    /**
+     * @TODO
+     */
     fun cycle() {
         var next = steps.poll()
         val pathSize = steps.size
@@ -58,7 +61,12 @@ class MovementQueue(val pawn: Pawn) {
             if (walkDirection != Direction.NONE &&
                 (pawn.world.canTraverse(tile, walkDirection, pawn))
             ) {
+                /** @TODO Remove this shit
                 if (pawn is Npc) {
+                    /**
+                     * @TODO uhh what?
+                     * At least from the looks of it looks like Npc clipping. So that npcs wouldnt stack on each other? Gay
+                     */
                     val entitiesClipped = mutableListOf<Pawn>()
 
                     pawn.world.chunks
@@ -79,6 +87,7 @@ class MovementQueue(val pawn: Pawn) {
                         return
                     }
                 }
+                */
                 tile = Tile(next.tile)
                 pawn.lastFacingDirection = walkDirection
                 val running =
@@ -111,7 +120,19 @@ class MovementQueue(val pawn: Pawn) {
                     PlayerInfo(pawn).setMoveSpeed(if (pawn.isRunning() && pathSize > 0) MovementType.RUN else MovementType.WALK)
                 }
             }
+            if (pawn.pathGoal != null) {
+                /**
+                 * @TODO `!!` yh is not good but for now. Just testing purpose.
+                 * @TODO Solution did stop new path but also mmm went underneath the targets tile..
+                 */
+                //if (pawn.tile.isWithinRadius(pawn.pathGoal!!.goal, pawn.pathGoal!!.range)) {
+                if (pawn.tile.getDistance(pawn.pathGoal!!.goal) <= pawn.pathGoal!!.range) {
+                    println("Pawn stopped")
+                    pawn.stopMovement()
+                }
+            }
         }
+
     }
 
     private fun addStep(
