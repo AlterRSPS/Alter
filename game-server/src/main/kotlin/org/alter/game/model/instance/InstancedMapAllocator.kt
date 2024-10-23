@@ -9,6 +9,7 @@ import org.alter.game.model.entity.DynamicObject
 import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Player
 import org.alter.game.model.entity.StaticObject
+import org.alter.game.model.move.moveTo
 import org.alter.game.model.region.Chunk
 
 /**

@@ -1,5 +1,7 @@
 package org.alter.plugins.content.area.varrock.chat
 
+import org.alter.game.model.move.moveTo
+
 spawn_npc(Npcs.AUBURY_11435, 3253, 3402, 0, 2)
 
 arrayOf(Npcs.AUBURY_11434, Npcs.AUBURY_11435, Npcs.AUBURY).forEach { aubury ->

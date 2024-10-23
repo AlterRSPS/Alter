@@ -25,6 +25,9 @@ set_menu_open_check {
  */
 on_login {
     with(player) {
+        /**
+         * @TODO Inspect, uhh seems that this logic is being repeated, not removing it yet as im unsure rn if it's needed or not
+         */
         // Skill-related logic.
         calculateAndSetCombatLevel()
         if (getSkills().getBaseLevel(Skills.HITPOINTS) < 10) {

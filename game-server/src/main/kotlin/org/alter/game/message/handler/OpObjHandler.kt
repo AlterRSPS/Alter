@@ -1,16 +1,16 @@
 package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.objs.OpObj
-import org.alter.game.action.GroundItemPathAction
+import org.alter.game.model.move.GroundItemPathAction
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
+import org.alter.game.model.attr.CLIENT_KEY_COMBINATION
 import org.alter.game.model.attr.INTERACTING_GROUNDITEM_ATTR
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.entity.Client
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Player
-import org.alter.game.model.priv.Privilege
 import java.lang.ref.WeakReference
 
 /**
@@ -28,11 +28,9 @@ class OpObjHandler : MessageHandler<OpObj> {
         if (!tile.viewableFrom(client.tile, Player.TILE_VIEW_DISTANCE)) {
             return
         }
-
         if (!client.lock.canGroundItemInteract()) {
             return
         }
-
         log(
             client,
             "Ground Item action %d: item=%d, x=%d, z=%d, movement=%b",
@@ -42,7 +40,6 @@ class OpObjHandler : MessageHandler<OpObj> {
             message.z,
             message.controlKey,
         )
-
         /*
          * Get the region chunk that the object would belong to.
          */
@@ -51,15 +48,7 @@ class OpObjHandler : MessageHandler<OpObj> {
             chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull {
                 it.item == message.id && it.canBeViewedBy(client)
             } ?: return
-
-        if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
-            client.moveTo(item.tile)
-        }
-
-        client.closeInterfaceModal()
-        client.interruptQueues()
-        client.resetInteractions()
-
+        client.attr[CLIENT_KEY_COMBINATION] = if (message.controlKey) 2 else 0
         client.attr[INTERACTING_OPT_ATTR] = message.op
         client.attr[INTERACTING_GROUNDITEM_ATTR] = WeakReference(item)
         client.executePlugin(GroundItemPathAction.walkPlugin)

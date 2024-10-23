@@ -1,7 +1,6 @@
 package org.alter.game.model.entity
 
 import kotlinx.coroutines.CoroutineScope
-import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.action.NpcDeathAction
 import org.alter.game.action.PlayerDeathAction
 import org.alter.game.event.Event
@@ -10,22 +9,17 @@ import org.alter.game.model.*
 import org.alter.game.model.attr.*
 import org.alter.game.model.bits.INFINITE_VARS_STORAGE
 import org.alter.game.model.bits.InfiniteVarsType
-import org.alter.game.model.collision.CollisionManager
+import org.alter.game.model.collision.raycast
 import org.alter.game.model.combat.DamageMap
-import org.alter.game.model.path.FutureRoute
-import org.alter.game.model.path.PathFindingStrategy
-import org.alter.game.model.path.PathRequest
-import org.alter.game.model.path.Route
-import org.alter.game.model.path.strategy.BFSPathFindingStrategy
-import org.alter.game.model.path.strategy.SimplePathFindingStrategy
+import org.alter.game.model.move.MovementQueue
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.QueueTaskSet
 import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.queue.impl.PawnQueueTaskSet
-import org.alter.game.model.region.Chunk
 import org.alter.game.model.timer.*
 import org.alter.game.plugin.Plugin
 import org.alter.game.service.log.LoggerService
+import org.rsmod.game.pathfinder.RouteCoordinates
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -36,6 +30,19 @@ import java.util.*
  * @author Tom <rspsmods@gmail.com>
  */
 abstract class Pawn(val world: World) : Entity() {
+
+
+    /**
+     * @TODO Move out if this end up being good decision :kekw:
+     * Interaction goal passed within Pawn class ??
+     * When reached null on new path assign null (?)
+     * @param [type] - Targets type [Npc] [Player] [GameObject]
+     * @param [range] - Tile range before stop
+     * @param [goal] - Tile of target
+     */
+    data class Interaction(val type: EntityType, val range: Int, val goal: Tile)
+    var pathGoal: Interaction? = null
+
     /**
      * The index assigned when this [Pawn] is successfully added to a [PawnList].
      */
@@ -130,12 +137,6 @@ abstract class Pawn(val world: World) : Entity() {
     var invisible = false
 
     /**
-     * The [FutureRoute] for the pawn, if any.
-     * @see createPathFindingStrategy
-     */
-    private var futureRoute: FutureRoute? = null
-
-    /**
      * Handles logic before any synchronization tasks are executed.
      */
     abstract fun cycle()
@@ -181,11 +182,6 @@ abstract class Pawn(val world: World) : Entity() {
         }
     }
 
-    fun hasMoveDestination(): Boolean = futureRoute != null || movementQueue.hasDestination()
-
-    fun stopMovement() {
-        movementQueue.clear()
-    }
 
     fun getCentreTile(): Tile = tile.transform(getSize() shr 1, getSize() shr 1)
 
@@ -229,13 +225,14 @@ abstract class Pawn(val world: World) : Entity() {
     fun attack(target: Pawn) {
         resetInteractions()
         interruptQueues()
-
         attr[COMBAT_TARGET_FOCUS_ATTR] = WeakReference(target)
-
         /*
          * Players always have the default combat, and npcs will use default
          * combat <strong>unless</strong> they have a custom npc combat plugin
          * bound to their npc id.
+         */
+        /**
+         * @TODO Testing
          */
         if (entityType.isPlayer || this is Npc && !world.plugins.executeNpcCombat(this)) {
             world.plugins.executeCombat(this)
@@ -374,185 +371,7 @@ abstract class Pawn(val world: World) : Entity() {
         val fill = (width * percentage / 100.0).toInt()
         return if (fill == 0 && percentage != 0.0) return 0 else fill
     }
-    /**
-     * Handle the [futureRoute] if necessary.
-     */
-    fun handleFutureRoute() {
-        if (futureRoute?.completed == true && futureRoute?.strategy?.cancel == false) {
-            val futureRoute = futureRoute!!
-            walkPath(futureRoute.route.path, futureRoute.stepType, futureRoute.detectCollision)
-            this.futureRoute = null
-        }
-    }
 
-    /**
-     * Walk to all the tiles specified in our [path] queue, using [stepType] as
-     * the [MovementQueue.StepType].
-     */
-    fun walkPath(
-        path: Queue<Tile>,
-        stepType: MovementQueue.StepType,
-        detectCollision: Boolean,
-    ) {
-        if (path.isEmpty()) {
-            if (this is Player) {
-                write(SetMapFlag(255, 255))
-            }
-            return
-        }
-
-        if (timers.has(FROZEN_TIMER)) {
-            if (this is Player) {
-                writeMessage(MAGIC_STOPS_YOU_FROM_MOVING)
-            }
-            return
-        }
-
-        if (timers.has(STUN_TIMER)) {
-            return
-        }
-
-        movementQueue.clear()
-
-        var tail: Tile? = null
-        var next = path.poll()
-        while (next != null) {
-            movementQueue.addStep(next, stepType, detectCollision)
-            val poll = path.poll()
-            if (poll == null) {
-                tail = next
-            }
-            next = poll
-        }
-
-        /*
-         * If the tail is null (should never be unless we mess with code above), or
-         * if the tail is the tile we're standing on, then we don't have to move at all!
-         */
-        if (tail == null || tail.sameAs(tile)) {
-            if (this is Player) {
-                write(SetMapFlag(255, 255))
-            }
-            movementQueue.clear()
-            return
-        }
-
-        if (this is Player && lastKnownRegionBase != null) {
-            write(SetMapFlag(tail.x - lastKnownRegionBase!!.x, tail.z - lastKnownRegionBase!!.z))
-        }
-    }
-
-    fun walkTo(
-        tile: Tile,
-        stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
-        detectCollision: Boolean = true,
-    ) = walkTo(tile.x, tile.z, stepType, detectCollision)
-
-    fun walkTo(
-        x: Int,
-        z: Int,
-        stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
-        detectCollision: Boolean = true,
-    ) {
-        /*
-         * Already standing on requested destination.
-         */
-        if (tile.x == x && tile.z == z) {
-            return
-        }
-
-        if (timers.has(FROZEN_TIMER)) {
-            if (this is Player) {
-                writeMessage(MAGIC_STOPS_YOU_FROM_MOVING)
-            }
-            return
-        }
-
-        if (timers.has(STUN_TIMER)) {
-            return
-        }
-
-        val multiThread = world.multiThreadPathFinding
-        val request = PathRequest.createWalkRequest(this, x, z, projectile = false, detectCollision = detectCollision)
-        val strategy = createPathFindingStrategy(copyChunks = multiThread)
-
-        /*
-         * When using multi-thread path-finding, the [PathRequest.createWalkRequest]
-         * must have the [tile] in sync with the game-thread, so we need to make sure
-         * that in this cycle, the pawn's [tile] does not change. The easiest way to
-         * do this is by clearing their movement queue. Though it can cause weird
-         */
-        if (multiThread) {
-            movementQueue.clear()
-        }
-        futureRoute?.strategy?.cancel = true
-
-        if (multiThread) {
-            futureRoute = FutureRoute.of(strategy, request, stepType, detectCollision)
-        } else {
-            val route = strategy.calculateRoute(request)
-            walkPath(route.path, stepType, detectCollision)
-        }
-    }
-
-    suspend fun walkTo(
-        it: QueueTask,
-        tile: Tile,
-        stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
-        detectCollision: Boolean = true,
-    ) = walkTo(it, tile.x, tile.z, stepType, detectCollision)
-
-    suspend fun walkTo(
-        it: QueueTask,
-        x: Int,
-        z: Int,
-        stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
-        detectCollision: Boolean = true,
-    ): Route {
-        /*
-         * Already standing on requested destination.
-         */
-        if (tile.x == x && tile.z == z) {
-            return Route(EMPTY_TILE_DEQUE, success = true, tail = Tile(tile))
-        }
-        val multiThread = world.multiThreadPathFinding
-        val request = PathRequest.createWalkRequest(this, x, z, projectile = false, detectCollision = detectCollision)
-        val strategy = createPathFindingStrategy(copyChunks = multiThread)
-
-        movementQueue.clear()
-        futureRoute?.strategy?.cancel = true
-
-        if (multiThread) {
-            futureRoute = FutureRoute.of(strategy, request, stepType, detectCollision)
-            while (!futureRoute!!.completed) {
-                it.wait(1)
-            }
-            return futureRoute!!.route
-        }
-
-        val route = strategy.calculateRoute(request)
-        walkPath(route.path, stepType, detectCollision)
-        return route
-    }
-
-    fun moveTo(
-        x: Int,
-        z: Int,
-        height: Int = 0,
-    ) {
-        tile = Tile(x, z, height)
-        movementQueue.clear()
-
-        if (entityType.isNpc) {
-            (this as Npc).avatar.teleport(height, x, z, true)
-        } else if (entityType.isPlayer) {
-            (this as Player).avatar.extendedInfo.setTempMoveSpeed(127)
-        }
-    }
-
-    fun moveTo(tile: Tile) {
-        moveTo(tile.x, tile.z, tile.height)
-    }
 
     fun animate(
         id: Int,
@@ -582,7 +401,7 @@ abstract class Pawn(val world: World) : Entity() {
         if (entityType.isNpc) {
             (this as Npc).avatar.extendedInfo.setSequence(id, startDelay)
         } else if (entityType.isPlayer) {
-            (this as Player).avatar.extendedInfo.setSequence(id, startDelay)
+            PlayerInfo(this as Player).setAnimSequance(id, startDelay)
         }
     }
 
@@ -610,13 +429,13 @@ abstract class Pawn(val world: World) : Entity() {
                 weight = opacity,
             )
         } else if (entityType.isPlayer) {
-            (this as Player).avatar.extendedInfo.tinting(
-                startTime = delay,
-                endTime = duration,
-                hue = hue,
-                saturation = saturation,
-                lightness = luminance,
-                weight = opacity,
+            PlayerInfo(this as Player).tinting(
+                hue,
+                saturation,
+                luminance,
+                opacity,
+                delay,
+                duration
             )
         }
     }
@@ -645,7 +464,7 @@ abstract class Pawn(val world: World) : Entity() {
         if (entityType.isNpc) {
             (this as Npc).avatar.extendedInfo.setSay(message)
         } else if (entityType.isPlayer) {
-            (this as Player).avatar.extendedInfo.setSay(message)
+            PlayerInfo(this as Player).setSay(message)
         }
     }
 
@@ -660,23 +479,11 @@ abstract class Pawn(val world: World) : Entity() {
         instant: Int = 0,
     ) {
         if (entityType.isPlayer) {
-            val srcX = tile.x * 64
-            val srcZ = tile.z * 64
-            val dstX = face.x * 64
-            val dstZ = face.z * 64
-
-            var degreesX = (srcX - dstX).toDouble()
-            var degreesZ = (srcZ - dstZ).toDouble()
-
-            degreesX += (Math.floor(width / 2.0)) * 32
-            degreesZ += (Math.floor(length / 2.0)) * 32
-
-            (this as Player).avatar.extendedInfo.setFaceAngle((Math.atan2(degreesX, degreesZ) * 325.949).toInt() and 0x7ff)
+            PlayerInfo(this as Player).faceTile(face, width, length)
         } else if (entityType.isNpc) {
             // TODO we shouldnt need because we use absolute coords ADVO
             val faceX = (face.x shl 1) + 1
             val faceZ = (face.z shl 1) + 1
-
             (this as Npc).avatar.extendedInfo.faceCoord(face.x, face.z)
         }
     }
@@ -686,7 +493,7 @@ abstract class Pawn(val world: World) : Entity() {
         if (entityType.isNpc) {
             (this as Npc).avatar.extendedInfo.setFacePathingEntity(index)
         } else if (entityType.isPlayer) {
-            (this as Player).avatar.extendedInfo.setFacePathingEntity(index)
+            PlayerInfo(this as Player).facePawn(index)
         }
 
         attr[FACING_PAWN_ATTR] = WeakReference(pawn)
@@ -696,7 +503,7 @@ abstract class Pawn(val world: World) : Entity() {
         if (entityType.isNpc) {
             (this as Npc).avatar.extendedInfo.setFacePathingEntity(-1)
         } else if (entityType.isPlayer) {
-            (this as Player).avatar.extendedInfo.setFacePathingEntity(-1)
+            PlayerInfo(this as Player).facePawn(-1)
         }
 
         attr.remove(FACING_PAWN_ATTR)
@@ -739,19 +546,47 @@ abstract class Pawn(val world: World) : Entity() {
         world.getService(LoggerService::class.java, searchSubclasses = true)?.logEvent(this, event)
     }
 
-    internal fun createPathFindingStrategy(copyChunks: Boolean = false): PathFindingStrategy {
-        val collision: CollisionManager =
-            if (copyChunks) {
-                val chunks = world.chunks.copyChunksWithinRadius(tile.chunkCoords, height = tile.height, radius = Chunk.CHUNK_VIEW_RADIUS)
-                CollisionManager(chunks, createChunksIfNeeded = false)
-            } else {
-                world.collision
-            }
-        return if (entityType.isPlayer) BFSPathFindingStrategy(collision) else SimplePathFindingStrategy(collision)
+    fun isPathBlocked(item: GroundItem): Boolean {
+        val dir = Direction.between(this.tile, item.tile)
+        val collisionFlag = this.world.collision.get(item.tile.x, item.tile.z, item.tile.height)
+        println("dir: $dir, collisionFlag: $collisionFlag, DirectionFlag: ${Direction.getDirectionFlag(dir)}")
+        return (collisionFlag and Direction.getDirectionFlag(dir)) != 0
+    }
+
+    /**
+     * Checks if the path between the player and the tile is blocked by a collision flag.
+     *
+     * @param tile The tile that is being checked for being blocked by a collision flag to the pawn.
+     * @return True if the path is blocked, false otherwise.
+     */
+    fun isPathBlocked(tile: Tile): Boolean {
+        val dir = Direction.between(this.tile, tile)
+        val collisionFlag = this.world.collision.get(tile.x, tile.z, tile.height)
+        return (collisionFlag and Direction.getDirectionFlag(dir)) != 0
+    }
+
+    fun hasLineOfSightTo(
+        other: Pawn,
+        projectile: Boolean,
+        maximumDistance: Int = 1,
+    ): Boolean {
+        if (this.tile.height != other.tile.height) {
+            return false
+        }
+
+        if (this.tile.sameAs(other.tile)) {
+            return true
+        }
+
+        if (this.tile.getDistance(other.tile) > maximumDistance) {
+            return false
+        }
+
+        return this.world.collision.raycast(this.tile, other.tile, projectile)
     }
 
     companion object {
-        private val EMPTY_TILE_DEQUE = ArrayDeque<Tile>()
+        val EMPTY_TILE_DEQUE = ArrayList<RouteCoordinates>()
     }
 
     /*

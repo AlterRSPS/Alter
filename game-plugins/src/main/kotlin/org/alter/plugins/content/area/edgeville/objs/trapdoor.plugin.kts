@@ -1,5 +1,7 @@
 package org.alter.plugins.content.area.edgeville.objs
 
+import org.alter.game.model.move.moveTo
+
 val OPEN_SFX = 62
 val CLOSE_SFX = 60
 

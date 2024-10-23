@@ -2,12 +2,13 @@ package org.alter.plugins.content.combat
 
 import org.alter.api.*
 import org.alter.api.ext.*
-import org.alter.game.action.PawnPathAction
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.AttributeKey
 import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import org.alter.game.model.attr.LAST_HIT_ATTR
 import org.alter.game.model.attr.LAST_HIT_BY_ATTR
+import org.alter.game.model.collision.raycast
+import org.alter.game.model.collision.raycastTiles
 import org.alter.game.model.combat.CombatClass
 import org.alter.game.model.entity.AreaSound
 import org.alter.game.model.entity.Npc
@@ -21,7 +22,6 @@ import org.alter.plugins.content.combat.strategy.MagicCombatStrategy
 import org.alter.plugins.content.combat.strategy.MeleeCombatStrategy
 import org.alter.plugins.content.combat.strategy.RangedCombatStrategy
 import org.alter.plugins.content.combat.strategy.magic.CombatSpell
-import org.alter.plugins.content.interfaces.attack.AttackTab
 import java.lang.ref.WeakReference
 
 /**
@@ -109,9 +109,20 @@ object Combat {
                     target.attack(pawn)
                 }
             } else if (target is Player) {
-                if (target.getVarp(AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && target.getCombatTarget() != pawn) {
+                val strategy = CombatConfigs.getCombatStrategy(target)
+                val attackRange = strategy.getAttackRange(target)
+                if (/** target.getVarp(AttackTab.DISABLE_AUTO_RETALIATE_VARP) == 0 && */ target.getCombatTarget() != pawn && target.tile.isWithinRadius(pawn.tile, attackRange)) {
                     target.attack(pawn)
-                }
+                } /**
+                    * @TODO Auto Retaliate
+                    */
+                    //else {
+                  //  val route = target.pathToRange(pawn)
+                  //  target.queue(TaskPriority.WEAK) {
+                  //      println("From here 124")
+                  //      awaitArrivalRanged(route, attackRange)
+                  //  }
+               // }
             }
         }
     }
@@ -168,7 +179,7 @@ object Combat {
                 areBordering(start.x, start.z, srcSize, srcSize, end.x, end.z, dstSize, dstSize)
             }
         val withinRange = touching && world.collision.raycast(start, end, projectile = projectile)
-        return withinRange || PawnPathAction.walkTo(it, pawn, target, interactionRange = distance, lineOfSight = false)
+        return withinRange //|| pawn.walkToInteract(it, target, lineOfSightRange = distance)
     }
 
     fun getProjectileLifespan(
@@ -178,7 +189,7 @@ object Combat {
     ): Int =
         when (type) {
             ProjectileType.MAGIC -> {
-                val fastPath = source.world.collision.raycastTiles(source.tile, target)
+                val fastPath = raycastTiles(source.tile, target)
                 5 + (fastPath * 10)
             }
             else -> {

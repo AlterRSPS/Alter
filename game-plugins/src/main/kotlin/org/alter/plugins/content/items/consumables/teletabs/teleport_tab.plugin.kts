@@ -1,5 +1,6 @@
 package org.alter.plugins.content.items.consumables.teletabs
 
+import org.alter.game.model.move.moveTo
 import org.alter.plugins.content.magic.TeleportType
 import org.alter.plugins.content.magic.canTeleport
 import org.alter.plugins.content.magic.prepareForTeleport

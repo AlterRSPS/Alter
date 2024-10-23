@@ -1,6 +1,7 @@
 package org.alter.plugins.content.npcs.sheep
 
 import dev.openrune.cache.CacheManager.getNpc
+import org.alter.game.model.move.walkToInteract
 
 Sheep.SHEEP_NPCS.forEach { sheep ->
     if (getNpc(sheep).actions.contains("Shear")) {
@@ -58,7 +59,7 @@ fun flee(n: Npc) {
     val start = n.spawnTile
     val dest = start.transform(rx, rz)
 
-    n.walkTo(dest)
+    n.walkToInteract(dest)
 }
 
 suspend fun transmog_sheep(

@@ -3,6 +3,7 @@ package org.alter.plugins.content.interfaces.gameframe.tabs.worn_equipment
 import org.alter.api.CommonClientScripts
 import org.alter.api.EquipmentType.Companion.EQUIPMENT_INTERFACE_ID
 import org.alter.game.action.EquipAction
+import org.alter.game.model.move.stopMovement
 import org.alter.plugins.content.interfaces.equipstats.EquipmentStats.EQUIPMENTSTATS_INTERFACE_ID
 import org.alter.plugins.content.interfaces.equipstats.EquipmentStats.EQUIPMENTSTATS_TAB_INTERFACE_ID
 import org.alter.plugins.content.interfaces.equipstats.EquipmentStats.sendBonuses
@@ -57,13 +58,12 @@ on_button(interfaceId = EQUIPMENT_INTERFACE_ID, component = 1) {
     if (!player.lock.canInterfaceInteract()) {
         return@on_button
     }
-
     player.setInterfaceUnderlay(-1, -1)
     player.openInterface(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, dest = InterfaceDestination.MAIN_SCREEN)
     player.openInterface(interfaceId = EQUIPMENTSTATS_TAB_INTERFACE_ID, dest = InterfaceDestination.TAB_AREA)
     player.runClientScript(CommonClientScripts.INTERFACE_INV_INIT, 5570560, 93, 4, 7, 1, -1, "Equip", "", "", "", "")
     player.setInterfaceEvents(interfaceId = EQUIPMENTSTATS_TAB_INTERFACE_ID, component = 0, range = 0..27, setting = 1180674)
-
+    player.stopMovement()
     sendBonuses(player)
 }
 

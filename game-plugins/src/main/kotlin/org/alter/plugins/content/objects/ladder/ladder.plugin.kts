@@ -1,5 +1,7 @@
 package org.alter.plugins.content.objects.ladder
 
+import org.alter.game.model.move.moveTo
+
 /**Stairs*/
 
 val stairs =

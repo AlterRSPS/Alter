@@ -1,5 +1,7 @@
 package org.alter.plugins.content.area.dwarven_mines.objs.mining_guild
 
+import org.alter.game.model.move.moveTo
+
 on_obj_option(Objs.DOOR_30364, option = "open") {
     if (player.getSkills().getCurrentLevel(Skills.MINING) < 60) {
         player.queue {

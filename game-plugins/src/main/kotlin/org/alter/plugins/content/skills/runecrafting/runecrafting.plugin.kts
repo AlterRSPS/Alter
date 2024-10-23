@@ -1,6 +1,7 @@
 package org.alter.plugins.content.skills.runecrafting
 
 import dev.openrune.cache.CacheManager.getObject
+import org.alter.game.model.move.moveTo
 
 private val enterOption = "Enter"
 

@@ -1,7 +1,7 @@
 package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.locs.OpLoc
-import org.alter.game.action.ObjectPathAction
+import org.alter.game.model.move.ObjectPathAction
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
@@ -10,6 +10,8 @@ import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.entity.Client
 import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Player
+import org.alter.game.model.move.moveTo
+import org.alter.game.model.move.stopMovement
 import org.alter.game.model.priv.Privilege
 import java.lang.ref.WeakReference
 

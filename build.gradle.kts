@@ -22,7 +22,6 @@ allprojects {
 
     val lib = rootProject.project.libs
     dependencies {
-        implementation(lib.openrune.filestore)
         implementation(lib.kotlin.logging)
         implementation(lib.logback.classic)
         implementation(lib.fastutil)
@@ -37,6 +36,10 @@ allprojects {
         implementation(lib.netty.all)
         implementation(lib.kotlinx.serialization.core)
         implementation(lib.rsprot)
+        implementation(lib.pathfinder)
+        if (name != "filestore") {
+            implementation(rootProject.projects.plugins.filestore)
+        }
         testImplementation(lib.junit)
         testImplementation(lib.kotlin.test.junit)
     }
