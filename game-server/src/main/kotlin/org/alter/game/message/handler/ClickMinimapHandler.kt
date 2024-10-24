@@ -12,7 +12,7 @@ class ClickMinimapHandler : MessageHandler<MoveMinimapClick> {
         client: Client,
         message: MoveMinimapClick,
     ) {
-       log(client, "Click minimap: x=%d, z=%d, type=%d", message.x, message.z, message.keyCombination)
+       log(client, "Click minimap: x=%d, y=%d, type=%d", message.x, message.z, message.keyCombination)
        client.attr[CLIENT_KEY_COMBINATION] = message.keyCombination
        client.walkToInteract(message.x, message.z, MovementQueue.StepType.NORMAL)
     }

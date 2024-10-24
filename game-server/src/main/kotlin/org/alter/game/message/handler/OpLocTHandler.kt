@@ -64,7 +64,7 @@ class OpLocTHandler : MessageHandler<OpLocT> {
             )
         }
 
-        log(client, "Item on object: item=%d, slot=%d, obj=%d, x=%d, z=%d", sobj, slot, sloc, message.x, message.z)
+        log(client, "Item on object: item=%d, slot=%d, obj=%d, x=%d, y=%d", sobj, slot, sloc, message.x, message.z)
 
         client.stopMovement()
         client.closeInterfaceModal()

@@ -314,7 +314,7 @@ object Combat {
             return false
         }
 
-        if (a.z1 > b.z2 || b.z1 > a.z2) {
+        if (a.y1 > b.y2 || b.y1 > a.y2) {
             return false
         }
 
@@ -337,7 +337,7 @@ object Combat {
         val a = Box(x1, z1, width1 - 1, length1 - 1)
         val b = Box(x2, z2, width2 - 1, length2 - 1)
 
-        if (b.x1 in a.x1..a.x2 && b.z1 in a.z1..a.z2 || b.x2 in a.x1..a.x2 && b.z2 in a.z1..a.z2) {
+        if (b.x1 in a.x1..a.x2 && b.y1 in a.y1..a.y2 || b.x2 in a.x1..a.x2 && b.y2 in a.y1..a.y2) {
             return false
         }
 
@@ -349,11 +349,11 @@ object Combat {
             return false
         }
 
-        if (b.z1 > a.z2 + 1) {
+        if (b.y1 > a.y2 + 1) {
             return false
         }
 
-        if (b.z2 < a.z1 - 1) {
+        if (b.y2 < a.y1 - 1) {
             return false
         }
         return true
@@ -364,8 +364,8 @@ object Combat {
 
         val x2: Int get() = x + width
 
-        val z1: Int get() = y
+        val y1: Int get() = y
 
-        val z2: Int get() = y + length
+        val y2: Int get() = y + length
     }
 }

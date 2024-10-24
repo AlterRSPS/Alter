@@ -18,7 +18,7 @@ class TeleportHandler : MessageHandler<Teleport> {
             return
         }
 
-        log(client, "Teleport world map: unknown=%d, x=%d, z=%d, height=%d", message.oculusSyncValue, message.x, message.z, message.level)
+        log(client, "Teleport world map: unknown=%d, x=%d, y=%d, height=%d", message.oculusSyncValue, message.x, message.z, message.level)
 
         client.closeInterfaceModal()
         client.interruptQueues()

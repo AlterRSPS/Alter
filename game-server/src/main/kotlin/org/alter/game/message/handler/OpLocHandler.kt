@@ -48,7 +48,7 @@ class OpLocHandler : MessageHandler<OpLoc> {
                 it.id == message.id
             } ?: return
 
-        log(client, "Object action %d: id=%d, x=%d, z=%d, movement=%b", message.op, message.id, message.x, message.z, message.controlKey)
+        log(client, "Object action %d: id=%d, x=%d, y=%d, movement=%b", message.op, message.id, message.x, message.z, message.controlKey)
 
         client.stopMovement()
         client.closeInterfaceModal()

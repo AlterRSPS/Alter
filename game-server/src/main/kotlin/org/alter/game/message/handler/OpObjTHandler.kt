@@ -54,7 +54,7 @@ class OpObjTHandler : MessageHandler<OpObjT> {
                     client.world.findRandomTileAround(obj.tile, radius = 1, centreWidth = def.sizeX, centreLength = def.sizeY) ?: obj.tile,
                 )
             }
-            log(client, "Item on object: item=%d, slot=%d, obj=%d, x=%d, z=%d", sobj, slot, message.id, message.x, message.z)
+            log(client, "Item on object: item=%d, slot=%d, obj=%d, x=%d, y=%d", sobj, slot, message.id, message.x, message.z)
             client.stopMovement()
             client.closeInterfaceModal()
             client.interruptQueues()
