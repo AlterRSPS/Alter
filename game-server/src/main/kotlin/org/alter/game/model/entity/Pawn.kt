@@ -145,6 +145,10 @@ abstract class Pawn(val world: World) : Entity() {
 
     fun isAlive(): Boolean = !isDead()
 
+    /**
+     * If the player has running enabled.
+     * @TODO Rename to proper name this one is bullshit.
+     */
     abstract fun isRunning(): Boolean
 
     abstract fun getSize(): Int
@@ -199,7 +203,7 @@ abstract class Pawn(val world: World) : Entity() {
         val granularity = 2048
         val lutFactor = (granularity / (Math.PI * 2)) // Lookup table factor
 
-        val theta = Math.atan2((target.y - centre.y).toDouble(), (target.x - centre.x).toDouble())
+        val theta = Math.atan2((target.z - centre.z).toDouble(), (target.x - centre.x).toDouble())
         var angle = Math.toDegrees((((theta * lutFactor).toInt() + offset) and (granularity - 1)) / lutFactor)
         if (angle < 0) {
             angle += 360
@@ -207,7 +211,7 @@ abstract class Pawn(val world: World) : Entity() {
         angle = Math.toRadians(angle)
 
         val tx = Math.round(centre.x + (size * Math.cos(angle))).toInt()
-        val tz = Math.round(centre.y + (size * Math.sin(angle))).toInt()
+        val tz = Math.round(centre.z + (size * Math.sin(angle))).toInt()
         return Tile(tx, tz, tile.height)
     }
 
@@ -469,7 +473,7 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     fun faceDirection(direction: Direction) {
-        faceTile(Tile(direction.getDeltaX(), direction.getDeltaY()))
+        faceTile(Tile(direction.getDeltaX(), direction.getDeltaZ()))
     }
 
     fun faceTile(
@@ -483,8 +487,8 @@ abstract class Pawn(val world: World) : Entity() {
         } else if (entityType.isNpc) {
             // TODO we shouldnt need because we use absolute coords ADVO
             val faceX = (face.x shl 1) + 1
-            val faceZ = (face.y shl 1) + 1
-            (this as Npc).avatar.extendedInfo.faceCoord(face.x, face.y)
+            val faceZ = (face.z shl 1) + 1
+            (this as Npc).avatar.extendedInfo.faceCoord(face.x, face.z)
         }
     }
 
@@ -548,7 +552,7 @@ abstract class Pawn(val world: World) : Entity() {
 
     fun isPathBlocked(item: GroundItem): Boolean {
         val dir = Direction.between(this.tile, item.tile)
-        val collisionFlag = this.world.collision.get(item.tile.x, item.tile.y, item.tile.height)
+        val collisionFlag = this.world.collision.get(item.tile.x, item.tile.z, item.tile.height)
         println("dir: $dir, collisionFlag: $collisionFlag, DirectionFlag: ${Direction.getDirectionFlag(dir)}")
         return (collisionFlag and Direction.getDirectionFlag(dir)) != 0
     }
@@ -561,7 +565,7 @@ abstract class Pawn(val world: World) : Entity() {
      */
     fun isPathBlocked(tile: Tile): Boolean {
         val dir = Direction.between(this.tile, tile)
-        val collisionFlag = this.world.collision.get(tile.x, tile.y, tile.height)
+        val collisionFlag = this.world.collision.get(tile.x, tile.z, tile.height)
         return (collisionFlag and Direction.getDirectionFlag(dir)) != 0
     }
 

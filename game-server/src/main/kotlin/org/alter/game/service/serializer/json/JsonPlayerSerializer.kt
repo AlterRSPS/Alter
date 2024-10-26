@@ -96,7 +96,7 @@ class JsonPlayerSerializer : PlayerSerializerService() {
             client.uid = PlayerUID(data.username)
             client.username = data.displayName
             client.passwordHash = data.passwordHash
-            client.tile = Tile(data.x, data.y, data.height)
+            client.tile = Tile(data.x, data.z, data.height)
             client.privilege = world.privileges.get(data.privilege) ?: Privilege.DEFAULT
             client.runEnergy = data.runEnergy
             client.interfaces.displayMode = DisplayMode.values.firstOrNull { it.id == data.displayMode } ?: DisplayMode.FIXED
@@ -168,7 +168,7 @@ class JsonPlayerSerializer : PlayerSerializerService() {
                 previousXteas = client.currentXteaKeys,
                 displayName = client.username,
                 x = client.tile.x,
-                y = client.tile.y,
+                z = client.tile.z,
                 height = client.tile.height,
                 privilege = client.privilege.id,
                 runEnergy = client.runEnergy,

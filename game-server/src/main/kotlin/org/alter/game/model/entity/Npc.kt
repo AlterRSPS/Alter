@@ -17,6 +17,8 @@ import org.alter.game.model.combat.NpcCombatDef
  * @author Tom <rspsmods@gmail.com>
  */
 class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : Pawn(world) {
+
+
     constructor(id: Int, tile: Tile, world: World) : this(id, world, spawnTile = Tile(tile)) {
         this.tile = tile
     }

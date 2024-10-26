@@ -14,7 +14,7 @@ GATES.forEach { obj ->
         if (player.inventory.getItemCount(Items.COINS_995) >= 10) {
             if (obj == 44053) {
                 player.lock()
-                if (player.tile.x == 3268 && player.tile.y == 3227) {
+                if (player.tile.x == 3268 && player.tile.z == 3227) {
                     player.moveTo(3268, 3228, 0)
                 }
                 world.queue {
@@ -40,7 +40,7 @@ GATES.forEach { obj ->
 
             if (obj == 44052) {
                 player.lock()
-                if (player.tile.x == 3268 && player.tile.y == 3228) {
+                if (player.tile.x == 3268 && player.tile.z == 3228) {
                     player.moveTo(3268, 3227, 0)
                 }
                 world.queue {

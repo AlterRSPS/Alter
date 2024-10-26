@@ -10,10 +10,10 @@ fun Tile.isMulti(world: World): Boolean {
 }
 
 fun Tile.getWildernessLevel(): Int {
-    if (x !in 2941..3392 || y !in 3524..3968) {
+    if (x !in 2941..3392 || z !in 3524..3968) {
         return 0
     }
 
-    val y = if (this.y > 6400) this.y - 6400 else this.y
+    val y = if (this.z > 6400) this.z - 6400 else this.z
     return (((y - 3525) shr 3) + 1)
 }

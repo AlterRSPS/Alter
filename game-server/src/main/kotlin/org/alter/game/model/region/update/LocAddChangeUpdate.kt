@@ -18,7 +18,7 @@ class LocAddChangeUpdate(
         LocAddChange(
             entity.id,
             (entity.tile.x and 0x7),
-            (entity.tile.y and 0x7),
+            (entity.tile.z and 0x7),
             entity.type,
             entity.rot,
             OpFlags.ALL_SHOWN,

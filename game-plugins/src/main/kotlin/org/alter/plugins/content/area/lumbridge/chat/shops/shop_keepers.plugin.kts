@@ -1,7 +1,7 @@
 package org.alter.plugins.content.area.lumbridge.chat.shops
 
-spawn_npc(Npcs.SHOP_KEEPER, x = 3211, y = 3248, walkRadius = 3)
-spawn_npc(Npcs.SHOP_ASSISTANT, x = 3211, y = 3245, walkRadius = 3)
+spawn_npc(Npcs.SHOP_KEEPER, x = 3211, z = 3248, walkRadius = 3)
+spawn_npc(Npcs.SHOP_ASSISTANT, x = 3211, z = 3245, walkRadius = 3)
 
 val SHOP_KEEPERS = intArrayOf(Npcs.SHOP_KEEPER, Npcs.SHOP_ASSISTANT)
 

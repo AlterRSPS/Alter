@@ -193,7 +193,7 @@ class InstancedMapAllocator {
                                 val length = def.getRotatedLength(obj)
 
                                 val localX = obj.tile.x % 8
-                                val localZ = obj.tile.y % 8
+                                val localZ = obj.tile.z % 8
 
                                 val newObj =
                                     DynamicObject(
@@ -218,9 +218,9 @@ class InstancedMapAllocator {
                         copyChunk.blockedTiles.forEach { tile ->
                             if (tile.height == chunkH && tile.isInSameChunk(copyTile)) {
                                 val localX = tile.x % 8
-                                val localZ = tile.y % 8
+                                val localZ = tile.z % 8
                                 val local = baseTile.transformAndRotate(localX, localZ, chunk.rot)
-                                newChunk.getMatrix(chunkH).block(local.x % 8, local.y % 8, impenetrable = true)
+                                newChunk.getMatrix(chunkH).block(local.x % 8, local.z % 8, impenetrable = true)
                             }
                         }
                     } else {

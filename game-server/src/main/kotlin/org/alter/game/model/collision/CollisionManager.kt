@@ -60,9 +60,9 @@ class CollisionManager(val chunks: ChunkSet, val createChunksIfNeeded: Boolean =
         check(start.height == target.height) { "Tiles must be on the same height level." }
 
         var x0 = start.x
-        var y0 = start.y
+        var y0 = start.z
         val x1 = target.x
-        val y1 = target.y
+        val y1 = target.z
         val height = start.height
 
         val dx = Math.abs(x1 - x0)
@@ -111,9 +111,9 @@ class CollisionManager(val chunks: ChunkSet, val createChunksIfNeeded: Boolean =
         check(start.height == target.height) { "Tiles must be on the same height level." }
 
         var x0 = start.x
-        var y0 = start.y
+        var y0 = start.z
         val x1 = target.x
-        val y1 = target.y
+        val y1 = target.z
 
         val dx = Math.abs(x1 - x0)
         val dy = Math.abs(y1 - y0)
@@ -183,7 +183,7 @@ class CollisionManager(val chunks: ChunkSet, val createChunksIfNeeded: Boolean =
             }
 
             val localX = tile.x % Chunk.CHUNK_SIZE
-            val localZ = tile.y % Chunk.CHUNK_SIZE
+            val localZ = tile.z % Chunk.CHUNK_SIZE
 
             val matrix = chunk.getMatrix(tile.height)
             val pawns = CollisionFlag.pawnFlags()

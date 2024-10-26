@@ -76,7 +76,7 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
             }
 
             val x = tile.x
-            val y = tile.y
+            val y = tile.z
             val height = tile.height
             var width = def.sizeX
             var length = def.sizeY

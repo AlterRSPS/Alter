@@ -88,7 +88,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         srcSize: Int = 1,
     ): Boolean {
         val nextTile = source.step(direction)
-        val collisionFlags = collision[nextTile.x, nextTile.y, nextTile.height]
+        val collisionFlags = collision[nextTile.x, nextTile.z, nextTile.height]
 
         return if (pawn is Npc && pawn.canSwim) {
             // Allow movement if the FLOOR flag is set, regardless of other flags
@@ -97,9 +97,9 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
             stepValidator.canTravel(
                 level = source.height,
                 x = source.x,
-                z = source.y,
+                z = source.z,
                 offsetX = direction.getDeltaX(),
-                offsetZ = direction.getDeltaY(),
+                offsetZ = direction.getDeltaZ(),
                 size = srcSize,
             )
         }
@@ -388,7 +388,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
                     npc.id,
                     npc.tile.height,
                     npc.tile.x,
-                    npc.tile.y,
+                    npc.tile.z,
                     0,
                     npc.faceDirection.orientationValue,
                 )

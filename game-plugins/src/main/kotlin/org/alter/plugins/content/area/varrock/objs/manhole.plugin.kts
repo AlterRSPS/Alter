@@ -14,7 +14,7 @@ on_obj_option(obj = Objs.MANHOLE_882, option = "close") {
 
 on_obj_option(obj = Objs.MANHOLE_882, option = "climb-down") {
     val direction: Direction = Direction.SOUTH
-    player.faceTile(player.tile.transform(direction.getDeltaX(), direction.getDeltaY()))
+    player.faceTile(player.tile.transform(direction.getDeltaX(), direction.getDeltaZ()))
     player.moveTo(3237, 9858)
 }
 

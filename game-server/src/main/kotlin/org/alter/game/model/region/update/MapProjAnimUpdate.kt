@@ -26,9 +26,9 @@
                 sourceIndex = 0,
                 targetIndex = targetIndex,
                 xInZone = (entity.tile.x and 0x7),
-                zInZone = (entity.tile.y and 0x7),
+                zInZone = (entity.tile.z and 0x7),
                 deltaX = entity.targetTile.x - entity.tile.x,
-                deltaZ = entity.targetTile.y - entity.tile.y,
+                deltaZ = entity.targetTile.z - entity.tile.z,
             )
         } else {
             //Note: identical to above except that the targetIndex is 0.
@@ -43,9 +43,9 @@
                 sourceIndex = 0,
                 targetIndex = 0,
                 xInZone = (entity.tile.x and 0x7),
-                zInZone = (entity.tile.y and 0x7),
+                zInZone = (entity.tile.z and 0x7),
                 deltaX = entity.targetTile.x - entity.tile.x,
-                deltaZ = entity.targetTile.y - entity.tile.y,
+                deltaZ = entity.targetTile.z - entity.tile.z,
             )
         }
     }

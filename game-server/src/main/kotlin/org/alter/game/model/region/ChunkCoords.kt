@@ -9,37 +9,37 @@ import org.alter.game.model.Tile
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class ChunkCoords(val x: Int, val y: Int) {
-    fun toTile(): Tile = Tile((x + 6) shl 3, (y + 6) shl 3)
+class ChunkCoords(val x: Int, val z: Int) {
+    fun toTile(): Tile = Tile((x + 6) shl 3, (z + 6) shl 3)
 
     fun getSurroundingCoords(chunkRadius: Int = Chunk.CHUNK_VIEW_RADIUS): ObjectOpenHashSet<ChunkCoords> {
         val surrounding = ObjectOpenHashSet<ChunkCoords>()
 
         for (x in -chunkRadius..chunkRadius) {
             for (z in -chunkRadius..chunkRadius) {
-                surrounding.add(ChunkCoords(this.x + x, this.y + y))
+                surrounding.add(ChunkCoords(this.x + x, this.z + z))
             }
         }
         return surrounding
     }
 
-    override fun toString(): String = toStringHelper().add("x", x).add("y", y).toString()
+    override fun toString(): String = toStringHelper().add("x", x).add("z", z).toString()
 
     override fun equals(other: Any?): Boolean {
         if (other is ChunkCoords) {
-            return other.x == x && other.y == y
+            return other.x == x && other.z == z
         }
         return false
     }
 
-    override fun hashCode(): Int = (x shl 16) or y
+    override fun hashCode(): Int = (x shl 16) or z
 
     companion object {
         fun fromTile(
             x: Int,
-            y: Int,
-        ): ChunkCoords = ChunkCoords(x, y)
+            z: Int,
+        ): ChunkCoords = ChunkCoords(x, z)
 
-        fun fromTile(tile: Tile): ChunkCoords = fromTile(tile.topLeftRegionX, tile.topLeftRegionY)
+        fun fromTile(tile: Tile): ChunkCoords = fromTile(tile.topLeftRegionX, tile.topLeftRegionZ)
     }
 }

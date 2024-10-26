@@ -25,5 +25,5 @@ data class Area(val bottomLeftX: Int, val bottomLeftY: Int, val topRightX: Int, 
         y: Int,
     ): Boolean = x in bottomLeftX..topRightX && y in bottomLeftY..topRightY
 
-    fun contains(t: Tile): Boolean = t.x in bottomLeftX..topRightX && t.y in bottomLeftY..topRightY
+    fun contains(t: Tile): Boolean = t.x in bottomLeftX..topRightX && t.z in bottomLeftY..topRightY
 }

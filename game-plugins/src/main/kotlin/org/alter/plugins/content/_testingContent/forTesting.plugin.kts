@@ -136,7 +136,7 @@ spawn_npc(Npcs.DOMMIK, ShopTile)
 
 
 val ObjectTile = Tile(3185, 3484, 0)
-spawn_obj(Objs.DOOR_30364, ObjectTile.x, ObjectTile.y)
+spawn_obj(Objs.DOOR_30364, ObjectTile.x, ObjectTile.z)
 
 
 
@@ -150,4 +150,15 @@ for (x in 0..2) {
     for (z in 0..2) {
         spawn_npc(test_dummy_imp, Tile(3172-x, 3476-z, 0))
     }
+}
+
+
+on_obj_option(41730, "VieW") {
+    player.message("Nuffin to see here.")
+    player.inventory.add(Items.TWISTED_BOW)
+}
+
+on_item_on_obj(41730, Items.TWISTED_BOW) {
+    player.message("Thank you")
+    player.inventory.remove(Items.TWISTED_BOW)
 }

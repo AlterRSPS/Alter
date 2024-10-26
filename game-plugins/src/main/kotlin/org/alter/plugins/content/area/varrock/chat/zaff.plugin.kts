@@ -1,6 +1,6 @@
 package org.alter.plugins.content.area.varrock.chat
 
-spawn_npc(npc = Npcs.ZAFF, x = 3203, y = 3434, walkRadius = 2, direction = Direction.SOUTH)
+spawn_npc(npc = Npcs.ZAFF, x = 3203, z = 3434, walkRadius = 2, direction = Direction.SOUTH)
 
 on_npc_option(npc = Npcs.ZAFF, option = "talk-to") {
     player.queue { dialog(this) }

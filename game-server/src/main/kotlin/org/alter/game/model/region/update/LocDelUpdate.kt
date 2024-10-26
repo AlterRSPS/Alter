@@ -13,5 +13,5 @@ class LocDelUpdate(
     override val type: EntityUpdateType,
     override val entity: GameObject,
 ) : EntityUpdate<GameObject>(type, entity) {
-    override fun toMessage(): ZoneProt = LocDel((entity.tile.x and 0x7), (entity.tile.y and 0x7), entity.type, entity.rot)
+    override fun toMessage(): ZoneProt = LocDel((entity.tile.x and 0x7), (entity.tile.z and 0x7), entity.type, entity.rot)
 }

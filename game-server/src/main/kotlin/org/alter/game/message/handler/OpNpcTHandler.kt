@@ -19,40 +19,27 @@ class OpNpcTHandler : MessageHandler<OpNpcT> {
         val parent = message.selectedInterfaceId
         val child = message.selectedComponentId
 
-        TODO("Fix this shit. OpNpcTHandler.")
-        return
-
         if (!client.lock.canNpcInteract()) {
             return
         }
 
-        log(
-            client,
-            "Spell/Item on npc: npc=%d. index=%d, component=[%d:%d], movement=%d",
-            npc.id,
-            message.index,
-            parent,
-            child,
-            message.controlKey,
-        )
-
-        client.interruptQueues()
-        client.resetInteractions()
-
-        if (message.controlKey && client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
-            client.moveTo(client.world.findRandomTileAround(npc.tile, 1) ?: npc.tile)
-        }
-        //client.walkTo(client.world.findRandomTileAround(npc.tile, 1) ?: npc.tile)
-
         client.closeInterfaceModal()
         client.interruptQueues()
         client.resetInteractions()
+        println("$client, ${npc.id} ${message.index} $parent $child ${message.controlKey}")
         val verify = message.selectedObj
-
+        /**
+         * @TODO Need to validate this, currently working on path / movement.
+         */
         client.attr[INTERACTING_NPC_ATTR] = WeakReference(npc)
         client.attr[INTERACTING_COMPONENT_PARENT] = parent
         client.attr[INTERACTING_COMPONENT_CHILD] = child
 
+        /**
+         * Switch case between interface ids.
+         * On item use npc does not imediatly turn to player.
+         *
+         */
         if (child == 0) {
             if (!client.world.plugins.executeItemOnNpc(client, npc.id, verify)) {
                 if (client.world.devContext.debugItemActions) {

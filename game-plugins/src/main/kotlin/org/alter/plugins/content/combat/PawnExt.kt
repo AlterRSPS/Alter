@@ -49,7 +49,7 @@ suspend fun Pawn.canAttackMelee(
     target: Pawn,
     moveIfNeeded: Boolean,
 ): Boolean =
-    Combat.areBordering(tile.x, tile.y, getSize(), getSize(), target.tile.x, target.tile.y, target.getSize(), target.getSize()) ||
+    Combat.areBordering(tile.x, tile.z, getSize(), getSize(), target.tile.x, target.tile.z, target.getSize(), target.getSize()) ||
         moveIfNeeded && moveToAttackRange(it, target, distance = 0, projectile = false)
 
 fun Pawn.dealHit(

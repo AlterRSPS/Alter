@@ -128,12 +128,12 @@ abstract class KotlinPlugin(
     fun spawn_npc(
         npc: Int,
         x: Int,
-        y: Int,
+        z: Int,
         height: Int = 0,
         walkRadius: Int = 0,
         direction: Direction = Direction.SOUTH,
     ) {
-        val n = Npc(npc, Tile(x, y, height), world)
+        val n = Npc(npc, Tile(x, z, height), world)
         n.respawns = true
         n.walkRadius = walkRadius
         n.lastFacingDirection = direction
@@ -162,12 +162,12 @@ abstract class KotlinPlugin(
     fun spawn_obj(
         obj: Int,
         x: Int,
-        y: Int,
+        z: Int,
         height: Int = 0,
         type: Int = 10,
         rot: Int = 0,
     ) {
-        val o = DynamicObject(obj, type, rot, Tile(x, y, height))
+        val o = DynamicObject(obj, type, rot, Tile(x, z, height))
         r.objSpawns.add(o)
     }
 
@@ -178,11 +178,11 @@ abstract class KotlinPlugin(
         item: Int,
         amount: Int,
         x: Int,
-        y: Int,
+        z: Int,
         height: Int = 0,
         respawnCycles: Int = GroundItem.DEFAULT_RESPAWN_CYCLES,
     ) {
-        val ground = GroundItem(item, amount, Tile(x, y, height))
+        val ground = GroundItem(item, amount, Tile(x, z, height))
         ground.respawnCycles = respawnCycles
         r.itemSpawns.add(ground)
     }

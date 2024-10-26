@@ -11,11 +11,11 @@ class RsmodNpcIndexSupplier(val world: World) : NpcIndexSupplier {
         localPlayerIndex: Int,
         level: Int,
         x: Int,
-        y: Int,
+        z: Int,
         viewDistance: Int,
     ): Iterator<Int> {
         val player = world.players[localPlayerIndex] ?: error("Player not found at index: $localPlayerIndex")
-        val tile = Tile(x, y, level)
+        val tile = Tile(x, z, level)
         val chunk = world.chunks.get(tile) ?: error("Invalid chunk for : $tile")
 
         val surrounding = chunk.coords.getSurroundingCoords()

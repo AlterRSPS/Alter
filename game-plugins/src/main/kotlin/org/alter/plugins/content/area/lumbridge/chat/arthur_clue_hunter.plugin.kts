@@ -1,6 +1,6 @@
 package org.alter.plugins.content.area.lumbridge.chat
 
-spawn_npc(Npcs.ARTHUR_THE_CLUE_HUNTER, x = 3229, y = 3236, direction = Direction.NORTH)
+spawn_npc(Npcs.ARTHUR_THE_CLUE_HUNTER, x = 3229, z = 3236, direction = Direction.NORTH)
 
 val YELL_DELAY = TimerKey()
 

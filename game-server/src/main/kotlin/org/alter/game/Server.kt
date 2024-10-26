@@ -89,10 +89,13 @@ class Server {
                 revision = gameProperties.get<Int>("revision")!!,
                 cycleTime = gameProperties.getOrDefault("cycle-time", 600),
                 playerLimit = gameProperties.getOrDefault("max-players", 2048),
+                /**
+                 * @TODO Values do not output any context if any of them r null or throw exception on start
+                 */
                 home =
                     Tile(
                         gameProperties.get<Int>("home-x")!!,
-                        gameProperties.get<Int>("home-y")!!,
+                        gameProperties.get<Int>("home-z")!!,
                         gameProperties.getOrDefault("home-height", 0),
                     ),
                 skillCount = gameProperties.getOrDefault("skill-count", SkillSet.DEFAULT_SKILL_COUNT),

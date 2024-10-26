@@ -36,8 +36,8 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_WEST_PROJECTILE_BLOCKER
 import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_WEST_ROUTE_BLOCKER
 
 fun CollisionFlagMap.isClipped(tile: Tile): Boolean {
-    val zoneIndex = zoneIndex(tile.x, tile.y, tile.height)
-    val tileIndex = tileIndex(tile.x, tile.y)
+    val zoneIndex = zoneIndex(tile.x, tile.z, tile.height)
+    val tileIndex = tileIndex(tile.x, tile.z)
     return flags[zoneIndex]?.get(tileIndex) != 0
 }
 
@@ -52,9 +52,9 @@ fun raycastTiles(
     check(start.height == target.height) { "Tiles must be on the same height level." }
 
     var x0 = start.x
-    var y0 = start.y
+    var y0 = start.z
     val x1 = target.x
-    val y1 = target.y
+    val y1 = target.z
 
     val dx = Math.abs(x1 - x0)
     val dy = Math.abs(y1 - y0)
@@ -102,9 +102,9 @@ fun CollisionFlagMap.raycast(
     check(start.height == target.height) { "Tiles must be on the same height level." }
 
     var x0 = start.x
-    var y0 = start.y
+    var y0 = start.z
     val x1 = target.x
-    val y1 = target.y
+    val y1 = target.z
     val height = start.height
     val validator = LineValidator(this)
     return if (projectile) {
@@ -452,8 +452,8 @@ private fun CollisionFlagMap.addCollisionFlag(
     mask: Int,
     add: Boolean,
 ) = when {
-    add -> add(tile.x, tile.y, tile.height, mask)
-    else -> remove(tile.x, tile.y, tile.height, mask)
+    add -> add(tile.x, tile.z, tile.height, mask)
+    else -> remove(tile.x, tile.z, tile.height, mask)
 }
 
 // private fun CollisionFlagMap.addFloorCollision(tile: Tile) = addCollisionFlag(tile, FLOOR, true)

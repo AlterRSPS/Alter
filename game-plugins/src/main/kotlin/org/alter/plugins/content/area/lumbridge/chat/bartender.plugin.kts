@@ -1,6 +1,6 @@
 package org.alter.plugins.content.area.lumbridge.chat
 
-spawn_npc(Npcs.BARTENDER_7546, x = 3232, y = 3241, direction = Direction.WEST)
+spawn_npc(Npcs.BARTENDER_7546, x = 3232, z = 3241, direction = Direction.WEST)
 
 on_npc_option(Npcs.BARTENDER_7546, option = "talk-to", lineOfSightDistance = 4) {
     player.queue { dialog() }

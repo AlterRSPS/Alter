@@ -30,7 +30,7 @@ class OnlinePlayersController(req: Request, resp: Response, auth: Boolean) : Con
             pos.addProperty("regionId", player.tile.regionId)
             pos.addProperty("xPos", player.tile.x)
             pos.addProperty("yPos", player.tile.height)
-            pos.addProperty("zPos", player.tile.y)
+            pos.addProperty("zPos", player.tile.z)
 
             val posArr = JsonArray()
             posArr.add(pos)

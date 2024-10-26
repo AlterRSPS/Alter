@@ -1,14 +1,19 @@
 package org.alter.game.model.move
 
-import org.alter.game.info.MovementType
+import org.alter.game.info.NpcInfo
 import org.alter.game.info.PlayerInfo
 import org.alter.game.model.Direction
+import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
+import org.alter.game.model.entity.Npc
 import org.alter.game.model.move.MovementQueue.Step
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
+import org.rsmod.game.pathfinder.collision.CollisionStrategy
+import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import java.util.*
 import kotlin.math.abs
+import kotlin.math.sign
 
 /**
  * Responsible for handling a queue of [Step]s for a [Pawn].
@@ -45,56 +50,60 @@ class MovementQueue(val pawn: Pawn) {
         addStep(current, step, type)
     }
 
-    fun nextStep(): Step? {
+    fun nextStep(step: Tile): Step? {
         if (!this.hasDestination()) return null
+        // val current = if (steps.any()) steps.peekLast().tile else pawn.tile
         val curX = pawn.tile.x
-        val curZ = pawn.tile.y
-        //val dest
+        val curY = pawn.tile.z
+
+        val destX = step.x
+        val destY = step.z
+
+        if (curX != destX || curY != destY) {
+            val dx = (destX - curX).sign
+            val dy = (destY - curY).sign
+            // if (canStep(dx, dy)) return Step(curX + dx, curY + dy)
+        }
         return null
     }
 
+    fun Pawn.consumeNextTurnIfArrivedAtCurrent() {
+        if (this.pathGoal != null) {
 
+        }
+    }
+
+    fun canStep(
+        dx: Int,
+        dy: Int,
+        srcSize: Int = 1,
+        collision: CollisionStrategy = CollisionStrategies.Normal
+    ): Boolean {
+        return pawn.world.stepValidator.canTravel(
+            level = pawn.tile.height,
+            x = pawn.tile.x,
+            z = pawn.tile.z,
+            offsetX = dx,
+            offsetZ = dy,
+            size = srcSize,
+            collision = collision
+        )
+    }
     /**
-     * @TODO
+     * @TODO Add support for crawling. And have rule-set implemented for npc travel
      */
     fun cycle() {
         var next = steps.poll()
         val pathSize = steps.size
         if (next != null) {
             var tile = pawn.tile
+            val tail = pawn.tile
             var walkDirection: Direction?
             var runDirection: Direction? = null
             walkDirection = Direction.between(tile, next.tile)
             if (walkDirection != Direction.NONE &&
                 (pawn.world.canTraverse(tile, walkDirection, pawn))
             ) {
-                /** @TODO Remove this shit
-                if (pawn is Npc) {
-                    /**
-                     * @TODO uhh what?
-                     * At least from the looks of it looks like Npc clipping. So that npcs wouldnt stack on each other? Gay
-                     */
-                    val entitiesClipped = mutableListOf<Pawn>()
-
-                    pawn.world.chunks
-                        .get(next.tile, createIfNeeded = true)!!
-                        .getEntities<Npc>(next.tile, EntityType.NPC)
-                        .filter { it.tile == next.tile }
-                        .let { entitiesClipped.addAll(it) }
-
-                    pawn.world.chunks
-                        .get(next.tile, createIfNeeded = true)!!
-                        .getEntities<Player>(next.tile, EntityType.CLIENT)
-                        .filter { it.tile == next.tile }
-                        .let { entitiesClipped.addAll(it) }
-
-                    if (entitiesClipped.isNotEmpty()) {
-                        entitiesClipped.clear()
-                        clear()
-                        return
-                    }
-                }
-                */
                 tile = Tile(next.tile)
                 pawn.lastFacingDirection = walkDirection
                 val running =
@@ -126,21 +135,15 @@ class MovementQueue(val pawn: Pawn) {
                 if (pawn is Player) {
                     PlayerInfo(pawn).setMoveSpeed(if (pawn.isRunning() && pathSize > 0) MovementType.RUN else MovementType.WALK)
                 }
-            }
-            if (pawn.pathGoal != null) {
-                /**
-                 * @TODO `!!` yh is not good but for now. Just testing purpose.
-                 * @TODO Solution did stop new path but also mmm went underneath the targets tile..
-                 */
-                //if (pawn.tile.isWithinRadius(pawn.pathGoal!!.goal, pawn.pathGoal!!.range)) {
-                if (pawn.tile.getDistance(pawn.pathGoal!!.goal) <= pawn.pathGoal!!.range) {
-                    println("Pawn stopped")
-                    pawn.stopMovement()
+                if (pawn.entityType.isNpc) {
+                    pawn as Npc
+                    NpcInfo(pawn).walk(tile.x - tail.x, tile.z - tail.z)
                 }
             }
         }
 
     }
+
 
     private fun addStep(
         current: Tile,
@@ -148,7 +151,7 @@ class MovementQueue(val pawn: Pawn) {
         type: StepType,
     ) {
         var dx = next.x - current.x
-        var dy = next.y - current.y
+        var dy = next.z - current.z
         val delta = Math.max(abs(dx), abs(dy))
 
         for (i in 0 until delta) {
@@ -165,7 +168,7 @@ class MovementQueue(val pawn: Pawn) {
             }
 
             val step = next.transform(-dx, -dy)
-            println("Adding a step: $step")
+            //println("Adding a step: $step")
             steps.add(Step(step, type))
         }
     }

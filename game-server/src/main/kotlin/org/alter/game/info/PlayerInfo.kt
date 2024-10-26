@@ -6,6 +6,7 @@ import org.alter.game.model.ForcedMovement
 import org.alter.game.model.Tile
 import org.alter.game.model.appearance.Gender
 import org.alter.game.model.entity.Player
+import org.alter.game.model.move.MovementType
 
 class PlayerInfo(var player: Player) {
     val info = player.playerInfo.avatar.extendedInfo
@@ -105,9 +106,9 @@ class PlayerInfo(var player: Player) {
         length: Int = 1,
     ) {
         val srcX = player.tile.x * 64
-        val srcZ = player.tile.y * 64
+        val srcZ = player.tile.z * 64
         val dstX = face.x * 64
-        val dstZ = face.y * 64
+        val dstZ = face.z * 64
         var degreesX = (srcX - dstX).toDouble()
         var degreesZ = (srcZ - dstZ).toDouble()
         degreesX += (Math.floor(width / 2.0)) * 32
@@ -138,14 +139,4 @@ class PlayerInfo(var player: Player) {
     fun setMoveSpeed(movementType: MovementType) {
         info.setMoveSpeed(movementType.value)
     }
-}
-
-/**
- * @TODO Separate to it's own class.
- */
-enum class MovementType(val value: Int) {
-    STATIONARY(-1),
-    CRAWL(0),
-    WALK(1),
-    RUN(2)
 }

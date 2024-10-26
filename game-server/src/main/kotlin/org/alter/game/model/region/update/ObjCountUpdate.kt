@@ -21,6 +21,6 @@ class ObjCountUpdate(
             oldAmount,
             newAmount,
             (entity.tile.x and 0x7),
-            (entity.tile.y and 0x7),
+            (entity.tile.z and 0x7),
         )
 }

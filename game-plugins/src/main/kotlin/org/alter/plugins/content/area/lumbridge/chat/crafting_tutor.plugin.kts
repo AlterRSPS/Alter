@@ -1,6 +1,6 @@
 package org.alter.plugins.content.area.lumbridge.chat
 
-spawn_npc(Npcs.CRAFTING_TUTOR, x = 3211, y = 3212, 1, 1, Direction.WEST)
+spawn_npc(Npcs.CRAFTING_TUTOR, x = 3211, z = 3212, 1, 1, Direction.WEST)
 
 on_npc_option(npc = Npcs.CRAFTING_TUTOR, option = "talk-to") {
     player.queue { dialog() }

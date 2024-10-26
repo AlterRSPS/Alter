@@ -2,22 +2,29 @@
 - [x] Implement weighted drop tables
   - [x] For Npc drops
   - [ ] Rollable tables for like `Barrows Boss Reward Chest`
+  - [ ] Improve it, currently it's too spread out need to sort it out, and ofc clean up code.
 - [x] Implement new defence stuff [Elemental weakness / Melee Attack Types]
   - Implemented properties not functionality
-- [ ] Skill level ups logic, for jingles and etc..
-- [ ] Clean up AlterRSPS Organization repositories + Update main header
+- [ ]  Level ups
+  - [ ] Unique texts and Jingles, information about which sound to play in which state is on Wiki. As for msgs it's on Git.
 - [x] Configure Unequip tab.
 - [ ] Need to figure out how region music are played, as if i mute music, it won't play anymore. (Need to rejoin the region we could setup a event for that.)
 - [x] World map
   - [ ] Full Screen mode
 - [x] Fix Tournament interface
 - [ ] Ghosted ground items (When changing character height level)
-- [ ] Npcs that don't have anything special registration from `Data/`
-- [ ] Clipping
+- [ ] Npcs without special combat can be configured from `data` folder.
+- [ ] Pawn clipping either Rule-set within pawn or Attribute keys
+  - [ ] In some areas Player should be able to Fly/Swim
+  - [ ] Some npcs can only be on water meanwhile others can wander trough out objects like fences
 - [x] Change current Path Finder to RSMod's 2.0 path finder
-  - It's implemented right now but withit came alot of bugs.
+  - It's implemented right now but with it came alot of bugs.
   - [ ] Attack range [Basicaly you can attack from anywhere no range limit.]
   - [x] Walking/Running is fucked
+  - [ ] Ground loot interacting
+  - [ ] Npc interacting
+  - [ ] Item on Entity
+
 - [ ] Handler for `Caused by: java.lang.IllegalStateException: Invalid RSA check '79'. This typically means the RSA in the client does not match up with the server.`
 - [ ] rename all KotlinPlugin.kt methods from snake_case to camelCase @Grian
 - [ ] Add Clip flags to Npc/Player, flags if they can go above water / objects
@@ -31,8 +38,17 @@
 - [ ] Uhh so all this time path finder was not the problem it was the MovementQueue :face_palm:
     - [ ] <-- Figure out way for line of sight ex: Grand Exchange nuggets <-- Will be same as attack range
 - [ ] Chat is still some times vanishing on login
+- [ ] When player kills NPC , he does not get canceled out of combat
 
-##
+
+## Check list:
+- [ ] GE Clan hall from tile 3185 3481 <-- Compare how it's on osrs
+
+## Termins:
+- Entity - either Npc or GameObject or Player
+- Special combat - Npcs like `Aberrant Spectre` use coded attacks, meanwhile npc like `Man` can be left out without code just with configurations.
+
+## 
 - Instead of Kts make it EventBus
   - Ofc need to learn more...
 - Swap Items via TOML

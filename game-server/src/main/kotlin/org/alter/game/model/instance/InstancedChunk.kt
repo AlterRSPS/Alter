@@ -15,7 +15,7 @@ data class InstancedChunk(var packed: Int) {
     // TODO ADVO check over these when sober
     val height: Int get() = (packed shr 24) and 0x3
     val x: Int get() = zoneX shl 3
-    val y: Int get() = zoneY shl 3
+    val y: Int get() = zoneZ shl 3
     val zoneX: Int get() = (packed shr 14 and 0x3FF)
-    val zoneY: Int get() = (packed shr 3 and 0x7FF)
+    val zoneZ: Int get() = (packed shr 3 and 0x7FF)
 }

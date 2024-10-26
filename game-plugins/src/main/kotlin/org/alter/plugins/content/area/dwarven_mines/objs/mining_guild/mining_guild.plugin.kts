@@ -8,7 +8,7 @@ on_obj_option(Objs.DOOR_30364, option = "open") {
             chatNpc("Sorry, but you're not experienced enough to go in<br>there.", npc = 7712)
             messageBox("You need a ${Skills.getSkillName(player.world, Skills.MINING)} level of 60 to access the Mining Guild.")
         }
-    } else if (player.tile.x == 3046 && player.tile.y == 9757) {
+    } else if (player.tile.x == 3046 && player.tile.z == 9757) {
         player.queue {
             player.lock()
             player.moveTo(3046, 9756)
@@ -21,7 +21,7 @@ on_obj_option(Objs.DOOR_30364, option = "open") {
             player.unlock()
         }
     }
-    if (player.tile.x == 3046 && player.tile.y == 9756) {
+    if (player.tile.x == 3046 && player.tile.z == 9756) {
         player.queue {
             player.lock()
             player.moveTo(3046, 9757)

@@ -415,25 +415,27 @@ open class Player(world: World) : Pawn(world) {
      */
     fun register(): Boolean = world.register(this)
 
+    /**
+     * @TODO
+     * If im not mistaking the [npcInfo] shit should be pulled out and placed into it's own class and update should happend when Player enters region
+     */
     lateinit var playerInfo: PlayerInfo
-
     lateinit var npcInfo: NpcInfo
     lateinit var worldEntityInfo: WorldEntityInfo
     var session: Session<Client>? = null
     var buildArea: BuildArea = BuildArea.INVALID
-
     /**
      * Handles any logic that should be executed upon log in.
      */
     fun login() {
-        playerInfo.updateCoord(tile.height, tile.x, tile.y)
-        npcInfo.updateCoord(-1, tile.height, tile.x, tile.y)
-        worldEntityInfo.updateCoord(-1, tile.height, tile.x, tile.y)
+        playerInfo.updateCoord(tile.height, tile.x, tile.z)
+        npcInfo.updateCoord(-1, tile.height, tile.x, tile.z)
+        worldEntityInfo.updateCoord(-1, tile.height, tile.x, tile.z)
 
         if (entityType.isHumanControlled) {
-            write(RebuildLogin(tile.x ushr 3, tile.y shr 3, -1, world.xteaKeyService!!, playerInfo))
+            write(RebuildLogin(tile.x ushr 3, tile.z shr 3, -1, world.xteaKeyService!!, playerInfo))
             buildArea =
-                BuildArea((tile.x ushr 3) - 6, (tile.y ushr 3) - 6).apply {
+                BuildArea((tile.x ushr 3) - 6, (tile.z ushr 3) - 6).apply {
                     playerInfo.updateBuildArea(-1, this)
                     npcInfo.updateBuildArea(-1, this)
                     worldEntityInfo.updateBuildArea(this)

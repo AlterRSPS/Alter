@@ -1,6 +1,6 @@
 package org.alter.plugins.content.area.lumbridge.chat.shops
 
-spawn_npc(Npcs.BOB_10619, x = 3230, y = 3203, walkRadius = 4)
+spawn_npc(Npcs.BOB_10619, x = 3230, z = 3203, walkRadius = 4)
 
 on_npc_option(Npcs.BOB_10619, "trade") {
     player.openShop("Bob's Brilliant Axes.")

@@ -30,6 +30,7 @@ object GroundItemPathAction {
         val item = player.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
         val opt = player.attr[INTERACTING_OPT_ATTR]!!
         val route = player.walkToInteract(item.tile)
+        TODO("Fix this one! :D")
         player.queue(TaskPriority.STANDARD) {
             terminateAction = {
                 player.stopMovement()
@@ -37,10 +38,10 @@ object GroundItemPathAction {
             }
             if (route.waypoints.isEmpty()) {
                 handleInteraction(player,item,opt)
-            } else if (awaitArrivalInteraction(route)) {
-                wait(1)
-                handleInteraction(player,item,opt)
-            }
+            } //else if (awaitArrivalInteraction(route)) {
+              //  wait(1)
+              //  handleInteraction(player,item,opt)
+           // }
         }
     }
     private fun handleInteraction(p: Player, item: GroundItem, opt: Int) {

@@ -1,6 +1,6 @@
 package org.alter.plugins.content.area.lumbridge.chat
 
-spawn_npc(Npcs.PRAYER_TUTOR, x = 3242, y = 3214, walkRadius = 3)
+spawn_npc(Npcs.PRAYER_TUTOR, x = 3242, z = 3214, walkRadius = 3)
 
 on_npc_option(Npcs.PRAYER_TUTOR, option = "talk-to") {
     player.queue { dialog() }

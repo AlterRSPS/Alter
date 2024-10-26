@@ -2,7 +2,7 @@ package org.alter.plugins.content.objects.ditch
 
 on_obj_option(23271, "cross") {
     val ditch = player.getInteractingGameObj()
-    val sideCross = player.tile.y == ditch.tile.y
+    val sideCross = player.tile.z == ditch.tile.z
 
     val endTile: Tile
     val directionAngle: Int
@@ -18,7 +18,7 @@ on_obj_option(23271, "cross") {
             directionAngle = Direction.WEST.angle
         }
     } else {
-        val southOfDitch = player.tile.y < ditch.tile.y
+        val southOfDitch = player.tile.z < ditch.tile.z
 
         if (southOfDitch) {
             endTile = ditch.tile.step(Direction.NORTH, 2)

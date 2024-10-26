@@ -1,7 +1,7 @@
 package org.alter.plugins.content.area.lumbridge.chat
 
 // Hans
-spawn_npc(Npcs.HANS, x = 3221, y = 3219, direction = Direction.EAST)
+spawn_npc(Npcs.HANS, x = 3221, z = 3219, direction = Direction.EAST)
 
 // spawn_npc(Npcs.LUMBRIDGE_GUIDE_306, x = 3238, y = 3220, direction = Direction.WEST)
 spawn_npc(Npcs.FATHER_AERECK, 3243, 3206, 0, 3)
@@ -20,7 +20,7 @@ spawn_npc(Npcs.WOODSMAN_TUTOR, 3228, 3246, 0, 1)
 spawn_npc(Npcs.SMITHING_APPRENTICE, 3228, 3254, 0, 1)
 
 // duke horacio
-spawn_npc(Npcs.DUKE_HORACIO, x = 3212, y = 3220, height = 1, walkRadius = 4, direction = Direction.SOUTH)
+spawn_npc(Npcs.DUKE_HORACIO, x = 3212, z = 3220, height = 1, walkRadius = 4, direction = Direction.SOUTH)
 
 spawn_npc(Npcs.COUNT_CHECK, 3238, 3199, 0, 0, Direction.NORTH)
 

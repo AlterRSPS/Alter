@@ -10,6 +10,6 @@ class Region(val region: Int) {
 
     val tiles =
         Array<Tile>(64 * 64) {
-            Tile(baseCoord.x + it % 64, baseCoord.y + it / 64, baseCoord.height)
+            Tile(baseCoord.x + it % 64, baseCoord.z + it / 64, baseCoord.height)
         }
 }

@@ -17,10 +17,10 @@ fun printGridAroundTile(
     val builder = StringBuilder()
     builder.append("---------------------------------------------------\n")
     // Start from the top (north) and move downwards (south)
-    for (y in (centerTile.y + areaSize) downTo (centerTile.y - areaSize)) {
+    for (y in (centerTile.z + areaSize) downTo (centerTile.z - areaSize)) {
         for (x in (centerTile.x - areaSize)..(centerTile.x + areaSize)) {
             val tile = Tile(x, y)
-            if (x == centerTile.x && y == centerTile.y) {
+            if (x == centerTile.x && y == centerTile.z) {
                 builder.append("x")
             } else if (world.collision.isClipped(tile)) {
                 builder.append("+")
