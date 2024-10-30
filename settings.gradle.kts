@@ -24,7 +24,6 @@ include(":util")
 include(":game-plugins")
 include(":game-api")
 include(":game-server")
-include(":data-builder")
 include(":plugins")
 includePlugins(project(":plugins"))
 fun includePlugins(pluginProject: ProjectDescriptor) {
