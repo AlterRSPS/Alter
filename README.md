@@ -42,9 +42,6 @@ Due to the plugin capabilities, even owners without programming experience can j
 * If you only see `Alter Loaded up in x ms.` you messed up somewhere.
 * You can connect what ever client you want (ofc it has to follow OSRS protocols.)
 
-# What client do i use?
-* https://github.com/AlterRSPS/devious-client-rsps
-
 * ### Tools:
 * [CS2 Editor](https://github.com/blurite/cs2-editor), Big thanks to [Blurite Team](https://github.com/blurite) for maintaining such good tool.
 * [Z-Kris's Event Inspector](https://media.z-kris.com/runelite-event-inspector-client.jar) , Want to dump osrs data easily? or see hows what being sent? Use this RL Client it's pretty easy to use.
