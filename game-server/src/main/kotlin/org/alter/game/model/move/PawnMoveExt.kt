@@ -1,13 +1,13 @@
 package org.alter.game.model.move
 
 import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
+import org.alter.game.model.LockState
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.CLIENT_KEY_COMBINATION
 import org.alter.game.model.entity.*
+import org.alter.game.model.move.MovementQueue.StepType
 import org.alter.game.model.priv.Privilege
-import org.alter.game.model.queue.QueueTask
 import org.rsmod.game.pathfinder.Route
-import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import java.util.*
 
 /**
@@ -56,13 +56,13 @@ fun Pawn.setMapFlag(
  */
 fun Pawn.walkPath(
     path: Route,
-    stepType: MovementQueue.StepType,
+    stepType: StepType,
 ) {
     walkPath(path.toTileQueue(), stepType)
 }
 fun Pawn.walkPath(
     path: Queue<Tile>,
-    stepType: MovementQueue.StepType,
+    stepType: StepType,
 ) {
     if (path.isEmpty()) {
         setMapFlag()
@@ -99,12 +99,16 @@ fun Route.toTileQueue() : Queue<Tile> {
 
 fun Pawn.stopMovement() = movementQueue.clear()
 
-fun Pawn.walkToInteract(
+fun Pawn.walkTo(
     targetX: Int,
     targetY: Int,
-    stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL,
-) : Route {
+    stepType: StepType = StepType.NORMAL,
+) {
     if (this is Player) {
+        if (!lock.canMove()) {
+            writeMessage("You are locked")
+            return
+        }
         this.closeInterfaceModal()
         this.interruptQueues()
         this.resetInteractions()
@@ -122,8 +126,7 @@ fun Pawn.walkToInteract(
     } else {
         walkPath(route.toTileQueue(), stepType)
     }
-    return route
 }
-fun Pawn.walkToInteract(tile: Tile, stepType: MovementQueue.StepType = MovementQueue.StepType.NORMAL) = walkToInteract(targetX = tile.x, targetY = tile.z, stepType = stepType)
-fun Pawn.hasMoveDestination(): Boolean = movementQueue.hasDestination()
+fun Pawn.walkTo(tile: Tile, stepType: StepType = StepType.NORMAL) = walkTo(targetX = tile.x, targetY = tile.z, stepType = stepType)
 
+fun Pawn.hasMoveDestination(): Boolean = movementQueue.hasDestination()

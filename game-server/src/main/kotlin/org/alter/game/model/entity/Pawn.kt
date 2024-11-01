@@ -41,8 +41,6 @@ abstract class Pawn(val world: World) : Entity() {
      * @param [goal] - Tile of target
      */
     data class Interaction(val type: EntityType, val range: Int, val goal: Tile)
-    var pathGoal: Interaction? = null
-
     /**
      * The index assigned when this [Pawn] is successfully added to a [PawnList].
      */
@@ -235,9 +233,6 @@ abstract class Pawn(val world: World) : Entity() {
          * combat <strong>unless</strong> they have a custom npc combat plugin
          * bound to their npc id.
          */
-        /**
-         * @TODO Testing
-         */
         if (entityType.isPlayer || this is Npc && !world.plugins.executeNpcCombat(this)) {
             world.plugins.executeCombat(this)
         }
@@ -304,11 +299,6 @@ abstract class Pawn(val world: World) : Entity() {
                         if (hitmark.damage > hp) {
                             hitmark.damage = hp
                         }
-                        /**
-                         * @TODO
-                         * Come up w some solution for attackerIndex, If im not mistaking at God wars / Nex you suppose to see other's HitSplats need to research this shit.
-                         * As for hitbar types we add them later onto Npc Class, assign em from (set_npc_combat_def)
-                         */
                         if (entityType.isNpc) {
                             val npc = this as Npc
                             npc.avatar.extendedInfo.addHitMark(
@@ -320,7 +310,6 @@ abstract class Pawn(val world: World) : Entity() {
                             npc.avatar.extendedInfo.addHeadBar(
                                 sourceIndex = hitmark.attackerIndex,
                                 selfType = 0,
-                                //endFill = 30,
                                 startFill = calculateFill((((this.getCurrentHp().toDouble() - hitmark.damage) / this.getMaxHp().toDouble()) * 100), 30)
                             )
                         } else if (entityType.isPlayer) {
@@ -334,7 +323,6 @@ abstract class Pawn(val world: World) : Entity() {
                             player.avatar.extendedInfo.addHeadBar(
                                 sourceIndex = hitmark.attackerIndex,
                                 selfType = 0,
-                                //endFill = 30,
                                 startFill = calculateFill((((this.getCurrentHp().toDouble() - hitmark.damage) / this.getMaxHp().toDouble()) * 100), 30)
                             )
                         }

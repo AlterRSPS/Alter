@@ -5,10 +5,12 @@ import org.alter.game.info.PlayerInfo
 import org.alter.game.model.Direction
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
+import org.alter.game.model.attr.FACING_PAWN_ATTR
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.move.MovementQueue.Step
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
+import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import java.util.*
@@ -50,6 +52,9 @@ class MovementQueue(val pawn: Pawn) {
         addStep(current, step, type)
     }
 
+    /**
+     * @TODO
+     */
     fun nextStep(step: Tile): Step? {
         if (!this.hasDestination()) return null
         // val current = if (steps.any()) steps.peekLast().tile else pawn.tile
@@ -67,11 +72,16 @@ class MovementQueue(val pawn: Pawn) {
         return null
     }
 
-    fun Pawn.consumeNextTurnIfArrivedAtCurrent() {
-        if (this.pathGoal != null) {
 
-        }
-    }
+    fun canStep(tile: Tile,
+                srcSize: Int = 1,
+                collision: CollisionStrategy = CollisionStrategies.Normal
+    ) = canStep(
+        tile.x,
+        tile.z,
+        srcSize,
+        collision
+    )
 
     fun canStep(
         dx: Int,
@@ -141,10 +151,7 @@ class MovementQueue(val pawn: Pawn) {
                 }
             }
         }
-
     }
-
-
     private fun addStep(
         current: Tile,
         next: Tile,
@@ -168,7 +175,6 @@ class MovementQueue(val pawn: Pawn) {
             }
 
             val step = next.transform(-dx, -dy)
-            //println("Adding a step: $step")
             steps.add(Step(step, type))
         }
     }

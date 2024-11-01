@@ -29,39 +29,42 @@ object GroundItemPathAction {
         val player = ctx as Player
         val item = player.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
         val opt = player.attr[INTERACTING_OPT_ATTR]!!
-        val route = player.walkToInteract(item.tile)
-        TODO("Fix this one! :D")
+
         player.queue(TaskPriority.STANDARD) {
             terminateAction = {
                 player.stopMovement()
                 player.setMapFlag()
             }
-            if (route.waypoints.isEmpty()) {
-                handleInteraction(player,item,opt)
-            } //else if (awaitArrivalInteraction(route)) {
-              //  wait(1)
-              //  handleInteraction(player,item,opt)
-           // }
-        }
-    }
-    private fun handleInteraction(p: Player, item: GroundItem, opt: Int) {
-        if (p.tile.sameAs(item.tile)) {
-            handleAction(p, item, opt)
-        } else if (p.tile.isWithinRadius(item.tile, 1)) {
-            p.queue {
-                p.lock
-                p.faceTile(item.tile)
-                if (!p.isPathBlocked(item.tile)) {
-                        p.animate(832, 4)
-                        wait(1)
-                        handleAction(p, item, opt)
+            val route = player.world.pathFinder.findPath(
+                level = item.tile.height,
+                srcX = player.tile.x,
+                srcZ = player.tile.z,
+                destX = item.tile.x,
+                destZ = item.tile.z
+            )
+            player.walkPath(route, MovementQueue.StepType.NORMAL)
+            while (player.hasMoveDestination()) {
+                wait(1)
+            }
+
+
+            if (player.tile.sameAs(item.tile)) {
+                handleAction(player, item, opt)
+            } else if (player.tile.isWithinRadius(item.tile, 1)) {
+                player.lock
+                player.faceTile(item.tile)
+                if (!player.isPathBlocked(item.tile)) {
+                    player.animate(832, 4)
+                    wait(2)
+                    handleAction(player, item, opt)
                 } else {
-                    p.writeMessage(Entity.YOU_CANT_REACH_THAT)
+                    player.writeMessage(Entity.YOU_CANT_REACH_THAT)
                 }
-                p.unlock()
+                player.unlock()
             }
         }
     }
+
     /**
      * @TODO Max_Int value handling
      */
@@ -116,7 +119,8 @@ object GroundItemPathAction {
             }
             p.attr[GROUNDITEM_PICKUP_TRANSACTION] = WeakReference(add)
             p.world.plugins.executeGlobalGroundItemPickUp(p)
-            p.world.getService(LoggerService::class.java, searchSubclasses = true)?.logItemPickUp(p, Item(groundItem.item, add.completed))
+            p.world.getService(LoggerService::class.java, searchSubclasses = true)
+                ?.logItemPickUp(p, Item(groundItem.item, add.completed))
         } else if (opt == ITEM_ON_GROUND_ITEM_OPTION) {
             val item = p.attr[INTERACTING_ITEM]?.get() ?: return
             val handled = p.world.plugins.executeItemOnGroundItem(p, item.id, groundItem.item)

@@ -41,10 +41,13 @@ set_combat_def(Npcs.KING_BLACK_DRAGON) {
         death = 92
     }
 
-    slayerData {
-        levelRequirement = 50
-        xp = 258.0
-    }
+    //slayerData {
+    // /**
+    //  * @TODO Bug : Currently mobs don't aggro player if he does not have slayer level
+    //  */
+    //    levelRequirement = 50
+    //    xp = 258.0
+    //}
 
 //    drops {
 //        position = Tile(x = 3222, z = 3222)

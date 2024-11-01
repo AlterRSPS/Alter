@@ -1,4 +1,4 @@
-import org.alter.game.model.move.walkToInteract
+import org.alter.game.model.move.walkTo
 
 val paths =
     listOf(
@@ -20,7 +20,7 @@ on_npc_spawn(Npcs.HANS) {
 }
 on_timer(PATROL_DELAY) {
     npc.queue {
-        npc.walkToInteract(paths[npc.pathsIndex])
+        npc.walkTo(paths[npc.pathsIndex])
         npc.pathsIndex = npc.pathsIndex++ % paths.size
     }
     npc.timers[PATROL_DELAY] = 1

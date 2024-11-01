@@ -66,7 +66,9 @@ object PawnPathAction {
         val lineOfSight = lineOfSightRange ?: 1
         val world = pawn.world
         pawn.facePawn(other)
-
+        /**
+         * @TODO boilerplate
+         */
         val otherTile: () -> List<Tile> = {
             val tileMap = mutableListOf<Tile>()
             for (dx in -1..1) {
@@ -98,7 +100,6 @@ object PawnPathAction {
             destZ = tTile.z,
             collision = CollisionStrategies.Normal,
         )
-        pawn.pathGoal = Interaction(EntityType.NPC, lineOfSight, other.tile)
         pawn.walkPath(route.toTileQueue(), stepType = MovementQueue.StepType.NORMAL)
         while (pawn.hasMoveDestination()) {
             it.wait(1)
