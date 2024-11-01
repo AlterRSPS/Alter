@@ -79,6 +79,14 @@ on_login {
         // player.social.pushFriends(player)
         // player.social.pushIgnores(player)
         setVarbit(Varbit.ESC_CLOSES_CURRENT_INTERFACE, 1)
+
+        /**
+         * @TODO
+         * As for now these varbit's disable Black bar on right side for Native client,
+         * The black bar is for loot tracker n whatnot
+         */
+        setVarbit(13982, 1)
+        setVarbit(13981, 1)
     }
 }
 
