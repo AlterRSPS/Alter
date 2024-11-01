@@ -11,7 +11,7 @@ import java.lang.ref.WeakReference
 
 @Suppress("UNREACHABLE_CODE")
 class OpNpcTHandler : MessageHandler<OpNpcT> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpNpcT,
     ) {

@@ -8,7 +8,7 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class ResumePauseButtonHandler : MessageHandler<ResumePauseButton> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: ResumePauseButton,
     ) {

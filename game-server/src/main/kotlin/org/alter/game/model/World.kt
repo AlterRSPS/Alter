@@ -10,7 +10,6 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import net.rsprot.protocol.api.NetworkService
-import net.rsprot.protocol.api.js5.Js5GroupProvider
 import net.rsprot.protocol.game.outgoing.logout.Logout
 import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
 import org.alter.game.DevContext
@@ -51,7 +50,7 @@ import java.util.concurrent.TimeUnit
  * @author Tom <rspsmods@gmail.com>
  */
 class World(val gameContext: GameContext, val devContext: DevContext) {
-    lateinit var network: NetworkService<Client, Js5GroupProvider.ByteBufJs5GroupType>
+    lateinit var network: NetworkService<Client>
 
     /**
      * The [DefinitionSet] that holds general filestore data.

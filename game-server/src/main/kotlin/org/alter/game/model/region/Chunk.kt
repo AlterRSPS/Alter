@@ -3,6 +3,7 @@ package org.alter.game.model.region
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import net.rsprot.protocol.api.util.ZonePartialEnclosedCacheBuffer
 import net.rsprot.protocol.common.client.OldSchoolClientType
 import net.rsprot.protocol.game.outgoing.zone.header.UpdateZonePartialEnclosed
 import net.rsprot.protocol.game.outgoing.zone.header.UpdateZonePartialFollows
@@ -224,6 +225,9 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
         }
     }
 
+
+    val zonePartialEnclosedCacheBuffer: ZonePartialEnclosedCacheBuffer = ZonePartialEnclosedCacheBuffer()
+
     /**
      * Sends all [updates] from this chunk to the player [p].
      *
@@ -236,8 +240,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
                 messages.add(update.toMessage())
             }
         }
-
-        val computed = p.world.network.computeUpdateZonePartialEnclosedCache(messages)
+        val computed = zonePartialEnclosedCacheBuffer.computeZone(messages)
         if (messages.isNotEmpty()) {
             val local = p.lastKnownRegionBase!!.toLocal(coords.toTile())
             p.write(UpdateZonePartialEnclosed(local.x, local.z, local.height, computed[OldSchoolClientType.DESKTOP]!!))

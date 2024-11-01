@@ -7,7 +7,7 @@ import org.alter.game.model.entity.Client
 import java.lang.ref.WeakReference
 
 class IfButtonTHandler : MessageHandler<IfButtonT> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: IfButtonT,
     ) {

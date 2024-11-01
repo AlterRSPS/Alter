@@ -70,26 +70,47 @@ class SequenceDecoder : DefinitionDecoder<SequenceType>(SEQUENCE) {
             }
 
             13 -> {
-                val count = buffer.readUnsignedByte()
-                soundEffects = MutableList(count) { null }
-                for (i in 0 until count) {
-                    soundEffects[i] = readSounds(buffer, CacheManager.revisionIsOrAfter(220))
+                if (CacheManager.cacheRevision >= 226) {
+                    skeletalId = buffer.readInt()
+                } else {
+                    val count = buffer.readUnsignedByte()
+                    for (i in 0 until count) {
+                        sounds[i] = readSounds(buffer, CacheManager.revisionIsOrAfter(220))!!
+                    }
                 }
             }
 
-            14 -> skeletalId = buffer.readInt()
+            14 -> {
+                if (CacheManager.cacheRevision >= 226) {
+                    val count = buffer.readUnsignedShort()
+                    for (i in 0 until count) {
+                        val index = buffer.readUnsignedShort()
+                        val sound = readSounds(buffer, CacheManager.revisionIsOrAfter(220))
+                        sounds[index] = sound!!
+                    }
+                } else {
+                    skeletalId = buffer.readInt()
+                }
+            }
             15 -> {
-                val count = buffer.readUnsignedShort()
-                for (i in 0 until count) {
-                    val index = buffer.readUnsignedShort()
-                    val sound = readSounds(buffer, CacheManager.revisionIsOrAfter(220))
-                    skeletalSounds[index] = sound!!
+                if (CacheManager.cacheRevision >= 226) {
+                    rangeBegin = buffer.readUnsignedShort()
+                    rangeEnd = buffer.readUnsignedShort()
+                } else {
+                    val count = buffer.readUnsignedShort()
+                    for (i in 0 until count) {
+                        val index = buffer.readUnsignedShort()
+                        val sound = readSounds(buffer, CacheManager.revisionIsOrAfter(220))
+                        sounds[index] = sound!!
+                    }
                 }
             }
 
             16 -> {
-                rangeBegin = buffer.readUnsignedShort()
-                rangeEnd = buffer.readUnsignedShort()
+                if (CacheManager.cacheRevision < 226) {
+                    rangeBegin = buffer.readUnsignedShort()
+                    rangeEnd = buffer.readUnsignedShort()
+                }
             }
 
             17 -> {

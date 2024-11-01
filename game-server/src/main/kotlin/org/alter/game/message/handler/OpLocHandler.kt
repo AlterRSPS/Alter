@@ -19,7 +19,7 @@ import java.lang.ref.WeakReference
  * @author Tom <rspsmods@gmail.com>
  */
 class OpLocHandler : MessageHandler<OpLoc> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpLoc,
     ) {

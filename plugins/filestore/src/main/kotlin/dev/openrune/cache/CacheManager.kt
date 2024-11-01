@@ -20,7 +20,7 @@ object CacheManager {
     private val hitsplats: MutableMap<Int, HitSplatType> = mutableMapOf()
     private val structs: MutableMap<Int, StructType> = mutableMapOf()
 
-    private var cacheRevision = -1
+    var cacheRevision = -1
 
 
     fun init(cachePath: Path, cacheRevision : Int) {

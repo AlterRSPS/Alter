@@ -11,7 +11,7 @@ import org.alter.game.model.priv.Privilege
  * @author HolyRSPS <dagreenrs@gmail.com>
  */
 class ClickWorldMapHandler : MessageHandler<ClickWorldMap> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: ClickWorldMap,
     ) {

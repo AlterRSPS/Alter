@@ -18,6 +18,7 @@ import net.rsprot.protocol.game.outgoing.misc.player.UpdateStat
 import net.rsprot.protocol.game.outgoing.sound.SynthSound
 import net.rsprot.protocol.game.outgoing.varp.VarpLarge
 import net.rsprot.protocol.game.outgoing.varp.VarpSmall
+import net.rsprot.protocol.game.outgoing.worldentity.SetActiveWorld
 import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
@@ -393,6 +394,7 @@ open class Player(world: World) : Pawn(world) {
                 newSurroundings.forEach { coords ->
                     val chunk = this.world.chunks.get(coords, createIfNeeded = false) ?: return@forEach
                     chunk.sendUpdates(this)
+                    chunk.zonePartialEnclosedCacheBuffer.releaseBuffers()
                 }
                 if (!changedHeight) {
                     if (oldChunk != null) {
@@ -402,7 +404,6 @@ open class Player(world: World) : Pawn(world) {
                 }
             }
         }
-
         previouslySetAnim = -1
         /*
          * Flush the channel at the end.

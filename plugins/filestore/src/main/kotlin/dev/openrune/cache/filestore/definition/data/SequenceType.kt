@@ -25,7 +25,7 @@ data class SequenceType(
     var replyMode: Int = 2,
     var rangeBegin : Int = 0,
     var rangeEnd : Int = 0,
-    var skeletalSounds: MutableMap<Int, SoundData> = emptyMap<Int, SoundData>().toMutableMap(),
+    var sounds: MutableMap<Int, SoundData> = emptyMap<Int, SoundData>().toMutableMap(),
     var mask: MutableList<Boolean>? = null,
     //Custom
     override var inherit: Int = -1

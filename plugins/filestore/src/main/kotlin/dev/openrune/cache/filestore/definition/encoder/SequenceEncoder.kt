@@ -88,32 +88,60 @@ class SequenceEncoder: ConfigEncoder<SequenceType>() {
 
         }
 
-        if (definition.soundEffects.isNotEmpty()) {
-            writeByte(13)
-            writeByte(definition.soundEffects.size)
-            definition.soundEffects.forEach {
-                it!!.writeSound(this, CacheManager.revisionIsOrAfter(220))
+        if (CacheManager.cacheRevision >= 256) {
+            if (definition.skeletalId != -1) {
+                writeByte(13)
+                writeInt(definition.skeletalId)
+            }
+        } else {
+            if (definition.soundEffects.isNotEmpty()) {
+                writeByte(13)
+                writeByte(definition.soundEffects.size)
+                definition.soundEffects.forEach {
+                    it!!.writeSound(this, CacheManager.revisionIsOrAfter(220))
+                }
             }
         }
 
-        if (definition.skeletalId != -1) {
-            writeByte(14)
-            writeInt(definition.skeletalId)
-        }
-
-        if (definition.skeletalSounds.isNotEmpty()) {
-            writeByte(15)
-            writeShort(definition.skeletalSounds.size)
-            definition.skeletalSounds.forEach { (index, sound) ->
-                writeShort(index)
-                sound.writeSound(this, CacheManager.revisionIsOrAfter(220))
+        if (CacheManager.cacheRevision >= 256) {
+            if (definition.sounds.isNotEmpty()) {
+                writeByte(14)
+                writeShort(definition.sounds.size)
+                definition.sounds.forEach { (index, sound) ->
+                    writeShort(index)
+                    sound.writeSound(this, CacheManager.revisionIsOrAfter(220))
+                }
+            }
+        } else {
+            if (definition.skeletalId != -1) {
+                writeByte(14)
+                writeInt(definition.skeletalId)
             }
         }
 
-        if (definition.rangeBegin != 0 || definition.rangeEnd != 0) {
-            writeByte(16)
-            writeShort(definition.rangeBegin)
-            writeShort(definition.rangeEnd)
+        if (CacheManager.cacheRevision >= 256) {
+            if (definition.rangeBegin != 0 || definition.rangeEnd != 0) {
+                writeByte(15)
+                writeShort(definition.rangeBegin)
+                writeShort(definition.rangeEnd)
+            }
+        } else {
+            if (definition.sounds.isNotEmpty()) {
+                writeByte(15)
+                writeShort(definition.sounds.size)
+                definition.sounds.forEach { (index, sound) ->
+                    writeShort(index)
+                    sound.writeSound(this, CacheManager.revisionIsOrAfter(220))
+                }
+            }
+        }
+
+        if (CacheManager.cacheRevision < 256) {
+            if (definition.rangeBegin != 0 || definition.rangeEnd != 0) {
+                writeByte(16)
+                writeShort(definition.rangeBegin)
+                writeShort(definition.rangeEnd)
+            }
         }
 
         if (definition.mask != null) {
@@ -130,6 +158,4 @@ class SequenceEncoder: ConfigEncoder<SequenceType>() {
 
         writeByte(0)
     }
-
-
 }
