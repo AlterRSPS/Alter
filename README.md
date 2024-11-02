@@ -1,5 +1,5 @@
 # Alter
-[![revision: 223][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/sAzCuuwkpN) ![jdk-badge] ![](https://tokei.rs/b1/github/AlterRSPS/Alter)
+[![revision: 226][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/sAzCuuwkpN) ![jdk-badge] ![](https://tokei.rs/b1/github/AlterRSPS/Alter)
 > [!Warning]
 > When you have Intellij Open, navigate to `File` -> `Project Structure` -> And make sure SDK is set to `17 java version 17.x.x`
 
@@ -14,7 +14,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Youtube tutorial: https://www.youtube.com/watch?v=2Tu-NTzMbf0
 
 * ### First of all Download:
-* [2024-07-17-rev223.tar.gz](https://archive.runestats.com/osrs/2024-07-17-rev223.tar.gz) , And make sure you're using correct Java Version.
+* [2024-10-23-rev226.tar.gz](https://archive.runestats.com/osrs/2024-10-23-rev226.tar.gz) , And make sure you're using correct Java Version.
 * Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o)
 
 
@@ -27,7 +27,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Second paste `https://github.com/AlterRSPS/Alter` in URL Field and hit Clone. </br>
   ![tutor2](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tuor2.png)
 * Hit `Clone` and Let the project fully load.
-* Now open the `2024-07-17-rev223.tar.gz` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
+* Now open the `2024-10-23-rev226.tar.gz` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
   ![tutor6](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor6.png)
 - `Xtea.json` has to be in same folder like: Data /`api.yml`, etc..
 * Now click on `Gradle` button on right side. </br>
@@ -43,7 +43,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * You can connect what ever client you want (ofc it has to follow OSRS protocols.)
 
 # What client do i use?
-* https://github.com/AlterRSPS/devious-client-rsps
+* https://github.com/AlterRSPS/rsprox
 
 * ### Tools:
 * [CS2 Editor](https://github.com/blurite/cs2-editor), Big thanks to [Blurite Team](https://github.com/blurite) for maintaining such good tool.
@@ -57,7 +57,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Original project founder: [Tomm0017](https://github.com/Tomm0017)
 
 
-[patch]: https://oldschool.runescape.wiki/w/Update:Deadman:_Armageddon_%26_While_Guthix_Sleeps_Tweaks
-[rev-badge]: https://img.shields.io/badge/Revision-223-blueviolet
+[patch]: https://oldschool.runescape.wiki/w/Update:Halloween_Fixes_%26_Miscellaneous_Changes
+[rev-badge]: https://img.shields.io/badge/Revision-226-blueviolet
 [license-badge]: https://img.shields.io/badge/license-ISC-informational
 [jdk-badge]: https://img.shields.io/badge/JDK-17-blue
