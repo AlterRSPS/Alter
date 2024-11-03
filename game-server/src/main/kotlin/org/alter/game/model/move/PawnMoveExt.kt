@@ -1,6 +1,7 @@
 package org.alter.game.model.move
 
 import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
+import org.alter.game.info.NpcInfo
 import org.alter.game.model.LockState
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.CLIENT_KEY_COMBINATION
@@ -22,14 +23,12 @@ fun Pawn.moveTo(
     movementQueue.clear()
 
     if (entityType.isNpc) {
-        (this as Npc).avatar.teleport(height, x, y, true)
+        NpcInfo(this as Npc).teleport(height, x, y, true)
     } else if (entityType.isPlayer) {
         (this as Player).avatar.extendedInfo.setTempMoveSpeed(127)
     }
 }
 fun Pawn.moveTo(tile: Tile) = moveTo(tile.x, tile.z, tile.height)
-
-
 /**
  * @property x = xInBuildArea the x coordinate within the build area
  *  to render the map flag at.

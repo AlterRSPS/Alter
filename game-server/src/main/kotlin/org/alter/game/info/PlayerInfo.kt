@@ -81,7 +81,7 @@ class PlayerInfo(var player: Player) {
         )
     }
 
-    fun setAnimSequance(id: Int, delay: Int) {
+    fun setSequence(id: Int, delay: Int) {
         info.setSequence(id, delay)
     }
 
@@ -100,7 +100,7 @@ class PlayerInfo(var player: Player) {
         info.setSay(message)
     }
 
-    fun faceTile(
+    fun setFaceCoord(
         face: Tile,
         width: Int = 1,
         length: Int = 1,

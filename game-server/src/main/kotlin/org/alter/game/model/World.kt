@@ -381,7 +381,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     fun spawn(npc: Npc): Boolean {
         val added = npcs.add(npc)
         if (added) {
-            npc.avatar =
+            npc.initAvatar(
                 network.npcAvatarFactory.alloc(
                     npc.index,
                     npc.id,
@@ -391,6 +391,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
                     0,
                     npc.faceDirection.orientationValue,
                 )
+            )
             setNpcDefaults(npc)
             plugins.executeNpcSpawn(npc)
         }
@@ -502,7 +503,8 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     }
 
     fun isSpawned(obj: GameObject): Boolean =
-        chunks.getOrCreate(obj.tile).getEntities<GameObject>(obj.tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).contains(obj)
+        chunks.getOrCreate(obj.tile)
+            .getEntities<GameObject>(obj.tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).contains(obj)
 
     fun isSpawned(item: GroundItem): Boolean =
         chunks.getOrCreate(item.tile).getEntities<GroundItem>(item.tile, EntityType.GROUND_ITEM).contains(item)

@@ -1,6 +1,7 @@
 package org.alter.game.action
 
 import dev.openrune.cache.CacheManager.getAnim
+import org.alter.game.info.NpcInfo
 import org.alter.game.model.LockState
 import org.alter.game.model.attr.KILLER_ATTR
 import org.alter.game.model.entity.AreaSound
@@ -80,7 +81,7 @@ object NpcDeathAction {
         if (npc.respawns) {
             npc.reset()
             wait(respawnDelay)
-            npc.avatar.setInaccessible(false)
+            NpcInfo(npc).setInaccessible(false)
             world.plugins.executeNpcSpawn(npc)
         } else {
             world.remove(npc)
@@ -90,7 +91,7 @@ object NpcDeathAction {
     private fun Npc.reset() {
         lock = LockState.NONE
         tile = spawnTile
-        avatar.setInaccessible(true)
+        NpcInfo(this).setInaccessible(true)
         attr.clear()
         timers.clear()
         world.setNpcDefaults(this)

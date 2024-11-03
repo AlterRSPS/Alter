@@ -5,6 +5,7 @@ import dev.openrune.cache.CacheManager.getVarbit
 import dev.openrune.cache.filestore.definition.data.NpcType
 import gg.rsmod.util.toStringHelper
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcAvatar
+import org.alter.game.info.NpcInfo
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 import org.alter.game.model.World
@@ -17,8 +18,6 @@ import org.alter.game.model.combat.NpcCombatDef
  * @author Tom <rspsmods@gmail.com>
  */
 class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : Pawn(world) {
-
-
     constructor(id: Int, tile: Tile, world: World) : this(id, world, spawnTile = Tile(tile)) {
         this.tile = tile
     }
@@ -28,7 +27,12 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
         this.owner = owner
     }
 
-    lateinit var avatar: NpcAvatar
+    internal lateinit var avatar: NpcAvatar
+    fun initAvatar(avatar: NpcAvatar) {
+        check(!this::avatar.isInitialized) {"Avatar was already initialized."}
+        this.avatar = avatar
+    }
+
 
     /**
      * This flag indicates whether or not this npc's AI should be processed.
@@ -138,7 +142,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
         height: Int,
         delay: Int,
     ) {
-        avatar.extendedInfo.setSpotAnim(0, id, delay, height)
+        NpcInfo(this).setSpotAnim(0, id, delay, height)
     }
 
     override fun cycle() {

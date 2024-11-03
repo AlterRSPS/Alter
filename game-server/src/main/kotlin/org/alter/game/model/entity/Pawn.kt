@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import org.alter.game.action.NpcDeathAction
 import org.alter.game.action.PlayerDeathAction
 import org.alter.game.event.Event
+import org.alter.game.info.NpcInfo
 import org.alter.game.info.PlayerInfo
 import org.alter.game.model.*
 import org.alter.game.model.attr.*
@@ -301,13 +302,13 @@ abstract class Pawn(val world: World) : Entity() {
                         }
                         if (entityType.isNpc) {
                             val npc = this as Npc
-                            npc.avatar.extendedInfo.addHitMark(
+                            NpcInfo(npc).addHitMark(
                                 sourceIndex = hitmark.attackerIndex,
                                 selfType = hitmark.type,
                                 value = hitmark.damage,
                                 delay = hit.clientDelay,
                             )
-                            npc.avatar.extendedInfo.addHeadBar(
+                            NpcInfo(npc).addHeadBar(
                                 sourceIndex = hitmark.attackerIndex,
                                 selfType = 0,
                                 startFill = calculateFill((((this.getCurrentHp().toDouble() - hitmark.damage) / this.getMaxHp().toDouble()) * 100), 30)
@@ -364,7 +365,11 @@ abstract class Pawn(val world: World) : Entity() {
         return if (fill == 0 && percentage != 0.0) return 0 else fill
     }
 
-
+    /**
+     * @param id = Animation id
+     * @param startDelay = when to start anim
+     * @param interruptable = if Anim can be interrupted by other anim masks
+     */
     fun animate(
         id: Int,
         delay: Int = 0,
@@ -381,22 +386,18 @@ abstract class Pawn(val world: World) : Entity() {
         animateSend(-1, 0)
         animateSend(id, delay)
     }
-    /**
-     * @param id = Animation id
-     * @param startDelay = when to start anim
-     * @param interruptable = if Anim can be interrupted by other anim masks
-     */
-    fun animateSend(
+    private fun animateSend(
         id: Int,
         startDelay: Int = 0,
     ) {
         if (entityType.isNpc) {
-            (this as Npc).avatar.extendedInfo.setSequence(id, startDelay)
+            NpcInfo(this as Npc).setSequence(id, startDelay)
         } else if (entityType.isPlayer) {
-            PlayerInfo(this as Player).setAnimSequance(id, startDelay)
+            PlayerInfo(this as Player).setSequence(id, startDelay)
         }
     }
 
+    // @TODO
     abstract fun graphic(
         id: Int,
         height: Int = 0,
@@ -412,7 +413,7 @@ abstract class Pawn(val world: World) : Entity() {
         duration: Int = 0,
     ) {
         if (entityType.isNpc) {
-            (this as Npc).avatar.extendedInfo.tinting(
+            NpcInfo(this as Npc).setTinting(
                 startTime = delay,
                 endTime = duration,
                 hue = hue,
@@ -437,15 +438,11 @@ abstract class Pawn(val world: World) : Entity() {
             println("Can't override level for a player")
             return
         }
-        (this as Npc).avatar.extendedInfo.combatLevelChange(level)
+        NpcInfo(this as Npc).setCombatLevelChange(level)
     }
 
-    fun setTempName(name: String) {
-        if (entityType.isPlayer) {
-            println("TempName can't be applied to a player")
-            return
-        }
-        (this as Npc).avatar.extendedInfo.nameChange(name)
+    fun Npc.setTempName(name: String) {
+        NpcInfo(this).setTempName(name)
     }
 
     fun graphic(graphic: Graphic) {
@@ -454,7 +451,7 @@ abstract class Pawn(val world: World) : Entity() {
 
     fun forceChat(message: String) {
         if (entityType.isNpc) {
-            (this as Npc).avatar.extendedInfo.setSay(message)
+            NpcInfo(this as Npc).setSay(message)
         } else if (entityType.isPlayer) {
             PlayerInfo(this as Player).setSay(message)
         }
@@ -468,22 +465,19 @@ abstract class Pawn(val world: World) : Entity() {
         face: Tile,
         width: Int = 1,
         length: Int = 1,
-        instant: Int = 0,
+        instant: Boolean = false,
     ) {
         if (entityType.isPlayer) {
-            PlayerInfo(this as Player).faceTile(face, width, length)
+            PlayerInfo(this as Player).setFaceCoord(face, width, length)
         } else if (entityType.isNpc) {
-            // TODO we shouldnt need because we use absolute coords ADVO
-            val faceX = (face.x shl 1) + 1
-            val faceZ = (face.z shl 1) + 1
-            (this as Npc).avatar.extendedInfo.faceCoord(face.x, face.z)
+            NpcInfo(this as Npc).setFaceCoord(face.x, face.z, instant)
         }
     }
 
     fun facePawn(pawn: Pawn) {
         val index = if (pawn.entityType.isPlayer) pawn.index + 65536 else pawn.index
         if (entityType.isNpc) {
-            (this as Npc).avatar.extendedInfo.setFacePathingEntity(index)
+            NpcInfo(this as Npc).setFacePathingEntity(index)
         } else if (entityType.isPlayer) {
             PlayerInfo(this as Player).facePawn(index)
         }
@@ -493,7 +487,7 @@ abstract class Pawn(val world: World) : Entity() {
 
     fun resetFacePawn() {
         if (entityType.isNpc) {
-            (this as Npc).avatar.extendedInfo.setFacePathingEntity(-1)
+            NpcInfo(this as Npc).setFacePathingEntity(-1)
         } else if (entityType.isPlayer) {
             PlayerInfo(this as Player).facePawn(-1)
         }
