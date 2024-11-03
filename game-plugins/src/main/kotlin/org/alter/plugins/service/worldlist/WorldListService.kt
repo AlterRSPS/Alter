@@ -6,6 +6,9 @@ import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.bootstrap.ServerBootstrap
 import io.netty.channel.ChannelFuture
+import io.netty.channel.EventLoopGroup
+import io.netty.channel.nio.NioEventLoopGroup
+import io.netty.channel.socket.nio.NioServerSocketChannel
 import org.alter.game.Server
 import org.alter.game.model.World
 import org.alter.game.plugin.Plugin
@@ -83,7 +86,8 @@ class WorldListService : Service {
             worldEntries = worldEntri.toMutableList()
         }
     }
-
+    private lateinit var bossGroup: EventLoopGroup
+    private lateinit var workerGroup: EventLoopGroup
     /**
      * Binds the network used for serving the world list
      *
@@ -94,15 +98,21 @@ class WorldListService : Service {
         server: Server,
         world: World,
     ) {
-        // The inbound channel handler for the world list protocol
+        bossGroup = NioEventLoopGroup(1)
+        workerGroup = NioEventLoopGroup()
         val handler = WorldListChannelHandler(worldEntries)
-
-        // Bind the world list network pipeline
-        val bootstrap = bootstrap.clone()
-        bootstrap.childHandler(WorldListChannelInitializer(handler))
-        channelFuture = bootstrap.bind(port).syncUninterruptibly()
-        logger.info {"World list service listening on port $port, ${worldEntries.size} loaded."}
+        try {
+            val bootstrap = ServerBootstrap()
+            bootstrap.group(bossGroup, workerGroup)
+                .channel(NioServerSocketChannel::class.java)
+                .childHandler(WorldListChannelInitializer(handler))
+                bootstrap.bind(port).sync().channel().closeFuture().sync()
+        } finally {
+            bossGroup.shutdownGracefully()
+            workerGroup.shutdownGracefully()
+        }
     }
+
 
     /**
      * Binds the plugin logic for incrementing and decrementing player count
