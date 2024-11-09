@@ -18,7 +18,6 @@ import net.rsprot.protocol.game.outgoing.misc.player.UpdateStat
 import net.rsprot.protocol.game.outgoing.sound.SynthSound
 import net.rsprot.protocol.game.outgoing.varp.VarpLarge
 import net.rsprot.protocol.game.outgoing.varp.VarpSmall
-import net.rsprot.protocol.game.outgoing.worldentity.SetActiveWorld
 import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
@@ -284,7 +283,6 @@ open class Player(world: World) : Pawn(world) {
             }
             world.plugins.executeRegionEnter(this, tile.regionId)
         }
-
         if (inventory.dirty) {
             val items = inventory.rawItems
             write(
@@ -315,13 +313,15 @@ open class Player(world: World) : Pawn(world) {
             write(UpdateInvFull(inventoryId = 95, capacity = items.size, provider = RsModObjectProvider(items)))
             bank.dirty = false
         }
-
         if (shopDirty) {
-            attr[CURRENT_SHOP_ATTR]?.let { shop ->
-                {
+            val shop = this.attr[CURRENT_SHOP_ATTR]
+            if (shop != null) {
                     val items = shop.items.map { if (it != null) Item(it.item, it.currentAmount) else null }.toTypedArray()
-                    write(UpdateInvFull(inventoryId = 13, capacity = items.size, provider = RsModObjectProvider(items)))
-                }
+                    write(UpdateInvFull(
+                        inventoryId = 3,
+                        capacity = items.size,
+                        provider = RsModObjectProvider(items)
+                    ))
             }
             shopDirty = false
         }
