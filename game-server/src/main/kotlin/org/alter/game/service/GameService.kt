@@ -129,10 +129,10 @@ class GameService : Service {
             arrayOf(
                 MessageHandlerTask(),
                 QueueHandlerTask(),
+                NpcCycleTask(),
                 PlayerCycleTask(),
                 ChunkCreationTask(),
                 WorldRemoveTask(),
-                NpcCycleTask(),
                 SequentialSynchronizationTask(),
             ),
         )

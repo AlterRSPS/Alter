@@ -31,12 +31,6 @@ class SequentialSynchronizationTask : GameTask {
         val worldPlayers = world.players
         val worldNpcs = world.npcs
 
-        worldPlayers.forEach(Player::playerPreSynchronizationTask)
-
-        for (n in worldNpcs.entries) {
-            n?.npcPreSynchronizationTask()
-        }
-
         worldPlayers.forEach(Player::playerCoordCycleTask)
 
         world.network.worldEntityInfoProtocol.update()
@@ -62,7 +56,7 @@ class SequentialSynchronizationTask : GameTask {
         world.network.npcInfoProtocol.update()
 
         world.players.forEach {
-            /*
+            /**
              * Non-human [org.alter.game.model.entity.Player]s do not need this
              * to send any synchronization data to their game-client as they do
              * not have one.

@@ -16,17 +16,6 @@ class QueueHandlerTask : GameTask {
     ) {
         var playerQueues = 0
         var npcQueues = 0
-
-        world.players.forEach { player ->
-            player.queues.cycle()
-            playerQueues += player.queues.size
-        }
-
-        world.npcs.forEach { npc ->
-            npc.queues.cycle()
-            npcQueues += npc.queues.size
-        }
-
         val worldQueues: Int = world.queues.size
         world.queues.cycle()
 
