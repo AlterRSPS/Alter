@@ -1,11 +1,17 @@
 package org.alter.game.model.skill
 
+import dev.openrune.cache.CacheManager
+import org.alter.game.model.World
+import org.bson.Document
+import javax.print.Doc
+
 /**
  * Holds all [Skill] data for a player.
  *
  * @author Tom <rspsmods@gmail.com>
  */
 class SkillSet(val maxSkills: Int) {
+
     private val skills = Array(maxSkills) { index -> Skill(index) }
 
     /**
@@ -56,6 +62,16 @@ class SkillSet(val maxSkills: Int) {
     ) {
         get(skill).xp = xp
         dirty[skill] = true
+    }
+
+    /**
+     * Sets the 'current'/temporary level of the [skill].
+     */
+    fun setSkill(
+        skill: Skill,
+    ) {
+        setXp(skill.id, skill.xp)
+        setCurrentLevel(skill.id, skill.currentLevel)
     }
 
     /**
@@ -176,6 +192,9 @@ class SkillSet(val maxSkills: Int) {
     }
 
     companion object {
+
+        fun getSkillName(skill: Int) = CacheManager.getEnum(680).getString(skill)
+
         /**
          * The maximum amount of xp that can be set on a skill.
          */

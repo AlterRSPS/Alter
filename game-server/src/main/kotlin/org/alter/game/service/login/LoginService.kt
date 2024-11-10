@@ -9,7 +9,6 @@ import org.alter.game.Server
 import org.alter.game.model.World
 import org.alter.game.model.entity.Client
 import org.alter.game.service.Service
-import org.alter.game.service.serializer.PlayerSerializerService
 import org.alter.game.service.world.SimpleWorldVerificationService
 import org.alter.game.service.world.WorldVerificationService
 import java.util.concurrent.Executors
@@ -21,11 +20,6 @@ import java.util.concurrent.LinkedBlockingQueue
  * @author Tom <rspsmods@gmail.com>
  */
 class LoginService : Service {
-    /**
-     * The [PlayerSerializerService] implementation that will be used to decode
-     * and encode the player data.
-     */
-    lateinit var serializer: PlayerSerializerService
 
     /**
      * The [LoginServiceRequest] requests that will be handled by our workers.
@@ -46,7 +40,6 @@ class LoginService : Service {
         server: Server,
         world: World,
     ) {
-        serializer = world.getService(PlayerSerializerService::class.java, searchSubclasses = true)!!
 
         val worldVerificationService =
             world.getService(
