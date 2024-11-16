@@ -1,8 +1,10 @@
 package org.alter.game.rsprot
 
 import dev.openrune.cache.CacheManager
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
+import io.netty.handler.codec.DecoderException
 import net.rsprot.compression.HuffmanCodec
 import net.rsprot.compression.provider.DefaultHuffmanCodecProvider
 import net.rsprot.compression.provider.HuffmanCodecProvider
@@ -57,6 +59,7 @@ import org.alter.game.model.entity.Client
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Player
 import org.alter.game.service.rsa.RsaService
+import java.io.IOException
 import java.math.BigInteger
 
 class NetworkServiceFactory(
@@ -70,17 +73,35 @@ class NetworkServiceFactory(
     }*/
 
     override fun getExceptionHandlers(): ExceptionHandlers<Client> {
-        val channelExceptionHandler =
-            ChannelExceptionHandler {
-                    channelHandlerContext: ChannelHandlerContext, throwable: Throwable ->
-                throwable.printStackTrace()
-            }
         val incomingGameMessageConsumerExceptionHandler: IncomingGameMessageConsumerExceptionHandler<Client> =
             IncomingGameMessageConsumerExceptionHandler {
                     session: Session<Client>, incomingGameMessage: IncomingGameMessage, throwable: Throwable ->
                 throwable.printStackTrace()
             }
-        return ExceptionHandlers(channelExceptionHandler, incomingGameMessageConsumerExceptionHandler)
+        return ExceptionHandlers(channelExceptionHandler(), incomingGameMessageConsumerExceptionHandler)
+    }
+
+    /**
+     * @author Kris
+     */
+    private fun channelExceptionHandler(): ChannelExceptionHandler {
+        return ChannelExceptionHandler { ctx: ChannelHandlerContext, cause: Throwable ->
+            val channel = ctx.channel()
+            if (channel.isOpen) {
+                channel.close()
+            }
+
+            // IOExceptions basically all kinds of "connection dropped" type errors,
+            // e.g. Closing the client, losing connection and so on...
+            if (cause is IOException) return@ChannelExceptionHandler
+            // Limit the decoder exceptions, so it doesn't just spam the error a thousand times if a thousand connections get rejected
+            // Instead allow up to 100 to log, then turn it off. After that, only allow one more to log per tick
+            if (cause is DecoderException) {
+                return@ChannelExceptionHandler
+            }
+
+            logger.error{"Exception in netty handlers: $cause."}
+        }
     }
 
     override fun getGameConnectionHandler(): GameConnectionHandler<Client> {
@@ -159,4 +180,9 @@ class NetworkServiceFactory(
                 player.tile,
                 viewDistance,
             ) && (npc.owner == null || npc.owner == player)
+
+    companion object {
+        private val logger = KotlinLogging.logger {}
+
+    }
 }

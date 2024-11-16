@@ -10,6 +10,7 @@ on_button(interfaceId = 182, component = 8) {
     if (!player.timers.has(ACTIVE_COMBAT_TIMER)) {
         player.requestLogout()
         player.write(Logout)
+        player.session?.requestClose()
         player.channelFlush()
     } else {
         player.message("You can't log out until 10 seconds after the end of combat.")
