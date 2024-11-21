@@ -476,7 +476,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     fun spawn(sound: AreaSound) {
         val tile = sound.tile
         val chunk = chunks.getOrCreate(tile)
-        //chunk.addEntity(this, sound, tile)
+        chunk.addEntity(this, sound, tile)
     }
 
     fun spawn(graphic: TileGraphic) {

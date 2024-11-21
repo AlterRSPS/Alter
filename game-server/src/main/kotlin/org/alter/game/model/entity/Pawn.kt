@@ -31,17 +31,6 @@ import java.util.*
  * @author Tom <rspsmods@gmail.com>
  */
 abstract class Pawn(val world: World) : Entity() {
-
-
-    /**
-     * @TODO Move out if this end up being good decision :kekw:
-     * Interaction goal passed within Pawn class ??
-     * When reached null on new path assign null (?)
-     * @param [type] - Targets type [Npc] [Player] [GameObject]
-     * @param [range] - Tile range before stop
-     * @param [goal] - Tile of target
-     */
-    data class Interaction(val type: EntityType, val range: Int, val goal: Tile)
     /**
      * The index assigned when this [Pawn] is successfully added to a [PawnList].
      */
@@ -287,72 +276,76 @@ abstract class Pawn(val world: World) : Entity() {
                 break
             }
             val hit = hitIterator.next()
-
             if (lock.delaysDamage()) {
+                /**
+                 * @TODO Need to confirm that this block is true.
+                 */
                 hit.damageDelay = Math.max(0, hit.damageDelay - 1)
                 continue
             }
-
-            if (hit.damageDelay-- == 0) {
-                if (!hit.cancelCondition()) {
-                    for (hitmark in hit.hitmarks) {
-                        val hp = getCurrentHp()
-                        if (hitmark.damage > hp) {
-                            hitmark.damage = hp
-                        }
-                        if (entityType.isNpc) {
-                            val npc = this as Npc
-                            NpcInfo(npc).addHitMark(
-                                sourceIndex = hitmark.attackerIndex,
-                                selfType = hitmark.type,
-                                value = hitmark.damage,
-                                delay = hit.clientDelay,
-                            )
-                            NpcInfo(npc).addHeadBar(
-                                sourceIndex = hitmark.attackerIndex,
-                                selfType = 0,
-                                startFill = calculateFill((((this.getCurrentHp().toDouble() - hitmark.damage) / this.getMaxHp().toDouble()) * 100), 30)
-                            )
-                        } else if (entityType.isPlayer) {
-                            val player = this as Player
-                            player.avatar.extendedInfo.addHitMark(
-                                sourceIndex = hitmark.attackerIndex,
-                                selfType = hitmark.type,
-                                value = hitmark.damage,
-                                delay = hit.clientDelay,
-                            )
-                            player.avatar.extendedInfo.addHeadBar(
-                                sourceIndex = hitmark.attackerIndex,
-                                selfType = 0,
-                                startFill = calculateFill((((this.getCurrentHp().toDouble() - hitmark.damage) / this.getMaxHp().toDouble()) * 100), 30)
-                            )
-                        }
-
-                        /*
-                         * Only lower the pawn's hp if they do not have infinite
-                         * health enabled.
-                         */
-                        if (INFINITE_VARS_STORAGE.get(this, InfiniteVarsType.HP) == 0) {
-                            setCurrentHp(hp - hitmark.damage)
-                        }
-                        /*
-                         * If the pawn has less than or equal to 0 health,
-                         * terminate all queues and begin the death logic.
-                         */
-                        if (getCurrentHp() <= 0) {
-                            hit.actions.forEach { action -> action(hit) }
-                            if (entityType.isPlayer) {
-                                executePlugin(PlayerDeathAction.deathPlugin)
-                            } else {
-                                executePlugin(NpcDeathAction.deathPlugin)
-                            }
-                            hitIterator.remove()
-                            break@iterator
-                        }
+            if (!hit.cancelCondition()) {
+                for (hitmark in hit.hitmarks) {
+                    val hp = getCurrentHp()
+                    if (hitmark.damage > hp) {
+                        hitmark.damage = hp
                     }
-                    hit.actions.forEach { action -> action(hit) }
+                    if (entityType.isNpc) {
+                        val npc = this as Npc
+                        NpcInfo(npc).addHitMark(
+                            sourceIndex = hitmark.attackerIndex,
+                            selfType = hitmark.type,
+                            value = hitmark.damage,
+                            delay = hit.clientDelay,
+                        )
+                        NpcInfo(npc).addHeadBar(
+                            sourceIndex = hitmark.attackerIndex,
+                            selfType = 0,
+                            startFill = calculateFill(
+                                (((this.getCurrentHp().toDouble() - hitmark.damage) / this.getMaxHp()
+                                    .toDouble()) * 100), 30
+                            )
+                        )
+                    } else if (entityType.isPlayer) {
+                        val player = this as Player
+                        player.avatar.extendedInfo.addHitMark(
+                            sourceIndex = hitmark.attackerIndex,
+                            selfType = hitmark.type,
+                            value = hitmark.damage,
+                            delay = hit.clientDelay,
+                        )
+                        player.avatar.extendedInfo.addHeadBar(
+                            sourceIndex = hitmark.attackerIndex,
+                            selfType = 0,
+                            startFill = calculateFill(
+                                (((this.getCurrentHp().toDouble() - hitmark.damage) / this.getMaxHp()
+                                    .toDouble()) * 100), 30
+                            )
+                        )
+                    }
 
+                    /*
+                     * Only lower the pawn's hp if they do not have infinite
+                     * health enabled.
+                     */
+                    if (INFINITE_VARS_STORAGE.get(this, InfiniteVarsType.HP) == 0) {
+                        setCurrentHp(hp - hitmark.damage)
+                    }
+                    /*
+                     * If the pawn has less than or equal to 0 health,
+                     * terminate all queues and begin the death logic.
+                     */
+                    if (getCurrentHp() <= 0) {
+                        hit.actions.forEach { action -> action(hit) }
+                        if (entityType.isPlayer) {
+                            executePlugin(PlayerDeathAction.deathPlugin)
+                        } else {
+                            executePlugin(NpcDeathAction.deathPlugin)
+                        }
+                        hitIterator.remove()
+                        break@iterator
+                    }
                 }
+                hit.actions.forEach { action -> action(hit) }
                 hitIterator.remove()
             }
         }
@@ -360,6 +353,7 @@ abstract class Pawn(val world: World) : Entity() {
             pendingHits.clear()
         }
     }
+
     fun calculateFill(percentage: Double, width: Int): Int {
         val fill = (width * percentage / 100.0).toInt()
         return if (fill == 0 && percentage != 0.0) return 0 else fill
@@ -386,6 +380,7 @@ abstract class Pawn(val world: World) : Entity() {
         animateSend(-1, 0)
         animateSend(id, delay)
     }
+
     private fun animateSend(
         id: Int,
         startDelay: Int = 0,

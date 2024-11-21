@@ -16,8 +16,8 @@ class NpcCycleTask : GameTask {
     ) {
         world.npcs.forEach { n ->
             n.queues.cycle()
-            n.npcPreSynchronizationTask()
             n.cycle()
+            n.npcPreSynchronizationTask()
         }
     }
 }

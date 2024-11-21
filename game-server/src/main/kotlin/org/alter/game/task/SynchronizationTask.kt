@@ -23,7 +23,6 @@ import org.alter.game.service.GameService
  * @author Tom <rspsmods@gmail.com>
  */
 class SequentialSynchronizationTask : GameTask {
-    @OptIn(ExperimentalUnsignedTypes::class)
     override fun execute(
         world: World,
         service: GameService,
@@ -66,11 +65,11 @@ class SequentialSynchronizationTask : GameTask {
                 it.write(it.playerInfo.toPacket()) // try-catch it, this _can_ throw exceptions during .toPacket()
                 it.write(
                     SetNpcUpdateOrigin(
-                        it.tile.x - (it.buildArea!!.zoneX shl 3),
-                        it.tile.z - (it.buildArea!!.zoneZ shl 3),
+                        it.tile.x - (it.buildArea.zoneX shl 3),
+                        it.tile.z - (it.buildArea.zoneZ shl 3),
                     ),
                 )
-                it.write(it.npcInfo.toNpcInfoPacket(-1))
+                it.write(it.npcInfo.toPacket(-1))
             }
         }
 
@@ -83,18 +82,14 @@ class SequentialSynchronizationTask : GameTask {
 
 fun Player.playerPreSynchronizationTask() {
     val pawn = this
-   // pawn.handleFutureRoute()
     pawn.movementQueue.cycle()
-
     val last = pawn.lastKnownRegionBase
     val current = pawn.tile
-
     if (last == null || shouldRebuildRegion(last, current)) {
         val regionX = ((current.x shr 3) - (Chunk.MAX_VIEWPORT shr 4)) shl 3
         val regionZ = ((current.z shr 3) - (Chunk.MAX_VIEWPORT shr 4)) shl 3
         // @TODO UpdateZoneFullFollowsMessage
         pawn.lastKnownRegionBase = Coordinate(regionX, regionZ, current.height)
-
         val xteaService = pawn.world.xteaKeyService!!
         val instance = pawn.world.instanceAllocator.getMap(current)
         val rebuildMessage =
@@ -161,7 +156,6 @@ fun Npc.npcPostSynchronizationTask() {
     }
     pawn.moved = false
     pawn.steps = null
-//        pawn.blockBuffer.clean()
 }
 
 /**
