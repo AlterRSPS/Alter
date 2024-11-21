@@ -35,7 +35,7 @@ object GroundItemPathAction {
                 player.stopMovement()
                 player.setMapFlag()
             }
-            val route = player.world.pathFinder.findPath(
+            val route = player.world.smartPathFinder.findPath(
                 level = item.tile.height,
                 srcX = player.tile.x,
                 srcZ = player.tile.z,

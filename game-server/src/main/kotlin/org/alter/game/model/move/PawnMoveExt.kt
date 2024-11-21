@@ -2,13 +2,13 @@ package org.alter.game.model.move
 
 import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag
 import org.alter.game.info.NpcInfo
-import org.alter.game.model.LockState
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.CLIENT_KEY_COMBINATION
 import org.alter.game.model.entity.*
 import org.alter.game.model.move.MovementQueue.StepType
 import org.alter.game.model.priv.Privilege
 import org.rsmod.game.pathfinder.Route
+import org.rsmod.game.pathfinder.RouteCoordinates
 import java.util.*
 
 /**
@@ -97,6 +97,11 @@ fun Route.toTileQueue() : Queue<Tile> {
 }
 
 fun Pawn.stopMovement() = movementQueue.clear()
+fun Pawn.walkTo(tile: Tile, stepType: StepType = StepType.NORMAL) = walkTo(targetX = tile.x, targetY = tile.z, stepType = stepType)
+fun Pawn.walkPath(route: RouteCoordinates, stepType: StepType = StepType.NORMAL) {
+    this.walkTo(Tile(route.x, route.z), stepType)
+}
+
 
 fun Pawn.walkTo(
     targetX: Int,
@@ -112,7 +117,7 @@ fun Pawn.walkTo(
         this.interruptQueues()
         this.resetInteractions()
     }
-    val route = world.pathFinder.findPath(
+    val route = world.smartPathFinder.findPath(
         level = tile.height,
         srcX = tile.x,
         srcZ = tile.z,
@@ -126,6 +131,7 @@ fun Pawn.walkTo(
         walkPath(route.toTileQueue(), stepType)
     }
 }
-fun Pawn.walkTo(tile: Tile, stepType: StepType = StepType.NORMAL) = walkTo(targetX = tile.x, targetY = tile.z, stepType = stepType)
+
+
 
 fun Pawn.hasMoveDestination(): Boolean = movementQueue.hasDestination()

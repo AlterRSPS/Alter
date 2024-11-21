@@ -1,10 +1,8 @@
 package org.alter.game.model.move
 
-import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.*
 import org.alter.game.model.entity.*
-import org.alter.game.model.entity.Pawn.Interaction
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.timer.RESET_PAWN_FACING_TIMER
@@ -92,7 +90,7 @@ object PawnPathAction {
          * Same logic gets repeated for combat so we can reuse this shit
          */
         val tTile = otherTile().minBy { pawn.tile.getDistance(it) }
-        val route = pawn.world.pathFinder.findPath(
+        val route = pawn.world.smartPathFinder.findPath(
             level = pawn.tile.height,
             srcX = pawn.tile.x,
             srcZ = pawn.tile.z,

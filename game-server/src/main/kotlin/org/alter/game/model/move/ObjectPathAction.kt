@@ -205,7 +205,7 @@ object ObjectPathAction {
             blockDirections.addAll(blockedWallDirections)
         }
 
-        val route = pawn.world.pathFinder.findPath(
+        val route = pawn.world.smartPathFinder.findPath(
                 level = pawn.tile.height,
                 srcX = pawn.tile.x,
                 srcZ = pawn.tile.z,

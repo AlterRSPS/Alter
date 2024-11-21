@@ -108,7 +108,12 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      */
     val def: NpcType = getNpc(id)
 
-    var pathsIndex = 0
+    /**
+     * Set which pathfinder logic to use.
+     * 0 = Dumb path finder.
+     * 1 = Smart path finder.
+     */
+    var pathLogic = 0
 
     /**
      * Getter property for our npc name.

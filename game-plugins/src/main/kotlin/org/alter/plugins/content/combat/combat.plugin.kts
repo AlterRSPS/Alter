@@ -5,34 +5,9 @@ import org.alter.game.model.attr.FACING_PAWN_ATTR
 import org.alter.game.model.attr.INTERACTING_PLAYER_ATTR
 import org.alter.game.model.move.*
 import org.alter.game.model.move.MovementQueue.StepType
-import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.combat.specialattack.SpecialAttacks
 import org.alter.plugins.content.combat.strategy.magic.CombatSpell
 import org.alter.plugins.content.interfaces.attack.AttackTab
-
-on_command("aboutnpc", Privilege.DEV_POWER, description = "Npc information") {
-    world.npcs.entries.filter { it?.id == Npcs.IMP_3134 }.forEach { imp ->
-        if (imp != null) {
-            with(imp) {
-                val route = world.pathFinder.findPath(
-                    level = tile.height,
-                    srcX = tile.x,
-                    srcZ = tile.z,
-                    destZ = tile.z + 4,
-                    destX = tile.x
-                )
-                imp.walkPath(route, MovementQueue.StepType.NORMAL)
-                imp.queue {
-                    while (imp.hasMoveDestination()) {
-                        imp.forceChat("Moving: ${imp.tile}")
-                        wait(1)
-                    }
-                }
-            }
-        }
-    }
-}
-
 
 set_combat_logic {
     pawn.attr[COMBAT_TARGET_FOCUS_ATTR]?.get()?.let { target ->
@@ -54,33 +29,113 @@ on_player_option("Attack") {
 }
 
 /**
- * 1) Can attack outside range when blocked by obstacles.
+ * @TODO Add ranged destination. As right now it will always walk next to target, and then clean up and polish this spaghetti mess.
  */
 suspend fun cycle(it: QueueTask): Boolean {
     val pawn = it.pawn
     val target = pawn.getCombatTarget() ?: return false
     val strategy = CombatConfigs.getCombatStrategy(pawn)
     val attackRange = strategy.getAttackRange(pawn)
+    var pathLogic = 1
+
     if (target != pawn.attr[FACING_PAWN_ATTR]?.get()) {
         return false
     }
-    val route = world.pathFinder.findPath(
+
+    /**
+     * Players always use Smart pathfinder,
+     * Npc most of them use Dumb pathfinder and some use smart pathfinder.
+     */
+    if (pawn.entityType.isNpc) {
+        pathLogic = (pawn as Npc).pathLogic
+    }
+    val reached = world.reachStrategy.reached(
+        flags = world.collision,
         level = pawn.tile.height,
         srcX = pawn.tile.x,
         srcZ = pawn.tile.z,
         destX = target.tile.x,
         destZ = target.tile.z,
-        objShape = -2,
         destWidth = target.getSize(),
-        destHeight = target.getSize()
+        destHeight = target.getSize(),
+        srcSize = pawn.getSize(),
+        objShape = -2
     )
-    pawn.walkPath(route, StepType.NORMAL)
-    while (pawn.hasMoveDestination() || !pawn.tile.isWithinRadius(target.tile, attackRange)) {
+    if (!reached) {
+        when (pathLogic) {
+            1 -> {
+                val route = world.smartPathFinder.findPath(
+                    level = pawn.tile.height,
+                    srcX = pawn.tile.x,
+                    srcZ = pawn.tile.z,
+                    destX = target.tile.x,
+                    destZ = target.tile.z,
+                    objShape = -2,
+                    destWidth = target.getSize(),
+                    destHeight = target.getSize()
+                )
+                pawn.walkPath(route, StepType.NORMAL)
+
+            }
+            0 -> {
+                val destination = world.dumbPathFinder.naiveDestination(
+                    sourceX = pawn.tile.x,
+                    sourceZ = pawn.tile.z,
+                    sourceWidth = pawn.getSize(),
+                    sourceHeight = pawn.getSize(),
+                    targetX = target.tile.x,
+                    targetZ = target.tile.z,
+                    targetWidth = target.getSize(),
+                    targetHeight = target.getSize()
+                )
+                val direction = Direction.between(pawn.tile, Tile(destination.x, destination.z))
+                if (!pawn.world.canTraverse(
+                        source = pawn.tile,
+                        direction = direction,
+                        pawn = pawn,
+                        srcSize = pawn.getSize()
+                    )
+                ) {
+                    val targetsTile = target.tile
+                    while (!pawn.tile.isWithinRadius(
+                            targetsTile,
+                            target.getSize() + attackRange
+                        ) && !pawn.hasMoveDestination()
+                    ) {
+                        listOfNotNull(
+                            Tile(1, 1),
+                            Tile(1, 0),
+                            Tile(0, 1)
+                        ).forEach {
+                            if (world.canTraverse(
+                                    source = pawn.tile,
+                                    direction = Direction.between(pawn.tile, Tile(destination.x, destination.z).transform(it.x, it.z)),
+                                    pawn = pawn,
+                                    srcSize = pawn.getSize()
+                                )
+                            ) {
+                                pawn.walkTo(Tile(pawn.tile.transform(it.x, it.z)))
+                            }
+                        }
+                    }
+                } else {
+                    pawn.walkPath(destination)
+                }
+            }
+        }
+    }
+
+
+
+
+    while (pawn.hasMoveDestination() || !reached) {
         it.wait(1)
         if (!target.isAlive()) {
             return false
         }
+        return cycle(it)
     }
+
     if (!Combat.canEngage(pawn, target)) {
         Combat.reset(pawn)
         pawn.resetFacePawn()
