@@ -39,6 +39,7 @@ import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionFlagMap
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import org.rsmod.game.pathfinder.reach.ReachStrategy
 import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -78,7 +79,9 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     val collision: CollisionFlagMap = CollisionFlagMap()
 
     val stepValidator = StepValidator(collision)
-    val pathFinder = PathFinder(collision)
+    val smartPathFinder = PathFinder(collision)
+    val dumbPathFinder = PathFinder
+    val reachStrategy = ReachStrategy
 
     fun canTraverse(
         source: Tile,
