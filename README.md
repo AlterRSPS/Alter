@@ -57,7 +57,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Original project founder: [Tomm0017](https://github.com/Tomm0017)
 
 
-[patch]: https://oldschool.runescape.wiki/w/Update:Halloween_Fixes_%26_Miscellaneous_Changes
-[rev-badge]: https://img.shields.io/badge/Revision-226-blueviolet
+[patch]: https://oldschool.runescape.wiki/w/Update:Christmas_2024
+[rev-badge]: https://img.shields.io/badge/Revision-227-blueviolet
 [license-badge]: https://img.shields.io/badge/license-ISC-informational
 [jdk-badge]: https://img.shields.io/badge/JDK-17-blue
