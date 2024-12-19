@@ -107,7 +107,6 @@ class Client(world: World) : Player(world) {
                 println(message)
                 pendingMessages.add(message)
             }
-//                m -> session?.queue(m)
         }
     }
 

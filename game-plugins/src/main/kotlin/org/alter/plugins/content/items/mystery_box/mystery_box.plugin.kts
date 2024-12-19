@@ -1,8 +1,10 @@
 package org.alter.plugins.content.items.mystery_box
 
+import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.itemSize
 import org.alter.game.model.priv.Privilege
+import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
 /**
  *  @author <a href="https://github.com/CloudS3c">Cl0ud</a>
@@ -10,13 +12,19 @@ import org.alter.game.model.priv.Privilege
  *
  */
 
-on_item_option(Items.MYSTERY_BOX, "open") {
+on_item_option(Items.MYSTERY_BOX, 2) {
     val itemLimit = itemSize()
-    val item = world.random(0..itemLimit)
-    val itemDef = getItem(item)
-    if (itemDef.name == "" || itemDef.name.lowercase() == "null" || itemDef.isPlaceholder || itemDef.name.isEmpty() || itemDef.noted) {
-        return@on_item_option
-    }
+    var item = world.random(0..itemLimit)
+    var itemDef = getItem(item)
+    do {
+        item = world.random(0..itemLimit)
+        itemDef = getItem(item)
+    } while (
+        itemDef.name.isEmpty() ||
+        itemDef.name.lowercase() == "null" ||
+        itemDef.isPlaceholder ||
+        itemDef.noted
+    )
 
     if (player.inventory.freeSlotCount > 0) {
         player.inventory.add(item, 1, true)

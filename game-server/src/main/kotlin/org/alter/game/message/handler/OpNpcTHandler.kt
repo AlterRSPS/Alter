@@ -5,8 +5,6 @@ import org.alter.game.message.MessageHandler
 import org.alter.game.model.attr.*
 import org.alter.game.model.entity.Client
 import org.alter.game.model.entity.Entity
-import org.alter.game.model.move.moveTo
-import org.alter.game.model.priv.Privilege
 import java.lang.ref.WeakReference
 
 @Suppress("UNREACHABLE_CODE")

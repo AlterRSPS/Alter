@@ -1,5 +1,6 @@
 package org.alter.game.model.move
 
+import org.alter.game.model.Interaction
 import org.alter.game.model.Tile
 import org.alter.game.model.attr.*
 import org.alter.game.model.entity.*
@@ -25,7 +26,11 @@ object PawnPathAction {
          *
          * Set to null for default interaction range.
          */
-        val lineOfSightRange = if (other is Npc) world.plugins.getNpcInteractionDistance(other.id) else null
+        val lineOfSightRange = if (other is Npc && pawn is Client) {
+            world.plugins.getNpcInteractionDistance(other.id)
+        } else {
+            null
+        }
         pawn.queue(TaskPriority.STANDARD) {
             terminateAction = {
                 pawn.stopMovement()
@@ -48,7 +53,7 @@ object PawnPathAction {
          * Set to null for default interaction range.
          */
         val lineOfSightRange = if (other is Npc) world.plugins.getNpcInteractionDistance(other.id) else null
-        pawn.queue(TaskPriority.STANDARD) {
+        pawn.queue {
             terminateAction = {
                 pawn.stopMovement()
                 if (pawn is Player) {
@@ -60,45 +65,21 @@ object PawnPathAction {
     }
 
     private suspend fun walk(it: QueueTask, pawn: Pawn, other: Pawn, opt: Int, lineOfSightRange: Int?) {
-        val initialTile = Tile(other.tile)
-        val lineOfSight = lineOfSightRange ?: 1
+        val collisionStrategy = if (lineOfSightRange == null) CollisionStrategies.Normal else CollisionStrategies.LineOfSight
         val world = pawn.world
         pawn.facePawn(other)
-        /**
-         * @TODO boilerplate
-         */
-        val otherTile: () -> List<Tile> = {
-            val tileMap = mutableListOf<Tile>()
-            for (dx in -1..1) {
-                if (dx != 0) {
-                    tileMap.add(Tile(other.tile.x + dx, other.tile.z))
-                }
-            }
-            for (dy in -1..1) {
-                if (dy != 0) {
-                    tileMap.add(Tile(other.tile.x, other.tile.z + dy))
-                }
-            }
-            tileMap
-        }
 
-        /**
-         * @TODO
-         * Could setup same as:
-         * https://github.dev/2004Scape/Server/blob/cc2d06b2213185d3f51205c01060cefa22d95c3d/src/lostcity/entity/PathingEntity.ts#L388
-         * To save findPath()
-         * Same logic gets repeated for combat so we can reuse this shit
-         */
-        val tTile = otherTile().minBy { pawn.tile.getDistance(it) }
         val route = pawn.world.smartPathFinder.findPath(
             level = pawn.tile.height,
             srcX = pawn.tile.x,
             srcZ = pawn.tile.z,
-            destX = tTile.x,
-            destZ = tTile.z,
-            collision = CollisionStrategies.Normal,
+            destX = other.tile.x,
+            destZ = other.tile.z,
+            objShape = -2,
+            collision = collisionStrategy,
         )
         pawn.walkPath(route.toTileQueue(), stepType = MovementQueue.StepType.NORMAL)
+
         while (pawn.hasMoveDestination()) {
             it.wait(1)
         }
@@ -106,10 +87,11 @@ object PawnPathAction {
          * If the npc has moved from the time this queue was added to
          * when it was actually invoked, we need to walk towards it again.
          */
-        if (!other.tile.sameAs(initialTile)) {
+        if (!other.tile.sameAs(other.tile)) {
             walk(it, pawn, other, opt, lineOfSightRange)
             return
         }
+
         if (pawn is Player) {
             if (pawn.attr[FACING_PAWN_ATTR]?.get() != other) {
                 return

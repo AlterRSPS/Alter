@@ -36,6 +36,7 @@ abstract class Pawn(val world: World) : Entity() {
      */
     var index = -1
 
+    internal var interaction: Interaction? = null
     /**
      * The 3D [Tile] that this pawn was standing on, in the last game cycle.
      */

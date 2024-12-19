@@ -8,6 +8,7 @@ import org.alter.game.model.entity.AreaSound
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
+import org.alter.game.model.move.moveTo
 import org.alter.game.model.move.stopMovement
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
@@ -64,20 +65,6 @@ object NpcDeathAction {
         world.plugins.anyNpcDeath.forEach {
             npc.executePlugin(it)
         }
-        /**
-         * 10 took 0ms.
-         */
-        npc.damageMap.getMostDamage()?.let {    pawn ->
-            val player = pawn as Player
-            val lootTables = npc.combatDef.LootTables ?: return@let
-            roll(player, lootTables).forEach {
-                it.ownerUID = player.uid
-                it.tile = npc.getCentreTile()
-                it.timeUntilPublic = world.gameContext.gItemPublicDelay
-                it.timeUntilDespawn = world.gameContext.gItemDespawnDelay
-                world.spawn(it)
-            }
-        }
         if (npc.respawns) {
             npc.reset()
             wait(respawnDelay)
@@ -90,7 +77,7 @@ object NpcDeathAction {
 
     private fun Npc.reset() {
         lock = LockState.NONE
-        tile = spawnTile
+        moveTo(spawnTile)
         NpcInfo(this).setInaccessible(true)
         attr.clear()
         timers.clear()

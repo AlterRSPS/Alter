@@ -565,4 +565,5 @@ object Varp {
     const val INSTANCE_START_POSITION = 14998
     const val BASE_HIDDEN_VARP1 = 14999
     const val PLAYER_HAS_DISPLAY_NAME = 1055
+    const val MASTER_SOUND_VOLUME = 3796
 }

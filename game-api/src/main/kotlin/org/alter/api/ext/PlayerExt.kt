@@ -9,7 +9,7 @@ import net.rsprot.protocol.game.outgoing.inv.UpdateInvPartial
 import net.rsprot.protocol.game.outgoing.misc.client.UrlOpen
 import net.rsprot.protocol.game.outgoing.misc.player.*
 import net.rsprot.protocol.game.outgoing.sound.MidiJingle
-import net.rsprot.protocol.game.outgoing.sound.MidiSongOld
+import net.rsprot.protocol.game.outgoing.sound.MidiSongV2
 import net.rsprot.protocol.game.outgoing.sound.SynthSound
 import net.rsprot.protocol.game.outgoing.varp.VarpLarge
 import net.rsprot.protocol.game.outgoing.varp.VarpSmall
@@ -578,11 +578,17 @@ fun Player.playSound(
     volume: Int = 1,
     delay: Int = 0,
 ) {
+
     write(SynthSound(id = id, loops = volume, delay = delay))
 }
 
 fun Player.playSong(id: Int) {
-    write(MidiSongOld(id))
+    write(MidiSongV2(id = 0,
+            fadeOutDelay = 0,
+            fadeOutSpeed = 0,
+            fadeInDelay = 0,
+            fadeInSpeed = 0
+    ))
     setComponentText(interfaceId = 239, component = 6, text = Song.getTitle(id))
 }
 

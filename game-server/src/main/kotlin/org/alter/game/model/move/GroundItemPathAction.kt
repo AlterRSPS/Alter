@@ -50,8 +50,9 @@ object GroundItemPathAction {
 
             if (player.tile.sameAs(item.tile)) {
                 handleAction(player, item, opt)
-            } else if (player.tile.isWithinRadius(item.tile, 1)) {
-                player.lock
+            }
+            if (player.tile.isWithinRadius(item.tile, 1)) {
+                player.lock()
                 player.faceTile(item.tile)
                 if (!player.isPathBlocked(item.tile)) {
                     player.animate(832, 4)
@@ -65,9 +66,6 @@ object GroundItemPathAction {
         }
     }
 
-    /**
-     * @TODO Max_Int value handling
-     */
     private fun handleAction(
         p: Player,
         groundItem: GroundItem,

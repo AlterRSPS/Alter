@@ -155,7 +155,7 @@ abstract class KotlinPlugin(
         n.lastFacingDirection = direction
         r.npcSpawns.add(n)
     }
-
+    fun spawn_obj(obj: Int, tile: Tile, type: Int = 10, rot: Int = 0) = spawn_obj(obj, tile.x, tile.z, tile.height, type, rot)
     /**
      * Spawn a [DynamicObject] on the given coordinates.
      */

@@ -23,6 +23,9 @@ val HOUSE_OPT_BUTTON = 31
 val BOND_BUTTON = 33
 val ALL_SETTINGS_BUTTON = 32
 
+val MUTE_MASTER_SOUND = 79
+val MUTE_MASTER_SOUND_BAR = 90
+
 on_login {
     player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 55, 0..21, setting = InterfaceEvent.ClickOp1)
     player.setInterfaceEvents(
@@ -160,21 +163,27 @@ bind_setting(68) {
 bind_setting(69) {
     player.setVarbit(Varbit.SETTINGS_TAB_FOCUS, 2)
 }
-
 bind_setting(MUSIC_BAR) {
     player.setVarp(Varp.AUDIO_MUSIC_VOLUME, player.getInteractingSlot() * 5)
 }
-
 bind_setting(SOUND_BAR) {
     player.setVarp(Varp.AUDIO_SOUND_EFFECT_VOLUME, player.getInteractingSlot() * 5)
 }
-
 bind_setting(AREA_SOUND_BAR) {
     player.setVarp(Varp.AUDIO_AREA_SOUND_VOLUME, player.getInteractingSlot() * 5)
 }
 
-
-
+bind_setting(MUTE_MASTER_SOUND_BAR) {
+    player.setVarp(Varp.MASTER_SOUND_VOLUME, player.getInteractingSlot() * 5)
+}
+bind_setting(MUTE_MUSIC) {
+    if (player.getVarp(Varp.AUDIO_MUSIC_VOLUME) == 0) {
+        player.setVarp(Varp.AUDIO_MUSIC_VOLUME, player.attr[AUDIO_MUSIC_VOLUME] ?: 100)
+    } else {
+        player.attr[AUDIO_MUSIC_VOLUME] = player.getVarp(Varp.AUDIO_MUSIC_VOLUME)
+        player.setVarp(Varp.AUDIO_MUSIC_VOLUME, 0)
+    }
+}
 
 
 bind_setting(ZOOM_TOGGLE_BUTTON) {
@@ -184,13 +193,14 @@ bind_setting(ZOOM_TOGGLE_BUTTON) {
 val AUDIO_MUSIC_VOLUME = AttributeKey<Int>()
 val SOUND_EFFECT_VOLUME = AttributeKey<Int>()
 val AREA_SOUND_VOLUME = AttributeKey<Int>()
+val MASTER_SOUND_VOLUME = AttributeKey<Int>()
 
-bind_setting(MUTE_MUSIC) {
-    if (player.getVarp(Varp.AUDIO_MUSIC_VOLUME) == 0) {
-        player.setVarp(Varp.AUDIO_MUSIC_VOLUME, player.attr[AUDIO_MUSIC_VOLUME] ?: 100)
+bind_setting(MUTE_MASTER_SOUND) {
+    if (player.getVarp(Varp.MASTER_SOUND_VOLUME) == 0) {
+        player.setVarp(Varp.MASTER_SOUND_VOLUME, player.attr[MASTER_SOUND_VOLUME] ?: 100)
     } else {
-        player.attr[AUDIO_MUSIC_VOLUME] = player.getVarp(Varp.AUDIO_MUSIC_VOLUME)
-        player.setVarp(Varp.AUDIO_MUSIC_VOLUME, 0)
+        player.attr[MASTER_SOUND_VOLUME] = player.getVarp(Varp.MASTER_SOUND_VOLUME)
+        player.setVarp(Varp.MASTER_SOUND_VOLUME, 0)
     }
 }
 
@@ -210,4 +220,12 @@ bind_setting(MUTE_AREA_SOUND) {
         player.attr[AREA_SOUND_VOLUME] = player.getVarp(Varp.AUDIO_AREA_SOUND_VOLUME)
         player.setVarp(Varp.AUDIO_AREA_SOUND_VOLUME, 0)
     }
+}
+
+bind_setting(ALL_SETTINGS_BUTTON) {
+    player.openInterface(parent = 161, child = 18, interfaceId = 134)
+    player.setInterfaceEvents(interfaceId = 134, component = 23, range = 0..9, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = 134, component = 19, range = 0..449, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = 134, component = 28, range = 0..41, setting = InterfaceEvent.ClickOp1)
+    player.setInterfaceEvents(interfaceId = 134, component = 21, range = 0..219, setting = InterfaceEvent.ClickOp1)
 }

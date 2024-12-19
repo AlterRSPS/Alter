@@ -107,6 +107,7 @@ suspend fun cycle(it: QueueTask): Boolean {
                             Tile(1, 0),
                             Tile(0, 1)
                         ).forEach {
+                            world.spawn(GroundItem(item = Items.TWISTED_BOW, tile = it, amount = 1))
                             if (world.canTraverse(
                                     source = pawn.tile,
                                     direction = Direction.between(pawn.tile, Tile(destination.x, destination.z).transform(it.x, it.z)),
@@ -114,6 +115,9 @@ suspend fun cycle(it: QueueTask): Boolean {
                                     srcSize = pawn.getSize()
                                 )
                             ) {
+                                /**
+                                 * @TODO This shit uses smart pathing btw
+                                 */
                                 pawn.walkTo(Tile(pawn.tile.transform(it.x, it.z)))
                             }
                         }
@@ -124,10 +128,6 @@ suspend fun cycle(it: QueueTask): Boolean {
             }
         }
     }
-
-
-
-
     while (pawn.hasMoveDestination() || !reached) {
         it.wait(1)
         if (!target.isAlive()) {

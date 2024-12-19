@@ -486,6 +486,9 @@ open class Player(world: World) : Pawn(world) {
 
     fun calculateBonuses() {
         Arrays.fill(equipmentBonuses, 0)
+        /**
+         * @TODO add check if item is configured or not
+         */
         for (i in 0 until equipment.capacity) {
             val item = equipment[i] ?: continue
             val def = item.getDef()

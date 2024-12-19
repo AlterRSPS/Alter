@@ -28,7 +28,9 @@ fun Pawn.moveTo(
         (this as Player).avatar.extendedInfo.setTempMoveSpeed(127)
     }
 }
+
 fun Pawn.moveTo(tile: Tile) = moveTo(tile.x, tile.z, tile.height)
+
 /**
  * @property x = xInBuildArea the x coordinate within the build area
  *  to render the map flag at.
@@ -42,7 +44,7 @@ fun Pawn.setMapFlag(
     y: Int = 255,
 ) {
     if (this is Player) {
-        write(SetMapFlag(x,y))
+        write(SetMapFlag(x, y))
     }
 }
 
@@ -59,6 +61,7 @@ fun Pawn.walkPath(
 ) {
     walkPath(path.toTileQueue(), stepType)
 }
+
 fun Pawn.walkPath(
     path: Queue<Tile>,
     stepType: StepType,
@@ -72,6 +75,14 @@ fun Pawn.walkPath(
     var next = path.poll()
     while (next != null) {
         movementQueue.addStep(next, stepType)
+        interaction?.let {
+            if (next.isWithinRadius(it.goal, it.range)) {
+                if (this is Player) {
+                    writeMessage("Stopped as goal was reached.")
+                }
+                stopMovement()
+            }
+        }
         val poll = path.poll()
         if (poll == null) {
             tail = next
@@ -92,16 +103,17 @@ fun Pawn.walkPath(
     }
 }
 
-fun Route.toTileQueue() : Queue<Tile> {
-    return ArrayDeque(this.waypoints.map{ Tile(it.x, it.z, it.level) })
+fun Route.toTileQueue(): Queue<Tile> {
+    return ArrayDeque(this.waypoints.map { Tile(it.x, it.z, it.level) })
 }
 
 fun Pawn.stopMovement() = movementQueue.clear()
-fun Pawn.walkTo(tile: Tile, stepType: StepType = StepType.NORMAL) = walkTo(targetX = tile.x, targetY = tile.z, stepType = stepType)
+fun Pawn.walkTo(tile: Tile, stepType: StepType = StepType.NORMAL) =
+    walkTo(targetX = tile.x, targetY = tile.z, stepType = stepType)
+
 fun Pawn.walkPath(route: RouteCoordinates, stepType: StepType = StepType.NORMAL) {
     this.walkTo(Tile(route.x, route.z), stepType)
 }
-
 
 fun Pawn.walkTo(
     targetX: Int,
@@ -110,6 +122,9 @@ fun Pawn.walkTo(
 ) {
     if (this is Player) {
         if (!lock.canMove()) {
+            /**
+             * @TODO Add silent lock.
+             */
             writeMessage("You are locked")
             return
         }
@@ -124,7 +139,11 @@ fun Pawn.walkTo(
         destX = targetX,
         destZ = targetY,
     )
-    if (attr[CLIENT_KEY_COMBINATION] == 2 && this is Player && world.privileges.isEligible(privilege, Privilege.ADMIN_POWER)) {
+    if (attr[CLIENT_KEY_COMBINATION] == 2 && this is Player && world.privileges.isEligible(
+            privilege,
+            Privilege.ADMIN_POWER
+        )
+    ) {
         moveTo(Tile(targetX, targetY, tile.height))
         attr[CLIENT_KEY_COMBINATION] = 0
     } else {
@@ -132,6 +151,12 @@ fun Pawn.walkTo(
     }
 }
 
-
+suspend fun Pawn.awaitArrival() {
+    this.queue {
+        while (hasMoveDestination()) {
+            wait(1)
+        }
+    }
+}
 
 fun Pawn.hasMoveDestination(): Boolean = movementQueue.hasDestination()

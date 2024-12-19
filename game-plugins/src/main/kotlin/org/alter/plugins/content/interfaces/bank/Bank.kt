@@ -9,6 +9,7 @@ import org.alter.game.model.container.ItemContainer
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
 import org.alter.plugins.content.interfaces.bank.BankTabs.SELECTED_TAB_VARBIT
+import org.alter.plugins.content.interfaces.bank.BankTabs.getTabsItems
 import org.alter.plugins.content.interfaces.equipstats.EquipmentStats
 
 /**
@@ -85,6 +86,7 @@ object Bank {
         id: Int,
         amt: Int,
     ) {
+        println("Deposit method executed ====")
         val from = player.inventory
         val to = player.bank
         val amount = from.getItemCount(id).coerceAtMost(amt)
@@ -97,25 +99,32 @@ object Bank {
             if (deposited >= amount) {
                 break
             }
+            val curTab = player.getVarbit(SELECTED_TAB_VARBIT)
+            val hasEmptySlot = getTabsItems(player, curTab).contains(null)
+
             val left = amount - deposited
             val copy = Item(item.id, Math.min(left, item.amount))
             if (copy.amount >= item.amount) {
                 copy.copyAttr(item)
             }
+            /**
+             * @TODO Add handling if curTab is not selected --> We load items into main tab. Even if other tabs have empty slots.
+             * @TODO When taking tabs first item it will do shift. --> Empty slots are moved not removed.
+             */
             var toSlot = to.removePlaceholder(player.world, copy)
             var placeholderOrExistingStack = true
-            val curTab = player.getVarbit(SELECTED_TAB_VARBIT)
             if (toSlot == -1 && !to.contains(item.id)) {
                 placeholderOrExistingStack = false
-                toSlot = to.getLastFreeSlot()
+                //toSlot = to.getLastFreeSlot()
             }
             val transaction = from.transfer(to, item = copy, fromSlot = i, toSlot = toSlot, note = false, unnote = true)
             if (transaction != null) {
                 deposited += transaction.completed
             }
+
             if (deposited > 0) {
                 if (curTab != 0 && !placeholderOrExistingStack) {
-                    BankTabs.dropToTab(player, curTab, to.getLastFreeSlotReversed() - 1)
+                    BankTabs.dropToTab(player, curTab, to.getLastFreeSlotReversed() - 1, hasEmptySlot)
                 }
             }
         }
