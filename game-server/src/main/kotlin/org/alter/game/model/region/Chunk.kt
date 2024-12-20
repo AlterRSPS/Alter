@@ -305,13 +305,10 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
                     continue
                 }
                 val local = client.lastKnownRegionBase!!.toLocal(this.coords.toTile())
-                //client.write(UpdateZonePartialFollows(local.x, local.z, local.height))
-                //client.write(update.toMessage())
                 val messages = ObjectArrayList<ZoneProt>()
                 messages.add(update.toMessage())
                 val computed = zonePartialEnclosedCacheBuffer.computeZone(messages)
                 if (messages.isNotEmpty()) {
-                    val local = client.lastKnownRegionBase!!.toLocal(coords.toTile())
                     // Was not added from here MAP_PROJECTILE @TODO
                     client.write(UpdateZonePartialEnclosed(zoneX = local.x, zoneZ = local.z, level = local.height, payload = computed[OldSchoolClientType.DESKTOP]!!))
                 }
