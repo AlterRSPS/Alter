@@ -77,8 +77,13 @@ inline val QueueTask.npc: Npc get() = ctx as Npc
 suspend fun QueueTask.options(
     vararg options: String,
     title: String = "Select an Option",
+    fullSize: Boolean = true
 ): Int {
+    /**
+     *
     player.sendTempVarbit(5983, 1)
+    */
+    player.sendTempVarbit(10670, if (fullSize) 1 else 0)
     player.runClientScript(CommonClientScripts.CHATBOX_RESET_BACKGROUND)
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 219)
     player.runClientScript(CommonClientScripts.CHATBOX_MULTI, title, options.joinToString("|"))

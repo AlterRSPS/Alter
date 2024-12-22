@@ -17,7 +17,8 @@ suspend fun QueueTask.cookingMessageBox(
     title: String = "What would you like to cook?",
     maxItems: Int = player.inventory.capacity,
     obj: CookingObj?,
-    logic: Player.(Int, Int, CookingObj?) -> Unit,
+    fullSize: Boolean = true,
+    logic: Player.(Int, Int, CookingObj?) -> Unit
 ) {
     val defs = player.world.definitions
     val itemDefs = items.map { getItem(it) }
@@ -30,8 +31,10 @@ suspend fun QueueTask.cookingMessageBox(
         itemArray[it.index] = def.id
         nameArray[it.index] = "|${def.name}"
     }
-
+    /**
     player.sendTempVarbit(5983, 1)
+    */
+    player.sendTempVarbit(10670, if (fullSize) 1 else 0)
     player.runClientScript(CommonClientScripts.CHATBOX_RESET_BACKGROUND)
     player.openInterface(parent = 162, child = 559, interfaceId = 270, isModal = true)
     player.setInterfaceEvents(interfaceId = 270, component = 14, range = (1..10), setting = 1)
