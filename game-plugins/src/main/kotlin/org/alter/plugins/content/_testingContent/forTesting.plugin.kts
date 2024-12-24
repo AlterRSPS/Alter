@@ -124,9 +124,7 @@ set_combat_def(test_dummy_imp) {
 }
 
 
-val test_size_npc = Npcs.GENERAL_GRAARDOR
-val test_size_tile = Tile(3159,3471,0)
-spawn_npc(test_size_npc, test_size_tile)
+
 
 
 
