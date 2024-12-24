@@ -11,6 +11,7 @@ import org.alter.game.model.item.Item
 import org.alter.plugins.content.interfaces.bank.BankTabs.SELECTED_TAB_VARBIT
 import org.alter.plugins.content.interfaces.bank.BankTabs.getTabsItems
 import org.alter.plugins.content.interfaces.equipstats.EquipmentStats
+import org.alter.plugins.content.interfaces.equipstats.EquipmentStats.bonusTextMap
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -234,83 +235,28 @@ object Bank {
     }
 
     fun sendBonuses(p: Player) {
-        /**
-         * @TODO Include set bonus desc
-         * Since my account is banned rn can't retrieve how it actl looks if they set the desc when you equip one piece of the set or if the desc gets set when you wear full set. :Shrug:
-         */
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 89,
-            text = "Stab: ${EquipmentStats.formatBonus(p, BonusSlot.ATTACK_STAB)}",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 90,
-            text = "Slash: ${EquipmentStats.formatBonus(p, BonusSlot.ATTACK_SLASH)}",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 91,
-            text = "Crush: ${EquipmentStats.formatBonus(p, BonusSlot.ATTACK_CRUSH)}",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 92,
-            text = "Magic: ${EquipmentStats.formatBonus(p, BonusSlot.ATTACK_MAGIC)}",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 93,
-            text = "Range: ${EquipmentStats.formatBonus(p, BonusSlot.ATTACK_RANGED)}",
-        )
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 122, text = "Base: 2.4s") // @TODO Normal Weapon Attack speed
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 123, text = "Actual: 2.4s") // @TODO Attack speed with rapid and etc.
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 95,
-            text = "Stab: ${EquipmentStats.formatBonus(p, BonusSlot.DEFENCE_STAB)}",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 96,
-            text = "Slash: ${EquipmentStats.formatBonus(p, BonusSlot.DEFENCE_SLASH)}",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 97,
-            text = "Crush: ${EquipmentStats.formatBonus(p, BonusSlot.DEFENCE_CRUSH)}",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 99,
-            text = "Range: ${EquipmentStats.formatBonus(p, BonusSlot.DEFENCE_RANGED)}",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 98,
-            text = "Magic: ${EquipmentStats.formatBonus(p, BonusSlot.DEFENCE_MAGIC)}",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 101,
-            text = "Melee STR: ${EquipmentStats.formatBonus(p.getStrengthBonus())}",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 102,
-            text = "Ranged STR: ${EquipmentStats.formatBonus(p.getRangedStrengthBonus())}",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 103,
-            text = "Magic DMG: ${EquipmentStats.formatBonus(p.getMagicDamageBonus()).toDouble()}%",
-        )
-        p.setComponentText(
-            interfaceId = BANK_INTERFACE_ID,
-            component = 104,
-            text = "Prayer: ${EquipmentStats.formatBonus(p.getPrayerBonus())}",
-        )
-        p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 106, text = "Undead: 0%") // @TODO
+
+        with(p) {
+            setBankEquipCompText(component = 98, text = bonusTextMap()[0])
+            setBankEquipCompText(component = 99, text = bonusTextMap()[1])
+            setBankEquipCompText(component = 100, text = bonusTextMap()[2])
+            setBankEquipCompText(component = 101, text = bonusTextMap()[3])
+            setBankEquipCompText(component = 102, text = bonusTextMap()[4])
+            setBankEquipCompText(component = 132, text = bonusTextMap()[5])
+            setBankEquipCompText(component = 133, text = bonusTextMap()[6])
+            setBankEquipCompText(component = 104, text = bonusTextMap()[7])
+            setBankEquipCompText(component = 105, text = bonusTextMap()[8])
+            setBankEquipCompText(component = 106, text = bonusTextMap()[9])
+            setBankEquipCompText(component = 108, text = bonusTextMap()[10])
+            setBankEquipCompText(component = 107, text = bonusTextMap()[11])
+            setBankEquipCompText(component = 110, text = bonusTextMap()[12])
+            setBankEquipCompText(component = 111, text = bonusTextMap()[13])
+            setBankEquipCompText(component = 112, text = bonusTextMap()[14])
+            setBankEquipCompText(component = 113, text = bonusTextMap()[15])
+            setBankEquipCompText(component = 115, text = bonusTextMap()[16])
+            setBankEquipCompText(component = 116, text = bonusTextMap()[17])
+
+        }
         p.runClientScript(
             ClientScript(id = 7065),
             786549,
@@ -318,6 +264,9 @@ object Bank {
             "Increases your effective accuracy and damage against undead creatures. For multi-target Ranged and Magic attacks, this applies only to the primary target. It does not stack with the Slayer multiplier.",
         )
         p.setComponentText(interfaceId = BANK_INTERFACE_ID, component = 107, text = "Slayer: 0%") // @TODO
+    }
+    private fun Player.setBankEquipCompText(component: Int, text: String) {
+        this.setComponentText(interfaceId = BANK_INTERFACE_ID, component = component, text = text)
     }
 
     fun ItemContainer.removePlaceholder(
