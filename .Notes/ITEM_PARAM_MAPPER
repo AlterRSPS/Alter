@@ -1,0 +1,43 @@
+Param 0: Stab attack bonus | obj, npc
+Param 1: Slash attack bonus | obj, npc
+Param 2: Crush attack bonus | obj, npc
+Param 3: Magic attack bonus | obj, npc
+Param 4: Ranged attack bonus | obj, npc
+Param 5: Stab defence bonus | obj, npc
+Param 6: Slash defence bonus | obj, npc
+Param 7: Crush defence bonus | obj, npc
+Param 8: Magic defence bonus | obj, npc
+Param 9: Ranged defence bonus | obj
+Param 10: Melee strength bonus | obj, npc
+Param 11: Prayer bonus | obj, npc (single npc, value 0)
+Param 12: Ranged strength bonus | obj, npc
+Param 14: Attack rate | obj, npc
+Param 26: ? | npc
+Param 46: Death drop | npc
+Param 50: Primary slayer category | npc
+Param 65: Magic damage bonus | npc, obj (salamanders only)
+Param 128: Damage increase against demons (60% for silverlight) | obj
+Param 189: Ranged strength bonus | obj
+Param 190: Draconic | npc
+Param 346: Degrades in combat (boolean, set on barrows/moons/amulet of the damned/zulrah degradables) | obj
+Param 436: Attack / Defence
+Param 437: Attack / Defence
+
+
+
+Param 518: Silver strength (1 on silver sickle, 4 on ivandis flail) | obj, npc
+Param 701: Corpbane | obj
+Param 1178: Golem | npc
+Param 1353: Kalphite | npc
+
+258: ? (22)
+295: ?
+1564: ?
+1563: ?
+1371: ?
+434: ?
+
+***
+For some reason only could find on Khopesh:
+2059->A powerful Khopesh, imbued with the power of thunder and lightning.<br><br>Deals full damage to the Corporeal Beast<br>Has a 20% chance to trigger a AoE lightning bolt under the target, hitting anything in a 1 tile radius, which rolls with 50% of the original attacks max hit.
+2060->50% - Attacks twice. If either attack is successful an additional lightning bolt is summoned rolling up to 100% of the original attacks max hit.
