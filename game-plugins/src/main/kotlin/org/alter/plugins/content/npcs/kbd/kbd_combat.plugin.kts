@@ -1,5 +1,6 @@
 package org.alter.plugins.content.npcs.kbd
 
+import dev.openrune.cache.CacheManager
 import org.alter.game.model.combat.AttackStyle
 import org.alter.game.model.combat.CombatClass
 import org.alter.game.model.combat.CombatStyle
@@ -101,6 +102,15 @@ fun poison_attack(
         }
     if (hit.blocked()) {
         target.graphic(id = 85, height = 124, delay = hit.getClientHitDelay())
+    }
+}
+on_world_init {
+    CacheManager.getItems().forEach { inde, def ->
+        println("======== ${def.name} ========")
+        def.params?.forEach {
+            println(it)
+        }
+        println("===========================")
     }
 }
 

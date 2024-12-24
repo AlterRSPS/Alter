@@ -46,12 +46,10 @@ object GroundItemPathAction {
             while (player.hasMoveDestination()) {
                 wait(1)
             }
-
-
             if (player.tile.sameAs(item.tile)) {
                 handleAction(player, item, opt)
             }
-            if (player.tile.isWithinRadius(item.tile, 1)) {
+            if (player.tile.getDistance(item.tile) == 1 && player.isLocked()) {
                 player.lock()
                 player.faceTile(item.tile)
                 if (!player.isPathBlocked(item.tile)) {

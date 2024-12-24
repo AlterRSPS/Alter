@@ -4,7 +4,7 @@ package org.alter.api
  * @author Tom <rspsmods@gmail.com>
  */
 enum class ProjectileType(
-    val startHeight: Int,
+    var startHeight: Int,
     val endHeight: Int,
     val delay: Int,
     val angle: Int,

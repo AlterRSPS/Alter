@@ -31,8 +31,8 @@ on_player_option("Attack") {
 /**
  * @TODO Add ranged destination. As right now it will always walk next to target, and then clean up and polish this spaghetti mess.
  */
-suspend fun cycle(it: QueueTask): Boolean {
-    val pawn = it.pawn
+suspend fun cycle(queue: QueueTask): Boolean {
+    val pawn = queue.pawn
     val target = pawn.getCombatTarget() ?: return false
     val strategy = CombatConfigs.getCombatStrategy(pawn)
     val attackRange = strategy.getAttackRange(pawn)
@@ -64,6 +64,8 @@ suspend fun cycle(it: QueueTask): Boolean {
     if (!reached) {
         when (pathLogic) {
             1 -> {
+                println("p1")
+
                 val route = world.smartPathFinder.findPath(
                     level = pawn.tile.height,
                     srcX = pawn.tile.x,
@@ -77,7 +79,9 @@ suspend fun cycle(it: QueueTask): Boolean {
                 pawn.walkPath(route, StepType.NORMAL)
 
             }
+
             0 -> {
+                println("p0")
                 val destination = world.dumbPathFinder.naiveDestination(
                     sourceX = pawn.tile.x,
                     sourceZ = pawn.tile.z,
@@ -89,6 +93,9 @@ suspend fun cycle(it: QueueTask): Boolean {
                     targetHeight = target.getSize()
                 )
                 val direction = Direction.between(pawn.tile, Tile(destination.x, destination.z))
+                /**
+                 * Ran behind a pillar and it caused inf loop freezing entire server
+                 */
                 if (!pawn.world.canTraverse(
                         source = pawn.tile,
                         direction = direction,
@@ -106,34 +113,53 @@ suspend fun cycle(it: QueueTask): Boolean {
                             Tile(1, 1),
                             Tile(1, 0),
                             Tile(0, 1)
-                        ).forEach {
-                            world.spawn(GroundItem(item = Items.TWISTED_BOW, tile = it, amount = 1))
-                            if (world.canTraverse(
+                        ).forEachIndexed { index, it ->
+                            println("$index : ${pawn.tile.transform(it.x, it.z)}")
+
+                            /**
+                             * @TODO This shit uses smart pathing btw
+                             */
+                            pawn.walkTo(Tile(pawn.tile.transform(it.x, it.z)))
+                            if (!world.canTraverse(
                                     source = pawn.tile,
-                                    direction = Direction.between(pawn.tile, Tile(destination.x, destination.z).transform(it.x, it.z)),
+                                    direction = Direction.between(
+                                        pawn.tile,
+                                        Tile(destination.x, destination.z).transform(it.x, it.z)
+                                    ),
                                     pawn = pawn,
                                     srcSize = pawn.getSize()
                                 )
                             ) {
-                                /**
-                                 * @TODO This shit uses smart pathing btw
-                                 */
-                                pawn.walkTo(Tile(pawn.tile.transform(it.x, it.z)))
+                                queue.wait(1)
+                            } else {
+                                if (pawn.entityType.isNpc) {
+                                    return true
+                                }
+
                             }
                         }
+                        /**
+                         * We return true for the Npc to keep targeting the player -> Need to test with 2 Pawn's if the npc will change target or no.
+                         * @TODO Same need to check how this logic would happen on OSRS
+                         */
+
                     }
+
+
                 } else {
                     pawn.walkPath(destination)
                 }
+
+
             }
         }
     }
     while (pawn.hasMoveDestination() || !reached) {
-        it.wait(1)
+        queue.wait(1)
         if (!target.isAlive()) {
             return false
         }
-        return cycle(it)
+        return cycle(queue)
     }
 
     if (!Combat.canEngage(pawn, target)) {

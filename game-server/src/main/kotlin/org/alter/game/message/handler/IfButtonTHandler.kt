@@ -61,6 +61,9 @@ class IfButtonTHandler : MessageHandler<IfButtonT> {
         client.attr[OTHER_ITEM_ID_ATTR] = toItem.id
         client.attr[OTHER_ITEM_SLOT_ATTR] = toSlot
 
+        /**
+         * @TODO Add support for (Any) Item on item <-- Example: Banker's note
+         */
         var handled = client.world.plugins.executeItemOnItem(client, fromItem.id, toItem.id)
 
         /**
