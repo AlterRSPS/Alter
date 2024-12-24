@@ -26,26 +26,26 @@ on_timer(AttackTab.SPEC_RESTORE) {
 /**
  * Attack style buttons
  */
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 4) {
+on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 5) {
     player.setVarp(ATTACK_STYLE_VARP, 0)
 }
 
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 8) {
+on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 9) {
     player.setVarp(ATTACK_STYLE_VARP, 1)
 }
 
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 12) {
+on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 13) {
     player.setVarp(ATTACK_STYLE_VARP, 2)
 }
 
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 16) {
+on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 17) {
     player.setVarp(ATTACK_STYLE_VARP, 3)
 }
 
 /**
  * Toggle auto-retaliate button.
  */
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 30) {
+on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 31) {
     player.toggleVarp(DISABLE_AUTO_RETALIATE_VARP)
 }
 
