@@ -1,6 +1,7 @@
 package org.alter.game.action
 
 import dev.openrune.cache.CacheManager.getAnim
+import org.alter.game.action.NpcDeathAction.reset
 import org.alter.game.info.NpcInfo
 import org.alter.game.model.LockState
 import org.alter.game.model.attr.KILLER_ATTR
@@ -48,37 +49,41 @@ object NpcDeathAction {
             }
             npc.attr[KILLER_ATTR] = WeakReference(it)
         }
+        NpcInfo(npc).setAllOpsInvisible()
         world.plugins.executeNpcPreDeath(npc)
         npc.resetFacePawn()
-
         if (npc.combatDef.defaultDeathSoundArea) {
             world.spawn(AreaSound(npc.tile, deathSound, npc.combatDef.defaultDeathSoundRadius, npc.combatDef.defaultDeathSoundVolume))
         } else {
             (killer as? Player)?.playSound(deathSound, npc.combatDef.defaultDeathSoundVolume)
         }
+
+        /**
+         * @TODO add interruption for this block if we would want to execute a plugin during it's death animation
+         */
         deathAnimation.forEach { anim ->
             val def = getAnim(anim)
             npc.animate(def.id, def.cycleLength)
-            wait(def.cycleLength + 1)
+            wait(def.cycleLength)
         }
         world.plugins.executeNpcDeath(npc)
         world.plugins.anyNpcDeath.forEach {
             npc.executePlugin(it)
         }
         if (npc.respawns) {
+            NpcInfo(npc).setInaccessible(true)
             npc.reset()
             wait(respawnDelay)
+            NpcInfo(npc).setAllOpsVisible()
             NpcInfo(npc).setInaccessible(false)
             world.plugins.executeNpcSpawn(npc)
         } else {
             world.remove(npc)
         }
     }
-
     private fun Npc.reset() {
         lock = LockState.NONE
         moveTo(spawnTile)
-        NpcInfo(this).setInaccessible(true)
         attr.clear()
         timers.clear()
         world.setNpcDefaults(this)

@@ -3,8 +3,7 @@ package org.alter.game.info
 import org.alter.game.model.entity.Npc
 
 /**
- * @TODO Make all function properties within NPC,
- * And sync all of them on tick
+ * @TODO Basically make all properties all within this block <-- Updated and etc and then send out everything out on next tick,
  */
 class NpcInfo(var npc: Npc) {
     var avatar = npc.avatar
@@ -124,5 +123,12 @@ class NpcInfo(var npc: Npc) {
             z = z,
             jump = jump
         )
+    }
+
+    fun setAllOpsInvisible() {
+        info.setAllOpsInvisible()
+    }
+    fun setAllOpsVisible() {
+        info.setAllOpsVisible()
     }
 }
