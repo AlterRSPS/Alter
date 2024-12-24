@@ -821,14 +821,14 @@ fun Player.sendWeaponComponentInformation() {
         name = definition.name
 
         panel = Math.max(0, definition.weaponType)
-        setComponentText(593, 2, "Category: " + WeaponCategory.get(definition.category))
+        setComponentText(593, 3, "Category: " + WeaponCategory.get(definition.category))
     } else {
         name = "Unarmed"
         panel = 0
-        setComponentText(593, 2, "Category: Unarmed")
+        setComponentText(593, 3, "Category: Unarmed")
     }
 
-    setComponentText(593, 1, name)
+    setComponentText(593, 2, name)
     setVarbit(357, panel)
 }
 
