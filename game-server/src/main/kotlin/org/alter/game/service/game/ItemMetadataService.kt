@@ -1,30 +1,26 @@
 package org.alter.game.service.game
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
+import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.getItem
-import gg.rsmod.util.Namer
+import dev.openrune.cache.filestore.definition.data.ItemType
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
-import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
 import org.alter.game.Server
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import org.yaml.snakeyaml.LoaderOptions
-import java.io.*
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 class ItemMetadataService : Service {
-
     override fun init(
         server: Server,
         world: World,
@@ -34,7 +30,6 @@ class ItemMetadataService : Service {
     }
 
     var ms: Long = 0
-
     fun loadAll(world: World) {
         val stopwatch = Stopwatch.createStarted().reset().start()
         val loaderOptions = LoaderOptions()
@@ -50,95 +45,80 @@ class ItemMetadataService : Service {
         val path = Paths.get("../data/cfg/items")
 
         try {
-            Files.newBufferedReader(path.resolve("_items.yml")).use { reader ->
-                val data = mapper.readValue(reader, Array<Metadata>::class.java)
-                data.forEach { item ->
-                    load(item, world)
+            Paths.get("../data/cfg/objs.csv").toFile().forEachLine { line ->
+                val parts = line.split(",")
+                if (parts.size >= 2) {
+                    val id = parts[0].toIntOrNull()
+                    val examine = line.substringAfter(',').trim()
+                    if (id != null) {
+                        getItem(id).examine = examine
+                    }
                 }
             }
-
+            CacheManager.getItems().forEach { _, item ->
+                val def = getItem(item.id)
+                def.attackSpeed = def.getValidatedParam(14)
+                if (def.equipSlot == 3) {
+                    def.weaponType = WeaponCategory.get(def, def.category)
+                }
+                def.equipType = def.appearanceOverride1
+                def.bonuses =
+                    intArrayOf(
+                        def.getValidatedParam(0),
+                        def.getValidatedParam(1),
+                        def.getValidatedParam(2),
+                        def.getValidatedParam(3),
+                        def.getValidatedParam(4),
+                        def.getValidatedParam(5),
+                        def.getValidatedParam(6),
+                        def.getValidatedParam(7),
+                        def.getValidatedParam(8),
+                        def.getValidatedParam(9),
+                        def.getValidatedParam(10),
+                        def.getValidatedParam(12),
+                        def.getValidatedParam(65),
+                        def.getValidatedParam(11),
+                    )
+            }
             Files.walk(path.resolve("equippable")).parallel().filter { it.toFile().isFile }.forEach {
                 val data = mapper.readValue(it.toFile(), Metadata::class.java)
-                load(data, world)
+                load(data)
             }
         } catch (e: Exception) {
             throw e
         }
         ms = stopwatch.elapsed(TimeUnit.MILLISECONDS)
     }
-
-    /**
-     * Continue later. @TODO -> Removal of all default 0's
-     */
-    private fun newData(item: Metadata) {
-        val mapper: ObjectMapper = YAMLMapper()
-        if (item.id == 35) {
-            if (item.equipment != null) {
-                val namer = Namer()
-                val name = namer.name(item.name, item.id)?.lowercase()
-                // val file: File = File("./data/cfg/newItems/equipable/", "${item.id}_$name.yml")
-                println(item)
-            }
-        }
-    }
-
-    private fun load(
-        item: Metadata,
-        world: World,
-    ) {
+    fun load(item: Metadata) {
         val def = getItem(item.id)
-        def.name = item.name
-        def.examine = item.examine?: ""
-        def.isTradeable = item.tradeable
         def.weight = item.weight
+
         if (item.equipment != null) {
             val equipment = item.equipment
-            val slots = if (equipment.equipSlot != null) getEquipmentSlots(equipment.equipSlot, def.id) else null
-
-            def.attackSpeed = equipment.attackSpeed
-
-            if (equipment.weaponType == -1 && slots != null) {
-                if (slots.slot == 3) {
-                    def.weaponType = 17
-                }
-            } else {
-                def.weaponType = equipment.weaponType
-            }
-
+            // TODO def.equipSound = equipment.equipSound
+            // TODO def.attackSounds = equipment.attackSounds
+            // TODO Map the magic numbers out right now it looks like shit and confusing.
             def.renderAnimations = equipment.renderAnimations?.getAsArray()
-// TODO ADVO add back attack sounds
-//            def.attackSounds = equipment.attackSounds
-            if (slots != null) {
-                def.equipSlot = slots.slot
-                def.equipType = slots.secondary
-            }
-            if (equipment.skillReqs != null) {
+            if (item.equipment.skillReqs != null) {
                 val reqs = Byte2ByteOpenHashMap()
-                equipment.skillReqs.filter { it.skill != null }.forEach { req ->
+                item.equipment.skillReqs.filter { it.skill != null }.forEach { req ->
                     reqs[getSkillId(req.skill!!)] = req.level!!.toByte()
                 }
                 def.skillReqs = reqs
             }
-// TODO ADVO add back equip sounds
-//            def.equipSound = equipment.equipSound
-            def.bonuses =
-                intArrayOf(
-                    equipment.attackStab,
-                    equipment.attackSlash,
-                    equipment.attackCrush,
-                    equipment.attackMagic,
-                    equipment.attackRanged,
-                    equipment.defenceStab,
-                    equipment.defenceSlash,
-                    equipment.defenceCrush,
-                    equipment.defenceMagic,
-                    equipment.defenceRanged,
-                    equipment.meleeStrength,
-                    equipment.rangedStrength,
-                    equipment.magicDamage,
-                    equipment.prayer,
-                )
         }
+    }
+
+    private fun ItemType.getValidatedParam(key: Int): Int {
+        if (this.params?.get(key) != null) {
+            try {
+                return this.params?.get(key) as Int
+            } catch (e: Exception) {
+                println("${this.id} || ${this.params}")
+                e.printStackTrace()
+            }
+        }
+        return 0
     }
 
     private fun getSkillId(name: String): Byte =
@@ -172,69 +152,7 @@ class ItemMetadataService : Service {
             else -> throw IllegalArgumentException("Illegal skill name: $name")
         }
 
-    private fun getEquipmentSlots(
-        slot: String,
-        id: Int? = null,
-    ): EquipmentSlots {
-        val equipSlot: Int
-        var equipType = -1
-        when (slot) {
-            "head" -> {
-                equipSlot = 0
-                equipType = 8
-            }
-            "hat" -> {
-                equipSlot = 0
-            }
-            // For hats that requires hair removal
-            "nohair" -> {
-                equipSlot = 0
-                equipType = 11
-            }
-            "cape" -> {
-                equipSlot = 1
-            }
-            "neck" -> {
-                equipSlot = 2
-            }
-            "2h" -> {
-                equipSlot = 3
-                equipType = 5
-            }
-            "weapon" -> {
-                equipSlot = 3
-            }
-            "body" -> {
-                equipSlot = 4
-                equipType = 6
-            }
-            "torso" -> {
-                equipSlot = 4
-            }
-            "shield" -> {
-                equipSlot = 5
-            }
-            "legs" -> {
-                equipSlot = 7
-            }
-            "hands" -> {
-                equipSlot = 9
-            }
-            "feet" -> {
-                equipSlot = 10
-            }
-            "ring" -> {
-                equipSlot = 12
-            }
-            "ammo" -> {
-                equipSlot = 13
-            }
-            else -> throw IllegalArgumentException("Illegal equipment slot: $slot, $id")
-        }
-        return EquipmentSlots(equipSlot, equipType)
-    }
-
-    private data class Metadata(
+    data class Metadata(
         val id: Int = -1,
         val name: String = "",
         val examine: String? = null,
@@ -248,9 +166,7 @@ class ItemMetadataService : Service {
         val equipment: Equipment? = null,
     )
 
-    private data class EquipmentSlots(val slot: Int, val secondary: Int)
-
-    private data class Equipment(
+    data class Equipment(
         @JsonProperty("equip_slot") val equipSlot: String? = null,
         @JsonProperty("equip_sound") val equipSound: Int? = -1,
         @JsonProperty("weapon_type") val weaponType: Int = -1,
@@ -338,7 +254,7 @@ class ItemMetadataService : Service {
         }
     }
 
-    private data class renderAnimations(
+    data class renderAnimations(
         @JsonProperty("standAnimId") val standAnimId: Int = 0,
         @JsonProperty("turnOnSpotAnim") val turnOnSpotAnim: Int = 0,
         @JsonProperty("walkForwardAnimId") val walkForwardAnimId: Int = 0,
@@ -348,11 +264,19 @@ class ItemMetadataService : Service {
         @JsonProperty("runAnimId") val runAnimId: Int = 0,
     ) {
         fun getAsArray(): IntArray {
-            return listOf(standAnimId, turnOnSpotAnim, walkForwardAnimId, walkBackwardsAnimId, walkLeftAnimId, walkRightAnimId, runAnimId).toIntArray()
+            return listOf(
+                standAnimId,
+                turnOnSpotAnim,
+                walkForwardAnimId,
+                walkBackwardsAnimId,
+                walkLeftAnimId,
+                walkRightAnimId,
+                runAnimId
+            ).toIntArray()
         }
     }
 
-    private data class SkillRequirement(
+    data class SkillRequirement(
         @JsonProperty("skill") val skill: String?,
         @JsonProperty("level") val level: Int?,
     )
