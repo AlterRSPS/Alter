@@ -1,8 +1,10 @@
 package org.alter.game.service.game
 
+import AnimationData
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.filestore.definition.data.ItemType
@@ -13,10 +15,11 @@ import org.alter.game.Server
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import org.yaml.snakeyaml.LoaderOptions
+import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.concurrent.TimeUnit
-
+import com.fasterxml.jackson.databind.ObjectMapper
 /**
  * @author Tom <rspsmods@gmail.com>
  */
@@ -26,16 +29,14 @@ class ItemMetadataService : Service {
         world: World,
         serviceProperties: ServerProperties,
     ) {
-        loadAll(world)
+        loadAll()
     }
 
     var ms: Long = 0
-    fun loadAll(world: World) {
+    fun loadAll() {
         val stopwatch = Stopwatch.createStarted().reset().start()
         val loaderOptions = LoaderOptions()
-
         loaderOptions.codePointLimit = 10 * 1024 * 1024 // 10 MB
-
         val yamlFactory =
             YAMLFactory.builder()
                 .loaderOptions(loaderOptions)
@@ -57,6 +58,7 @@ class ItemMetadataService : Service {
             }
             CacheManager.getItems().forEach { _, item ->
                 val def = getItem(item.id)
+                def.weight /= 1000 // @TODO Need to check this out
                 def.attackSpeed = def.getValidatedParam(14)
                 if (def.equipSlot == 3) {
                     def.weaponType = WeaponCategory.get(def, def.category)
@@ -82,7 +84,25 @@ class ItemMetadataService : Service {
             }
             Files.walk(path.resolve("equippable")).parallel().filter { it.toFile().isFile }.forEach {
                 val data = mapper.readValue(it.toFile(), Metadata::class.java)
+                // Need to cleanup old mess so load w.e we need to keep and save into new YML File || Or better TOML :S and later delete
                 load(data)
+            }
+            val animationMap: Map<String, AnimationData> = mapper.readValue(File("../data/cfg/items/renderAnimations/bas_mappings.json").readText())
+            val valueMap: Map<Int, Int> = ObjectMapper().apply {
+                findAndRegisterModules()
+            }.readValue(File("../data/cfg/items/renderAnimations/item_bas.json").readText())
+            valueMap.forEach { (item, animMap) ->
+                val animation = animationMap[animMap.toString()] ?: return@forEach
+                val def = getItem(item)
+                def.renderAnimations = intArrayOf(
+                    animation.readyAnim,
+                    animation.turnAnim,
+                    animation.walkAnim,
+                    animation.walkAnimBack,
+                    animation.walkAnimLeft,
+                    animation.walkAnimRight,
+                    animation.runAnim,
+                )
             }
         } catch (e: Exception) {
             throw e
@@ -91,14 +111,12 @@ class ItemMetadataService : Service {
     }
     fun load(item: Metadata) {
         val def = getItem(item.id)
-        def.weight = item.weight
-
         if (item.equipment != null) {
             val equipment = item.equipment
             // TODO def.equipSound = equipment.equipSound
             // TODO def.attackSounds = equipment.attackSounds
             // TODO Map the magic numbers out right now it looks like shit and confusing.
-            def.renderAnimations = equipment.renderAnimations?.getAsArray()
+            //def.renderAnimations = equipment.renderAnimations?.getAsArray()
             if (item.equipment.skillReqs != null) {
                 val reqs = Byte2ByteOpenHashMap()
                 item.equipment.skillReqs.filter { it.skill != null }.forEach { req ->
