@@ -3,6 +3,7 @@ package org.alter.game.plugin
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.getNpc
 import dev.openrune.cache.CacheManager.getObject
+import org.alter.rscm.RSCM.getRSCM
 import org.alter.game.Server
 import org.alter.game.event.Event
 import org.alter.game.fs.ObjectExamineHolder
@@ -55,7 +56,7 @@ abstract class KotlinPlugin(
     /**
      * Load [service] on plugin start-up.
      */
-    fun load_service(service: Service) {
+    fun loadService(service: Service) {
         r.services.add(service)
     }
 
@@ -63,7 +64,7 @@ abstract class KotlinPlugin(
      * Set the [org.alter.game.model.region.ChunkCoords] with [chunk] as its
      * [org.alter.game.model.region.ChunkCoords.hashCode], as a multi-combat area.
      */
-    fun set_multi_combat_chunk(chunk: Int) {
+    fun setMultiCombatChunk(chunk: Int) {
         r.multiCombatChunks.add(chunk)
     }
 
@@ -71,17 +72,18 @@ abstract class KotlinPlugin(
      * Set the 8x8 [org.alter.game.model.region.ChunkCoords]s that belong to [region]
      * as multi-combat areas.
      */
-    fun set_multi_combat_region(region: Int) {
+    fun setMultiCombatRegion(region: Int) {
         r.multiCombatRegions.add(region)
     }
 
     /**
      * Set the [NpcCombatDef] for npcs with [Npc.id] of [npc].
      */
-    fun set_combat_def(
-        npc: Int,
+    fun setCombatDef(
+        npc: String,
         def: NpcCombatDef,
     ) {
+        var npc = getRSCM(npc)
         check(!r.npcCombatDefs.containsKey(npc)) { "Npc combat definition has been previously set: $npc" }
         r.npcCombatDefs[npc] = def
     }
@@ -89,19 +91,19 @@ abstract class KotlinPlugin(
     /**
      * Set the [NpcCombatDef] for npcs with [Npc.id] of [npc] and [others].
      */
-    fun set_combat_def(
-        npc: Int,
-        vararg others: Int,
+    fun setCombatDef(
+        npc: String,
+        vararg others: String,
         def: NpcCombatDef,
     ) {
-        set_combat_def(npc, def)
-        others.forEach { other -> set_combat_def(other, def) }
+        setCombatDef(npc, def)
+        others.forEach { other -> setCombatDef(other, def) }
     }
 
     /**
      * Create a [Shop] in our world.
      */
-    fun create_shop(
+    fun createShop(
         name: String,
         currency: ShopCurrency,
         stockType: StockType = StockType.NORMAL,
@@ -118,22 +120,22 @@ abstract class KotlinPlugin(
      * Create a [ContainerKey] to register to the [World] for serialization
      * later on.
      */
-    fun register_container_key(key: ContainerKey) {
+    fun registerContainerKey(key: ContainerKey) {
         r.containerKeys.add(key)
     }
 
     /**
      * Spawn an [Npc] on the given coordinates.
      */
-    fun spawn_npc(
-        npc: Int,
+    fun spawnNpc(
+        npc: String,
         x: Int,
         z: Int,
         height: Int = 0,
         walkRadius: Int = 0,
         direction: Direction = Direction.SOUTH,
     ) {
-        val n = Npc(npc, Tile(x, z, height), world)
+        val n = Npc(getRSCM(npc), Tile(x, z, height), world)
         n.respawns = true
         n.walkRadius = walkRadius
         n.lastFacingDirection = direction
@@ -143,46 +145,46 @@ abstract class KotlinPlugin(
     /**
      * Spawn an [Npc] on the given [tile].
      */
-    fun spawn_npc(
-        npc: Int,
+    fun spawnNpc(
+        npc: String,
         tile: Tile,
         walkRadius: Int = 0,
         direction: Direction = Direction.SOUTH,
     ) {
-        val n = Npc(npc, tile, world)
+        val n = Npc(getRSCM(npc), tile, world)
         n.respawns = true
         n.walkRadius = walkRadius
         n.lastFacingDirection = direction
         r.npcSpawns.add(n)
     }
-    fun spawn_obj(obj: Int, tile: Tile, type: Int = 10, rot: Int = 0) = spawn_obj(obj, tile.x, tile.z, tile.height, type, rot)
+    fun spawnObj(obj: String, tile: Tile, type: Int = 10, rot: Int = 0) = spawnObj(obj, tile.x, tile.z, tile.height, type, rot)
     /**
      * Spawn a [DynamicObject] on the given coordinates.
      */
-    fun spawn_obj(
-        obj: Int,
+    fun spawnObj(
+        obj: String,
         x: Int,
         z: Int,
         height: Int = 0,
         type: Int = 10,
         rot: Int = 0,
     ) {
-        val o = DynamicObject(obj, type, rot, Tile(x, z, height))
+        val o = DynamicObject(getRSCM(obj), type, rot, Tile(x, z, height))
         r.objSpawns.add(o)
     }
 
     /**
      * Spawn a [GroundItem] on the given coordinates.
      */
-    fun spawn_item(
-        item: Int,
+    fun spawnItem(
+        item: String,
         amount: Int,
         x: Int,
         z: Int,
         height: Int = 0,
         respawnCycles: Int = GroundItem.DEFAULT_RESPAWN_CYCLES,
     ) {
-        val ground = GroundItem(item, amount, Tile(x, z, height))
+        val ground = GroundItem(getRSCM(item), amount, Tile(x, z, height))
         ground.respawnCycles = respawnCycles
         r.itemSpawns.add(ground)
     }
@@ -190,13 +192,13 @@ abstract class KotlinPlugin(
     /**
      * Spawn a [GroundItem] on the given coordinates.
      */
-    fun spawn_item(
-        item: Int,
+    fun spawnItem(
+        item: String,
         amount: Int,
         tile: Tile,
         respawnCycles: Int = GroundItem.DEFAULT_RESPAWN_CYCLES,
     ) {
-        val ground = GroundItem(item, amount, Tile(tile))
+        val ground = GroundItem(getRSCM(item), amount, Tile(tile))
         ground.respawnCycles = respawnCycles
         r.itemSpawns.add(ground)
     }
@@ -204,13 +206,13 @@ abstract class KotlinPlugin(
     /**
      * Spawn a [GroundItem] on the given coordinates for player
      */
-    fun spawn_item(
-        item: Int,
+    fun spawnItem(
+        item: String,
         amount: Int,
         tile: Tile,
         owner: Player,
     ) {
-        val ground = GroundItem(item, amount, Tile(tile))
+        val ground = GroundItem(getRSCM(item), amount, Tile(tile))
         ground.ownerUID = owner.uid
         r.itemSpawns.add(ground)
     }
@@ -221,31 +223,32 @@ abstract class KotlinPlugin(
      *
      * This method should be used over the option-int variant whenever possible.
      */
-    fun on_item_option(
-        item: Int,
+    fun onItemOption(
+        item: String,
         option: String,
         logic: (Plugin).() -> Unit,
     ) {
         val opt = option.lowercase()
-        val def = getItem(item)
+        val def = getItem(getRSCM(item))
         val option = def.interfaceOptions.indexOfFirst { it?.lowercase() == opt }
         check(option != -1) {
             "Option \"$option\" not found for item $item [options=${def.interfaceOptions.filterNotNull().filter { it.isNotBlank() }}]"
         }
-        r.bindItem(item, option + 1, logic)
+        r.bindItem(def.id, option + 1, logic)
     }
 
     /**
      * Invoke [logic] when the [option] option is clicked on an equipment
      * [org.alter.game.model.item.Item].
      */
-    fun on_equipment_option(
-        item: Int,
+    fun onEquipmentOption(
+        item: String,
         option: String,
         logic: (Plugin).() -> Unit,
     ) {
         val opt = option.lowercase()
-        val def = ObjectExamineHolder.EQUIPMENT_MENU.get(item)
+        val rItem = getRSCM(item)
+        val def = ObjectExamineHolder.EQUIPMENT_MENU.get(rItem)
         val slot = def.equipmentMenu.indexOfFirst { it?.lowercase() == opt }
 
         check(slot != -1) {
@@ -254,8 +257,10 @@ abstract class KotlinPlugin(
             }}]"
         }
 
-        r.bindEquipmentOption(item, slot + 1, logic)
+        r.bindEquipmentOption(rItem, slot + 1, logic)
     }
+
+
 
     /**
      * Invoke [logic] when the [option] option is clicked on a
@@ -263,7 +268,13 @@ abstract class KotlinPlugin(
      *
      * This method should be used over the option-int variant whenever possible.
      */
-    fun on_obj_option(
+    fun onObjOption(obj: String,
+                    option: String,
+                    lineOfSightDistance: Int = -1,
+                    logic: (Plugin).() -> Unit) {
+        onObjOption(getRSCM(obj), option, lineOfSightDistance, logic)
+    }
+    fun onObjOption(
         obj: Int,
         option: String,
         lineOfSightDistance: Int = -1,
@@ -280,34 +291,39 @@ abstract class KotlinPlugin(
         r.bindObject(obj, slot + 1, lineOfSightDistance, logic)
     }
 
+
+
+
+
+
     fun itemHasGroundOption(
-        item: Int,
+        item: String,
         option: String,
     ): Boolean {
         val slot =
-            getItem(item).interfaceOptions.indexOfFirst {
+            getItem(getRSCM(item)).interfaceOptions.indexOfFirst {
                 it?.lowercase() == option.lowercase()
             }
         return slot != -1
     }
 
     fun itemHasInventoryOption(
-        item: Int,
+        item: String,
         option: String,
     ): Boolean {
         val slot =
-            getItem(item).interfaceOptions.indexOfFirst {
+            getItem(getRSCM(item)).interfaceOptions.indexOfFirst {
                 it?.lowercase() == option.lowercase()
             }
         return slot != -1
     }
 
     fun objHasOption(
-        obj: Int,
+        obj: String,
         option: String,
     ): Boolean {
         val slot =
-            getObject(obj).actions.indexOfFirst {
+            getObject(getRSCM(obj)).actions.indexOfFirst {
                 it?.lowercase() == option.lowercase()
             }
         return slot != -1
@@ -317,11 +333,11 @@ abstract class KotlinPlugin(
      * Checks if a [Npc] has [option]
      */
     fun npcHasOption(
-        npc: Int,
+        npc: String,
         option: String,
     ): Boolean { // TODO ADVO what is this for?
         val slot =
-            getNpc(npc).actions.indexOfFirst {
+            getNpc(getRSCM(npc)).actions.indexOfFirst {
                 it?.lowercase() == option.lowercase()
             }
         return slot != -1
@@ -337,21 +353,22 @@ abstract class KotlinPlugin(
      * distance should be set. If the npc can be reached normally, you shouldn't
      * specify this value.
      */
-    fun on_npc_option(
-        npc: Int,
+    fun onNpcOption(
+        npc: String,
         option: String,
         lineOfSightDistance: Int = -1,
         logic: (Plugin).() -> Unit,
     ) {
         val opt = option.lowercase()
-        val def = getNpc(npc)
+        val rNpc = getRSCM(npc)
+        val def = getNpc(rNpc)
         val slot = def.actions.indexOfFirst { it?.lowercase() == opt }
 
         check(
             slot != -1,
         ) { "Option \"$option\" not found for npc $npc [options=${def.actions.filterNotNull().filter { it.isNotBlank() }}]" }
 
-        r.bindNpc(npc, slot + 1, lineOfSightDistance, logic)
+        r.bindNpc(rNpc, slot + 1, lineOfSightDistance, logic)
     }
 
     /**
@@ -359,20 +376,21 @@ abstract class KotlinPlugin(
      *
      * This method should be used over the option-int variant whenever possible.
      */
-    fun on_ground_item_option(
-        item: Int,
+    fun onGroundItemOption(
+        item: String,
         option: String,
         logic: (Plugin).() -> Unit,
     ) {
+        val rItem = getRSCM(item)
         val opt = option.lowercase()
-        val def = getItem(item)
+        val def = getItem(rItem)
         val slot = def.options.indexOfFirst { it?.lowercase() == opt }
 
         check(slot != -1) {
             "Option \"$option\" not found for ground item $item [options=${def.options.filterNotNull().filter { it.isNotBlank() }}]"
         }
 
-        r.bindGroundItem(item, slot + 1, logic)
+        r.bindGroundItem(rItem, slot + 1, logic)
     }
 
     /**
@@ -381,45 +399,45 @@ abstract class KotlinPlugin(
      * @param obj the game object id
      * @param item the item id
      */
-    fun on_item_on_obj(
-        obj: Int,
-        item: Int,
+    fun onItemOnObj(
+        obj: String,
+        item: String,
         lineOfSightDistance: Int = -1,
         logic: (Plugin).() -> Unit,
     ) {
-        r.bindItemOnObject(obj, item, lineOfSightDistance, logic)
+        r.bindItemOnObject(getRSCM(obj), getRSCM(item), lineOfSightDistance, logic)
     }
 
     /**
      * Invoke [plugin] when [item1] is used on [item2] or vise-versa.
      */
-    fun on_item_on_item(
-        item1: Int,
-        item2: Int,
+    fun onItemOnItem(
+        item1: String,
+        item2: String,
         plugin: Plugin.() -> Unit,
-    ) = r.bindItemOnItem(item1, item2, plugin)
+    ) = r.bindItemOnItem(getRSCM(item1), getRSCM(item2), plugin)
 
     /**
      * Invoke [plugin] when [item] in inventory is used on [groundItem] on ground.
      */
-    fun on_item_on_ground_item(
-        item: Int,
-        groundItem: Int,
+    fun onItemOnGroundItem(
+        item: String,
+        groundItem: String,
         plugin: Plugin.() -> Unit,
-    ) = r.bindItemOnGroundItem(item, groundItem, plugin)
+    ) = r.bindItemOnGroundItem(getRSCM(item), getRSCM(groundItem), plugin)
 
     /**
      * Set the logic to execute when Message Class -> WindowStateMessage
      * is handled.
      * @TODO
      */
-    fun set_window_status_logic(logic: (Plugin).() -> Unit) = r.bindWindowStatus(logic)
+    fun setWindowStatusLogic(logic: (Plugin).() -> Unit) = r.bindWindowStatus(logic)
 
     /**
      * Set the logic to execute when [net.rsprot.protocol.game.incoming.misc.user.CloseModal]
      * is handled.
      */
-    fun set_modal_close_logic(logic: (Plugin).() -> Unit) = r.bindModalClose(logic)
+    fun setModalCloseLogic(logic: (Plugin).() -> Unit) = r.bindModalClose(logic)
 
     /**
      * Set the logic to check if a player has a menu opened and any [org.alter.game.model.queue.QueueTask]
@@ -431,29 +449,29 @@ abstract class KotlinPlugin(
      * True if the player has a menu opened and any standard task should wait
      * before executing.
      */
-    fun set_menu_open_check(logic: Plugin.() -> Boolean) = r.setMenuOpenedCheck(logic)
+    fun setMenuOpenCheck(logic: Plugin.() -> Boolean) = r.setMenuOpenedCheck(logic)
 
     /**
      * Set the logic to execute by default when [org.alter.game.model.entity.Pawn.attack]
      * is handled.
      */
-    fun set_combat_logic(logic: (Plugin).() -> Unit) = r.bindCombat(logic)
+    fun setCombatLogic(logic: (Plugin).() -> Unit) = r.bindCombat(logic)
 
     /**
      * Set the logic to execute when a player levels a skill.
      */
-    fun set_level_up_logic(logic: (Plugin).() -> Unit) = r.bindSkillLevelUp(logic)
+    fun setLevelUpLogic(logic: (Plugin).() -> Unit) = r.bindSkillLevelUp(logic)
 
     /**
      * Invoke [logic] when [World.postLoad] is handled.
      */
-    fun on_world_init(logic: (Plugin).() -> Unit) = r.bindWorldInit(logic)
+    fun onWorldInit(logic: (Plugin).() -> Unit) = r.bindWorldInit(logic)
 
     /**
      * Invoke [logic] when an [Event] is triggered.
      */
     @Suppress("UNCHECKED_CAST")
-    fun <T : Event> on_event(
+    fun <T : Event> onEvent(
         event: Class<out T>,
         logic: Plugin.(T) -> Unit,
     ) = r.bindEvent(event, logic as Plugin.(Event) -> Unit)
@@ -461,17 +479,18 @@ abstract class KotlinPlugin(
     /**
      * Invoke [logic] on player log in.
      */
-    fun on_login(logic: (Plugin).() -> Unit) = r.bindLogin(logic)
+    fun onLogin(logic: (Plugin).() -> Unit) = r.bindLogin(logic)
 
     /**
      * Invoke [logic] on player log out.
      */
-    fun on_logout(logic: (Plugin).() -> Unit) = r.bindLogout(logic)
+    fun onLogout(logic: (Plugin).() -> Unit) = r.bindLogout(logic)
 
     /**
      * Invoked when an item is swapped on the same component.
+     * @TODO Check
      */
-    fun on_component_item_swap(
+    fun onComponentItemSwap(
         interfaceId: Int,
         component: Int,
         plugin: Plugin.() -> Unit,
@@ -479,8 +498,9 @@ abstract class KotlinPlugin(
 
     /**
      * Invoked when an item is swapped between two components.
+     * @TODO Check
      */
-    fun on_component_to_component_item_swap(
+    fun onComponentToComponentItemSwap(
         srcInterfaceId: Int,
         srcComponent: Int,
         dstInterfaceId: Int,
@@ -491,7 +511,7 @@ abstract class KotlinPlugin(
     /**
      * Invokes when a player interaction option is executed
      */
-    fun on_player_option(
+    fun onPlayerOption(
         option: String,
         plugin: Plugin.() -> Unit,
     ) = r.bindPlayerOption(option, plugin)
@@ -499,18 +519,18 @@ abstract class KotlinPlugin(
     /**
      * Invoked when a player hits 0 hp and is starting their death task.
      */
-    fun on_player_pre_death(plugin: Plugin.() -> Unit) = r.bindPlayerPreDeath(plugin)
+    fun onPlayerPreDeath(plugin: Plugin.() -> Unit) = r.bindPlayerPreDeath(plugin)
 
     /**
      * Invoked when a player is sent back to their respawn location on
      * death.
      */
-    fun on_player_death(plugin: Plugin.() -> Unit) = r.bindPlayerDeath(plugin)
+    fun onPlayerDeath(plugin: Plugin.() -> Unit) = r.bindPlayerDeath(plugin)
 
     /**
      * Invoked when npc with [Npc.id] of [npc] invokes their death task.
      */
-    fun on_npc_pre_death(
+    fun onNpcPreDeath(
         npc: Int,
         plugin: Plugin.() -> Unit,
     ) = r.bindNpcPreDeath(npc, plugin)
@@ -519,42 +539,43 @@ abstract class KotlinPlugin(
      * Invoked when npc with [Npc.id] of [npc] finishes their death task and
      * is de-registered from the world.
      */
-    fun on_npc_death(
-        npc: Int,
+    fun onNpcDeath(
+        npc: String,
         plugin: Plugin.() -> Unit,
-    ) = r.bindNpcDeath(npc, plugin)
+    ) = r.bindNpcDeath(getRSCM(npc), plugin)
 
     /**
      * Invoked when any npc finishes their death task and is de-registered
      * from the world.
      */
-    fun on_any_npc_death(plugin: Plugin.() -> Unit) = r.bindAnyNpcDeath(plugin)
+    fun onAnyNpcDeath(plugin: Plugin.() -> Unit) = r.bindAnyNpcDeath(plugin)
 
     /**
      * Completely overrides the npc death mechanic.
      */
-    fun full_npc_death(
-        npc: Int,
+    fun fullNpcDeath(
+        npc: String,
         plugin: Plugin.() -> Unit,
-    ) = r.bindNpcFullDeath(npc, plugin)
+    ) = r.bindNpcFullDeath(getRSCM(npc), plugin)
 
     /**
-     * Set the combat logic for [npc] and [others], which will override the [set_combat_logic]
+     * Set the combat logic for [npc] and [others], which will override the [setCombatLogic]
      * logic.
      */
-    fun on_npc_combat(
-        npc: Int,
-        vararg others: Int,
+    fun onNpcCombat(
+        npc: String,
+        vararg others: String,
         logic: (Plugin).() -> Unit,
     ) {
-        r.bindNpcCombat(npc, logic)
-        others.forEach { other -> r.bindNpcCombat(other, logic) }
+        r.bindNpcCombat(getRSCM(npc), logic)
+        others.forEach { other -> r.bindNpcCombat(getRSCM(other), logic) }
     }
 
     /**
      * Invoke [logic] when [net.rsprot.protocol.game.incoming.npcs.OpNpcT] is handled.
+     * @TODO CHECK
      */
-    fun on_spell_on_npc(
+    fun onSpellOnNpc(
         parent: Int,
         child: Int,
         logic: (Plugin).() -> Unit,
@@ -562,8 +583,9 @@ abstract class KotlinPlugin(
 
     /**
      * Invoke [logic] when [net.rsprot.protocol.game.incoming.npcs.OpNpcT] is handled.
+     * @TODO CHECK
      */
-    fun on_spell_on_player(
+    fun onSpellOnPlayer(
         parent: Int,
         child: Int,
         logic: (Plugin).() -> Unit,
@@ -572,7 +594,7 @@ abstract class KotlinPlugin(
     /**
      * Invoke [logic] when [net.rsprot.protocol.game.outgoing.interfaces.IfOpenSub] is handled.
      */
-    fun on_interface_open(
+    fun onInterfaceOpen(
         interfaceId: Int,
         logic: (Plugin).() -> Unit,
     ) = r.bindInterfaceOpen(interfaceId, logic)
@@ -581,7 +603,7 @@ abstract class KotlinPlugin(
      * Invoke [logic] when [org.alter.game.model.interf.InterfaceSet.closeByHash]
      * is handled.
      */
-    fun on_interface_close(
+    fun onInterfaceClose(
         interfaceId: Int,
         logic: (Plugin).() -> Unit,
     ) = r.bindInterfaceClose(interfaceId, logic)
@@ -589,26 +611,26 @@ abstract class KotlinPlugin(
     /**
      * Invoke [logic] when [net.rsprot.protocol.game.incoming.buttons.If1Button] is handled.
      */
-    fun on_button(
+    fun onButton(
         interfaceId: Int,
         component: Int,
         logic: (Plugin).() -> Unit,
     ) = r.bindButton(interfaceId, component, logic)
 
-    fun on_button(
+    fun onButton(
         interfaceId: Int,
         vararg components: Int,
         logic: (Plugin).() -> Unit,
     ) {
         components.forEach {
-            on_button(interfaceId, it, logic)
+            onButton(interfaceId, it, logic)
         }
     }
 
     /**
      * Invoke [logic] when [key] reaches a time value of 0.
      */
-    fun on_timer(
+    fun onTimer(
         key: TimerKey,
         logic: (Plugin).() -> Unit,
     ) = r.bindTimer(key, logic)
@@ -616,26 +638,26 @@ abstract class KotlinPlugin(
     /**
      * Invoke [logic] when any npc is spawned into the game with [World.spawn].
      */
-    fun on_global_npc_spawn(logic: (Plugin).() -> Unit) = r.bindGlobalNpcSpawn(logic)
+    fun onGlobalNpcSpawn(logic: (Plugin).() -> Unit) = r.bindGlobalNpcSpawn(logic)
 
     /**
      * Invoke [logic] when a ground item is picked up by a [org.alter.game.model.entity.Player].
      */
-    fun on_global_item_pickup(logic: Plugin.() -> Unit) = r.bindGlobalGroundItemPickUp(logic)
+    fun onGlobalItemPickup(logic: Plugin.() -> Unit) = r.bindGlobalGroundItemPickUp(logic)
 
     /**
      * Invoke [logic] when an npc with [Npc.id] matching [npc] is spawned into
      * the game with [World.spawn].
      */
-    fun on_npc_spawn(
-        npc: Int,
+    fun onNpcSpawn(
+        npc: String,
         logic: (Plugin).() -> Unit,
-    ) = r.bindNpcSpawn(npc, logic)
+    ) = r.bindNpcSpawn(getRSCM(npc), logic)
 
     /**
      * Invoke [logic] when [net.rsprot.protocol.game.incoming.misc.user.ClientCheat] is handled.
      */
-    fun on_command(
+    fun onCommand(
         command: String,
         powerRequired: String? = null,
         description: String? = null,
@@ -645,7 +667,7 @@ abstract class KotlinPlugin(
     /**
      * Invoke [logic] when an item is equipped onto equipment slot [equipSlot].
      */
-    fun on_equip_to_slot(
+    fun onEquipToSlot(
         equipSlot: Int,
         logic: (Plugin).() -> Unit,
     ) = r.bindEquipSlot(equipSlot, logic)
@@ -653,7 +675,7 @@ abstract class KotlinPlugin(
     /**
      * Invoke [logic] when an item is un-equipped from equipment slot [equipSlot].
      */
-    fun on_unequip_from_slot(
+    fun onUnequipFromSlot(
         equipSlot: Int,
         logic: (Plugin).() -> Unit,
     ) = r.bindUnequipSlot(equipSlot, logic)
@@ -661,43 +683,43 @@ abstract class KotlinPlugin(
     /**
      * Return true if [item] can be equipped, false if it can't.
      */
-    fun can_equip_item(
-        item: Int,
+    fun canEquipItem(
+        item: String,
         logic: (Plugin).() -> Boolean,
-    ) = r.bindEquipItemRequirement(item, logic)
+    ) = r.bindEquipItemRequirement(getRSCM(item), logic)
 
     /**
      * Invoke [logic] when [item] is equipped.
      */
-    fun on_item_equip(
-        item: Int,
+    fun onItemEquip(
+        item: String,
         logic: (Plugin).() -> Unit,
-    ) = r.bindEquipItem(item, logic)
+    ) = r.bindEquipItem(getRSCM(item), logic)
 
     /**
      * Invoke [logic] when attacking with that [item].
      * @TODO
      * Add check if dealhit was done. -> If u have {BERSERKER_RING} and weap without overrides it wont execute or just split weapons and items
      */
-    fun set_item_combat_logic(
-        item: Int,
+    fun setItemCombatLogic(
+        item: String,
         logic: (Plugin).() -> Unit,
     ) {
-        r.setItemCombatLogic(item, logic)
+        r.setItemCombatLogic(getRSCM(item), logic)
     }
 
     /**
      * Invoke [logic] when [item] is removed from equipment.
      */
-    fun on_item_unequip(
-        item: Int,
+    fun onItemUnequip(
+        item: String,
         logic: (Plugin).() -> Unit,
-    ) = r.bindUnequipItem(item, logic)
+    ) = r.bindUnequipItem(getRSCM(item), logic)
 
     /**
      * Invoke [logic] when a player enters a region (8x8 Chunks).
      */
-    fun on_enter_region(
+    fun onEnterRegion(
         regionId: Int,
         logic: (Plugin).() -> Unit,
     ) = r.bindRegionEnter(regionId, logic)
@@ -705,7 +727,7 @@ abstract class KotlinPlugin(
     /**
      * Invoke [logic] when a player exits a region (8x8 Chunks).
      */
-    fun on_exit_region(
+    fun onExitRegion(
         regionId: Int,
         logic: (Plugin).() -> Unit,
     ) = r.bindRegionExit(regionId, logic)
@@ -713,7 +735,7 @@ abstract class KotlinPlugin(
     /**
      * Invoke [logic] when a player enters a chunk (8x8 Tiles).
      */
-    fun on_enter_chunk(
+    fun onEnterChunk(
         chunkHash: Int,
         logic: (Plugin).() -> Unit,
     ) = r.bindChunkEnter(chunkHash, logic)
@@ -721,7 +743,7 @@ abstract class KotlinPlugin(
     /**
      * Invoke [logic] when a player exits a chunk (8x8 Tiles).
      */
-    fun on_exit_chunk(
+    fun onExitChunk(
         chunkHash: Int,
         logic: (Plugin).() -> Unit,
     ) = r.bindChunkExit(chunkHash, logic)
@@ -731,11 +753,11 @@ abstract class KotlinPlugin(
      *
      * String option method should be used over this method whenever possible.
      */
-    fun on_item_option(
-        item: Int,
+    fun onItemOption(
+        item: String,
         option: Int,
         logic: (Plugin).() -> Unit,
-    ) = r.bindItem(item, option, logic)
+    ) = r.bindItem(getRSCM(item), option, logic)
 
     /**
      * Invoke [logic] when the the option in index [option] is clicked on a
@@ -748,46 +770,47 @@ abstract class KotlinPlugin(
      * distance should be set. If the npc can be reached normally, you shouldn't
      * specify this value.
      */
-    fun on_obj_option(
-        obj: Int,
+    fun onObjOption(
+        obj: String,
         option: Int,
         lineOfSightDistance: Int = -1,
         logic: (Plugin).() -> Unit,
-    ) = r.bindObject(obj, option, lineOfSightDistance, logic)
+    ) = r.bindObject(getRSCM(obj), option, lineOfSightDistance, logic)
 
     /**
      * Invoke [logic] when the the option in index [option] is clicked on an [Npc].
      *
      * String option method should be used over this method whenever possible.
      */
-    fun on_npc_option(
-        npc: Int,
+    fun onNpcOption(
+        npc: String,
         option: Int,
         lineOfSightDistance: Int = -1,
         logic: (Plugin).() -> Unit,
-    ) = r.bindNpc(npc, option, lineOfSightDistance, logic)
+    ) = r.bindNpc(getRSCM(npc), option, lineOfSightDistance, logic)
 
     /**
      * Invoke [logic] when the the option in index [option] is clicked on a [GroundItem].
      * String option method should be used over this method whenever possible.
      */
-    fun on_ground_item_option(
-        item: Int,
+    fun onGroundItemOption(
+        item: String,
         option: Int,
         logic: (Plugin).() -> Unit,
-    ) = r.bindGroundItem(item, option, logic)
+    ) = r.bindGroundItem(getRSCM(item), option, logic)
 
     /**
      * Set the condition of whether [item] can be picked up as a ground item.
      * @return false if the item can not be picked up.
      */
     fun setGroundItemCondition(
-        item: Int,
+        item: String,
         plugin: Plugin.() -> Boolean,
-    ) = r.setGroundItemPickupCondition(item, plugin)
+    ) = r.setGroundItemPickupCondition(getRSCM(item), plugin)
 
     /**
      * Invoke [plugin] when a spell is used on an item.
+     * @TODO
      */
     fun onSpellOnItem(
         fromInterface: Int,
@@ -802,25 +825,25 @@ abstract class KotlinPlugin(
      * option - return false otherwise.
      */
     fun canDropItem(
-        item: Int,
+        item: String,
         plugin: (Plugin).() -> Boolean,
-    ) = r.bindCanItemDrop(item, plugin)
+    ) = r.bindCanItemDrop(getRSCM(item), plugin)
 
     /**
      * Invoke [plugin] when [item] is used on [npc].
      */
     fun onItemOnNpc(
-        item: Int,
-        npc: Int,
+        item: String,
+        npc: String,
         plugin: Plugin.() -> Unit,
-    ) = r.bindItemOnNpc(npc = npc, item = item, plugin = plugin)
+    ) = r.bindItemOnNpc(npc = getRSCM(npc), item = getRSCM(item), plugin = plugin)
 
     fun onAnimation(
         animid: Int,
         plugin: Plugin.() -> Unit,
     ) = r.bindOnAnimation(animid, plugin)
 
-    fun getNpcCombatDef(npc: Int): NpcCombatDef? = world.plugins.npcCombatDefs.getOrDefault(npc, null)
+    fun getNpcCombatDef(npc: String): NpcCombatDef? = world.plugins.npcCombatDefs.getOrDefault(getRSCM(npc), null)
 
     fun getNpcFromTile(tile: Tile): Npc? {
         val chunk = world.chunks.get(tile)
@@ -832,6 +855,8 @@ abstract class KotlinPlugin(
      * ex: @param value = 5
      * ex: @param range = 0..90
      * @return returns 18
+     *
+     * @TODO Should be mvoed out
      */
     fun every(
         value: Int,
@@ -846,22 +871,19 @@ abstract class KotlinPlugin(
         }
         return times
     }
-
-    fun getPluginRepository(): PluginRepository = r
-
-    fun obj_has_option(
-        obj: Int,
+    fun objHasOption1(
+        obj: String,
         option: String,
     ): Boolean {
-        val objDefs = getObject(obj)
+        val objDefs = getObject(getRSCM(obj))
         return objDefs.actions.contains(option)
     }
 
-    fun npc_has_option(
-        npc: Int,
+    fun npcHasOption1(
+        npc: String,
         option: String,
     ): Boolean {
-        val npcDefs = getNpc(npc)
+        val npcDefs = getNpc(getRSCM(npc))
         return npcDefs.actions.contains(option)
     }
 

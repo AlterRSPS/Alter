@@ -1,7 +1,6 @@
 package org.alter.plugins.content.combat.formula
 
 import org.alter.api.*
-import org.alter.api.cfg.Items
 import org.alter.api.ext.*
 import org.alter.game.model.combat.AttackStyle
 import org.alter.game.model.entity.Npc
@@ -18,48 +17,48 @@ import org.alter.plugins.content.mechanics.prayer.Prayers
  */
 object MagicCombatFormula : CombatFormula {
     private val BLACK_MASKS =
-        intArrayOf(
-            Items.BLACK_MASK,
-            Items.BLACK_MASK_1,
-            Items.BLACK_MASK_2,
-            Items.BLACK_MASK_3,
-            Items.BLACK_MASK_4,
-            Items.BLACK_MASK_5,
-            Items.BLACK_MASK_6,
-            Items.BLACK_MASK_7,
-            Items.BLACK_MASK_8,
-            Items.BLACK_MASK_9,
-            Items.BLACK_MASK_10,
+        arrayOf(
+            "item.black_mask",
+            "item.black_mask_1",
+            "item.black_mask_2",
+            "item.black_mask_3",
+            "item.black_mask_4",
+            "item.black_mask_5",
+            "item.black_mask_6",
+            "item.black_mask_7",
+            "item.black_mask_8",
+            "item.black_mask_9",
+            "item.black_mask_10",
         )
 
     private val BLACK_MASKS_I =
-        intArrayOf(
-            Items.BLACK_MASK_I,
-            Items.BLACK_MASK_1_I,
-            Items.BLACK_MASK_2_I,
-            Items.BLACK_MASK_3_I,
-            Items.BLACK_MASK_4_I,
-            Items.BLACK_MASK_5_I,
-            Items.BLACK_MASK_6_I,
-            Items.BLACK_MASK_7_I,
-            Items.BLACK_MASK_8_I,
-            Items.BLACK_MASK_9_I,
-            Items.BLACK_MASK_10_I,
+        arrayOf(
+            "item.black_mask_i",
+            "item.black_mask_1_i",
+            "item.black_mask_2_i",
+            "item.black_mask_3_i",
+            "item.black_mask_4_i",
+            "item.black_mask_5_i",
+            "item.black_mask_6_i",
+            "item.black_mask_7_i",
+            "item.black_mask_8_i",
+            "item.black_mask_9_i",
+            "item.black_mask_10_i",
         )
 
     private val SLAYER_HELM_I =
-        intArrayOf(
-            Items.SLAYER_HELMET_I,
-            Items.BLACK_SLAYER_HELMET_I,
-            Items.GREEN_SLAYER_HELMET_I,
-            Items.PURPLE_SLAYER_HELMET_I,
-            Items.RED_SLAYER_HELMET_I,
-            Items.TURQUOISE_SLAYER_HELMET_I,
+        arrayOf(
+            "item.slayer_helmet_i",
+            "item.black_slayer_helmet_i",
+            "item.green_slayer_helmet_i",
+            "item.purple_slayer_helmet_i",
+            "item.red_slayer_helmet_i",
+            "item.turquoise_slayer_helmet_i",
         )
 
-    private val MAGE_VOID = intArrayOf(Items.VOID_MAGE_HELM, Items.VOID_KNIGHT_TOP, Items.VOID_KNIGHT_ROBE, Items.VOID_KNIGHT_GLOVES)
+    private val MAGE_VOID = arrayOf("item.void_mage_helm", "item.void_knight_top", "item.void_knight_robe", "item.void_knight_gloves")
 
-    private val MAGE_ELITE_VOID = intArrayOf(Items.VOID_MAGE_HELM, Items.ELITE_VOID_TOP, Items.ELITE_VOID_ROBE, Items.VOID_KNIGHT_GLOVES)
+    private val MAGE_ELITE_VOID = arrayOf("item.void_mage_helm", "item.elite_void_top", "item.elite_void_robe", "item.void_knight_gloves")
 
     private val BOLT_SPELLS = enumSetOf(CombatSpell.WIND_BOLT, CombatSpell.WATER_BOLT, CombatSpell.EARTH_BOLT, CombatSpell.FIRE_BOLT)
 
@@ -102,17 +101,17 @@ object MagicCombatFormula : CombatFormula {
             val magic = pawn.getSkills().getCurrentLevel(Skills.MAGIC)
             if (pawn.hasEquipped(
                     EquipmentType.WEAPON,
-                    Items.TRIDENT_OF_THE_SEAS,
-                    Items.TRIDENT_OF_THE_SEAS_E,
-                    Items.TRIDENT_OF_THE_SEAS_FULL,
+                    "item.trident_of_the_seas",
+                    "item.trident_of_the_seas_e",
+                    "item.trident_of_the_seas_full",
                 )
             ) {
                 hit = (Math.floor(magic / 3.0) - 5.0)
-            } else if (pawn.hasEquipped(EquipmentType.WEAPON, Items.TRIDENT_OF_THE_SWAMP, Items.TRIDENT_OF_THE_SWAMP_E)) {
+            } else if (pawn.hasEquipped(EquipmentType.WEAPON, "item.trident_of_the_swamp", "item.trident_of_the_swamp_e")) {
                 hit = (Math.floor(magic / 3.0) - 2.0)
             }
 
-            if (pawn.hasEquipped(EquipmentType.GLOVES, Items.CHAOS_GAUNTLETS) && spell != null && spell in BOLT_SPELLS) {
+            if (pawn.hasEquipped(EquipmentType.GLOVES, "item.chaos_gauntlets") && spell != null && spell in BOLT_SPELLS) {
                 hit += 3
             }
 
@@ -120,22 +119,22 @@ object MagicCombatFormula : CombatFormula {
 
             if (pawn.hasEquipped(
                     EquipmentType.AMULET,
-                    Items.AMULET_OF_THE_DAMNED_FULL,
+                    "item.amulet_of_the_damned_full",
                 ) &&
                 pawn.hasEquipped(
                     EquipmentType.WEAPON,
-                    Items.AHRIMS_STAFF,
-                    Items.AHRIMS_STAFF_25,
-                    Items.AHRIMS_STAFF_50,
-                    Items.AHRIMS_STAFF_75,
-                    Items.AHRIMS_STAFF_100,
+                    "item.ahrims_staff",
+                    "item.ahrims_staff_25",
+                    "item.ahrims_staff_50",
+                    "item.ahrims_staff_75",
+                    "item.ahrims_staff_100",
                 ) &&
                 pawn.world.chance(1, 4)
             ) {
                 multiplier += 0.3
             }
 
-            if (pawn.hasEquipped(EquipmentType.WEAPON, Items.MYSTIC_SMOKE_STAFF) && pawn.hasSpellbook(Spellbook.NORMAL)) {
+            if (pawn.hasEquipped(EquipmentType.WEAPON, "item.mystic_smoke_staff") && pawn.hasSpellbook(Spellbook.NORMAL)) {
                 multiplier += 0.1
             }
 
@@ -146,7 +145,7 @@ object MagicCombatFormula : CombatFormula {
             hit *= multiplier
             hit = Math.floor(hit)
 
-            if (pawn.hasEquipped(EquipmentType.SHIELD, Items.TOME_OF_FIRE) && spell in FIRE_SPELLS) {
+            if (pawn.hasEquipped(EquipmentType.SHIELD, "item.tome_of_fire") && spell in FIRE_SPELLS) {
                 // TODO: check tome of fire has charges
                 hit *= 1.5
                 hit = Math.floor(hit)
@@ -157,7 +156,7 @@ object MagicCombatFormula : CombatFormula {
                     // TODO: check if on slayer task and target is slayer task
                     hit *= 1.15
                     hit = Math.floor(hit)
-                } else if (pawn.hasEquipped(EquipmentType.AMULET, Items.SALVE_AMULETEI) && target.isSpecies(NpcSpecies.UNDEAD)) {
+                } else if (pawn.hasEquipped(EquipmentType.AMULET, "item.salve_amuletei") && target.isSpecies(NpcSpecies.UNDEAD)) {
                     hit *= 1.20
                     hit = Math.floor(hit)
                 }
@@ -239,7 +238,7 @@ object MagicCombatFormula : CombatFormula {
         hit *= getEquipmentMultiplier(player)
         hit = Math.floor(hit)
 
-        if (player.hasEquipped(EquipmentType.WEAPON, Items.MYSTIC_SMOKE_STAFF)) {
+        if (player.hasEquipped(EquipmentType.WEAPON, "item.mystic_smoke_staff")) {
             hit *= 1.1
             hit = Math.floor(hit)
         }
@@ -307,10 +306,10 @@ object MagicCombatFormula : CombatFormula {
 
     private fun getEquipmentMultiplier(player: Player): Double =
         when {
-            player.hasEquipped(EquipmentType.AMULET, Items.SALVE_AMULET) -> 7.0 / 6.0
-            player.hasEquipped(EquipmentType.AMULET, Items.SALVE_AMULET_E) -> 1.2
-            player.hasEquipped(EquipmentType.AMULET, Items.SALVE_AMULETI) -> 1.15
-            player.hasEquipped(EquipmentType.AMULET, Items.SALVE_AMULETEI) -> 1.2
+            player.hasEquipped(EquipmentType.AMULET, "item.salve_amulet") -> 7.0 / 6.0
+            player.hasEquipped(EquipmentType.AMULET, "item.salve_amulet_e") -> 1.2
+            player.hasEquipped(EquipmentType.AMULET, "item.salve_amuleti") -> 1.15
+            player.hasEquipped(EquipmentType.AMULET, "item.salve_amuletei") -> 1.2
             // TODO: this should only apply when target is slayer task?
             player.hasEquipped(EquipmentType.HEAD, *BLACK_MASKS) -> 7.0 / 6.0
             player.hasEquipped(EquipmentType.HEAD, *BLACK_MASKS_I) -> 1.15

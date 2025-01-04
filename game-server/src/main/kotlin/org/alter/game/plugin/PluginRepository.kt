@@ -442,18 +442,18 @@ class PluginRepository(
         world: World,
     ) {
         try {
-            /**
-             * @TODO Needs to be inspected
-             * @TODO Hmm also it seems that before there werent any trace being sent on exceptions <-- Need to inspect further
-             */
             ClassGraph().enableAllInfo().scan().use { result ->
-                // ClassGraph().enableAllInfo().whitelistModules().scan().use { result ->
                 val plugins = result.getSubclasses(KotlinPlugin::class.java.name).directOnly()
                 plugins.forEach { p ->
-                    val pluginClass = p.loadClass(KotlinPlugin::class.java)
-                    val constructor = pluginClass.getConstructor(PluginRepository::class.java, World::class.java, Server::class.java)
-                    constructor.newInstance(this, world, server)
-                    pluginCount++
+                    try {
+                        val pluginClass = Class.forName(p.name)
+                        val constructor = pluginClass.getConstructor(PluginRepository::class.java, World::class.java, Server::class.java)
+                        constructor.newInstance(this, world, server)
+                        pluginCount++
+                    } catch (e: Exception) {
+                        println("Failed to initialize plugin: ${p.name}")
+                        e.printStackTrace()
+                    }
                 }
             }
         } catch (e: Exception) {

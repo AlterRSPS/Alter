@@ -1,11 +1,11 @@
 package org.alter.plugins.content.mechanics.shops
 
 import dev.openrune.cache.CacheManager.getItem
-import org.alter.api.cfg.Items
 import org.alter.api.ext.message
 import org.alter.game.model.World
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
+import org.alter.rscm.RSCM.getRSCM
 import org.alter.game.model.shop.PurchasePolicy
 import org.alter.game.model.shop.Shop
 import org.alter.game.model.shop.ShopCurrency
@@ -26,7 +26,7 @@ open class ItemCurrency(
         world: World,
         item: Int,
     ): AcceptItemState {
-        if (item == Items.COINS_995 || item == Items.BLOOD_MONEY) {
+        if (item == getRSCM("item.coins_995") || item == getRSCM("item.blood_money")) {
             return AcceptItemState(acceptable = false, errorMessage = "You can't sell this item to a shop.")
         }
         when {

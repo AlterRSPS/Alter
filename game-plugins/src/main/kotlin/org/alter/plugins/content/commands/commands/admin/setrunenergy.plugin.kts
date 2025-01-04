@@ -8,7 +8,7 @@ import org.alter.game.model.priv.Privilege
  *
  */
 
-on_command("setrunenergy", Privilege.ADMIN_POWER) {
+onCommand("setrunenergy", Privilege.ADMIN_POWER) {
     val args = player.getCommandArgs()
     player.runEnergy = args[0].toDouble()
     player.sendRunEnergy(args[0].toInt())

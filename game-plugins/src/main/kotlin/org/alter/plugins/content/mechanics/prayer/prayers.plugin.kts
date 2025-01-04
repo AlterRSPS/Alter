@@ -1,13 +1,13 @@
 package org.alter.plugins.content.mechanics.prayer
 
-on_player_death {
+onPlayerDeath {
     Prayers.deactivateAll(player)
 }
 
 /**
  * Deactivate all prayers on log out.
  */
-on_logout {
+onLogout {
     Prayers.deactivateAll(player)
 }
 
@@ -15,7 +15,7 @@ on_logout {
  * Activate prayers.
  */
 Prayer.values.forEach { prayer ->
-    on_button(interfaceId = 541, component = prayer.child) {
+    onButton(interfaceId = 541, component = prayer.child) {
         player.queue {
             Prayers.toggle(this, prayer)
         }
@@ -25,11 +25,11 @@ Prayer.values.forEach { prayer ->
 /**
  * Prayer drain.
  */
-on_login {
+onLogin {
     player.timers[Prayers.PRAYER_DRAIN] = 1
 }
 
-on_timer(Prayers.PRAYER_DRAIN) {
+onTimer(Prayers.PRAYER_DRAIN) {
     player.timers[Prayers.PRAYER_DRAIN] = 1
     Prayers.drainPrayer(player)
 }
@@ -37,7 +37,7 @@ on_timer(Prayers.PRAYER_DRAIN) {
 /**
  * Toggle quick-prayers.
  */
-on_button(interfaceId = 160, component = 19) {
+onButton(interfaceId = 160, component = 19) {
     val opt = player.getInteractingOption()
     Prayers.toggleQuickPrayers(player, opt)
 }
@@ -45,15 +45,15 @@ on_button(interfaceId = 160, component = 19) {
 /**
  * Select quick-prayer.
  */
-on_button(interfaceId = 77, component = 4) {
+onButton(interfaceId = 77, component = 4) {
     val slot = player.getInteractingSlot()
-    val prayer = Prayer.values.firstOrNull { prayer -> prayer.quickPrayerSlot == slot } ?: return@on_button
+    val prayer = Prayer.values.firstOrNull { prayer -> prayer.quickPrayerSlot == slot } ?: return@onButton
     Prayers.selectQuickPrayer(this, prayer)
 }
 
 /**
  * Accept selected quick-prayer.
  */
-on_button(interfaceId = 77, component = 5) {
+onButton(interfaceId = 77, component = 5) {
     player.openInterface(InterfaceDestination.PRAYER)
 }

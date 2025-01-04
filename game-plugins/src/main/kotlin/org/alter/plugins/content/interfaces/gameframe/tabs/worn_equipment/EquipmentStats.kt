@@ -2,7 +2,6 @@ package org.alter.plugins.content.interfaces.equipstats
 
 import org.alter.api.BonusSlot
 import org.alter.api.ClientScript
-import org.alter.api.cfg.Items
 import org.alter.api.ext.*
 import org.alter.game.model.entity.Player
 
@@ -13,7 +12,7 @@ object EquipmentStats {
     const val EQUIPMENTSTATS_INTERFACE_ID = 84
     const val EQUIPMENTSTATS_TAB_INTERFACE_ID = 85
 
-    private val MAGE_ELITE_VOID = intArrayOf(Items.VOID_MAGE_HELM, Items.ELITE_VOID_TOP, Items.ELITE_VOID_ROBE, Items.VOID_KNIGHT_GLOVES)
+    private val MAGE_ELITE_VOID = arrayOf("item.void_mage_helm", "item.elite_void_top", "item.elite_void_robe", "item.void_knight_gloves")
 
     /**
      * @TODO

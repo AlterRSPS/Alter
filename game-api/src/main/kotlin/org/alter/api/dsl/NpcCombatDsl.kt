@@ -8,21 +8,22 @@ import org.alter.api.ext.NPC_STRENGTH_BONUS_INDEX
 import org.alter.api.ext.enumSetOf
 import org.alter.game.plugin.KotlinPlugin
 
-fun KotlinPlugin.set_combat_def(
-    npc: Int,
+fun KotlinPlugin.setCombatDef(
+    npc: String,
     init: NpcCombatDsl.Builder.() -> Unit,
 ) {
+
     val builder = NpcCombatDsl.Builder()
     init(builder)
 
-    set_combat_def(npc, builder.build())
+    setCombatDef(npc, builder.build())
 }
 
-fun KotlinPlugin.set_combat_def(
-    vararg npc: Int,
+fun KotlinPlugin.setCombatDef(
+    vararg npc: String,
     init: NpcCombatDsl.Builder.() -> Unit,
 ) {
-    npc.forEach { set_combat_def(it, init) }
+    npc.forEach { setCombatDef(it, init) }
 }
 
 object NpcCombatDsl {

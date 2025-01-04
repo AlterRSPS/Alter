@@ -1,10 +1,10 @@
 package org.alter.plugins.content.mechanics.run
 
-on_login {
+onLogin {
     player.timers[RunEnergy.RUN_DRAIN] = 1
 }
 
-on_timer(RunEnergy.RUN_DRAIN) {
+onTimer(RunEnergy.RUN_DRAIN) {
     player.timers[RunEnergy.RUN_DRAIN] = 1
     RunEnergy.drain(player)
 }
@@ -12,13 +12,13 @@ on_timer(RunEnergy.RUN_DRAIN) {
 /**
  * Button by minimap.
  */
-on_button(interfaceId = 160, component = 27) {
+onButton(interfaceId = 160, component = 27) {
     RunEnergy.toggle(player)
 }
 
 /**
  * Settings button.
  */
-on_button(interfaceId = 116, component = 71) {
+onButton(interfaceId = 116, component = 71) {
     RunEnergy.toggle(player)
 }

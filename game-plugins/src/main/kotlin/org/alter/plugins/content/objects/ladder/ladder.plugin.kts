@@ -6,24 +6,24 @@ import org.alter.game.model.move.moveTo
 
 val stairs =
     arrayOf(
-        Objs.STAIRCASE_16672,
-        Objs.STAIRCASE_16673,
-        Objs.STAIRCASE_16671,
+        "object.staircase_16672",
+        "object.staircase_16673",
+        "object.staircase_16671",
     )
 
 stairs.forEach { stairs ->
     if (objHasOption(obj = stairs, option = "climb")) {
-        on_obj_option(obj = stairs, option = "climb") {
+        onObjOption(obj = stairs, option = "climb") {
             climbstairs(player)
         }
     }
     if (objHasOption(obj = stairs, option = "climb-up")) {
-        on_obj_option(obj = stairs, option = "climb-up") {
+        onObjOption(obj = stairs, option = "climb-up") {
             climbupstairs(player)
         }
     }
     if (objHasOption(obj = stairs, option = "climb-down")) {
-        on_obj_option(obj = stairs, option = "climb-down") {
+        onObjOption(obj = stairs, option = "climb-down") {
             climbdownstairs(player)
         }
     }
@@ -33,27 +33,27 @@ stairs.forEach { stairs ->
 
 val ladders =
     arrayOf(
-        Objs.LADDER_12964,
-        Objs.LADDER_12965,
-        Objs.LADDER_16683,
-        Objs.LADDER_12966,
-        Objs.LADDER_16679,
-        Objs.LADDER_16684,
+        "object.ladder_12964",
+        "object.ladder_12965",
+        "object.ladder_16683",
+        "object.ladder_12966",
+        "object.ladder_16679",
+        "object.ladder_16684",
     )
 
 ladders.forEach { ladder ->
     if (objHasOption(obj = ladder, option = "climb")) {
-        on_obj_option(obj = ladder, option = "climb") {
+        onObjOption(obj = ladder, option = "climb") {
             climbladder(player)
         }
     }
     if (objHasOption(obj = ladder, option = "climb-up")) {
-        on_obj_option(obj = ladder, option = "climb-up") {
+        onObjOption(obj = ladder, option = "climb-up") {
             climbupladder(player)
         }
     }
     if (objHasOption(obj = ladder, option = "climb-down")) {
-        on_obj_option(obj = ladder, option = "climb-down") {
+        onObjOption(obj = ladder, option = "climb-down") {
             climbdownladder(player)
         }
     }
@@ -111,9 +111,9 @@ fun climbstairs(player: Player) {
 
 /**Trapdoors.*/
 
-on_obj_option(Objs.TRAPDOOR_14880, option = "climb-down") {
+onObjOption("object.trapdoor_14880", option = "climb-down") {
     player.moveTo(3210, 9616, 0)
 }
-on_obj_option(Objs.LADDER_17385, option = "climb-up") {
+onObjOption("object.ladder_17385", option = "climb-up") {
     player.moveTo(3210, 3216, 0)
 }

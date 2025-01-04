@@ -1,9 +1,9 @@
 package org.alter.plugins.content.objects.bookcase
 
-private val BOOKCASES = setOf(Objs.BOOKCASE_380, Objs.BOOKCASE_381)
+private val BOOKCASES = setOf("object.bookcase_380", "object.bookcase_381")
 
 BOOKCASES.forEach { case ->
-    on_obj_option(obj = case, option = "search") {
+    onObjOption(obj = case, option = "search") {
         player.queue {
             search(this, player)
         }

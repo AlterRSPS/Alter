@@ -13,6 +13,7 @@ import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
 import org.alter.game.model.queue.QueueTask
+import org.alter.rscm.RSCM.getRSCM
 
 /**
  * The child id of the chat box in the gameframe interface. This can change
@@ -349,13 +350,13 @@ suspend fun QueueTask.chatPlayer(
  */
 suspend fun QueueTask.itemMessageBox(
     message: String,
-    item: Int,
+    item: String,
     amountOrZoom: Int = 1,
     vararg options: String = arrayOf("Click here to continue"),
 ) {
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 193)
     player.setInterfaceEvents(interfaceId = 193, component = 0, range = 0..1, setting = 1)
-    player.setComponentItem(interfaceId = 193, component = 1, item = item, amountOrZoom = amountOrZoom)
+    player.setComponentItem(interfaceId = 193, component = 1, item = getRSCM(item), amountOrZoom = amountOrZoom)
     player.setComponentText(interfaceId = 193, component = 2, text = message)
     player.runClientScript(CommonClientScripts.SET_OPTIONS, *options)
 

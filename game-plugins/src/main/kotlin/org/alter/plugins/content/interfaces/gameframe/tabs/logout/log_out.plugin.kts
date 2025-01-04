@@ -6,7 +6,7 @@ import org.alter.game.model.timer.ACTIVE_COMBAT_TIMER
 /**
  * Logout button.
  */
-on_button(interfaceId = 182, component = 8) {
+onButton(interfaceId = 182, component = 8) {
     if (!player.timers.has(ACTIVE_COMBAT_TIMER)) {
         player.requestLogout()
         player.write(Logout)

@@ -6,7 +6,7 @@ import org.alter.api.InterfaceDestination
 /**
  * Closing main modal for players.
  */
-set_modal_close_logic {
+setModalCloseLogic {
     val modal = player.interfaces.getModal()
     if (modal != -1) {
         player.closeInterface(modal)
@@ -16,14 +16,14 @@ set_modal_close_logic {
 /**
  * Check if the player has a menu opened.
  */
-set_menu_open_check {
+setMenuOpenCheck {
     player.getInterfaceAt(dest = InterfaceDestination.MAIN_SCREEN) != -1
 }
 
 /**
  * Execute when a player logs in.
  */
-on_login {
+onLogin {
     with(player) {
         /**
          * @TODO Inspect, uhh seems that this logic is being repeated, not removing it yet as im unsure rn if it's needed or not
@@ -141,26 +141,26 @@ fun openModals(
 }
 
 // Character summary
-on_button(InterfaceDestination.QUEST_ROOT.interfaceId, 3) {
+onButton(InterfaceDestination.QUEST_ROOT.interfaceId, 3) {
     player.setVarbit(8168, 0)
 //    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 712, 1)
 }
 
 // Quest Tab
-on_button(InterfaceDestination.QUEST_ROOT.interfaceId, 8) {
+onButton(InterfaceDestination.QUEST_ROOT.interfaceId, 8) {
     player.setVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB, 1)
 //    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 399, 1)
 }
 
-on_button(InterfaceDestination.QUEST_ROOT.interfaceId, 13) {
+onButton(InterfaceDestination.QUEST_ROOT.interfaceId, 13) {
     player.setVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB, 2)
 //    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 259, 1)
 }
 
-on_button(InterfaceDestination.QUEST_ROOT.interfaceId, 18) {
+onButton(InterfaceDestination.QUEST_ROOT.interfaceId, 18) {
     player.setVarbit(Varbit.PLAYER_SUMMARY_FOCUS_TAB, 3)
 //    player.openInterface(InterfaceDestination.QUEST_ROOT.interfaceId, 33, 245, 1)
 }
-on_button(245, 20) {
+onButton(245, 20) {
     player.openInterface(interfaceId = 626, dest = InterfaceDestination.MAIN_SCREEN)
 }

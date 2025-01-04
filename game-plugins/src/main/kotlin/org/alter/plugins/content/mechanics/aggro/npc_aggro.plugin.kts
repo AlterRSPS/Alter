@@ -20,14 +20,14 @@ val defaultAggressiveness: (Npc, Player) -> Boolean = boolean@{ n, p ->
     return@boolean p.combatLevel <= npcLvl * 2
 }
 
-on_global_npc_spawn {
+onGlobalNpcSpawn {
     if (npc.combatDef.aggressiveRadius > 0 && npc.combatDef.aggroTargetDelay > 0) {
         npc.aggroCheck = defaultAggressiveness
         npc.timers[AGGRO_CHECK_TIMER] = npc.combatDef.aggroTargetDelay
     }
 }
 
-on_timer(AGGRO_CHECK_TIMER) {
+onTimer(AGGRO_CHECK_TIMER) {
     if ((!npc.isAttacking() || npc.tile.isMulti(world)) && npc.lock.canAttack() && npc.isActive()) {
         checkRadius(npc)
     }

@@ -23,6 +23,7 @@ object KotlinPluginConfiguration : ScriptCompilationConfiguration({
         "org.alter.api.ext.*",
         "org.alter.api.cfg.*",
         "org.alter.api.dsl.*",
+        "org.alter.game.model.rscm.RSCM.getRSCM"
     )
 }) {
     private fun readResolve(): Any = KotlinPluginConfiguration

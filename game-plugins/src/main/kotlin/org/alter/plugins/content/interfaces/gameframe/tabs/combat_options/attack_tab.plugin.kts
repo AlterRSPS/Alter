@@ -11,14 +11,14 @@ import org.alter.plugins.content.interfaces.attack.AttackTab.setEnergy
 /**
  * First log-in logic (when accounts have just been made).
  */
-on_login {
+onLogin {
     if (player.attr.getOrDefault(NEW_ACCOUNT_ATTR, false)) {
         setEnergy(player, 100)
     }
     AttackTab.resetRestorationTimer(player)
 }
 
-on_timer(AttackTab.SPEC_RESTORE) {
+onTimer(AttackTab.SPEC_RESTORE) {
     AttackTab.restoreEnergy(player)
     AttackTab.resetRestorationTimer(player)
 }
@@ -26,30 +26,30 @@ on_timer(AttackTab.SPEC_RESTORE) {
 /**
  * Attack style buttons
  */
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 5) {
+onButton(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 5) {
     player.setVarp(ATTACK_STYLE_VARP, 0)
 }
 
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 9) {
+onButton(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 9) {
     player.setVarp(ATTACK_STYLE_VARP, 1)
 }
 
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 13) {
+onButton(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 13) {
     player.setVarp(ATTACK_STYLE_VARP, 2)
 }
 
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 17) {
+onButton(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 17) {
     player.setVarp(ATTACK_STYLE_VARP, 3)
 }
 
 /**
  * Toggle auto-retaliate button.
  */
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 31) {
+onButton(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 31) {
     player.toggleVarp(DISABLE_AUTO_RETALIATE_VARP)
 }
 
-on_button(interfaceId = 160, component = 35) {
+onButton(interfaceId = 160, component = 35) {
     val weaponId = player.equipment[EquipmentType.WEAPON.id]!!.id
     if (SpecialAttacks.executeOnEnable(weaponId)) {
         if (!SpecialAttacks.execute(player, null, world)) {
@@ -63,7 +63,7 @@ on_button(interfaceId = 160, component = 35) {
 /**
  * Toggle special attack.
  */
-on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 36) {
+onButton(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 36) {
     val weaponId = player.equipment[EquipmentType.WEAPON.id]!!.id
     if (SpecialAttacks.executeOnEnable(weaponId)) {
         if (!SpecialAttacks.execute(player, null, world)) {
@@ -77,13 +77,13 @@ on_button(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 36) {
 /**
  * Disable special attack when switching weapons.
  */
-on_equip_to_slot(EquipmentType.WEAPON.id) {
+onEquipToSlot(EquipmentType.WEAPON.id) {
     player.setVarp(SPECIAL_ATTACK_VARP, 0)
 }
 
 /**
  * Disable special attack on log-out.
  */
-on_logout {
+onLogout {
     player.setVarp(SPECIAL_ATTACK_VARP, 0)
 }

@@ -40,6 +40,9 @@ allprojects {
         if (name != "filestore") {
             implementation(rootProject.projects.plugins.filestore)
         }
+        if (name != "rscm" && name != "filestore") {
+            implementation(rootProject.projects.plugins.rscm)
+        }
         testImplementation(lib.junit)
         testImplementation(lib.kotlin.test.junit)
     }

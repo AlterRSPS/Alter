@@ -3,7 +3,7 @@ package org.alter.plugins.content.commands.commands.developer
 import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
-on_command("setlvl", Privilege.DEV_POWER, description = "Set your level") {
+onCommand("setlvl", Privilege.DEV_POWER, description = "Set your level") {
     val args = player.getCommandArgs()
     tryWithUsage(
         player,

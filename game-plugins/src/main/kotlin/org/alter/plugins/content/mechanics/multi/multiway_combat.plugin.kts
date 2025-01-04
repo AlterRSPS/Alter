@@ -2,23 +2,23 @@ package org.alter.plugins.content.mechanics.multi
 
 val MULTIWAY_VARBIT = 4605
 
-on_world_init {
+onWorldInit {
     world.getMultiCombatRegions().forEach { region ->
-        on_enter_region(region) {
+        onEnterRegion(region) {
             player.setVarbit(MULTIWAY_VARBIT, 1)
         }
 
-        on_exit_region(region) {
+        onExitRegion(region) {
             player.setVarbit(MULTIWAY_VARBIT, 0)
         }
     }
 
     world.getMultiCombatChunks().forEach { chunk ->
-        on_enter_chunk(chunk) {
+        onEnterChunk(chunk) {
             player.setVarbit(MULTIWAY_VARBIT, 1)
         }
 
-        on_exit_chunk(chunk) {
+        onExitChunk(chunk) {
             player.setVarbit(MULTIWAY_VARBIT, 0)
         }
     }

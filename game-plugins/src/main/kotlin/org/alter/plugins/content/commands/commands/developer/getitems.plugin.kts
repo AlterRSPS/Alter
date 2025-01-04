@@ -6,7 +6,7 @@ import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
 
-on_command("getitems", Privilege.DEV_POWER) {
+onCommand("getitems", Privilege.DEV_POWER) {
     val args = player.getCommandArgs()
     tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::itemsn hat </col>") { values ->
         var items_list = mutableListOf<Int>()

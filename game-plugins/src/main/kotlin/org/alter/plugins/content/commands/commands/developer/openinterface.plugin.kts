@@ -3,7 +3,7 @@ package org.alter.plugins.content.commands.commands.developer
 import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
-on_command("openinterface", Privilege.DEV_POWER, description = "Open interface by id") {
+onCommand("openinterface", Privilege.DEV_POWER, description = "Open interface by id") {
     val args = player.getCommandArgs()
     tryWithUsage(
         player,

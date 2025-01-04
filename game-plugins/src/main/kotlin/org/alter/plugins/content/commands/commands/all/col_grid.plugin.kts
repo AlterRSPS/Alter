@@ -1,7 +1,7 @@
 import org.alter.game.model.collision.isClipped
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
-on_command("col_grid") {
+onCommand("col_grid") {
     val args = player.getCommandArgs()
     tryWithUsage(player, args, "Invalid format! Example of proper command <col=42C66C>::show_grid username</col>") { values ->
         val p = world.getPlayerForName(values[0].replace("_", " ")) ?: return@tryWithUsage

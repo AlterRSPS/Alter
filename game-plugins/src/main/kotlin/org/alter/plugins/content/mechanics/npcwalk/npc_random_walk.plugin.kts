@@ -1,11 +1,9 @@
 package org.alter.plugins.content.mechanics.npcwalk
 
-import org.alter.game.model.attr.FACING_PAWN_ATTR
-
 val SEARCH_FOR_PATH_TIMER = TimerKey()
 val SEARCH_FOR_PATH_DELAY = 15..30
 
-on_global_npc_spawn {
+onGlobalNpcSpawn {
     if (npc.walkRadius > 0) {
         npc.timers[SEARCH_FOR_PATH_TIMER] = world.random(SEARCH_FOR_PATH_DELAY)
     }

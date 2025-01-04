@@ -18,3 +18,4 @@ first-launch
 first-launch-example
 /game.yml
 /dev-settings.yml
+/game-plugins/src/main/kotlin/org/alter/plugins/content/_testingContent/

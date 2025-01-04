@@ -3,7 +3,7 @@ package org.alter.plugins.content.commands.commands.developer
 import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
-on_command("varp", Privilege.DEV_POWER, description = "Set varp to amount") {
+onCommand("varp", Privilege.DEV_POWER, description = "Set varp to amount") {
     val args = player.getCommandArgs()
     tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::varp 173 1</col>") { values ->
         val varp = values[0].toInt()
@@ -14,7 +14,7 @@ on_command("varp", Privilege.DEV_POWER, description = "Set varp to amount") {
     }
 }
 
-on_command("getvarp") {
+onCommand("getvarp") {
     val args = player.getCommandArgs()
     val varpState = player.getVarp(args[0].toInt())
     player.message("${args[0]} Varp state: $varpState")

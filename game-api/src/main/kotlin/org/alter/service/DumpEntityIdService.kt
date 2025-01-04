@@ -1,19 +1,22 @@
 package org.alter.service
 
-import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.getItems
+import dev.openrune.cache.CacheManager.getNpc
 import dev.openrune.cache.CacheManager.getNpcs
+import dev.openrune.cache.CacheManager.getObject
 import dev.openrune.cache.CacheManager.getObjects
 import dev.openrune.cache.CacheManager.itemSize
 import dev.openrune.cache.CacheManager.npcSize
+import dev.openrune.cache.CacheManager.objectSize
 import gg.rsmod.util.Namer
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.Server
-import org.alter.game.fs.DefinitionSet
 import org.alter.game.model.World
 import org.alter.game.service.Service
+import java.io.BufferedWriter
+import java.io.FileWriter
 import java.io.PrintWriter
 import java.nio.file.Files
 import java.nio.file.Path
@@ -37,7 +40,7 @@ class DumpEntityIdService : Service {
         dump = serviceProperties.getOrDefault("dump", false)
         if (dump) {
             cachePath = Paths.get(serviceProperties.get<String>("cache-path")!!)
-            outputPath = Paths.get(serviceProperties.getOrDefault("output-path", "../ids"))
+            outputPath = Paths.get("../data/cfg/rscm/")
 
             if (!Files.exists(outputPath)) {
                 Files.createDirectory(outputPath)
@@ -55,92 +58,64 @@ class DumpEntityIdService : Service {
         if (!dump) {
             return
         }
-        val definitions = world.definitions
         val namer = Namer()
-
-        writeItems(definitions, namer)
-        writeNpcs(definitions, namer)
-        writeObjs(definitions, namer)
+        writeItems(namer)
+        writeNpcs(namer)
+        writeObjects(namer)
     }
 
+
     private fun writeItems(
-        definitions: DefinitionSet,
         namer: Namer,
     ) {
         val count = itemSize()
-        val items = generateWriter("Items.kt")
-        for (i in 0 until count) {
-            val item = getItems().get(i) ?: continue
-            /*
-             * Skip placeholder items.
-             */
-            if (item.isPlaceholder) {
-                continue
-            }
-            val rawName = if (item.noteTemplateId > 0) getItem(item.noteLinkId).name + "_NOTED" else item.name
-            if (rawName.isNotBlank()) {
-                val name = namer.name(rawName, i)
-                write(items, "const val $name = $i")
+        val paths = outputPath!!.resolve("item"+".rscm")
+        BufferedWriter((FileWriter(paths.toFile()))).use { itemWriter ->
+            for (i in 0 until count) {
+                val item = getItems()[i] ?: continue
+                /*
+                 * Skip placeholder items.
+                 */
+                if (item.isPlaceholder) {
+                    continue
+                }
+                val rawName = if (item.noteTemplateId > 0) getItem(item.noteLinkId).name + "_NOTED" else item.name
+                if (rawName.isNotBlank()) {
+                    val name = namer.name(rawName, i)?.lowercase()
+                    itemWriter.write("$name:$i\n")
+                }
             }
         }
-        endWriter(items)
     }
-
     private fun writeNpcs(
-        definitions: DefinitionSet,
         namer: Namer,
     ) {
         val count = npcSize()
-        val npcs = generateWriter("Npcs.kt")
-        for (i in 0 until count) {
-            val npc = getNpcs().get(i) ?: continue
-            val rawName = npc.name.replace("?", "")
-            if (rawName.isNotEmpty() && rawName.isNotBlank()) {
-                val name = namer.name(npc.name, i)
-                write(npcs, "const val $name = $i")
+        val paths = outputPath!!.resolve("npcs"+".rscm")
+        BufferedWriter((FileWriter(paths.toFile()))).use { npcWriter ->
+            for (i in 0 until count) {
+                val npc = getNpcs()[i] ?: continue
+                if (npc.name.isNotBlank()) {
+                    val name = namer.name(npc.name, i)?.lowercase()
+                    npcWriter.write("$name:$i\n")
+                }
             }
         }
-        endWriter(npcs)
     }
-
-    private fun writeObjs(
-        definitions: DefinitionSet,
+    private fun writeObjects(
         namer: Namer,
     ) {
-        val count = CacheManager.objectSize()
-        val objs = generateWriter("Objs.kt")
-        for (i in 0 until count) {
-            val npc = getObjects().get(i) ?: continue
-            val rawName = npc.name.replace("?", "")
-            if (rawName.isNotEmpty() && rawName.isNotBlank()) {
-                val name = namer.name(npc.name, i)
-                write(objs, "const val $name = $i")
+        val count = objectSize()
+        val paths = outputPath!!.resolve("object"+".rscm")
+        BufferedWriter((FileWriter(paths.toFile()))).use { objectWriter ->
+            for (i in 0 until count) {
+                val obj = getObjects()[i] ?: continue
+                if (obj.name.isNotBlank()) {
+                    val name = namer.name(obj.name, i)?.lowercase()
+                    objectWriter.write("$name:$i\n")
+                }
             }
         }
-        endWriter(objs)
-    }
-
-    private fun generateWriter(file: String): PrintWriter {
-        val writer = PrintWriter(outputPath!!.resolve(file).toFile())
-        writer.println("/* Auto-generated file using ${this::class.java} */")
-        writer.println("package org.alter.api.cfg")
-        writer.println("")
-        writer.println("object ${file.removeSuffix(".kt")} {")
-        writer.println("")
-        return writer
-    }
-
-    private fun write(
-        writer: PrintWriter,
-        text: String,
-    ) {
-        writer.println("    $text")
-    }
-
-    private fun endWriter(writer: PrintWriter) {
-        writer.println("    /* Auto-generated file using ${this::class.java} */")
-        writer.println("}")
-        writer.close()
     }
 
     companion object {

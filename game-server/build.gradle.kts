@@ -24,6 +24,7 @@ dependencies {
         implementation(jackson.module.kotlin)
         implementation(jackson.dataformat.yaml)
         implementation(kotlin.csv)
+        implementation(rootProject.projects.plugins.rscm)
         testImplementation(junit)
     }
 }

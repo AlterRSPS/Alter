@@ -9,7 +9,7 @@ import org.alter.plugins.content.combat.specialattack.SpecialAttacks
 import org.alter.plugins.content.combat.strategy.magic.CombatSpell
 import org.alter.plugins.content.interfaces.attack.AttackTab
 
-set_combat_logic {
+setCombatLogic {
     pawn.attr[COMBAT_TARGET_FOCUS_ATTR]?.get()?.let { target ->
         pawn.facePawn(target)
     }
@@ -23,8 +23,8 @@ set_combat_logic {
     }
 }
 
-on_player_option("Attack") {
-    val target = pawn.attr[INTERACTING_PLAYER_ATTR]?.get() ?: return@on_player_option
+onPlayerOption("Attack") {
+    val target = pawn.attr[INTERACTING_PLAYER_ATTR]?.get() ?: return@onPlayerOption
     player.attack(target)
 }
 
@@ -203,10 +203,3 @@ suspend fun cycle(queue: QueueTask): Boolean {
     }
     return true
 }
-
-
-/**
- * @TODO Block test
- */
-spawn_obj(41728, 3181, 3474)
-spawn_obj(41728, 3180, 3473)

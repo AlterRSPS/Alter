@@ -2,7 +2,7 @@ import org.alter.api.ClientScript
 import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
-on_command("script", Privilege.DEV_POWER, description = "Run script by id") {
+onCommand("script", Privilege.DEV_POWER, description = "Run script by id") {
     val args = player.getCommandArgs()
     tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::script id args...</col>") { values ->
         val id = values[0].toInt()

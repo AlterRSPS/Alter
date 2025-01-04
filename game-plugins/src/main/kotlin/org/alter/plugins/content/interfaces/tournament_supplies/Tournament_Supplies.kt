@@ -20,4 +20,7 @@ object Tournament_Supplies {
         p.setInterfaceEvents(TOURNAMENT_SUPPLIES_INVENTORY_INTERFACE, component = 0, range = 0..27, setting = 1086)
         p.runClientScript(CommonClientScripts.INTERFACE_INV_INIT, 7536640, 93, 4, 7, 0, -1, "Destroy<col=ff9040>", "Destroy-All<col=ff9040>", "", "", "")
     }
+    fun Player.openTournamentSupplies() {
+        open(this)
+    }
 }

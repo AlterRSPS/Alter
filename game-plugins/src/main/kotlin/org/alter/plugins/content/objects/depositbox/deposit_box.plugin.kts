@@ -10,31 +10,31 @@ private val DEPOSIT_ANIMATION = 834
 
 private val DEPOSIT_BOXES =
     setOf(
-        Objs.BANK_DEPOSIT_BOX,
-        Objs.BANK_DEPOSIT_BOX_25937,
-        Objs.BANK_DEPOSIT_BOX_26254,
-        Objs.BANK_DEPOSIT_BOX_29103,
-        Objs.BANK_DEPOSIT_BOX_29104,
-        Objs.BANK_DEPOSIT_BOX_29105,
-        Objs.BANK_DEPOSIT_BOX_29106,
-        Objs.BANK_DEPOSIT_BOX_29327,
-        Objs.BANK_DEPOSIT_BOX_30268,
-        Objs.BANK_DEPOSIT_BOX_31726,
-        Objs.BANK_DEPOSIT_BOX_32665,
-        Objs.BANK_DEPOSIT_BOX_34344,
+        "object.bank_deposit_box",
+        "object.bank_deposit_box_25937",
+        "object.bank_deposit_box_26254",
+        "object.bank_deposit_box_29103",
+        "object.bank_deposit_box_29104",
+        "object.bank_deposit_box_29105",
+        "object.bank_deposit_box_29106",
+        "object.bank_deposit_box_29327",
+        "object.bank_deposit_box_30268",
+        "object.bank_deposit_box_31726",
+        "object.bank_deposit_box_32665",
+        "object.bank_deposit_box_34344",
     )
 
 DEPOSIT_BOXES.forEach { box ->
-    on_obj_option(obj = box, option = "deposit") {
+    onObjOption(obj = box, option = "deposit") {
         open_deposit_box(player)
     }
 }
 
-on_interface_close(DEPOSIT_INTERFACE_ID) {
+onInterfaceClose(DEPOSIT_INTERFACE_ID) {
     close_deposit_box(player)
 }
 
-on_button(interfaceId = DEPOSIT_INTERFACE_ID, component = 2) {
+onButton(interfaceId = DEPOSIT_INTERFACE_ID, component = 2) {
     val slot = player.getInteractingSlot()
     val opt = player.getInteractingOption()
     when (opt) {
@@ -50,15 +50,15 @@ on_button(interfaceId = DEPOSIT_INTERFACE_ID, component = 2) {
     }
 }
 
-on_button(interfaceId = DEPOSIT_INTERFACE_ID, component = 4) {
+onButton(interfaceId = DEPOSIT_INTERFACE_ID, component = 4) {
     deposit_inv(player)
 }
 
-on_button(interfaceId = DEPOSIT_INTERFACE_ID, component = 6) {
+onButton(interfaceId = DEPOSIT_INTERFACE_ID, component = 6) {
     deposit_equipment(player)
 }
 
-on_component_to_component_item_swap(
+onComponentToComponentItemSwap(
     srcInterfaceId = DEPOSIT_INTERFACE_ID,
     srcComponent = 2,
     dstInterfaceId = DEPOSIT_INTERFACE_ID,

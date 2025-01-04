@@ -1,12 +1,12 @@
 package org.alter.plugins.content.npcs.barrows
 
-spawn_npc(Npcs.GUTHAN_THE_INFESTED, 3577, 3282, 0, 2)
-spawn_npc(Npcs.GUTHAN_THE_INFESTED, 3579, 3279, 0, 2)
-spawn_npc(Npcs.GUTHAN_THE_INFESTED, 3579, 3285, 0, 2)
-spawn_npc(Npcs.GUTHAN_THE_INFESTED, 3575, 3279, 0, 2)
-spawn_npc(Npcs.GUTHAN_THE_INFESTED, 3575, 3285, 0, 2)
+spawnNpc("npc.guthan_the_infested", 3577, 3282, 0, 2)
+spawnNpc("npc.guthan_the_infested", 3579, 3279, 0, 2)
+spawnNpc("npc.guthan_the_infested", 3579, 3285, 0, 2)
+spawnNpc("npc.guthan_the_infested", 3575, 3279, 0, 2)
+spawnNpc("npc.guthan_the_infested", 3575, 3285, 0, 2)
 
-set_combat_def(Npcs.GUTHAN_THE_INFESTED) {
+setCombatDef("npc.guthan_the_infested") {
     configs {
         attackSpeed = 6
         respawnDelay = 50

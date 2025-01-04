@@ -26,7 +26,7 @@ val ALL_SETTINGS_BUTTON = 32
 val MUTE_MASTER_SOUND = 79
 val MUTE_MASTER_SOUND_BAR = 90
 
-on_login {
+onLogin {
     player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 55, 0..21, setting = InterfaceEvent.ClickOp1)
     player.setInterfaceEvents(
         interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB,
@@ -87,7 +87,7 @@ fun bind_setting(
     child: Int,
     plugin: Plugin.() -> Unit,
 ) {
-    on_button(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = child) {
+    onButton(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = child) {
         plugin(this)
     }
 }
@@ -95,7 +95,7 @@ fun bind_setting(
 /**
  * Changing display modes (fixed, resizable).
  */
-set_window_status_logic {
+setWindowStatusLogic {
     val change = player.attr[DISPLAY_MODE_CHANGE_ATTR]
     val mode =
         when (change) {

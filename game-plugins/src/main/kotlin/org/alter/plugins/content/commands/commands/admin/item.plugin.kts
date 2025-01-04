@@ -4,7 +4,7 @@ import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 import java.text.DecimalFormat
 
-on_command("item", Privilege.ADMIN_POWER, description = "Spawn items") {
+onCommand("item", Privilege.ADMIN_POWER, description = "Spawn items") {
     val args = player.getCommandArgs()
     tryWithUsage(
         player,

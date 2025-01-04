@@ -29,9 +29,11 @@ import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.interf.DisplayMode
 import org.alter.game.model.item.Item
+import org.alter.rscm.RSCM.getRSCM
 import org.alter.game.model.timer.SKULL_ICON_DURATION_TIMER
 import org.alter.game.rsprot.RsModIndexedObjectProvider
 import org.alter.game.rsprot.RsModObjectProvider
+import org.alter.rscm.RSCM
 import kotlin.math.floor
 
 /**
@@ -778,7 +780,19 @@ fun Player.hasEquipped(
     return items.any { equipment.hasAt(slot.id, it) }
 }
 
+fun Player.hasEquipped(
+    slot: EquipmentType,
+    vararg items: String,
+): Boolean {
+    check(items.isNotEmpty()) { "Items shouldn't be empty." }
+    val scanned = items.map { getRSCM(it) }.toTypedArray()
+    return scanned.any { equipment.hasAt(slot.id, it) }
+}
+
 fun Player.hasEquipped(items: IntArray) = items.all { equipment.contains(it) }
+fun Player.hasEquipped(items: Array<String>) = items.map {getRSCM(it)}.all { equipment.contains(it) }
+
+
 
 fun Player.getEquipment(slot: EquipmentType): Item? = equipment[slot.id]
 

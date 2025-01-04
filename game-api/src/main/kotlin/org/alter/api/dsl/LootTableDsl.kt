@@ -12,7 +12,7 @@ class WeightedTableBuilder {
      * Collection of drop tables.
      */
     var LootTables = mutableSetOf<LootTable>()
-
+    // @TODO Rework to support new changes.
     inner class AlwaysTableBuilder {
         fun add(item: Any?, min: Int = 1, max: Int = 1, steepness: Int = 1, description: String ? = null, announce : Boolean = false, block: (Player) -> Boolean = { true }) {
             addToTable(TableType.ALWAYS, Loot(item = item, min = min, max = max, steepness = steepness, description = description, announce = announce, block = block))
