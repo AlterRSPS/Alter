@@ -103,15 +103,6 @@ fun poison_attack(
         target.graphic(id = 85, height = 124, delay = hit.getClientHitDelay())
     }
 }
-on_world_init {
-    CacheManager.getItems().forEach { inde, def ->
-        println("======== ${def.name} ========")
-        def.params?.forEach {
-            println(it)
-        }
-        println("===========================")
-    }
-}
 
 fun freeze_attack(
     npc: Npc,

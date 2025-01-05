@@ -107,10 +107,6 @@ onButton(interfaceId = BANK_INTERFACE_ID, component = 44) {
         player.message("Bank full. || theres ${Int.MAX_VALUE} of some item.")
     }
 }
-on_command("shiftb") {
-    val container = player.bank
-    container.shift()
-}
 // bank equipment
 onButton(interfaceId = BANK_INTERFACE_ID, component = 46) {
     val from = player.equipment

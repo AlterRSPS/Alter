@@ -151,12 +151,4 @@ fun Pawn.walkTo(
     }
 }
 
-suspend fun Pawn.awaitArrival() {
-    this.queue {
-        while (hasMoveDestination()) {
-            wait(1)
-        }
-    }
-}
-
 fun Pawn.hasMoveDestination(): Boolean = movementQueue.hasDestination()
