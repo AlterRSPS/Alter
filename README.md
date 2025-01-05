@@ -1,5 +1,6 @@
 # Alter
 [![revision: 227][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/sAzCuuwkpN) ![jdk-badge] ![](https://tokei.rs/b1/github/AlterRSPS/Alter)
+
 > [!Warning]
 > When you have Intellij Open, navigate to `File` -> `Project Structure` -> And make sure SDK is set to `17 java version 17.x.x`
 
@@ -22,8 +23,8 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o)
 
 
-> [!NOTE]
-> Side note: Better use `Intellij 2023.2.6` : https://download.jetbrains.com/idea/ideaIU-2023.2.6.exe , as most of us noticed alot of flaws with kotlin script on newer Intellij versions
+> [!TIP]
+> Side note: Recommended to use `Intellij 2024.3.x+` It seems that it's more stable for Kotlin Script than older versions. 
 
 * Secondly open Intellij, (If you already have a project open, either do `File -> Close`, or `File -> New -> Project from Version Control`)
 * If you decided to use `Close method` you will see this window, click on `Get from VCS`
