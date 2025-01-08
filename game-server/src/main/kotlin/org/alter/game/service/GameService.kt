@@ -187,11 +187,6 @@ class GameService : Service {
             }
             taskTimes[task.javaClass] = System.currentTimeMillis() - taskStart
         }
-        /**
-         * Free up unused memory after tasks are done.
-         */
-        System.gc()
-
         world.cycle()
 
         /*
