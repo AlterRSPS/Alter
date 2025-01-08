@@ -451,7 +451,7 @@ class PluginRepository(
                         constructor.newInstance(this, world, server)
                         pluginCount++
                     } catch (e: Exception) {
-                        println("Failed to initialize plugin: ${p.name}")
+                        println("Failed to load: ${p.name} plugin")
                         e.printStackTrace()
                     }
                 }
