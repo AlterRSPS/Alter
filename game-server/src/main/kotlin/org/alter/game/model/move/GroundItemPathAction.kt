@@ -29,8 +29,7 @@ object GroundItemPathAction {
         val player = ctx as Player
         val item = player.attr[INTERACTING_GROUNDITEM_ATTR]!!.get()!!
         val opt = player.attr[INTERACTING_OPT_ATTR]!!
-
-        player.queue(TaskPriority.STANDARD) {
+        player.queue(TaskPriority.WEAK) {
             terminateAction = {
                 player.stopMovement()
                 player.setMapFlag()
@@ -46,10 +45,10 @@ object GroundItemPathAction {
             while (player.hasMoveDestination()) {
                 wait(1)
             }
+            // @TODO Add logic for Ground Item Plugin options.
             if (player.tile.sameAs(item.tile)) {
                 handleAction(player, item, opt)
-            }
-            if (player.tile.getDistance(item.tile) == 1 && player.isLocked()) {
+            } else if (!player.hasMoveDestination() && player.tile.getDistance(item.tile) == 1) {
                 player.lock()
                 player.faceTile(item.tile)
                 if (!player.isPathBlocked(item.tile)) {
