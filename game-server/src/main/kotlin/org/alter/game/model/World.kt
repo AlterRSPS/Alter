@@ -619,8 +619,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
             when (type) {
                 ExamineEntityType.ITEM -> getItem(id).examine
                 ExamineEntityType.NPC -> getNpc(id).examine
-// TODO ADVO fix examines
-//            ExamineEntityType.OBJECT -> definitions.get(ObjectDef::class.java, id).examine
                 ExamineEntityType.OBJECT -> ObjectExamineHolder.EXAMINES.get(id)
             }
 
