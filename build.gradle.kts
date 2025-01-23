@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -48,12 +49,12 @@ allprojects {
     }
 
     tasks.withType<KotlinCompile>().all {
-        kotlinOptions {
-            languageVersion = "1.7"
-            freeCompilerArgs =
-                listOf(
-                    "-Xallow-any-scripts-in-source-roots",
-                )
+        compilerOptions {
+            languageVersion.set(KotlinVersion.KOTLIN_2_0)
+            freeCompilerArgs = listOf(
+                "-Xallow-any-scripts-in-source-roots",
+                "-Xuse-fir-lt=false"
+            )
         }
     }
 }
