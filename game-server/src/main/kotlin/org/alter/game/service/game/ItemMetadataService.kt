@@ -46,6 +46,18 @@ class ItemMetadataService : Service {
         val path = Paths.get("../data/cfg/items")
 
         try {
+            /**
+             * Loads item examine text from an external CSV file and assigns it to item definitions.
+             *
+             * The file is expected to be located at `../data/cfg/objs.csv` and should contain item IDs
+             * paired with their corresponding examine text, separated by commas.
+             *
+             * - The first value in each line is treated as the item ID.
+             * - The remaining text after the first comma is treated as the examine description.
+             * - The examine text is assigned to the corresponding item definition if the ID is valid.
+             *
+             * This ensures that item examine information is loaded from an external source at runtime.
+             */
             Paths.get("../data/cfg/objs.csv").toFile().forEachLine { line ->
                 val parts = line.split(",")
                 if (parts.size >= 2) {
@@ -56,9 +68,23 @@ class ItemMetadataService : Service {
                     }
                 }
             }
-            CacheManager.getItems().forEach { _, item ->
+
+            /**
+             * Initializes item definitions by loading cached item configurations and updating specific attributes.
+             *
+             * - Adjusts item weight by dividing the cached value by 1000.
+             * - Sets the attack speed using a validated parameter (ID 14).
+             * - Determines the weapon type for equippable items in the weapon slot (equipSlot 3) based on their category.
+             * - Assigns the equip type from the item's appearance override.
+             * - Populates item bonuses using a predefined set of validated parameters.
+             *
+             * This process ensures that item attributes are properly loaded and validated from cache for use in gameplay.
+             *
+             * @TODO Add mapper for Params
+             */
+            CacheManager.getItems().forEach { (_, item) ->
                 val def = getItem(item.id)
-                def.weight /= 1000 // @TODO Need to check this out
+                def.weight /= 1000
                 def.attackSpeed = def.getValidatedParam(14)
                 if (def.equipSlot == 3) {
                     def.weaponType = WeaponCategory.get(def, def.category)
@@ -82,11 +108,19 @@ class ItemMetadataService : Service {
                         def.getValidatedParam(11),
                     )
             }
-            Files.walk(path.resolve("equippable")).parallel().filter { it.toFile().isFile }.forEach {
-                val data = mapper.readValue(it.toFile(), Metadata::class.java)
-                // Need to cleanup old mess so load w.e we need to keep and save into new YML File || Or better TOML :S and later delete
-                load(data)
-            }
+
+            /**
+             * Loads and assigns render animations to item definitions from external JSON files.
+             *
+             * - `bas_mappings.json` maps animation identifiers to their corresponding animation data (e.g., ready, walk, run animations).
+             * - `item_bas.json` maps item IDs to the animation identifiers used in the mappings.
+             *
+             * The process:
+             * - Each item ID from `item_bas.json` is matched to its animation data from `bas_mappings.json`.
+             * - If a matching animation is found, it populates the item's render animations array with the relevant animation IDs.
+             *
+             * This ensures that items have appropriate movement and action animations during gameplay.
+             */
             val animationMap: Map<String, AnimationData> = mapper.readValue(File("../data/cfg/items/renderAnimations/bas_mappings.json").readText())
             val valueMap: Map<Int, Int> = ObjectMapper().apply {
                 findAndRegisterModules()
@@ -104,28 +138,157 @@ class ItemMetadataService : Service {
                     animation.runAnim,
                 )
             }
+
+            /**
+             * Loads item override metadata from all files within the "itemOverrides" directory.
+             *
+             * - The directory is resolved relative to the provided path.
+             * - Files are processed in parallel for efficient loading.
+             * - Each file is deserialized into a `Metadata` object and passed to the `load` function.
+             *
+             * This process ensures that custom item attributes or behaviors are loaded at runtime.
+             *
+             * @TODO Add better context as to why file could not be loaded.
+             * @TODO Add support for remaining [`def`] properties override method.
+             */
+            Files.walk(path.resolve("itemOverrides")).parallel().filter { it.toFile().isFile }.forEach {
+                val data = mapper.readValue(it.toFile(), Metadata::class.java)
+                load(data)
+            }
         } catch (e: Exception) {
-            throw e
+            e.printStackTrace()
         }
         ms = stopwatch.elapsed(TimeUnit.MILLISECONDS)
     }
     fun load(item: Metadata) {
         val def = getItem(item.id)
+        def.name = item.name
+        def.examine = item.examine?: ""
+        def.isTradeable = item.tradeable
+        def.weight = item.weight
         if (item.equipment != null) {
             val equipment = item.equipment
-            // TODO def.equipSound = equipment.equipSound
-            // TODO def.attackSounds = equipment.attackSounds
-            // TODO Map the magic numbers out right now it looks like shit and confusing.
-            //def.renderAnimations = equipment.renderAnimations?.getAsArray()
-            if (item.equipment.skillReqs != null) {
+            val slots = if (equipment.equipSlot != null) getEquipmentSlots(equipment.equipSlot, def.id) else null
+
+            def.attackSpeed = equipment.attackSpeed
+
+            if (equipment.weaponType == -1 && slots != null) {
+                if (slots.slot == 3) {
+                    def.weaponType = 17
+                }
+            } else {
+                def.weaponType = equipment.weaponType
+            }
+
+            def.renderAnimations = equipment.renderAnimations?.getAsArray()
+            /**
+             * TODO def.attackSounds = equipment.attackSounds
+             *  - Create Array of AttackStyleID -> It's Sound
+             *  accurateAnim : accurateSound
+             *  aggressiveAnim : aggressiveSound
+             *  controlledAnim : controlledSound
+             *  defensiveAnim : defensiveSound
+             *  <--- AttackStyleID:[Anim, Sound]
+             *  AttackStyle can be from 0-3
+             *  If no data on it, it will be -1
+             *  blockAnim = When target attacks the Pawn on next tick?
+             *
+             *
+             *  TODO def.equipSound = equipment.equipSound
+             */
+            if (slots != null) {
+                def.equipSlot = slots.slot
+                def.equipType = slots.secondary
+            }
+            if (equipment.skillReqs != null) {
                 val reqs = Byte2ByteOpenHashMap()
-                item.equipment.skillReqs.filter { it.skill != null }.forEach { req ->
+                equipment.skillReqs.filter { it.skill != null }.forEach { req ->
                     reqs[getSkillId(req.skill!!)] = req.level!!.toByte()
                 }
                 def.skillReqs = reqs
             }
+            def.bonuses =
+                intArrayOf(
+                    equipment.attackStab,
+                    equipment.attackSlash,
+                    equipment.attackCrush,
+                    equipment.attackMagic,
+                    equipment.attackRanged,
+                    equipment.defenceStab,
+                    equipment.defenceSlash,
+                    equipment.defenceCrush,
+                    equipment.defenceMagic,
+                    equipment.defenceRanged,
+                    equipment.meleeStrength,
+                    equipment.rangedStrength,
+                    equipment.magicDamage,
+                    equipment.prayer,
+                )
         }
     }
+    private fun getEquipmentSlots(
+        slot: String,
+        id: Int? = null,
+    ): EquipmentSlots {
+        val equipSlot: Int
+        var equipType = -1
+        when (slot) {
+            "head" -> {
+                equipSlot = 0
+                equipType = 8
+            }
+            "hat" -> {
+                equipSlot = 0
+            }
+            // For hats that requires hair removal
+            "nohair" -> {
+                equipSlot = 0
+                equipType = 11
+            }
+            "cape" -> {
+                equipSlot = 1
+            }
+            "neck" -> {
+                equipSlot = 2
+            }
+            "2h" -> {
+                equipSlot = 3
+                equipType = 5
+            }
+            "weapon" -> {
+                equipSlot = 3
+            }
+            "body" -> {
+                equipSlot = 4
+                equipType = 6
+            }
+            "torso" -> {
+                equipSlot = 4
+            }
+            "shield" -> {
+                equipSlot = 5
+            }
+            "legs" -> {
+                equipSlot = 7
+            }
+            "hands" -> {
+                equipSlot = 9
+            }
+            "feet" -> {
+                equipSlot = 10
+            }
+            "ring" -> {
+                equipSlot = 12
+            }
+            "ammo" -> {
+                equipSlot = 13
+            }
+            else -> throw IllegalArgumentException("Illegal equipment slot: $slot, $id")
+        }
+        return EquipmentSlots(equipSlot, equipType)
+    }
+    private data class EquipmentSlots(val slot: Int, val secondary: Int)
+
 
     private fun ItemType.getValidatedParam(key: Int): Int {
         if (this.params?.get(key) != null) {

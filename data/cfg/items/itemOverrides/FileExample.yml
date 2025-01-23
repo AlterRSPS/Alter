@@ -1,0 +1,11 @@
+---
+id: 1
+name: "Toolkit"
+examine: "Just a template."
+tradeable: false
+weight: 500000.0
+tradeable_on_ge: false
+cost: 200
+lowalch: 80
+highalch: 120
+buy_limit: null
