@@ -3,7 +3,7 @@ package org.alter.plugins.content.commands.commands.developer
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.itemSize
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 
 
 onCommand("getitems", Privilege.DEV_POWER) {

@@ -1,5 +1,5 @@
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 
 onCommand("transmog", Privilege.ADMIN_POWER, description = "Transmog yourself") {
     val args = player.getCommandArgs()

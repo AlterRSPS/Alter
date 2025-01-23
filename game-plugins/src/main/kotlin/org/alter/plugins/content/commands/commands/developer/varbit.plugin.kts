@@ -1,7 +1,7 @@
 package org.alter.plugins.content.commands.commands.developer
 
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 
 onCommand("varbit", Privilege.DEV_POWER, description = "Set varbit to amount") {
     val args = player.getCommandArgs()

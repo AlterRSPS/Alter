@@ -3,7 +3,7 @@ package org.alter.plugins.content.commands.commands.developer
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
 import org.alter.game.model.priv.Privilege
 import org.alter.game.rsprot.RsModObjectProvider
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 
 onCommand("inv", Privilege.DEV_POWER) {
     val args = player.getCommandArgs()

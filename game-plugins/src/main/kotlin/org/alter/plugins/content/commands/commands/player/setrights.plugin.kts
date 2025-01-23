@@ -1,4 +1,4 @@
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 
 /**
  *   @Author Cl0ud

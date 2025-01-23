@@ -2,7 +2,7 @@ package org.alter.plugins.content.commands.commands.admin
 
 import org.alter.game.model.move.moveTo
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 
 onCommand("tele", Privilege.ADMIN_POWER, description = "Teleport to coordinates") {
     val args = player.getCommandArgs()

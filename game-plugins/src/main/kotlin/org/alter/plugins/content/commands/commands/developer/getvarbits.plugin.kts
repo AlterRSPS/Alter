@@ -4,7 +4,7 @@ import dev.openrune.cache.CacheManager.getVarbits
 import dev.openrune.cache.CacheManager.varbitSize
 import dev.openrune.cache.filestore.definition.data.VarBitType
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 
 onCommand("getvarbits", Privilege.DEV_POWER, description = "Get varbits for varp") {
     val args = player.getCommandArgs()

@@ -1,6 +1,6 @@
 import org.alter.api.ClientScript
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 
 onCommand("script", Privilege.DEV_POWER, description = "Run script by id") {
     val args = player.getCommandArgs()

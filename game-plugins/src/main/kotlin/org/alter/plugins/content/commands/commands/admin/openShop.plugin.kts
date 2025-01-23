@@ -1,5 +1,5 @@
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 
 val OpenShopCommands = listOf("openshop", "shop", "store")
 

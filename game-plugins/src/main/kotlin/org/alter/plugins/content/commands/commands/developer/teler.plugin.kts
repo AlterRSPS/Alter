@@ -1,6 +1,6 @@
 import org.alter.game.model.move.moveTo
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 
 onCommand("teler", Privilege.DEV_POWER, description = "Teleport to region") {
     val args = player.getCommandArgs()

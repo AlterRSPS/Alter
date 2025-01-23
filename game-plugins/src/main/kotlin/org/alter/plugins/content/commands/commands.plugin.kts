@@ -1,6 +1,9 @@
 package org.alter.plugins.content.commands
 
-object Command {
+/**
+ * @TODO Rewrite Commands
+ */
+object Commands_plugin {
     fun tryWithUsage(
         player: Player,
         args: Array<String>,

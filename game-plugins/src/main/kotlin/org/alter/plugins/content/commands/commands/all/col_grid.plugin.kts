@@ -1,5 +1,5 @@
 import org.alter.game.model.collision.isClipped
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 
 onCommand("col_grid") {
     val args = player.getCommandArgs()

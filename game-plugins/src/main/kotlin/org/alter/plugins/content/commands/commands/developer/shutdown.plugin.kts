@@ -2,7 +2,7 @@ package org.alter.plugins.content.commands.commands.developer
 
 import org.alter.game.model.priv.Privilege
 import org.alter.game.model.timer.FORCE_DISCONNECTION_TIMER
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.plugins.content.commands.Commands_plugin.tryWithUsage
 import kotlin.system.exitProcess
 
 onCommand("shutdown", Privilege.DEV_POWER, description = "Shutdown Server expected @param1 Int: How long till shutdown.") {
