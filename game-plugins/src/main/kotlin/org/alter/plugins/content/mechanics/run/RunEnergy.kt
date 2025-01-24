@@ -7,6 +7,7 @@ import org.alter.api.ext.*
 import org.alter.game.model.bits.INFINITE_VARS_STORAGE
 import org.alter.game.model.bits.InfiniteVarsType
 import org.alter.game.model.entity.Player
+import org.alter.game.model.move.hasMoveDestination
 import org.alter.game.model.timer.TimerKey
 import kotlin.math.max
 import kotlin.math.min
@@ -65,6 +66,10 @@ object RunEnergy {
             (p.equipment[EquipmentType.GLOVES.id]?.id ?: -1) in GRACEFUL_GLOVES &&
             (p.equipment[EquipmentType.BOOTS.id]?.id ?: -1) in GRACEFUL_BOOTS
 
+
+    /**
+     * @TODO Magic Numbers
+     */
     private val GRACEFUL_HOODS = intArrayOf(11850, 13579, 13591, 13603, 13615, 13627, 13667, 21061)
 
     private val GRACEFUL_CAPE = intArrayOf(11852, 13581, 13593, 13605, 13617, 13629, 13669, 21064)

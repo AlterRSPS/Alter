@@ -14,6 +14,6 @@ fun Tile.getWildernessLevel(): Int {
         return 0
     }
 
-    val z = if (this.z > 6400) this.z - 6400 else this.z
-    return (((z - 3525) shr 3) + 1)
+    val y = if (this.z > 6400) this.z - 6400 else this.z
+    return (((y - 3525) shr 3) + 1)
 }

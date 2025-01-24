@@ -6,17 +6,17 @@ import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.attr.OTHER_ITEM_SLOT_ATTR
 
-on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
+onButton(InterfaceDestination.INVENTORY.interfaceId, 0) {
     val slot: Int? = player.attr[INTERACTING_SLOT_ATTR]
     val option = player.attr[INTERACTING_OPT_ATTR]
     if (slot != null) {
         if (slot < 0 || slot >= player.inventory.capacity) {
-            return@on_button
+            return@onButton
         }
         if (!player.lock.canItemInteract()) {
-            return@on_button
+            return@onButton
         }
-        val item = player.inventory[slot] ?: return@on_button
+        val item = player.inventory[slot] ?: return@onButton
         player.attr[INTERACTING_ITEM_SLOT] = slot
 
         when (option) {
@@ -59,7 +59,7 @@ on_button(InterfaceDestination.INVENTORY.interfaceId, 0) {
 /**
  * Logic for swapping items in inventory.
  */
-on_component_to_component_item_swap(srcInterfaceId = 149, srcComponent = 0, dstInterfaceId = 149, 0) {
+onComponentToComponentItemSwap(srcInterfaceId = 149, srcComponent = 0, dstInterfaceId = 149, 0) {
     val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
     val dstSlot = player.attr[OTHER_ITEM_SLOT_ATTR]!!
 

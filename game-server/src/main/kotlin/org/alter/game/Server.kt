@@ -11,6 +11,7 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.skill.SkillSet
+import org.alter.rscm.RSCM
 import org.alter.game.rsprot.CacheJs5GroupProvider
 import org.alter.game.rsprot.NetworkServiceFactory
 import org.alter.game.service.xtea.XteaKeyService
@@ -89,6 +90,9 @@ class Server {
                 revision = gameProperties.get<Int>("revision")!!,
                 cycleTime = gameProperties.getOrDefault("cycle-time", 600),
                 playerLimit = gameProperties.getOrDefault("max-players", 2048),
+                /**
+                 * @TODO Values do not output any context if any of them r null or throw exception on start
+                 */
                 home =
                     Tile(
                         gameProperties.get<Int>("home-x")!!,
@@ -154,6 +158,11 @@ class Server {
                 world.definitions.loadRegions(world, world.chunks, service.validRegions)
             }
         }
+
+        /**
+         * Initialize RSCM
+         */
+        RSCM.init()
 
         /*
          * Load the privileges for the game.

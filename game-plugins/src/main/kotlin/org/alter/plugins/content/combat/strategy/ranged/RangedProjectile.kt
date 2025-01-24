@@ -1,8 +1,8 @@
 package org.alter.plugins.content.combat.strategy.ranged
 
 import org.alter.api.ProjectileType
-import org.alter.api.cfg.Items
 import org.alter.game.model.Graphic
+import org.alter.rscm.RSCM.getRSCM
 import org.alter.plugins.content.combat.strategy.ranged.ammo.Arrows.ADAMANT_ARROWS
 import org.alter.plugins.content.combat.strategy.ranged.ammo.Arrows.AMETHYST_ARROWS
 import org.alter.plugins.content.combat.strategy.ranged.ammo.Arrows.BRONZE_ARROWS
@@ -97,64 +97,64 @@ enum class RangedProjectile(
         gfx = 36,
         drawback = Graphic(id = 43, height = 96),
         type = ProjectileType.THROWN,
-        items = arrayOf(Items.BRONZE_THROWNAXE),
+        items = arrayOf(getRSCM("item.bronze_thrownaxe")),
     ),
     IRON_THROWING_AXE(
         gfx = 35,
         drawback = Graphic(id = 42, height = 96),
         type = ProjectileType.THROWN,
-        items = arrayOf(Items.IRON_THROWNAXE),
+        items = arrayOf(getRSCM("item.iron_thrownaxe")),
     ),
     STEEL_THROWING_AXE(
         gfx = 37,
         drawback = Graphic(id = 44, height = 96),
         type = ProjectileType.THROWN,
-        items = arrayOf(Items.STEEL_THROWNAXE),
+        items = arrayOf(getRSCM("item.steel_thrownaxe")),
     ),
     MITHRIL_THROWING_AXE(
         gfx = 38,
         drawback = Graphic(id = 45, height = 96),
         type = ProjectileType.THROWN,
-        items = arrayOf(Items.MITHRIL_THROWNAXE),
+        items = arrayOf(getRSCM("item.mithril_thrownaxe")),
     ),
     ADAMANT_THROWING_AXE(
         gfx = 39,
         drawback = Graphic(id = 46, height = 96),
         type = ProjectileType.THROWN,
-        items = arrayOf(Items.ADAMANT_THROWNAXE),
+        items = arrayOf(getRSCM("item.adamant_thrownaxe")),
     ),
     RUNE_THROWING_AXE(
         gfx = 41,
         drawback = Graphic(id = 48, height = 96),
         type = ProjectileType.THROWN,
-        items = arrayOf(Items.RUNE_THROWNAXE),
+        items = arrayOf(getRSCM("item.rune_thrownaxe")),
     ),
     DRAGON_THROWING_AXE(
         gfx = 1319,
         drawback = Graphic(id = 1320, height = 96),
         type = ProjectileType.THROWN,
-        items = arrayOf(Items.DRAGON_THROWNAXE),
+        items = arrayOf(getRSCM("item.dragon_thrownaxe")),
     ),
 
-    TOKTZ_XIL_UL(gfx = 442, type = ProjectileType.THROWN, items = arrayOf(Items.TOKTZXILUL)),
+    TOKTZ_XIL_UL(gfx = 442, type = ProjectileType.THROWN, items = arrayOf(getRSCM("item.toktzxilul"))),
 
     GREY_CHINCHOMA(
         gfx = 908,
         impact = Graphic(id = 157, height = 92),
         type = ProjectileType.THROWN,
-        items = arrayOf(Items.CHINCHOMPA_10033),
+        items = arrayOf(getRSCM("item.chinchompa_10033")),
     ),
     RED_CHINCHOMA(
         gfx = 909,
         impact = Graphic(id = 157, height = 92),
         type = ProjectileType.THROWN,
-        items = arrayOf(Items.RED_CHINCHOMPA_10034),
+        items = arrayOf(getRSCM("item.red_chinchompa_10034")),
     ),
     BLACK_CHINCHOMA(
         gfx = 1272,
         impact = Graphic(id = 157, height = 92),
         type = ProjectileType.THROWN,
-        items = arrayOf(Items.BLACK_CHINCHOMPA),
+        items = arrayOf(getRSCM("item.black_chinchompa")),
     ),
     ;
 

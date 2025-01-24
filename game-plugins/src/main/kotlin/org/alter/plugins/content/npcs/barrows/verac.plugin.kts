@@ -1,12 +1,12 @@
 package org.alter.plugins.content.npcs.barrows
 
-spawn_npc(Npcs.VERAC_THE_DEFILED, 3557, 3297, 0, 2)
-spawn_npc(Npcs.VERAC_THE_DEFILED, 3559, 3300, 0, 2)
-spawn_npc(Npcs.VERAC_THE_DEFILED, 3555, 3297, 0, 2)
-spawn_npc(Npcs.VERAC_THE_DEFILED, 3555, 3294, 0, 2)
-spawn_npc(Npcs.VERAC_THE_DEFILED, 3559, 3294, 0, 2)
+spawnNpc("npc.verac_the_defiled", 3557, 3297, 0, 2)
+spawnNpc("npc.verac_the_defiled", 3559, 3300, 0, 2)
+spawnNpc("npc.verac_the_defiled", 3555, 3297, 0, 2)
+spawnNpc("npc.verac_the_defiled", 3555, 3294, 0, 2)
+spawnNpc("npc.verac_the_defiled", 3559, 3294, 0, 2)
 
-set_combat_def(Npcs.VERAC_THE_DEFILED) {
+setCombatDef("npc.verac_the_defiled") {
     configs {
         attackSpeed = 6
         respawnDelay = 50

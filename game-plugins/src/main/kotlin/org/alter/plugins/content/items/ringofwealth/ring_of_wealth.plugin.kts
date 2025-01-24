@@ -1,16 +1,17 @@
 package org.alter.plugins.content.items.ringofwealth
 
+import org.alter.rscm.RSCM.getRSCM
 import org.alter.plugins.content.magic.TeleportType
 import org.alter.plugins.content.magic.canTeleport
 import org.alter.plugins.content.magic.teleport
 
 val RING_OF_WEALTH =
-    intArrayOf(
-        Items.RING_OF_WEALTH_1,
-        Items.RING_OF_WEALTH_2,
-        Items.RING_OF_WEALTH_3,
-        Items.RING_OF_WEALTH_4,
-        Items.RING_OF_WEALTH_5,
+    arrayOf(
+        "item.ring_of_wealth_1",
+        "item.ring_of_wealth_2",
+        "item.ring_of_wealth_3",
+        "item.ring_of_wealth_4",
+        "item.ring_of_wealth_5",
     )
 
 private val SOUNDAREA_ID = 200
@@ -33,14 +34,14 @@ private val OPTIONS =
 
 RING_OF_WEALTH.forEach { wealth ->
     LOCATIONS.forEach { location, tile ->
-        on_equipment_option(wealth, option = location) {
+        onEquipmentOption(wealth, option = location) {
             player.queue(TaskPriority.STRONG) {
                 player.teleport(tile)
             }
         }
     }
     OPTIONS.forEach { options, open ->
-        on_equipment_option(wealth, option = options) {
+        onEquipmentOption(wealth, option = options) {
             player.queue(TaskPriority.STRONG) {
                 player.message("Placeholder for both boss log and coin collector. mapof($open)", ChatMessageType.ENGINE)
             }
@@ -59,21 +60,21 @@ fun Player.teleport(endTile: Tile) {
 
 fun Player.getRingReplacement(): Item? {
     return when {
-        hasEquipped(EquipmentType.RING, Items.RING_OF_WEALTH_5) -> Item(Items.RING_OF_WEALTH_4)
-        hasEquipped(EquipmentType.RING, Items.RING_OF_WEALTH_4) -> Item(Items.RING_OF_WEALTH_3)
-        hasEquipped(EquipmentType.RING, Items.RING_OF_WEALTH_3) -> Item(Items.RING_OF_WEALTH_2)
-        hasEquipped(EquipmentType.RING, Items.RING_OF_WEALTH_2) -> Item(Items.RING_OF_WEALTH_1)
-        hasEquipped(EquipmentType.RING, Items.RING_OF_WEALTH_1) -> Item(Items.RING_OF_WEALTH)
+        hasEquipped(EquipmentType.RING, "item.ring_of_wealth_5") -> Item(getRSCM("item.ring_of_wealth_4"))
+        hasEquipped(EquipmentType.RING, "item.ring_of_wealth_4") -> Item(getRSCM("item.ring_of_wealth_3"))
+        hasEquipped(EquipmentType.RING, "item.ring_of_wealth_3") -> Item(getRSCM("item.ring_of_wealth_2"))
+        hasEquipped(EquipmentType.RING, "item.ring_of_wealth_2") -> Item(getRSCM("item.ring_of_wealth_1"))
+        hasEquipped(EquipmentType.RING, "item.ring_of_wealth_1") -> Item(getRSCM("item.ring_of_wealth"))
         else -> null
     }
 }
 
 fun Player.getRingChargeReplacement(): String {
     return when {
-        hasEquipped(EquipmentType.RING, Items.RING_OF_WEALTH_4) -> "<col=7f007f>Your ring has four charges left.</col>"
-        hasEquipped(EquipmentType.RING, Items.RING_OF_WEALTH_3) -> "<col=7f007f>Your ring has three charges left.</col>"
-        hasEquipped(EquipmentType.RING, Items.RING_OF_WEALTH_2) -> "<col=7f007f>Your ring has two charges left.</col>"
-        hasEquipped(EquipmentType.RING, Items.RING_OF_WEALTH_1) -> "<col=7f007f>Your ring has one charge left.</col>"
+        hasEquipped(EquipmentType.RING, "item.ring_of_wealth_4") -> "<col=7f007f>Your ring has four charges left.</col>"
+        hasEquipped(EquipmentType.RING, "item.ring_of_wealth_3") -> "<col=7f007f>Your ring has three charges left.</col>"
+        hasEquipped(EquipmentType.RING, "item.ring_of_wealth_2") -> "<col=7f007f>Your ring has two charges left.</col>"
+        hasEquipped(EquipmentType.RING, "item.ring_of_wealth_1") -> "<col=7f007f>Your ring has one charge left.</col>"
         else -> "<col=7f007f>You use your ring's last charge.</col>"
     }
 }

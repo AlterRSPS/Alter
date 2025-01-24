@@ -5,19 +5,35 @@ import org.alter.api.ext.getEquipment
 import org.alter.game.model.World
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
+import org.alter.rscm.RSCM.getRSCM
 import org.alter.plugins.content.interfaces.attack.AttackTab
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 object SpecialAttacks {
+
+    fun register(
+        item: String,
+        energy: Int,
+        executeInstantly: Boolean = false,
+        attack: CombatContext.() -> Unit,
+    ) {
+        register(
+            getRSCM(item),
+            energy,
+            executeInstantly,
+            attack
+        )
+    }
+
     fun register(
         item: Int,
         energy: Int,
-        executeOnSpecBar: Boolean = false,
+        executeInstantly: Boolean = false,
         attack: CombatContext.() -> Unit,
     ) {
-        attacks[item] = SpecialAttack(energy, executeOnSpecBar, attack)
+        attacks[item] = SpecialAttack(energy, executeInstantly, attack)
     }
 
     fun executeOnEnable(item: Int): Boolean {

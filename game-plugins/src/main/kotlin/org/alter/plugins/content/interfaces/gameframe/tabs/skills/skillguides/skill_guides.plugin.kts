@@ -8,14 +8,14 @@ val SUB_SECTION_VARBIT = 4372
 val NEW_SKILL_GUIDE_INTERFACE = 860
 val NEW_SKILL_GUIDE_INTERFACE_CLOSE_COMPONENT = 4
 
-on_login {
+onLogin {
     player.setVarbit(Varbit.NEW_STYLE_SKILL_GUIDE_INTERFACE, 1)
 }
 
 SkillGuide.values.forEach { guide ->
-    on_button(320, guide.child) {
+    onButton(320, guide.child) {
         if (!player.lock.canInterfaceInteract()) {
-            return@on_button
+            return@onButton
         }
         if (player.getVarbit(Varbit.NEW_STYLE_SKILL_GUIDE_INTERFACE) == 0) {
             player.setVarbit(SUB_SECTION_VARBIT, 0)
@@ -31,12 +31,12 @@ SkillGuide.values.forEach { guide ->
         }
     }
 }
-on_button(NEW_SKILL_GUIDE_INTERFACE, NEW_SKILL_GUIDE_INTERFACE_CLOSE_COMPONENT) {
+onButton(NEW_SKILL_GUIDE_INTERFACE, NEW_SKILL_GUIDE_INTERFACE_CLOSE_COMPONENT) {
     player.closeInterface(InterfaceDestination.MAIN_SCREEN)
 }
 
 for (section in 11..24) {
-    on_button(214, section) {
+    onButton(214, section) {
         player.setVarbit(SUB_SECTION_VARBIT, section - 11)
     }
 }

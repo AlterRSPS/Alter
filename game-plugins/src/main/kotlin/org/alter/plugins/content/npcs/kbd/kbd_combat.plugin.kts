@@ -9,7 +9,7 @@ import org.alter.plugins.content.combat.formula.MeleeCombatFormula
 import org.alter.plugins.content.combat.strategy.RangedCombatStrategy
 import org.alter.plugins.content.mechanics.poison.poison
 
-on_npc_combat(Npcs.KING_BLACK_DRAGON) {
+onNpcCombat("npc.king_black_dragon") {
     npc.queue {
         combat(this)
     }

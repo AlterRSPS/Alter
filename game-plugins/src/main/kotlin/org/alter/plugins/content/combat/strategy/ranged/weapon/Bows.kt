@@ -1,6 +1,6 @@
 package org.alter.plugins.content.combat.strategy.ranged.weapon
 
-import org.alter.api.cfg.Items
+import org.alter.rscm.RSCM.getRSCM
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -8,37 +8,37 @@ import org.alter.api.cfg.Items
 object Bows {
     val CRYSTAL_BOWS =
         arrayOf(
-            Items.NEW_CRYSTAL_BOW,
-            Items.NEW_CRYSTAL_BOW_I,
-            Items.CRYSTAL_BOW_FULL,
-            Items.CRYSTAL_BOW_FULL_I,
-            Items.CRYSTAL_BOW_110,
-            Items.CRYSTAL_BOW_110_I,
-            Items.CRYSTAL_BOW_210,
-            Items.CRYSTAL_BOW_210_I,
-            Items.CRYSTAL_BOW_310,
-            Items.CRYSTAL_BOW_310_I,
-            Items.CRYSTAL_BOW_410,
-            Items.CRYSTAL_BOW_410_I,
-            Items.CRYSTAL_BOW_510,
-            Items.CRYSTAL_BOW_510_I,
-            Items.CRYSTAL_BOW_610,
-            Items.CRYSTAL_BOW_610_I,
-            Items.CRYSTAL_BOW_710,
-            Items.CRYSTAL_BOW_710_I,
-            Items.CRYSTAL_BOW_810,
-            Items.CRYSTAL_BOW_810_I,
-            Items.CRYSTAL_BOW_910,
-            Items.CRYSTAL_BOW_910_I,
+            getRSCM("item.new_crystal_bow"),
+            getRSCM("item.new_crystal_bow_i"),
+            getRSCM("item.crystal_bow_full"),
+            getRSCM("item.crystal_bow_full_i"),
+            getRSCM("item.crystal_bow_110"),
+            getRSCM("item.crystal_bow_110_i"),
+            getRSCM("item.crystal_bow_210"),
+            getRSCM("item.crystal_bow_210_i"),
+            getRSCM("item.crystal_bow_310"),
+            getRSCM("item.crystal_bow_310_i"),
+            getRSCM("item.crystal_bow_410"),
+            getRSCM("item.crystal_bow_410_i"),
+            getRSCM("item.crystal_bow_510"),
+            getRSCM("item.crystal_bow_510_i"),
+            getRSCM("item.crystal_bow_610"),
+            getRSCM("item.crystal_bow_610_i"),
+            getRSCM("item.crystal_bow_710"),
+            getRSCM("item.crystal_bow_710_i"),
+            getRSCM("item.crystal_bow_810"),
+            getRSCM("item.crystal_bow_810_i"),
+            getRSCM("item.crystal_bow_910"),
+            getRSCM("item.crystal_bow_910_i"),
         )
 
     val LONG_BOWS =
         arrayOf(
-            Items.LONGBOW,
-            Items.OAK_LONGBOW,
-            Items.MAPLE_LONGBOW,
-            Items.WILLOW_LONGBOW,
-            Items.YEW_LONGBOW,
-            Items.MAGIC_LONGBOW,
+            getRSCM("item.longbow"),
+            getRSCM("item.oak_longbow"),
+            getRSCM("item.maple_longbow"),
+            getRSCM("item.willow_longbow"),
+            getRSCM("item.yew_longbow"),
+            getRSCM("item.magic_longbow"),
         )
 }

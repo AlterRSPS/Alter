@@ -1,15 +1,15 @@
 package org.alter.game.rsprot
 
 import dev.openrune.cache.CacheManager
-import io.netty.buffer.PooledByteBufAllocator
+import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
+import io.netty.handler.codec.DecoderException
 import net.rsprot.compression.HuffmanCodec
 import net.rsprot.compression.provider.DefaultHuffmanCodecProvider
 import net.rsprot.compression.provider.HuffmanCodecProvider
 import net.rsprot.crypto.rsa.RsaKeyPair
 import net.rsprot.protocol.api.*
-import net.rsprot.protocol.api.bootstrap.BootstrapFactory
 import net.rsprot.protocol.api.handlers.ExceptionHandlers
 import net.rsprot.protocol.api.js5.Js5GroupProvider
 import net.rsprot.protocol.api.suppliers.NpcInfoSupplier
@@ -47,9 +47,7 @@ import net.rsprot.protocol.game.incoming.social.FriendListAdd
 import net.rsprot.protocol.game.incoming.social.FriendListDel
 import net.rsprot.protocol.game.incoming.social.IgnoreListAdd
 import net.rsprot.protocol.game.incoming.social.IgnoreListDel
-import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcIndexSupplier
 import net.rsprot.protocol.game.outgoing.info.worldentityinfo.WorldEntityAvatarExceptionHandler
-import net.rsprot.protocol.game.outgoing.info.worldentityinfo.WorldEntityIndexSupplier
 import net.rsprot.protocol.message.IncomingGameMessage
 import net.rsprot.protocol.message.codec.incoming.GameMessageConsumerRepositoryBuilder
 import net.rsprot.protocol.message.codec.incoming.provider.DefaultGameMessageConsumerRepositoryProvider
@@ -61,6 +59,7 @@ import org.alter.game.model.entity.Client
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Player
 import org.alter.game.service.rsa.RsaService
+import java.io.IOException
 import java.math.BigInteger
 
 class NetworkServiceFactory(
@@ -68,23 +67,41 @@ class NetworkServiceFactory(
     val world: World,
     override val ports: List<Int>,
     override val supportedClientTypes: List<OldSchoolClientType>,
-) : AbstractNetworkServiceFactory<Client, Js5GroupProvider.ByteBufJs5GroupType>() {
-    override fun getBootstrapFactory(): BootstrapFactory {
+) : AbstractNetworkServiceFactory<Client>() {
+/*    override fun getBootstrapFactory(): BootstrapFactory {
         return BootstrapFactory(PooledByteBufAllocator.DEFAULT)
-    }
+    }*/
 
     override fun getExceptionHandlers(): ExceptionHandlers<Client> {
-        val channelExceptionHandler =
-            ChannelExceptionHandler {
-                    channelHandlerContext: ChannelHandlerContext, throwable: Throwable ->
-                throwable.printStackTrace()
-            }
         val incomingGameMessageConsumerExceptionHandler: IncomingGameMessageConsumerExceptionHandler<Client> =
             IncomingGameMessageConsumerExceptionHandler {
                     session: Session<Client>, incomingGameMessage: IncomingGameMessage, throwable: Throwable ->
                 throwable.printStackTrace()
             }
-        return ExceptionHandlers(channelExceptionHandler, incomingGameMessageConsumerExceptionHandler)
+        return ExceptionHandlers(channelExceptionHandler(), incomingGameMessageConsumerExceptionHandler)
+    }
+
+    /**
+     * @author Kris
+     */
+    private fun channelExceptionHandler(): ChannelExceptionHandler {
+        return ChannelExceptionHandler { ctx: ChannelHandlerContext, cause: Throwable ->
+            val channel = ctx.channel()
+            if (channel.isOpen) {
+                channel.close()
+            }
+
+            // IOExceptions basically all kinds of "connection dropped" type errors,
+            // e.g. Closing the client, losing connection and so on...
+            if (cause is IOException) return@ChannelExceptionHandler
+            // Limit the decoder exceptions, so it doesn't just spam the error a thousand times if a thousand connections get rejected
+            // Instead allow up to 100 to log, then turn it off. After that, only allow one more to log per tick
+            if (cause is DecoderException) {
+                return@ChannelExceptionHandler
+            }
+
+            logger.error{"Exception in netty handlers: $cause."}
+        }
     }
 
     override fun getGameConnectionHandler(): GameConnectionHandler<Client> {
@@ -132,7 +149,6 @@ class NetworkServiceFactory(
         bldr.addListener(OpObjT::class.java, OpObjTHandler())
         bldr.addListener(ResumePStringDialog::class.java, ResumePStringDialogHandler())
         bldr.addListener(Teleport::class.java, TeleportHandler())
-        bldr.addListener(UpdatePlayerModel::class.java, UpdateAppearanceHandler())
         bldr.addListener(WindowStatus::class.java, WindowStatusHandler())
         bldr.addListener(ResumePObjDialog::class.java, ResumePObjDialogHandler())
         return DefaultGameMessageConsumerRepositoryProvider(bldr.build())
@@ -143,19 +159,8 @@ class NetworkServiceFactory(
         return DefaultHuffmanCodecProvider(huffman)
     }
 
-    override fun getJs5GroupProvider(): Js5GroupProvider<Js5GroupProvider.ByteBufJs5GroupType> {
+    override fun getJs5GroupProvider(): Js5GroupProvider {
         return groupProvider
-    }
-
-    override fun getJs5GroupSizeProvider(): Js5GroupSizeProvider {
-        return groupProvider
-    }
-
-    override fun getNpcInfoSupplier(): NpcInfoSupplier {
-        // val npcIndexSupplier: NpcIndexSupplier = RsmodNpcIndexSupplier(world)
-        val npcIndexSupplier = npcIndexSupplier()
-        val npcAvatarExceptionHandler = RsmodNpcAvatarExceptionHandler(world)
-        return NpcInfoSupplier(npcIndexSupplier, npcAvatarExceptionHandler)
     }
 
     override fun getRsaKeyPair(): RsaKeyPair {
@@ -163,63 +168,6 @@ class NetworkServiceFactory(
         val exponent: BigInteger = rsaService.getExponent()
         val modulus: BigInteger = rsaService.getModulus()
         return RsaKeyPair(exponent, modulus)
-    }
-
-    override fun getWorldEntityInfoSupplier(): WorldEntityInfoSupplier {
-        val worldEntityIndexSupplier = worldEntityIndexSupplier()
-        val worldEntityAvatarExceptionHandler = worldEntityAvatarExceptionHandler()
-        return WorldEntityInfoSupplier(worldEntityIndexSupplier, worldEntityAvatarExceptionHandler)
-    }
-
-    private fun worldEntityIndexSupplier(): WorldEntityIndexSupplier {
-        return WorldEntityIndexSupplier { localPlayerIndex, level, x, z, viewDistance ->
-            val player = world.players[localPlayerIndex] ?: error("Player not found at index: $localPlayerIndex")
-            val tile = Tile(x, z, level)
-            val chunk = world.chunks.get(tile) ?: error("Invalid chunk for : $tile")
-
-            val surrounding = chunk.coords.getSurroundingCoords()
-//            println("Searching!!!")
-
-            world.npcs.entries.filterNotNull().filter {
-                shouldAdd(player, it, viewDistance)
-            }.map {
-//                println("Found npc " + it.index)
-                it.index
-            }.iterator()
-        }
-    }
-
-    private fun worldEntityAvatarExceptionHandler(): WorldEntityAvatarExceptionHandler {
-        return WorldEntityAvatarExceptionHandler { index, exception ->
-            // TODO log exception and then deregister this index.
-            // Should this drop
-        }
-    }
-
-    private fun npcIndexSupplier(): NpcIndexSupplier {
-        return NpcIndexSupplier { localPlayerIndex, level, x, z, viewDistance ->
-            val player = world.players[localPlayerIndex] ?: error("Player not found at index: $localPlayerIndex")
-            val tile = Tile(x, z, level)
-            val chunk = world.chunks.get(tile) ?: error("Invalid chunk for : $tile")
-
-            val surrounding = chunk.coords.getSurroundingCoords()
-//            println("Searching!!!")
-
-            world.npcs.entries.filterNotNull().filter {
-                shouldAdd(player, it, viewDistance)
-            }.map {
-//                println("Found npc " + it.index)
-                it.index
-            }.iterator()
-//            surrounding
-//                .mapNotNull { world.chunks.get(it, createIfNeeded = false) }
-//                .flatMap { it.npcs }
-//                .filter { shouldAdd(player, it, viewDistance) }
-//                .map {
-//                    println("Found npc " + it.index)
-//                    it.index
-//                }.iterator()
-        }
     }
 
     private fun shouldAdd(
@@ -232,4 +180,9 @@ class NetworkServiceFactory(
                 player.tile,
                 viewDistance,
             ) && (npc.owner == null || npc.owner == player)
+
+    companion object {
+        private val logger = KotlinLogging.logger {}
+
+    }
 }

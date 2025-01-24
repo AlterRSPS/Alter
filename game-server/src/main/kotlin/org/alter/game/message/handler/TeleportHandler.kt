@@ -3,13 +3,14 @@ package org.alter.game.message.handler
 import net.rsprot.protocol.game.incoming.misc.user.Teleport
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
+import org.alter.game.model.move.moveTo
 import org.alter.game.model.priv.Privilege
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 class TeleportHandler : MessageHandler<Teleport> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: Teleport,
     ) {
@@ -17,7 +18,7 @@ class TeleportHandler : MessageHandler<Teleport> {
             return
         }
 
-        log(client, "Teleport world map: unknown=%d, x=%d, z=%d, height=%d", message.oculusSyncValue, message.x, message.z, message.level)
+        log(client, "Teleport world map: unknown=%d, x=%d, y=%d, height=%d", message.oculusSyncValue, message.x, message.z, message.level)
 
         client.closeInterfaceModal()
         client.interruptQueues()

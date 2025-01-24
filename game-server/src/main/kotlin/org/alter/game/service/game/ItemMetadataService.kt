@@ -1,46 +1,42 @@
 package org.alter.game.service.game
 
+import AnimationData
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
+import com.fasterxml.jackson.module.kotlin.readValue
+import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.getItem
-import gg.rsmod.util.Namer
+import dev.openrune.cache.filestore.definition.data.ItemType
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
-import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
 import org.alter.game.Server
 import org.alter.game.model.World
 import org.alter.game.service.Service
 import org.yaml.snakeyaml.LoaderOptions
-import java.io.*
+import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.util.*
 import java.util.concurrent.TimeUnit
-
+import com.fasterxml.jackson.databind.ObjectMapper
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 class ItemMetadataService : Service {
-
     override fun init(
         server: Server,
         world: World,
         serviceProperties: ServerProperties,
     ) {
-        loadAll(world)
+        loadAll()
     }
 
     var ms: Long = 0
-
-    fun loadAll(world: World) {
+    fun loadAll() {
         val stopwatch = Stopwatch.createStarted().reset().start()
         val loaderOptions = LoaderOptions()
-
         loaderOptions.codePointLimit = 10 * 1024 * 1024 // 10 MB
-
         val yamlFactory =
             YAMLFactory.builder()
                 .loaderOptions(loaderOptions)
@@ -50,42 +46,121 @@ class ItemMetadataService : Service {
         val path = Paths.get("../data/cfg/items")
 
         try {
-            Files.newBufferedReader(path.resolve("_items.yml")).use { reader ->
-                val data = mapper.readValue(reader, Array<Metadata>::class.java)
-                data.forEach { item ->
-                    load(item, world)
+            /**
+             * Loads item examine text from an external CSV file and assigns it to item definitions.
+             *
+             * The file is expected to be located at `../data/cfg/objs.csv` and should contain item IDs
+             * paired with their corresponding examine text, separated by commas.
+             *
+             * - The first value in each line is treated as the item ID.
+             * - The remaining text after the first comma is treated as the examine description.
+             * - The examine text is assigned to the corresponding item definition if the ID is valid.
+             *
+             * This ensures that item examine information is loaded from an external source at runtime.
+             */
+            Paths.get("../data/cfg/objs.csv").toFile().forEachLine { line ->
+                val parts = line.split(",")
+                if (parts.size >= 2) {
+                    val id = parts[0].toIntOrNull()
+                    val examine = line.substringAfter(',').trim()
+                    if (id != null) {
+                        getItem(id).examine = examine
+                    }
                 }
             }
 
-            Files.walk(path.resolve("equippable")).parallel().filter { it.toFile().isFile }.forEach {
+            /**
+             * Initializes item definitions by loading cached item configurations and updating specific attributes.
+             *
+             * - Adjusts item weight by dividing the cached value by 1000.
+             * - Sets the attack speed using a validated parameter (ID 14).
+             * - Determines the weapon type for equippable items in the weapon slot (equipSlot 3) based on their category.
+             * - Assigns the equip type from the item's appearance override.
+             * - Populates item bonuses using a predefined set of validated parameters.
+             *
+             * This process ensures that item attributes are properly loaded and validated from cache for use in gameplay.
+             *
+             * @TODO Add mapper for Params
+             */
+            CacheManager.getItems().forEach { (_, item) ->
+                val def = getItem(item.id)
+                def.weight /= 1000
+                def.attackSpeed = def.getValidatedParam(14)
+                if (def.equipSlot == 3) {
+                    def.weaponType = WeaponCategory.get(def, def.category)
+                }
+                def.equipType = def.appearanceOverride1
+                def.bonuses =
+                    intArrayOf(
+                        def.getValidatedParam(0),
+                        def.getValidatedParam(1),
+                        def.getValidatedParam(2),
+                        def.getValidatedParam(3),
+                        def.getValidatedParam(4),
+                        def.getValidatedParam(5),
+                        def.getValidatedParam(6),
+                        def.getValidatedParam(7),
+                        def.getValidatedParam(8),
+                        def.getValidatedParam(9),
+                        def.getValidatedParam(10),
+                        def.getValidatedParam(12),
+                        def.getValidatedParam(65),
+                        def.getValidatedParam(11),
+                    )
+            }
+
+            /**
+             * Loads and assigns render animations to item definitions from external JSON files.
+             *
+             * - `bas_mappings.json` maps animation identifiers to their corresponding animation data (e.g., ready, walk, run animations).
+             * - `item_bas.json` maps item IDs to the animation identifiers used in the mappings.
+             *
+             * The process:
+             * - Each item ID from `item_bas.json` is matched to its animation data from `bas_mappings.json`.
+             * - If a matching animation is found, it populates the item's render animations array with the relevant animation IDs.
+             *
+             * This ensures that items have appropriate movement and action animations during gameplay.
+             */
+            val animationMap: Map<String, AnimationData> = mapper.readValue(File("../data/cfg/items/renderAnimations/bas_mappings.json").readText())
+            val valueMap: Map<Int, Int> = ObjectMapper().apply {
+                findAndRegisterModules()
+            }.readValue(File("../data/cfg/items/renderAnimations/item_bas.json").readText())
+            valueMap.forEach { (item, animMap) ->
+                val animation = animationMap[animMap.toString()] ?: return@forEach
+                val def = getItem(item)
+                def.renderAnimations = intArrayOf(
+                    animation.readyAnim,
+                    animation.turnAnim,
+                    animation.walkAnim,
+                    animation.walkAnimBack,
+                    animation.walkAnimLeft,
+                    animation.walkAnimRight,
+                    animation.runAnim,
+                )
+            }
+
+            /**
+             * Loads item override metadata from all files within the "itemOverrides" directory.
+             *
+             * - The directory is resolved relative to the provided path.
+             * - Files are processed in parallel for efficient loading.
+             * - Each file is deserialized into a `Metadata` object and passed to the `load` function.
+             *
+             * This process ensures that custom item attributes or behaviors are loaded at runtime.
+             *
+             * @TODO Add better context as to why file could not be loaded.
+             * @TODO Add support for remaining [`def`] properties override method.
+             */
+            Files.walk(path.resolve("itemOverrides")).parallel().filter { it.toFile().isFile }.forEach {
                 val data = mapper.readValue(it.toFile(), Metadata::class.java)
-                load(data, world)
+                load(data)
             }
         } catch (e: Exception) {
-            throw e
+            e.printStackTrace()
         }
         ms = stopwatch.elapsed(TimeUnit.MILLISECONDS)
     }
-
-    /**
-     * Continue later. @TODO -> Removal of all default 0's
-     */
-    private fun newData(item: Metadata) {
-        val mapper: ObjectMapper = YAMLMapper()
-        if (item.id == 35) {
-            if (item.equipment != null) {
-                val namer = Namer()
-                val name = namer.name(item.name, item.id)?.lowercase()
-                // val file: File = File("./data/cfg/newItems/equipable/", "${item.id}_$name.yml")
-                println(item)
-            }
-        }
-    }
-
-    private fun load(
-        item: Metadata,
-        world: World,
-    ) {
+    fun load(item: Metadata) {
         val def = getItem(item.id)
         def.name = item.name
         def.examine = item.examine?: ""
@@ -106,8 +181,21 @@ class ItemMetadataService : Service {
             }
 
             def.renderAnimations = equipment.renderAnimations?.getAsArray()
-// TODO ADVO add back attack sounds
-//            def.attackSounds = equipment.attackSounds
+            /**
+             * TODO def.attackSounds = equipment.attackSounds
+             *  - Create Array of AttackStyleID -> It's Sound
+             *  accurateAnim : accurateSound
+             *  aggressiveAnim : aggressiveSound
+             *  controlledAnim : controlledSound
+             *  defensiveAnim : defensiveSound
+             *  <--- AttackStyleID:[Anim, Sound]
+             *  AttackStyle can be from 0-3
+             *  If no data on it, it will be -1
+             *  blockAnim = When target attacks the Pawn on next tick?
+             *
+             *
+             *  TODO def.equipSound = equipment.equipSound
+             */
             if (slots != null) {
                 def.equipSlot = slots.slot
                 def.equipType = slots.secondary
@@ -119,8 +207,6 @@ class ItemMetadataService : Service {
                 }
                 def.skillReqs = reqs
             }
-// TODO ADVO add back equip sounds
-//            def.equipSound = equipment.equipSound
             def.bonuses =
                 intArrayOf(
                     equipment.attackStab,
@@ -140,38 +226,6 @@ class ItemMetadataService : Service {
                 )
         }
     }
-
-    private fun getSkillId(name: String): Byte =
-        when (name) {
-            // Need to get a better dump db. As we can see, this one has some
-            // inconsistency for some reason.
-            "attack" -> 0
-            "defence" -> 1
-            "strength" -> 2
-            "hitpoints" -> 3
-            "range", "ranged" -> 4
-            "prayer" -> 5
-            "magic" -> 6
-            "cooking" -> 7
-            "woodcutting" -> 8
-            "fletching" -> 9
-            "fishing" -> 10
-            "firemaking" -> 11
-            "crafting" -> 12
-            "smithing" -> 13
-            "mining" -> 14
-            "herblore" -> 15
-            "agility" -> 16
-            "thieving", "theiving" -> 17
-            "slayer" -> 18
-            "farming" -> 19
-            "runecrafting", "runecraft" -> 20
-            "hunter" -> 21
-            "construction", "contruction" -> 22
-            "combat" -> 3
-            else -> throw IllegalArgumentException("Illegal skill name: $name")
-        }
-
     private fun getEquipmentSlots(
         slot: String,
         id: Int? = null,
@@ -233,8 +287,53 @@ class ItemMetadataService : Service {
         }
         return EquipmentSlots(equipSlot, equipType)
     }
+    private data class EquipmentSlots(val slot: Int, val secondary: Int)
 
-    private data class Metadata(
+
+    private fun ItemType.getValidatedParam(key: Int): Int {
+        if (this.params?.get(key) != null) {
+            try {
+                return this.params?.get(key) as Int
+            } catch (e: Exception) {
+                println("${this.id} || ${this.params}")
+                e.printStackTrace()
+            }
+        }
+        return 0
+    }
+
+    private fun getSkillId(name: String): Byte =
+        when (name) {
+            // Need to get a better dump db. As we can see, this one has some
+            // inconsistency for some reason.
+            "attack" -> 0
+            "defence" -> 1
+            "strength" -> 2
+            "hitpoints" -> 3
+            "range", "ranged" -> 4
+            "prayer" -> 5
+            "magic" -> 6
+            "cooking" -> 7
+            "woodcutting" -> 8
+            "fletching" -> 9
+            "fishing" -> 10
+            "firemaking" -> 11
+            "crafting" -> 12
+            "smithing" -> 13
+            "mining" -> 14
+            "herblore" -> 15
+            "agility" -> 16
+            "thieving", "theiving" -> 17
+            "slayer" -> 18
+            "farming" -> 19
+            "runecrafting", "runecraft" -> 20
+            "hunter" -> 21
+            "construction", "contruction" -> 22
+            "combat" -> 3
+            else -> throw IllegalArgumentException("Illegal skill name: $name")
+        }
+
+    data class Metadata(
         val id: Int = -1,
         val name: String = "",
         val examine: String? = null,
@@ -248,9 +347,7 @@ class ItemMetadataService : Service {
         val equipment: Equipment? = null,
     )
 
-    private data class EquipmentSlots(val slot: Int, val secondary: Int)
-
-    private data class Equipment(
+    data class Equipment(
         @JsonProperty("equip_slot") val equipSlot: String? = null,
         @JsonProperty("equip_sound") val equipSound: Int? = -1,
         @JsonProperty("weapon_type") val weaponType: Int = -1,
@@ -338,7 +435,7 @@ class ItemMetadataService : Service {
         }
     }
 
-    private data class renderAnimations(
+    data class renderAnimations(
         @JsonProperty("standAnimId") val standAnimId: Int = 0,
         @JsonProperty("turnOnSpotAnim") val turnOnSpotAnim: Int = 0,
         @JsonProperty("walkForwardAnimId") val walkForwardAnimId: Int = 0,
@@ -348,11 +445,19 @@ class ItemMetadataService : Service {
         @JsonProperty("runAnimId") val runAnimId: Int = 0,
     ) {
         fun getAsArray(): IntArray {
-            return listOf(standAnimId, turnOnSpotAnim, walkForwardAnimId, walkBackwardsAnimId, walkLeftAnimId, walkRightAnimId, runAnimId).toIntArray()
+            return listOf(
+                standAnimId,
+                turnOnSpotAnim,
+                walkForwardAnimId,
+                walkBackwardsAnimId,
+                walkLeftAnimId,
+                walkRightAnimId,
+                runAnimId
+            ).toIntArray()
         }
     }
 
-    private data class SkillRequirement(
+    data class SkillRequirement(
         @JsonProperty("skill") val skill: String?,
         @JsonProperty("level") val level: Int?,
     )

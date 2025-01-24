@@ -2,16 +2,16 @@ package org.alter.plugins.content.npcs.banker
 
 import org.alter.plugins.content.interfaces.bank.openBank
 
-arrayOf(Npcs.BANKER_1479, Npcs.BANKER_1480).forEach { banker ->
-    on_npc_option(npc = banker, option = "talk-to", lineOfSightDistance = 2) {
+arrayOf("npc.banker_1479", "npc.banker_1480").forEach { banker ->
+    onNpcOption(npc = banker, option = "talk-to", lineOfSightDistance = 2) {
         player.queue {
             dialog(this)
         }
     }
-    on_npc_option(npc = banker, option = "bank", lineOfSightDistance = 2) {
+    onNpcOption(npc = banker, option = "bank", lineOfSightDistance = 2) {
         player.openBank()
     }
-    on_npc_option(npc = banker, option = "collect", lineOfSightDistance = 2) {
+    onNpcOption(npc = banker, option = "collect", lineOfSightDistance = 2) {
         open_collect(player)
     }
 }

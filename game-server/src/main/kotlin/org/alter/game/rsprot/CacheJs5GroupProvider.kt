@@ -4,40 +4,24 @@ import dev.openrune.cache.CacheManager
 import dev.openrune.cache.filestore.Cache
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
-import io.netty.handler.codec.DecoderException
 import io.netty.util.ReferenceCounted
-import it.unimi.dsi.fastutil.ints.Int2IntMap
-import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import net.rsprot.protocol.api.Js5GroupSizeProvider
-import net.rsprot.protocol.api.js5.ByteBufJs5GroupProvider
 import net.rsprot.protocol.api.js5.Js5GroupProvider
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.math.min
 import kotlin.math.pow
 
-class CacheJs5GroupProvider : ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
+class CacheJs5GroupProvider : Js5GroupProvider  {
     override fun provide(
         archive: Int,
         group: Int,
-    ): Js5GroupProvider.ByteBufJs5GroupType {
-        return Js5GroupProvider.ByteBufJs5GroupType(
-            groups[bitpack(archive, group)]
-                ?: throw DecoderException("Invalid on-demand group request ($archive and $group)"),
-        )
-    }
-
-    override fun getSize(
-        archive: Int,
-        group: Int,
-    ): Int {
-        return sizes[bitpack(archive, group)]
+    ): ByteBuf? {
+        return groups[bitpack(archive, group)]
     }
 
     private val groups: Int2ObjectMap<ByteBuf> = Int2ObjectOpenHashMap(2.toDouble().pow(17).toInt())
-    private val sizes: Int2IntMap = Int2IntOpenHashMap(2.toDouble().pow(17).toInt())
 
     fun load() {
         val cache = CacheManager.cache
@@ -106,8 +90,7 @@ class CacheJs5GroupProvider : ByteBufJs5GroupProvider(), Js5GroupSizeProvider {
         }
 
         val bitpack = bitpack(archive, group)
-        groups[bitpack] = response
-        sizes[bitpack] = response.writerIndex()
+        groups[bitpack] = Unpooled.unreleasableBuffer(response)
     }
 
     private fun strip(buf: ByteBuf): Int? {

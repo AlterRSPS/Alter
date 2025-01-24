@@ -10,7 +10,7 @@ import org.alter.game.model.priv.Privilege
 import java.util.concurrent.TimeUnit
 
 listOf("find", "search").forEach { command ->
-    on_command(command, powerRequired = Privilege.DEV_POWER, description = "Search for a keyword trough entity list.") {
+    onCommand(command, powerRequired = Privilege.DEV_POWER, description = "Search for a keyword trough entity list.") {
         val args = player.getCommandArgs()
         if (args.isEmpty()) {
             player.message("/find <col=801700>Entity</col>")
@@ -22,7 +22,7 @@ listOf("find", "search").forEach { command ->
             val keyword = args.copyOfRange(1, args.size).joinToString().replace(",", "")
             if (keyword.isEmpty()) {
                 player.message("::find $entity [Missing keyword]")
-                return@on_command
+                return@onCommand
             }
             val stopwatch = Stopwatch.createStarted()
             when (entity) {

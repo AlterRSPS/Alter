@@ -2,14 +2,16 @@ package org.alter.game.model.region
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import it.unimi.dsi.fastutil.objects.ObjectArraySet
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import net.rsprot.protocol.api.util.ZonePartialEnclosedCacheBuffer
 import net.rsprot.protocol.common.client.OldSchoolClientType
 import net.rsprot.protocol.game.outgoing.zone.header.UpdateZonePartialEnclosed
-import net.rsprot.protocol.game.outgoing.zone.header.UpdateZonePartialFollows
 import net.rsprot.protocol.message.ZoneProt
 import org.alter.game.model.*
 import org.alter.game.model.collision.CollisionMatrix
-import org.alter.game.model.collision.CollisionUpdate
+import org.alter.game.model.collision.addObjectCollision
+import org.alter.game.model.collision.removeObjectCollision
 import org.alter.game.model.entity.*
 import org.alter.game.model.region.update.*
 
@@ -27,26 +29,25 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
      * The array of matrices of 8x8 tiles. Each index representing a height.
      */
     private val matrices: Array<CollisionMatrix> = CollisionMatrix.createMatrices(Tile.TOTAL_HEIGHT_LEVELS, CHUNK_SIZE, CHUNK_SIZE)
-
     internal val blockedTiles = ObjectOpenHashSet<Tile>()
-
     /**
      * The [Entity]s that are currently registered to the [Tile] key. This is
      * not used for [org.alter.game.model.entity.Pawn], but rather [Entity]s
      * that do not regularly change [Tile]s.
      */
     private lateinit var entities: MutableMap<Tile, MutableList<Entity>>
-
     /**
      * A list of [EntityUpdate]s that will be sent to players who have just entered
      * a region that has this chunk as viewable.
      */
     private lateinit var updates: MutableList<EntityUpdate<*>>
-
     /**
      * The [Npcs]s that are currently registered to the [Chunk] key.
      */
-    lateinit var npcs: MutableList<Npc>
+    lateinit var npcCollection: ObjectArrayList<Npc>
+    lateinit var objectCollection: ObjectArrayList<GameObject>
+    lateinit var playersCollection: ObjectArrayList<Player>
+    lateinit var tempUpdates: ObjectArrayList<ZoneProt>
 
     /**
      * Create the collections used for [Entity]s and [EntityUpdate]s.
@@ -56,7 +57,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
     fun createEntityContainers() {
         entities = Object2ObjectOpenHashMap()
         updates = ObjectArrayList()
-        npcs = ArrayList()
+        npcCollection = ObjectArrayList()
     }
 
     fun getMatrix(height: Int): CollisionMatrix = matrices[height]
@@ -96,7 +97,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
          * Objects will affect the collision map.
          */
         if (entity.entityType.isObject) {
-            world.collision.applyCollision(world.definitions, entity as GameObject, CollisionUpdate.Type.ADD)
+            world.collision.addObjectCollision(entity as GameObject)
         }
 
         /*
@@ -152,7 +153,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
          * collision map.
          */
         if (entity.entityType.isObject) {
-            world.collision.applyCollision(world.definitions, entity as GameObject, CollisionUpdate.Type.REMOVE)
+            world.collision.removeObjectCollision(entity as GameObject)
         }
 
         entities[tile]?.remove(entity)
@@ -200,28 +201,7 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
         }
     }
 
-    /**
-     * Send the [update] to any [Client] entities that are within view distance
-     * of this chunk.
-     */
-    private fun sendUpdate(
-        world: World,
-        update: EntityUpdate<*>,
-    ) {
-        val surrounding = coords.getSurroundingCoords()
-        for (coords in surrounding) {
-            val chunk = world.chunks.get(coords, createIfNeeded = false) ?: continue
-            val clients = chunk.getEntities<Client>(EntityType.CLIENT)
-            for (client in clients) {
-                if (!canBeViewed(client, update.entity)) {
-                    continue
-                }
-                val local = client.lastKnownRegionBase!!.toLocal(this.coords.toTile())
-                client.write(UpdateZonePartialFollows(local.x, local.z, local.height))
-                client.write(update.toMessage())
-            }
-        }
-    }
+    val zonePartialEnclosedCacheBuffer: ZonePartialEnclosedCacheBuffer = ZonePartialEnclosedCacheBuffer()
 
     /**
      * Sends all [updates] from this chunk to the player [p].
@@ -235,11 +215,10 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
                 messages.add(update.toMessage())
             }
         }
-
-        val computed = p.world.network.computeUpdateZonePartialEnclosedCache(messages)
+        val local = p.lastKnownRegionBase!!.toLocal(coords.toTile())
+        val computed = zonePartialEnclosedCacheBuffer.computeZone(messages)
         if (messages.isNotEmpty()) {
-            val local = p.lastKnownRegionBase!!.toLocal(coords.toTile())
-            p.write(UpdateZonePartialEnclosed(local.x, local.z, local.height, computed[OldSchoolClientType.DESKTOP]!!))
+            p.write(UpdateZonePartialEnclosed(zoneX = local.x, zoneZ = local.z, level = local.height, payload = computed[OldSchoolClientType.DESKTOP]!!))
         }
     }
 
@@ -309,6 +288,33 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
         vararg types: EntityType,
     ): List<T> = entities[tile]?.filter { it.entityType in types } as? List<T> ?: emptyList()
 
+    /**
+     * Send the [update] to any [Client] entities that are within view distance
+     * of this chunk.
+     */
+    private fun sendUpdate(
+        world: World,
+        update: EntityUpdate<*>,
+    ) {
+        val surrounding = coords.getSurroundingCoords()
+        for (coords in surrounding) {
+            val chunk = world.chunks.get(coords, createIfNeeded = false) ?: continue
+            val clients = chunk.getEntities<Client>(EntityType.CLIENT)
+            for (client in clients) {
+                if (!canBeViewed(client, update.entity)) {
+                    continue
+                }
+                val local = client.lastKnownRegionBase!!.toLocal(this.coords.toTile())
+                val messages = ObjectArrayList<ZoneProt>()
+                messages.add(update.toMessage())
+                val computed = zonePartialEnclosedCacheBuffer.computeZone(messages)
+                if (messages.isNotEmpty()) {
+                    // Was not added from here MAP_PROJECTILE @TODO
+                    client.write(UpdateZonePartialEnclosed(zoneX = local.x, zoneZ = local.z, level = local.height, payload = computed[OldSchoolClientType.DESKTOP]!!))
+                }
+            }
+        }
+    }
     companion object {
         /**
          * The size of a chunk, in tiles.

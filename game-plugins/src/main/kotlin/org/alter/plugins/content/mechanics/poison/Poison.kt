@@ -1,7 +1,6 @@
 package org.alter.plugins.content.mechanics.poison
 
 import org.alter.api.EquipmentType
-import org.alter.api.cfg.Items
 import org.alter.api.ext.hasEquipped
 import org.alter.api.ext.setVarp
 import org.alter.game.model.attr.POISON_TICKS_LEFT_ATTR
@@ -20,10 +19,7 @@ object Poison {
 
     fun isImmune(pawn: Pawn): Boolean =
         when (pawn) {
-            /**
-             * :lolbert: Nigga, just make it attribute dependent. @TODO Uhh will do this when we wip combat/weapon logic
-             */
-            is Player -> pawn.hasEquipped(EquipmentType.HEAD, Items.SERPENTINE_HELM, Items.TANZANITE_HELM, Items.MAGMA_HELM)
+            is Player -> pawn.hasEquipped(EquipmentType.HEAD, "item.serpentine_helm", "item.tanzanite_helm", "item.magma_helm")
             is Npc -> pawn.combatDef.immunePoison
             else -> false
         }

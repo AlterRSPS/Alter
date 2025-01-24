@@ -10,7 +10,7 @@ import java.util.*
  * @author Tom <rspsmods@gmail.com>
  */
 class ClientCheatHandler : MessageHandler<ClientCheat> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: ClientCheat,
     ) {

@@ -3,6 +3,7 @@ package org.alter.plugins.content.interfaces.gameframe.tabs.worn_equipment
 import org.alter.api.CommonClientScripts
 import org.alter.api.EquipmentType.Companion.EQUIPMENT_INTERFACE_ID
 import org.alter.game.action.EquipAction
+import org.alter.game.model.move.stopMovement
 import org.alter.plugins.content.interfaces.equipstats.EquipmentStats.EQUIPMENTSTATS_INTERFACE_ID
 import org.alter.plugins.content.interfaces.equipstats.EquipmentStats.EQUIPMENTSTATS_TAB_INTERFACE_ID
 import org.alter.plugins.content.interfaces.equipstats.EquipmentStats.sendBonuses
@@ -11,7 +12,7 @@ fun bind_unequip(
     equipment: EquipmentType,
     component: Int,
 ) {
-    on_button(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, component = component) {
+    onButton(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, component = component) {
         val opt = player.getInteractingOption()
 
         if (opt == 1) {
@@ -19,10 +20,10 @@ fun bind_unequip(
             player.calculateBonuses()
             sendBonuses(player)
         } else if (opt == 10) {
-            val item = player.equipment[equipment.id] ?: return@on_button
+            val item = player.equipment[equipment.id] ?: return@onButton
             world.sendExamine(player, item.id, ExamineEntityType.ITEM)
         } else {
-            val item = player.equipment[equipment.id] ?: return@on_button
+            val item = player.equipment[equipment.id] ?: return@onButton
             if (!world.plugins.executeItem(player, item.id, opt)) {
                 val slot = player.getInteractingSlot()
                 if (world.devContext.debugButtons) {
@@ -35,10 +36,10 @@ fun bind_unequip(
     }
 }
 
-on_button(interfaceId = EQUIPMENTSTATS_TAB_INTERFACE_ID, component = 0) {
+onButton(interfaceId = EQUIPMENTSTATS_TAB_INTERFACE_ID, component = 0) {
     val slot = player.getInteractingSlot()
     val opt = player.getInteractingOption()
-    val item = player.inventory[slot] ?: return@on_button
+    val item = player.inventory[slot] ?: return@onButton
 
     if (opt == 1) {
         val result = EquipAction.equip(player, item, inventorySlot = slot)
@@ -53,21 +54,20 @@ on_button(interfaceId = EQUIPMENTSTATS_TAB_INTERFACE_ID, component = 0) {
     }
 }
 
-on_button(interfaceId = EQUIPMENT_INTERFACE_ID, component = 1) {
+onButton(interfaceId = EQUIPMENT_INTERFACE_ID, component = 1) {
     if (!player.lock.canInterfaceInteract()) {
-        return@on_button
+        return@onButton
     }
-
     player.setInterfaceUnderlay(-1, -1)
     player.openInterface(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, dest = InterfaceDestination.MAIN_SCREEN)
     player.openInterface(interfaceId = EQUIPMENTSTATS_TAB_INTERFACE_ID, dest = InterfaceDestination.TAB_AREA)
     player.runClientScript(CommonClientScripts.INTERFACE_INV_INIT, 5570560, 93, 4, 7, 1, -1, "Equip", "", "", "", "")
     player.setInterfaceEvents(interfaceId = EQUIPMENTSTATS_TAB_INTERFACE_ID, component = 0, range = 0..27, setting = 1180674)
-
+    player.stopMovement()
     sendBonuses(player)
 }
 
-on_interface_close(interfaceId = EQUIPMENTSTATS_INTERFACE_ID) {
+onInterfaceClose(interfaceId = EQUIPMENTSTATS_INTERFACE_ID) {
     player.closeInterface(interfaceId = EQUIPMENTSTATS_TAB_INTERFACE_ID)
 }
 

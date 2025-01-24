@@ -1,18 +1,20 @@
 package org.alter.plugins.content.objects.hay
 
+import org.alter.rscm.RSCM.getRSCM
+
 private val HAY_OBJECTS =
     setOf(
-        Objs.HAYSTACK,
-        Objs.HAY_BALES,
-        Objs.HAY_BALES_299,
+        "object.haystack",
+        "object.hay_bales",
+        "object.hay_bales_299",
     )
 
 HAY_OBJECTS.forEach { hay ->
-    on_obj_option(obj = hay, option = "search") {
+    onObjOption(obj = hay, option = "search") {
         val obj = player.getInteractingGameObj()
         val name = obj.getDef().name
         player.queue {
-            search(this, player, name.lowercase())
+            search(this, player, name!!.lowercase())
         }
     }
 }
@@ -29,9 +31,9 @@ suspend fun search(
     p.unlock()
     when (world.random(100)) {
         0 -> {
-            val add = p.inventory.add(item = Items.NEEDLE)
+            val add = p.inventory.add(item = "item.needle")
             if (add.hasFailed()) {
-                world.spawn(GroundItem(item = Items.NEEDLE, amount = 1, tile = Tile(p.tile), owner = p))
+                world.spawn(GroundItem(item = getRSCM("item.needle"), amount = 1, tile = Tile(p.tile), owner = p))
             }
             it.chatPlayer("Wow! A needle!<br>Now what are the chances of finding that?")
         }

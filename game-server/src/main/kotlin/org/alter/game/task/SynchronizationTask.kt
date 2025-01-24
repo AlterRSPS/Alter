@@ -6,6 +6,7 @@ import net.rsprot.protocol.game.outgoing.info.util.BuildArea
 import net.rsprot.protocol.game.outgoing.map.RebuildNormal
 import net.rsprot.protocol.game.outgoing.map.RebuildRegion
 import net.rsprot.protocol.game.outgoing.map.util.RebuildRegionZone
+import net.rsprot.protocol.game.outgoing.worldentity.SetActiveWorld
 import org.alter.game.model.Coordinate
 import org.alter.game.model.Tile
 import org.alter.game.model.World
@@ -22,19 +23,12 @@ import org.alter.game.service.GameService
  * @author Tom <rspsmods@gmail.com>
  */
 class SequentialSynchronizationTask : GameTask {
-    @OptIn(ExperimentalUnsignedTypes::class)
     override fun execute(
         world: World,
         service: GameService,
     ) {
         val worldPlayers = world.players
         val worldNpcs = world.npcs
-
-        worldPlayers.forEach(Player::playerPreSynchronizationTask)
-
-        for (n in worldNpcs.entries) {
-            n?.npcPreSynchronizationTask()
-        }
 
         worldPlayers.forEach(Player::playerCoordCycleTask)
 
@@ -57,25 +51,25 @@ class SequentialSynchronizationTask : GameTask {
                 it.playerInfo.updateRenderCoord(-1, level, x, z)
             }
         }
-
         world.network.playerInfoProtocol.update()
         world.network.npcInfoProtocol.update()
 
         world.players.forEach {
-            /*
+            /**
              * Non-human [org.alter.game.model.entity.Player]s do not need this
              * to send any synchronization data to their game-client as they do
              * not have one.
              */
             if (it.entityType.isHumanControlled && it.initiated) {
-                it.write(it.playerInfo.toPacket(-1)) // try-catch it, this _can_ throw exceptions during .toPacket()
+                it.write(SetActiveWorld(SetActiveWorld.RootWorldType(it.tile.height)))
+                it.write(it.playerInfo.toPacket()) // try-catch it, this _can_ throw exceptions during .toPacket()
                 it.write(
                     SetNpcUpdateOrigin(
-                        it.tile.x - (it.buildArea!!.zoneX shl 3),
-                        it.tile.z - (it.buildArea!!.zoneZ shl 3),
+                        it.tile.x - (it.buildArea.zoneX shl 3),
+                        it.tile.z - (it.buildArea.zoneZ shl 3),
                     ),
                 )
-                it.write(it.npcInfo.toNpcInfoPacket(-1))
+                it.write(it.npcInfo.toPacket(-1))
             }
         }
 
@@ -88,18 +82,14 @@ class SequentialSynchronizationTask : GameTask {
 
 fun Player.playerPreSynchronizationTask() {
     val pawn = this
-    pawn.handleFutureRoute()
     pawn.movementQueue.cycle()
-
     val last = pawn.lastKnownRegionBase
     val current = pawn.tile
-
     if (last == null || shouldRebuildRegion(last, current)) {
         val regionX = ((current.x shr 3) - (Chunk.MAX_VIEWPORT shr 4)) shl 3
         val regionZ = ((current.z shr 3) - (Chunk.MAX_VIEWPORT shr 4)) shl 3
         // @TODO UpdateZoneFullFollowsMessage
         pawn.lastKnownRegionBase = Coordinate(regionX, regionZ, current.height)
-
         val xteaService = pawn.world.xteaKeyService!!
         val instance = pawn.world.instanceAllocator.getMap(current)
         val rebuildMessage =
@@ -166,7 +156,6 @@ fun Npc.npcPostSynchronizationTask() {
     }
     pawn.moved = false
     pawn.steps = null
-//        pawn.blockBuffer.clean()
 }
 
 /**

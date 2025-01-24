@@ -1,7 +1,7 @@
 package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.locs.OpLocT
-import org.alter.game.action.ObjectPathAction
+import org.alter.game.model.move.ObjectPathAction
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
@@ -11,11 +11,13 @@ import org.alter.game.model.attr.INTERACTING_OBJ_ATTR
 import org.alter.game.model.entity.Client
 import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Player
+import org.alter.game.model.move.moveTo
+import org.alter.game.model.move.stopMovement
 import org.alter.game.model.priv.Privilege
 import java.lang.ref.WeakReference
 
 class OpLocTHandler : MessageHandler<OpLocT> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpLocT,
     ) {
@@ -62,7 +64,7 @@ class OpLocTHandler : MessageHandler<OpLocT> {
             )
         }
 
-        log(client, "Item on object: item=%d, slot=%d, obj=%d, x=%d, z=%d", sobj, slot, sloc, message.x, message.z)
+        log(client, "Item on object: item=%d, slot=%d, obj=%d, x=%d, y=%d", sobj, slot, sloc, message.x, message.z)
 
         client.stopMovement()
         client.closeInterfaceModal()

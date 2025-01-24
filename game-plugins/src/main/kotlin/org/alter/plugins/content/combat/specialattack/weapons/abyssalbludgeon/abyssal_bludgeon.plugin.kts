@@ -2,7 +2,6 @@ package org.alter.plugins.content.combat.specialattack.weapons.abyssalbludgeon
 
 import org.alter.api.Skills
 import org.alter.api.cfg.Graphic
-import org.alter.api.cfg.Items
 import org.alter.game.model.entity.AreaSound
 import org.alter.plugins.content.combat.dealHit
 import org.alter.plugins.content.combat.formula.MeleeCombatFormula
@@ -10,7 +9,7 @@ import org.alter.plugins.content.combat.specialattack.SpecialAttacks
 
 val SPECIAL_REQUIREMENT = 50
 
-SpecialAttacks.register(Items.ABYSSAL_BLUDGEON, SPECIAL_REQUIREMENT) {
+SpecialAttacks.register("item.abyssal_bludgeon", SPECIAL_REQUIREMENT) {
     player.animate(id = 3299)
     player.graphic(id = 1284)
 
@@ -23,7 +22,7 @@ SpecialAttacks.register(Items.ABYSSAL_BLUDGEON, SPECIAL_REQUIREMENT) {
     player.dealHit(target = target, maxHit = maxHit, landHit = landHit, delay = 1)
 }
 
-set_item_combat_logic(Items.ABYSSAL_BLUDGEON) {
+setItemCombatLogic("item.abyssal_bludgeon") {
     val target = player.getTarget()
     if (target != null) {
         target.graphic(Graphic.ABYSSAL_BLUDGEON_SPECIAL)

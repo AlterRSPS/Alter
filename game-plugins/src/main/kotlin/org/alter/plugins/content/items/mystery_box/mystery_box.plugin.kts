@@ -10,13 +10,19 @@ import org.alter.game.model.priv.Privilege
  *
  */
 
-on_item_option(Items.MYSTERY_BOX, "open") {
+onItemOption("item.mystery_box", 2) {
     val itemLimit = itemSize()
-    val item = world.random(0..itemLimit)
-    val itemDef = getItem(item)
-    if (itemDef.name == "" || itemDef.name.lowercase() == "null" || itemDef.isPlaceholder || itemDef.name.isEmpty() || itemDef.noted) {
-        return@on_item_option
-    }
+    var item = world.random(0..itemLimit)
+    var itemDef = getItem(item)
+    do {
+        item = world.random(0..itemLimit)
+        itemDef = getItem(item)
+    } while (
+        itemDef.name.isEmpty() ||
+        itemDef.name.lowercase() == "null" ||
+        itemDef.isPlaceholder ||
+        itemDef.noted
+    )
 
     if (player.inventory.freeSlotCount > 0) {
         player.inventory.add(item, 1, true)
@@ -25,7 +31,7 @@ on_item_option(Items.MYSTERY_BOX, "open") {
     }
 }
 
-on_command("randbank") {
+onCommand("randbank") {
     repeat(700) {
         val getItemRange = itemSize()
         var getRandId = world.random(0..getItemRange)
@@ -35,7 +41,7 @@ on_command("randbank") {
         }
     }
 }
-on_command("setamount", Privilege.DEV_POWER, "Set amount of all items in bank") {
+onCommand("setamount", Privilege.DEV_POWER, "Set amount of all items in bank") {
     val args = player.getCommandArgs()
     try {
         player.bank.rawItems.forEachIndexed { index, item ->

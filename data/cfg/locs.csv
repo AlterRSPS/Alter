@@ -48,7 +48,7 @@
 48,A wooden gate.
 49,A wooden gate.
 50,A wooden gate.
-51,Hmmm... I wonder if it's loose enough to get through.
+51,Hmm... I wonder if it's loose enough to get through.
 52,It's locked.
 53,It's locked.
 54,It's a flight of stairs.
@@ -1183,7 +1183,7 @@
 2020,It's too wet for firewood.
 2022,"A wooden barrel, maybe a way off this rock."
 2023,An interesting tree with long straight branches.
-2024,"A large bubbling cauldron, smells... Ugh!"
+2024,A large bubbling cauldron. Smells... Ugh!
 2025,"If a creature goes inside, the box should then slam shut."
 2026,"If a creature goes inside, the box should then slam shut."
 2028,"If a creature goes inside, the box should then slam shut."
@@ -1758,6 +1758,7 @@
 2714,Antique desk.
 2715,Good doggie...
 2716,Covered in junk.
+2717,Looks like a table of some sorts.
 2718,He must be very wise if he keeps a dead bat in his shop.
 2720,"These might have healing properties, or they might just smell funny."
 2721,Doesn't seem to be keeping the herbs fresh.
@@ -5035,11 +5036,10 @@
 8136,You can grow herbs in this Farming patch.
 8137,You can grow herbs in this Farming patch.
 8138,You can grow herbs in this Farming patch.
-8139,Some herb seeds have been sown in this patch.
-8140,A herb is growing in this patch.
-8141,A herb is growing in this patch.
-8142,A herb is growing in this patch.
-8143,A fully grown herb.
+8139,The bank teller will serve you from here.
+8140,The bank teller will serve you from here.
+8141,This booth is closed.
+8142,This booth is closed.
 8144,These herbs have become diseased.
 8145,These herbs have become diseased.
 8146,These herbs have become diseased.
@@ -6503,7 +6503,7 @@
 10304,A pair of sacks.
 10305,Rat infested.
 10306,Full of rat food.
-10307,Emits photons of light.
+10307,Emits light.
 10308,I can climb down this.
 10309,I can climb this.
 10310,Contains rats.
@@ -6524,14 +6524,14 @@
 10325,A magical device that enables one to walk through walls.
 10326,A locked door.
 10327,A magical device that enables one to walk through walls.
-10335,Observe the rats.
-10336,Observe the rats.
-10337,Observe the rats.
-10338,Observe the rats.
-10342,Observe the rats.
-10343,Observe the rats.
-10344,Observe the rats.
-10345,Observe the rats.
+10335,I could use this to observe the rats from a safe distance.
+10336,I could use this to observe the rats from a safe distance.
+10337,I could use this to observe the rats from a safe distance.
+10338,I could use this to observe the rats from a safe distance.
+10342,I could use this to observe the rats from a safe distance.
+10343,I could use this to observe the rats from a safe distance.
+10344,I could use this to observe the rats from a safe distance.
+10345,I could use this to observe the rats from a safe distance.
 10346,A home for rats.
 10347,A home for rats.
 10348,A home for rats.
@@ -6541,7 +6541,7 @@
 10354,How bold?
 10355,The bank teller will serve you from here.
 10357,The bank teller will serve you from here.
-10358,Lovely comfy-looking big bed.
+10358,"A lovely, comfy-looking big bed."
 10359,A drab-looking bed.
 10360,A pile of rolled up magic carpets.
 10361,A wonderful device that enables one to walk through walls.
@@ -6785,7 +6785,7 @@
 10809,A bin full of paper.
 10810,Sandy's notice board is covered in notes.
 10811,Sandy's notice board is covered in notes.
-10813,Betty's counter. There is a vial standing on it.
+10813,There is a vial on it.
 10814,It's very sandy.
 10815,Sandy's Sand Corp.
 10817,Can be used to repair certain untradeable gear.
@@ -8833,9 +8833,10 @@
 14196,An old-looking chest.
 14197,An old-looking chest.
 14198,There seem to be some levers here...
-14203,An unsculpted stone block.
-14204,An unsculpted stone block.
-14205,An unsculpted stone block.
+14203,It smells horrible in there.
+14204,It smells horrible in there.
+14205,I don't want to eat that...
+14206,I don't want to eat that...
 14209,Some herb seeds have been sown in this patch.
 14210,I can use ranged attacks over this wall.
 14211,That should keep the monsters at bay.
@@ -9319,7 +9320,7 @@
 14880,I wonder what's down there?
 14881,An unlit lantern.
 14883,Lit to remember the souls of the departed.
-14884,A Tree trunk.
+14884,An elegant tree.
 14885,An elegant tree.
 14886,An open bank chest.
 14887,Used for fashioning clay items.
@@ -10767,7 +10768,7 @@
 17267,A bridge has magically appeared.
 17268,There's nothing to see here...
 17271,Useful for transportation of valuable items.
-17272,It looks like it might have some useful information.
+17272,It looks like it might have some useful information on it.
 17273,An old silver spirit tree.
 17274,An old silver spirit tree.
 17275,The scorched remains of a silver spirit tree.
@@ -14216,10 +14217,8 @@
 23687,This may be worth opening.
 23688,This may be worth opening.
 23689,This may be worth opening.
-23690,This may be worth opening.
-23691,This may be worth opening.
-23692,This may be worth opening.
-23693,This may be worth opening.
+23690,A clay pot containing some local grain.
+23691,Handy for boarding boats.
 23694,Some simple cubes.
 23695,A pile of cylindrical shapes.
 23696,A pile of Icosahedrons.
@@ -14820,22 +14819,22 @@
 24913,Asgarnian Ale is fermenting in this vat.
 24914,This vat is filled with Asgarnian Ale.
 24915,This vat is filled with mature Asgarnian Ale.
-24916,"This vat contains a mixture of water, barley malt, and Harralander."
-24917,Greenmans Ale is fermenting in this vat.
-24918,Greenmans Ale is fermenting in this vat.
-24919,This vat is filled with Greenmans Ale.
-24920,This vat is filled with mature Greenmans Ale.
+24916,"This vat contains a mixture of water, barley malt, and harralander."
+24917,Greenman's Ale is fermenting in this vat.
+24918,Greenman's Ale is fermenting in this vat.
+24919,This vat is filled with Greenman's Ale.
+24920,This vat is filled with mature Greenman's Ale.
 24921,"This vat contains a mixture of water, barley malt, and Yanillian hops."
-24922,Wizards Mind Bomb is fermenting in this vat.
-24923,Wizards Mind Bomb is fermenting in this vat.
-24924,This vat is filled with Wizards Mind Bomb.
-24925,This vat is filled with mature Wizards Mind Bomb.
+24922,Wizard's Mind Bomb is fermenting in this vat.
+24923,Wizard's Mind Bomb is fermenting in this vat.
+24924,This vat is filled with Wizard's Mind Bomb.
+24925,This vat is filled with mature Wizard's Mind Bomb.
 24926,"This vat contains a mixture of water, barley malt, and Krandorian hops."
 24927,Dragon Bitter is fermenting in this vat.
 24928,Dragon Bitter is fermenting in this vat.
 24929,This vat is filled with Dragon Bitter.
 24930,This vat is filled with mature Dragon Bitter.
-24931,"This vat contains a mixture of water, barley malt, and Bittercap mushrooms."
+24931,"This vat contains a mixture of water, barley malt, and bittercap mushrooms."
 24932,Moonlight Mead is fermenting in this vat.
 24933,Moonlight Mead is fermenting in this vat.
 24934,This vat is filled with Moonlight Mead.
@@ -15878,8 +15877,6 @@
 27118,I wonder what these are?
 27121,I can see fish swimming in the water.
 27122,
-27123,It looks grey and dead.
-27124,It's been reanimated.
 27199,Wooden stairs.
 27200,Wooden stairs.
 27201,Wooden stairs.
@@ -16075,7 +16072,7 @@
 27551,A good source of books!
 27552,A barrel of fresh fish.
 27553,An empty barrel.
-27554,It's an insulated chest full of ice.
+27554,For storing things.
 27555,It looks like the crane is in need of repair.
 27556,It's used for collecting fish from below the docks.
 27557,Damp castings left by sandworms.
@@ -16682,7 +16679,7 @@
 28553,Hopefully there's nothing confidential on these.
 28559,Lovakengj's finest armour.
 28560,Lovakengj's finest armour.
-28561,The armourer stores items here.
+28561,Contains a lot of drawers.
 28562,A terrifyingly hot furnace.
 28563,An immensely solid anvil.
 28564,Someone's mounted an anvil for display purposes.
@@ -16699,6 +16696,7 @@
 28586,Run away! Run away!
 28587,It's been blasted apart.
 28588,It's been blasted apart.
+28590,Look at it go!
 28592,Blasted ore is deposited here for the dwarves to clean.
 28594,"It looks rough, but it's secure."
 28595,"It looks very rough, but it's secure."
@@ -18702,7 +18700,7 @@
 31930,"The in-game world map was added to the game on May 25th, 2017."
 31931,"A map of Fossil Island. This came into the game on September 7th, 2017."
 31932,"They can't trade others. By the way, this mode was added to the game on October 13th, 2014."
-31933,"A hardcore ironman succumbing to death. This mode was added to the game on November 10th, 2016."
+31933,"A Hardcore Ironman succumbing to death. This mode was added to the game on November 10th, 2016."
 31934,"Monkey Madness II, the first new quest for OSRS was added to the game on May 6th, 2016."
 31935,"Rooftop agility courses were added to the game on December 5th, 2013. They were designed by the player BigRedJapan."
 31936,"The Nightmare Zone was added to the game on September 5th, 2013."
@@ -23132,7 +23130,7 @@
 41588,A wonderful waterfall.
 41589,Poor guy.
 41590,Poor guy.
-41593,A handy place to stores a dwarfs favourite tool.
+41593,A handy place to store a dwarf's favourite tool.
 41600,Solid bars of iron.
 41601,Solid bars of iron.
 41602,Solid bars of iron.
@@ -23716,13 +23714,13 @@
 42819,A portal to Lumbridge.
 42820,A portal to The Node.
 42821,Sprouting up everywhere.
-42822,"Iron people; standing not alone, but together."
-42823,"Iron people; standing not alone, but together."
+42822,"Ironmen; standing not alone, but together."
+42823,"Ironmen; standing not alone, but together."
 42824,A powerful furnace.
 42825,An immensely solid anvil.
 42826,A wooden rowboat.
-42827,A crate full of Group Iron Man and Iron Woman helmets.
-42828,A crate full of Hardcore Group Iron Man and Iron Woman helmets.
+42827,A crate full of Ironman helmets.
+42828,A crate full of Ironman helmets.
 42829,A map of Gielinor.
 42831,A beautiful old oak.
 42832,One of the most common trees in Gielinor.
@@ -24385,7 +24383,6 @@
 44291,Better than sitting on sand.
 44292,Better than sitting on sand.
 44293,Generally used for putting things on.
-44294,I wonder what happened to this.
 44295,Generally used for putting things on.
 44296,An ancient obelisk.
 44548,
@@ -24523,8 +24520,8 @@
 44933,Used for observing battles up close.
 44934,It's been opened.
 44935,Loot!
-44936,Loot!
-44937,Loot!
+44936,A grand door.
+44937,A grand door.
 44938,A magical barrier.
 44939,A magical barrier.
 44940,I wonder what they say?
@@ -24692,8 +24689,8 @@
 45407,I hear rustling from these bushes.
 45408,I hear rustling from these bushes.
 45409,I hear rustling from these bushes.
-45414,A innocuous looking statue.
-45415,A innocuous looking statue.
+45414,An innocuous looking statue.
+45415,An innocuous looking statue.
 45416,Ouch!
 45421,A bit overgrown.
 45453,The way out.
@@ -25290,7 +25287,7 @@
 46992,"Danger, one way only...once you enter there's no going back!"
 46993,Little candles flickering.
 46994,Little candles flickering.
-46995,"From the crevice you can hear a feint whisper. It sounds like ""Vet'Ion""."
+46995,"From the crevice you can hear a faint whisper. It sounds like ""Vet'Ion""."
 46996,"It reads ""Calvar'Ion's resting place""."
 47000,A way out.
 47068,"This is jam, right?"
@@ -25496,7 +25493,7 @@
 47474,These smell nice.
 47479,What a mess!
 47480,What a mess!
-47481,That's luck right there!
+47481,The bees buzz happily.
 47482,A tangled mess of roots.
 47483,A large mess of tangled roots.
 47484,A sapling struggling for nutrients.
@@ -25563,8 +25560,6 @@
 47574,Looks spooky.
 47575,Looks spooky.
 47576,Looks... safe?
-47578,How lovely.
-47579,How lovely.
 47580,Full of interesting statistics.
 47581,Full of interesting statistics.
 47582,Full of interesting statistics.
@@ -25598,7 +25593,7 @@
 47746,Looks like it's non-stick too!
 47747,Forged to withstand the hottest of temperatures.
 47748,The bubbling goop is very important.
-47749,A study barrel used for storing goods.
+47749,A sturdy barrel used for storing goods.
 47750,I wonder what strange concoctions were brewed in here.
 47751,I wonder what strange concoctions were brewed in here.
 47752,The goop goes slosh!
@@ -25704,7 +25699,7 @@
 47963,Looks like it's non-stick too!
 47964,Forged to withstand the hottest of temperatures.
 47965,The bubbling goop is very important.
-47966,A study barrel used for storing goods.
+47966,A sturdy barrel used for storing goods.
 47967,I wonder what strange concoctions were brewed in here.
 47968,I wonder what strange concoctions were brewed in here.
 47969,The goop goes slosh!
@@ -26500,10 +26495,10 @@
 49452,It probably wasn't used for anything nice.
 49453,It probably wasn't used for anything nice.
 49455,An empty pedestal.
-49456,An rotten fern.
-49457,An rotten fern.
-49458,An rotten fern.
-49459,An rotten fern.
+49456,A rotten fern.
+49457,A rotten fern.
+49458,A rotten fern.
+49459,A rotten fern.
 49460,For blocking the way.
 49461,For making war plans.
 49462,It's been broken.
@@ -26511,3 +26506,2893 @@
 49471,For storing things.
 49472,For storing things.
 49473,For debug.
+49544,An odd-looking pool.
+49545,An odd-looking pool.
+49546,An odd-looking pool.
+49547,An odd-looking pool.
+49548,An old shrine surrounded by bright flowers.
+49549,An old shrine surrounded by dead flowers.
+49550,An ancient stone chest.
+49554,An old shrine surrounded by bright flowers.
+49555,How lovely.
+49556,How lovely.
+49557,Looks like a gem could fit inside the lock...
+49558,Looks like a gem could fit inside the lock...
+49559,Looks like a gem could fit inside the lock...
+49560,Looks like a gem could fit inside the lock...
+49561,A source of terrible things....
+49563,Something wicked this way comes!
+49564,Loot!
+49565,Loot!
+49566,A hole in the wall.
+49568,"There's nothing here, but I feel like it would fit my pickaxe perfectly."
+49569,"Wait, isn't it my iron pickaxe?"
+49570,"Wait, isn't it my steel pickaxe?"
+49571,"Wait, isn't it my black pickaxe?"
+49572,"Wait, isn't it my mithril pickaxe?"
+49573,"Wait, isn't it my adamant pickaxe?"
+49574,"Wait, isn't it my rune pickaxe?"
+49575,"Wait, isn't it my gilded rune pickaxe?"
+49576,"Wait, isn't it my dragon pickaxe?"
+49577,"Wait, isn't it my dragon pickaxe?"
+49578,"Wait, isn't it my dragon pickaxe?"
+49579,"Wait, isn't it my 3rd age pickaxe?"
+49580,"Wait, isn't it my infernal pickaxe?"
+49581,"Wait, isn't it my crystal pickaxe?"
+49582,"Wait, isn't it my trailblazer pickaxe?"
+49583,This pot will let me deposit food and drinks back into the bank.
+49588,"Ahhh, isn't it cute?"
+49589,I could fire a grapple to that.
+49590,A dead tree with branches sticking out.
+49591,A dead tree with branches sticking out.
+49592,This spirit tree looks dead.
+49593,This spirit tree looks dead.
+49594,This spirit tree looks very happy.
+49595,This spirit tree looks very happy.
+49596,This spirit tree looks very happy.
+49597,This spirit tree looks very happy.
+49599,A heavy door with a closed hatch.
+49600,A heavy door with an open hatch.
+49601,A heavy door with an open hatch.
+49602,Looks tasty.
+49603,Looks tasty.
+49604,Looks tasty.
+49605,Looks tasty.
+49606,Looks tasty.
+49607,Looks tasty.
+49608,Bolrie's advisor?
+49609,"A big, red alarm button."
+49610,A crystal bowl of elven design.
+49611,A crystal bowl of elven design.
+49612,A chest containing something I need? Controversial.
+49613,A chest containing something I need? Controversial.
+49614,I wonder what's inside...
+49615,I wonder what's inside...
+49616,I wonder what's inside...
+49617,I wonder what's inside...
+49618,I wonder what's inside...
+49619,It looks just big enough to crawl through.
+49620,It looks just big enough to crawl through.
+49623,It looks just big enough to crawl through.
+49632,A large rock.
+49633,A large rock.
+49634,A large rock.
+49635,A large rock.
+49636,For storage.
+49637,For extra storage.
+49638,For more storage.
+49639,For extra storage.
+49640,Contains an indeterminate liquid.
+49641,A wooden crate.
+49642,Some wooden crates.
+49643,Some wooden crate.
+49653,A tabular wood construction with legs.
+49654,For sitting on.
+49655,Not so good for sitting on.
+49657,Solid bars of iron.
+49658,Solid bars of iron.
+49659,"Like his father's machine, but different."
+49660,They go round and round.
+49661,Tubular and hollow... What did you think it would be?
+49662,Why can't it just have an on switch?
+49663,"Change, please!"
+49673,There's a book titled 'Bolrie's Diary' on it.
+49700,The metal on this ladder is slightly corroded.
+49701,The metal on this ladder is slightly corroded.
+49742,A strong metal gate.
+49743,A strong metal gate.
+49744,A strong metal gate.
+49753,The way out. Follow the light.
+49754,The way out. Follow the light.
+49755,The way out. Follow the light.
+49756,The way out. Follow the light.
+49757,The way out. Follow the light.
+49758,The way out. Follow the light.
+49761,I think I can smell gas...
+49762,It's hot and sulphurous.
+49867,Looks dangerous in there. Smells bad as well.
+49868,Looks dangerous in there. Smells bad as well.
+49869,Looks dangerous in there. Smells bad as well.
+49885,A big door.
+49886,A big door.
+49889,A strong metal gate.
+49890,A strong metal gate.
+49891,The way out.
+49892,A strong metal gate.
+49893,Where's all the tar coming from?
+49894,Where's all the tar coming from?
+49895,Where's all the tar coming from?
+49896,Where's all the tar coming from?
+49898,These seem to be blocking the way through.
+49899,These seem to be blocking the way through.
+49900,These seem to be blocking the way through.
+49901,The roots have parted.
+49902,The roots have parted.
+49903,These seem to be blocking the way through.
+49904,The roots have parted.
+49905,Looks like some sort of control panel.
+49906,I wonder what this does.
+49912,"A small hardened amalgamation of essence, runes and flesh."
+49913,"A hardened amalgamation of essence, runes and flesh."
+49914,"A massive hardened amalgamation of essence, runes and flesh."
+49915,"A hardened amalgamation of essence, runes and flesh."
+49916,"A hardened amalgamation of essence, runes and flesh."
+49917,"A hardened amalgamation of essence, runes and flesh."
+49918,You don't want to put your hand in there.
+49919,You REALLY don't want to put your hand in there.
+49920,You REALLY don't want to put your hand in there.
+49921,You can put money in here to pay for use of the extractor.
+49922,A way out.
+49923,A well placed... something.
+49924,A well placed... something.
+49925,A scary tunnel.
+49926,A scary tunnel.
+49927,A cosy campfire that emits sweet smelling smoke.
+49928,A cosy campfire that emits sweet smelling smoke.
+49929,A cosy campfire that emits sweet smelling smoke.
+49930,A cosy campfire that emits sweet smelling smoke.
+49931,A cosy campfire that emits sweet smelling smoke.
+49932,A cosy campfire that emits sweet smelling smoke.
+49933,Buzzing sounds can be heard from it
+49934,Colourful!
+49935,That's luck right there!
+49936,This nest looks like it belongs to a pheasant.
+49937,This pheasant nest has eggs in it.
+49938,The bees buzz happily.
+49939,The bees buzz happily.
+49940,The bees buzz happily.
+49941,The bees buzz happily.
+49942,The bees buzz happily.
+49943,A limestone pedestal with a bronze trophy from the Trailblazer Reloaded League.
+49944,A limestone pedestal with an iron trophy from the Trailblazer Reloaded League.
+49945,A limestone pedestal with a steel trophy from the Trailblazer Reloaded League.
+49946,A limestone pedestal with a mithril trophy from the Trailblazer Reloaded League.
+49947,A limestone pedestal with an adamant trophy from the Trailblazer Reloaded League.
+49948,A limestone pedestal with a rune trophy from the Trailblazer Reloaded League.
+49949,A limestone pedestal with a dragon trophy from the Trailblazer Reloaded League.
+49950,A marble pedestal with a bronze trophy from the Trailblazer Reloaded League.
+49951,A marble pedestal with an iron trophy from the Trailblazer Reloaded League.
+49952,A marble pedestal with a steel trophy from the Trailblazer Reloaded League.
+49953,A marble pedestal with a mithril trophy from the Trailblazer Reloaded League.
+49954,A marble pedestal with an adamant trophy from the Trailblazer Reloaded League.
+49955,A marble pedestal with a rune trophy from the Trailblazer Reloaded League.
+49956,A marble pedestal with a dragon trophy from the Trailblazer Reloaded League.
+49957,A limestone pedestal with a bronze trophy from the Trailblazer Reloaded League.
+49958,A limestone pedestal with an iron trophy from the Trailblazer Reloaded League.
+49959,A limestone pedestal with a steel trophy from the Trailblazer Reloaded League.
+49960,A limestone pedestal with a mithril trophy from the Trailblazer Reloaded League.
+49961,A limestone pedestal with an adamant trophy from the Trailblazer Reloaded League.
+49962,A limestone pedestal with a rune trophy from the Trailblazer Reloaded League.
+49963,A limestone pedestal with a dragon trophy from the Trailblazer Reloaded League.
+49964,A marble pedestal with a bronze trophy from the Trailblazer Reloaded League.
+49965,A marble pedestal with an iron trophy from the Trailblazer Reloaded League.
+49966,A marble pedestal with a steel trophy from the Trailblazer Reloaded League.
+49967,A marble pedestal with a mithril trophy from the Trailblazer Reloaded League.
+49968,A marble pedestal with an adamant trophy from the Trailblazer Reloaded League.
+49969,A marble pedestal with a rune trophy from the Trailblazer Reloaded League.
+49970,A marble pedestal with a dragon trophy from the Trailblazer Reloaded League.
+49971,A limestone pedestal with a bronze trophy from the Trailblazer Reloaded League.
+49972,A limestone pedestal with an iron trophy from the Trailblazer Reloaded League.
+49973,A limestone pedestal with a steel trophy from the Trailblazer Reloaded League.
+49974,A limestone pedestal with a mithril trophy from the Trailblazer Reloaded League.
+49975,A limestone pedestal with an adamant trophy from the Trailblazer Reloaded League.
+49976,A limestone pedestal with a rune trophy from the Trailblazer Reloaded League.
+49977,A limestone pedestal with a dragon trophy from the Trailblazer Reloaded League.
+49978,A marble pedestal with a bronze trophy from the Trailblazer Reloaded League.
+49979,A marble pedestal with an iron trophy from the Trailblazer Reloaded League.
+49980,A marble pedestal with a steel trophy from the Trailblazer Reloaded League.
+49981,A marble pedestal with a mithril trophy from the Trailblazer Reloaded League.
+49982,A marble pedestal with an adamant trophy from the Trailblazer Reloaded League.
+49983,A marble pedestal with a rune trophy from the Trailblazer Reloaded League.
+49984,A marble pedestal with a dragon trophy from the Trailblazer Reloaded League.
+49985,A stand displaying a banner from Leagues IV - Trailblazer Reloaded.
+49986,An ornate stand displaying a banner from Leagues IV - Trailblazer Reloaded.
+49987,An oak outfit stand displaying a set of Trailblazer Reloaded Relic Hunter (T1)
+49988,An oak outfit stand displaying a set of Trailblazer Reloaded Relic Hunter (T2)
+49989,An oak outfit stand displaying a set of Trailblazer Reloaded Relic Hunter (T3)
+49990,A mahogany outfit stand displaying a set of Trailblazer Reloaded Relic Hunter (T1)
+49991,A mahogany outfit stand displaying a set of Trailblazer Reloaded Relic Hunter (T2)
+49992,A mahogany outfit stand displaying a set of Trailblazer Reloaded Relic Hunter (T3)
+49993,An eternal flame of rejuvination.
+49994,A strange waystone.
+49995,A notice board detailing some information.
+49996,Hopefully this takes me somewhere useful.
+49997,Hopefully this takes me somewhere useful.
+49998,Hopefully this takes me somewhere useful.
+50000,The steps lead back out to the surface.
+50003,He hasn't eaten in a long time.
+50004,He looks very relaxed.
+50007,These roots are bursting through the ground.
+50008,Watch your step!
+50009,Twisting roots can trip the bravest of warriors.
+50019,Must have been laid by a huge bird.
+50029,A banner in celebration of the 11th year of OSRS.
+50030,A banner in celebration of the 11th year of OSRS.
+50034,It's thick with snow.
+50035,This tree has been cut down.
+50036,Why on earth is there a shark there?
+50042,Tastes like cool mint!
+50043,Tastes like cool mint!
+50044,Tastes like cool mint!
+50046,A snowman.
+50047,Cast your votes here.
+50048,The door is closed.
+50049,The door is open.
+50050,The door is closed.
+50051,Looks secure.
+50052,Looks secure.
+50053,Looks secure.
+50056,A wooden gate.
+50057,A wooden gate.
+50059,Full of leftover spooky items from Halloween.
+50060,Smells pretty bad!
+50061,The bank teller will serve you from here.
+50063,Handy for boarding boats.
+50064,Handy for boarding boats.
+50065,Handy for boarding boats.
+50066,Handy for boarding boats.
+50072,Allows access to level above.
+50073,I can climb down this.
+50074,Living in the big city isn't easy.
+50078,Collect old birthday rewards from here!
+50079,Collect old birthday rewards from here!
+50080,A comfortable seat.
+50081,This White Tree bears four fruits.
+50082,"Danger, Wilderness up ahead. Beware of stray magma."
+50083,"Danger, Wilderness up ahead. Beware of stray magma."
+50084,Some large rocks.
+50085,Some large rocks.
+50086,Some large rocks.
+50087,Some large rocks.
+50088,This tree has been cut down.
+50089,This tree has been cut down.
+50090,Found in wild areas.
+50091,Found in wild areas.
+50092,A commonly found bush.
+50093,A commonly found bush.
+50094,A leafy plant.
+50095,A leafy plant.
+50096,A dead bush.
+50097,A dead bush.
+50104,Shield your eyes!
+50105,Shield your eyes!
+50106,Shield your eyes!
+50107,Shield your eyes!
+50108,Shield your eyes!
+50109,Shield your eyes!
+50110,Shield your eyes!
+50111,Shield your eyes!
+50112,I don't think he'll be getting back up.
+50113,I don't think she'll be getting back up.
+50114,I don't think he'll be getting back up.
+50115,I don't think she'll be getting back up.
+50116,Varrock Census - Year 160.
+50117,"Previously, this was on Reldo's desk."
+50118,"Previously, these were on Reldo's desk."
+50122,Someone's made a mess of this one.
+50123,Someone's made a mess of this one.
+50124,It's been knocked off the wall.
+50125,It's been knocked off the wall.
+50126,The statue should be on there.
+50127,The statue should be on there.
+50131,Someone broke the glass. It was indeed an emergency.
+50132,It's been knocked over.
+50133,A chair that has been smashed.
+50134,A chair that has been smashed.
+50135,A chair that has been smashed.
+50136,What a mess!
+50137,What a mess!
+50138,It's been broken.
+50139,A very untidy workplace.
+50140,A closed trapdoor.
+50141,A closed trapdoor.
+50142,An open trapdoor.
+50143,The way out?
+50145,It seems to be hanging around.
+50146,It seems to be hanging around.
+50147,A rusty gate.
+50148,A rusty gate.
+50149,A rusty gate.
+50150,A rusty gate.
+50151,A solid steel door.
+50152,A solid steel door.
+50153,A solid steel door.
+50154,Somewhere to admire the view from.
+50155,Somewhere to admire the view from.
+50156,Somewhere to admire the view from.
+50157,Somewhere to admire the view from.
+50158,Somewhere to admire the view from.
+50159,Somewhere to admire the view from.
+50160,Somewhere to admire the view from.
+50161,Somewhere to admire the view from.
+50162,Somewhere to admire the view from.
+50169,A rusty gate.
+50173,A rusty gate.
+50201,"An entrance, but to where?"
+50202,Some stone stairs leading back outside.
+50205,For pulling.
+50206,It's been pulled.
+50207,Looks suspicious.
+50208,Looks suspicious.
+50209,Looks suspicious.
+50210,Looks suspicious.
+50211,A large set of stone doors.
+50230,A mystically everlasting torch.
+50253,Some stone stairs.
+50254,Some stone stairs.
+50255,Efficiently looted of all contents.
+50256,Pointlessly vandalised after looting.
+50257,Pointlessly vandalised after looting.
+50260,A faint draught can be felt here.
+50261,A faint draught can be felt here.
+50266,Raised for display of long lost items.
+50267,A mural consisting of ancient drawings and hieroglyphs.
+50268,A mural consisting of ancient drawings and hieroglyphs.
+50269,A mural consisting of ancient drawings and hieroglyphs.
+50270,A mural consisting of ancient drawings and hieroglyphs.
+50271,A megalithic midsection.
+50272,A petrified prow.
+50273,A stony stern.
+50282,Labelled to be shipped to Ali Morrisane Commercial Enterprises.
+50289,It likely leads somewhere equally grim.
+50290,It likely leads somewhere equally grim.
+50291,It leads somewhere slightly more airy.
+50298,It's currently impassable.
+50299,It's currently impassable.
+50300,It's currently impassable.
+50301,It's currently impassable.
+50312,For putting bodies in.
+50313,For putting bodies in.
+50314,For putting bodies in.
+50315,For putting bodies in.
+50316,A gilded chair for important rumps.
+50317,Needs some DIY.
+50318,Prepared to an original recipe.
+50319,Once had wine in it.
+50320,Food for the soul.
+50321,Once had wheat in it.
+50322,For putting canopic jars on.
+50323,For putting canopic jars on.
+50324,For putting canopic jars on.
+50325,For putting canopic jars on.
+50326,Filled with canopic jars.
+50327,"A swanky, marble-topped table."
+50328,In poor shape.
+50329,"Poorly made, but passable."
+50330,A place for a statue.
+50331,"Well made, but improvable."
+50332,An excellently made statue.
+50333,The statue of an ancient desert god.
+50334,The statue of an ancient desert god.
+50335,The statue of an ancient desert god.
+50336,The statue of an ancient desert god.
+50337,The statue of an ancient desert god.
+50338,The statue of an ancient desert god.
+50339,The broken statue of an ancient desert god.
+50340,The broken statue of an ancient desert god.
+50341,The broken statue of an ancient desert god.
+50342,The broken statue of an ancient desert god.
+50343,The broken statue of an ancient desert god.
+50344,The broken statue of an ancient desert god.
+50345,The sun god in statue form.
+50346,Flaming through the application of magic.
+50347,This will require magical means to ignite it.
+50348,A looting opportunity.
+50349,A looting opportunity.
+50350,A looting opportunity.
+50351,A looting opportunity.
+50352,A looting opportunity.
+50353,A looting opportunity.
+50354,An unlit camp fire.
+50355,A stack of wooden barrels.
+50356,The workmanship is shockingly bad.
+50376,An old storage crate.
+50377,Someone has stacked these crates quite neatly.
+50378,A pair of stacked storage crates.
+50379,A dusty old storage crate.
+50392,A lot of smelly dung.
+50393,A lot of smelly dung.
+50394,A lot of smelly dung.
+50395,A lot of smelly dung.
+50396,A lot of smelly dung.
+50405,An old chair.
+50406,A table is lurking here.
+50407,I'd really hate to drink anything that had been in here.
+50408,A wooden crate.
+50409,Two large wooden crates stack on top of each other.
+50410,It would be darker here without these.
+50411,"A bunk bed, half-used."
+50412,"A bunk bed, well made."
+50413,A messy bunk bed.
+50414,An old chair.
+50415,A table.
+50416,I'd really hate to drink anything that had been in here.
+50417,I'd really hate to drink anything that had been in here.
+50418,A wooden crate.
+50419,Two large wooden crates stack on top of each other.
+50420,Some mucky sacks.
+50421,An ornamental torch.
+50422,An ornamental torch.
+50423,A large tapestry.
+50424,A large tapestry.
+50425,An imposing suit of armour.
+50426,A collection of skulls. How lovely.
+50495,"Apparently, comfort wasn't a design requirement."
+50498,"It has a strange, magical aspect to it."
+50499,A rack for storing weapons.
+50500,A table covered in weapons.
+50501,A rack for storing weapons.
+50502,A table covered in weapons.
+50503,"Some stairs, going up."
+50504,"Some stairs, going up."
+50505,"Some stairs, going down."
+50506,A good source of books!
+50507,A good source of books!
+50508,"Some stairs, going up."
+50509,Some wooden stairs.
+50510,Some very solid doors.
+50511,Some very solid doors.
+50513,A secure-looking door.
+50514,A secure-looking door.
+50515,A secure-looking door.
+50516,A large tapestry.
+50517,"Some massive, reinforced metal doors."
+50518,"Some massive, reinforced metal doors."
+50519,"Some massive, reinforced metal doors."
+50520,"Some massive, reinforced metal doors."
+50521,"A human detection spell. It's good for detecting humans, oddly enough."
+50522,This looks a little tricky to pass.
+50523,This doesn't look very hygienic to be in a kitchen.
+50524,Did I really crawl through that?
+50525,"A nasty, smelly sewer pipe."
+50526,Zemouregal needs a better plumber.
+50527,A solid steel door.
+50528,A solid steel door.
+50529,A solid steel door.
+50530,Perhaps I should search it.
+50531,Perhaps I should search it.
+50532,A map of Gielinor and various other papers.
+50533,Could any of this stuff be useful?
+50534,Lots of things here. Someone should tidy up.
+50535,I found some decoder strips here.
+50536,A rusty gate.
+50537,A rusty gate.
+50539,A large pedestal.
+50540,A large pedestal.
+50541,So that's what's producing all the energy down here.
+50542,A long metal pipe.
+50543,A long metal pipe.
+50544,The staircase is carved into the rock.
+50562,A large set of shelves.
+50563,Ideal for cooking on.
+50564,Too dirty to sit on.
+50565,Reassuringly table-like.
+50566,A long metal pipe.
+50579,"A puddle, not to be confused with a poodle."
+50584,This cave seems to be blocked.
+50585,The easy way out...
+50586,A massive pile of rubble.
+50587,A massive pile of rubble.
+50588,A massive pile of rubble.
+50589,A massive pile of rubble.
+50590,A massive pile of rubble.
+50591,A massive pile of rubble.
+50592,A massive pile of rubble.
+50593,A massive pile of rubble.
+50594,A massive pile of rubble.
+50595,A massive pile of rubble.
+50596,A massive pile of rubble.
+50597,A massive pile of rubble.
+50598,A massive pile of rubble.
+50599,A massive pile of rubble.
+50600,A massive pile of rubble.
+50601,A massive pile of rubble.
+50602,A massive pile of rubble.
+50603,A massive pile of rubble.
+50604,A massive pile of rubble.
+50605,A massive pile of rubble.
+50642,A very old and dirty bed.
+50643,A small table.
+50644,An old chair.
+50645,Some mucky sacks.
+50646,I'd really hate to drink anything that had been in here.
+50647,I'd really hate to drink anything that had been in here.
+50648,A wooden crate.
+50649,Two small wooden crates stacked on top of each other.
+50650,Two large wooden crates stack on top of each other.
+50652,Jump here.
+50653,The door is open.
+50654,The door is closed.
+50698,A hot place for forging things.
+50699,A sapling struggling for nutrients.
+50700,A sapling struggling for nutrients.
+50701,The sapling is thriving!
+50702,There's nothing there.
+50706,A mounted cape worn by the most experienced players.
+50707,A gateway to your dreams.
+50708,A gateway to your dreams.
+50709,A gateway to your dreams.
+50710,A steel box featuring some enchanted sapphire and emerald jewellery.
+50711,"A fancy steel box featuring some enchanted sapphire, emerald and dragonstone jewellery."
+50712,"An ornate steel box featuring many enchanted sapphire, emerald and dragonstone jewellery."
+50713,A gateway to Civitas illa Fortis.
+50714,A gateway to Civitas illa Fortis.
+50715,A gateway to Civitas illa Fortis.
+50716,It looks like there's something caught in it.
+50717,It looks like there's something caught in it.
+50718,Something has triggered this trap but it looks like it must have escaped.
+50719,Something has triggered this trap but it looks like it must have escaped.
+50720,It's been bent over to provide the springing action for the net trap below.
+50721,"A young tree, probably quite flexible."
+50722,"A young tree, probably quite flexible."
+50723,"Theoretically, it should close around anything that trips the trigger string."
+50724,Someone could get their fingers caught in that.
+50725,Someone could get their fingers caught in that.
+50726,It looks like something's been squashed by this.
+50727,It looks like there is something caught inside this trap.
+50728,"If a creature goes inside, the box should then slam shut."
+50729,"If a creature goes inside, the box should then slam shut."
+50730,"If a creature goes inside, the box should then slam shut."
+50731,"If a creature goes inside, the box should then slam shut."
+50732,Used for fashioning clay items.
+50733,A tray of sand.
+50734,Handy for boarding boats.
+50735,Handy for boarding boats.
+50736,Handy for boarding boats.
+50737,Handy for boarding boats.
+50741,Contains a lot of well-earned loot.
+50742,Not for walking on.
+50746,Hot!
+50747,Keeps track of progress in the Colosseum.
+50748,For all your banking needs.
+50749,A dark passage leading into the Colosseum.
+50750,It's a flight of stairs.
+50751,"Enter, if you have what it takes..."
+50752,The way out.
+50753,
+50754,
+50755,
+50756,
+50757,
+50758,
+50825,The grand entrance to the Colosseum.
+50826,The grand entrance to the Colosseum.
+50855,Everything you might need to build a camp.
+50856,Everything you might need to build a camp.
+50857,Everything you might need to build a camp.
+50858,The perfect place to build a camp.
+50859,I can climb down these stairs.
+50860,I can climb up these stairs.
+50861,A secure gate.
+50862,A secure gate.
+50863,I wonder what's inside...
+50864,I wonder what's inside...
+50865,I wonder what's inside...
+50866,I wonder what's inside...
+50867,I wonder what's inside...
+50868,I wonder what's inside...
+50869,I wonder what's inside...
+50870,A wooden crate.
+50871,Some wooden crates.
+50872,The way out.
+50873,Nice and bright to catch the eye of flying quetzals.
+50874,Some large rocks.
+50875,A place for quetzals to land.
+50879,Messy!
+50880,Apparently I have to set this up...
+50881,I'm not sure what Atza's going to use this for.
+50886,A hanging lantern.
+50887,Source of the capybaras' nutritious diet.
+50888,Source of the capybaras' nutritious diet.
+50889,Not much left of it now.
+50890,A home for frogs.
+50892,A home for frogs.
+50893,To sleep in.
+50894,To sleep in.
+50895,I wonder what's inside...
+50896,I wonder what's inside...
+50897,That's a big one!
+50898,That's a big one!
+50899,That's a big one!
+50900,Bad capy!
+50901,The bank teller will serve you from here.
+50902,Lets you put items into your bank.
+50905,A barrel full of rock.
+50935,A terribly tall tropical tree.
+50936,A terribly tall tropical tree.
+50937,A terribly tall tropical tree.
+50938,Leaves of a tropical tree.
+50939,A large fern.
+50940,An unusual tree grows here.
+50941,A tree found in tropical areas.
+50942,Poisonous no doubt.
+50950,A creeping plant is establishing itself here.
+50951,A creeping plant is establishing itself here.
+50952,A creeping plant is establishing itself here.
+50953,A creeping plant is establishing itself here.
+50954,A creeping plant is establishing itself here.
+50955,A creeping plant is establishing itself here.
+50956,A creeping plant is establishing itself here.
+50957,"Nasty, curling tendrils of a creeping plant."
+50958,"Nasty, curling tendrils of a creeping plant."
+51001,'Guaranteed to be 100% impossible to pick.'
+51002,'Guaranteed to be 100% impossible to pick.'
+51005,A door too small for anyone but a dwarf.
+51006,A door too small for anyone but a dwarf.
+51034,A wonderful waterfall.
+51035,A wonderful waterfall.
+51040,A flame flickers in the alcove.
+51051,This brazier is currently unlit and hence quite useless.
+51052,Magical heat eminates from this brazier.
+51053,Looks dangerous.
+51054,Looks dangerous.
+51085,"A great, big, sunny flower."
+51086,"A great, big, sunny flower."
+51103,Creepy.
+51104,Creepy.
+51268,It must be from the river above.
+51270,That's a concerning amount of blood...
+51271,That's a concerning amount of blood...
+51309,An ancient statue.
+51310,An ancient statue.
+51311,An ancient statue.
+51312,Magical flames eminate from this brazier.
+51329,An ancient statue of a jaguar.
+51330,An ancient statue of a jaguar.
+51331,An ancient statue of an eagle.
+51332,An ancient statue of an eagle.
+51333,An ancient statue of an eagle.
+51334,An ancient statue of a serpent.
+51335,An ancient statue of a serpent.
+51336,An ancient statue.
+51337,An ancient statue.
+51338,An ancient statue.
+51339,An ancient statue.
+51340,An ancient statue.
+51341,An ancient statue.
+51342,Burning through strange magic.
+51343,Burning through strange magic.
+51344,Burning through strange magic.
+51345,Burning through strange magic.
+51346,It's decorated with fine stonework depictions of the moon in its various phases.
+51347,It's decorated with fine stonework depictions of the moon in its various phases.
+51358,Its leaves are damp with dew.
+51359,Cold and wet.
+51360,The fibres on the rope are tensed and ready.
+51361,The fibres on the rope uncoil!
+51362,Cook your food here.
+51364,Worn but sturdy. Good for keeping things out.
+51365,"A moonlight moth breeding ground, covered in sparkling silk."
+51366,Worn but sturdy. Good for keeping things out.
+51367,The key is to not cast a shadow on the water.
+51368,The key is to not cast a shadow on the water.
+51369,The key is to not cast a shadow on the water.
+51370,The key is to not cast a shadow on the water.
+51371,Varlamorian digs sure are well prepared.
+51372,A statue of the Blood Moon.
+51373,A statue of the Blue Moon.
+51374,A statue of the Eclipse Moon.
+51375,Where will it lead...
+51376,Where will it lead...
+51377,Where will it lead...
+51378,Where will it lead...
+51379,A giant obsidian monolith looming ominously at the center of the chamber.
+51380,A beautiful mural depicting a terrifying scene.
+51381,An ancient looking gate. Its workmanship has stood the test of time.
+51382,A beautiful mural depicting a terrifying scene.
+51383,An ancient looking gate. Its workmanship has stood the test of time.
+51384,A beautiful mural depicting a terrifying scene.
+51385,An ancient looking gate. Its workmanship has stood the test of time.
+51386,An ancient looking gate. Its workmanship has stood the test of time.
+51387,An ancient looking gate. Its workmanship has stood the test of time.
+51388,An ancient looking gate. Its workmanship has stood the test of time.
+51389,An ancient looking gate. Its workmanship has stood the test of time.
+51390,An ancient looking gate. Its workmanship has stood the test of time.
+51391,An ancient looking gate. Its workmanship has stood the test of time.
+51392,The raising mechanism seems to be rusted and locked in place.
+51393,An ancient looking gate. Its workmanship has stood the test of time.
+51398,Broken chain links lay scattered on the temple floor.
+51399,Whatever was bound here has found freedom... or death.
+51400,What mysterious rites were performed in servitude to this ancient figure?
+51401,What mysterious rites were performed in servitude to this ancient figure?
+51424,"The lower jaw has eroded away, but the top teeth still look dangerously sharp."
+51425,"The lower jaw has eroded away, but the top teeth still look dangerously sharp."
+51426,"The lower jaw has eroded away, but the top teeth still look dangerously sharp."
+51427,"The lower jaw has eroded away, but the top teeth still look dangerously sharp."
+51428,"The lower jaw has eroded away, but the top teeth still look dangerously sharp."
+51429,"The lower jaw has eroded away, but the top teeth still look dangerously sharp."
+51430,"The lower jaw has eroded away, but the top teeth still look dangerously sharp."
+51431,"The lower jaw has eroded away, but the top teeth still look dangerously sharp."
+51464,A large stonepine tree.
+51484,A descent of water.
+51485,A rocky outcrop with bones embedded in it.
+51486,A rocky outcrop.
+51487,A rocky outcrop with bones embedded in it.
+51488,A rocky outcrop.
+51489,A rocky outcrop with bones embedded in it.
+51490,A rocky outcrop.
+51491,A rocky outcrop with bones embedded in it.
+51492,A rocky outcrop.
+51494,A rocky outcrop.
+51495,A handy place to store a dwarf's favourite tool.
+51496,A mystical forge.
+51497,A mystical forge.
+51498,Probably don't want to be touching this.
+51501,Used for fashioning metal items.
+51502,Used for fashioning metal items.
+51503,A pile of scrap rock.
+51504,Used for smashing rocks.
+51505,You can 'cart' things around in this.
+51506,You can 'cart' things around in this.
+51509,A hot furnace.
+51510,Dispenses molten metal.
+51511,Powers the machines through the power of steam.
+51514,Will it crush? Yes!
+51515,The bank teller will serve you from here.
+51516,The bank teller will serve you from here.
+51517,They say money can't buy happiness.
+51518,"Wow, that person is beautiful! Oh..."
+51519,"Wow, that person is beautiful! Oh..."
+51520,A wooden shelf containing hairdressing supplies.
+51521,A wooden shelf containing hairdressing supplies.
+51523,Sit down and relax!
+51524,Doesn't look very used.
+51525,Dead animal parts dangling!
+51526,"Dead meat, dangling from the wall. Looks delicious."
+51527,A round chair to sit on.
+51528,A not so comfortable double bed.
+51529,Used for sitting.
+51530,Used for sitting.
+51531,Useful for a dwarf.
+51532,Useful for a dwarf.
+51533,Useful for a dwarf.
+51534,Useful for a dwarf.
+51535,Fit for a dwarven feast!
+51536,Fit for a dwarven feast!
+51537,"Gives out light, but then you knew that already."
+51538,A simple place to sleep.
+51539,"A good dwarven bed, but too small for me!"
+51540,A lovely place to cook meat.
+51541,Used for keeping beer or glasses.
+51542,Used for keeping beer or glasses.
+51543,Used for storage.
+51544,Used for storage.
+51545,Used for storage.
+51546,Used for storage.
+51547,An empty market stall.
+51548,A crate for storing things.
+51549,A crate for storing things.
+51550,Some crates for storing things.
+51551,A way upwards.
+51552,A way upwards.
+51553,A way upwards.
+51554,A way down.
+51555,A way upwards.
+51556,A way down.
+51557,An empty market stall.
+51558,The finest jewellery around!
+51559,"Bread, cakes and pies for all!"
+51560,A plethora of herbs and vials lay spread out over the stall.
+51561,Picks for every occasion.
+51562,Covered in an assortment of fine ale.
+51563,A wooden barrel for storage.
+51564,A wooden barrel filled with coal.
+51565,A massive barrel of fine dwarven ale.
+51566,A large brass brewing vat.
+51567,A large brass brewing vat.
+51569,A large brass brewing vat.
+51570,Neatly made up.
+51571,Welcome to The Lost Pickaxe!
+51572,"An assortment of adverts, notices and tavern related news."
+51573,This axe belonged to Jakko - may he mine forever in the stone halls of the afterlife.
+51574,"This axe belonged to Jonno - his swing was faithful, his reward was bitter."
+51575,This axe belonged to Hungo - everybody loved him!
+51576,This axe belonged to Suna - she once struck a 4.2 carat diamond!
+51577,I'm certain they had a good life...
+51578,It fills the halls of Cam Torum with glorious light!
+51579,Unusual energy is gathered here.
+51581,Hot!
+51582,Hot!
+51583,A statue of an ancient firekeeper. It helps support the grand brazier.
+51584,A dwarven statue.
+51585,Not good for eating.
+51586,Not good for eating.
+51587,A home for frogs.
+51588,Otherwise known as a lily pad.
+51589,A home for frogs.
+51592,Sand fills the gaps between the cracks in the stone.
+51593,Sand fills the gaps between the cracks in the stone.
+51594,Sand fills the gaps between the cracks in the stone.
+51595,Sand fills the gaps between the cracks in the stone.
+51596,Sand fills the gaps between the cracks in the stone.
+51597,Sand fills the gaps between the cracks in the stone.
+51616,There has to be something in here.
+51617,There was something in here!
+51618,Shelves full of books and old scrolls.
+51641,Some stairs down into the Burrow.
+51642,Stairs up to the surface.
+51643,Climb it to the top!
+51644,Down it goes!
+51660,I wonder where this could lead to?
+51661,Some hay.
+51662,Looks like some grain left for the quetzals!
+51720,Glory to the beer gods!
+51722,For putting things on.
+51723,For putting things on.
+51724,A place to plant yourself.
+51725,Someone's left a sewing kit on it.
+51726,A place to plant yourself.
+51727,A place to plant yourself.
+51728,Smells delicious.
+51729,That must be a very hot plate.
+51730,Someone's been busy here.
+51731,A lantern hanging from the rocky ceiling.
+51732,What a cosy looking seat!
+51733,Shelves full of books and old scrolls.
+51734,Shelves full of books and old scrolls.
+51735,Shelves full of books and old scrolls.
+51736,Shelves full of books and old scrolls.
+51746,Roots protruding from the cave ceiling.
+51747,Roots protruding from the cave ceiling.
+51748,A basket packed with hearty vegetables.
+51749,Someone ate all the vegetables!
+51750,Filled with cocoa beans.
+51751,Ready to be filled with beans.
+51752,A clay pot containing some local grain.
+51753,Where did the local grain go?
+51754,A basket containing freshly harvested crops.
+51755,The contents have been used for cooking.
+51756,Decorated with a lavish array of fresh vegetables!
+51757,Chirps and squeaks can be heard from within.
+51758,A bundle of hay with quetzal feathers in it.
+51759,Nice and bright to catch the eye of flying quetzals.
+51760,A mysterious cave.
+51761,I wonder what's inside!
+51762,Home to many unusual creatures.
+51763,Not much left of it now.
+51764,Home to many unusual creatures.
+51765,Not much left of it now.
+51766,This tree has long been dead.
+51767,This tree has been cut down.
+51768,A splendid acacia tree.
+51769,A splendid acacia tree.
+51770,A large stonepine tree.
+51771,A large stonepine tree.
+51772,A beautiful old oak.
+51773,This tree has been cut down.
+51774,A mass of overgrown bushes and plants.
+51775,A mass of overgrown bushes and plants.
+51776,A mass of overgrown bushes and plants.
+51777,A mass of overgrown bushes and plants.
+51778,A mass of overgrown bushes and plants.
+51779,A mass of overgrown bushes and plants.
+51780,A mass of overgrown bushes and plants.
+51781,A mass of overgrown bushes and plants.
+51782,A mass of overgrown bushes and plants.
+51783,A mass of overgrown bushes and plants.
+51784,A mass of overgrown bushes and plants.
+51787,Gnarly old tree roots.
+51788,The roots of this tree are exposed.
+51789,I hope I don't trip over any of these.
+51790,A deposit of rocks.
+51791,A deposit of rocks.
+51792,A deposit of rocks.
+51793,A deposit of rocks.
+51794,A deposit of rocks.
+51795,A deposit of rocks.
+51796,A deposit of rocks.
+51797,A deposit of rocks.
+51818,A spikey savannah shrubbery - neat!
+51819,A spikey savannah shrubbery - neat!
+51822,A collection of wild sunflowers!
+51824,A collection of wild red sunflowers!
+51829,The sweetest corn in all the land!
+51830,The sweetest corn in all the land!
+51831,It's been picked clean.
+51832,It's been picked clean.
+51833,Disturbingly man-like.
+51834,Disturbingly man-like.
+51835,Cabbage... yuck!
+51836,Cabbage... yuck!
+51837,Makes you cry.
+51838,Makes you cry.
+51839,Baby bread.
+51840,Do dogs even like cabbage?
+51842,To sleep in.
+51843,Looks quite supportive.
+51850,A deposit of rocks.
+51851,A deposit of rocks.
+51852,I wonder where this could lead to?
+51853,Source of the capybaras' nutritious diet.
+51854,I can climb up these stairs.
+51855,I can climb down these stairs.
+51856,I can climb down these stairs.
+51869,An impressive shrine.
+51870,An impressive shrine.
+51871,An impressive shrine.
+51872,I wonder what's inside!
+51873,I wonder what's inside!
+51874,There's a rope leading into it.
+51875,Wolf?!
+51876,"A statue of the legendary hero Quoatlos, the Feathered Serpent."
+51877,"A statue of the legendary hero Quoatlos, the Feathered Serpent."
+51878,"A statue of the legendary hero Quoatlos, the Feathered Serpent."
+51879,"A statue of the legendary hero Quoatlos, the Feathered Serpent."
+51880,"A statue of the legendary hero Quoatlos, the Feathered Serpent."
+51881,"A statue of the legendary hero Xerna, the Mother of Wisdom."
+51882,"A statue of the legendary hero Xerna, the Mother of Wisdom."
+51883,"A statue of the legendary hero Xerna, the Mother of Wisdom."
+51884,"A statue of the legendary hero Xerna, the Mother of Wisdom."
+51885,"A statue of the legendary hero Atlazora, the Jaguar of Night's Shadow."
+51886,"A statue of the legendary hero Atlazora, the Jaguar of Night's Shadow."
+51887,"A statue of the legendary hero Atlazora, the Jaguar of Night's Shadow."
+51888,"A statue of the legendary hero Atlazora, the Jaguar of Night's Shadow."
+51889,"A statue of the legendary hero Marhuitz, the Old Wolf."
+51890,"A statue of the legendary hero Marhuitz, the Old Wolf."
+51891,"A statue of the legendary hero Marhuitz, the Old Wolf."
+51892,"A statue of the legendary hero Dizana, the Heroine of the Hunt."
+51893,"A statue of the legendary hero Dizana, the Heroine of the Hunt."
+51894,"A statue of the legendary hero Dizana, the Heroine of the Hunt."
+51895,"A statue of the legendary hero Dizana, the Heroine of the Hunt."
+51896,"A statue of the legendary hero Taur, the Young Bull."
+51897,"A statue of the legendary hero Taur, the Young Bull."
+51898,"A statue of the legendary hero Taur, the Young Bull."
+51899,"A statue of the legendary hero Taur, the Young Bull."
+51900,A banner showing the emblem of Varlamore.
+51901,A banner showing the emblem of Varlamore.
+51902,A banner showing the emblem of Varlamore.
+51903,A banner showing the emblem of Varlamore.
+51904,A banner showing the emblem of Varlamore.
+51905,A banner showing the emblem of Varlamore.
+51906,Hot!
+51907,Hot!
+51931,"With skill, someone could probably climb these."
+51932,It's empty.
+51933,Fine silk woven by experts.
+51934,All manner of fur.
+51935,Precious stones from around the world.
+51936,Spices to tingle your taste buds.
+51937,This stall smells great.
+51998,"A very sturdy, locked wooden door."
+51999,A very sturdy wooden door.
+52000,Would be a handy escape for someone trespassing.
+52001,Would be a handy escape for someone trespassing.
+52002,Only expensive possessions go in here.
+52003,I wonder if there's anything valuable left in here.
+52004,I wonder if it contains something valuable.
+52005,I wonder if there's anything valuable left in here.
+52006,I wonder if there's anything valuable left in here.
+52007,I wonder if there's anything valuable left in here.
+52008,I wonder if there's anything valuable left in here.
+52009,Only expensive possessions go in here.
+52010,Only expensive possessions go in here.
+52011,I wonder if it contains something valuable.
+52012,I can climb these stairs.
+52013,I can climb these stairs.
+52156,A wrought iron gate for keeping people in!
+52157,A wrought iron gate for keeping people in!
+52158,A wrought iron gate for keeping people in!
+52159,A wrought iron gate for keeping people in!
+52161,A very sturdy wooden gate.
+52162,A very sturdy wooden gate.
+52163,A very sturdy wooden gate.
+52164,A very sturdy wooden gate.
+52314,A banner showing the emblem of Varlamore.
+52315,A banner showing the emblem of Varlamore.
+52388,I'm sure the animal is glad its fur was put to good use.
+52389,I'm sure the animal is glad its fur was put to good use.
+52390,I'm sure the animal is glad its fur was put to good use.
+52391,I'm sure the animal is glad its fur was put to good use.
+52392,A place to work.
+52393,A place to work.
+52394,A pool of fresh water.
+52395,"The ideal thing to sit on. Well, perhaps not ideal... but it'll do."
+52396,The bank teller will serve you from here.
+52397,The bank teller will serve you from here.
+52398,A place to work.
+52402,It probably needs some water.
+52403,It probably needs some water.
+52404,It probably needs some water.
+52405,"A glorious shrine to the mighty sun god, Ralos."
+52406,"Offerings to the great sun god, Ralos."
+52407,"Offerings to the great sun god, Ralos."
+52410,"A glorious shrine to the mighty sun god, Ralos."
+52412,"A glorious shrine to the mysterious moon god, Ranul."
+52413,"A glorious shrine to the mighty sun god, Ralos."
+52414,"A glorious shrine to the mysterious moon god, Ranul."
+52415,Shelves full of books and old scrolls.
+52416,Shelves full of books and old scrolls.
+52417,Shelves full of books and old scrolls.
+52418,Shelves full of books and old scrolls.
+52419,A shrine dedicated to a Varlamorian who has passed beyond this realm.
+52420,A shrine dedicated to a Varlamorian who has passed beyond this realm.
+52421,A shrine dedicated to a Varlamorian who has passed beyond this realm.
+52422,A shrine dedicated to a Varlamorian who has passed beyond this realm.
+52423,A shrine dedicated to a Varlamorian who has passed beyond this realm.
+52424,A shrine dedicated to a Varlamorian who has passed beyond this realm.
+52425,A sturdy barrel used for storing various liquids.
+52426,A sturdy barrel repurposed for storing various weapons.
+52427,A sturdy barrel repurposed for storing various weapons.
+52428,A sturdy barrel repurposed for storing various helmets.
+52429,A massive barrel of fine ale.
+52430,A sturdy barrel used for storing various liquids.
+52431,A crate for storing things.
+52432,Some crates for storing things.
+52433,A game that features black and white pieces.
+52434,Where have the game pieces gone?
+52435,Very sturdy!
+52436,Comfy and soft!
+52437,"Lets see... Yep, those are indeed pillows."
+52438,Very sturdy!
+52439,Very protective!
+52440,Very protective!
+52441,Very protective!
+52442,Very protective!
+52443,Very protective!
+52444,Very protective!
+52445,Very protective!
+52446,Very protective!
+52447,A pretty water feature.
+52448,"An impressively tall tree, native to Varlamore."
+52449,"An impressively tall tree, native to Varlamore."
+52450,"An impressively tall tree, native to Varlamore."
+52451,"An impressively tall tree, native to Varlamore."
+52452,A wooden wheelbarrow.
+52453,A comfy looking bed.
+52454,Perfect to take the load off your feet.
+52455,Looks quite supportive.
+52456,Looks quite supportive.
+52457,Useful for putting things on.
+52458,A table that is... rectangular...
+52459,Good for putting things on.
+52460,Good for putting things on.
+52461,Good for putting things on.
+52462,Good for putting things on.
+52463,Good for putting things on.
+52465,These are called shelves. You put things on them.
+52466,These are called shelves. You put things on them.
+52485,Some old wooden steps.
+52486,Where might it lead?
+52487,There's an eerie smell coming from down here.
+52488,Fire goes here.
+52489,Fire goes here.
+52490,Sturdy!
+52491,Not so sturdy.
+52492,Sturdy!
+52509,The leaves are glistening with luscious health.
+52510,The leaves are glistening with luscious health.
+52511,The leaves are glistening with luscious health.
+52512,The leaves are glistening with luscious health.
+52513,"A sun-blessed seat, fit for royalty."
+52514,Fancy!
+52568,Keeps things up.
+52570,The smell of death is strong from here...
+52571,The sheets are worn and tattered.
+52572,The sheets are worn and tattered.
+52573,The handkerchief of giants!
+52574,The handkerchief of giants!
+52575,The handkerchief of giants!
+52576,Fit for milking.
+52577,Filled to the brim with knowledge.
+52578,Filled to the brim with knowledge.
+52579,The worn pages are crusty and smell dusty.
+52580,"The lower jaw has eroded away, but the top teeth still look dangerously sharp."
+52581,Grrr!
+52582,For storing things.
+52583,For storing things.
+52584,Drumming away.
+52586,A huge wooden support.
+52587,These huge stone discs grind grain to make flour.
+52588,These huge stone discs grind grain to make flour.
+52589,"When I've ground some flour, I'll be able to collect it here."
+52590,I'll need an empty pot so I can collect my flour.
+52591,Grain goes in here.
+52592,These control the flow of grain from the hopper to the millstones.
+52593,These sails use the wind to drive the windmill.
+52594,The door is closed.
+52595,The door is closed.
+52596,The door is open.
+52597,The door is closed.
+52598,The door is closed.
+52599,The door is open.
+52600,The door is closed.
+52601,The door is open.
+52602,The door is closed.
+52603,The door is open.
+52604,The doors are closed.
+52605,The doors are closed.
+52606,The doors are open.
+52607,The doors are closed.
+52608,The doors are closed.
+52609,The doors are open.
+52610,The doors are open.
+52611,The doors are open.
+52612,The door is open.
+52613,The door is open.
+52614,I can climb this.
+52615,I can climb this.
+52616,I can climb this.
+52617,I can climb this.
+52618,I can climb this.
+52619,I can climb this.
+52620,I can climb this.
+52621,I can climb this.
+52622,I can climb this.
+52623,I can climb this.
+52624,I can climb this.
+52625,I can climb this.
+52626,I can climb these stairs.
+52627,I can climb these stairs.
+52628,I can climb these stairs.
+52629,I can climb these stairs.
+52630,I can climb these stairs.
+52631,I can climb these stairs.
+52632,I can climb these stairs.
+52633,I can climb these stairs.
+52634,I can climb these stairs.
+52635,I can climb up these stairs.
+52636,I can climb down these stairs.
+52637,I can climb down these stairs.
+52638,I can climb these stairs.
+52639,I can climb these stairs.
+52640,I can climb these stairs.
+52641,I can climb these stairs.
+52642,I can climb these stairs.
+52643,I can climb up these stairs.
+52644,Where might it lead?
+52645,I can train on this.
+52646,Used for getting water.
+52647,Ideal for cooking things.
+52648,Ideal for cooking things.
+52683,A local fishing boat.
+52684,A local fishing boat.
+52685,A local fishing boat.
+52690,Helps steal fish from the ocean.
+52691,Something would normally be displayed here.
+52692,Something would normally be displayed here.
+52694,A display showing Dizana's Quiver.
+52695,A display showing the Crown of Ralos.
+52696,A display showing the Cloak of Ranul.
+52697,Normally this display would show the armour of a Knight of Varlamore.
+52698,A display showing some Kualti daggers.
+52699,A display showing some Kualti daggers.
+52700,A display showing a Kualti dagger.
+52701,A shield displaying the sigil of Kourend.
+52702,A display showing a copy of the Royal Accord of Twill.
+52703,A display showing an ancient icon of Ralos.
+52704,A column depicting key events in Kourend's history.
+52705,A column depicting Imafore's Betrayal.
+52706,Normally this display would show a model of Tempestus.
+52707,A display showing the Armour of the Cloud Titan.
+52708,A display showing a statue built by the Old Ones.
+52709,A display showing the Fang of the Colossal Wyrm.
+52710,"A statue of the legendary hero Taur, the Young Bull."
+52711,"A statue of the legendary hero Dizana, the Heroine of the Hunt."
+52712,"A statue of the legendary hero Xerna, the Mother of Wisdom."
+52713,"A statue of the legendary hero Marhuitz, the Old Wolf."
+52714,"A statue of the legendary hero Atlazora, the Jaguar of Night's Shadow."
+52715,"A statue of the legendary hero Quoatlos, the Feathered Serpent."
+52716,A statue of King Maximus. It was he who ordered the construction of the Fortis Colosseum.
+52717,"A statue of the mighty Sun Queen, Zyanyi Arkan."
+52718,"A statue of the mighty Sun Queen, Zyanyi Arkan."
+52719,"A statue of the mighty Sun Queen, Zyanyi Arkan."
+52720,"A statue of the mighty Sun Queen, Zyanyi Arkan."
+52721,"A statue of the glorious Prince of Varlamore, Itzla Arkan."
+52722,"A statue of the glorious Prince of Varlamore, Itzla Arkan."
+52723,"A statue of the glorious Prince of Varlamore, Itzla Arkan."
+52724,"A statue of the ferocious Fremennik warrior, Freja the Kyatess."
+52725,"A statue of the ferocious Fremennik warrior, Freja the Kyatess."
+52726,"A statue of the ferocious Fremennik warrior, Freja the Kyatess."
+52727,The statue seems to have been beheaded... How strange.
+52728,The statue seems to have been beheaded... How strange.
+52729,The statue seems to have been beheaded... How strange.
+52730,"A statue of the legendary hero Taur, the Young Bull."
+52731,"A statue of the legendary hero Taur, the Young Bull."
+52732,"A statue of the legendary hero Taur, the Young Bull."
+52733,"A statue of the legendary hero Dizana, the Heroine of the Hunt."
+52734,"A statue of the legendary hero Dizana, the Heroine of the Hunt."
+52735,"A statue of the legendary hero Dizana, the Heroine of the Hunt."
+52736,A statue of King Maximus. It was he who ordered the construction of the Fortis Colosseum.
+52737,A statue of King Maximus. It was he who ordered the construction of the Fortis Colosseum.
+52738,A statue of King Maximus. It was he who ordered the construction of the Fortis Colosseum.
+52739,"A statue of the legendary hero Quoatlos, the Feathered Serpent."
+52740,"A statue of the legendary hero Quoatlos, the Feathered Serpent."
+52741,"A statue of the legendary hero Atlazora, the Jaguar of Night's Shadow."
+52742,"A statue of the legendary hero Atlazora, the Jaguar of Night's Shadow."
+52791,A big luxurious bed.
+52792,Only expensive possessions go in here.
+52797,A place to make sacrifices to Ralos.
+52798,A place to make sacrifices to Ralos.
+52799,Icy to the touch.
+52800,Icy to the touch.
+52801,There's a large bowl here for sacrifices to Ralos.
+52806,Filled to the brim with knowledge.
+52807,Filled to the brim with knowledge.
+52808,I wonder what's inside!
+52809,Hot pipes that are used to heat the building.
+52813,I wonder what's inside...
+52814,I wonder what's inside...
+52815,A place for quetzals to land.
+52816,"With a bit of work, this could be a place for quetzals to land."
+52821,A secure gate.
+52822,Home for chickens.
+52823,A commonly found tree.
+52911,A grey one!
+52912,It's a flight of stairs.
+52913,It's a flight of stairs.
+52914,A smol grey one!
+52915,A big grey one!
+52916,So that's where the light is coming from!
+52994,It's unset.
+52995,It's unset.
+52996,It's unset.
+52997,The key is to not cast a shadow on the water.
+52998,Would be a handy escape for someone trespassing.
+53002,Where might they lead?
+53003,Return from whence I came.
+53004,Return from whence I came.
+53005,Good for hitting.
+53011,There's a cat here!
+53012,There's a cat here!
+53014,Use for quick access to your bank.
+53015,Use for quick access to your bank.
+53016,A place to make sacrifices to Ralos.
+53017,A place to make sacrifices to Ralos.
+53020,Luscious leaves grow on this bush.
+53021,Luscious leaves grow on this bush.
+53022,It's seen better days.
+53023,It's seen better days.
+53024,Something has fallen into this trap.
+53045,I wonder what's down there...
+53046,I can use these to eggs-it the crypt.
+53048,It's not lit!
+53049,It's not lit!
+53050,Warning: Hot!
+53054,This trail of chocolate mess leads somewhere.
+53055,This trail of chocolate mess leads somewhere.
+53056,The dirt is disturbed and mixed with chocolate dust. Perhaps something is buried here?
+53062,A rocky outcrop.
+53063,A rocky outcrop.
+53064,A rocky outcrop.
+53065,A rocky outcrop.
+53066,A rocky outcrop.
+53067,A rocky outcrop.
+53068,Not full of eggs.
+53069,Full of eggs!
+53072,"A perch, comfy if you're a bird."
+53073,Eggs!
+53074,Eggs!
+53075,Eggs!
+53076,Eggs!
+53077,Presumably full of eggs.
+53078,Presumably full of eggs.
+53079,Presumably full of eggs.
+53080,Presumably full of eggs.
+53081,Possibly full of eggs.
+53082,Definitely full of eggs.
+53083,A giant egg.
+53084,A giant egg.
+53085,A stolen egg.
+53086,Some stolen eggs.
+53087,Some stolen eggs.
+53088,Eggs!
+53089,Eggs!
+53090,Eggs!
+53091,Eggs!
+53092,A giant egg.
+53093,A giant egg.
+53094,An unwrapped egg.
+53095,Some eggs.
+53096,Some eggs.
+53100,The door is closed.
+53101,The door is closed.
+53102,The door is open.
+53103,The door is open.
+53124,Shrine to the glory of egg.
+53125,For holding things up.
+53126,For holding things up.
+53127,The sort of bench you get in churches.
+53128,The sort of bench you get in churches.
+53129,The sort of bench you get in churches.
+53132,It's amazing what bees produce!
+53133,Lit to remember the souls of the departed.
+53134,A splendid tree.
+53135,A splendid tree.
+53136,A splendid tree.
+53137,A small bushy plant.
+53138,This old tree is rotting away.
+53139,A decaying tree trunk.
+53140,These fat fungi take up so much room.
+53141,These fat fungi take up so much room.
+53142,These fat fungi take up so much room.
+53143,Is it safe to eat?
+53144,Is it safe to eat?
+53145,Is it safe to eat?
+53146,Is it safe to eat?
+53147,Is it safe to eat?
+53148,Is it safe to eat?
+53149,A cute little stool.
+53150,A group of fungis hangin' out in the woods.
+53151,A group of mushrooms hangin' out in the woods.
+53152,A flower.
+53153,Commonly found in grassy areas.
+53154,That's pretty.
+53155,A leafy fern.
+53156,A small bushy plant.
+53157,A leafy shrub.
+53158,Is this a weed?
+53159,Is this some weeds?
+53164,Behold the Sacred Egg!
+53165,Behold the Sacred Egg!
+53170,Keeps mine carts from rolling away.
+53186,Formed over many years of dripping limestone.
+53187,How did that giant bird fit through this?
+53188,Home to many unusual creatures.
+53189,Not much left of it now.
+53190,Sucks to be this guy.
+53191,Oh dear.
+53192,They're looking great!
+53214,Perfect for egg transportation.
+53215,Perfect for egg transportation.
+53216,Perfect for egg transportation.
+53217,Perfect for egg transportation.
+53218,Perfect for egg transportation.
+53219,Stairs leading up.
+53220,Stairs leading up.
+53221,Stairs leading up.
+53222,Full of zombie pirate loot.
+53224,"Dispenses a reward after each lap, if you've put enough gold in it."
+53225,Pointy!
+53234,"With skill, someone could probably climb up here."
+53236,"With skill, someone could probably climb down here."
+53237,Looks molten hot.
+53238,"With skill, someone could probably climb up here."
+53240,"With skill, someone could probably climb down here."
+53241,A well placed stone.
+53242,A large crack in the wall.
+53247,Where does this lead?
+53248,Where does this lead?
+53249,Where does this lead?
+53250,I could probably try climbing through this!
+53251,I could probably try climbing through this!
+53252,"With skill, someone could probably climb up here."
+53254,"With skill, someone could probably climb down here."
+53255,The irregular surface can be climbed.
+53256,A dry stone wall
+53258,Looks like I might be able to fit in there.
+53259,You can crawl through here without difficulty.
+53260,A handy bank chest.
+53263,A mystical barrier.
+53265,A map stuck up on the wall.
+53266,A map with tactical information.
+53267,A detailed plan of attack.
+53268,"A sturdy-looking, round table."
+53269,Something has fallen into this trap.
+53273,A suitable place for a pit trap.
+53274,A pit trap that has been set.
+53275,A pit trap that has been set and baited.
+53276,It's on its last legs.
+53277,It's on its last legs.
+53278,A trapdoor hidden by a table.
+53279,It leads to an underground tunnel.
+53280,A table that was hiding a trapdoor.
+53281,A cell gate.
+53282,A cell gate.
+53283,A wanted poster.
+53284,A wanted poster asking for information on the individual known as the Dark Squall.
+53285,Betty's counter.
+53286,There is a snapdragon seed on it.
+53287,There is an enriched snapdragon seed on it.
+53288,A snow-covered ledge.
+53289,The ledge of a roof.
+53290,A specially prepared patch.
+53291,Some herbs are growing here.
+53292,Some fully grown herbs.
+53293,Looks like he's been dead a while now.
+53294,I'm sure he died of natural causes...
+53296,A statue of an ancient hero.
+53297,"In honour of the hero, Hazelmere, who died facing the Mahjarrat known as Lucien."
+53298,"In honour of the hero, Turael, who died facing the Mahjarrat known as Lucien."
+53299,"In honour of the hero, Duradel, who died facing the Mahjarrat known as Lucien."
+53300,"In honour of the hero, Sloane, who died facing the Mahjarrat known as Lucien."
+53301,"In honour of the hero, Ghommal, who died facing the Mahjarrat known as Lucien."
+53302,"In honour of the hero, Cyrisus, who died facing the Mahjarrat known as Lucien."
+53303,There's a rope attached here.
+53304,Rock on.
+53305,It goes a long way down.
+53306,Some closed drawers.
+53307,Some open drawers.
+53308,A limestone floor growth.
+53309,A tooth-shaped rock formation protruding from the floor.
+53310,"A simple, but decorative, rug."
+53311,"A simple, but decorative, rug."
+53312,"A simple, but decorative, rug."
+53313,A large double door.
+53314,A large double door.
+53315,A large double door.
+53316,A large double door.
+53317,A large double door.
+53318,A large double door.
+53319,I can climb up this.
+53320,I can climb down this.
+53321,The door is open.
+53322,The door is closed.
+53343,Some mystical rock...
+53346,The devastation of Lucien.
+53347,I can climb this.
+53348,I can climb down this.
+53349,A decorated tile.
+53350,Where could it lead?
+53358,Allows access to the level above.
+53359,A homemade desk.
+53360,A homemade desk.
+53361,It might be worth a look inside.
+53362,It might be worth searching through.
+53363,A place to put your keys.
+53364,A place to put your keys.
+53365,It looks to be quite tough.
+53366,It looks to be quite tough.
+53367,A crude table.
+53368,A crude table.
+53369,A crude table.
+53370,I can climb up this.
+53371,I can climb down this.
+53372,It might be worth a look inside.
+53373,It might be worth searching through.
+53374,It might be worth searching through.
+53441,The metal bars look strong.
+53442,The metal bars look strong.
+53443,The metal bars look strong.
+53444,The metal bars look strong.
+53445,The metal bars look strong.
+53446,The metal bars look strong.
+53476,A rockslide.
+53477,A rockslide.
+53478,It looks to be quite tough.
+53479,It looks to be quite tough.
+53484,A wooden crate.
+53485,A wooden crate.
+53486,A wooden crate.
+53487,I'd really hate to drink anything that had been in here.
+53488,I'd really hate to drink anything that had been in here.
+53489,"Only for pleasant purposes, I'm sure."
+53490,"Only for pleasant purposes, I'm sure."
+53501,A crude table.
+53502,A crude table.
+53503,A crude table.
+53504,A crude table.
+53505,A crude table.
+53506,An assortment of maps.
+53511,Useful for passing over otherwise inaccessible areas.
+53512,Useful for passing over otherwise inaccessible areas.
+53513,I could scale this wall with a bit of effort.
+53514,It looks a bit steep!
+53525,Used to impede the movement of attacking forces.
+53526,Used to impede the movement of attacking forces.
+53527,Used to impede the movement of attacking forces.
+53528,Used to impede the movement of attacking forces.
+53529,Used to impede the movement of attacking forces.
+53530,Used to impede the movement of attacking forces.
+53531,Used to impede the movement of attacking forces.
+53582,A wooden crate.
+53583,A wooden crate.
+53584,Filled with all sorts of old stuff.
+53585,A wooden barrel.
+53586,A rotten barrel.
+53607,I might be able to climb up it.
+53608,I can climb down here.
+53609,"An empty recess in the wall, next to an etching of a fire symbol."
+53610,"An empty recess in the wall, next to an etching of an earth symbol."
+53611,"An empty recess in the wall, next to an etching of an air symbol."
+53612,"An empty recess in the wall, next to an etching of a fire symbol."
+53613,"An empty recess in the wall, next to an etching of an earth symbol."
+53614,"An empty recess in the wall, next to an etching of an air symbol."
+53615,"A square block is recessed into the wall, next to an etching of a fire symbol."
+53616,"A square block is recessed into the wall, next to an etching of an earth symbol."
+53617,"A square block is recessed into the wall, next to an etching of an air symbol."
+53618,A square block is recessed into a hole above a water symbol. There's a second empty recess above a fire symbol.
+53619,A square block is recessed into a hole above a fire symbol. There's a second empty recess above a water symbol.
+53620,Two empty recesses sit above fire and water symbols.
+53621,Two square blocks are recessed into holes above fire and water symbols.
+53622,A sinister opening.
+53623,I can climb up here.
+53624,I can climb up here.
+53625,An earth symbol is etched into this strange mechanism.
+53626,A square block has been placed into this strange mechanism.
+53627,A water symbol is etched into this strange mechanism.
+53628,A square block has been placed into this strange mechanism.
+53629,An air symbol is etched into this strange mechanism.
+53630,A square block has been placed into this strange mechanism.
+53631,There's a crawl space through this hole.
+53632,There's a crawl space through this hole.
+53633,There's a crawl space through this hole.
+53637,The way out of here.
+53638,It's totally blocked.
+53639,A statue once stood here.
+53640,This statue appears to depict agility.
+53641,This statue appears to depict agility.
+53642,This statue appears to depict balance.
+53643,This statue appears to depict balance.
+53644,This statue appears to depict energy.
+53645,This statue appears to depict energy.
+53646,This statue appears to depict restoration.
+53647,This statue appears to depict restoration.
+53648,This statue appears to depict attacking.
+53649,This statue appears to depict attacking.
+53650,This statue appears to depict strength.
+53651,This statue appears to depict strength.
+53652,This statue appears to depict defence.
+53653,This statue appears to depict defence.
+53654,This statue appears to depict combat.
+53655,This statue appears to depict combat.
+53656,This statue appears to depict ranging.
+53657,This statue appears to depict ranging.
+53658,This statue appears to depict prayer.
+53659,This statue appears to depict prayer.
+53660,This statue appears to depict hunting.
+53661,This statue appears to depict hunting.
+53662,This statue appears to depict fishing.
+53663,This statue appears to depict fishing.
+53664,This statue appears to depict magic.
+53665,This statue appears to depict magic.
+53666,A large table made of stone.
+53667,A large table made of stone.
+53668,A large table made of stone.
+53669,A large table made of stone.
+53670,A large table made of stone.
+53671,A large table made of stone.
+53672,A large table made of stone.
+53673,A large table made of stone.
+53674,A large table made of stone.
+53675,A large table made of stone.
+53676,It's a bit steep!
+53677,There are elemental symbols engraved upon the cube's faces.
+53678,There are elemental symbols engraved upon the cube's faces.
+53679,There are elemental symbols engraved upon the cube's faces.
+53680,There are elemental symbols engraved upon the cube's faces.
+53681,There are elemental symbols engraved upon the cube's faces.
+53682,There are elemental symbols engraved upon the cube's faces.
+53683,There are elemental symbols engraved upon the cube's faces.
+53684,There are elemental symbols engraved upon the cube's faces.
+53685,There are elemental symbols engraved upon the cube's faces.
+53686,There are elemental symbols engraved upon the cube's faces.
+53687,There are elemental symbols engraved upon the cube's faces.
+53688,There are elemental symbols engraved upon the cube's faces.
+53689,There are elemental symbols engraved upon the cube's faces.
+53690,There are elemental symbols engraved upon the cube's faces.
+53691,There are elemental symbols engraved upon the cube's faces.
+53692,There are elemental symbols engraved upon the cube's faces.
+53693,There are elemental symbols engraved upon the cube's faces.
+53694,A very big door with a depiction of Guthix on it.
+53695,A very big door with a depiction of Guthix on it.
+53696,A very big door with a depiction of Guthix on it.
+53697,A very big door with a depiction of Guthix on it.
+53698,Part of a stone circle.
+53699,Part of a stone circle.
+53700,Part of a stone circle.
+53701,Part of a stone circle.
+53702,Part of a stone circle.
+53703,Part of a stone circle.
+53704,Part of a stone circle.
+53705,Part of a stone circle.
+53706,Part of a stone circle.
+53707,Part of a stone circle.
+53708,Part of a stone circle.
+53709,Part of a stone circle.
+53710,Part of a stone circle.
+53711,Part of a stone circle.
+53712,Part of a stone circle.
+53713,Part of a stone circle.
+53714,Part of a stone circle.
+53715,Part of a stone circle.
+53716,Part of a stone circle.
+53717,Part of a stone circle.
+53718,Part of a stone circle.
+53719,Part of a stone circle.
+53720,Part of a stone circle.
+53721,Part of a stone circle.
+53723,A dried-up vine.
+53724,A flowering vine.
+53725,An empty brazier.
+53726,An empty brazier.
+53727,Some rocks that have fallen down.
+53728,A broken brazier.
+53729,A broken brazier.
+53730,A broken brazier.
+53731,Some rocks that have fallen down.
+53732,A broken brazier.
+53733,A broken brazier.
+53734,A broken brazier.
+53735,Burning through ancient magic.
+53736,Burning through ancient magic.
+53737,A place to store a fire.
+53767,A wall of rock.
+53768,A wall of rock.
+53794,A dried-up vine.
+53795,A dried-up vine.
+53796,A dried-up vine.
+53797,A dried-up vine.
+53798,A dried-up vine.
+53799,A dried-up vine.
+53800,A dried-up vine.
+53801,A dried-up vine.
+53802,A dried-up vine.
+53809,"They possibly didn't understand the command, 'Stop at the edge of the chasm'."
+53810,"They possibly didn't understand the command, 'Stop at the edge of the chasm'."
+53811,"They possibly didn't understand the command, 'Stop at the edge of the chasm'."
+53812,"They possibly didn't understand the command, 'Stop at the edge of the chasm'."
+53813,Looks like the corpse of a follower of Guthix.
+53814,Looks like the corpse of a follower of Guthix.
+53815,Looks like the corpse of a follower of Guthix.
+53816,Looks like the corpse of a follower of Guthix.
+53819,It's burning with an ethereal white light.
+53820,It's burning with an ethereal blue light.
+53821,A powerful energy surrounds it.
+53822,A powerful energy surrounds it.
+53823,A powerful energy surrounds it.
+53824,A powerful energy surrounds it.
+53825,It's disappearing!
+53826,This plinth once held the great Stone of Jas.
+53830,An exit out of the crawl space.
+53831,An exit out of the crawl space.
+53832,An exit out of the crawl space.
+53883,A section of broken wall.
+53884,A section of broken wall.
+53885,A depiction of a statuesque human bearing a weighty tome upon his shoulders.
+53886,A depiction of a statuesque human bearing a weighty tome upon his shoulders.
+53892,I can climb this.
+53893,The door is closed.
+53894,The door is open.
+53895,This staircase is carved into the rock.
+53896,This staircase is carved into the rock.
+53897,An old door.
+53898,The door is open.
+53899,The metal bars look strong.
+53900,The metal bars look strong.
+53901,An old door.
+53902,An old door.
+53903,An old door.
+53904,An old door.
+53905,An old door.
+53906,An old door.
+53907,An old door.
+53908,It's slightly illuminated.
+53909,It's slightly illuminated.
+53910,It's slightly illuminated.
+53911,It's not illuminated.
+53912,It's not illuminated.
+53913,It's not illuminated.
+53914,A very sturdy bookcase filled with reams of indecipherable writings.
+53915,A very sturdy bookcase filled with reams of indecipherable writings.
+53916,A very sturdy bookcase filled with reams of indecipherable writings.
+53917,A very sturdy bookcase filled with reams of indecipherable writings.
+53918,A very sturdy bookcase filled with reams of indecipherable writings.
+53919,A very sturdy bookcase filled with reams of indecipherable writings.
+53920,A very sturdy bookcase filled with reams of indecipherable writings.
+53921,The metal bars look strong.
+53922,The metal bars look strong.
+53923,The metal bars look strong.
+53924,This staircase leads up.
+53925,There's something different about the floor here.
+53926,There's something different about the floor here.
+53927,This staircase leads down.
+53928,The statue depicts a muscular human carrying a huge tome.
+53929,The statue depicts a muscular human carrying a huge tome.
+53930,The statue depicts a muscular human carrying a huge tome.
+53931,The statue depicts a muscular human carrying a huge tome.
+53932,The statue depicts a muscular human carrying a huge tome.
+53933,The statue depicts a muscular human carrying a huge tome.
+53935,A selection of weights all piled together.
+53936,A set of drawers.
+53937,A device for measuring vertical pressure.
+53938,"It looks like it's just full of paperwork regarding tedious, everyday details."
+53939,"It looks to be a normal bookcase, filled with the usual old, dusty tomes."
+53940,There are a few scattered papers on the desk.
+53941,"There are many papers on the desk, most of which look quite detailed."
+53942,It's a small cave dug into the side of the wall.
+53943,A huge pile of treasure! It looks too good to be true!
+53944,"It's some sort of strange contraption, but it's not clear what it's supposed to do."
+53945,Decorative tiling of poor craftsmanship.
+53946,A staircase that rose out of the floor.
+53947,A staircase that rose out of the floor.
+53948,Going down?
+53949,This bed appears to be very tough and uncomfortable.
+53950,I thought only dragons slept on their valuables.
+53951,I thought only dragons slept on their valuables.
+53952,A bed that doubles as a chest is worth investigating.
+53953,"Yep, that was worth investigating."
+53954,There used to be a pile of coal here.
+53955,A very small pile of coal.
+53956,A small pile of coal.
+53957,A big pile of coal.
+53958,A very big pile of coal.
+53960,There used to be a pile of fire runes here.
+53961,A very small pile of fire runes.
+53962,A small pile of fire runes.
+53963,A big pile of fire runes.
+53964,A very big pile of fire runes.
+53966,There used to be a pile of death runes here.
+53967,A very small pile of death runes.
+53968,A small pile of death runes.
+53969,A big pile of death runes.
+53970,A very big pile of death runes.
+53972,There used to be a pile of magic logs here.
+53973,A very small pile of magic logs.
+53974,A small pile of magic logs.
+53975,A big pile of magic logs.
+53976,A very big pile of magic logs.
+53978,Some sort of dial displaying the number 3.
+53979,Some sort of dial displaying the number 2.
+53980,Some sort of dial displaying the number 1.
+53981,Some sort of dial displaying the number 0.
+53994,I'd really hate to drink anything that had been in here.
+53995,I'd really hate to drink anything that had been in here.
+53996,A wooden crate.
+53997,A wooden crate.
+53998,A table.
+53999,Too dirty to sit on.
+54000,Crammed with books on every topic.
+54001,Crammed with books on every topic.
+54002,Crammed with books on every topic.
+54004,A desk with papers of little interest.
+54005,Books on every subject imaginable.
+54006,Books on every subject imaginable.
+54007,Books on every subject imaginable.
+54011,Crammed with books on every topic.
+54012,A broken furnace.
+54013,A chest of drawers.
+54028,A well slept-in bed.
+54029,A well slept-in bed.
+54030,A well slept-in bed.
+54031,A well slept-in bed.
+54033,It's not illuminated.
+54034,It's slightly illuminated.
+54049,Ideal for cooking on.
+54050,A larder.
+54051,A barrel full of an unknown liquid. I hope it's orange juice.
+54053,The door is closed.
+54054,Quite loose indeed.
+54055,For climbing.
+54059,It's a door.
+54062,For debug.
+54063,For debug.
+54083,A large table made of stone.
+54085,A very big door with a depiction of Guthix on it.
+54086,A very big door with a depiction of Guthix on it.
+54087,A very big door with a depiction of Guthix on it.
+54114,A rug adorned with the icon of Deadman.
+54115,A rug adorned with the icon of Deadman.
+54116,A rug adorned with the icon of Deadman.
+54117,Someone's left it open.
+54148,Looks toxic.
+54149,Details some interesting statistics.
+54150,Doesn't seem overly relevant to me.
+54151,Looks like he's been here a while.
+54152,Looks awfully sticky.
+54153,Looks awfully sticky.
+54154,Looks awfully sticky.
+54155,Looks awfully sticky.
+54156,Looks awfully sticky.
+54157,Looks awfully sticky.
+54158,Looks awfully sticky.
+54159,Looks awfully sticky.
+54160,Looks awfully sticky.
+54161,Looks awfully sticky.
+54162,Looks awfully sticky.
+54163,Looks awfully sticky.
+54221,Unlucky fella.
+54222,Unlucky fella.
+54223,Unlucky fella.
+54224,"This is jam, right?"
+54225,"This is jam, right?"
+54226,I hope it doesn't fall on me.
+54227,Looks big and heavy.
+54228,Future web developers.
+54229,Future web developers.
+54230,Future web developers.
+54231,Future web developers.
+54232,Future web developers.
+54233,Future web developers.
+54234,Future web developers.
+54235,Future web developers.
+54236,Future web developers.
+54237,Future web developers.
+54238,Future web developers.
+54239,Future web developers.
+54240,Future web developers.
+54241,Future web developers.
+54242,Future web developers.
+54255,Looks like it's coming from the walls.
+54256,Looks like it's coming from the walls.
+54257,Looks like it's coming from the walls.
+54269,A large display of Araxxor in a venomous cave.
+54271,Looks awfully sticky.
+54272,Looks awfully sticky.
+54273,Looks awfully sticky.
+54274,Looks awfully sticky.
+54276,Doesn't look like it'll be sailing again.
+54277,An ancient stele covered in an odd script.
+54278,An ancient stele covered in an odd script.
+54279,Looks cold.
+54280,Looks cold.
+54281,Looks cold.
+54282,An icy barricade.
+54283,Cold and pointy!
+54284,Cold and pointy!
+54285,Looks cold.
+54286,Looks cold.
+54287,Looks cold.
+54288,Looks cold.
+54289,Looks cold.
+54290,Looks cold.
+54327,It must be from the river above.
+54364,Solid bars of iron.
+54365,Solid bars of iron.
+54366,Solid bars of iron.
+54367,Solid bars of iron.
+54369,I can climb these stairs.
+54370,I can climb these stairs.
+54371,I can climb these stairs.
+54372,I wonder what's inside...
+54373,I wonder what's inside...
+54374,I wonder what's inside...
+54375,I wonder what's inside...
+54376,I wonder what's inside...
+54377,I wonder what's inside...
+54378,It's full of bandages.
+54379,It's full of bandages.
+54380,It's full of bandages.
+54381,It's full of bandages.
+54382,It's full of bandages.
+54383,Once held bandages.
+54384,"A large spikey portcullis, built to keep out intruders."
+54427,A glorious shrine to the Final Dawn.
+54446,This looks to be more comfortable than the cold floor.
+54447,The candles flicker in the slight breeze that flows past them.
+54448,The candles flicker in the slight breeze that flows past them.
+54449,Ideal for cooking things.
+54450,Someone's been busy here.
+54451,Very imposing.
+54452,Very imposing.
+54453,Very imposing.
+54454,Appears to be missing something.
+54455,A statue holding a strange icon.
+54456,A statue holding a strange icon.
+54457,A statue holding a strange icon.
+54458,A statue holding a strange icon.
+54460,Appears to be missing something.
+54461,A statue holding a strange icon.
+54462,A statue holding a strange icon.
+54463,A statue holding a strange icon.
+54464,A statue holding a strange icon.
+54466,Appears to be missing something.
+54467,A statue holding a strange icon.
+54468,A statue holding a strange icon.
+54469,A statue holding a strange icon.
+54470,A statue holding a strange icon.
+54472,Appears to be missing something.
+54473,A statue holding a strange icon.
+54474,A statue holding a strange icon.
+54475,A statue holding a strange icon.
+54476,A statue holding a strange icon.
+54478,Whatever is inside must be ancient.
+54479,Whatever is inside must be ancient.
+54480,Whatever is inside must be ancient.
+54481,Whatever is inside must be ancient.
+54482,Whatever is inside must be ancient.
+54483,Whatever is inside must be ancient.
+54484,Whatever is inside must be ancient.
+54485,Whatever is inside must be ancient.
+54486,Whatever is inside must be ancient.
+54487,Whatever is inside must be ancient.
+54488,Whatever is inside must be ancient.
+54489,Whatever is inside must be ancient.
+54490,Whatever is inside must be ancient.
+54491,Whatever is inside must be ancient.
+54492,Whatever is inside must be ancient.
+54493,Words carved into the wall.
+54494,Words carved into the wall.
+54495,Words carved into the wall.
+54496,Words carved into the wall.
+54497,Words carved into the wall.
+54498,Words carved into the wall.
+54499,Words carved into the wall.
+54500,Words carved into the wall.
+54501,Need to be mined to clear the path.
+54502,Some sort of ancient wall carving.
+54503,Ouch!
+54504,It's a trap!
+54505,Seems to be disabled.
+54506,For pulling.
+54507,It's been pulled.
+54508,A very old brazier.
+54509,A very old brazier with a magical orb glowing within it.
+54510,Rather intimidating.
+54511,Rather intimidating.
+54513,A well slept in bed.
+54514,A well slept in bed.
+54515,I wonder what's inside...
+54516,I wonder what's inside...
+54517,Need a pickaxe?
+54518,Going down...
+54519,A way out.
+54520,An odd platform in the floor.
+54522,A way down below.
+54523,What's at the bottom of this?
+54525,Where could these lead?
+54526,It's got to be warmer up there.
+54527,A way down.
+54528,Could potentially be a route back up.
+54529,Could potentially be a route back up.
+54530,A way back up.
+54531,Looks climbable.
+54532,Looks climbable.
+54533,Looks slippery.
+54534,Looks slippery.
+54535,Looks climbable.
+54536,Looks sturdy enough.
+54537,Looks sturdy enough.
+54539,"Looks sturdy enough, but I wouldn't want to jump on it barefoot."
+54540,Looks climbable.
+54541,Looks climbable.
+54542,Looks climbable.
+54543,Who put this here?
+54544,Who put this here?
+54546,Who put this here?
+54547,Who put this here?
+54549,Who put this here?
+54550,Who put this here?
+54552,Who put this here?
+54553,Who put this here?
+54569,Frozen water has formed an icicle here.
+54570,Frozen water has formed an icicle here.
+54571,Frozen water has formed an icicle here.
+54572,Chunky pieces of ice.
+54573,Chunky pieces of ice.
+54574,Chunky pieces of ice.
+54575,Chunky pieces of ice.
+54576,Chunky pieces of ice.
+54577,Chunky pieces of ice.
+54578,Chunky pieces of ice.
+54579,Chunky pieces of ice.
+54580,Chunky pieces of ice.
+54581,Chunky pieces of ice.
+54582,Chunky pieces of ice.
+54583,Chunky pieces of ice.
+54651,A very old gate.
+54652,A very old gate.
+54672,A chest of stone.
+54673,A pile of rubble.
+54674,A pile of rubble.
+54678,Looks like they've been dead a while now...
+54679,Looks like they've been dead a while now...
+54680,They're looking great!
+54681,Lacking sustenance.
+54682,The water trickling down the wall has caused a slippery ledge to form.
+54683,The water trickling down the wall has caused a slippery ledge to form.
+54689,The way out.
+54690,Leads back to the surface.
+54691,Leads back to the surface.
+54692,Wolf?!
+54693,Normally this display would show Xerna's Diadem.
+54694,A display showing Xerna's Diadem.
+54695,Can be used to walk through walls.
+54696,Can be used to walk through walls.
+54697,For storage.
+54698,For storage.
+54699,A weirdly out of place set of tools.
+54700,A weirdly out of place set of tools.
+54701,Now how will I fit through there?
+54702,A thin-looking window.
+54703,They lead down to the wine cellar.
+54704,Dangerously red.
+54705,Dangerously red.
+54706,The door is closed.
+54707,A way through.
+54708,What's it doing down there?
+54709,That's one way to get wine out of a jug.
+54710,Lighter than expected.
+54711,"Like a crate, but pocket sized."
+54712,Sat a little too close to the ground.
+54713,I can climb up these stairs.
+54714,I can climb down these stairs.
+54715,Leads to the backstage area.
+54716,Where might they lead?
+54717,Where might they lead?
+54718,Multiple costumes.
+54719,Multiple costumes.
+54720,Even more dangerous than they look.
+54721,Even more dangerous than they look.
+54722,Even more dangerous than they look.
+54723,Only expensive possessions go in here.
+54724,Only expensive possessions go in here.
+54725,Only expensive possessions go in here.
+54726,Filled to the brim with knowledge.
+54727,Is that a way through behind there?
+54728,A hidden passage behind a bookshelf. How original.
+54729,Filled to the brim with knowledge.
+54730,Is that a way through behind there?
+54731,A crate for storing things.
+54732,A crate for storing things.
+54736,Does this belong down here?
+54737,Does this belong down here?
+54738,Soggy.
+54739,Soggy.
+54740,Soggy.
+54741,For storing things.
+54742,For storing things.
+54743,Supposedly full of costumes.
+54744,Supposedly full of costumes.
+54745,Gnarly old tree roots.
+54764,It's a flight of stairs.
+54772,Filled to the brim with knowledge.
+54773,I wonder what's inside...
+54774,I wonder what's inside...
+54775,"With skill, someone could probably climb these."
+54776,"With skill, someone could probably climb these."
+54778,Best used with a bucket.
+54779,It's empty.
+54780,Precious stones from around the world.
+54781,You should eat your greens!
+54782,I can climb up these stairs.
+54783,I can climb down these stairs.
+54784,I can climb down these stairs.
+54785,Where could it lead...
+54867,Pull this to add Aga to the mix!
+54868,Pull this to add Mox to the mix!
+54869,Pull this to add Lye to the mix!
+54870,A workstation used for concentrating mixtures.
+54871,A workstation used for concentrating mixtures.
+54872,A workstation used for concentrating mixtures.
+54873,A workstation used for concentrating mixtures.
+54874,A workstation used for concentrating mixtures.
+54875,A workstation used for concentrating mixtures.
+54876,A workstation used for concentrating mixtures.
+54877,A workstation used for concentrating mixtures.
+54878,A workstation used for concentrating mixtures.
+54879,A workstation used for concentrating mixtures.
+54880,A workstation used for concentrating mixtures.
+54881,A workstation used for homogenising mixtures.
+54882,A workstation used for homogenising mixtures.
+54883,A workstation used for homogenising mixtures.
+54884,A workstation used for homogenising mixtures.
+54885,A workstation used for homogenising mixtures.
+54886,A workstation used for homogenising mixtures.
+54887,A workstation used for homogenising mixtures.
+54888,A workstation used for homogenising mixtures.
+54889,A workstation used for homogenising mixtures.
+54890,A workstation used for homogenising mixtures.
+54891,A workstation used for homogenising mixtures.
+54892,A workstation used for crystalising mixtures.
+54893,A workstation used for crystalising mixtures.
+54894,A workstation used for crystalising mixtures.
+54895,A workstation used for crystalising mixtures.
+54896,A workstation used for crystalising mixtures.
+54897,A workstation used for crystalising mixtures.
+54898,A workstation used for crystalising mixtures.
+54899,A workstation used for crystalising mixtures.
+54900,A workstation used for crystalising mixtures.
+54901,A workstation used for crystalising mixtures.
+54902,A workstation used for crystalising mixtures.
+54903,"I can deposit Mox, Aga and Lye pastes into this!"
+54904,Can be used to refine herbs and unfinished potions into useful reagents!
+54905,Some complicated-looking alchemical machinery.
+54906,Some complicated-looking alchemical machinery.
+54907,Some complicated-looking alchemical machinery.
+54908,Some complicated-looking alchemical machinery.
+54909,Mix-maxxing.
+54910,Some complicated-looking alchemical machinery.
+54911,Some complicated-looking alchemical machinery.
+54912,Some complicated-looking alchemical machinery.
+54913,Some complicated-looking alchemical machinery.
+54914,Some complicated-looking alchemical machinery.
+54915,Some complicated-looking alchemical machinery.
+54916,Some complicated-looking alchemical machinery.
+54917,Carries finished products off to the packing area.
+54918,Where the magic happens.
+54919,The mixing vessel. It contains Mammoth-might mix.
+54920,The mixing vessel. It contains Mystic mana amalgam.
+54921,The mixing vessel. It contains Marley's moonlight.
+54922,The mixing vessel. It contains Alco-augmentator.
+54923,The mixing vessel. It contains Aqualux amalgam.
+54924,The mixing vessel. It contains Azure aura mix.
+54925,The mixing vessel. It contains Liplack liquor.
+54926,The mixing vessel. It contains Anti-leech lotion.
+54927,The mixing vessel. It contains Megalite liquid.
+54928,The mixing vessel. It contains Mixalot.
+54933,A handy bank chest.
+54934,A handy bank chest.
+54935,The clusters of plump leaves glisten in the light.
+54936,The clusters of plump leaves glisten in the light.
+54937,The clusters of plump leaves glisten in the light.
+54938,The clusters of plump leaves glisten in the light.
+54939,The clusters of plump leaves glisten in the light.
+54940,The clusters of plump leaves glisten in the light.
+54941,Doesn't look like its ready to be picked yet.
+54942,I should pick this before it goes bad!
+54943,Several shelves of books relating to Varlamorian alchemy.
+54944,Several shelves of books relating to Varlamorian alchemy.
+54945,The way out.
+54946,They lead down below.
+54947,The way out.
+54948,They lead down below.
+54949,Local grain to be used as potion ingredients.
+54950,Cocoa beans to be used as potion ingredients.
+54951,Why does a lab need wine?
+54952,Lots of wine.
+54953,Shelves full of books and old scrolls.
+54954,Shelves full of books and old scrolls.
+54955,Lots of wine.
+54956,Lots of wine.
+54957,Lots of wine.
+54975,The leaves are glistening with luscious health.
+54976,The leaves are glistening with luscious health.
+54977,The leaves are glistening with luscious health.
+54978,The leaves wibble and wobble in the wind.
+54979,The leaves wibble and wobble in the wind.
+54980,The leaves wibble and wobble in the wind.
+54981,It probably needs some water.
+54982,It probably needs some water.
+54983,It probably needs some water.
+54984,It probably needs some water.
+54985,It probably needs some water.
+54986,It probably needs some water.
+54987,It probably needs some water.
+54988,It probably needs some water.
+54989,It probably needs some water.
+54990,A tree in a pot?
+54992,Plants!
+54993,Lots of wine.
+54994,Lots of wine.
+54995,Lots of wine.
+54996,Lots of wine.
+54997,Lots of wine.
+54998,Lots of mushy grapes.
+54999,Lots of mushy grapes.
+55000,Lots of grapes.
+55005,Lots of grapes.
+55006,Lots of grapes.
+55007,Made of wood.
+55008,Made of wood.
+55009,Smells nice.
+55010,Smells nice.
+55011,Smells nice.
+55012,Stained with wine.
+55019,Multiple costumes.
+55020,Lots to wear.
+55021,Lots to wear.
+55022,Multiple costumes.
+55023,Filled to the brim with knowledge.
+55027,Filled to the brim with knowledge.
+55028,Filled to the brim with knowledge.
+55029,Filled to the brim with knowledge.
+55030,Filled to the brim with knowledge.
+55031,Filled to the brim with knowledge.
+55032,The worn pages are crusty and dusty.
+55033,Sitting here will give you splinters.
+55034,Sitting here will give you splinters.
+55035,Packed with crunchy nutrition.
+55036,Comes with wine!
+55037,A wooden stool.
+55038,The handkerchief of giants!
+55039,The handkerchief of giants!
+55040,The handkerchief of giants!
+55041,Only expensive possessions go in here.
+55042,Only expensive possessions go in here.
+55043,Only expensive possessions go in here.
+55044,Only expensive possessions go in here.
+55045,Where could it lead...
+55046,I can climb these stairs.
+55047,The smell of wine is strong from here...
+55048,A crate for storing things.
+55049,Some crates for storing things.
+55050,A sturdy barrel used for storing various liquids.
+55051,A massive barrel of fine wine.
+55052,It's reassuring to see that the bank's spending money wisely.
+55054,Shelves full of books and old scrolls.
+55055,Shelves full of books and old scrolls.
+55056,A privacy aid!
+55057,The ideal thing to sit on.
+55058,Looking good!
+55059,Used by the actors and actresses.
+55060,Helps you look good.
+55062,Disturbingly man-like.
+55063,Will those eggs become baby chicks?
+55064,A nice nest.
+55065,Notes from someone's lab work.
+55066,Keeps the neighbours out!
+55067,Keeps the neighbours out!
+55068,Keeps the neighbours out!
+55074,Is that wine?
+55075,Soggy.
+55076,Perfect to take the load off your feet.
+55077,Looks quite supportive.
+55078,Looks quite supportive.
+55079,Useful for putting things on.
+55080,Useful for putting things on.
+55083,Neatly made up.
+55084,The water looks cold and unwelcoming.
+55085,Looks very safe.
+55086,Looks very safe.
+55087,A big luxurious bed.
+55089,Glory to the beer gods!
+55094,Comfy and soft!
+55095,"Lets see... Yep, those are indeed pillows."
+55096,The door is closed.
+55097,The door is closed.
+55098,Used for observing heavenly bodies.
+55099,A strange campfire with green flames.
+55100,An assortment of items stored on shelves.
+55101,An assortment of items stored on shelves.
+55102,An assortment of items stored on shelves.
+55103,An assortment of items stored on shelves.
+55104,An assortment of items stored on shelves.
+55105,An assortment of items stored on shelves.
+55106,A fern.
+55107,A fern.
+55108,A fern.
+55109,A dry plant.
+55110,A big fern.
+55116,A leafy plant.
+55117,A very leafy plant.
+55118,A small bushy plant.
+55119,A leafy shrub.
+55120,A leafy shrub.
+55121,Full of juicy berries!
+55122,A beautiful pine tree.
+55123,A beautiful pine tree.
+55128,A deposit of rocks.
+55129,A deposit of rocks.
+55130,A deposit of rocks.
+55131,A deposit of rocks.
+55132,It seems as though this cabbage was ditched in a hurry...
+55135,The termites scurry within.
+55136,The termites scurry within.
+55137,The termites scurry within.
+55163,A wooden wheelbarrow.
+55166,Watch your step!
+55173,A bundle of hay. Perfect for a hard landing!
+55174,A bundle of hay. Perfect for a hard landing!
+55177,I should scoop these up.
+55178,Made for climbing!
+55179,Slide down to the ground!
+55180,Watch your step!
+55182,The edge of the platform.
+55184,Watch your step!
+55186,A rope to hang on.
+55188,The edge of the platform.
+55190,Made for climbing!
+55191,Made for climbing!
+55192,The edge of the platform.
+55194,Watch your step!
+55196,A rope to hang on.
+55198,Details some interesting statistics.
+55199,A well equipped buffalo.
+55200,"Not as fancy as a range, but it will do the job."
+55201,Blocks the path up the mountain.
+55202,Blocks the path up the mountain.
+55203,A flag marking a place for people to meet.
+55204,A flag marking a place for people to meet.
+55205,A pile of loose rocks.
+55206,It's blocking the way up.
+55207,The Hueycoatl lurks inside.
+55208,It's blocking the way up.
+55209,It's charging up...
+55210,Emanating powerful magic.
+55211,Absorbing the power of magical protection prayers.
+55212,The engraving seems dormant.
+55213,20% of the engraving is glowing.
+55214,40% of the engraving is glowing.
+55215,60% of the engraving is glowing.
+55216,80% of the engraving is glowing.
+55217,The entire engraving is glowing!
+55218,Emanating powerful magic.
+55219,Absorbing the power of ranged protection prayers.
+55220,The engraving seems dormant.
+55221,20% of the engraving is glowing.
+55222,40% of the engraving is glowing.
+55223,60% of the engraving is glowing.
+55224,80% of the engraving is glowing.
+55225,The entire engraving is glowing!
+55226,Emanating powerful magic.
+55227,Absorbing the power of melee protection prayers.
+55228,The engraving seems dormant.
+55229,20% of the engraving is glowing.
+55230,40% of the engraving is glowing.
+55231,60% of the engraving is glowing.
+55232,80% of the engraving is glowing.
+55233,The entire engraving is glowing!
+55234,I could slide down that.
+55235,A very ornate chest.
+55236,A very ornate chest.
+55237,It's telling me something...
+55238,It's telling me something...
+55239,It's telling me something...
+55240,A dark and frozen cave entrance.
+55241,A dark and frozen cave entrance.
+55242,A dark and frozen cave entrance.
+55243,There's a monster in this mountain...
+55244,There's a monster in this mountain...
+55245,A dark and frozen cave entrance.
+55246,There's a monster in this mountain...
+55247,There's a monster in this mountain...
+55248,A dark and frozen cave entrance.
+55261,A place to seek refuge from the harsh wind and snow.
+55262,Icy to the touch.
+55299,A mysterious and ancient obelisk.
+55300,A mysterious and ancient obelisk.
+55301,A mysterious statue of a hand.
+55302,A mysterious statue of a hand.
+55303,A mysterious statue of a hand.
+55304,Looks like they've been dead a while now...
+55305,They're looking great!
+55306,Lacking sustenance.
+55307,A wrecked longboat.
+55308,A wrecked longboat.
+55309,A wrecked longboat.
+55310,A wrecked longboat.
+55311,A wrecked longboat.
+55320,Take a shot!
+55321,Filled to the brim with knowledge.
+55322,A formidable looking gate.
+55323,A formidable looking gate.
+55330,Used for spinning thread.
+55332,Handy for boarding boats.
+55333,Handy for boarding boats.
+55334,Handy for boarding boats.
+55335,Handy for boarding boats.
+55336,Handy for boarding boats.
+55337,Handy for boarding boats.
+55339,This controls the flow of ale to the barrel.
+55342,A herb is growing in this patch.
+55343,A herb is growing in this patch.
+55344,A herb is growing in this patch.
+55345,A herb is growing in this patch.
+55346,A herb is growing in this patch.
+55347,Some herb seeds have been sown in this patch.
+55348,A herb is growing in this patch.
+55349,A herb is growing in this patch.
+55350,A herb is growing in this patch.
+55351,A fully grown herb.
+55352,Advertise your house here.
+55353,Home sweet home?
+55389,A workstation used for concentrating mixtures.
+55390,A workstation used for homogenising mixtures.
+55391,A workstation used for crystalising mixtures.
+55392,Some complicated-looking alchemical machinery.
+55393,Some complicated-looking alchemical machinery.
+55394,Some complicated-looking alchemical machinery.
+55395,Where the magic happens.
+55402,These control the flow of grain from the hopper to the millstones.
+55406,Shelves full of alchemy equipment.
+55407,Shelves full of alchemy equipment.
+55408,Shelves full of alchemy equipment.
+55409,Shelves full of alchemy equipment.
+55410,A large bubbling cauldron. Smells... Ugh!
+55411,An open crate full of magical mystery rewards.
+55412,An open crate full of magical mystery rewards.
+55413,An open crate full of magical mystery rewards.
+55414,An open crate full of magical mystery rewards.
+55415,An open crate full of magical mystery rewards.
+55416,An open crate full of magical mystery rewards.
+55417,A deposit of rocks.
+55418,A deposit of rocks.
+55419,A deposit of rocks.
+55424,Lots of mushy grapes.
+55425,Lots of mushy grapes.
+55426,Lots of mushy grapes.
+55427,Spooky!
+55428,Spooky!
+55429,Scary!
+55430,Scary!
+55431,Scary!
+55432,Scary!
+55433,Ahhh!
+55434,A relatively spooky decoration.
+55435,A relatively spooky decoration.
+55436,A relatively spooky decoration.
+55437,A relatively spooky decoration.
+55438,An unfortunate outcome of a nasty trick.
+55439,The undead have risen for snacks.
+55440,Scary!
+55441,Scary!
+55442,Scary!
+55443,Scary!
+55444,Scary!
+55445,Boo!
+55446,Boo!
+55447,Boo!
+55448,Boo!
+55449,Boo!
+55450,Ahhh!
+55451,Ahhh!
+55452,Ahhh!
+55453,Ahhh!
+55454,Ahhh!
+55455,Ahhh!
+55456,Ahhh!
+55457,Ahhh!
+55458,Ahhh!
+55459,Ahhh!
+55460,Ahhh!
+55461,Ahhh!
+55462,Ahhh!
+55463,Ahhh!
+55464,Big turnips.
+55465,Big turnips.
+55466,Big turnips.
+55467,Big turnips.
+55468,Big turnips.
+55469,Big turnips.
+55470,Big turnips.
+55471,Big turnips.
+55472,Big turnips.
+55473,Big turnips.
+55474,Big turnips.
+55475,Big turnips.
+55476,Sticky.
+55477,Are those real?
+55478,Webby.
+55479,They seem hungry.
+55480,Webby.
+55481,Opinion of crows: Get them off me!
+55482,Opinion of crows: There's lots of good eating on them.
+55483,Opinion of crows: ...
+55484,"Opinion of crows: I love them, they're so clever and fluffy!"
+55485,Opinion of crows: Haha! They tickle!
+55486,Opinion of crows: I cannot believe them. They can't be real.
+55487,Opinion of crows: Absolutely seething at their disrespect of fields.
+55488,Opinion of crows: Look how they massacred my field!
+55489,Opinion of crows: I can't summon the strength to care.
+55490,Opinion of crows: Get them off me!
+55491,Opinion of crows: There's lots of good eating on them.
+55492,Opinion of crows: ...
+55493,"Opinion of crows: I love them, they're so clever and fluffy!"
+55494,Opinion of crows: Haha! They tickle!
+55495,Opinion of crows: I cannot believe them. They can't be real.
+55496,Opinion of crows: Absolutely seething at their disrespect of fields.
+55497,Opinion of crows: Look how they massacred my field!
+55498,Opinion of crows: I can't summon the strength to care.
+55499,Opinion of crows: Get them off me!
+55500,Opinion of crows: There's lots of good eating on them.
+55501,Opinion of crows: ...
+55502,"Opinion of crows: I love them, they're so clever and fluffy!"
+55503,Opinion of crows: Haha! They tickle!
+55504,Opinion of crows: I cannot believe them. They can't be real.
+55505,Opinion of crows: Absolutely seething at their disrespect of fields.
+55506,Opinion of crows: Look how they massacred my field!
+55507,Opinion of crows: I can't summon the strength to care.
+55508,Opinion of crows: Get them off me!
+55509,Opinion of crows: There's lots of good eating on them.
+55510,Opinion of crows: ...
+55511,"Opinion of crows: I love them, they're so clever and fluffy!"
+55512,Opinion of crows: Haha! They tickle!
+55513,Opinion of crows: I cannot believe them. They can't be real.
+55514,Opinion of crows: Absolutely seething at their disrespect of fields.
+55515,Opinion of crows: Look how they massacred my field!
+55516,Opinion of crows: I can't summon the strength to care.
+55517,Opinion of crows: Get them off me!
+55518,Opinion of crows: There's lots of good eating on them.
+55519,Opinion of crows: ...
+55520,"Opinion of crows: I love them, they're so clever and fluffy!"
+55521,Opinion of crows: Haha! They tickle!
+55522,Opinion of crows: I cannot believe them. They can't be real.
+55523,Opinion of crows: Absolutely seething at their disrespect of fields.
+55524,Opinion of crows: Look how they massacred my field!
+55525,Opinion of crows: I can't summon the strength to care.
+55526,Opinion of crows: Get them off me!
+55527,Opinion of crows: There's lots of good eating on them.
+55528,Opinion of crows: ...
+55529,"Opinion of crows: I love them, they're so clever and fluffy!"
+55530,Opinion of crows: Haha! They tickle!
+55531,Opinion of crows: I cannot believe them. They can't be real.
+55532,Opinion of crows: Absolutely seething at their disrespect of fields.
+55533,Opinion of crows: Look how they massacred my field!
+55534,Opinion of crows: I can't summon the strength to care.
+55535,Opinion of crows: Get them off me!
+55536,Opinion of crows: There's lots of good eating on them.
+55537,Opinion of crows: ...
+55538,"Opinion of crows: I love them, they're so clever and fluffy!"
+55539,Opinion of crows: Haha! They tickle!
+55540,Opinion of crows: I cannot believe them. They can't be real.
+55541,Opinion of crows: Absolutely seething at their disrespect of fields.
+55542,Opinion of crows: Look how they massacred my field!
+55543,Opinion of crows: I can't summon the strength to care.
+55544,Opinion of crows: Get them off me!
+55545,Opinion of crows: There's lots of good eating on them.
+55546,Opinion of crows: ...
+55547,"Opinion of crows: I love them, they're so clever and fluffy!"
+55548,Opinion of crows: Haha! They tickle!
+55549,Opinion of crows: I cannot believe them. They can't be real.
+55550,Opinion of crows: Absolutely seething at their disrespect of fields.
+55551,Opinion of crows: Look how they massacred my field!
+55552,Opinion of crows: I can't summon the strength to care.
+55553,Opinion of crows: Get them off me!
+55554,Opinion of crows: There's lots of good eating on them.
+55555,Opinion of crows: ...
+55556,"Opinion of crows: I love them, they're so clever and fluffy!"
+55557,Opinion of crows: Haha! They tickle!
+55558,Opinion of crows: I cannot believe them. They can't be real.
+55559,Opinion of crows: Absolutely seething at their disrespect of fields.
+55560,Opinion of crows: Look how they massacred my field!
+55561,Opinion of crows: I can't summon the strength to care.
+55562,Opinion of crows: Get them off me!
+55563,Opinion of crows: There's lots of good eating on them.
+55564,Opinion of crows: ...
+55565,"Opinion of crows: I love them, they're so clever and fluffy!"
+55566,Opinion of crows: Haha! They tickle!
+55567,Opinion of crows: I cannot believe them. They can't be real.
+55568,Opinion of crows: Absolutely seething at their disrespect of fields.
+55569,Opinion of crows: Look how they massacred my field!
+55570,Opinion of crows: I can't summon the strength to care.
+55571,Opinion of crows: Get them off me!
+55572,Opinion of crows: There's lots of good eating on them.
+55573,Opinion of crows: ...
+55574,"Opinion of crows: I love them, they're so clever and fluffy!"
+55575,Opinion of crows: Haha! They tickle!
+55576,Opinion of crows: I cannot believe them. They can't be real.
+55577,Opinion of crows: Absolutely seething at their disrespect of fields.
+55578,Opinion of crows: Look how they massacred my field!
+55579,Opinion of crows: I can't summon the strength to care.
+55580,Opinion of crows: Get them off me!
+55581,Opinion of crows: There's lots of good eating on them.
+55582,Opinion of crows: ...
+55583,"Opinion of crows: I love them, they're so clever and fluffy!"
+55584,Opinion of crows: Haha! They tickle!
+55585,Opinion of crows: I cannot believe them. They can't be real.
+55586,Opinion of crows: Absolutely seething at their disrespect of fields.
+55587,Opinion of crows: Look how they massacred my field!
+55588,Opinion of crows: I can't summon the strength to care.
+55589,Opinion of crows: Get them off me!
+55590,Opinion of crows: There's lots of good eating on them.
+55591,Opinion of crows: ...
+55592,"Opinion of crows: I love them, they're so clever and fluffy!"
+55593,Opinion of crows: Haha! They tickle!
+55594,Opinion of crows: I cannot believe them. They can't be real.
+55595,Opinion of crows: Absolutely seething at their disrespect of fields.
+55596,Opinion of crows: Look how they massacred my field!
+55597,Opinion of crows: I can't summon the strength to care.
+55598,Opinion of crows: Get them off me!
+55599,Opinion of crows: There's lots of good eating on them.
+55600,Opinion of crows: ...
+55601,"Opinion of crows: I love them, they're so clever and fluffy!"
+55602,Opinion of crows: Haha! They tickle!
+55603,Opinion of crows: I cannot believe them. They can't be real.
+55604,Opinion of crows: Absolutely seething at their disrespect of fields.
+55605,Opinion of crows: Look how they massacred my field!
+55606,Opinion of crows: I can't summon the strength to care.
+55607,That is a lovely beige pumpkin plant.
+55608,That is a lovely white pumpkin plant.
+55609,That is a lovely yellow pumpkin plant.
+55610,That is a lovely orange pumpkin plant.
+55611,That is a lovely red pumpkin plant.
+55612,That is a lovely dark green pumpkin plant.
+55613,That is a lovely powder grey pumpkin plant.
+55614,That is a lovely beige pumpkin seedling.
+55615,That is a lovely white pumpkin seedling.
+55616,That is a lovely yellow pumpkin seedling.
+55617,That is a lovely orange pumpkin seedling.
+55618,That is a lovely red pumpkin seedling.
+55619,That is a lovely dark green pumpkin seedling.
+55620,That is a lovely powder grey pumpkin seedling.
+55621,"There is nothing there, but it could look nice with a pumpkin plant."
+55638,A bin for storing pumpkins.
+55639,A bin for storing pumpkins.
+55640,A bin for storing pumpkins.
+55641,For carving pumpkins.
+55642,For carving pumpkins.
+55643,That's a lot of mess you just made.
+55644,It's missing something to be quite scary enough.
+55645,Opinion of crows: Get them off me!
+55646,Opinion of crows: There's lots of good eating on them.
+55647,Opinion of crows: ...
+55648,"Opinion of crows: I love them, they're so clever and fluffy!"
+55649,Opinion of crows: Haha! They tickle!
+55650,Opinion of crows: I cannot believe them. They can't be real.
+55651,Opinion of crows: Absolutely seething at their disrespect of fields.
+55652,Opinion of crows: Look how they massacred my field!
+55653,Opinion of crows: I can't summon the strength to care.
+55654,Opinion of crows: Get them off me!
+55655,Opinion of crows: There's lots of good eating on them.
+55656,Opinion of crows: ...
+55657,"Opinion of crows: I love them, they're so clever and fluffy!"
+55658,Opinion of crows: Haha! They tickle!
+55659,Opinion of crows: I cannot believe them. They can't be real.
+55660,Opinion of crows: Absolutely seething at their disrespect of fields.
+55661,Opinion of crows: Look how they massacred my field!
+55662,Opinion of crows: I can't summon the strength to care.
+55663,Opinion of crows: Get them off me!
+55664,Opinion of crows: There's lots of good eating on them.
+55665,Opinion of crows: ...
+55666,"Opinion of crows: I love them, they're so clever and fluffy!"
+55667,Opinion of crows: Haha! They tickle!
+55668,Opinion of crows: I cannot believe them. They can't be real.
+55669,Opinion of crows: Absolutely seething at their disrespect of fields.
+55670,Opinion of crows: Look how they massacred my field!
+55671,Opinion of crows: I can't summon the strength to care.
+55672,Opinion of crows: Get them off me!
+55673,Opinion of crows: There's lots of good eating on them.
+55674,Opinion of crows: ...
+55675,"Opinion of crows: I love them, they're so clever and fluffy!"
+55676,Opinion of crows: Haha! They tickle!
+55677,Opinion of crows: I cannot believe them. They can't be real.
+55678,Opinion of crows: Absolutely seething at their disrespect of fields.
+55679,Opinion of crows: Look how they massacred my field!
+55680,Opinion of crows: I can't summon the strength to care.
+55681,Opinion of crows: Get them off me!
+55682,Opinion of crows: There's lots of good eating on them.
+55683,Opinion of crows: ...
+55684,"Opinion of crows: I love them, they're so clever and fluffy!"
+55685,Opinion of crows: Haha! They tickle!
+55686,Opinion of crows: I cannot believe them. They can't be real.
+55687,Opinion of crows: Absolutely seething at their disrespect of fields.
+55688,Opinion of crows: Look how they massacred my field!
+55689,Opinion of crows: I can't summon the strength to care.
+55690,Opinion of crows: Get them off me!
+55691,Opinion of crows: There's lots of good eating on them.
+55692,Opinion of crows: ...
+55693,"Opinion of crows: I love them, they're so clever and fluffy!"
+55694,Opinion of crows: Haha! They tickle!
+55695,Opinion of crows: I cannot believe them. They can't be real.
+55696,Opinion of crows: Absolutely seething at their disrespect of fields.
+55697,Opinion of crows: Look how they massacred my field!
+55698,Opinion of crows: I can't summon the strength to care.
+55699,Opinion of crows: Get them off me!
+55700,Opinion of crows: There's lots of good eating on them.
+55701,Opinion of crows: ...
+55702,"Opinion of crows: I love them, they're so clever and fluffy!"
+55703,Opinion of crows: Haha! They tickle!
+55704,Opinion of crows: I cannot believe them. They can't be real.
+55705,Opinion of crows: Absolutely seething at their disrespect of fields.
+55706,Opinion of crows: Look how they massacred my field!
+55707,Opinion of crows: I can't summon the strength to care.
+55708,Opinion of crows: Get them off me!
+55709,Opinion of crows: There's lots of good eating on them.
+55710,Opinion of crows: ...
+55711,"Opinion of crows: I love them, they're so clever and fluffy!"
+55712,Opinion of crows: Haha! They tickle!
+55713,Opinion of crows: I cannot believe them. They can't be real.
+55714,Opinion of crows: Absolutely seething at their disrespect of fields.
+55715,Opinion of crows: Look how they massacred my field!
+55716,Opinion of crows: I can't summon the strength to care.
+55717,Opinion of crows: Get them off me!
+55718,Opinion of crows: There's lots of good eating on them.
+55719,Opinion of crows: ...
+55720,"Opinion of crows: I love them, they're so clever and fluffy!"
+55721,Opinion of crows: Haha! They tickle!
+55722,Opinion of crows: I cannot believe them. They can't be real.
+55723,Opinion of crows: Absolutely seething at their disrespect of fields.
+55724,Opinion of crows: Look how they massacred my field!
+55725,Opinion of crows: I can't summon the strength to care.
+55726,Opinion of crows: Get them off me!
+55727,Opinion of crows: There's lots of good eating on them.
+55728,Opinion of crows: ...
+55729,"Opinion of crows: I love them, they're so clever and fluffy!"
+55730,Opinion of crows: Haha! They tickle!
+55731,Opinion of crows: I cannot believe them. They can't be real.
+55732,Opinion of crows: Absolutely seething at their disrespect of fields.
+55733,Opinion of crows: Look how they massacred my field!
+55734,Opinion of crows: I can't summon the strength to care.
+55735,Opinion of crows: Get them off me!
+55736,Opinion of crows: There's lots of good eating on them.
+55737,Opinion of crows: ...
+55738,"Opinion of crows: I love them, they're so clever and fluffy!"
+55739,Opinion of crows: Haha! They tickle!
+55740,Opinion of crows: I cannot believe them. They can't be real.
+55741,Opinion of crows: Absolutely seething at their disrespect of fields.
+55742,Opinion of crows: Look how they massacred my field!
+55743,Opinion of crows: I can't summon the strength to care.
+55744,Opinion of crows: Get them off me!
+55745,Opinion of crows: There's lots of good eating on them.
+55746,Opinion of crows: ...
+55747,"Opinion of crows: I love them, they're so clever and fluffy!"
+55748,Opinion of crows: Haha! They tickle!
+55749,Opinion of crows: I cannot believe them. They can't be real.
+55750,Opinion of crows: Absolutely seething at their disrespect of fields.
+55751,Opinion of crows: Look how they massacred my field!
+55752,Opinion of crows: I can't summon the strength to care.
+55753,Opinion of crows: Get them off me!
+55754,Opinion of crows: There's lots of good eating on them.
+55755,Opinion of crows: ...
+55756,"Opinion of crows: I love them, they're so clever and fluffy!"
+55757,Opinion of crows: Haha! They tickle!
+55758,Opinion of crows: I cannot believe them. They can't be real.
+55759,Opinion of crows: Absolutely seething at their disrespect of fields.
+55760,Opinion of crows: Look how they massacred my field!
+55761,Opinion of crows: I can't summon the strength to care.
+55762,Opinion of crows: Get them off me!
+55763,Opinion of crows: There's lots of good eating on them.
+55764,Opinion of crows: ...
+55765,"Opinion of crows: I love them, they're so clever and fluffy!"
+55766,Opinion of crows: Haha! They tickle!
+55767,Opinion of crows: I cannot believe them. They can't be real.
+55768,Opinion of crows: Absolutely seething at their disrespect of fields.
+55769,Opinion of crows: Look how they massacred my field!
+55770,Opinion of crows: I can't summon the strength to care.
+55771,Spooky.
+55774,Disturbingly man-like.
+55775,Here is recorded for posterity all the times I robbed this place.
+55777,A large pedestal.
+55778,A pool of venomous liquid.
+55779,It looks like something is down there.
+55780,A massive pile of rubble.
+55781,A massive pile of rubble.
+55782,A massive pile of rubble.
+55783,A massive pile of rubble.
+55785,They lead deeper into the mastaba.
+55786,They lead back to the upper level of the mastaba.
+55787,A mural consisting of ancient drawings and hieroglyphs.
+55788,A mural consisting of ancient drawings and hieroglyphs.
+55789,A mural consisting of ancient drawings and hieroglyphs.
+55790,A mural consisting of ancient drawings and hieroglyphs.
+55791,A mural consisting of ancient drawings and hieroglyphs.
+55792,A mural consisting of ancient drawings and hieroglyphs.
+55793,A mural consisting of ancient drawings and hieroglyphs.
+55794,A mural consisting of ancient drawings and hieroglyphs.
+55795,A mural consisting of ancient drawings and hieroglyphs.
+55796,Filled with canopic jars.
+55797,It wobbles very suspiciously.
+55798,It wobbles very suspiciously.
+55799,It wobbles very suspiciously.
+55800,It wobbles very suspiciously.
+55801,It wobbles very suspiciously.
+55802,It wobbles very suspiciously.
+55803,It wobbles very suspiciously.
+55804,It wobbles very suspiciously.
+55807,Loot!
+55808,The statue of Het is holding out an Echo pickaxe.
+55809,The statue of Het is holding out a trailblazer reloaded pickaxe.
+55810,"Wait, isn't it my echo pickaxe?"
+55811,"Wait, isn't it my trailblazer reloaded pickaxe?"
+55812,The kalphite queen's old legs.
+55813,Looks toxic.
+55814,To be struck in times of conflict.
+55815,A limestone pedestal with a bronze trophy from the Raging Echoes League.
+55816,A limestone pedestal with an iron trophy from the Raging Echoes League.
+55817,A limestone pedestal with a steel trophy from the Raging Echoes League.
+55818,A limestone pedestal with a mithril trophy from the Raging Echoes League.
+55819,A limestone pedestal with an adamant trophy from the Raging Echoes League.
+55820,A limestone pedestal with a rune trophy from the Raging Echoes League.
+55821,A limestone pedestal with a dragon trophy from the Raging Echoes League.
+55822,A marble pedestal with a bronze trophy from the Raging Echoes League.
+55823,A marble pedestal with an iron trophy from the Raging Echoes League.
+55824,A marble pedestal with a steel trophy from the Raging Echoes League.
+55825,A marble pedestal with a mithril trophy from the Raging Echoes League.
+55826,A marble pedestal with an adamant trophy from the Raging Echoes League.
+55827,A marble pedestal with a rune trophy from the Raging Echoes League.
+55828,A marble pedestal with a dragon trophy from the Raging Echoes League.
+55829,A limestone pedestal with a bronze trophy from the Raging Echoes League.
+55830,A limestone pedestal with an iron trophy from the Raging Echoes League.
+55831,A limestone pedestal with a steel trophy from the Raging Echoes League.
+55832,A limestone pedestal with a mithril trophy from the Raging Echoes League.
+55833,A limestone pedestal with an adamant trophy from the Raging Echoes League.
+55834,A limestone pedestal with a rune trophy from the Raging Echoes League.
+55835,A limestone pedestal with a dragon trophy from the Raging Echoes League.
+55836,A marble pedestal with a bronze trophy from the Raging Echoes League.
+55837,A marble pedestal with an iron trophy from the Raging Echoes League.
+55838,A marble pedestal with a steel trophy from the Raging Echoes League.
+55839,A marble pedestal with a mithril trophy from the Raging Echoes League.
+55840,A marble pedestal with an adamant trophy from the Raging Echoes League.
+55841,A marble pedestal with a rune trophy from the Raging Echoes League.
+55842,A marble pedestal with a dragon trophy from the Raging Echoes League.
+55843,A limestone pedestal with a bronze trophy from the Raging Echoes League.
+55844,A limestone pedestal with an iron trophy from the Raging Echoes League.
+55845,A limestone pedestal with a steel trophy from the Raging Echoes League.
+55846,A limestone pedestal with a mithril trophy from the Raging Echoes League.
+55847,A limestone pedestal with an adamant trophy from the Raging Echoes League.
+55848,A limestone pedestal with a rune trophy from the Raging Echoes League.
+55849,A limestone pedestal with a dragon trophy from the Raging Echoes League.
+55850,A marble pedestal with a bronze trophy from the Raging Echoes League.
+55851,A marble pedestal with an iron trophy from the Raging Echoes League.
+55852,A marble pedestal with a steel trophy from the Raging Echoes League.
+55853,A marble pedestal with a mithril trophy from the Raging Echoes League.
+55854,A marble pedestal with an adamant trophy from the Raging Echoes League.
+55855,A marble pedestal with a rune trophy from the Raging Echoes League.
+55856,A marble pedestal with a dragon trophy from the Raging Echoes League.
+55857,A stand displaying a banner from Leagues V - Raging Echoes.
+55858,An ornate stand displaying a banner from Leagues V - Raging Echoes.
+55859,An oak outfit stand displaying a set of Raging Echo Relic Hunter (T1)
+55860,An oak outfit stand displaying a set of Raging Echo Relic Hunter (T2)
+55861,An oak outfit stand displaying a set of Raging Echo Relic Hunter (T3)
+55862,A mahogany outfit stand displaying a set of Raging Echo Relic Hunter (T1)
+55863,A mahogany outfit stand displaying a set of Raging Echo Relic Hunter (T2)
+55864,A mahogany outfit stand displaying a set of Raging Echo Relic Hunter (T3)
+55865,Hot!
+55866,A strange waystone.
+55867,A strange energy can be felt here...
+55868,A strange energy can be felt here...
+55869,A strange energy can be felt here...
+55870,A strange energy can be felt here...
+55871,A strange energy can be felt here...
+55872,A strange energy can be felt here...
+55873,A strange energy can be felt here...
+55874,A notice board detailing some information.
+55875,Strange vines have blocked the way through...
+55876,Strange roots are growing here.
+55877,Strange roots are growing here.
+55878,Large rocks.
+55879,Large rocks.
+55880,A wide rock.
+55881,A small rock.
+55882,A strange archway.
+55883,A strange archway.
+55884,A strange archway.
+55885,A strange archway.
+55886,A strange archway.
+55887,A strange archway.
+55888,A strange archway.
+55889,A strange archway.
+55890,A strange waystone.
+55891,A strange waystone.
+55892,A strange waystone.
+55893,A strange waystone.
+55894,A strange waystone.
+55895,A strange waystone.
+55896,A strange waystone.
+55897,A strange waystone.
+55898,A strange waystone.
+55899,A strange waystone.
+55900,A strange waystone.
+55901,Home sweet home?
+55902,A gateway to your dreams.
+55903,A young sentient tree surrounded by a fairy ring.
+55904,A rug adorned with the icon of Raging Echoes.
+55905,A fearsome yet stylish souvenir from Leagues V: Raging Echoes.
+55906,A fearsome yet stylish souvenir from Leagues V: Raging Echoes.
+55907,It harnesses the power of Raging Echoes.
+55908,The curtain is open.
+55909,Lightning and brimstone.
+55913,A beautiful old oak.
+55914,One of the most common trees in Gielinor.
+55915,A commonly found tree.
+55916,So bushy.
+55919,Tastes like peppermint!
+55921,Tastes like peppermint!
+55923,Tastes like peppermint!
+55925,Tastes like peppermint!
+55927,Tastes like peppermint!
+55929,Tastes like peppermint!
+55931,Smells magical.
+55932,How jingly.
+55933,Tastes like cool mint!
+55935,Tastes like cool mint!
+55937,Tastes like cool mint!
+55939,Tastes like cool mint!
+55941,Tastes like cool mint!
+55943,Tastes like cool mint!
+55944,Smells magical.
+55945,How jingly.
+55952,A fire burns cosily in the grate.
+55953,A pretty wintumber tree.
+55954,A pretty wintumber tree.
+55955,Is this the biggest flower around?
+55956,These are huge!
+55957,These are trampled!
+55958,These are trampled!
+55959,Not facing the sun anymore.
+55963,Someone has been trying to find the moles.
+55965,Tastes like cool mint!
+55966,Tastes like peppermint!
+55967,Which of the dogs now has fresh breath?
+55968,They have suspicious teeth marks.
+55971,Festive Holly.

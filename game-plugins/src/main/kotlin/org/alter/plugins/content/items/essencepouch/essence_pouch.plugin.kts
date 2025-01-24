@@ -2,25 +2,26 @@ package org.alter.plugins.content.items.other.essencepouch
 
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.getItems
+import org.alter.rscm.RSCM.getRSCM
 
 /**
  * The set of essence pouch definitions
  */
 private val pouches =
     setOf(
-        EssencePouch(id = Items.SMALL_POUCH, levelReq = 1, capacity = 3),
-        EssencePouch(id = Items.MEDIUM_POUCH, levelReq = 25, capacity = 6),
-        EssencePouch(id = Items.LARGE_POUCH, levelReq = 50, capacity = 9),
-        EssencePouch(id = Items.GIANT_POUCH, levelReq = 75, capacity = 12),
+        EssencePouch(id = "item.small_pouch", levelReq = 1, capacity = 3),
+        EssencePouch(id = "item.medium_pouch", levelReq = 25, capacity = 6),
+        EssencePouch(id = "item.large_pouch", levelReq = 50, capacity = 9),
+        EssencePouch(id = "item.giant_pouch", levelReq = 75, capacity = 12),
     )
 
 /**
  * Bind item option events for the various essence pouches
  */
 pouches.forEach { pouch ->
-    on_item_option(item = pouch.id, option = "fill") { fillPouch(player, pouch) }
-    on_item_option(item = pouch.id, option = "empty") { emptyPouch(player) }
-    on_item_option(item = pouch.id, option = "check") { checkPouch(player) }
+    onItemOption(item = pouch.id, option = "fill") { fillPouch(player, pouch) }
+    onItemOption(item = pouch.id, option = "empty") { emptyPouch(player) }
+    onItemOption(item = pouch.id, option = "check") { checkPouch(player) }
 }
 
 /**
@@ -85,13 +86,13 @@ fun fillPouch(
         return
     }
 
-    if (!inventory.containsAny(Items.PURE_ESSENCE, Items.RUNE_ESSENCE)) {
+    if (!inventory.containsAny("item.pure_essence", "item.rune_essence")) {
         player.message("You do not have any essence to fill your pouch with.")
         return
     }
 
-    val essence = if (inventory.contains(Items.PURE_ESSENCE)) Items.PURE_ESSENCE else Items.RUNE_ESSENCE
-    deposit(pouch = item, container = player.inventory, essence = essence, def = pouch)
+    val essence = if (inventory.contains(getRSCM("item.pure_essence"))) "item.pure_essence" else "item.rune_essence"
+    deposit(pouch = item, container = player.inventory, essence = getRSCM(essence), def = pouch)
 }
 
 /**
@@ -106,7 +107,7 @@ fun emptyPouch(player: Player) {
     val count = pouch.getAttr(ItemAttribute.ATTACHED_ITEM_COUNT) ?: 0
     val inventory = player.inventory
 
-    if (item != Items.RUNE_ESSENCE && item != Items.PURE_ESSENCE || count <= 0) {
+    if (item != getRSCM("item.rune_essence") && item != getRSCM("item.pure_essence") || count <= 0) {
         player.message("There are no essences in this pouch.")
         return
     }
@@ -139,7 +140,7 @@ fun checkPouch(player: Player) {
     val item = pouch.getAttr(ItemAttribute.ATTACHED_ITEM_ID) ?: -1
     val count = pouch.getAttr(ItemAttribute.ATTACHED_ITEM_COUNT) ?: 0
 
-    if (item != Items.RUNE_ESSENCE && item != Items.PURE_ESSENCE || count <= 0) {
+    if (item != getRSCM("item.rune_essence") && item != getRSCM("item.pure_essence") || count <= 0) {
         player.message("There are no essences in this pouch.")
         return
     }

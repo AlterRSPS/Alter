@@ -2,18 +2,15 @@ package org.alter.plugins.content.commands.commands.developer
 
 import org.alter.game.model.attr.CHANGE_LOGGING
 import org.alter.game.model.priv.Privilege
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
 
-on_command("getvarbit", Privilege.DEV_POWER, description = "Get varbit state") {
+onCommand("getvarbit", Privilege.DEV_POWER, description = "Get varbit state") {
     val args = player.getCommandArgs()
-    tryWithUsage(player, args, "Invalid format! Example of proper command <col=801700>::getvarbit 5451</col>") { values ->
-        val varbit = values[0].toInt()
-        val state = player.getVarbit(varbit)
-        player.message("Get varbit (<col=801700>$varbit</col>): <col=801700>$state</col>")
-    }
+    val varbit = args[0].toInt()
+    val state = player.getVarbit(varbit)
+    player.message("Get varbit (<col=801700>$varbit</col>): <col=801700>$state</col>")
 }
 
-on_command(
+onCommand(
     "logchanges",
     Privilege.DEV_POWER,
     description = "Will log all varbits/varps when it gets changed you will see in-game messages.",

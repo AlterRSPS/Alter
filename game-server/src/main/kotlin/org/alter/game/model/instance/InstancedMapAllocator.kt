@@ -9,6 +9,7 @@ import org.alter.game.model.entity.DynamicObject
 import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Player
 import org.alter.game.model.entity.StaticObject
+import org.alter.game.model.move.moveTo
 import org.alter.game.model.region.Chunk
 
 /**
@@ -52,15 +53,15 @@ class InstancedMapAllocator {
         val totalTiles = chunks.regionSize * Chunk.REGION_SIZE
 
         for (x in area.bottomLeftX until area.topRightX step step) {
-            for (z in area.bottomLeftZ until area.topRightZ step step) {
+            for (y in area.bottomLeftY until area.topRightY step step) {
                 /*
-                 * If a map is already allocated in [x,z], we move on.
+                 * If a map is already allocated in [x,y], we move on.
                  */
-                if (maps.any { it.area.contains(x, z) || it.area.contains(x + totalTiles - 1, z + totalTiles - 1) }) {
+                if (maps.any { it.area.contains(x, y) || it.area.contains(x + totalTiles - 1, y + totalTiles - 1) }) {
                     continue
                 }
 
-                val map = allocate(x, z, chunks, configs)
+                val map = allocate(x, y, chunks, configs)
                 applyCollision(world, map, configs.bypassObjectChunkBounds)
                 maps.add(map)
                 return map
@@ -72,12 +73,12 @@ class InstancedMapAllocator {
 
     private fun allocate(
         x: Int,
-        z: Int,
+        y: Int,
         chunks: InstancedChunkSet,
         configs: InstancedMapConfiguration,
     ): InstancedMap =
         InstancedMap(
-            Area(x, z, x + chunks.regionSize * Chunk.REGION_SIZE, z + chunks.regionSize * Chunk.REGION_SIZE),
+            Area(x, y, x + chunks.regionSize * Chunk.REGION_SIZE, y + chunks.regionSize * Chunk.REGION_SIZE),
             chunks,
             configs.exitTile,
             configs.owner,
@@ -261,7 +262,7 @@ class InstancedMapAllocator {
          * [Instance support]: the amount of instances the world can support at a time,
          * assuming every map is 64x64 in size, which isn't always the case.
          */
-        private val VALID_AREA = Area(bottomLeftX = 6400, bottomLeftZ = 0, topRightX = 9600, topRightZ = 6400)
+        private val VALID_AREA = Area(bottomLeftX = 6400, bottomLeftY = 0, topRightX = 9600, topRightY = 6400)
 
         /**
          * The amount of game cycles that must go by before scanning the active

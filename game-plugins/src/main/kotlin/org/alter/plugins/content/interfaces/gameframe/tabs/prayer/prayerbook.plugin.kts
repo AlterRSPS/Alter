@@ -6,7 +6,7 @@ package org.alter.plugins.content.interfaces.prayerbook
  *
  */
 
-on_command("prayerbook") {
+onCommand("prayerbook") {
     // player.setVarbit(14826) // 0 = For normal prayer book , 1 = for the new book
     // ClientScript(id = 2158)
     // ClientScript(id = 915, converted = [5], raw = [5], types = [i])

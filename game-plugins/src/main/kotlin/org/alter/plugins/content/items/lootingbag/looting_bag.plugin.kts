@@ -6,6 +6,7 @@ import org.alter.api.CommonClientScripts
 import org.alter.api.ext.runClientScript
 import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
+import org.alter.rscm.RSCM.getRSCM
 import org.alter.plugins.service.marketvalue.ItemMarketValueService
 
 val CONTAINER_KEY = ContainerKey("looting_bag", capacity = 28, stackType = ContainerStackType.NORMAL)
@@ -15,73 +16,73 @@ val TAB_INTERFACE_ID = 81
 
 val VALUE_TEXT_COMPONENT = 6
 
-register_container_key(CONTAINER_KEY) // Mark key as needing to be de-serialized on log-in.
+registerContainerKey(CONTAINER_KEY) // Mark key as needing to be de-serialized on log-in.
 
-on_login {
+onLogin {
     /**
      * If a player has a looting bag when they log in, we need to send the item
      * container. If you open a bank before checking/depositing an item
      * in your looting bag, the bag won't have the "view" option on it.
      */
-    if (player.inventory.containsAny(Items.LOOTING_BAG, Items.LOOTING_BAG_22586)) {
+    if (player.inventory.containsAny("item.looting_bag", "item.looting_bag_22586")) {
         val container = player.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(CONTAINER_KEY) }
         player.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
     }
 }
 
-on_global_item_pickup {
-    if (player.inventory.contains(Items.LOOTING_BAG_22586) && player.inWilderness()) {
-        val inventoryTransaction = player.attr[GROUNDITEM_PICKUP_TRANSACTION]?.get() ?: return@on_global_item_pickup
+onGlobalItemPickup {
+    if (player.inventory.contains(getRSCM("item.looting_bag_22586")) && player.inWilderness()) {
+        val inventoryTransaction = player.attr[GROUNDITEM_PICKUP_TRANSACTION]?.get() ?: return@onGlobalItemPickup
         val transactionItem = inventoryTransaction.items.first()
         store(player, transactionItem.item, transactionItem.item.amount, transactionItem.slot)
     }
 }
 
-on_item_option(Items.LOOTING_BAG, "open") {
-    val slott = player.inventory.getItemIndex(Items.LOOTING_BAG, false)
+onItemOption("item.looting_bag", "open") {
+    val slott = player.inventory.getItemIndex("item.looting_bag", false)
     open(player, slott)
     player.message("You open your looting bag, ready to fill it.")
 }
 
-on_item_option(Items.LOOTING_BAG_22586, "close") {
-    val slott = player.inventory.getItemIndex(Items.LOOTING_BAG_22586, false)
+onItemOption("item.looting_bag_22586", "close") {
+    val slott = player.inventory.getItemIndex("item.looting_bag_22586", false)
     close(player, slott)
     player.message("You close your looting bag.")
 }
 
-arrayOf(Items.LOOTING_BAG, Items.LOOTING_BAG_22586).forEach { bag ->
-    on_item_option(bag, "check") {
+arrayOf("item.looting_bag", "item.looting_bag_22586").forEach { bag ->
+    onItemOption(bag, "check") {
         check(player)
     }
 
-    on_item_option(bag, "deposit") {
+    onItemOption(bag, "deposit") {
         deposit(player)
     }
 
-    on_item_option(bag, "settings") {
+    onItemOption(bag, "settings") {
         settings(player)
     }
 
     canDropItem(bag) {
         val slot = player.attr[INTERACTING_ITEM_SLOT] ?: return@canDropItem false
-
+        val itmID = getRSCM(bag)
         player.queue {
             val container = player.containers[CONTAINER_KEY]
             val destroy =
                 destroyItem(
                     note = if (container != null && container.hasAny) "If you destroy it, the contents will be lost." else "The bag is empty. Are you sure you want to destroy it?",
-                    item = bag,
+                    item = itmID,
                     amount = 1,
                 )
             if (destroy) {
-                player.inventory.remove(item = bag, amount = 1, beginSlot = slot)
+                player.inventory.remove(item = itmID, amount = 1, beginSlot = slot)
             }
         }
         return@canDropItem false
     }
 }
 
-on_button(interfaceId = TAB_INTERFACE_ID, component = 5) {
+onButton(interfaceId = TAB_INTERFACE_ID, component = 5) {
     val slot = player.getInteractingSlot()
     when (player.getInteractingOption()) {
         1 -> store(player, slot = slot, amount = 1)
@@ -90,11 +91,11 @@ on_button(interfaceId = TAB_INTERFACE_ID, component = 5) {
         4 -> player.queue { store(player, slot = slot, amount = inputInt()) }
         5 -> {
             val container = player.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(CONTAINER_KEY) }
-            val item = container[slot] ?: return@on_button
+            val item = container[slot] ?: return@onButton
             world.sendExamine(player, item.id, ExamineEntityType.ITEM)
         }
         9 -> {
-            val item = player.inventory[slot] ?: return@on_button
+            val item = player.inventory[slot] ?: return@onButton
             world.sendExamine(player, item.id, ExamineEntityType.ITEM)
         }
     }
@@ -104,7 +105,7 @@ on_button(interfaceId = TAB_INTERFACE_ID, component = 5) {
  * "Bank your loot"
  * Bank items from your looting bag.
  */
-on_button(interfaceId = 15, component = 10) {
+onButton(interfaceId = 15, component = 10) {
     val slot = player.getInteractingSlot()
     when (player.getInteractingOption()) {
         1 -> bank(player, slot = slot, amount = 1)
@@ -112,14 +113,14 @@ on_button(interfaceId = 15, component = 10) {
         3 -> bank(player, slot = slot, amount = Int.MAX_VALUE)
         4 -> player.queue { bank(player, slot = slot, amount = inputInt()) }
         10 -> {
-            val item = player.containers[CONTAINER_KEY]?.get(slot) ?: return@on_button
+            val item = player.containers[CONTAINER_KEY]?.get(slot) ?: return@onButton
             world.sendExamine(player, item.id, ExamineEntityType.ITEM)
         }
     }
 }
 
-on_button(interfaceId = 15, component = 5) {
-    val container = player.containers[CONTAINER_KEY] ?: return@on_button
+onButton(interfaceId = 15, component = 5) {
+    val container = player.containers[CONTAINER_KEY] ?: return@onButton
     when {
         container.isEmpty -> player.message("You have nothing to deposit.")
         bank_all(player, container) -> player.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
@@ -127,16 +128,16 @@ on_button(interfaceId = 15, component = 5) {
     }
 }
 
-on_button(TAB_INTERFACE_ID, component = 2) {
+onButton(TAB_INTERFACE_ID, component = 2) {
     player.closeInterface(TAB_INTERFACE_ID)
 }
 
 /**
  * Register "Deposit loot" button from deposit boxes.
  */
-on_button(interfaceId = 192, component = 8) {
+onButton(interfaceId = 192, component = 8) {
     val container = player.containers[CONTAINER_KEY]
-    if (container != null && player.inventory.containsAny(Items.LOOTING_BAG, Items.LOOTING_BAG_22586) && bank_all(player, container)) {
+    if (container != null && player.inventory.containsAny("item.looting_bag", "item.looting_bag_22586") && bank_all(player, container)) {
         player.sendItemContainer(LOOTING_BAG_CONTAINER_ID, container)
     } else {
         player.message("You have nothing to deposit.")
@@ -150,7 +151,7 @@ fun store(
 ) {
     val item = p.inventory[slot] ?: return
 
-    if (item.id == Items.LOOTING_BAG || item.id == Items.LOOTING_BAG_22586) {
+    if (item.id == getRSCM("item.looting_bag") || item.id == getRSCM("item.looting_bag_22586")) {
         p.message("You may be surprised to learn that bagception is not permitted.")
         return
     }
@@ -224,9 +225,9 @@ fun open(
     p: Player,
     slot: Int,
 ) {
-    val remove = p.inventory.remove(item = Items.LOOTING_BAG, beginSlot = slot)
+    val remove = p.inventory.remove(item = "item.looting_bag", beginSlot = slot)
     if (remove.hasSucceeded()) {
-        p.inventory.add(item = Items.LOOTING_BAG_22586, beginSlot = slot)
+        p.inventory.add(item ="item.looting_bag_22586", beginSlot = slot)
     }
 }
 
@@ -234,9 +235,9 @@ fun close(
     p: Player,
     slot: Int,
 ) {
-    val remove = p.inventory.remove(item = Items.LOOTING_BAG_22586, beginSlot = slot)
+    val remove = p.inventory.remove(item = "item.looting_bag_22586", beginSlot = slot)
     if (remove.hasSucceeded()) {
-        p.inventory.add(item = Items.LOOTING_BAG, beginSlot = slot)
+        p.inventory.add(item = "item.looting_bag", beginSlot = slot)
     }
 }
 

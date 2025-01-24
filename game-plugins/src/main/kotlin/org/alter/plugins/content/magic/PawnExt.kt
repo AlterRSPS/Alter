@@ -7,6 +7,7 @@ import org.alter.game.model.LockState
 import org.alter.game.model.Tile
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
+import org.alter.game.model.move.moveTo
 import org.alter.game.model.queue.TaskPriority
 
 fun Player.canTeleport(type: TeleportType): Boolean {

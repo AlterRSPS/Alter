@@ -9,6 +9,7 @@ gradlew.bat
 /data/saves/
 /data/rsa/
 /data/xteas.json
+/data/xteas.json.backup
 /cfg/
 
 error.log
@@ -18,3 +19,4 @@ first-launch
 first-launch-example
 /game.yml
 /dev-settings.yml
+dump.hprof

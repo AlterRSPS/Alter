@@ -4,9 +4,9 @@ import org.alter.plugins.content.interfaces.worldmap.WorldMap.LAST_TILE
 import org.alter.plugins.content.interfaces.worldmap.WorldMap.UPDATE_TIMER
 import org.alter.plugins.content.interfaces.worldmap.WorldMap.WORLD_MAP_INTERFACE_ID
 
-on_button(interfaceId = 160, component = 53) {
+onButton(interfaceId = 160, component = 53) {
     if (!player.lock.canInterfaceInteract()) {
-        return@on_button
+        return@onButton
     }
 
     if (!player.isInterfaceVisible(WORLD_MAP_INTERFACE_ID)) {
@@ -38,14 +38,14 @@ on_button(interfaceId = 160, component = 53) {
 /**
  * Esc key / 'x' closes.
  */
-on_button(interfaceId = WORLD_MAP_INTERFACE_ID, 4, 38) {
+onButton(interfaceId = WORLD_MAP_INTERFACE_ID, 4, 38) {
     player.closeInterface(WORLD_MAP_INTERFACE_ID)
     player.openOverlayInterface(player.interfaces.displayMode)
     player.attr.remove(LAST_TILE)
     player.timers.remove(UPDATE_TIMER)
 }
 
-on_timer(UPDATE_TIMER) {
+onTimer(UPDATE_TIMER) {
     if (player.isInterfaceVisible(WORLD_MAP_INTERFACE_ID)) {
         /*
          * Only send the world when the last tile recorded is not the same as

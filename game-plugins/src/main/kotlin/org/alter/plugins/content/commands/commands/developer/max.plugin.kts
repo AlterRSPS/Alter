@@ -8,7 +8,7 @@ import org.alter.plugins.content.combat.formula.MeleeCombatFormula
 import org.alter.plugins.content.combat.formula.RangedCombatFormula
 import org.alter.plugins.content.combat.getCombatTarget
 
-on_command("max", Privilege.DEV_POWER, description = "Max hit") {
+onCommand("max", Privilege.DEV_POWER, description = "Max hit") {
     val target = player.getCombatTarget() ?: player
     CombatClass.values.forEach { combatClass ->
         val max: Int

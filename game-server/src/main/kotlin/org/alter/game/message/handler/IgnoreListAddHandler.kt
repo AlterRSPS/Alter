@@ -5,7 +5,7 @@ import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
 
 class IgnoreListAddHandler : MessageHandler<IgnoreListAdd> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: IgnoreListAdd,
     ) {

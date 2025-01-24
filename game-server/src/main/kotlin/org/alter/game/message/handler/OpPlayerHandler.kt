@@ -1,7 +1,7 @@
 package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.players.OpPlayer
-import org.alter.game.action.PawnPathAction
+import org.alter.game.model.move.PawnPathAction
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.attr.INTERACTING_PLAYER_ATTR
@@ -12,7 +12,7 @@ import java.lang.ref.WeakReference
  * @author Triston Plummer ("Dread")
  */
 class OpPlayerHandler : MessageHandler<OpPlayer> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpPlayer,
     ) {

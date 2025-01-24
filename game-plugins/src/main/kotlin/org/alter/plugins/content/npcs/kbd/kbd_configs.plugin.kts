@@ -1,10 +1,10 @@
 package org.alter.plugins.content.npcs.kbd
 
-set_multi_combat_region(region = 9033)
+setMultiCombatRegion(region = 9033)
 
-spawn_npc(Npcs.KING_BLACK_DRAGON, x = 2274, z = 4698, walkRadius = 5)
+spawnNpc("npc.king_black_dragon", x = 2274, z = 4698, walkRadius = 5)
 
-set_combat_def(Npcs.KING_BLACK_DRAGON) {
+setCombatDef("npc.king_black_dragon") {
     species {
         +NpcSpecies.DRACONIC
         +NpcSpecies.BASIC_DRAGON
@@ -41,10 +41,13 @@ set_combat_def(Npcs.KING_BLACK_DRAGON) {
         death = 92
     }
 
-    slayerData {
-        levelRequirement = 50
-        xp = 258.0
-    }
+    //slayerData {
+    // /**
+    //  * @TODO Bug : Currently mobs don't aggro player if he does not have slayer level
+    //  */
+    //    levelRequirement = 50
+    //    xp = 258.0
+    //}
 
 //    drops {
 //        position = Tile(x = 3222, z = 3222)

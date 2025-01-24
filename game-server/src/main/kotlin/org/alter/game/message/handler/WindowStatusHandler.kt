@@ -9,7 +9,7 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class WindowStatusHandler : MessageHandler<WindowStatus> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: WindowStatus,
     ) {

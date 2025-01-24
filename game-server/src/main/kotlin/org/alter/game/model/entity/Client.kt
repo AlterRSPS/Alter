@@ -104,10 +104,8 @@ class Client(world: World) : Player(world) {
             } else if (rebuildNormalMessageWritten) {
                 session?.queue(message)
             } else {
-                println(message)
                 pendingMessages.add(message)
             }
-//                m -> session?.queue(m)
         }
     }
 

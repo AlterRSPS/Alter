@@ -5,8 +5,9 @@ import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.priv.Privilege
 import org.alter.plugins.content.interfaces.itemsets.ItemSets
+import org.alter.plugins.content.interfaces.itemsets.ItemSets.openSets
 
-on_button(ItemSets.ITEMSETS_INTERFACE, 2) {
+onButton(ItemSets.ITEMSETS_INTERFACE, 2) {
     val Item = getEnum(Enums.ITEM_SETS).getInt(player.attr[INTERACTING_ITEM_ID]!!)
     if (player.attr[INTERACTING_OPT_ATTR]!! == 1) {
         var missing = 0
@@ -52,7 +53,7 @@ on_button(ItemSets.ITEMSETS_INTERFACE, 2) {
     }
 }
 
-on_button(ItemSets.ITEMSETS_INVENTORY, 0) {
+onButton(ItemSets.ITEMSETS_INVENTORY, 0) {
     if (player.getInteractingOption() == 1) {
         val slot = player.attr[INTERACTING_SLOT_ATTR]!!
         val sitem = player.inventory[slot]?.id
@@ -83,6 +84,6 @@ on_button(ItemSets.ITEMSETS_INVENTORY, 0) {
     }
 }
 
-on_command("sets", Privilege.DEV_POWER) {
-    ItemSets.open(player)
+onCommand("sets", Privilege.DEV_POWER) {
+    player.openSets()
 }
