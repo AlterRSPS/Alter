@@ -32,7 +32,7 @@ class CacheTool(configs: Builder) {
         when(builder.type) {
             TaskType.RUN_JS5 -> Js5Server.init(
                 builder.cacheLocation.absolutePath,
-                builder.js5Ports.toIntArray(), builder.cacheRevision,
+                builder.js5Ports.toIntArray(), builder.revision,
                 builder.supportPrefetch
             )
             TaskType.BUILD -> buildCache()

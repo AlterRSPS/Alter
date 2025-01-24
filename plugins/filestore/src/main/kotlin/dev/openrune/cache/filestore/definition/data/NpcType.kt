@@ -4,14 +4,20 @@ import dev.openrune.cache.filestore.definition.Definition
 import dev.openrune.cache.filestore.definition.Parameterized
 import dev.openrune.cache.filestore.definition.Recolourable
 import dev.openrune.cache.filestore.definition.Transforms
+import dev.openrune.serialization.ListRscm
+import dev.openrune.serialization.Rscm
+import dev.openrune.serialization.RscmList
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class NpcType(
-    override var id: Int = -1,
+    override var id: Rscm = -1,
     var name: String = "null",
     var size : Int = 1,
     var category : Int = -1,
-    var models: MutableList<Int>? = null,
-    var chatheadModels: MutableList<Int>? = null,
+    var models: ListRscm? = null,
+    var chatheadModels: ListRscm? = null,
     var standAnim : Int = -1,
     var rotateLeftAnim : Int = -1,
     var rotateRightAnim : Int = -1,
@@ -49,7 +55,7 @@ data class NpcType(
     var crawlBackSequence : Int = -1,
     var crawlRightSequence : Int = -1,
     var crawlLeftSequence : Int = -1,
-    override var params: Map<Int, Any>? = null,
+    override var params: Map<Int, @Contextual Any>? = null,
     var height: Int = -1,
     var stats: IntArray = intArrayOf(1, 1, 1, 1, 1, 1),
 
@@ -61,7 +67,7 @@ data class NpcType(
     var option4: String? = null,
     var option5: String? = null,
 
-) : Definition, Transforms, Recolourable, Parameterized {
+    ) : Definition, Transforms, Recolourable, Parameterized {
 
     init {
         actions = listOf(option1,option2,option3,option4,option5).toMutableList()

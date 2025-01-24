@@ -1,13 +1,20 @@
 package dev.openrune.cache.filestore.definition.decoder
 
+import dev.openrune.cache.CONFIGS
+import dev.openrune.cache.DBROW
+import dev.openrune.cache.ENUM
 import dev.openrune.cache.HEALTHBAR
 import dev.openrune.cache.filestore.definition.DefinitionDecoder
 import dev.openrune.cache.filestore.buffer.Reader
+import dev.openrune.cache.filestore.definition.data.EnumType
 import dev.openrune.cache.filestore.definition.data.HealthBarType
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 
-class HealthBarDecoder : DefinitionDecoder<HealthBarType>(HEALTHBAR) {
+class HealthBarDecoder : DefinitionDecoder<HealthBarType>(CONFIGS) {
 
-    override fun create(size: Int) = Array(size) { HealthBarType(it) }
+    override fun getArchive(id: Int) = HEALTHBAR
+
+    override fun create(): Int2ObjectOpenHashMap<HealthBarType> = createMap { HealthBarType(it) }
 
     override fun getFile(id: Int) = id
 

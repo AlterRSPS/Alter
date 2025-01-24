@@ -13,7 +13,7 @@ class TileData {
     var underlayId: Short = 0
 }
 
-data class LocationData(val id: Int, val type: Int, val orientation: Int, val localX: Int, val localZ: Int, val height: Int)
+data class LocationData(val id: Int, val type: Int, val orientation: Int, val localX: Int, val localY: Int, val height: Int)
 
 fun loadLocations(b: ByteArray, fn: (LocationData) -> Unit) {
     val buf = BufferReader(b)

@@ -158,4 +158,6 @@ class SequenceEncoder: ConfigEncoder<SequenceType>() {
 
         writeByte(0)
     }
+
+
 }

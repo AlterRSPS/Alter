@@ -29,7 +29,7 @@ class ObjectEncoder : ConfigEncoder<ObjectType>() {
             }
         }
 
-        if (definition.name != "null") {
+        if (definition.name != null) {
             writeByte(2)
             writeString(definition.name)
         }

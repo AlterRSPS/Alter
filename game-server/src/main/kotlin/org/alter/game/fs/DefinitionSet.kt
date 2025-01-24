@@ -131,7 +131,7 @@ class DefinitionSet {
                 val tile =
                     Tile(
                         baseX + loc.localX,
-                        baseZ + loc.localZ,
+                        baseZ + loc.localY,
                         loc.height,
                     )
                 val hasBridge = bridges.contains(tile)

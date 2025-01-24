@@ -11,7 +11,7 @@ class TextureEncoder: ConfigEncoder<TextureType>() {
         writeByte(if(definition.isTransparent) 1 else 0)
         val fileCount = definition.fileIds.size
         writeByte(fileCount)
-        for(index in 0 until fileCount) {
+        for(index in 0..<fileCount) {
             writeShort(definition.fileIds[index])
         }
         if (fileCount > 1) {

@@ -41,9 +41,9 @@ object DownloadOSRS {
     fun init() {
 
         val time = measureTimeMillis {
-            val rev = builder.cacheRevision
+            val rev = builder.revision
 
-            logger.info { "Looking for cache to download: ${if (rev == -1) "Latest" else rev}" }
+            println("Looking for cache to download: ${if (rev == -1) "Latest" else rev}")
             val json = URL(CACHE_DOWNLOAD_LOCATION).readText()
             val caches: Array<CacheInfo> = Gson().fromJson(json, Array<CacheInfo>::class.java)
             val cacheInfo = if(rev == -1) getLatest(caches) else findRevision(rev,caches)
@@ -52,13 +52,19 @@ object DownloadOSRS {
             unZip()
             saveXteas(cacheInfo.id)
             XteaLoader.load()
-            println(FileUtil.getTempDir("cache").toString())
             library = CacheLibrary(FileUtil.getTempDir("cache").toString())
             File(FileUtil.getTemp(), "/cache.zip").delete()
         }
         val hours = TimeUnit.MILLISECONDS.toHours(time)
         val minutes = TimeUnit.MILLISECONDS.toMinutes(time) % 60
-        println("Cache Downloaded in $hours hours and $minutes minutes")
+        val seconds = TimeUnit.MILLISECONDS.toSeconds(time) % 60
+        if (hours > 0) {
+            println("Cache Downloaded in ${hours} hours, $minutes minutes, and $seconds seconds")
+        } else if (minutes > 0) {
+            println("Cache Downloaded in $minutes minutes and $seconds seconds")
+        } else {
+            println("Cache Downloaded in $seconds seconds")
+        }
     }
 
     private fun saveXteas(id: Int) {

@@ -124,6 +124,20 @@ class ItemEncoder : ConfigEncoder<ItemType>() {
             writeByte(definition.dropOptionIndex)
         }
 
+        definition.subops?.forEachIndexed { opId, subopArray ->
+            writeByte(43)
+            if (subopArray != null) {
+                writeByte(opId)
+                subopArray.forEachIndexed { subopId, op ->
+                    if (op != null) {
+                        writeByte(subopId + 1)
+                        writeString(op)
+                    }
+                }
+                writeByte(0)
+            }
+        }
+
         if (definition.isTradeable) {
             writeByte(65)
         }
@@ -183,10 +197,12 @@ class ItemEncoder : ConfigEncoder<ItemType>() {
             writeShort(definition.noteTemplateId)
         }
 
-        for (i in definition.countObj.indices) {
-            writeByte(100 + i)
-            writeShort(definition.countObj[i])
-            writeShort(definition.countCo[i])
+        if (definition.countObj != null) {
+            for (i in definition.countObj!!.indices) {
+                writeByte(100 + i)
+                writeShort(definition.countObj!![i])
+                writeShort(definition.countCo!![i])
+            }
         }
 
         if (definition.resizeX != 128) {

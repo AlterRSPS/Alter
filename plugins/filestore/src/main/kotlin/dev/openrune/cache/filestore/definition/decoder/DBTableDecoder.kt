@@ -1,14 +1,21 @@
 package dev.openrune.cache.filestore.definition.decoder
 
+import dev.openrune.cache.AREA
+import dev.openrune.cache.CONFIGS
+import dev.openrune.cache.DBROW
 import dev.openrune.cache.DBTABLE
 import dev.openrune.cache.filestore.definition.DefinitionDecoder
 import dev.openrune.cache.filestore.buffer.Reader
+import dev.openrune.cache.filestore.definition.data.DBRowType
 import dev.openrune.cache.filestore.definition.data.DBTableType
 import dev.openrune.cache.util.ScriptVarType
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 
-class DBTableDecoder : DefinitionDecoder<DBTableType>(DBTABLE) {
+class DBTableDecoder : DefinitionDecoder<DBTableType>(CONFIGS) {
 
-    override fun create(size: Int) = Array(size) { DBTableType(it) }
+    override fun getArchive(id: Int) = DBTABLE
+
+    override fun create(): Int2ObjectOpenHashMap<DBTableType> = createMap { DBTableType(it) }
 
     override fun getFile(id: Int) = id
 

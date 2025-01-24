@@ -110,7 +110,7 @@ class DumpEntityIdService : Service {
         BufferedWriter((FileWriter(paths.toFile()))).use { objectWriter ->
             for (i in 0 until count) {
                 val obj = getObjects()[i] ?: continue
-                if (obj.name.isNotBlank()) {
+                if (obj.name!!.isNotBlank()) {
                     val name = namer.name(obj.name, i)?.lowercase()
                     objectWriter.write("$name:$i\n")
                 }

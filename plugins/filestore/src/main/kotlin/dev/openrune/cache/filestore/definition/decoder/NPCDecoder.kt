@@ -1,14 +1,18 @@
 package dev.openrune.cache.filestore.definition.decoder
 
-import dev.openrune.cache.CacheManager
-import dev.openrune.cache.NPC
+import dev.openrune.cache.*
 import dev.openrune.cache.filestore.buffer.Reader
 import dev.openrune.cache.filestore.definition.DefinitionDecoder
+import dev.openrune.cache.filestore.definition.data.ItemType
 import dev.openrune.cache.filestore.definition.data.NpcType
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 
 
-class NPCDecoder : DefinitionDecoder<NpcType>(NPC) {
-    override fun create(size: Int) = Array(size) { NpcType(it) }
+class NPCDecoder : DefinitionDecoder<NpcType>(CONFIGS) {
+
+    override fun getArchive(id: Int) = NPC
+
+    override fun create(): Int2ObjectOpenHashMap<NpcType> = createMap { NpcType(it) }
 
     override fun getFile(id: Int) = id
 

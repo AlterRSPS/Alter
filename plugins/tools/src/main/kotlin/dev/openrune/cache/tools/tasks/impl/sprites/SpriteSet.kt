@@ -8,9 +8,9 @@ import java.io.DataOutputStream
 import java.io.IOException
 
 public data class SpriteSet(
-    public val id: Int,
-    public val width: Int,
-    public val height: Int,
+    val id: Int,
+    val width: Int,
+    val height: Int,
     val sprites: MutableList<Sprite>,
     val averageColor : Int
 ) {

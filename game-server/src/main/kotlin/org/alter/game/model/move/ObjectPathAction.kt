@@ -260,18 +260,18 @@ object ObjectPathAction {
         //        }
         //}
 
-        val isPathBlocked =
-            if (def.name.contains("Furnace")) {
-                pawn.isPathBlocked(tile)
-            } else {
-                pawn.isPathBlocked(nearestTile)
-            }
+        //val isPathBlocked =
+        //    if (def.name.contains("Furnace")) {
+        //        pawn.isPathBlocked(tile)
+        //    } else {
+        //        pawn.isPathBlocked(nearestTile)
+        //    }
 
         val radius = lineOfSightRange ?: 1
 
         val isWithinRadius = pawn.tile.isWithinRadius(nearestTile, radius)
         // Ensure the route is successful only if the player is within interaction range to the nearest object tile
-        if (route.success && (isWithinRadius) && (!isPathBlocked || wall || wallDeco)) {
+        if (route.success && (isWithinRadius) /** && (!isPathBlocked || wall || wallDeco)**/ ) {
             // println("isBlocked: $isPathBlocked, nearestTile: $nearestTile, isWithinRadius: $isWithinRadius, radius: $radius")
             return route
         }

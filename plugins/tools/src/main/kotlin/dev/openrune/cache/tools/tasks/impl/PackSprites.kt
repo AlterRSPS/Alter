@@ -97,7 +97,6 @@ class PackSprites(
             var sprites = emptyList<Sprite>().toMutableList()
             if (index != 0) {
                 sprites = SpriteSet.decode(group, Unpooled.wrappedBuffer(library.data(SPRITES, group))).sprites
-
                 sprites[index] = Sprite(0, 0, loadImage(spriteFile))
             } else {
                 sprites.add(Sprite(0, 0, loadImage(spriteFile)))

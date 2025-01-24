@@ -1,15 +1,20 @@
 package dev.openrune.cache.filestore.definition.decoder
 
+import dev.openrune.cache.CONFIGS
 import dev.openrune.cache.CacheManager.revisionIsOrAfter
 import dev.openrune.cache.OBJECT
 import dev.openrune.cache.filestore.definition.DefinitionDecoder
 import dev.openrune.cache.filestore.buffer.Reader
 import dev.openrune.cache.filestore.definition.data.ObjectType
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import java.util.stream.IntStream
 import kotlin.streams.toList
 
-class ObjectDecoder : DefinitionDecoder<ObjectType>(OBJECT) {
-    override fun create(size: Int) = Array(size) { ObjectType(it) }
+class ObjectDecoder : DefinitionDecoder<ObjectType>(CONFIGS) {
+
+    override fun getArchive(id: Int) = OBJECT
+
+    override fun create(): Int2ObjectOpenHashMap<ObjectType> = createMap { ObjectType(it) }
 
     override fun getFile(id: Int) = id
 

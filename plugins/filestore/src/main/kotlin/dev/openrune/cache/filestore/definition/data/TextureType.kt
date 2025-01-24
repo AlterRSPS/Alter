@@ -2,6 +2,7 @@ package dev.openrune.cache.filestore.definition.data
 
 import dev.openrune.cache.filestore.definition.Definition
 
+
 data class TextureType(
     override var id : Int = -1,
     var isTransparent : Boolean = false,
@@ -13,4 +14,9 @@ data class TextureType(
     var animationDirection : Int = 0,
     var animationSpeed : Int = 0,
     override var inherit : Int = -1,
- ) : Definition
+ ) : Definition {
+
+    @Transient
+    lateinit var pixels: IntArray
+
+ }

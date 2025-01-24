@@ -29,6 +29,7 @@ class PackTextures(private val textureDir : File) : CacheTask() {
     override fun init(library: CacheLibrary) {
         val size = getFiles(textureDir,"toml").size
         val progress = progress("Packing Textures", size)
+
         if (size != 0) {
 
             getFiles(textureDir,"toml").forEach {

@@ -1,6 +1,8 @@
 package dev.openrune.cache.filestore.definition
 
+import dev.openrune.serialization.Rscm
+
 interface Definition {
-    var id: Int
-    var inherit : Int
+    var id: Rscm
+    var inherit : Rscm
 }

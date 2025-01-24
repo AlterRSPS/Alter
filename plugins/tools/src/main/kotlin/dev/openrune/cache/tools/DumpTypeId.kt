@@ -44,16 +44,16 @@ class DumpTypeId(
         val settingsFile = generateWriter("SettingCategories")
         val structsFile = generateWriter("SettingStructs")
         // Get all settings structs
-        CacheManager.getEnum(422).values.forEach { (_, u) ->
+        CacheManager.getEnumOrDefault(422).values.forEach { (_, u) ->
             var name = ""
-            CacheManager.getStruct(u as Int).params!!.forEach { (k, v) ->
+            CacheManager.getStructOrDefault(u as Int).params!!.forEach { (k, v) ->
                 if(k == 744) {
                     name = namer.name(v.toString() + "_enum_id", k).toString()
                 }
                 if(k == 745 && name.isNotBlank()) {
                     write(settingsFile, "const val $name = $v")
 
-                    CacheManager.getEnum(v as Int).values.forEach { e ->
+                    CacheManager.getEnumOrDefault(v as Int).values.forEach { e ->
                         System.out.println(e)
                     }
                 }
@@ -90,7 +90,7 @@ class DumpTypeId(
     private fun writeObjs(fileName: String) {
         val file = generateWriter(fileName)
         for ((index, obj) in CacheManager.getObjects()) {
-            val rawName = obj.name.replace("?", "")
+            val rawName = obj.name?.replace("?", "")?: "null"
             if (rawName.isNotEmpty() && rawName.isNotBlank() && rawName != "null") {
                 val name = namer.name(obj.name, index)
                 write(file, "const val $name = $index")
@@ -103,7 +103,7 @@ class DumpTypeId(
         val file = generateWriter(fileName)
         val file1 = generateWriter(fileName2)
         for ((index, obj) in CacheManager.getObjects()) {
-            val rawName = obj.name.replace("?", "")
+            val rawName = obj.name?.replace("?", "")?: ""
             val normalName = rawName.isNotEmpty() && rawName.isNotBlank()
             val name = if (normalName) namer.name(obj.name, index) else "NULL_$index"
             if (!name!!.contains("NULL_")) {

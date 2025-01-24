@@ -1,13 +1,17 @@
 package dev.openrune.cache.filestore.definition.decoder
 
 import dev.openrune.cache.AREA
+import dev.openrune.cache.CONFIGS
 import dev.openrune.cache.filestore.buffer.Reader
 import dev.openrune.cache.filestore.definition.DefinitionDecoder
 import dev.openrune.cache.filestore.definition.data.AreaType
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 
-class AreaDecoder : DefinitionDecoder<AreaType>(AREA) {
+class AreaDecoder : DefinitionDecoder<AreaType>(CONFIGS) {
 
-    override fun create(size: Int) = Array(size) { AreaType(it) }
+    override fun getArchive(id: Int) = AREA
+
+    override fun create(): Int2ObjectOpenHashMap<AreaType> = createMap { AreaType(it) }
 
     override fun getFile(id: Int) = id
 
