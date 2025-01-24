@@ -17,6 +17,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Youtube tutorial: https://www.youtube.com/watch?v=2Tu-NTzMbf0
 
 * ### First of all Download:
+* [Xteas](https://archive.openrs2.org/caches/runescape/1984/keys.json) Save as `xteas.json` inside `/data/` Directory.
 * [2024-12-10-rev227.tar.gz](https://archive.runestats.com/osrs/2024-12-10-rev227.tar.gz) , And make sure you're using correct Java Version.
 * Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o)
 
@@ -45,19 +46,25 @@ Due to the plugin capabilities, even owners without programming experience can j
 * If you only see `Alter Loaded up in x ms.` you messed up somewhere.
 * You can connect what ever client you want (ofc it has to follow OSRS protocols.)
 
-# What client do i use?
-* https://github.com/AlterRSPS/rsprox
+> [!TIP]
+> As for now, there aren't that many public OSRS clients, would recommend using:
+> https://github.com/AlterRSPS/rsprox
+
+> [!WARNING]
+> And stay away from client's like Devious, as they have been caught adding Account Stealer into their client.
 
 * ### Tools:
 * [CS2 Editor](https://github.com/blurite/cs2-editor), Big thanks to [Blurite Team](https://github.com/blurite) for maintaining such good tool.
 * [Z-Kris's Event Inspector](https://media.z-kris.com/runelite-event-inspector-client.jar) , Want to dump osrs data easily? or see hows what being sent? Use this RL Client it's pretty easy to use.
 * That's it for now. If you got something to share feel free to ping me on discord ill inspect it and add it.
 
+## Acknowledgments
+- This project uses [OpenRune-FileStore](https://github.com/OpenRune/OpenRune-FileStore) for cache management.
+- RsMod1 project founder: [Tomm0017](https://github.com/Tomm0017)
+- RsMod2 Route finder: [RouteFinder](https://github.com/rsmod/rsmod/tree/main/engine/routefinder)
+
 ### Credits:
 * Credits are given out to everyone who helped out with information or contributed in some form to the project. And can be found in: [Here](https://github.com/AlterRSPS)
-
-### Some info:
-* Original project founder: [Tomm0017](https://github.com/Tomm0017)
 
 
 [patch]: https://oldschool.runescape.wiki/w/Update:Christmas_2024
