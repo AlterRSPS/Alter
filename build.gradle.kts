@@ -4,12 +4,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm")
     alias(libs.plugins.kotlin.serialization)
-    //alias(libs.plugins.ktlint)
 }
 allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    //apply(plugin = "org.jlleitschuh.gradle.ktlint")
     group = "org.alter"
     version = "0.0.5"
 
@@ -19,6 +17,7 @@ allprojects {
         maven("https://repo.maven.apache.org/maven2")
         maven("https://jitpack.io")
         maven("https://raw.githubusercontent.com/OpenRune/hosting/master")
+        maven("https://repo.openrs2.org/repository/openrs2-snapshots")
     }
 
     val lib = rootProject.project.libs
@@ -36,14 +35,6 @@ allprojects {
         implementation(lib.gson)
         implementation(lib.netty.all)
         implementation(lib.kotlinx.serialization.core)
-        implementation(lib.rsprot)
-        implementation(lib.pathfinder)
-        if (name != "filestore") {
-            implementation(rootProject.projects.plugins.filestore)
-        }
-        if (name != "rscm" && name != "filestore") {
-            implementation(rootProject.projects.plugins.rscm)
-        }
         testImplementation(lib.junit)
         testImplementation(lib.kotlin.test.junit)
     }
