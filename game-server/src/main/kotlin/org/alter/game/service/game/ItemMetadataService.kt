@@ -8,6 +8,7 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.filestore.definition.data.ItemType
+import dev.openrune.cache.filestore.definition.data.ItemType.ItemParam
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
 import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
@@ -85,27 +86,30 @@ class ItemMetadataService : Service {
             CacheManager.getItems().forEach { (_, item) ->
                 val def = getItem(item.id)
                 def.weight /= 1000
-                def.attackSpeed = def.getValidatedParam(14)
+                def.attackSpeed = def.getValidatedParam(ItemParam.ATTACK_RATE)
                 if (def.equipSlot == 3) {
                     def.weaponType = WeaponCategory.get(def, def.category)
                 }
                 def.equipType = def.appearanceOverride1
+
+                //def.getValidatedParam(ItemType.Param.getParam(ItemType.Param.SOMETHING))
+                println("${def.name} : ${def.params}")
                 def.bonuses =
                     intArrayOf(
-                        def.getValidatedParam(0),
-                        def.getValidatedParam(1),
-                        def.getValidatedParam(2),
-                        def.getValidatedParam(3),
-                        def.getValidatedParam(4),
-                        def.getValidatedParam(5),
-                        def.getValidatedParam(6),
-                        def.getValidatedParam(7),
-                        def.getValidatedParam(8),
-                        def.getValidatedParam(9),
-                        def.getValidatedParam(10),
-                        def.getValidatedParam(12),
-                        def.getValidatedParam(65),
-                        def.getValidatedParam(11),
+                        def.getValidatedParam(ItemParam.STAB_ATTACK_BONUS),
+                        def.getValidatedParam(ItemParam.SLASH_ATTACK_BONUS),
+                        def.getValidatedParam(ItemParam.CRUSH_ATTACK_BONUS),
+                        def.getValidatedParam(ItemParam.MAGIC_ATTACK_BONUS),
+                        def.getValidatedParam(ItemParam.RANGED_ATTACK_BONUS),
+                        def.getValidatedParam(ItemParam.STAB_DEFENCE_BONUS),
+                        def.getValidatedParam(ItemParam.SLASH_DEFENCE_BONUS),
+                        def.getValidatedParam(ItemParam.CRUSH_DEFENCE_BONUS),
+                        def.getValidatedParam(ItemParam.MAGIC_DEFENCE_BONUS),
+                        def.getValidatedParam(ItemParam.RANGED_DEFENCE_BONUS),
+                        def.getValidatedParam(ItemParam.MELEE_STRENGTH),
+                        def.getValidatedParam(ItemParam.RANGED_STRENGTH_BONUS),
+                        def.getValidatedParam(ItemParam.MAGIC_DAMAGE_STRENGTH) / 10,
+                        def.getValidatedParam(ItemParam.PRAYER_BONUS),
                     )
             }
 
