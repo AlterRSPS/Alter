@@ -47,8 +47,8 @@ Due to the plugin capabilities, even owners without programming experience can j
 * You can connect what ever client you want (ofc it has to follow OSRS protocols.)
 
 > [!TIP]
-> As for now, there aren't that many public OSRS clients, would recommend using:
-> https://github.com/AlterRSPS/rsprox
+> As for now, there aren't that many public OSRS clients, would recommend using you can find how to patch it yourself https://github.com/blurite/rsprox/blob/master/PATCHER.md:
+> https://github.com/blurite/rsprox
 
 > [!WARNING]
 > And stay away from client's like Devious, as they have been caught adding Account Stealer into their client.
