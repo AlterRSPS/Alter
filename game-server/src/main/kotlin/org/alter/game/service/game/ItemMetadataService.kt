@@ -8,7 +8,6 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.filestore.definition.data.ItemType
-import dev.openrune.cache.filestore.definition.data.ItemType.ItemParam
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
 import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
@@ -21,6 +20,9 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.concurrent.TimeUnit
 import com.fasterxml.jackson.databind.ObjectMapper
+import dev.openrune.cache.filestore.definition.data.ParamMapper
+import io.github.oshai.kotlinlogging.KotlinLogging
+
 /**
  * @author Tom <rspsmods@gmail.com>
  */
@@ -80,36 +82,33 @@ class ItemMetadataService : Service {
              * - Populates item bonuses using a predefined set of validated parameters.
              *
              * This process ensures that item attributes are properly loaded and validated from cache for use in gameplay.
-             *
-             * @TODO Add mapper for Params
              */
             CacheManager.getItems().forEach { (_, item) ->
                 val def = getItem(item.id)
                 def.weight /= 1000
-                def.attackSpeed = def.getValidatedParam(ItemParam.ATTACK_RATE)
+                def.attackSpeed = def.getValidatedParam(ParamMapper.item.ATTACK_RATE, 7) // Just in case the Attack Rate would be not configurated in cache.
                 if (def.equipSlot == 3) {
                     def.weaponType = WeaponCategory.get(def, def.category)
                 }
                 def.equipType = def.appearanceOverride1
 
                 //def.getValidatedParam(ItemType.Param.getParam(ItemType.Param.SOMETHING))
-                println("${def.name} : ${def.params}")
                 def.bonuses =
                     intArrayOf(
-                        def.getValidatedParam(ItemParam.STAB_ATTACK_BONUS),
-                        def.getValidatedParam(ItemParam.SLASH_ATTACK_BONUS),
-                        def.getValidatedParam(ItemParam.CRUSH_ATTACK_BONUS),
-                        def.getValidatedParam(ItemParam.MAGIC_ATTACK_BONUS),
-                        def.getValidatedParam(ItemParam.RANGED_ATTACK_BONUS),
-                        def.getValidatedParam(ItemParam.STAB_DEFENCE_BONUS),
-                        def.getValidatedParam(ItemParam.SLASH_DEFENCE_BONUS),
-                        def.getValidatedParam(ItemParam.CRUSH_DEFENCE_BONUS),
-                        def.getValidatedParam(ItemParam.MAGIC_DEFENCE_BONUS),
-                        def.getValidatedParam(ItemParam.RANGED_DEFENCE_BONUS),
-                        def.getValidatedParam(ItemParam.MELEE_STRENGTH),
-                        def.getValidatedParam(ItemParam.RANGED_STRENGTH_BONUS),
-                        def.getValidatedParam(ItemParam.MAGIC_DAMAGE_STRENGTH) / 10,
-                        def.getValidatedParam(ItemParam.PRAYER_BONUS),
+                        def.getValidatedParam(ParamMapper.item.STAB_ATTACK_BONUS),
+                        def.getValidatedParam(ParamMapper.item.SLASH_ATTACK_BONUS),
+                        def.getValidatedParam(ParamMapper.item.CRUSH_ATTACK_BONUS),
+                        def.getValidatedParam(ParamMapper.item.MAGIC_ATTACK_BONUS),
+                        def.getValidatedParam(ParamMapper.item.RANGED_ATTACK_BONUS),
+                        def.getValidatedParam(ParamMapper.item.STAB_DEFENCE_BONUS),
+                        def.getValidatedParam(ParamMapper.item.SLASH_DEFENCE_BONUS),
+                        def.getValidatedParam(ParamMapper.item.CRUSH_DEFENCE_BONUS),
+                        def.getValidatedParam(ParamMapper.item.MAGIC_DEFENCE_BONUS),
+                        def.getValidatedParam(ParamMapper.item.RANGED_DEFENCE_BONUS),
+                        def.getValidatedParam(ParamMapper.item.MELEE_STRENGTH),
+                        def.getValidatedParam(ParamMapper.item.RANGED_STRENGTH_BONUS),
+                        def.getValidatedParam(ParamMapper.item.MAGIC_DAMAGE_STRENGTH) / 10,
+                        def.getValidatedParam(ParamMapper.item.PRAYER_BONUS),
                     )
             }
 
@@ -294,7 +293,7 @@ class ItemMetadataService : Service {
     private data class EquipmentSlots(val slot: Int, val secondary: Int)
 
 
-    private fun ItemType.getValidatedParam(key: Int): Int {
+    private fun ItemType.getValidatedParam(key: Int, defaultValue: Int = 0): Int {
         if (this.params?.get(key) != null) {
             try {
                 return this.params?.get(key) as Int
@@ -303,7 +302,10 @@ class ItemMetadataService : Service {
                 e.printStackTrace()
             }
         }
-        return 0
+        logger.warn {
+            "Item with ID: ${this.id} is missing the key '$key' in its params. Full params list: ${this.params}. Default value was set: $defaultValue."
+        }
+        return defaultValue
     }
 
     private fun getSkillId(name: String): Byte =
@@ -465,4 +467,7 @@ class ItemMetadataService : Service {
         @JsonProperty("skill") val skill: String?,
         @JsonProperty("level") val level: Int?,
     )
+    companion object {
+        val logger = KotlinLogging.logger {}
+    }
 }

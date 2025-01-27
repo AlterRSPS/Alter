@@ -98,24 +98,4 @@ data class ItemType(
      */
     val isPlaceholder
         get() = placeholderTemplate > 0 && placeholderLink > 0
-
-    object ItemParam {
-        val STAB_ATTACK_BONUS = 0
-        val SLASH_ATTACK_BONUS = 1
-        val CRUSH_ATTACK_BONUS = 2
-        val MAGIC_ATTACK_BONUS = 3
-        val RANGED_ATTACK_BONUS = 4
-        val STAB_DEFENCE_BONUS = 5
-        val SLASH_DEFENCE_BONUS = 6
-        val CRUSH_DEFENCE_BONUS = 7
-        val MAGIC_DEFENCE_BONUS = 8
-        val RANGED_DEFENCE_BONUS = 9
-        val MELEE_STRENGTH = 10
-        val PRAYER_BONUS = 11
-        val ATTACK_RATE = 14
-        val MAGIC_DAMAGE_BONUS_SALAMANDER = 65
-        val MAGIC_DAMAGE_STRENGTH = 299
-        val RANGED_STRENGTH_BONUS = 189
-
-    }
 }
