@@ -302,9 +302,12 @@ class ItemMetadataService : Service {
                 e.printStackTrace()
             }
         }
-        logger.warn {
-            "Item with ID: ${this.id} is missing the key '$key' in its params. Full params list: ${this.params}. Default value was set: $defaultValue."
-        }
+        /**
+         * @TODO Rethink the logic, gets printed out even for items that are not wearable.
+         * logger.warn {
+         *   "Item with ID: ${this.id} is missing the key '$key' in its params. Full params list: ${this.params}. Default value was set: $defaultValue."
+         * }
+        */
         return defaultValue
     }
 
