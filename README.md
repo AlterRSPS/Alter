@@ -67,7 +67,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Credits are given out to everyone who helped out with information or contributed in some form to the project. And can be found in: [Here](https://github.com/AlterRSPS)
 
 
-[patch]: https://oldschool.runescape.wiki/w/Update:Christmas_2024
+[patch]: https://oldschool.runescape.wiki/w/Update:Leagues_V:_Raging_Echos_Rewards_Are_Here
 [rev-badge]: https://img.shields.io/badge/Revision-228-blueviolet
 [license-badge]: https://img.shields.io/badge/license-ISC-informational
 [jdk-badge]: https://img.shields.io/badge/JDK-17-blue
