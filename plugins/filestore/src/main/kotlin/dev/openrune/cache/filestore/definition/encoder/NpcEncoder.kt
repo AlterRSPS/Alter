@@ -80,14 +80,18 @@ class NpcEncoder : ConfigEncoder<NpcType>() {
                 writeShort(definition.chatheadModels!![i])
             }
         }
-
-        for (i in 0 .. 5) {
-            if (definition.stats[i] != 1) {
-                writeByte(74 + i)
-                writeShort(definition.stats[i])
-            }
-        }
-
+        writeByte(74)
+        writeShort(definition.attack)
+        writeByte(75)
+        writeShort(definition.defence)
+        writeByte(76)
+        writeShort(definition.strength)
+        writeByte(77)
+        writeShort(definition.hitpoints)
+        writeByte(78)
+        writeShort(definition.ranged)
+        writeByte(79)
+        writeShort(definition.magic)
         if (!definition.isMinimapVisible) {
             writeByte(93)
         }

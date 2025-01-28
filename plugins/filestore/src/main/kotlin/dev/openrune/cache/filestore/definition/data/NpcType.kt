@@ -57,8 +57,12 @@ data class NpcType(
     var crawlLeftSequence : Int = -1,
     override var params: Map<Int, @Contextual Any>? = null,
     var height: Int = -1,
-    var stats: IntArray = intArrayOf(1, 1, 1, 1, 1, 1),
-
+    var attack : Int = -1,
+    var defence : Int = -1,
+    var strength : Int = -1,
+    var hitpoints : Int = -1,
+    var ranged : Int = -1,
+    var magic : Int = -1,
     //Custom
     override var inherit: Int = -1,
     var option1: String? = null,
@@ -133,9 +137,13 @@ data class NpcType(
         if (option4 != other.option4) return false
         if (option5 != other.option5) return false
         if (height != other.height) return false
-        if (!stats.contentEquals(other.stats)) return false
+        if (attack != other.attack) return false
+        if (defence != other.defence) return false
+        if (strength != other.strength) return false
+        if (hitpoints != other.hitpoints) return false
+        if (ranged != other.ranged) return false
+        if (magic != other.magic) return false
         if (examine != other.examine) return false
-
         return true
     }
 
@@ -191,7 +199,12 @@ data class NpcType(
         result = 31 * result + (option4?.hashCode() ?: 0)
         result = 31 * result + (option5?.hashCode() ?: 0)
         result = 31 * result + height
-        result = 31 * result + stats.contentHashCode()
+        result = 31 * result + attack
+        result = 31 * result + defence
+        result = 31 * result + strength
+        result = 31 * result + hitpoints
+        result = 31 * result + ranged
+        result = 31 * result + magic
         result = 31 * result + examine.hashCode()
 
         return result
