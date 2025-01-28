@@ -1,5 +1,5 @@
 # Alter
-[![revision: 227][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/sAzCuuwkpN) ![jdk-badge] ![](https://tokei.rs/b1/github/AlterRSPS/Alter)
+[![revision: 228][rev-badge]][patch] [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.com/invite/sAzCuuwkpN) ![jdk-badge] ![](https://tokei.rs/b1/github/AlterRSPS/Alter)
 
 > [!Warning]
 > When you have Intellij Open, navigate to `File` -> `Project Structure` -> And make sure SDK is set to `17 java version 17.x.x`
@@ -17,8 +17,8 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Youtube tutorial: https://www.youtube.com/watch?v=2Tu-NTzMbf0
 
 * ### First of all Download:
-* [Xteas](https://archive.openrs2.org/caches/runescape/1984/keys.json) Save as `xteas.json` inside `/data/` Directory.
-* [2024-12-10-rev227.tar.gz](https://archive.runestats.com/osrs/2024-12-10-rev227.tar.gz) , And make sure you're using correct Java Version.
+* [Xteas](https://archive.openrs2.org/caches/runescape/2028/keys.json) Save as `xteas.json` inside `/data/` Directory.
+* [2025-01-15-rev228.tar.gz](https://archive.runestats.com/osrs/2025-01-15-rev228.tar.gz) , And make sure you're using correct Java Version.
 * Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o)
 
 
@@ -31,7 +31,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Second paste `https://github.com/AlterRSPS/Alter` in URL Field and hit Clone. </br>
   ![tutor2](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tuor2.png)
 * Hit `Clone` and Let the project fully load.
-* Now open the `2024-12-10-rev227.tar.gz` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
+* Now open the `2025-01-15-rev228.tar.gz` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
   ![tutor6](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor6.png)
 - `Xtea.json` has to be in same folder like: Data /`api.yml`, etc..
 * Now click on `Gradle` button on right side. </br>
@@ -68,6 +68,6 @@ Due to the plugin capabilities, even owners without programming experience can j
 
 
 [patch]: https://oldschool.runescape.wiki/w/Update:Christmas_2024
-[rev-badge]: https://img.shields.io/badge/Revision-227-blueviolet
+[rev-badge]: https://img.shields.io/badge/Revision-228-blueviolet
 [license-badge]: https://img.shields.io/badge/license-ISC-informational
 [jdk-badge]: https://img.shields.io/badge/JDK-17-blue
