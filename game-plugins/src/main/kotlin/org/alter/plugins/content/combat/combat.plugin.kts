@@ -37,12 +37,12 @@ suspend fun cycle(queue: QueueTask): Boolean {
     val target = pawn.getCombatTarget() ?: return false
     val strategy = CombatConfigs.getCombatStrategy(pawn)
     val attackRange = strategy.getAttackRange(pawn)
-    var pathLogic = 1
+    var routeLogic = 1
     if (target != pawn.attr[FACING_PAWN_ATTR]?.get()) {
         return false
     }
     if (pawn.entityType.isNpc) {
-        pathLogic = (pawn as Npc).pathLogic
+        routeLogic = (pawn as Npc).routeLogic
     }
     var reached = world.reachStrategy.reached(
         flags = world.collision,
@@ -57,7 +57,7 @@ suspend fun cycle(queue: QueueTask): Boolean {
         locShape = -2
     )
     if (!reached) {
-        when (pathLogic) {
+        when (routeLogic) {
             1 -> {
                 val route = world.smartRouteFinder.findRoute(
                     level = pawn.tile.height,
@@ -72,7 +72,7 @@ suspend fun cycle(queue: QueueTask): Boolean {
                 pawn.walkRoute(route, StepType.NORMAL)
             }
             0 -> {
-                val path = LinkedList<Tile>()
+                val route = LinkedList<Tile>()
                 val destination = world.dumbRouteFinder.naiveDestination(
                     sourceX = pawn.tile.x,
                     sourceZ = pawn.tile.z,
@@ -94,19 +94,19 @@ suspend fun cycle(queue: QueueTask): Boolean {
                         // If horizontal blocked, try vertical (north/south)
                         val verticalMove = Tile(pawn.tile.x, pawn.tile.z + dz.coerceIn(-1, 1))
                         if (world.canTraverse(pawn.tile, Direction.between(pawn.tile, verticalMove), pawn, pawn.getSize())) {
-                            path.add(verticalMove)
+                            route.add(verticalMove)
                         }
                     } else {
-                        path.add(horizontalMove)
+                        route.add(horizontalMove)
                     }
                 } else {
-                    path.add(diagonalMove)
+                    route.add(diagonalMove)
                 }
-                if (path.isEmpty()) {
+                if (route.isEmpty()) {
                     pawn.forceChat("Broke")
                     return true
                 }
-                pawn.walkRoute(path, stepType = StepType.NORMAL)
+                pawn.walkRoute(route, stepType = StepType.NORMAL)
             }
         }
     }
