@@ -104,7 +104,7 @@ tasks.register<JavaExec>("decryptMap") {
     group = "application"
     workingDir = rootProject.projectDir
     classpath = sourceSets["main"].runtimeClasspath
-    mainClass.set("org.alter.game.service.mapDecrypter.decryptMap")
+    mainClass.set("org.alter.game.service.mapdecrypter.decryptMap")
 }
 
 task<Copy>("extractDependencies") {
