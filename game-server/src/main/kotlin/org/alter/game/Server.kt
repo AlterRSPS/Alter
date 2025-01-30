@@ -11,6 +11,9 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.skill.SkillSet
+import org.alter.game.saving.PlayerDetails
+import org.alter.game.saving.PlayerSaving
+import org.alter.game.saving.formats.SaveFormatType
 import org.alter.rscm.RSCM
 import org.alter.game.rsprot.CacheJs5GroupProvider
 import org.alter.game.rsprot.NetworkServiceFactory
@@ -38,7 +41,7 @@ class Server {
      * before the game can be launched properly.
      */
     fun startServer(apiProps: Path) {
-        Thread.setDefaultUncaughtExceptionHandler { t, e -> logger.error{"Uncaught server exception in thread $t! $e"} }
+        Thread.setDefaultUncaughtExceptionHandler { t, e -> e.printStackTrace() }
         val stopwatch = Stopwatch.createStarted()
 
         /*
@@ -88,6 +91,7 @@ class Server {
                 initialLaunch = initialLaunch,
                 name = gameProperties.get<String>("name")!!,
                 revision = gameProperties.get<Int>("revision")!!,
+                saveFormat = SaveFormatType.valueOf(gameProperties.get<String>("saveFormat")?: "JSON"),
                 cycleTime = gameProperties.getOrDefault("cycle-time", 600),
                 playerLimit = gameProperties.getOrDefault("max-players", 2048),
                 /**
@@ -122,6 +126,9 @@ class Server {
             )
 
         System.setProperty("net.rsprot.protocol.internal.networkLogging", devContext.debugPackets.toString())
+
+        PlayerDetails.init(gameContext)
+        PlayerSaving.init(gameContext)
 
         /*
          * Load the file store.

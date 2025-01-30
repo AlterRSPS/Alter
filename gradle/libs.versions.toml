@@ -13,6 +13,7 @@ json = "20220320"
 jbcrypt = "0.4"
 gson = "_"
 kotlinxSerializationCore = "_"
+mongo = "5.1.2"
 junit = "4.+"
 kotlinTestJunit = "_"
 kotlin = "2.0.20"
@@ -69,6 +70,9 @@ logback-classic = { group ="ch.qos.logback", name = "logback-classic", version.r
 openrune-filestore = { group = "dev.openrune", name = "filestore", version.ref = "openrune-filestore"}
 rsprot = { group = "net.rsprot", name = "osrs-228-api", version.ref = "rsprot"}
 routefinder = { group = "org.rsmod", name = "rsmod-routefinder", version.ref = "routefinder"}
+
+mongo-bson = { group = "org.mongodb", name = "bson", version.ref = "mongo"}
+mongo-driver = { group = "org.mongodb", name = "mongodb-driver-sync", version.ref = "mongo"}
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
