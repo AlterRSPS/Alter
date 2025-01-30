@@ -9,7 +9,7 @@ dependencies {
     implementation(rootProject.project.libs.rsprot)
     implementation(rootProject.projects.plugins.filestore)
     implementation(rootProject.projects.plugins.rscm)
-    implementation(lib.pathfinder)
+    implementation(lib.routefinder)
 }
 
 tasks.named<Jar>("jar") {

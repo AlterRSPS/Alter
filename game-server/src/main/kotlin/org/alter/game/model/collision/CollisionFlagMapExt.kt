@@ -3,37 +3,37 @@ package org.alter.game.model.collision
 import dev.openrune.cache.CacheManager
 import org.alter.game.model.Tile
 import org.alter.game.model.entity.GameObject
-import org.rsmod.game.pathfinder.LineValidator
-import org.rsmod.game.pathfinder.collision.CollisionFlagMap
-import org.rsmod.game.pathfinder.flag.CollisionFlag.BLOCK_NPCS
-import org.rsmod.game.pathfinder.flag.CollisionFlag.FLOOR_DECORATION
-import org.rsmod.game.pathfinder.flag.CollisionFlag.OBJECT
-import org.rsmod.game.pathfinder.flag.CollisionFlag.OBJECT_PROJECTILE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.OBJECT_ROUTE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_EAST
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_EAST_PROJECTILE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_EAST_ROUTE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_NORTH
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_NORTH_EAST
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_NORTH_EAST_PROJECTILE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_NORTH_EAST_ROUTE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_NORTH_PROJECTILE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_NORTH_ROUTE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_NORTH_WEST
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_NORTH_WEST_PROJECTILE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_NORTH_WEST_ROUTE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_SOUTH
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_SOUTH_EAST
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_SOUTH_EAST_PROJECTILE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_SOUTH_EAST_ROUTE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_SOUTH_PROJECTILE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_SOUTH_ROUTE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_SOUTH_WEST
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_SOUTH_WEST_PROJECTILE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_SOUTH_WEST_ROUTE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_WEST
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_WEST_PROJECTILE_BLOCKER
-import org.rsmod.game.pathfinder.flag.CollisionFlag.WALL_WEST_ROUTE_BLOCKER
+import org.rsmod.routefinder.LineValidator
+import org.rsmod.routefinder.collision.CollisionFlagMap
+import org.rsmod.routefinder.flag.CollisionFlag.BLOCK_NPCS
+import org.rsmod.routefinder.flag.CollisionFlag.GROUND_DECOR
+import org.rsmod.routefinder.flag.CollisionFlag.LOC
+import org.rsmod.routefinder.flag.CollisionFlag.LOC_PROJ_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.LOC_ROUTE_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_EAST
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_EAST_PROJ_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_EAST_ROUTE_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_NORTH
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_NORTH_EAST
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_NORTH_EAST_PROJ_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_NORTH_EAST_ROUTE_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_NORTH_PROJ_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_NORTH_ROUTE_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_NORTH_WEST
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_NORTH_WEST_PROJ_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_NORTH_WEST_ROUTE_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_SOUTH
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_SOUTH_EAST
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_SOUTH_EAST_PROJ_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_SOUTH_EAST_ROUTE_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_SOUTH_PROJ_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_SOUTH_ROUTE_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_SOUTH_WEST
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_SOUTH_WEST_PROJ_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_SOUTH_WEST_ROUTE_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_WEST
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_WEST_PROJ_BLOCKER
+import org.rsmod.routefinder.flag.CollisionFlag.WALL_WEST_ROUTE_BLOCKER
 
 fun CollisionFlagMap.isClipped(tile: Tile): Boolean {
     val zoneIndex = zoneIndex(tile.x, tile.z, tile.height)
@@ -194,14 +194,14 @@ private fun CollisionFlagMap.changeNormalCollision(
     breakRouteFinding: Boolean,
     add: Boolean,
 ) {
-    var flag = OBJECT
+    var flag = LOC
 
     if (blocksProjectile) {
-        flag = flag or OBJECT_PROJECTILE_BLOCKER
+        flag = flag or LOC_PROJ_BLOCKER
     }
 
     if (breakRouteFinding) {
-        flag = flag or OBJECT_ROUTE_BLOCKER
+        flag = flag or LOC_ROUTE_BLOCKER
     }
 
     for (x in 0 until width) {
@@ -306,66 +306,66 @@ private fun CollisionFlagMap.changeWallProjectileCollision(
         GameObjectShape.WALL_STRAIGHT ->
             when (rotation) {
                 0 -> {
-                    addCollisionFlag(tile, WALL_WEST_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(-1, 0), WALL_EAST_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile, WALL_WEST_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(-1, 0), WALL_EAST_PROJ_BLOCKER, add)
                 }
                 1 -> {
-                    addCollisionFlag(tile, WALL_NORTH_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(0, 1), WALL_SOUTH_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile, WALL_NORTH_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(0, 1), WALL_SOUTH_PROJ_BLOCKER, add)
                 }
                 2 -> {
-                    addCollisionFlag(tile, WALL_EAST_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(1, 0), WALL_WEST_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile, WALL_EAST_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(1, 0), WALL_WEST_PROJ_BLOCKER, add)
                 }
                 3 -> {
-                    addCollisionFlag(tile, WALL_SOUTH_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(0, -1), WALL_NORTH_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile, WALL_SOUTH_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(0, -1), WALL_NORTH_PROJ_BLOCKER, add)
                 }
             }
         GameObjectShape.WALL_DIAGONALCORNER, GameObjectShape.WALL_SQUARECORNER ->
             when (rotation) {
                 0 -> {
-                    addCollisionFlag(tile, WALL_NORTH_WEST_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(-1, 1), WALL_SOUTH_EAST_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile, WALL_NORTH_WEST_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(-1, 1), WALL_SOUTH_EAST_PROJ_BLOCKER, add)
                 }
                 1 -> {
-                    addCollisionFlag(tile, WALL_NORTH_EAST_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(1, 1), WALL_SOUTH_WEST_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile, WALL_NORTH_EAST_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(1, 1), WALL_SOUTH_WEST_PROJ_BLOCKER, add)
                 }
                 2 -> {
-                    addCollisionFlag(tile, WALL_SOUTH_EAST_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(1, -1), WALL_NORTH_WEST_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile, WALL_SOUTH_EAST_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(1, -1), WALL_NORTH_WEST_PROJ_BLOCKER, add)
                 }
                 3 -> {
-                    addCollisionFlag(tile, WALL_SOUTH_WEST_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(-1, -1), WALL_NORTH_EAST_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile, WALL_SOUTH_WEST_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(-1, -1), WALL_NORTH_EAST_PROJ_BLOCKER, add)
                 }
             }
         GameObjectShape.WALL_L ->
             when (rotation) {
                 0 -> {
-                    val flag = WALL_WEST_PROJECTILE_BLOCKER or WALL_NORTH_PROJECTILE_BLOCKER
+                    val flag = WALL_WEST_PROJ_BLOCKER or WALL_NORTH_PROJ_BLOCKER
                     addCollisionFlag(tile, flag, add)
-                    addCollisionFlag(tile.transform(-1, 0), WALL_EAST_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(0, 1), WALL_SOUTH_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile.transform(-1, 0), WALL_EAST_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(0, 1), WALL_SOUTH_PROJ_BLOCKER, add)
                 }
                 1 -> {
-                    val flag = WALL_NORTH_PROJECTILE_BLOCKER or WALL_EAST_PROJECTILE_BLOCKER
+                    val flag = WALL_NORTH_PROJ_BLOCKER or WALL_EAST_PROJ_BLOCKER
                     addCollisionFlag(tile, flag, add)
-                    addCollisionFlag(tile.transform(0, 1), WALL_SOUTH_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(1, 0), WALL_WEST_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile.transform(0, 1), WALL_SOUTH_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(1, 0), WALL_WEST_PROJ_BLOCKER, add)
                 }
                 2 -> {
-                    val flag = WALL_EAST_PROJECTILE_BLOCKER or WALL_SOUTH_PROJECTILE_BLOCKER
+                    val flag = WALL_EAST_PROJ_BLOCKER or WALL_SOUTH_PROJ_BLOCKER
                     addCollisionFlag(tile, flag, add)
-                    addCollisionFlag(tile.transform(1, 0), WALL_WEST_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(0, -1), WALL_NORTH_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile.transform(1, 0), WALL_WEST_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(0, -1), WALL_NORTH_PROJ_BLOCKER, add)
                 }
                 3 -> {
-                    val flag = WALL_SOUTH_PROJECTILE_BLOCKER or WALL_WEST_PROJECTILE_BLOCKER
+                    val flag = WALL_SOUTH_PROJ_BLOCKER or WALL_WEST_PROJ_BLOCKER
                     addCollisionFlag(tile, flag, add)
-                    addCollisionFlag(tile.transform(0, -1), WALL_NORTH_PROJECTILE_BLOCKER, add)
-                    addCollisionFlag(tile.transform(-1, 0), WALL_EAST_PROJECTILE_BLOCKER, add)
+                    addCollisionFlag(tile.transform(0, -1), WALL_NORTH_PROJ_BLOCKER, add)
+                    addCollisionFlag(tile.transform(-1, 0), WALL_EAST_PROJ_BLOCKER, add)
                 }
             }
     }
@@ -445,7 +445,7 @@ private fun CollisionFlagMap.changeWallCollision(
 private fun CollisionFlagMap.changeFloorDecor(
     coords: Tile,
     add: Boolean,
-) = addCollisionFlag(coords, FLOOR_DECORATION, add)
+) = addCollisionFlag(coords, GROUND_DECOR, add)
 
 private fun CollisionFlagMap.addCollisionFlag(
     tile: Tile,

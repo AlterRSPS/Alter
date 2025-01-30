@@ -19,13 +19,13 @@ import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.timer.FROZEN_TIMER
 import org.alter.game.model.timer.STUN_TIMER
 import org.alter.game.plugin.Plugin
-import org.rsmod.game.pathfinder.Route
-import org.rsmod.game.pathfinder.collision.CollisionStrategies
+import org.rsmod.routefinder.Route
+import org.rsmod.routefinder.collision.CollisionStrategy
 import java.util.*
 
 /**
  * This class is responsible for calculating distances and valid interaction
- * tiles for [GameObject] path-finding.
+ * tiles for [GameObject] route-finding.
  *
  * @author Tom <rspsmods@gmail.com>
  */
@@ -205,21 +205,21 @@ object ObjectPathAction {
             blockDirections.addAll(blockedWallDirections)
         }
 
-        val route = pawn.world.smartPathFinder.findPath(
+        val route = pawn.world.smartRouteFinder.findRoute(
                 level = pawn.tile.height,
                 srcX = pawn.tile.x,
                 srcZ = pawn.tile.z,
                 destX = tile.x,
                 destZ = tile.z,
                 destWidth = def.sizeX,
-                destHeight = def.sizeY,
+                destLength = def.sizeY,
                 srcSize = pawn.getSize(), // @TODO ?
-                collision = CollisionStrategies.Normal,
-                objRot = obj.rot,
-                objShape = obj.type,
+                collision = CollisionStrategy.Normal,
+                locAngle = obj.rot,
+                locShape = obj.type,
                 blockAccessFlags = def.clipMask,
             )
-        pawn.walkPath(route, MovementQueue.StepType.NORMAL)
+        pawn.walkRoute(route, MovementQueue.StepType.NORMAL)
         val last = pawn.movementQueue.peekLast()
 
         while (last != null &&

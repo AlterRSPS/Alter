@@ -1,6 +1,6 @@
 package org.alter.game.model
 
-import org.rsmod.game.pathfinder.flag.CollisionFlag
+import org.rsmod.routefinder.flag.CollisionFlag
 
 /**
  * Represents cardinal and ordinal directions in the game.

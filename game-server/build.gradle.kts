@@ -30,7 +30,7 @@ dependencies {
         implementation(rootProject.projects.plugins.filestore)
         implementation(rootProject.projects.plugins.rscm)
         implementation(rootProject.projects.plugins.tools)
-        implementation(lib.pathfinder)
+        implementation(lib.routefinder)
     }
 }
 sourceSets {

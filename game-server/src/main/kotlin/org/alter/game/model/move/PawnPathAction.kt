@@ -1,14 +1,12 @@
 package org.alter.game.model.move
 
-import org.alter.game.model.Interaction
-import org.alter.game.model.Tile
 import org.alter.game.model.attr.*
 import org.alter.game.model.entity.*
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.timer.RESET_PAWN_FACING_TIMER
 import org.alter.game.plugin.Plugin
-import org.rsmod.game.pathfinder.collision.CollisionStrategies
+import org.rsmod.routefinder.collision.CollisionStrategy
 import java.lang.ref.WeakReference
 
 object PawnPathAction {
@@ -65,20 +63,20 @@ object PawnPathAction {
     }
 
     private suspend fun walk(it: QueueTask, pawn: Pawn, other: Pawn, opt: Int, lineOfSightRange: Int?) {
-        val collisionStrategy = if (lineOfSightRange == null) CollisionStrategies.Normal else CollisionStrategies.LineOfSight
+        val collisionStrategy = if (lineOfSightRange == null) CollisionStrategy.Normal else CollisionStrategy.LineOfSight
         val world = pawn.world
         pawn.facePawn(other)
 
-        val route = pawn.world.smartPathFinder.findPath(
+        val route = pawn.world.smartRouteFinder.findRoute(
             level = pawn.tile.height,
             srcX = pawn.tile.x,
             srcZ = pawn.tile.z,
             destX = other.tile.x,
             destZ = other.tile.z,
-            objShape = -2,
+            locShape = -2,
             collision = collisionStrategy,
         )
-        pawn.walkPath(route.toTileQueue(), stepType = MovementQueue.StepType.NORMAL)
+        pawn.walkRoute(route.toTileQueue(), stepType = MovementQueue.StepType.NORMAL)
 
         while (pawn.hasMoveDestination()) {
             it.wait(1)

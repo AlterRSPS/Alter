@@ -19,7 +19,7 @@ import java.lang.ref.WeakReference
  *
  * @author Tom <rspsmods@gmail.com>
  */
-object GroundItemPathAction {
+object GroundItemRouteAction {
     /**
      * The option used to specify that a walk action should execute item on
      * ground item plugins when destination is reached.
@@ -34,14 +34,14 @@ object GroundItemPathAction {
                 player.stopMovement()
                 player.setMapFlag()
             }
-            val route = player.world.smartPathFinder.findPath(
+            val route = player.world.smartRouteFinder.findRoute(
                 level = item.tile.height,
                 srcX = player.tile.x,
                 srcZ = player.tile.z,
                 destX = item.tile.x,
                 destZ = item.tile.z
             )
-            player.walkPath(route, MovementQueue.StepType.NORMAL)
+            player.walkRoute(route, MovementQueue.StepType.NORMAL)
             while (player.hasMoveDestination()) {
                 wait(1)
             }
@@ -51,7 +51,7 @@ object GroundItemPathAction {
             } else if (!player.hasMoveDestination() && player.tile.getDistance(item.tile) == 1) {
                 player.lock()
                 player.faceTile(item.tile)
-                if (!player.isPathBlocked(item.tile)) {
+                if (!player.isRouteBlocked(item.tile)) {
                     player.animate(832, 4)
                     wait(2)
                     handleAction(player, item, opt)
