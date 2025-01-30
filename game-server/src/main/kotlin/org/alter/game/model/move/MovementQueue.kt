@@ -10,9 +10,8 @@ import org.alter.game.model.entity.Npc
 import org.alter.game.model.move.MovementQueue.Step
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
-import org.rsmod.game.pathfinder.PathFinder
-import org.rsmod.game.pathfinder.collision.CollisionStrategy
-import org.rsmod.game.pathfinder.collision.CollisionStrategies
+import org.rsmod.routefinder.RouteFinding
+import org.rsmod.routefinder.collision.CollisionStrategy
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.sign
@@ -75,7 +74,7 @@ class MovementQueue(val pawn: Pawn) {
 
     fun canStep(tile: Tile,
                 srcSize: Int = 1,
-                collision: CollisionStrategy = CollisionStrategies.Normal
+                collision: CollisionStrategy = CollisionStrategy.Normal
     ) = canStep(
         tile.x,
         tile.z,
@@ -87,7 +86,7 @@ class MovementQueue(val pawn: Pawn) {
         dx: Int,
         dy: Int,
         srcSize: Int = 1,
-        collision: CollisionStrategy = CollisionStrategies.Normal
+        collision: CollisionStrategy = CollisionStrategy.Normal
     ): Boolean {
         return pawn.world.stepValidator.canTravel(
             level = pawn.tile.height,

@@ -189,8 +189,8 @@ object Combat {
     ): Int =
         when (type) {
             ProjectileType.MAGIC -> {
-                val fastPath = raycastTiles(source.tile, target)
-                5 + (fastPath * 10)
+                val fastRoute = raycastTiles(source.tile, target)
+                5 + (fastRoute * 10)
             }
             else -> {
                 val distance = source.tile.getDistance(target)

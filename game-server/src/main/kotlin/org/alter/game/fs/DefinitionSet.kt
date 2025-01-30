@@ -11,7 +11,7 @@ import org.alter.game.model.collision.CollisionManager.Companion.BRIDGE_TILE
 import org.alter.game.model.entity.StaticObject
 import org.alter.game.model.region.ChunkSet
 import org.alter.game.service.xtea.XteaKeyService
-import org.rsmod.game.pathfinder.flag.CollisionFlag
+import org.rsmod.routefinder.flag.CollisionFlag
 import java.io.IOException
 
 /**
@@ -69,6 +69,7 @@ class DefinitionSet {
                 val chunkBaseX = baseX + cx * 8
                 val chunkBaseZ = baseZ + cz * 8
                 for (level in 0 until 4) {
+//                    world.collision.add(chunkBaseX, chunkBaseZ, level, 0)
                     world.collision.allocateIfAbsent(chunkBaseX, chunkBaseZ, level)
                 }
             }
@@ -101,7 +102,7 @@ class DefinitionSet {
          */
         blocked.forEach { tile ->
             world.chunks.getOrCreate(tile)
-            world.collision.add(tile.x, tile.z, tile.height, CollisionFlag.FLOOR)
+            world.collision.add(tile.x, tile.z, tile.height, CollisionFlag.BLOCK_WALK)
         }
         /**
          * EDIT: turns out i was wrong. the assumption made here didn't pan out as expected. the bandos godwars room door ended up having different flags to before.

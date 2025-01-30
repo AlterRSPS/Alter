@@ -7,8 +7,8 @@ import org.alter.game.model.attr.CLIENT_KEY_COMBINATION
 import org.alter.game.model.entity.*
 import org.alter.game.model.move.MovementQueue.StepType
 import org.alter.game.model.priv.Privilege
-import org.rsmod.game.pathfinder.Route
-import org.rsmod.game.pathfinder.RouteCoordinates
+import org.rsmod.routefinder.Route
+import org.rsmod.routefinder.RouteCoordinates
 import java.util.*
 
 /**
@@ -49,20 +49,20 @@ fun Pawn.setMapFlag(
 }
 
 /**
- * Walk to all the tiles specified in our [path] queue, using [stepType] as
+ * Walk to all the tiles specified in our [route] queue, using [stepType] as
  * the [MovementQueue.StepType].
  *
  *
  * Cancel out the walk logic when within @param [target]
  */
-fun Pawn.walkPath(
-    path: Route,
+fun Pawn.walkRoute(
+    route: Route,
     stepType: StepType,
 ) {
-    walkPath(path.toTileQueue(), stepType)
+    walkRoute(route.toTileQueue(), stepType)
 }
 
-fun Pawn.walkPath(
+fun Pawn.walkRoute(
     path: Queue<Tile>,
     stepType: StepType,
 ) {
@@ -111,7 +111,7 @@ fun Pawn.stopMovement() = movementQueue.clear()
 fun Pawn.walkTo(tile: Tile, stepType: StepType = StepType.NORMAL) =
     walkTo(targetX = tile.x, targetY = tile.z, stepType = stepType)
 
-fun Pawn.walkPath(route: RouteCoordinates, stepType: StepType = StepType.NORMAL) {
+fun Pawn.walkRoute(route: RouteCoordinates, stepType: StepType = StepType.NORMAL) {
     this.walkTo(Tile(route.x, route.z), stepType)
 }
 
@@ -132,7 +132,7 @@ fun Pawn.walkTo(
         this.interruptQueues()
         this.resetInteractions()
     }
-    val route = world.smartPathFinder.findPath(
+    val route = world.smartRouteFinder.findRoute(
         level = tile.height,
         srcX = tile.x,
         srcZ = tile.z,
@@ -147,7 +147,7 @@ fun Pawn.walkTo(
         moveTo(Tile(targetX, targetY, tile.height))
         attr[CLIENT_KEY_COMBINATION] = 0
     } else {
-        walkPath(route.toTileQueue(), stepType)
+        walkRoute(route.toTileQueue(), stepType)
     }
 }
 

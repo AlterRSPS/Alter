@@ -20,7 +20,7 @@ import org.alter.game.model.queue.impl.PawnQueueTaskSet
 import org.alter.game.model.timer.*
 import org.alter.game.plugin.Plugin
 import org.alter.game.service.log.LoggerService
-import org.rsmod.game.pathfinder.RouteCoordinates
+import org.rsmod.routefinder.RouteCoordinates
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -528,7 +528,7 @@ abstract class Pawn(val world: World) : Entity() {
         world.getService(LoggerService::class.java, searchSubclasses = true)?.logEvent(this, event)
     }
 
-    fun isPathBlocked(item: GroundItem): Boolean {
+    fun isRouteBlocked(item: GroundItem): Boolean {
         val dir = Direction.between(this.tile, item.tile)
         val collisionFlag = this.world.collision.get(item.tile.x, item.tile.z, item.tile.height)
         println("dir: $dir, collisionFlag: $collisionFlag, DirectionFlag: ${Direction.getDirectionFlag(dir)}")
@@ -536,12 +536,12 @@ abstract class Pawn(val world: World) : Entity() {
     }
 
     /**
-     * Checks if the path between the player and the tile is blocked by a collision flag.
+     * Checks if the route between the player and the tile is blocked by a collision flag.
      *
      * @param tile The tile that is being checked for being blocked by a collision flag to the pawn.
-     * @return True if the path is blocked, false otherwise.
+     * @return True if the route is blocked, false otherwise.
      */
-    fun isPathBlocked(tile: Tile): Boolean {
+    fun isRouteBlocked(tile: Tile): Boolean {
         val dir = Direction.between(this.tile, tile)
         val collisionFlag = this.world.collision.get(tile.x, tile.z, tile.height)
         return (collisionFlag and Direction.getDirectionFlag(dir)) != 0

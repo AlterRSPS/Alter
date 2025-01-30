@@ -1,7 +1,7 @@
 package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.objs.OpObj
-import org.alter.game.model.move.GroundItemPathAction
+import org.alter.game.model.move.GroundItemRouteAction
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
@@ -51,6 +51,6 @@ class OpObjHandler : MessageHandler<OpObj> {
         client.attr[CLIENT_KEY_COMBINATION] = if (message.controlKey) 2 else 0
         client.attr[INTERACTING_OPT_ATTR] = message.op
         client.attr[INTERACTING_GROUNDITEM_ATTR] = WeakReference(item)
-        client.executePlugin(GroundItemPathAction.walkPlugin)
+        client.executePlugin(GroundItemRouteAction.walkPlugin)
     }
 }

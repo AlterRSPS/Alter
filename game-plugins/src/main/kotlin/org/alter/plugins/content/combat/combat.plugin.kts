@@ -30,7 +30,7 @@ onPlayerOption("Attack") {
     player.attack(target)
 }
 /**
- * @TODO Bigger creatures seem to have bugged range + their path finding sucks due to conditions given.
+ * @TODO Bigger creatures seem to have bugged range + their route finding sucks due to conditions given.
  */
 suspend fun cycle(queue: QueueTask): Boolean {
     val pawn = queue.pawn
@@ -52,36 +52,36 @@ suspend fun cycle(queue: QueueTask): Boolean {
         destX = target.tile.x,
         destZ = target.tile.z,
         destWidth = target.getSize(),
-        destHeight = target.getSize(),
+        destLength = target.getSize(),
         srcSize = pawn.getSize(),
-        objShape = -2
+        locShape = -2
     )
     if (!reached) {
         when (pathLogic) {
             1 -> {
-                val route = world.smartPathFinder.findPath(
+                val route = world.smartRouteFinder.findRoute(
                     level = pawn.tile.height,
                     srcX = pawn.tile.x,
                     srcZ = pawn.tile.z,
                     destX = target.tile.x,
                     destZ = target.tile.z,
-                    objShape = -2,
+                    locShape = -2,
                     destWidth = target.getSize(),
-                    destHeight = target.getSize()
+                    destLength = target.getSize()
                 )
-                pawn.walkPath(route, StepType.NORMAL)
+                pawn.walkRoute(route, StepType.NORMAL)
             }
             0 -> {
                 val path = LinkedList<Tile>()
-                val destination = world.dumbPathFinder.naiveDestination(
+                val destination = world.dumbRouteFinder.naiveDestination(
                     sourceX = pawn.tile.x,
                     sourceZ = pawn.tile.z,
                     sourceWidth = pawn.getSize(),
-                    sourceHeight = pawn.getSize(),
+                    sourceLength = pawn.getSize(),
                     targetX = target.tile.x,
                     targetZ = target.tile.z,
                     targetWidth = target.getSize(),
-                    targetHeight = target.getSize()
+                    targetLength = target.getSize()
                 )
                 val dx = destination.x - pawn.tile.x
                 val dz = destination.z - pawn.tile.z
@@ -106,7 +106,7 @@ suspend fun cycle(queue: QueueTask): Boolean {
                     pawn.forceChat("Broke")
                     return true
                 }
-                pawn.walkPath(path, stepType = StepType.NORMAL)
+                pawn.walkRoute(path, stepType = StepType.NORMAL)
             }
         }
     }

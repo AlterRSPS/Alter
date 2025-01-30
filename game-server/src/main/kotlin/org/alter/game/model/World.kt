@@ -35,11 +35,11 @@ import org.alter.game.plugin.PluginRepository
 import org.alter.game.service.GameService
 import org.alter.game.service.Service
 import org.alter.game.service.xtea.XteaKeyService
-import org.rsmod.game.pathfinder.PathFinder
-import org.rsmod.game.pathfinder.StepValidator
-import org.rsmod.game.pathfinder.collision.CollisionFlagMap
-import org.rsmod.game.pathfinder.flag.CollisionFlag
-import org.rsmod.game.pathfinder.reach.ReachStrategy
+import org.rsmod.routefinder.RouteFinding
+import org.rsmod.routefinder.StepValidator
+import org.rsmod.routefinder.collision.CollisionFlagMap
+import org.rsmod.routefinder.flag.CollisionFlag
+import org.rsmod.routefinder.reach.ReachStrategy
 import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -79,8 +79,8 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     val collision: CollisionFlagMap = CollisionFlagMap()
 
     val stepValidator = StepValidator(collision)
-    val smartPathFinder = PathFinder(collision)
-    val dumbPathFinder = PathFinder
+    val smartRouteFinder = RouteFinding(collision)
+    val dumbRouteFinder = RouteFinding
     val reachStrategy = ReachStrategy
 
     fun canTraverse(
@@ -93,8 +93,8 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         val collisionFlags = collision[nextTile.x, nextTile.z, nextTile.height]
 
         return if (pawn is Npc && pawn.canSwim) {
-            // Allow movement if the FLOOR flag is set, regardless of other flags
-            (collisionFlags and CollisionFlag.FLOOR) != 0
+            // Allow movement if the BLOCK_WALK flag is set, regardless of other flags
+            (collisionFlags and CollisionFlag.BLOCK_WALK) != 0
         } else {
             stepValidator.canTravel(
                 level = source.height,
