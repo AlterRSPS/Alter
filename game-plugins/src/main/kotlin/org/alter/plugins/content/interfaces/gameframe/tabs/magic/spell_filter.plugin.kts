@@ -10,7 +10,7 @@ import org.alter.plugins.content.interfaces.spellfilter.SpellFilters.FILTER_UTIL
 import org.alter.plugins.content.interfaces.spellfilter.SpellFilters.SPELL_FILTER_COMPONENT_ID
 import org.alter.plugins.content.interfaces.spellfilter.SpellFilters.SPELL_FILTER_INTERFACE_ID
 
-on_login {
+onLogin {
     player.setInterfaceEvents(interfaceId = SPELL_FILTER_INTERFACE_ID, component = SPELL_FILTER_COMPONENT_ID, range = 0..4, setting = 2)
 }
 
@@ -22,7 +22,7 @@ DisplayMode.values.forEach { mode ->
             DisplayMode.FIXED -> 75
             else -> return@forEach
         }
-    on_button(interfaceId = getDisplayComponentId(mode), component = child) {
+    onButton(interfaceId = getDisplayComponentId(mode), component = child) {
         val opt = player.getInteractingOption()
         if (opt == 2) {
             player.toggleVarbit(DISABLE_FILTERS_VARBIT)
@@ -30,7 +30,7 @@ DisplayMode.values.forEach { mode ->
     }
 }
 
-on_button(interfaceId = SPELL_FILTER_INTERFACE_ID, component = SPELL_FILTER_COMPONENT_ID) {
+onButton(interfaceId = SPELL_FILTER_INTERFACE_ID, component = SPELL_FILTER_COMPONENT_ID) {
     val varbit =
         when (player.getInteractingSlot()) {
             0 -> FILTER_COMBAT_VARBIT
@@ -38,7 +38,7 @@ on_button(interfaceId = SPELL_FILTER_INTERFACE_ID, component = SPELL_FILTER_COMP
             2 -> FILTER_UTILITY_VARBIT
             3 -> FILTER_BY_LEVEL_VARBIT
             4 -> FILTER_BY_RUNES_VARBIT
-            else -> return@on_button
+            else -> return@onButton
         }
     player.toggleVarbit(varbit)
 }

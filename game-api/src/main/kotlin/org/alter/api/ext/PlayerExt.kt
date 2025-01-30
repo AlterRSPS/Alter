@@ -9,7 +9,7 @@ import net.rsprot.protocol.game.outgoing.inv.UpdateInvPartial
 import net.rsprot.protocol.game.outgoing.misc.client.UrlOpen
 import net.rsprot.protocol.game.outgoing.misc.player.*
 import net.rsprot.protocol.game.outgoing.sound.MidiJingle
-import net.rsprot.protocol.game.outgoing.sound.MidiSongOld
+import net.rsprot.protocol.game.outgoing.sound.MidiSongV2
 import net.rsprot.protocol.game.outgoing.sound.SynthSound
 import net.rsprot.protocol.game.outgoing.varp.VarpLarge
 import net.rsprot.protocol.game.outgoing.varp.VarpSmall
@@ -29,9 +29,11 @@ import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.interf.DisplayMode
 import org.alter.game.model.item.Item
+import org.alter.rscm.RSCM.getRSCM
 import org.alter.game.model.timer.SKULL_ICON_DURATION_TIMER
 import org.alter.game.rsprot.RsModIndexedObjectProvider
 import org.alter.game.rsprot.RsModObjectProvider
+import org.alter.rscm.RSCM
 import kotlin.math.floor
 
 /**
@@ -49,7 +51,7 @@ fun Player.openShop(shop: String) {
         shopDirty = true
         openInterface(interfaceId = 300, dest = InterfaceDestination.MAIN_SCREEN)
         openInterface(interfaceId = 301, dest = InterfaceDestination.TAB_AREA)
-        runClientScript(CommonClientScripts.SHOP_INIT, 13, s.name)
+        runClientScript(CommonClientScripts.SHOP_INIT, 3, s.name, -1, 0, 1)
         setInterfaceEvents(interfaceId = 300, component = 16, range = 0..s.items.size, setting = 1086)
         setInterfaceEvents(interfaceId = 301, component = 0, range = 0 until inventory.capacity, setting = 1086)
     } else {
@@ -64,7 +66,7 @@ fun Player.openShop(shopId: Int) {
         shopDirty = true
         openInterface(interfaceId = 300, dest = InterfaceDestination.MAIN_SCREEN)
         openInterface(interfaceId = 301, dest = InterfaceDestination.TAB_AREA)
-        runClientScript(CommonClientScripts.SHOP_INIT, 13, s.name)
+        runClientScript(CommonClientScripts.SHOP_INIT, 3, s.name, -1, 0, 1)
         setInterfaceEvents(interfaceId = 300, component = 16, range = 0..s.items.size, setting = 1086)
         setInterfaceEvents(interfaceId = 301, component = 0, range = 0 until inventory.capacity, setting = 1086)
     } else {
@@ -578,11 +580,17 @@ fun Player.playSound(
     volume: Int = 1,
     delay: Int = 0,
 ) {
+
     write(SynthSound(id = id, loops = volume, delay = delay))
 }
 
 fun Player.playSong(id: Int) {
-    write(MidiSongOld(id))
+    write(MidiSongV2(id = 0,
+            fadeOutDelay = 0,
+            fadeOutSpeed = 0,
+            fadeInDelay = 0,
+            fadeInSpeed = 0
+    ))
     setComponentText(interfaceId = 239, component = 6, text = Song.getTitle(id))
 }
 
@@ -668,9 +676,9 @@ fun Player.toggleVarbit(id: Int) {
 
 fun Player.setMapFlag(
     x: Int,
-    z: Int,
+    y: Int,
 ) {
-    write(SetMapFlag(x, z))
+    write(SetMapFlag(x, y))
 }
 
 fun Player.clearMapFlag() {
@@ -772,7 +780,19 @@ fun Player.hasEquipped(
     return items.any { equipment.hasAt(slot.id, it) }
 }
 
+fun Player.hasEquipped(
+    slot: EquipmentType,
+    vararg items: String,
+): Boolean {
+    check(items.isNotEmpty()) { "Items shouldn't be empty." }
+    val scanned = items.map { getRSCM(it) }.toTypedArray()
+    return scanned.any { equipment.hasAt(slot.id, it) }
+}
+
 fun Player.hasEquipped(items: IntArray) = items.all { equipment.contains(it) }
+fun Player.hasEquipped(items: Array<String>) = items.map {getRSCM(it)}.all { equipment.contains(it) }
+
+
 
 fun Player.getEquipment(slot: EquipmentType): Item? = equipment[slot.id]
 
@@ -815,14 +835,14 @@ fun Player.sendWeaponComponentInformation() {
         name = definition.name
 
         panel = Math.max(0, definition.weaponType)
-        setComponentText(593, 2, "Category: " + WeaponCategory.get(definition.category))
+        setComponentText(593, 3, "Category: " + WeaponCategory.get(definition.category))
     } else {
         name = "Unarmed"
         panel = 0
-        setComponentText(593, 2, "Category: Unarmed")
+        setComponentText(593, 3, "Category: Unarmed")
     }
 
-    setComponentText(593, 1, name)
+    setComponentText(593, 2, name)
     setVarbit(357, panel)
 }
 

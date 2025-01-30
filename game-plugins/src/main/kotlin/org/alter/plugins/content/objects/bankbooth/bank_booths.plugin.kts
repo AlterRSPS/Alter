@@ -3,57 +3,55 @@ package org.alter.plugins.content.objects.bankbooth
 import org.alter.plugins.content.interfaces.bank.openBank
 
 private val BOOTHS =
-    with(Objs) {
         setOf(
-            BANK_BOOTH,
-            BANK_BOOTH_10355,
-            BANK_BOOTH_10357,
-            BANK_BOOTH_10517,
-            BANK_BOOTH_10583,
-            BANK_BOOTH_10584,
-            BANK_BOOTH_11338,
-            BANK_BOOTH_12798,
-            BANK_BOOTH_14367,
-            BANK_BOOTH_32666,
-            BANK_BOOTH_16642,
-            BANK_BOOTH_16700,
-            BANK_BOOTH_18491,
-            BANK_BOOTH_20325,
-            BANK_BOOTH_22819,
-            BANK_BOOTH_24101,
-            BANK_BOOTH_24347,
-            BANK_BOOTH_25808,
-            BANK_BOOTH_27254,
-            BANK_BOOTH_27260,
-            BANK_BOOTH_27263,
-            BANK_BOOTH_27265,
-            BANK_BOOTH_27267,
-            BANK_BOOTH_27292,
-            BANK_BOOTH_27718,
-            BANK_BOOTH_27719,
-            BANK_BOOTH_27720,
-            BANK_BOOTH_27721,
-            BANK_BOOTH_28430,
-            BANK_BOOTH_28431,
-            BANK_BOOTH_28432,
-            BANK_BOOTH_28433,
-            BANK_BOOTH_28546,
-            BANK_BOOTH_28547,
-            BANK_BOOTH_28548,
-            BANK_BOOTH_28549,
-            BANK_BOOTH_36559,
+            "object.bank_booth",
+            "object.bank_booth_10355",
+            "object.bank_booth_10357",
+            "object.bank_booth_10517",
+            "object.bank_booth_10583",
+            "object.bank_booth_10584",
+            "object.bank_booth_11338",
+            "object.bank_booth_12798",
+            "object.bank_booth_14367",
+            "object.bank_booth_32666",
+            "object.bank_booth_16642",
+            "object.bank_booth_16700",
+            "object.bank_booth_18491",
+            "object.bank_booth_20325",
+            "object.bank_booth_22819",
+            "object.bank_booth_24101",
+            "object.bank_booth_24347",
+            "object.bank_booth_25808",
+            "object.bank_booth_27254",
+            "object.bank_booth_27260",
+            "object.bank_booth_27263",
+            "object.bank_booth_27265",
+            "object.bank_booth_27267",
+            "object.bank_booth_27292",
+            "object.bank_booth_27718",
+            "object.bank_booth_27719",
+            "object.bank_booth_27720",
+            "object.bank_booth_27721",
+            "object.bank_booth_28430",
+            "object.bank_booth_28431",
+            "object.bank_booth_28432",
+            "object.bank_booth_28433",
+            "object.bank_booth_28546",
+            "object.bank_booth_28547",
+            "object.bank_booth_28548",
+            "object.bank_booth_28549",
+            "object.bank_booth_36559",
             // BANK_BOOTH_37959,// Has "use" option
-            BANK_BOOTH_39238,
-            BANK_BOOTH_42837, // has only "bank option"
+            "object.bank_booth_39238",
+            "object.bank_booth_42837", // has only "bank option"
         )
-    }
 
 BOOTHS.forEach { booth ->
-    on_obj_option(obj = booth, option = "bank") {
+    onObjOption(obj = booth, option = "bank") {
         player.openBank()
     }
     if (objHasOption(booth, "Collect")) {
-        on_obj_option(obj = booth, option = "Collect") {
+        onObjOption(obj = booth, option = "Collect") {
             open_collect(player)
         }
     }

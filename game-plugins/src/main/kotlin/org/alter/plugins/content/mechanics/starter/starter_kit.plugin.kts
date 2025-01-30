@@ -1,16 +1,17 @@
 package org.alter.plugins.content.mechanics.starter
 
 import org.alter.game.model.attr.NEW_ACCOUNT_ATTR
+import org.alter.rscm.RSCM.getRSCM
 
-on_login {
-    if (player.attr[NEW_ACCOUNT_ATTR] ?: return@on_login) {
+onLogin {
+    if (player.attr[NEW_ACCOUNT_ATTR] ?: return@onLogin) {
         with(player.inventory) {
-            add(Items.LOGS, 5)
-            add(Items.TINDERBOX)
-            add(Items.BREAD, 5)
-            add(Items.BRONZE_PICKAXE)
-            add(Items.BRONZE_DAGGER)
-            add(Items.KNIFE)
+            add(getRSCM("item.logs"), 5)
+            add(getRSCM("item.tinderbox"))
+            add(getRSCM("item.bread"), 5)
+            add(getRSCM("item.bronze_pickaxe"))
+            add(getRSCM("item.bronze_dagger"))
+            add(getRSCM("item.knife"))
         }
     }
 }

@@ -8,10 +8,10 @@ import kotlin.math.roundToInt
 val SPECIAL_REQUIREMENT = 50
 
 for(item in listOf(
-    Items.ABYSSAL_DAGGER,
-    Items.ABYSSAL_DAGGER_P,
-    Items.ABYSSAL_DAGGER_P_13269,
-    Items.ABYSSAL_DAGGER_P_13271
+    "item.abyssal_dagger",
+    "item.abyssal_dagger_p",
+    "item.abyssal_dagger_p_13269",
+    "item.abyssal_dagger_p_13271"
 )) {
     SpecialAttacks.register(item, SPECIAL_REQUIREMENT) {
         player.animate(id = 3300)

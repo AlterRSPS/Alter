@@ -10,29 +10,29 @@ package org.alter.plugins.content.items.shattered_cane
  */
 
 val required_items =
-    intArrayOf(
-        Items.SHATTERED_HOOD_T3,
-        Items.SHATTERED_TOP_T3,
-        Items.SHATTERED_BOOTS_T3,
-        Items.SHATTERED_TROUSERS_T3,
+    arrayOf(
+        "item.shattered_hood_t3",
+        "item.shattered_top_t3",
+        "item.shattered_boots_t3",
+        "item.shattered_trousers_t3",
     )
 
-on_equipment_option(Items.SHATTERED_CANE, "Skill Emote") {
+onEquipmentOption("item.shattered_cane", "Skill Emote") {
     if (checkForItems(player)) {
         doEmote(player, 2021)
     }
 }
-on_equipment_option(Items.SHATTERED_CANE, "Boss Emote") {
+onEquipmentOption("item.shattered_cane", "Boss Emote") {
     if (checkForItems(player)) {
         doEmote(player, 2022)
     }
 }
-on_equipment_option(Items.SHATTERED_CANE, "Quest Emote") {
+onEquipmentOption("item.shattered_cane", "Quest Emote") {
     if (checkForItems(player)) {
         doEmote(player, 2023)
     }
 }
-on_equipment_option(Items.SHATTERED_CANE, "Fragment Emote") {
+onEquipmentOption("item.shattered_cane", "Fragment Emote") {
     if (checkForItems(player)) {
         player.queue {
             player.lock()

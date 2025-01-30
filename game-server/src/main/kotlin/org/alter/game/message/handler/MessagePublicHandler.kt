@@ -9,7 +9,7 @@ import org.alter.game.service.log.LoggerService
  * @author Tom <rspsmods@gmail.com>
  */
 class MessagePublicHandler : MessageHandler<MessagePublic> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: MessagePublic,
     ) {

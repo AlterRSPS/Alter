@@ -4,6 +4,8 @@ import dev.openrune.cache.CacheManager.getAnim
 import net.rsprot.protocol.game.outgoing.sound.MidiJingle
 import org.alter.game.model.attr.KILLER_ATTR
 import org.alter.game.model.entity.Player
+import org.alter.game.model.move.moveTo
+import org.alter.game.model.move.stopMovement
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
 import org.alter.game.plugin.Plugin

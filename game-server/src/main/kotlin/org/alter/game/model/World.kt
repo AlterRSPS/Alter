@@ -10,7 +10,6 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import net.rsprot.protocol.api.NetworkService
-import net.rsprot.protocol.api.js5.Js5GroupProvider
 import net.rsprot.protocol.game.outgoing.logout.Logout
 import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
 import org.alter.game.DevContext
@@ -19,7 +18,7 @@ import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.fs.ObjectExamineHolder
 import org.alter.game.model.attr.AttributeMap
-import org.alter.game.model.collision.CollisionManager
+import org.alter.game.model.collision.isClipped
 import org.alter.game.model.combat.NpcCombatDef
 import org.alter.game.model.entity.*
 import org.alter.game.model.instance.InstancedMapAllocator
@@ -36,6 +35,11 @@ import org.alter.game.plugin.PluginRepository
 import org.alter.game.service.GameService
 import org.alter.game.service.Service
 import org.alter.game.service.xtea.XteaKeyService
+import org.rsmod.routefinder.RouteFinding
+import org.rsmod.routefinder.StepValidator
+import org.rsmod.routefinder.collision.CollisionFlagMap
+import org.rsmod.routefinder.flag.CollisionFlag
+import org.rsmod.routefinder.reach.ReachStrategy
 import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -47,7 +51,7 @@ import java.util.concurrent.TimeUnit
  * @author Tom <rspsmods@gmail.com>
  */
 class World(val gameContext: GameContext, val devContext: DevContext) {
-    lateinit var network: NetworkService<Client, Js5GroupProvider.ByteBufJs5GroupType>
+    lateinit var network: NetworkService<Client>
 
     /**
      * The [DefinitionSet] that holds general filestore data.
@@ -72,7 +76,36 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
 
     val chunks = ChunkSet(this)
 
-    val collision = CollisionManager(chunks)
+    val collision: CollisionFlagMap = CollisionFlagMap()
+
+    val stepValidator = StepValidator(collision)
+    val smartRouteFinder = RouteFinding(collision)
+    val dumbRouteFinder = RouteFinding
+    val reachStrategy = ReachStrategy
+
+    fun canTraverse(
+        source: Tile,
+        direction: Direction,
+        pawn: Pawn,
+        srcSize: Int = 1,
+    ): Boolean {
+        val nextTile = source.step(direction)
+        val collisionFlags = collision[nextTile.x, nextTile.z, nextTile.height]
+
+        return if (pawn is Npc && pawn.canSwim) {
+            // Allow movement if the BLOCK_WALK flag is set, regardless of other flags
+            (collisionFlags and CollisionFlag.BLOCK_WALK) != 0
+        } else {
+            stepValidator.canTravel(
+                level = source.height,
+                x = source.x,
+                z = source.z,
+                offsetX = direction.getDeltaX(),
+                offsetZ = direction.getDeltaZ(),
+                size = srcSize,
+            )
+        }
+    }
 
     val instanceAllocator = InstancedMapAllocator()
 
@@ -191,6 +224,8 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     internal fun postLoad() {
         plugins.executeWorldInit(this)
     }
+
+
 
     /**
      * Executed every game cycle.
@@ -349,7 +384,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     fun spawn(npc: Npc): Boolean {
         val added = npcs.add(npc)
         if (added) {
-            npc.avatar =
+            npc.initAvatar(
                 network.npcAvatarFactory.alloc(
                     npc.index,
                     npc.id,
@@ -359,6 +394,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
                     0,
                     npc.faceDirection.orientationValue,
                 )
+            )
             setNpcDefaults(npc)
             plugins.executeNpcSpawn(npc)
         }
@@ -434,10 +470,12 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         chunk.addEntity(this, projectile, tile)
     }
 
+    /**
+     * @TODO fix AreaSound baget
+     */
     fun spawn(sound: AreaSound) {
         val tile = sound.tile
         val chunk = chunks.getOrCreate(tile)
-
         chunk.addEntity(this, sound, tile)
     }
 
@@ -468,7 +506,8 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     }
 
     fun isSpawned(obj: GameObject): Boolean =
-        chunks.getOrCreate(obj.tile).getEntities<GameObject>(obj.tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).contains(obj)
+        chunks.getOrCreate(obj.tile)
+            .getEntities<GameObject>(obj.tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).contains(obj)
 
     fun isSpawned(item: GroundItem): Boolean =
         chunks.getOrCreate(item.tile).getEntities<GroundItem>(item.tile, EntityType.GROUND_ITEM).contains(item)
@@ -580,8 +619,6 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
             when (type) {
                 ExamineEntityType.ITEM -> getItem(id).examine
                 ExamineEntityType.NPC -> getNpc(id).examine
-// TODO ADVO fix examines
-//            ExamineEntityType.OBJECT -> definitions.get(ObjectDef::class.java, id).examine
                 ExamineEntityType.OBJECT -> ObjectExamineHolder.EXAMINES.get(id)
             }
 

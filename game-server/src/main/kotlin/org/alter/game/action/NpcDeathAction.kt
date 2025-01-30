@@ -1,12 +1,16 @@
 package org.alter.game.action
 
 import dev.openrune.cache.CacheManager.getAnim
+import org.alter.game.action.NpcDeathAction.reset
+import org.alter.game.info.NpcInfo
 import org.alter.game.model.LockState
 import org.alter.game.model.attr.KILLER_ATTR
 import org.alter.game.model.entity.AreaSound
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
+import org.alter.game.model.move.moveTo
+import org.alter.game.model.move.stopMovement
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
 import org.alter.game.model.weightedTableBuilder.roll
@@ -45,51 +49,41 @@ object NpcDeathAction {
             }
             npc.attr[KILLER_ATTR] = WeakReference(it)
         }
+        NpcInfo(npc).setAllOpsInvisible()
         world.plugins.executeNpcPreDeath(npc)
         npc.resetFacePawn()
-
         if (npc.combatDef.defaultDeathSoundArea) {
             world.spawn(AreaSound(npc.tile, deathSound, npc.combatDef.defaultDeathSoundRadius, npc.combatDef.defaultDeathSoundVolume))
         } else {
             (killer as? Player)?.playSound(deathSound, npc.combatDef.defaultDeathSoundVolume)
         }
+
+        /**
+         * @TODO add interruption for this block if we would want to execute a plugin during it's death animation
+         */
         deathAnimation.forEach { anim ->
             val def = getAnim(anim)
             npc.animate(def.id, def.cycleLength)
-            wait(def.cycleLength + 1)
+            wait(def.cycleLength)
         }
         world.plugins.executeNpcDeath(npc)
         world.plugins.anyNpcDeath.forEach {
             npc.executePlugin(it)
         }
-        /**
-         * 10 took 0ms.
-         */
-        npc.damageMap.getMostDamage()?.let {    pawn ->
-            val player = pawn as Player
-            val lootTables = npc.combatDef.LootTables ?: return@let
-            roll(player, lootTables).forEach {
-                it.ownerUID = player.uid
-                it.tile = npc.getCentreTile()
-                it.timeUntilPublic = world.gameContext.gItemPublicDelay
-                it.timeUntilDespawn = world.gameContext.gItemDespawnDelay
-                world.spawn(it)
-            }
-        }
         if (npc.respawns) {
+            NpcInfo(npc).setInaccessible(true)
             npc.reset()
             wait(respawnDelay)
-            npc.avatar.setInaccessible(false)
+            NpcInfo(npc).setAllOpsVisible()
+            NpcInfo(npc).setInaccessible(false)
             world.plugins.executeNpcSpawn(npc)
         } else {
             world.remove(npc)
         }
     }
-
     private fun Npc.reset() {
         lock = LockState.NONE
-        tile = spawnTile
-        avatar.setInaccessible(true)
+        moveTo(spawnTile)
         attr.clear()
         timers.clear()
         world.setNpcDefaults(this)

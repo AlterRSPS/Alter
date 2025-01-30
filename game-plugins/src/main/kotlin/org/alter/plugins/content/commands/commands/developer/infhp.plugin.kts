@@ -3,7 +3,7 @@ package org.alter.plugins.content.commands.commands.developer
 import org.alter.game.model.bits.*
 import org.alter.game.model.priv.Privilege
 
-on_command("infhp", Privilege.DEV_POWER, description = "Infinite HP") {
+onCommand("infhp", Privilege.DEV_POWER, description = "Infinite HP") {
     player.toggleStorageBit(INFINITE_VARS_STORAGE, InfiniteVarsType.HP)
     player.message(
         "Infinite hp: ${if (!player.hasStorageBit(

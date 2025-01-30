@@ -22,7 +22,7 @@ import org.alter.plugins.content.interfaces.bank.BankTabs.startPoint
  *
  * When you take out to inv from bank -> It leaves empty gaps -> But when you put everything via Bank All -> The empty gaps get subtracted.
  */
-on_button(BANK_INTERFACE_ID, BANK_TABLIST_ID) {
+onButton(BANK_INTERFACE_ID, BANK_TABLIST_ID) {
     val dstTab = player.getInteractingSlot() - 10
     val opt = player.getInteractingOption()
     when (opt) {
@@ -48,7 +48,7 @@ on_button(BANK_INTERFACE_ID, BANK_TABLIST_ID) {
     }
 }
 
-on_button(BANK_INTERFACE_ID, 113) {
+onButton(BANK_INTERFACE_ID, 113) {
     // player.setVarbit(386, 1)
     // player.closeInterface(dest = InterfaceDestination.TAB_AREA)
     // player.openInterface(INV_INTERFACE_ID, 4)
@@ -57,7 +57,7 @@ on_button(BANK_INTERFACE_ID, 113) {
 /**
  * Moving items to tabs via the top tabs bar.
  */
-on_component_to_component_item_swap(
+onComponentToComponentItemSwap(
     srcInterfaceId = BANK_INTERFACE_ID,
     srcComponent = BANK_MAINTAB_COMPONENT,
     dstInterfaceId = BANK_INTERFACE_ID,
@@ -65,7 +65,7 @@ on_component_to_component_item_swap(
 ) {
     val srcComponent = player.attr[INTERACTING_COMPONENT_CHILD]!!
     if (srcComponent == BANK_TABLIST_ID) { // attempting to drop tab on bank!!
-        return@on_component_to_component_item_swap
+        return@onComponentToComponentItemSwap
     } else { // perform drop to tab
         val dstSlot = player.attr[OTHER_ITEM_SLOT_ATTR]!!
         dropToTab(player, dstSlot - 10)
@@ -75,7 +75,7 @@ on_component_to_component_item_swap(
 /**
  * Moving tabs via the top tabs bar to swap/insert their order.
  */
-on_component_to_component_item_swap(
+onComponentToComponentItemSwap(
     srcInterfaceId = BANK_INTERFACE_ID,
     srcComponent = BANK_TABLIST_ID,
     dstInterfaceId = BANK_INTERFACE_ID,
@@ -96,7 +96,7 @@ on_component_to_component_item_swap(
                shiftTabs(player, srcTab)
            }
        }
-       return@on_component_to_component_item_swap
+       return@onComponentToComponentItemSwap
     }
     val srcSize = player.getVarbit(BANK_TAB_ROOT_VARBIT + srcTab)
     val dstSize = player.getVarbit(BANK_TAB_ROOT_VARBIT + dstTab)
@@ -116,7 +116,7 @@ on_component_to_component_item_swap(
             }
         } else { // insert each item in srcTab before dstTab consuming index move in the shifts already in insert()
             if (dstTab == srcTab + 1) {
-                return@on_component_to_component_item_swap
+                return@onComponentToComponentItemSwap
             }
             val destination = startPoint(player, dstTab) - 1
             val srcStart = startPoint(player, srcTab)

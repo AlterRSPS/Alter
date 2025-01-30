@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "types": ["FREE"],
+    "address": "127.0.0.1",
+    "activity": "Skilling",
+    "location": "UNITED_STATES",
+    "players": 1000
+  },
+  {
+    "id": 2,
+    "types": ["PVP"],
+    "address": "127.0.0.2",
+    "activity": "Combat",
+    "location": "UNITED_KINGDOM",
+    "players": 1500
+  }
+]

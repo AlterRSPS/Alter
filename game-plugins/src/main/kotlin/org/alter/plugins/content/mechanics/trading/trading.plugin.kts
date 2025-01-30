@@ -19,14 +19,14 @@ val TRADE_REQ_STRING = "%s wishes to trade with you."
 /**
  * Initiate the set of trade requests
  */
-on_login { player.attr[TRADE_REQUESTS] = HashSet(REQUEST_CAPACITY) }
+onLogin { player.attr[TRADE_REQUESTS] = HashSet(REQUEST_CAPACITY) }
 
 /**
  * When a player requests to trade a user, we should first check to see if the player they
  * are interacting with has recently sent them a trade request. If so, we should progress the trade request
  * rather than sending out a new request.
  */
-on_player_option(option = "Trade with") {
+onPlayerOption(option = "Trade with") {
 
     // The trade partner instance
     val partner = player.getInteractingPlayer()
@@ -34,7 +34,7 @@ on_player_option(option = "Trade with") {
     // If the player is already in a trade
     if (partner.getTradeSession() != null || partner.isLocked()) {
         player.message("Other player is busy at the moment.")
-        return@on_player_option
+        return@onPlayerOption
     }
 
     // The set of players who have requested the player
@@ -84,7 +84,7 @@ fun initiate(
 }
 
 // Item Offer Event
-on_button(OVERLAY_INTERFACE, 0) {
+onButton(OVERLAY_INTERFACE, 0) {
     player.getTradeSession()?.let { trade ->
 
         // The player's inventory
@@ -95,7 +95,7 @@ on_button(OVERLAY_INTERFACE, 0) {
         val opt = player.getInteractingOption()
 
         // The item being traded
-        val item = inventory[slot] ?: return@on_button
+        val item = inventory[slot] ?: return@onButton
 
         // Queue the action, as we might need to access queued dialogue
         player.queue(TaskPriority.WEAK) {
@@ -117,7 +117,7 @@ on_button(OVERLAY_INTERFACE, 0) {
 }
 
 // Item Remove Event
-on_button(TRADE_INTERFACE, PLAYER_TRADE_CHILD) {
+onButton(TRADE_INTERFACE, PLAYER_TRADE_CHILD) {
     player.getTradeSession()?.let { trade ->
 
         // The player's trade container
@@ -128,7 +128,7 @@ on_button(TRADE_INTERFACE, PLAYER_TRADE_CHILD) {
         val opt = player.getInteractingOption()
 
         // The item being traded
-        val item = container[slot] ?: return@on_button
+        val item = container[slot] ?: return@onButton
 
         // Queue the action, as we might need to access queued dialogue
         player.queue(TaskPriority.WEAK) {
@@ -150,22 +150,22 @@ on_button(TRADE_INTERFACE, PLAYER_TRADE_CHILD) {
 }
 
 // Accept buttons
-on_button(TRADE_INTERFACE, 10) { player.getTradeSession()?.progress() }
-on_button(ACCEPT_INTERFACE, 13) { player.getTradeSession()?.progress() }
+onButton(TRADE_INTERFACE, 10) { player.getTradeSession()?.progress() }
+onButton(ACCEPT_INTERFACE, 13) { player.getTradeSession()?.progress() }
 
 // Decline buttons
-on_button(TRADE_INTERFACE, 11) { player.getTradeSession()?.decline() }
-on_button(ACCEPT_INTERFACE, 14) { player.getTradeSession()?.decline() }
+onButton(TRADE_INTERFACE, 11) { player.getTradeSession()?.decline() }
+onButton(ACCEPT_INTERFACE, 14) { player.getTradeSession()?.decline() }
 
 // Interface close events
-on_interface_close(TRADE_INTERFACE) {
+onInterfaceClose(TRADE_INTERFACE) {
 
     if (player.hasTradeSession() && !player.hasAcceptedTrade()) {
         player.getTradeSession()?.decline()
     }
 }
 
-on_interface_close(ACCEPT_INTERFACE) {
+onInterfaceClose(ACCEPT_INTERFACE) {
 
     if (player.hasTradeSession() && !player.hasAcceptedTrade()) {
         player.getTradeSession()?.decline()
@@ -173,4 +173,4 @@ on_interface_close(ACCEPT_INTERFACE) {
 }
 
 // Decline the trade when a player logs out
-on_logout { player.getTradeSession()?.decline() }
+onLogout { player.getTradeSession()?.decline() }

@@ -96,9 +96,9 @@ fun Int.getObjName(
     lowercase: Boolean = false,
 ): String {
     return if (lowercase) {
-        getObject(this).name.lowercase()
+        getObject(this).name!!.lowercase()
     } else {
-        getObject(this).name
+        getObject(this).name!!
     }
 }
 

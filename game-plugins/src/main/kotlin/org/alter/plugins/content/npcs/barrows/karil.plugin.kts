@@ -1,12 +1,12 @@
 package org.alter.plugins.content.npcs.barrows
 
-spawn_npc(Npcs.KARIL_THE_TAINTED, 3565, 3275, 0, 2)
-spawn_npc(Npcs.KARIL_THE_TAINTED, 3563, 3272, 0, 2)
-spawn_npc(Npcs.KARIL_THE_TAINTED, 3563, 3278, 0, 2)
-spawn_npc(Npcs.KARIL_THE_TAINTED, 3567, 3272, 0, 2)
-spawn_npc(Npcs.KARIL_THE_TAINTED, 3567, 3278, 0, 2)
+spawnNpc("npc.karil_the_tainted", 3565, 3275, 0, 2)
+spawnNpc("npc.karil_the_tainted", 3563, 3272, 0, 2)
+spawnNpc("npc.karil_the_tainted", 3563, 3278, 0, 2)
+spawnNpc("npc.karil_the_tainted", 3567, 3272, 0, 2)
+spawnNpc("npc.karil_the_tainted", 3567, 3278, 0, 2)
 
-set_combat_def(Npcs.KARIL_THE_TAINTED) {
+setCombatDef("npc.karil_the_tainted") {
     configs {
         attackSpeed = 6
         respawnDelay = 50

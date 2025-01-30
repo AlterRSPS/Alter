@@ -42,9 +42,11 @@ object BankTabs {
         val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
         val curTab = getCurrentTab(player, srcSlot)
         if (dstTab == curTab) {
+            println(" dropToTab was returned as dst is same as curTab")
             return
         } else {
             if (dstTab == 0) { // add to main tab don't insert
+                println(":test 1")
                 container.insert(srcSlot, container.nextFreeSlot - 1)
                 player.setVarbit(BANK_TAB_ROOT_VARBIT + curTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) - 1)
                 // check for empty tab shift
@@ -53,12 +55,15 @@ object BankTabs {
                 }
             } else {
                 if (dstTab < curTab || curTab == 0) {
+                    println(":test 2")
                     container.insert(srcSlot, insertionPoint(player, dstTab))
                 } else {
+                    println(":test 3")
                     container.insert(srcSlot, insertionPoint(player, dstTab) - 1)
                 }
                 player.setVarbit(BANK_TAB_ROOT_VARBIT + dstTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + dstTab) + 1)
                 if (curTab != 0) {
+                    println(":test 4")
                     player.setVarbit(BANK_TAB_ROOT_VARBIT + curTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) - 1)
                     // check for empty tab shift
                     if (player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) == 0 && curTab <= numTabsUnlocked(player)) {
@@ -70,12 +75,15 @@ object BankTabs {
     }
 
     /**
+     * @TODO If you drop in some new items and have some item w amount => It will override the order of it.
+     *
      * Handles the dropping of items into the specified tab of the player's [Bank] from a source slot.
      */
     fun dropToTab(
         player: Player,
         dstTab: Int,
         srcSlot: Int,
+        hasEmptySlot: Boolean
     ) {
         val container = player.bank
         val curTab = getCurrentTab(player, srcSlot)
@@ -91,15 +99,20 @@ object BankTabs {
                     shiftTabs(player, curTab)
                 }
             } else {
+                var insertionPoint = newInsertionPoint(player, dstTab)
                 if (dstTab < curTab || curTab == 0) {
-                    container.insert(srcSlot, insertionPoint(player, dstTab))
+                    println("HERE 1")
+                    container.insert(srcSlot, insertionPoint.first)
                 } else {
-                    container.insert(srcSlot, insertionPoint(player, dstTab) - 1)
+                    println("HERE 2")
+                    container.insert(srcSlot, insertionPoint.first - 1)
                 }
-                player.setVarbit(BANK_TAB_ROOT_VARBIT + dstTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + dstTab) + 1)
+                if (!hasEmptySlot) {
+                    player.setVarbit(BANK_TAB_ROOT_VARBIT + dstTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + dstTab) + 1)
+                }
+
                 if (curTab != 0) {
-                    player.setVarbit(BANK_TAB_ROOT_VARBIT + curTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) - 1)
-                    // check for empty tab shift
+                    println("HERE 4")
                     if (player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) == 0 && curTab <= numTabsUnlocked(player)) {
                         shiftTabs(player, curTab)
                     }
@@ -107,7 +120,6 @@ object BankTabs {
             }
         }
     }
-
     /**
      * Determines the tab a given slot falls into based on
      * associative varbit analysis.
@@ -191,6 +203,34 @@ object BankTabs {
     }
 
     /**
+     * Returns if it had to replace null
+     */
+    fun newInsertionPoint(
+        player: Player,
+        tabIndex: Int = 0,
+    ): Pair<Int, Boolean> {
+        var state = false
+        if (tabIndex == 0) {
+            return Pair(player.bank.nextFreeSlot, state)
+        }
+        var prevDex = 0
+        var dex = 0
+        for (tab in 1..tabIndex) {
+            prevDex = dex
+            dex += player.getVarbit(BANK_TAB_ROOT_VARBIT + tab)
+        }
+
+        // truncate empty spots, but stay in current tab
+        while (dex != 0 && player.bank[dex - 1] == null && dex > prevDex) {
+            dex--
+        }
+        if (player.bank[dex] == null) {
+            state = true
+        }
+        return Pair(dex, state)
+    }
+
+    /**
      * Determines the beginning index for a specified bank tab
      * based on the tab order and number of items in previous tabs.
      *
@@ -239,87 +279,16 @@ object BankTabs {
         player.setVarbit(BANK_TAB_ROOT_VARBIT + numUnlocked + 1, 0)
     }
 
-    /**
-     * Will return which tabs exist.
-     */
-    fun getExistingTabs(p: Player): IntArray? {
-        var existingTabs = arrayListOf<Int>()
-        for (tab in 1..9) {
-            var tabSelect = p.getVarbit(BANK_TAB_ROOT_VARBIT + tab)
-            if (tabSelect != 0) {
-                existingTabs.add(BANK_TAB_ROOT_VARBIT + tab)
+    fun getTabsItems(p: Player, tab: Int) : List<Item?> {
+        var container = p.bank.toMutableList()
+        var tabsItems = mutableListOf<Item?>()
+        for (currentTab in BANK_TAB_ROOT_VARBIT + 1.. BANK_TAB_ROOT_VARBIT + tab) {
+            if (BANK_TAB_ROOT_VARBIT+tab == currentTab) {
+                tabsItems = container.take(p.getVarbit(currentTab)).toMutableList()
+            } else {
+                container = container.drop(p.getVarbit(currentTab)).toMutableList()
             }
         }
-        return if (existingTabs.isEmpty()) null else existingTabs.toIntArray()
-    }
-
-    data class BankContainerGrid(val tabId: Int, val slot: Int, val item: Item?)
-
-    fun buildBankGrid(player: Player): List<BankContainerGrid>? {
-        val varbitMap: Map<Int, Int> =
-            mapOf(4171 to 1, 4172 to 2, 4173 to 3, 4174 to 4, 4175 to 5, 4176 to 6, 4177 to 7, 4178 to 8, 4179 to 9)
-        val grid = mutableListOf<BankContainerGrid>()
-        var startingIndex = 0
-        val existingTabs = getExistingTabs(player)
-        val itemArray = player.bank.rawItems.filterNotNull().toMutableList()
-        if (existingTabs != null) {
-            for (tabIndex in existingTabs) {
-                val itemTabCount = player.getVarbit(tabIndex)
-                if (itemTabCount > 0) {
-                    for (i in startingIndex until itemTabCount + startingIndex) {
-                        grid.add(BankContainerGrid(varbitMap[tabIndex] ?: 0, i, itemArray[i]))
-                        startingIndex++
-                    }
-                }
-            }
-        }
-        for (i in startingIndex until itemArray.size) {
-            grid.add(BankContainerGrid(0, i, itemArray[i]))
-        }
-        if (grid.toList().isNotEmpty()) {
-            return grid
-        }
-        return null
-    }
-
-    fun getItemsFromTab(
-        p: Player,
-        tab: Int,
-    ): Set<BankContainerGrid>? {
-        val bankGrid = buildBankGrid(p)
-        if (bankGrid != null) {
-            val items = mutableListOf<BankContainerGrid>()
-            bankGrid.forEach {
-                if (it.tabId == tab) {
-                    items.add(it)
-                }
-            }
-            return items.toSet()
-        }
-        return null
-    }
-
-    /**
-     * Will return in which tab is the item?
-     *  @note Unsure how it will be with items that have attributes
-     */
-    fun getTabByItem(
-        p: Player,
-        item: Int,
-        list: List<BankContainerGrid>,
-    ): Int {
-        // val bankGrid = buildBankGrid(p)
-        list.forEach {
-            if (it.item?.id == item) {
-                return it.tabId
-            }
-        }
-        return -1
+        return tabsItems
     }
 }
-
-/**
- * @TODO
- * Add -> On button : 11 of interface 12 -> "To create a new tab, drag items from your bank onto this tab."
- * Add filler suppoort.
- */

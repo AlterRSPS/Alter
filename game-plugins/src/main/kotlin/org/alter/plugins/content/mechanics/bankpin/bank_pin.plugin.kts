@@ -2,7 +2,7 @@ package org.alter.plugins.content.mechanics.bankpin
 
 val INTERFACE_ID = 14
 
-on_interface_open(INTERFACE_ID) {
+onInterfaceOpen(INTERFACE_ID) {
     open_settings(player)
 }
 

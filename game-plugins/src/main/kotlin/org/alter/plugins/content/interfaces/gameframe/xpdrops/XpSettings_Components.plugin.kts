@@ -164,7 +164,7 @@ fun on_xp_button(
     component: Int,
     plugin: Plugin.() -> Unit,
 ) {
-    on_button(XpSettings.SETUP_INTERFACE_ID, component) {
+    onButton(XpSettings.SETUP_INTERFACE_ID, component) {
         player.playSound(Sound.INTERFACE_SELECT1)
         plugin()
     }

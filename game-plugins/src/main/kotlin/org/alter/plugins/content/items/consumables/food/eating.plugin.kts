@@ -1,9 +1,10 @@
-package org.alter.plugins.content.items.food
+import org.alter.plugins.content.items.food.Food
+import org.alter.plugins.content.items.consumables.food.Foods
 
 Food.values.forEach { food ->
-    on_item_option(item = food.item, option = "eat") {
+    onItemOption(item = food.item, option = "eat") {
         if (!Foods.canEat(player, food)) {
-            return@on_item_option
+            return@onItemOption
         }
 
         val inventorySlot = player.getInteractingItemId()

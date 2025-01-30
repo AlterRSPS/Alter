@@ -9,7 +9,7 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class OpLoc6Handler : MessageHandler<OpLoc6> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpLoc6,
     ) {

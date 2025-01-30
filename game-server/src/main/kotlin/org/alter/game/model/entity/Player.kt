@@ -21,7 +21,6 @@ import net.rsprot.protocol.game.outgoing.varp.VarpSmall
 import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
-import org.alter.game.model.appearance.Gender
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
 import org.alter.game.model.attr.LEVEL_UP_INCREMENT
 import org.alter.game.model.attr.LEVEL_UP_OLD_XP
@@ -31,6 +30,8 @@ import org.alter.game.model.container.key.*
 import org.alter.game.model.interf.InterfaceSet
 import org.alter.game.model.interf.listener.PlayerInterfaceListener
 import org.alter.game.model.item.Item
+import org.alter.game.model.move.MovementQueue
+import org.alter.game.model.move.moveTo
 import org.alter.game.model.priv.Privilege
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.skill.SkillSet
@@ -175,26 +176,6 @@ open class Player(world: World) : Pawn(world) {
 
     override val entityType: EntityType = EntityType.PLAYER
 
-    fun setBaseAnimationSet(
-        readyAnim: Int,
-        turnAnim: Int,
-        walkAnim: Int,
-        walkAnimBack: Int,
-        walkAnimLeft: Int,
-        walkAnimRight: Int,
-        runAnim: Int,
-    ) {
-        avatar.extendedInfo.setBaseAnimationSet(
-            readyAnim = readyAnim,
-            turnAnim = turnAnim,
-            walkAnim = walkAnim,
-            walkAnimBack = walkAnimBack,
-            walkAnimLeft = walkAnimLeft,
-            walkAnimRight = walkAnimRight,
-            runAnim = runAnim,
-        )
-    }
-
     /**
      * Checks if the player is running. We assume that the varp with id of
      * [173] is the running state varp.
@@ -302,7 +283,6 @@ open class Player(world: World) : Pawn(world) {
             }
             world.plugins.executeRegionEnter(this, tile.regionId)
         }
-
         if (inventory.dirty) {
             val items = inventory.rawItems
             write(
@@ -333,13 +313,15 @@ open class Player(world: World) : Pawn(world) {
             write(UpdateInvFull(inventoryId = 95, capacity = items.size, provider = RsModObjectProvider(items)))
             bank.dirty = false
         }
-
         if (shopDirty) {
-            attr[CURRENT_SHOP_ATTR]?.let { shop ->
-                {
+            val shop = this.attr[CURRENT_SHOP_ATTR]
+            if (shop != null) {
                     val items = shop.items.map { if (it != null) Item(it.item, it.currentAmount) else null }.toTypedArray()
-                    write(UpdateInvFull(inventoryId = 13, capacity = items.size, provider = RsModObjectProvider(items)))
-                }
+                    write(UpdateInvFull(
+                        inventoryId = 3,
+                        capacity = items.size,
+                        provider = RsModObjectProvider(items)
+                    ))
             }
             shopDirty = false
         }
@@ -410,8 +392,9 @@ open class Player(world: World) : Pawn(world) {
                 }
 
                 newSurroundings.forEach { coords ->
-                    val chunk = this.world.chunks.get(coords, createIfNeeded = false) ?: return@forEach
+                    val chunk = this.world.chunks.get(coords, createIfNeeded = true) ?: return@forEach
                     chunk.sendUpdates(this)
+                    chunk.zonePartialEnclosedCacheBuffer.releaseBuffers()
                 }
                 if (!changedHeight) {
                     if (oldChunk != null) {
@@ -421,7 +404,6 @@ open class Player(world: World) : Pawn(world) {
                 }
             }
         }
-
         previouslySetAnim = -1
         /*
          * Flush the channel at the end.
@@ -434,18 +416,18 @@ open class Player(world: World) : Pawn(world) {
      */
     fun register(): Boolean = world.register(this)
 
+    /**
+     * @TODO
+     * If im not mistaking the [npcInfo] shit should be pulled out and placed into it's own class and update should happend when Player enters region
+     */
     lateinit var playerInfo: PlayerInfo
-
-    @OptIn(ExperimentalUnsignedTypes::class)
     lateinit var npcInfo: NpcInfo
     lateinit var worldEntityInfo: WorldEntityInfo
     var session: Session<Client>? = null
     var buildArea: BuildArea = BuildArea.INVALID
-
     /**
      * Handles any logic that should be executed upon log in.
      */
-    @OptIn(ExperimentalUnsignedTypes::class)
     fun login() {
         playerInfo.updateCoord(tile.height, tile.x, tile.z)
         npcInfo.updateCoord(-1, tile.height, tile.x, tile.z)

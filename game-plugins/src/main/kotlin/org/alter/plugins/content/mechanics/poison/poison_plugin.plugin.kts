@@ -5,12 +5,12 @@ import org.alter.game.model.timer.POISON_TIMER
 
 val POISON_TICK_DELAY = 25
 
-on_player_death {
+onPlayerDeath {
     player.timers.remove(POISON_TIMER)
     Poison.setHpOrb(player, Poison.OrbState.NONE)
 }
 
-on_timer(POISON_TIMER) {
+onTimer(POISON_TIMER) {
     val pawn = pawn
     val ticksLeft = pawn.attr[POISON_TICKS_LEFT_ATTR] ?: 0
 
@@ -18,7 +18,7 @@ on_timer(POISON_TIMER) {
         if (pawn is Player) {
             Poison.setHpOrb(pawn, Poison.OrbState.NONE)
         }
-        return@on_timer
+        return@onTimer
     }
 
     if (ticksLeft > 0) {

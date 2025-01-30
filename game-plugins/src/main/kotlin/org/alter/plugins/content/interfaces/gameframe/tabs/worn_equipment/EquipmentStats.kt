@@ -2,7 +2,6 @@ package org.alter.plugins.content.interfaces.equipstats
 
 import org.alter.api.BonusSlot
 import org.alter.api.ClientScript
-import org.alter.api.cfg.Items
 import org.alter.api.ext.*
 import org.alter.game.model.entity.Player
 
@@ -13,7 +12,7 @@ object EquipmentStats {
     const val EQUIPMENTSTATS_INTERFACE_ID = 84
     const val EQUIPMENTSTATS_TAB_INTERFACE_ID = 85
 
-    private val MAGE_ELITE_VOID = intArrayOf(Items.VOID_MAGE_HELM, Items.ELITE_VOID_TOP, Items.ELITE_VOID_ROBE, Items.VOID_KNIGHT_GLOVES)
+    private val MAGE_ELITE_VOID = arrayOf("item.void_mage_helm", "item.elite_void_top", "item.elite_void_robe", "item.void_knight_gloves")
 
     /**
      * @TODO
@@ -32,100 +31,65 @@ object EquipmentStats {
     }
 
     fun sendBonuses(p: Player) {
-        // TODO: these two bonuses
-        var undeadBonus = 0.0
-        var slayerBonus = 0.0
-
-        /**
-         * Magic and other bonuses belong inside Player class
-         */
-        var magicDamageBonus = p.getMagicDamageBonus().toDouble()
-
-        if (p.hasEquipped(MAGE_ELITE_VOID)) {
-            magicDamageBonus += 2.5
+        p.setInterfaceEvents(
+            interfaceId = 85,
+            component = 0,
+            range = 0..27,
+            setting = arrayOf(InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp10, InterfaceEvent.DRAG_DEPTH1, InterfaceEvent.DragTargetable)
+        )
+        with(p) {
+            setEquipCompText(component = 24, text = bonusTextMap()[0])
+            setEquipCompText(component = 25, text = bonusTextMap()[1])
+            setEquipCompText(component = 26, text = bonusTextMap()[2])
+            setEquipCompText(component = 27, text = bonusTextMap()[3])
+            setEquipCompText(component = 28, text = bonusTextMap()[4])
+            setEquipCompText(component = 53, text = bonusTextMap()[5])
+            setEquipCompText(component = 54, text = bonusTextMap()[6])
+            setEquipCompText(component = 30, text = bonusTextMap()[7])
+            setEquipCompText(component = 31, text = bonusTextMap()[8])
+            setEquipCompText(component = 32, text = bonusTextMap()[9])
+            setEquipCompText(component = 34, text = bonusTextMap()[10])
+            setEquipCompText(component = 33, text = bonusTextMap()[11])
+            setEquipCompText(component = 36, text = bonusTextMap()[12])
+            setEquipCompText(component = 37, text = bonusTextMap()[13])
+            setEquipCompText(component = 38, text = bonusTextMap()[14])
+            setEquipCompText(component = 39, text = bonusTextMap()[15])
+            setEquipCompText(component = 41, text = bonusTextMap()[16])
+            setEquipCompText(component = 42, text = bonusTextMap()[17])
+            runClientScript(
+                ClientScript(id = 7065),
+                5505075,
+                5505064,
+                "Increases your effective accuracy and damage against undead creatures. For multi-target Ranged and Magic attacks, this applies only to the primary target. It does not stack with the Slayer multiplier."
+            )
         }
+    }
 
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 23,
-            text = "Stab: ${formatBonus(p, BonusSlot.ATTACK_STAB)}",
+    fun Player.bonusTextMap(): List<String> {
+        var magicDamageBonus = getMagicDamageBonus().toDouble()
+        return listOf(
+            "Stab: ${formatBonus(this, BonusSlot.ATTACK_STAB)}",
+            "Slash: ${formatBonus(this, BonusSlot.ATTACK_SLASH)}",
+            "Crush: ${formatBonus(this, BonusSlot.ATTACK_CRUSH)}",
+            "Magic: ${formatBonus(this, BonusSlot.ATTACK_MAGIC)}",
+            "Range: ${formatBonus(this, BonusSlot.ATTACK_RANGED)}",
+            "Base: TODO",
+            "Actual: TODO",
+            "Stab: ${formatBonus(this, BonusSlot.DEFENCE_STAB)}",
+            "Slash: ${formatBonus(this, BonusSlot.DEFENCE_SLASH)}",
+            "Crush: ${formatBonus(this, BonusSlot.DEFENCE_CRUSH)}",
+            "Range: ${formatBonus(this, BonusSlot.DEFENCE_RANGED)}",
+            "Magic: ${formatBonus(this, BonusSlot.DEFENCE_MAGIC)}",
+            "Melee STR: ${formatBonus(this.getStrengthBonus())}",
+            "Ranged STR: ${formatBonus(this.getRangedStrengthBonus())}",
+            "Magic DMG: ${formatBonus(magicDamageBonus).toDouble()}%",
+            "Prayer: ${formatBonus(this.getPrayerBonus())}",
+            "Undead: TODO",
+            "Slayer: TODO"
         )
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 24,
-            text = "Slash: ${formatBonus(p, BonusSlot.ATTACK_SLASH)}",
-        )
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 25,
-            text = "Crush: ${formatBonus(p, BonusSlot.ATTACK_CRUSH)}",
-        )
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 26,
-            text = "Magic: ${formatBonus(p, BonusSlot.ATTACK_MAGIC)}",
-        )
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 27,
-            text = "Range: ${formatBonus(p, BonusSlot.ATTACK_RANGED)}",
-        )
-        p.setComponentText(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, component = 52, text = "Base: 2.4s") // @TODO Normal Weapon Attack speed
-        p.setComponentText(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, component = 53, text = "Actual: 2.4s") // @TODO Attack speed with rapid and etc.
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 29,
-            text = "Stab: ${formatBonus(p, BonusSlot.DEFENCE_STAB)}",
-        )
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 30,
-            text = "Slash: ${formatBonus(p, BonusSlot.DEFENCE_SLASH)}",
-        )
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 31,
-            text = "Crush: ${formatBonus(p, BonusSlot.DEFENCE_CRUSH)}",
-        )
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 33,
-            text = "Range: ${formatBonus(p, BonusSlot.DEFENCE_RANGED)}",
-        )
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 32,
-            text = "Magic: ${formatBonus(p, BonusSlot.DEFENCE_MAGIC)}",
-        )
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 35,
-            text = "Melee STR: ${formatBonus(p.getStrengthBonus())}",
-        )
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 36,
-            text = "Ranged STR: ${formatBonus(p.getRangedStrengthBonus())}",
-        )
-        p.setComponentText(
-            interfaceId = EQUIPMENTSTATS_INTERFACE_ID,
-            component = 37,
-            text = "Magic DMG: ${formatBonus(magicDamageBonus).toDouble()}%",
-        )
-        p.setComponentText(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, component = 38, text = "Prayer: ${formatBonus(p.getPrayerBonus())}")
+    }
 
-        val undead = String.format("%.1f", undeadBonus)
-        val slayer = String.format("%.1f", slayerBonus)
-
-        p.setComponentText(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, component = 40, text = "Undead: $undead%")
-        p.runClientScript(
-            ClientScript(id = 7065),
-            5505075,
-            5505064,
-            "Increases your effective accuracy and damage against undead creatures. For multi-target Ranged and Magic attacks, this applies only to the primary target. It does not stack with the Slayer multiplier.",
-        )
-        // ClientScript(id = 7065, converted = [84:51, 84:40, "Increases your effective accuracy and damage against undead creatures. For multi-target Ranged and Magic attacks, this applies only to the primary target. It does not stack with the Slayer multiplier."], raw = [5505075, 5505064, "Increases your effective accuracy and damage against undead creatures. For multi-target Ranged and Magic attacks, this applies only to the primary target. It does not stack with the Slayer multiplier."], types = [IIs]
-        p.setComponentText(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, component = 41, text = "Slayer: $slayer%")
-        // SetEvents()
+    private fun Player.setEquipCompText(component: Int, text: String) {
+        this.setComponentText(interfaceId = EQUIPMENTSTATS_INTERFACE_ID, component = component, text = text)
     }
 }

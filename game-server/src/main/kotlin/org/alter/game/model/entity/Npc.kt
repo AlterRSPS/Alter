@@ -5,6 +5,7 @@ import dev.openrune.cache.CacheManager.getVarbit
 import dev.openrune.cache.filestore.definition.data.NpcType
 import gg.rsmod.util.toStringHelper
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcAvatar
+import org.alter.game.info.NpcInfo
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 import org.alter.game.model.World
@@ -26,7 +27,12 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
         this.owner = owner
     }
 
-    lateinit var avatar: NpcAvatar
+    internal lateinit var avatar: NpcAvatar
+    fun initAvatar(avatar: NpcAvatar) {
+        check(!this::avatar.isInitialized) {"Avatar was already initialized."}
+        this.avatar = avatar
+    }
+
 
     /**
      * This flag indicates whether or not this npc's AI should be processed.
@@ -54,6 +60,11 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      * The radius from [spawnTile], in tiles, which the npc can randomly walk.
      */
     var walkRadius = 0
+
+    /**
+     * This flag indicates whether this npc can traverse water tiles.
+     */
+    var canSwim = false
 
     /**
      * The current hitpoints the npc has.
@@ -97,7 +108,12 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      */
     val def: NpcType = getNpc(id)
 
-    var pathsIndex = 0
+    /**
+     * Set which routefinder logic to use.
+     * 0 = Dumb route finder.
+     * 1 = Smart route finder.
+     */
+    var routeLogic = 0
 
     /**
      * Getter property for our npc name.
@@ -131,7 +147,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
         height: Int,
         delay: Int,
     ) {
-        avatar.extendedInfo.setSpotAnim(0, id, delay, height)
+        NpcInfo(this).setSpotAnim(0, id, delay, height)
     }
 
     override fun cycle() {

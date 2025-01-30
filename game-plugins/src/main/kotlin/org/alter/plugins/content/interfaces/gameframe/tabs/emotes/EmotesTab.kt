@@ -1,11 +1,11 @@
 package org.alter.plugins.content.interfaces.emotes
 
 import org.alter.api.EquipmentType
-import org.alter.api.cfg.Items
 import org.alter.api.cfg.Varbit
 import org.alter.api.ext.*
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.TaskPriority
+import org.alter.rscm.RSCM.getRSCM
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -81,114 +81,114 @@ object EmotesTab {
          */
         if (emote == Emote.SKILLCAPE) {
             when (p.equipment[EquipmentType.CAPE.id]?.id) {
-                Items.MAX_CAPE_13342 -> {
+                getRSCM("item.max_cape_13342") -> {
                     p.animate(7121, 4)
                     p.graphic(1286, delay = 4)
                 }
-                Items.ATTACK_CAPE, Items.ATTACK_CAPET -> {
+                getRSCM("item.attack_cape"), getRSCM("item.attack_capet") -> {
                     p.animate(4959)
                     p.graphic(823)
                 }
-                Items.STRENGTH_CAPE, Items.STRENGTH_CAPET -> {
+                getRSCM("item.strength_cape"), getRSCM("item.strength_capet") -> {
                     p.animate(4981)
                     p.graphic(828)
                 }
-                Items.DEFENCE_CAPE, Items.DEFENCE_CAPET -> {
+                getRSCM("item.defence_cape"), getRSCM("item.defence_capet") -> {
                     p.animate(4961)
                     p.graphic(824)
                 }
-                Items.RANGING_CAPE, Items.RANGING_CAPET -> {
+                getRSCM("item.ranging_cape"), getRSCM("item.ranging_capet") -> {
                     p.animate(4973)
                     p.graphic(832)
                 }
-                Items.PRAYER_CAPE, Items.PRAYER_CAPET -> {
+                getRSCM("item.prayer_cape"), getRSCM("item.prayer_capet") -> {
                     p.animate(4979)
                     p.graphic(829)
                 }
-                Items.MAGIC_CAPE, Items.MAGIC_CAPET -> {
+                getRSCM("item.magic_cape"), getRSCM("item.magic_capet") -> {
                     p.animate(4939)
                     p.graphic(813)
                 }
-                Items.RUNECRAFT_CAPE, Items.RUNECRAFT_CAPET -> {
+                getRSCM("item.runecraft_cape"), getRSCM("item.runecraft_capet") -> {
                     p.animate(4947)
                     p.graphic(817)
                 }
-                Items.HITPOINTS_CAPE, Items.HITPOINTS_CAPET -> {
+                getRSCM("item.hitpoints_cape"), getRSCM("item.hitpoints_capet") -> {
                     p.animate(4971)
                     p.graphic(833)
                 }
-                Items.AGILITY_CAPE, Items.AGILITY_CAPET -> {
+                getRSCM("item.agility_cape"), getRSCM("item.agility_capet") -> {
                     p.animate(4977)
                     p.graphic(830)
                 }
-                Items.HERBLORE_CAPE, Items.HERBLORE_CAPET -> {
+                getRSCM("item.herblore_cape"), getRSCM("item.herblore_capet") -> {
                     p.animate(4969)
                     p.graphic(835)
                 }
-                Items.THIEVING_CAPE, Items.THIEVING_CAPET -> {
+                getRSCM("item.thieving_cape"), getRSCM("item.thieving_capet") -> {
                     p.animate(4965)
                     p.graphic(826)
                 }
-                Items.CRAFTING_CAPE, Items.CRAFTING_CAPET -> {
+                getRSCM("item.crafting_cape"), getRSCM("item.crafting_capet") -> {
                     p.animate(4949)
                     p.graphic(818)
                 }
-                Items.FLETCHING_CAPE, Items.FLETCHING_CAPET -> {
+                getRSCM("item.fletching_cape"), getRSCM("item.fletching_capet") -> {
                     p.animate(4937)
                     p.graphic(812)
                 }
-                Items.SLAYER_CAPE, Items.SLAYER_CAPET -> {
+                getRSCM("item.slayer_cape"), getRSCM("item.slayer_capet") -> {
                     p.animate(4967)
                     p.graphic(827)
                 }
-                Items.CONSTRUCT_CAPE, Items.CONSTRUCT_CAPET -> {
+                getRSCM("item.construct_cape"), getRSCM("item.construct_capet") -> {
                     p.animate(4953)
                     p.graphic(820)
                 }
-                Items.MINING_CAPE, Items.MINING_CAPET -> {
+                getRSCM("item.mining_cape"), getRSCM("item.mining_capet") -> {
                     p.animate(4941)
                     p.graphic(814)
                 }
-                Items.SMITHING_CAPE, Items.SMITHING_CAPET -> {
+                getRSCM("item.smithing_cape"), getRSCM("item.smithing_capet") -> {
                     p.animate(4943)
                     p.graphic(815)
                 }
-                Items.FISHING_CAPE, Items.FISHING_CAPET -> {
+                getRSCM("item.fishing_cape"), getRSCM("item.fishing_capet") -> {
                     p.animate(4951)
                     p.graphic(819)
                 }
-                Items.COOKING_CAPE, Items.COOKING_CAPET -> {
+                getRSCM("item.cooking_cape"), getRSCM("item.cooking_capet") -> {
                     p.animate(4955)
                     p.graphic(821)
                 }
-                Items.FIREMAKING_CAPE, Items.FIREMAKING_CAPET -> {
+                getRSCM("item.firemaking_cape"), getRSCM("item.firemaking_capet") -> {
                     p.animate(4975)
                     p.graphic(831)
                 }
-                Items.WOODCUTTING_CAPE, Items.WOODCUT_CAPET -> {
+                getRSCM("item.woodcutting_cape"), getRSCM("item.woodcut_capet") -> {
                     p.animate(4957)
                     p.graphic(822)
                 }
-                Items.FARMING_CAPE, Items.FARMING_CAPET -> {
+                getRSCM("item.farming_cape"), getRSCM("item.farming_capet") -> {
                     p.animate(4963)
                     p.graphic(825)
                 }
-                Items.HUNTER_CAPE, Items.HUNTER_CAPET -> {
+                getRSCM("item.hunter_cape"), getRSCM("item.hunter_capet") -> {
                     p.animate(5158)
                     p.graphic(907)
                 }
-                Items.CABBAGE_CAPE -> {
+                getRSCM("item.cabbage_cape") -> {
                     p.animate(7209)
                 }
-                Items.QUEST_POINT_CAPE, Items.QUEST_POINT_CAPE_T -> {
+                getRSCM("item.quest_point_cape"), getRSCM("item.quest_point_cape_t") -> {
                     p.animate(4945)
                     p.graphic(816)
                 }
-                Items.ACHIEVEMENT_DIARY_CAPE, Items.ACHIEVEMENT_DIARY_CAPE_T -> {
+                getRSCM("item.achievement_diary_cape"), getRSCM("item.achievement_diary_cape_t") -> {
                     p.animate(2709)
                     p.graphic(323)
                 }
-                Items.MUSIC_CAPE, Items.MUSIC_CAPET -> {
+                getRSCM("item.music_cape"), getRSCM("item.music_capet") -> {
                     p.animate(4751)
                     p.graphic(1239)
                 }

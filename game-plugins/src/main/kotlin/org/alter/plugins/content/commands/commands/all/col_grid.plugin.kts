@@ -1,11 +1,9 @@
-import org.alter.plugins.content.commands.Commands_plugin.Command.tryWithUsage
+import org.alter.game.model.collision.isClipped
 
-on_command("col_grid") {
+onCommand("col_grid") {
     val args = player.getCommandArgs()
-    tryWithUsage(player, args, "Invalid format! Example of proper command <col=42C66C>::show_grid username</col>") { values ->
-        val p = world.getPlayerForName(values[0].replace("_", " ")) ?: return@tryWithUsage
-        printGridAroundTile(p, p.getCentreTile())
-    }
+    val p = world.getPlayerForName(args[0].replace("_", " ")) ?: return@onCommand
+    printGridAroundTile(p, p.getCentreTile())
 }
 
 fun printGridAroundTile(

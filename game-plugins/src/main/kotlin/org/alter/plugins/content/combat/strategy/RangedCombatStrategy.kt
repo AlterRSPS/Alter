@@ -3,13 +3,13 @@ package org.alter.plugins.content.combat.strategy
 import org.alter.api.EquipmentType
 import org.alter.api.Skills
 import org.alter.api.WeaponType
-import org.alter.api.cfg.Items
 import org.alter.api.ext.*
 import org.alter.game.model.Tile
 import org.alter.game.model.combat.AttackStyle
 import org.alter.game.model.combat.PawnHit
 import org.alter.game.model.combat.XpMode
 import org.alter.game.model.entity.*
+import org.alter.rscm.RSCM.getRSCM
 import org.alter.plugins.content.combat.Combat
 import org.alter.plugins.content.combat.CombatConfigs
 import org.alter.plugins.content.combat.createProjectile
@@ -37,9 +37,9 @@ object RangedCombatStrategy : CombatStrategy {
 
             var range =
                 when (weapon?.id) {
-                    Items.ARMADYL_CROSSBOW -> 8
-                    Items.CRAWS_BOW, Items.CRAWS_BOW_U -> 10
-                    Items.CHINCHOMPA_10033, Items.RED_CHINCHOMPA_10034, Items.BLACK_CHINCHOMPA -> 9
+                    getRSCM("item.armadyl_crossbow") -> 8
+                    getRSCM("item.craws_bow"), getRSCM("item.craws_bow_u") -> 10
+                    getRSCM("item.chinchompa_10033"), getRSCM("item.red_chinchompa_10034"), getRSCM("item.black_chinchompa") -> 9
                     in Bows.LONG_BOWS -> 9
                     in Knives.KNIVES -> 6
                     in Darts.DARTS -> 3
@@ -144,8 +144,8 @@ object RangedCombatStrategy : CombatStrategy {
                 val breakAmmo = chance in 0..19
                 val dropAmmo =
                     when {
-                        pawn.hasEquipped(EquipmentType.CAPE, Items.AVAS_ACCUMULATOR) -> chance in 20..27
-                        pawn.hasEquipped(EquipmentType.CAPE, Items.AVAS_ASSEMBLER) -> false
+                        pawn.hasEquipped(EquipmentType.CAPE, "item.avas_accumulator") -> chance in 20..27
+                        pawn.hasEquipped(EquipmentType.CAPE, "item.avas_assembler") -> false
                         else -> !breakAmmo
                     }
 

@@ -25,7 +25,7 @@ val buttons: Array<Pair<String, Int>> =
         Pair("MERCH_ID", 86),
     )
 
-on_button(BUTTON_ID, NAME_CHANGER_ID) {
+onButton(BUTTON_ID, NAME_CHANGER_ID) {
     player.openInterface(interfaceId = 589, dest = InterfaceDestination.TAB_AREA)
     player.setComponentText(interfaceId = 589, component = 6, text = "Next free change:")
     player.setComponentText(interfaceId = 589, component = 7, text = "Now!") // Make this a method to pull last updated date from your database, return that date, or "Now!"
@@ -34,13 +34,13 @@ on_button(BUTTON_ID, NAME_CHANGER_ID) {
 }
 
 buttons.forEach {
-    on_button(BUTTON_ID, it.second) {
+    onButton(BUTTON_ID, it.second) {
         player.message("Button: [${it.first} : ${it.second}]")
     }
 }
 
 listOf(6, 11, 16).forEachIndexed { index, it ->
-    on_button(109, it) {
+    onButton(109, it) {
         player.setVarbit(10060, index)
     }
 }

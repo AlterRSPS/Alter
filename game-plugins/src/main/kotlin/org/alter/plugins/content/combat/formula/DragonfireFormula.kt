@@ -3,7 +3,6 @@ package org.alter.plugins.content.combat.formula
 import org.alter.api.EquipmentType
 import org.alter.api.NpcSpecies
 import org.alter.api.PrayerIcon
-import org.alter.api.cfg.Items
 import org.alter.api.ext.hasEquipped
 import org.alter.api.ext.hasPrayerIcon
 import org.alter.api.ext.isSpecies
@@ -74,9 +73,9 @@ class DragonfireFormula(val maxHit: Int, val minHit: Int = 0) : CombatFormula {
     }
 
     companion object {
-        private val ANTI_DRAGON_SHIELDS = intArrayOf(Items.ANTIDRAGON_SHIELD, Items.ANTIDRAGON_SHIELD_NZ)
-        private val DRAGONFIRE_SHIELDS = intArrayOf(Items.DRAGONFIRE_SHIELD, Items.DRAGONFIRE_SHIELD_11284)
-        private val WYVERN_SHIELDS = intArrayOf(Items.ANCIENT_WYVERN_SHIELD, Items.ANCIENT_WYVERN_SHIELD_21634) // Does [Items.ANCIENT_WYVERN_SHIELD] Uncharged even protect u from Dragon Fire ?
-        private val DRAGONFIRE_WARDS = intArrayOf(Items.DRAGONFIRE_WARD, Items.DRAGONFIRE_WARD_22003)
+        private val ANTI_DRAGON_SHIELDS = arrayOf("item.antidragon_shield", "item.antidragon_shield_nz")
+        private val DRAGONFIRE_SHIELDS = arrayOf("item.dragonfire_shield", "item.dragonfire_shield_11284")
+        private val WYVERN_SHIELDS = arrayOf("item.ancient_wyvern_shield", "item.ancient_wyvern_shield_21634") // Does [Items.ANCIENT_WYVERN_SHIELD] Uncharged even protect u from Dragon Fire ?
+        private val DRAGONFIRE_WARDS = arrayOf("item.dragonfire_ward", "item.dragonfire_ward_22003")
     }
 }

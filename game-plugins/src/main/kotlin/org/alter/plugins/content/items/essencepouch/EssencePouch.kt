@@ -7,4 +7,4 @@ package org.alter.plugins.content.items.other.essencepouch
  * @param levelReq  The Ruencrafting level required to use the pouch
  * @param capacity  The maximum capacity of theessence pouch
  */
-data class EssencePouch(val id: Int, val levelReq: Int, val capacity: Int)
+data class EssencePouch(val id: String, val levelReq: Int, val capacity: Int)

@@ -16,7 +16,9 @@ class PlayerCycleTask : GameTask {
     ) {
         world.players.forEach { p ->
             val start = System.currentTimeMillis()
+            p.queues.cycle()
             p.cycle()
+            p.playerPreSynchronizationTask()
             /*
              * Log the time it takes for task to handle the player's cycle
              * logic.

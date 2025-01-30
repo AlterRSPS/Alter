@@ -5,6 +5,7 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.model.container.key.ContainerKey
 import org.alter.game.model.item.Item
 import org.alter.game.model.item.SlotItem
+import org.alter.rscm.RSCM.getRSCM
 
 /**
  * An [ItemContainer] represents a collection of ordered [Item]s.
@@ -47,9 +48,11 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
     /**
      * Checks if the container has an [Item] which has the same [Item.id] as
      * [item].
+     * @Deprecated("Use the Contains(String)")
      */
     fun contains(item: Int): Boolean = items.any { it?.id == item }
 
+    fun contains(item: String): Boolean = items.any {it?.id == getRSCM(item)}
     /**
      * Checks if the container has an [Item] which has the same [Item.id] as
      * [item] or any of the values (if any) in [others].
@@ -58,7 +61,10 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
         item: Int,
         vararg others: Int,
     ): Boolean = items.any { it != null && (it.id == item || it.id in others) }
-
+    fun containsAny(
+        item: String,
+        vararg others: String
+    ): Boolean = items.any { it != null && (it.id == getRSCM(item) || it.id in others.map { getRSCM(it) } ) }
     /**
      * Checks if the container has an [Item] which has the same [Item.id] as
      * [itemId] in the specific [slot].
@@ -198,6 +204,17 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
         }
         return -1
     }
+    fun getItemIndex(
+        itemId: String,
+        skipAttrItems: Boolean,
+    ): Int {
+        for (i in 0 until capacity) {
+            if (items[i]?.id == getRSCM(itemId) && (!skipAttrItems || !items[i]!!.hasAnyAttr())) {
+                return i
+            }
+        }
+        return -1
+    }
 
     /**
      * Creates a map that holds the [Item]s in this container, with the slot of
@@ -226,7 +243,7 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      * Adds an item with id of [item] and quantity of [amount] to this container.
      *
      * @param [item]
-     * The item id.
+     * The item id / item name.
      *
      * @param [amount]
      * The quantity of the item.
@@ -260,6 +277,21 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      *
      * @see ItemTransaction
      */
+    fun add(
+        item: String,
+        amount: Int = 1,
+        assureFullInsertion: Boolean = true,
+        forceNoStack: Boolean = false,
+        beginSlot: Int = -1
+    ): ItemTransaction {
+        return add(
+            getRSCM(item),
+            amount,
+            assureFullInsertion,
+            forceNoStack,
+            beginSlot
+        )
+    }
     fun add(
         item: Int,
         amount: Int = 1,
@@ -446,6 +478,14 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
      *
      * @see ItemTransaction
      */
+    fun remove(
+        item: String,
+        amount: Int = 1,
+        assureFullRemoval: Boolean = false,
+        beginSlot: Int = -1
+    ): ItemTransaction {
+        return remove(getRSCM(item), amount, assureFullRemoval, beginSlot)
+    }
     fun remove(
         item: Int,
         amount: Int = 1,

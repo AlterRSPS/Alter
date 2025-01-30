@@ -8,7 +8,7 @@ fun bind_unequip(
     equipment: EquipmentType,
     child: Int,
 ) {
-    on_button(interfaceId = EQUIPMENT_INTERFACE_ID, component = child) {
+    onButton(interfaceId = EQUIPMENT_INTERFACE_ID, component = child) {
         val opt = player.getInteractingOption()
         when (opt) {
             1 -> {
@@ -17,12 +17,12 @@ fun bind_unequip(
                     player.sendWeaponComponentInformation()
                 }
             }
-            9 -> {
-                val item = player.equipment[equipment.id] ?: return@on_button
+            10 -> {
+                val item = player.equipment[equipment.id] ?: return@onButton
                 world.sendExamine(player, item.id, ExamineEntityType.ITEM)
             }
             else -> {
-                val item = player.equipment[equipment.id] ?: return@on_button
+                val item = player.equipment[equipment.id] ?: return@onButton
                 val menuOpt = opt
                 if (!world.plugins.executeEquipmentOption(player, item.id, menuOpt) && world.devContext.debugItemActions) {
                     val action = ObjectExamineHolder.EQUIPMENT_MENU.get(item.id).equipmentMenu[menuOpt]
@@ -34,7 +34,7 @@ fun bind_unequip(
 }
 
 for (equipment in EquipmentType.values) {
-    on_equip_to_slot(equipment.id) {
+    onEquipToSlot(equipment.id) {
         if (equipment == EquipmentType.WEAPON) {
             player.sendWeaponComponentInformation()
         }

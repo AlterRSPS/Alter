@@ -1,14 +1,13 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
     alias(libs.plugins.kotlin.serialization)
-    //alias(libs.plugins.ktlint)
 }
 allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    //apply(plugin = "org.jlleitschuh.gradle.ktlint")
     group = "org.alter"
     version = "0.0.5"
 
@@ -18,11 +17,11 @@ allprojects {
         maven("https://repo.maven.apache.org/maven2")
         maven("https://jitpack.io")
         maven("https://raw.githubusercontent.com/OpenRune/hosting/master")
+        maven("https://repo.openrs2.org/repository/openrs2-snapshots")
     }
 
     val lib = rootProject.project.libs
     dependencies {
-        implementation(lib.openrune.filestore)
         implementation(lib.kotlin.logging)
         implementation(lib.logback.classic)
         implementation(lib.fastutil)
@@ -36,18 +35,24 @@ allprojects {
         implementation(lib.gson)
         implementation(lib.netty.all)
         implementation(lib.kotlinx.serialization.core)
-        implementation(lib.rsprot)
         testImplementation(lib.junit)
         testImplementation(lib.kotlin.test.junit)
     }
 
     tasks.withType<KotlinCompile>().all {
-        kotlinOptions {
-            languageVersion = "1.7"
-            freeCompilerArgs =
-                listOf(
-                    "-Xallow-any-scripts-in-source-roots",
-                )
+        compilerOptions {
+            languageVersion.set(KotlinVersion.KOTLIN_2_0)
+            freeCompilerArgs = listOf(
+                "-Xallow-any-scripts-in-source-roots",
+                "-Xuse-fir-lt=false"
+            )
+        }
+    }
+
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
         }
     }
 }

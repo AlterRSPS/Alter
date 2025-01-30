@@ -4,13 +4,13 @@ import dev.openrune.cache.CacheManager.getEnum
 import dev.openrune.cache.CacheManager.getItem
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import org.alter.api.Skills
-import org.alter.api.cfg.Items
 import org.alter.api.ext.getSpellbook
 import org.alter.api.ext.getVarbit
 import org.alter.api.ext.message
 import org.alter.game.model.World
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
+import org.alter.rscm.RSCM.getRSCM
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -40,13 +40,13 @@ object MagicSpells {
 
     private val STAFF_ITEMS =
         arrayOf(
-            Items.IBANS_STAFF,
-            Items.IBANS_STAFF_U,
-            Items.SLAYERS_STAFF,
-            Items.SLAYERS_STAFF_E,
-            Items.SARADOMIN_STAFF,
-            Items.GUTHIX_STAFF,
-            Items.ZAMORAK_STAFF,
+            "item.ibans_staff",
+            "item.ibans_staff_u",
+            "item.slayers_staff",
+            "item.slayers_staff_e",
+            "item.saradomin_staff",
+            "item.guthix_staff",
+            "item.zamorak_staff",
         )
 
     private val metadata = Int2ObjectOpenHashMap<SpellMetadata>()
@@ -89,7 +89,7 @@ object MagicSpells {
                 /*
                  * Do not remove staff item requirements.
                  */
-                if (item.id in STAFF_ITEMS) {
+                if (item.id in getRSCM(STAFF_ITEMS)) {
                     continue
                 }
                 p.inventory.remove(item)

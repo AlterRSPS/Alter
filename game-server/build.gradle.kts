@@ -26,7 +26,13 @@ dependencies {
         implementation(kotlin.csv)
         implementation(mongo.bson)
         implementation(mongo.driver)
+        implementation(rootProject.projects.plugins.rscm)
         testImplementation(junit)
+        implementation(rootProject.project.libs.rsprot)
+        implementation(rootProject.projects.plugins.filestore)
+        implementation(rootProject.projects.plugins.rscm)
+        implementation(rootProject.projects.plugins.tools)
+        implementation(lib.routefinder)
     }
 }
 sourceSets {
@@ -72,6 +78,8 @@ tasks.register("install") {
             )
         }
     }
+    dependsOn("runRsaService")
+    dependsOn("decryptMap")
 
     doLast {
         copy {
@@ -84,14 +92,23 @@ tasks.register("install") {
             }
             file("${rootProject.projectDir}/first-launch").createNewFile()
         }
-        javaexec {
-            workingDir = rootProject.projectDir
-            classpath = sourceSets["main"].runtimeClasspath
-            mainClass.set("org.alter.game.service.rsa.RsaService")
-            args = listOf("16", "1024", "./data/rsa/key.pem") // radix, bitcount, rsa pem file
-        }
     }
 }
+tasks.register<JavaExec>("runRsaService") {
+    group = "application"
+    workingDir = rootProject.projectDir
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("org.alter.game.service.rsa.RsaService")
+    args = listOf("16", "1024", "./data/rsa/key.pem") // radix, bitcount, rsa pem file
+}
+tasks.register<JavaExec>("decryptMap") {
+    description = "Will decrypt world map and remove xteas"
+    group = "application"
+    workingDir = rootProject.projectDir
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("org.alter.game.service.mapdecrypter.decryptMap")
+}
+
 task<Copy>("extractDependencies") {
     from(zipTree("build/distributions/game-server-${project.version}.zip")) {
         include("game-${project.version}/lib/*")
@@ -160,7 +177,6 @@ tasks.withType<ProcessResources> {
 }
 
 
-
 /**
  * @TODO Forgot about this one.
  */
@@ -175,7 +191,4 @@ publishing {
             description.set("AlterServer All")
         }
     }
-}
-tasks.named("run") {
-
 }

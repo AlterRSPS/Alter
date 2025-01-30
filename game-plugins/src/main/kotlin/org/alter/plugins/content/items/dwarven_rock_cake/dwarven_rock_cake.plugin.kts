@@ -7,8 +7,8 @@ import kotlin.math.ceil
  *  @author <a href="https://www.rune-server.ee/members/376238-cloudsec/">Cl0ud</a>
  */
 
-listOf(Items.DWARVEN_ROCK_CAKE, Items.DWARVEN_ROCK_CAKE_7510).forEach {
-    on_item_option(it, "Eat") {
+listOf("item.dwarven_rock_cake", "item.dwarven_rock_cake_7510").forEach {
+    onItemOption(it, "Eat") {
         player.queue {
             this.player.filterableMessage("Ow! You nearly broke a tooth!")
             this.player.filterableMessage("The rock cake resists all attempts to eat it.")
@@ -21,7 +21,7 @@ listOf(Items.DWARVEN_ROCK_CAKE, Items.DWARVEN_ROCK_CAKE_7510).forEach {
             }
         }
     }
-    on_item_option(it, "Guzzle") {
+    onItemOption(it, "Guzzle") {
         player.queue {
             this.player.filterableMessage("You bite hard into the rock cake to guzzle it down.")
             this.player.filterableMessage("OW! A terrible shock jars through your skull.")

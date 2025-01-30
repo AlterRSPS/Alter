@@ -1,6 +1,6 @@
 import org.alter.game.model.priv.Privilege
 
-on_command("clip", Privilege.DEV_POWER) {
+onCommand("clip", Privilege.DEV_POWER) {
     val chunk = world.chunks.getOrCreate(player.tile)
     val matrix = chunk.getMatrix(player.tile.height)
     val lx = player.tile.x % 8

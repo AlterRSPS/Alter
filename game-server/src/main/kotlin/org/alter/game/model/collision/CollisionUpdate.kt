@@ -76,7 +76,7 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
             }
 
             val x = tile.x
-            val z = tile.z
+            val y = tile.z
             val height = tile.height
             var width = def.sizeX
             var length = def.sizeY
@@ -90,12 +90,12 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
 
             if (type == ObjectType.FLOOR_DECORATION.value) {
                 if (def.interactive == 1 && def.solid != 1) {
-                    putTile(Tile(x, z, height), impenetrable, *Direction.NESW)
+                    putTile(Tile(x, y, height), impenetrable, *Direction.NESW)
                 }
             } else if (type >= ObjectType.DIAGONAL_WALL.value && type < ObjectType.FLOOR_DECORATION.value) {
                 for (dx in 0 until width) {
                     for (dz in 0 until length) {
-                        putTile(Tile(x + dx, z + dz, height), impenetrable, *Direction.NESW)
+                        putTile(Tile(x + dx, y + dz, height), impenetrable, *Direction.NESW)
                     }
                 }
             } else if (type == ObjectType.LENGTHWISE_WALL.value) {

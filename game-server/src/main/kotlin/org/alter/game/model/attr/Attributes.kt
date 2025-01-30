@@ -228,3 +228,8 @@ val LEVEL_UP_INCREMENT = AttributeKey<Int>()
 val LEVEL_UP_OLD_XP = AttributeKey<Double>()
 
 val CHANGE_LOGGING = AttributeKey<Boolean>()
+
+/**
+ * Instead of running tp
+ */
+val CLIENT_KEY_COMBINATION = AttributeKey<Int>()

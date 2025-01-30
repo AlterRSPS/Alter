@@ -1,29 +1,34 @@
 package org.alter.game.model
 
+import org.rsmod.routefinder.flag.CollisionFlag
+
 /**
  * Represents cardinal and ordinal directions in the game.
  *
  * @author Tom <rspsmods@gmail.com>
  */
-enum class Direction(val orientationValue: Int, val playerWalkValue: Int, val npcWalkValue: Int) {
-    NONE(orientationValue = -1, playerWalkValue = -1, npcWalkValue = -1),
+enum class Direction(
+    val orientationValue: Int,
+    val walkValue: Int,
+    val faceNpc: Int,
+) {
+    NORTH_WEST(orientationValue = 0, walkValue = 5, faceNpc = 4),
 
-    NORTH_WEST(orientationValue = 0, playerWalkValue = 5, npcWalkValue = 0),
+    NORTH(orientationValue = 1, walkValue = 6, faceNpc = 5),
 
-    NORTH(orientationValue = 1, playerWalkValue = 6, npcWalkValue = 1),
+    NORTH_EAST(orientationValue = 2, walkValue = 7, faceNpc = 6),
 
-    NORTH_EAST(orientationValue = 2, playerWalkValue = 7, npcWalkValue = 2),
+    EAST(orientationValue = 4, walkValue = 4, faceNpc = 7),
 
-    WEST(orientationValue = 3, playerWalkValue = 3, npcWalkValue = 3),
+    SOUTH_EAST(orientationValue = 7, walkValue = 2, faceNpc = 0),
 
-    EAST(orientationValue = 4, playerWalkValue = 4, npcWalkValue = 4),
+    SOUTH(orientationValue = 6, walkValue = 1, faceNpc = 1),
 
-    SOUTH_WEST(orientationValue = 5, playerWalkValue = 0, npcWalkValue = 5),
+    SOUTH_WEST(orientationValue = 5, walkValue = 0, faceNpc = 2),
 
-    SOUTH(orientationValue = 6, playerWalkValue = 1, npcWalkValue = 6),
+    WEST(orientationValue = 3, walkValue = 3, faceNpc = 3),
 
-    SOUTH_EAST(orientationValue = 7, playerWalkValue = 2, npcWalkValue = 7),
-    ;
+    NONE(orientationValue = -1, walkValue = -1, faceNpc = -1), ;
 
     fun isDiagonal(): Boolean = this == SOUTH_EAST || this == SOUTH_WEST || this == NORTH_EAST || this == NORTH_WEST
 
@@ -97,16 +102,7 @@ enum class Direction(val orientationValue: Int, val playerWalkValue: Int, val np
         ): Direction {
             val deltaX = next.x - current.x
             val deltaZ = next.z - current.z
-            return fromDeltas(deltaX, deltaZ)
-        }
 
-        fun between2(
-            current: Tile,
-            next: Tile,
-        ): Direction {
-            val deltaX = next.x - current.x
-            val deltaZ = next.z - current.z
-            println(current.getDelta(next))
             return fromDeltas(deltaX, deltaZ)
         }
 
@@ -114,27 +110,48 @@ enum class Direction(val orientationValue: Int, val playerWalkValue: Int, val np
             deltaX: Int,
             deltaZ: Int,
         ): Direction {
-            when (deltaZ) {
-                1 ->
-                    when (deltaX) {
-                        1 -> return NORTH_EAST
-                        0 -> return NORTH
-                        -1 -> return NORTH_WEST
-                    }
-                -1 ->
-                    when (deltaX) {
-                        1 -> return SOUTH_EAST
-                        0 -> return SOUTH
-                        -1 -> return SOUTH_WEST
-                    }
-                0 ->
-                    when (deltaX) {
-                        1 -> return EAST
-                        0 -> return NONE
-                        -1 -> return WEST
-                    }
+            if (deltaX < 0) {
+                if (deltaZ < 0) {
+                    return SOUTH_WEST
+                } else if (deltaZ > 0) {
+                    return NORTH_WEST
+                }
+                return WEST
+            } else if (deltaX > 0) {
+                if (deltaZ < 0) {
+                    return SOUTH_EAST
+                } else if (deltaZ > 0) {
+                    return NORTH_EAST
+                }
+                return EAST
             }
-            throw IllegalArgumentException("Unhandled delta difference. [$deltaX, $deltaZ]")
+            return if (deltaZ < 0) SOUTH else NORTH
+        }
+
+        fun getDirectionFlag(direction: Direction): Int {
+            return when (direction) {
+                NORTH -> CollisionFlag.WALL_SOUTH
+                EAST -> CollisionFlag.WALL_WEST
+                SOUTH -> CollisionFlag.WALL_NORTH
+                WEST -> CollisionFlag.WALL_EAST
+                NORTH_EAST -> CollisionFlag.WALL_SOUTH_WEST
+                NORTH_WEST -> CollisionFlag.WALL_SOUTH_EAST
+                SOUTH_EAST -> CollisionFlag.WALL_NORTH_WEST
+                SOUTH_WEST -> CollisionFlag.WALL_NORTH_EAST
+                else -> 0
+            }
+        }
+
+        fun calculateAttackDirection(
+            npc: Tile,
+            player: Tile,
+        ): Direction {
+            // Calculate the difference in X and Z coordinates between the NPC and the player
+            val deltaX = player.x - npc.x
+            val deltaZ = player.z - npc.z
+
+            // Return the direction from the NPC to the player
+            return fromDeltas(deltaX, deltaZ)
         }
     }
 }

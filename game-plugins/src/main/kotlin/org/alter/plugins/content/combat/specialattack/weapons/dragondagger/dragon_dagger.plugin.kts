@@ -1,6 +1,5 @@
 package org.alter.plugins.content.combat.specialattack.weapons.dragondagger
 
-import org.alter.api.cfg.Items
 import org.alter.game.model.entity.AreaSound
 import org.alter.plugins.content.combat.dealHit
 import org.alter.plugins.content.combat.formula.MeleeCombatFormula
@@ -8,7 +7,7 @@ import org.alter.plugins.content.combat.specialattack.SpecialAttacks
 
 val SPECIAL_REQUIREMENT = 25
 
-SpecialAttacks.register(Items.DRAGON_DAGGER, SPECIAL_REQUIREMENT) {
+SpecialAttacks.register("item.dragon_dagger", SPECIAL_REQUIREMENT) {
     player.animate(id = 1062)
     player.graphic(id = 252, height = 92)
     world.spawn(AreaSound(tile = player.tile, id = 2537, radius = 10, volume = 1))

@@ -11,7 +11,7 @@ import org.alter.game.model.entity.Client
  * @author Tom <rspsmods@gmail.com>
  */
 class IfButton1Handler : MessageHandler<If3Button> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: If3Button,
     ) {

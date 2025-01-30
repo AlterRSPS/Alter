@@ -15,11 +15,11 @@ MagicSpells.getCombatSpells().forEach { entry ->
     val ancients = requirement.spellbook == Spellbook.ANCIENTS.id
 
     if (standard || ancients) {
-        on_spell_on_npc(requirement.interfaceId, requirement.component) {
+        onSpellOnNpc(requirement.interfaceId, requirement.component) {
             castCombatSpellOnPawn(player, player.getInteractingNpc(), requirement)
         }
 
-        on_spell_on_player(requirement.interfaceId, requirement.component) {
+        onSpellOnPlayer(requirement.interfaceId, requirement.component) {
             castCombatSpellOnPawn(player, player.getInteractingPlayer(), requirement)
         }
     }

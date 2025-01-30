@@ -8,7 +8,7 @@ import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.entity.Client
 
 class IfModelOp1Handler : MessageHandler<If1Button> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: If1Button,
     ) {

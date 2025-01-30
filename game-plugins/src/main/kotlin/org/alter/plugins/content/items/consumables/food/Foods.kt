@@ -1,18 +1,19 @@
-package org.alter.plugins.content.items.food
+package org.alter.plugins.content.items.consumables.food
 
 import dev.openrune.cache.CacheManager.getItem
 import org.alter.api.EquipmentType
 import org.alter.api.Skills
-import org.alter.api.cfg.Items
 import org.alter.api.ext.hasEquipped
 import org.alter.api.ext.heal
 import org.alter.api.ext.message
 import org.alter.api.ext.playSound
 import org.alter.game.model.entity.Player
+import org.alter.rscm.RSCM.getRSCM
 import org.alter.game.model.timer.ATTACK_DELAY
 import org.alter.game.model.timer.COMBO_FOOD_DELAY
 import org.alter.game.model.timer.FOOD_DELAY
 import org.alter.game.model.timer.POTION_DELAY
+import org.alter.plugins.content.items.food.Food
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -32,7 +33,7 @@ object Foods {
         food: Food,
     ) {
         val delay = if (food.comboFood) COMBO_FOOD_DELAY else FOOD_DELAY
-        val anim = if (p.hasEquipped(EquipmentType.WEAPON, Items.SLED)) EAT_FOOD_ON_SLED_ANIM else EAT_FOOD_ANIM
+        val anim = if (p.hasEquipped(EquipmentType.WEAPON, "item.sled")) EAT_FOOD_ON_SLED_ANIM else EAT_FOOD_ANIM
 
         val heal =
             when (food) {
@@ -51,7 +52,7 @@ object Foods {
             }
 
         val oldHp = p.getSkills().getCurrentLevel(Skills.HITPOINTS)
-        val foodName = getItem(food.item).name
+        val foodName = getItem(getRSCM(food.item)).name
 
         p.animate(anim)
         p.playSound(EAT_FOOD_SOUND)

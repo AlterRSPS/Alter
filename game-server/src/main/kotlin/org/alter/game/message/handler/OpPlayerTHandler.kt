@@ -10,7 +10,7 @@ import org.alter.game.model.entity.Entity
 import java.lang.ref.WeakReference
 
 class OpPlayerTHandler : MessageHandler<OpPlayerT> {
-    override fun accept(
+    override fun consume(
         client: Client,
         message: OpPlayerT,
     ) {

@@ -12,11 +12,11 @@ val CLAN_BUTTON_COMPONENT = 23
 val TRADE_BUTTON_COMPONENT = 27
 val REPORT_BUG_BUTTON_COMPONENT = 31
 
-on_login {
+onLogin {
     player.setVarbit(Varbit.CHATBOX_UNLOCKED, 1)
 }
 
-on_button(PARENT_CHAT_BOX_INTERFACE, GAME_BUTTON_COMPONENT) {
+onButton(PARENT_CHAT_BOX_INTERFACE, GAME_BUTTON_COMPONENT) {
     when (player.getInteractingOption()) {
         1 -> {
             player.toggleVarbit(26)
@@ -45,14 +45,14 @@ suspend fun dialog(it: QueueTask) {
 }
 
 listOf(PRIVATE_BUTTON_COMPONENT, CHANNEL_BUTTON_COMPONENT, CLAN_BUTTON_COMPONENT).forEach {
-    on_button(PARENT_CHAT_BOX_INTERFACE, it) {
+    onButton(PARENT_CHAT_BOX_INTERFACE, it) {
         player.setVarbit(
             when (it) {
                 PRIVATE_BUTTON_COMPONENT -> 13674
                 CHANNEL_BUTTON_COMPONENT -> 928
                 CLAN_BUTTON_COMPONENT -> 929
                 else -> {
-                    return@on_button
+                    return@onButton
                 }
             },
             when (player.getInteractingOption()) {
@@ -62,19 +62,19 @@ listOf(PRIVATE_BUTTON_COMPONENT, CHANNEL_BUTTON_COMPONENT, CLAN_BUTTON_COMPONENT
                 2 -> 0
                 else -> {
                     println("[$PARENT_CHAT_BOX_INTERFACE : $it] ${player.getInteractingOption()} Interacting Option is unknown.")
-                    return@on_button
+                    return@onButton
                 }
             },
         )
     }
 }
 listOf(PUBLIC_BUTTON_COMPONENT, TRADE_BUTTON_COMPONENT).forEach {
-    on_button(PARENT_CHAT_BOX_INTERFACE, it) {
+    onButton(PARENT_CHAT_BOX_INTERFACE, it) {
         // Handled @TODO add setting to log these buttons that are being handled but should not do anything.
     }
 }
 
-on_button(PARENT_CHAT_BOX_INTERFACE, REPORT_BUG_BUTTON_COMPONENT) {
+onButton(PARENT_CHAT_BOX_INTERFACE, REPORT_BUG_BUTTON_COMPONENT) {
     player.runClientScript(CommonClientScripts.MAIN_MODAL_OPEN, -1, -1)
     player.openInterface(553, InterfaceDestination.MAIN_SCREEN)
     //TODO This script is no longer used
@@ -83,6 +83,6 @@ on_button(PARENT_CHAT_BOX_INTERFACE, REPORT_BUG_BUTTON_COMPONENT) {
 /**
  * @TODO Needs BUG_REPPORT packet.
  */
-on_button(553, 31) {
+onButton(553, 31) {
     player.message("Unhandled yet, will be fixed later.")
 }

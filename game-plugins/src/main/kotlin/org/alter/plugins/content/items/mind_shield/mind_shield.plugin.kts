@@ -1,4 +1,4 @@
-on_item_equip(Items.MIND_SHIELD) {
+onItemEquip("item.mind_shield") {
     player.queue {
         player.animate(-1)
         player.graphic(-1)

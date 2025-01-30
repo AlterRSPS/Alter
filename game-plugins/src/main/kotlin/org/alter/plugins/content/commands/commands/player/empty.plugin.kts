@@ -1,3 +1,3 @@
-on_command("empty") {
+onCommand("empty") {
     player.inventory.removeAll()
 }

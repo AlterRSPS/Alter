@@ -9,19 +9,19 @@ import org.alter.plugins.content.combat.isBeingAttacked
  */
 val cow_npc_list =
     listOf(
-        Npcs.COW,
+        "npc.cow",
     )
 
 val COW_YELL_DELAY = TimerKey()
 
 cow_npc_list.forEach { cow ->
-    on_npc_spawn(npc = cow) {
+    onNpcSpawn(npc = cow) {
         val npc = npc
         npc.timers[COW_YELL_DELAY] = world.random(100..200)
     }
 }
 
-on_timer(COW_YELL_DELAY) {
+onTimer(COW_YELL_DELAY) {
     val npc = npc
     if (!npc.isBeingAttacked()) {
         npc.forceChat("Moo")
@@ -30,7 +30,7 @@ on_timer(COW_YELL_DELAY) {
 }
 
 cow_npc_list.forEach {
-    set_combat_def(it) {
+    setCombatDef(it) {
         configs {
             attackSpeed = 6
             respawnDelay = 45

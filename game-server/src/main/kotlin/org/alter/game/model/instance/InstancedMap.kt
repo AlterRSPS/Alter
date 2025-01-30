@@ -61,9 +61,9 @@ class InstancedMap internal constructor(
                 for (z in 0 until bounds) {
                     val absolute = Tile(startX + (x shl 3), startZ + (z shl 3))
                     val chunkX = (absolute.x - area.bottomLeftX) shr 3
-                    val chunkZ = (absolute.z - area.bottomLeftZ) shr 3
+                    val chunkY = (absolute.z - area.bottomLeftY) shr 3
 
-                    val coord = InstancedChunkSet.getCoordinates(chunkX, chunkZ, height)
+                    val coord = InstancedChunkSet.getCoordinates(chunkX, chunkY, height)
                     val chunk = chunks.values[coord]
 
                     coordinates[index++] = chunk?.packed ?: -1

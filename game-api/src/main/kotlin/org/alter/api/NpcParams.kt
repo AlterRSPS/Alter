@@ -118,10 +118,10 @@ class NpcCombatBuilder {
         /**
          * @TODO Add indentifier if check fails
          */
-        check(maxHealth != -1) { "Max health must be set." }
-        check(attackSpeed != -1) { "Attack speed must be set." }
-        check(deathAnimList.isNotEmpty()) { "A death animation must be set." }
-        check(respawnDelay != -1) { "Respawn delay must be set." }
+        check(maxHealth != -1) { "Max health must be set. ${Throwable().stackTrace[3].fileName}" }
+        check(attackSpeed != -1) { "Attack speed must be set. ${Throwable().stackTrace[3].fileName}" }
+        check(deathAnimList.isNotEmpty()) { "A death animation must be set. ${Throwable().stackTrace[3].fileName}" }
+        check(respawnDelay != -1) { "Respawn delay must be set. ${Throwable().stackTrace[3].fileName}" }
 
         stats.forEachIndexed { index, level ->
             stats[index] = Math.max(1, level)
@@ -209,7 +209,7 @@ class NpcCombatBuilder {
     }
 
     fun setHitpoints(health: Int): NpcCombatBuilder {
-        check(maxHealth == -1) { "Max health already set." }
+        check(maxHealth == -1) { "Max health already set. ${Throwable().stackTrace[2].fileName}" }
         maxHealth = health
         return this
     }
@@ -218,37 +218,37 @@ class NpcCombatBuilder {
      * @param speed the attack speed, in cycles.
      */
     fun setAttackSpeed(speed: Int): NpcCombatBuilder {
-        check(attackSpeed == -1) { " Attack speed already set, at: $attackSpeed" }
+        check(attackSpeed == -1) { " Attack speed already set, ${Throwable().stackTrace[2].fileName}" }
         attackSpeed = speed
         return this
     }
 
     fun setAttackLevel(level: Int): NpcCombatBuilder {
-        check(stats[NpcSkills.ATTACK] == -1) { "Attack level already set." }
+        check(stats[NpcSkills.ATTACK] == -1) { "Attack level already set. ${Throwable().stackTrace[2].fileName}" }
         stats[NpcSkills.ATTACK] = level
         return this
     }
 
     fun setStrengthLevel(level: Int): NpcCombatBuilder {
-        check(stats[NpcSkills.STRENGTH] == -1) { "Strength level already set." }
+        check(stats[NpcSkills.STRENGTH] == -1) { "Strength level already set. ${Throwable().stackTrace[2].fileName}" }
         stats[NpcSkills.STRENGTH] = level
         return this
     }
 
     fun setDefenceLevel(level: Int): NpcCombatBuilder {
-        check(stats[NpcSkills.DEFENCE] == -1) { "Defence level already set." }
+        check(stats[NpcSkills.DEFENCE] == -1) { "Defence level already set. ${Throwable().stackTrace[2].fileName}" }
         stats[NpcSkills.DEFENCE] = level
         return this
     }
 
     fun setMagicLevel(level: Int): NpcCombatBuilder {
-        check(stats[NpcSkills.MAGIC] == -1) { "Magic level already set." }
+        check(stats[NpcSkills.MAGIC] == -1) { "Magic level already set. ${Throwable().stackTrace[2].fileName}" }
         stats[NpcSkills.MAGIC] = level
         return this
     }
 
     fun setRangedLevel(level: Int): NpcCombatBuilder {
-        check(stats[NpcSkills.RANGED] == -1) { "Ranged level already set." }
+        check(stats[NpcSkills.RANGED] == -1) { "Ranged level already set. ${Throwable().stackTrace[2].fileName}" }
         stats[NpcSkills.RANGED] = level
         return this
     }
@@ -257,7 +257,7 @@ class NpcCombatBuilder {
         index: Int,
         level: Int,
     ): NpcCombatBuilder {
-        check(stats[index] == -1) { "Level [$index] already set." }
+        check(stats[index] == -1) { "Level [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         stats[index] = level
         return this
     }
@@ -278,28 +278,28 @@ class NpcCombatBuilder {
     }
 
     fun setDefaultAttackSound(sound: Int) {
-        check(defaultAttackSound == -1) { "Default attack sound already set." }
+        check(defaultAttackSound == -1) { "Default attack sound already set. ${Throwable().stackTrace[2].fileName}" }
         defaultAttackSound = sound
     }
 
     fun setDefaultBlockSound(sound: Int) {
-        check(defaultBlockSound == -1) { "Default block sound already set." }
+        check(defaultBlockSound == -1) { "Default block sound already set. ${Throwable().stackTrace[2].fileName}" }
         defaultBlockSound = sound
     }
 
     fun setDefaultDeathSound(sound: Int) {
-        check(defaultDeathSound == -1) { "Default death sound already set." }
+        check(defaultDeathSound == -1) { "Default death sound already set. ${Throwable().stackTrace[2].fileName}" }
         defaultDeathSound = sound
     }
 
     fun setDefaultAttackAnimation(animation: Int): NpcCombatBuilder {
-        check(defaultAttackAnim == -1) { "Default attack animation already set." }
+        check(defaultAttackAnim == -1) { "Default attack animation already set. ${Throwable().stackTrace[2].fileName}" }
         defaultAttackAnim = animation
         return this
     }
 
     fun setDefaultBlockAnimation(animation: Int): NpcCombatBuilder {
-        check(defaultBlockAnim == -1) { "Default block animation already set." }
+        check(defaultBlockAnim == -1) { "Default block animation already set. ${Throwable().stackTrace[2].fileName}" }
         defaultBlockAnim = animation
         return this
     }
@@ -322,56 +322,56 @@ class NpcCombatBuilder {
     }
 
     fun setDeathAnimation(vararg anims: Int): NpcCombatBuilder {
-        check(anims.isNotEmpty()) { "Must specify at least one animation." }
+        check(anims.isNotEmpty()) { "Animations not assigned. Caused by: ${Throwable().stackTrace[2].fileName} " }
         check(deathAnimList.isEmpty()) { "Death animation(s) already set." }
         anims.forEach { deathAnimList.add(it) }
         return this
     }
 
     fun setRespawnDelay(cycles: Int): NpcCombatBuilder {
-        check(respawnDelay == -1) { "Respawn delay already set." }
+        check(respawnDelay == -1) { "Respawn delay already set. ${Throwable().stackTrace[2].fileName}" }
         respawnDelay = cycles
         return this
     }
 
     fun setAggroRadius(radius: Int): NpcCombatBuilder {
-        check(aggroRadius == -1) { "Aggro radius already set." }
+        check(aggroRadius == -1) { "Aggro radius already set. ${Throwable().stackTrace[2].fileName}" }
         aggroRadius = radius
         return this
     }
 
     fun setFindAggroTargetDelay(delay: Int): NpcCombatBuilder {
-        check(aggroTargetDelay == -1) { "Aggro target delay already set." }
+        check(aggroTargetDelay == -1) { "Aggro target delay already set. ${Throwable().stackTrace[2].fileName}" }
         aggroTargetDelay = delay
         return this
     }
 
     fun setAggroTimer(timer: Int): NpcCombatBuilder {
-        check(aggroTimer == -1) { "Aggro timer already set." }
+        check(aggroTimer == -1) { "Aggro timer already set. ${Throwable().stackTrace[2].fileName}" }
         aggroTimer = timer
         return this
     }
 
     fun setPoisonChance(chance: Double): NpcCombatBuilder {
-        check(poisonChance == -1.0) { "Poison chance already set." }
+        check(poisonChance == -1.0) { "Poison chance already set. ${Throwable().stackTrace[2].fileName}" }
         poisonChance = chance
         return this
     }
 
     fun setVenomChance(chance: Double): NpcCombatBuilder {
-        check(venomChance == -1.0) { "Venom chance already set." }
+        check(venomChance == -1.0) { "Venom chance already set. ${Throwable().stackTrace[2].fileName}" }
         venomChance = chance
         return this
     }
 
     fun setSlayerRequirement(levelReq: Int): NpcCombatBuilder {
-        check(slayerReq == -1) { "Slayer requirement already set." }
+        check(slayerReq == -1) { "Slayer requirement already set. ${Throwable().stackTrace[2].fileName}" }
         slayerReq = levelReq
         return this
     }
 
     fun setSlayerXp(xp: Double): NpcCombatBuilder {
-        check(slayerXp == -1.0) { "Slayer xp already set." }
+        check(slayerXp == -1.0) { "Slayer xp already set. ${Throwable().stackTrace[2].fileName}" }
         slayerXp = xp
         return this
     }
@@ -389,77 +389,77 @@ class NpcCombatBuilder {
         index: Int,
         value: Int,
     ): NpcCombatBuilder {
-        check(bonuses[index] == 0) { "Bonus [$index] already set." }
+        check(bonuses[index] == 0) { "Bonus [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         bonuses[index] = value
         return this
     }
 
     fun setAttackStabBonus(value: Int): NpcCombatBuilder {
         val index = BonusSlot.ATTACK_STAB.id
-        check(bonuses[index] == 0) { "Bonus [$index] already set." }
+        check(bonuses[index] == 0) { "Bonus [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         bonuses[index] = value
         return this
     }
 
     fun setAttackSlashBonus(value: Int): NpcCombatBuilder {
         val index = BonusSlot.ATTACK_SLASH.id
-        check(bonuses[index] == 0) { "Bonus [$index] already set." }
+        check(bonuses[index] == 0) { "Bonus [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         bonuses[index] = value
         return this
     }
 
     fun setAttackCrushBonus(value: Int): NpcCombatBuilder {
         val index = BonusSlot.ATTACK_CRUSH.id
-        check(bonuses[index] == 0) { "Bonus [$index] already set." }
+        check(bonuses[index] == 0) { "Bonus [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         bonuses[index] = value
         return this
     }
 
     fun setAttackMagicBonus(value: Int): NpcCombatBuilder {
         val index = BonusSlot.ATTACK_MAGIC.id
-        check(bonuses[index] == 0) { "Bonus [$index] already set." }
+        check(bonuses[index] == 0) { "Bonus [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         bonuses[index] = value
         return this
     }
 
     fun setAttackRangedBonus(value: Int): NpcCombatBuilder {
         val index = BonusSlot.ATTACK_RANGED.id
-        check(bonuses[index] == 0) { "Bonus [$index] already set." }
+        check(bonuses[index] == 0) { "Bonus [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         bonuses[index] = value
         return this
     }
 
     fun setDefenceStabBonus(value: Int): NpcCombatBuilder {
         val index = BonusSlot.DEFENCE_STAB.id
-        check(bonuses[index] == 0) { "Bonus [$index] already set." }
+        check(bonuses[index] == 0) { "Bonus [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         bonuses[index] = value
         return this
     }
 
     fun setDefenceSlashBonus(value: Int): NpcCombatBuilder {
         val index = BonusSlot.DEFENCE_SLASH.id
-        check(bonuses[index] == 0) { "Bonus [$index] already set." }
+        check(bonuses[index] == 0) { "Bonus [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         bonuses[index] = value
         return this
     }
 
     fun setDefenceCrushBonus(value: Int): NpcCombatBuilder {
         val index = BonusSlot.DEFENCE_CRUSH.id
-        check(bonuses[index] == 0) { "Bonus [$index] already set." }
+        check(bonuses[index] == 0) { "Bonus [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         bonuses[index] = value
         return this
     }
 
     fun setDefenceMagicBonus(value: Int): NpcCombatBuilder {
         val index = BonusSlot.DEFENCE_MAGIC.id
-        check(bonuses[index] == 0) { "Bonus [$index] already set." }
+        check(bonuses[index] == 0) { "Bonus [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         bonuses[index] = value
         return this
     }
 
     fun setDefenceRangedBonus(value: Int): NpcCombatBuilder {
         val index = BonusSlot.DEFENCE_RANGED.id
-        check(bonuses[index] == 0) { "Bonus [$index] already set." }
+        check(bonuses[index] == 0) { "Bonus [$index] already set. ${Throwable().stackTrace[2].fileName}" }
         bonuses[index] = value
         return this
     }
@@ -470,28 +470,37 @@ class NpcCombatBuilder {
     }
 
     fun setSpecies(vararg species: NpcSpecies): NpcCombatBuilder {
-        check(speciesSet.isEmpty()) { "Species already set." }
+        check(speciesSet.isEmpty()) { "Species already set. ${Throwable().stackTrace[2].fileName}" }
         speciesSet.addAll(species)
         return this
     }
 
     fun setPoisonImmunity(state: Boolean): NpcCombatBuilder {
-        check(!immunePoison) { "Poison immunity was already applied."}
+        check(!immunePoison) { "Poison immunity was already applied. ${Throwable().stackTrace[2].fileName}"}
         immunePoison = state
         return this
     }
     fun setVenomImmunity(state: Boolean): NpcCombatBuilder {
-        check(!immuneVenom) { "Venom immunity was already applied."}
+        check(!immuneVenom) { "Venom immunity was already applied. ${Throwable().stackTrace[2].fileName}" +
+                "" +
+                "" +
+                ""}
         immuneVenom = state
         return this
     }
     fun setCannonImmunity(state: Boolean): NpcCombatBuilder {
-        check(!immuneCannons) { "Cannon immunity was already applied."}
+        check(!immuneCannons) { "Cannon immunity was already applied. ${Throwable().stackTrace[2].fileName}" +
+                "" +
+                "" +
+                ""}
         immuneCannons = state
         return this
     }
     fun setThrallsImmunity(state: Boolean): NpcCombatBuilder {
-        check(!immuneThralls) { "Thralls immunity was already applied."}
+        check(!immuneThralls) { "Thralls immunity was already applied. ${Throwable().stackTrace[2].fileName}" +
+                "" +
+                "" +
+                ""}
         immuneThralls = state
         return this
     }

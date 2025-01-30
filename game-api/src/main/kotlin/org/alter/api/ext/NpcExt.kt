@@ -2,6 +2,7 @@ package org.alter.api.ext
 
 import org.alter.api.NpcSpecies
 import org.alter.game.model.Tile
+import org.alter.game.model.collision.raycastTiles
 import org.alter.game.model.combat.AttackStyle
 import org.alter.game.model.combat.CombatClass
 import org.alter.game.model.combat.CombatStyle
@@ -43,7 +44,7 @@ fun Npc.createProjectile(
             .setSlope(angle = angle, steepness = if (steepness == -1) Math.min(255, ((getSize() shr 1) + 1) * 32) else steepness)
             .setTimes(
                 delay = delay,
-                lifespan = if (lifespan == -1) (delay + (world.collision.raycastTiles(start, target.getCentreTile()) * 5)) else lifespan,
+                lifespan = if (lifespan == -1) (delay + (raycastTiles(start, target.getCentreTile()) * 5)) else lifespan,
             )
 
     return builder.build()
