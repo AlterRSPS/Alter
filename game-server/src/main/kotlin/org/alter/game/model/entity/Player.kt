@@ -392,7 +392,7 @@ open class Player(world: World) : Pawn(world) {
                 }
 
                 newSurroundings.forEach { coords ->
-                    val chunk = this.world.chunks.get(coords, createIfNeeded = false) ?: return@forEach
+                    val chunk = this.world.chunks.get(coords, createIfNeeded = true) ?: return@forEach
                     chunk.sendUpdates(this)
                     chunk.zonePartialEnclosedCacheBuffer.releaseBuffers()
                 }
