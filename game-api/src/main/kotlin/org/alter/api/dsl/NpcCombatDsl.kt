@@ -137,9 +137,12 @@ object NpcCombatDsl {
             init(builder)
 
             combatBuilder.setHitpoints(builder.hitpoints)
-            stats.forEach { stat ->
-                combatBuilder.setLevel(stat.first, stat.second)
-            }
+            combatBuilder.setAttackLevel(builder.attack)
+            combatBuilder.setDefenceLevel(builder.defence)
+            combatBuilder.setStrengthLevel(builder.strength)
+            combatBuilder.setMagicLevel(builder.magic)
+            combatBuilder.setRangedLevel(builder.ranged)
+
         }
 
         fun bonuses(init: BonusBuilder.() -> Unit) {

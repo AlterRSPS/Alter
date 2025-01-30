@@ -65,7 +65,12 @@ class NpcCombatBuilder {
 
     private var attackSpeed = -1
 
-    private var stats = Array(5) { -1 }
+    private var attack : Int = 0
+    private var defence : Int = 0
+    private var strength : Int = 0
+    private var hitpoints : Int = 0
+    private var ranged : Int = 0
+    private var magic : Int = 0
 
     private var defaultAttackAnim = -1
 
@@ -123,9 +128,6 @@ class NpcCombatBuilder {
         check(deathAnimList.isNotEmpty()) { "A death animation must be set. ${Throwable().stackTrace[3].fileName}" }
         check(respawnDelay != -1) { "Respawn delay must be set. ${Throwable().stackTrace[3].fileName}" }
 
-        stats.forEachIndexed { index, level ->
-            stats[index] = Math.max(1, level)
-        }
         poisonChance = Math.max(0.0, poisonChance)
         venomChance = Math.max(0.0, venomChance)
         slayerReq = Math.max(1, slayerReq)
@@ -136,39 +138,43 @@ class NpcCombatBuilder {
         }
 
         return NpcCombatDef(
-            maxHealth,
-            stats.toList(),
-            attackSpeed,
-            defaultAttackAnim,
-            defaultBlockAnim,
-            deathAnimList,
-            defaultAttackSound,
-            defaultAttackSoundArea,
-            defaultAttackSoundRadius,
-            defaultAttackSoundVolume,
-            defaultBlockSound,
-            defaultBlockSoundArea,
-            defaultBlockSoundRadius,
-            defaultBlockSoundVolume,
-            defaultDeathSound,
-            defaultDeathSoundArea,
-            defaultDeathSoundRadius,
-            defaultDeathSoundVolume,
-            respawnDelay,
-            aggroRadius,
-            aggroTargetDelay,
-            aggroTimer,
-            poisonChance,
-            venomChance,
-            slayerReq,
-            slayerXp,
-            bonuses.toList(),
-            speciesSet,
-            LootTable,
-            immunePoison,
-            immuneVenom,
-            immuneCannons,
-            immuneThralls
+            hitpoints = maxHealth,
+            attack = attack,
+            defence = defence,
+            strength = strength,
+            ranged = ranged,
+            magic = magic,
+            attackSpeed = attackSpeed,
+            attackAnimation = defaultAttackAnim,
+            blockAnimation = defaultBlockAnim,
+            deathAnimation = deathAnimList,
+            defaultAttackSound = defaultAttackSound,
+            defaultAttackSoundArea = defaultAttackSoundArea,
+            defaultAttackSoundRadius = defaultAttackSoundRadius,
+            defaultAttackSoundVolume = defaultAttackSoundVolume,
+            defaultBlockSound = defaultBlockSound,
+            defaultBlockSoundArea = defaultBlockSoundArea,
+            defaultBlockSoundRadius = defaultBlockSoundRadius,
+            defaultBlockSoundVolume = defaultBlockSoundVolume,
+            defaultDeathSound = defaultDeathSound,
+            defaultDeathSoundArea = defaultDeathSoundArea,
+            defaultDeathSoundRadius = defaultDeathSoundRadius,
+            defaultDeathSoundVolume = defaultDeathSoundVolume,
+            respawnDelay = respawnDelay,
+            aggressiveRadius = aggroRadius,
+            aggroTargetDelay = aggroTargetDelay,
+            aggressiveTimer = aggroTimer,
+            poisonChance = poisonChance,
+            venomChance = venomChance,
+            slayerReq = slayerReq,
+            slayerXp = slayerXp,
+            bonuses = bonuses.toList(),
+            species = speciesSet,
+            LootTables = LootTable,
+            immunePoison = immunePoison,
+            immuneVenom = immuneVenom,
+            immuneCannons = immuneCannons,
+            immuneThralls = immuneThralls
         )
     }
 
@@ -224,43 +230,43 @@ class NpcCombatBuilder {
     }
 
     fun setAttackLevel(level: Int): NpcCombatBuilder {
-        check(stats[NpcSkills.ATTACK] == -1) { "Attack level already set. ${Throwable().stackTrace[2].fileName}" }
-        stats[NpcSkills.ATTACK] = level
+        check( attack == 0) { "Attack level already set. ${Throwable().stackTrace[2].fileName}" }
+        attack = level
         return this
     }
 
     fun setStrengthLevel(level: Int): NpcCombatBuilder {
-        check(stats[NpcSkills.STRENGTH] == -1) { "Strength level already set. ${Throwable().stackTrace[2].fileName}" }
-        stats[NpcSkills.STRENGTH] = level
+        check(strength == 0) { "Strength level already set. ${Throwable().stackTrace[2].fileName}" }
+        strength = level
         return this
     }
 
     fun setDefenceLevel(level: Int): NpcCombatBuilder {
-        check(stats[NpcSkills.DEFENCE] == -1) { "Defence level already set. ${Throwable().stackTrace[2].fileName}" }
-        stats[NpcSkills.DEFENCE] = level
+        check(defence == 0) { "Defence level already set. ${Throwable().stackTrace[2].fileName}" }
+        defence = level
         return this
     }
 
     fun setMagicLevel(level: Int): NpcCombatBuilder {
-        check(stats[NpcSkills.MAGIC] == -1) { "Magic level already set. ${Throwable().stackTrace[2].fileName}" }
-        stats[NpcSkills.MAGIC] = level
+        check(magic == 0) { "Magic level already set. ${Throwable().stackTrace[2].fileName}" }
+        magic = level
         return this
     }
 
     fun setRangedLevel(level: Int): NpcCombatBuilder {
-        check(stats[NpcSkills.RANGED] == -1) { "Ranged level already set. ${Throwable().stackTrace[2].fileName}" }
-        stats[NpcSkills.RANGED] = level
+        check(ranged == 0) { "Ranged level already set. ${Throwable().stackTrace[2].fileName}" }
+        ranged = level
         return this
     }
-
-    fun setLevel(
-        index: Int,
-        level: Int,
-    ): NpcCombatBuilder {
-        check(stats[index] == -1) { "Level [$index] already set. ${Throwable().stackTrace[2].fileName}" }
-        stats[index] = level
-        return this
-    }
+    // @TODO Add this back for different Skills As for now it's not really needed.
+   // fun setLevel(
+   //     index: Int,
+   //     level: Int,
+   // ): NpcCombatBuilder {
+   //     check(stats[index] == -1) { "Level [$index] already set. ${Throwable().stackTrace[2].fileName}" }
+   //     stats[index] = level
+   //     return this
+   // }
 
     fun setLevels(
         attack: Int,

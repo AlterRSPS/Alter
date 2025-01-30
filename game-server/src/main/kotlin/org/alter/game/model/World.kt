@@ -633,15 +633,9 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     fun setNpcDefaults(npc: Npc) {
         val combatDef = plugins.npcCombatDefs.getOrDefault(npc.id, null) ?: NpcCombatDef.DEFAULT
         npc.combatDef = combatDef
-
         npc.combatDef.bonuses.forEachIndexed { index, bonus -> npc.equipmentBonuses[index] = bonus }
         npc.respawns = combatDef.respawnDelay > 0
-
         npc.setCurrentHp(npc.combatDef.hitpoints)
-        combatDef.stats.forEachIndexed { index, level ->
-            npc.stats.setMaxLevel(index, level)
-            npc.stats.setCurrentLevel(index, level)
-        }
     }
 
     /**

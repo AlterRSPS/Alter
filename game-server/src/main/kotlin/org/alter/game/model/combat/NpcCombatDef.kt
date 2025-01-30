@@ -8,8 +8,12 @@ import org.alter.game.model.weightedTableBuilder.LootTable
  * @author Tom <rspsmods@gmail.com>
  */
 data class NpcCombatDef(
+    val attack: Int,
+    val defence: Int,
+    val strength: Int,
     val hitpoints: Int,
-    val stats: List<Int>,
+    val ranged: Int,
+    val magic: Int,
     val attackSpeed: Int,
     val attackAnimation: Int,
     val blockAnimation: Int,
@@ -53,7 +57,11 @@ data class NpcCombatDef(
         val DEFAULT =
             NpcCombatDef(
                 hitpoints = DEFAULT_HITPOINTS,
-                stats = listOf(1, 1, 1, 1, 1),
+                attack = 0,
+                defence = 0,
+                strength = 0,
+                ranged = 0,
+                magic = 0,
                 attackSpeed = DEFAULT_ATTACK_SPEED,
                 aggressiveRadius = 0,
                 aggroTargetDelay = 0,
