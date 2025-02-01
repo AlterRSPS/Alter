@@ -3,6 +3,8 @@ package org.alter.game.model
 import gg.rsmod.util.toStringHelper
 import org.alter.game.model.region.Chunk
 import org.alter.game.model.region.ChunkCoords
+import kotlin.math.abs
+import kotlin.math.max
 
 /**
  * A 3D point in the world.
@@ -130,6 +132,20 @@ class Tile {
     ): Boolean = isWithinRadius(other.x, other.z, other.height, radius)
 
     fun isInSameChunk(other: Tile): Boolean = (x shr 3) == (other.x shr 3) && (z shr 3) == (other.z shr 3)
+
+    /**
+     * Gets the distance between this and another location.
+     * <br>
+     * https://en.wikipedia.org/wiki/Chebyshev_distance
+     * <br>
+     * @param other The other position.
+     * @return The chebyshev distance.
+     */
+    fun getChebyshevDistance(other: Tile): Int {
+        val dx: Int = x - other.x
+        val dz: Int = z - other.z
+        return max(abs(dx.toDouble()), abs(dz.toDouble())).toInt()
+    }
 
     fun getDistance(other: Tile): Int {
         val dx = x - other.x

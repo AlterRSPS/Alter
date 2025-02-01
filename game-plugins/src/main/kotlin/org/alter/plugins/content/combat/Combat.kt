@@ -8,7 +8,6 @@ import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import org.alter.game.model.attr.LAST_HIT_ATTR
 import org.alter.game.model.attr.LAST_HIT_BY_ATTR
 import org.alter.game.model.collision.raycast
-import org.alter.game.model.collision.raycastTiles
 import org.alter.game.model.combat.CombatClass
 import org.alter.game.model.entity.AreaSound
 import org.alter.game.model.entity.Npc
@@ -189,7 +188,7 @@ object Combat {
     ): Int =
         when (type) {
             ProjectileType.MAGIC -> {
-                val fastRoute = raycastTiles(source.tile, target)
+                val fastRoute = source.tile.getChebyshevDistance(target)
                 5 + (fastRoute * 10)
             }
             else -> {
