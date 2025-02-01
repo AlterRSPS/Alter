@@ -13,8 +13,6 @@ dependencies {
     with(lib) {
         implementation(projects.util)
         runtimeOnly(projects.gamePlugins)
-        implementation(kotlin.scripting)
-        implementation(kotlin.script.runtime)
         implementation(kotlinx.coroutines)
         implementation(reflection)
         implementation(commons)
