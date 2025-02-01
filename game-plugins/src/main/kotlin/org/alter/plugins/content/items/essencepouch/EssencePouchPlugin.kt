@@ -1,28 +1,52 @@
-package org.alter.plugins.content.items.other.essencepouch
+package org.alter.plugins.content.items.essencepouch
 
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.getItems
+import org.alter.api.*
+import org.alter.api.cfg.*
+import org.alter.api.dsl.*
+import org.alter.api.ext.*
+import org.alter.game.*
+import org.alter.game.model.*
+import org.alter.game.model.attr.*
+import org.alter.game.model.container.*
+import org.alter.game.model.container.key.*
+import org.alter.game.model.entity.*
+import org.alter.game.model.item.*
+import org.alter.game.model.queue.*
+import org.alter.game.model.shop.*
+import org.alter.game.model.timer.*
+import org.alter.game.plugin.*
+import org.alter.plugins.content.items.other.essencepouch.EssencePouch
 import org.alter.rscm.RSCM.getRSCM
 
-/**
- * The set of essence pouch definitions
- */
-private val pouches =
-    setOf(
-        EssencePouch(id = "item.small_pouch", levelReq = 1, capacity = 3),
-        EssencePouch(id = "item.medium_pouch", levelReq = 25, capacity = 6),
-        EssencePouch(id = "item.large_pouch", levelReq = 50, capacity = 9),
-        EssencePouch(id = "item.giant_pouch", levelReq = 75, capacity = 12),
-    )
+class EssencePouchPlugin(
+    r: PluginRepository,
+    world: World,
+    server: Server
+) : KotlinPlugin(r, world, server) {
+        
+    init {
+        /**
+         * The set of essence pouch definitions
+         */
+        val pouches =
+            setOf(
+                EssencePouch(id = "item.small_pouch", levelReq = 1, capacity = 3),
+                EssencePouch(id = "item.medium_pouch", levelReq = 25, capacity = 6),
+                EssencePouch(id = "item.large_pouch", levelReq = 50, capacity = 9),
+                EssencePouch(id = "item.giant_pouch", levelReq = 75, capacity = 12),
+            )
 
-/**
- * Bind item option events for the various essence pouches
- */
-pouches.forEach { pouch ->
-    onItemOption(item = pouch.id, option = "fill") { fillPouch(player, pouch) }
-    onItemOption(item = pouch.id, option = "empty") { emptyPouch(player) }
-    onItemOption(item = pouch.id, option = "check") { checkPouch(player) }
-}
+        /**
+         * Bind item option events for the various essence pouches
+         */
+        pouches.forEach { pouch ->
+            onItemOption(item = pouch.id, option = "fill") { fillPouch(player, pouch) }
+            onItemOption(item = pouch.id, option = "empty") { emptyPouch(player) }
+            onItemOption(item = pouch.id, option = "check") { checkPouch(player) }
+        }
+    }
 
 /**
  * Handles the filling of an essence pouch. If a pouch is empty, it should attempt to fill the pouch with Pure Essence
@@ -148,4 +172,6 @@ fun checkPouch(player: Player) {
     val name = getItem(item).name.lowercase()
 
     player.message("There ${count.toLiteral()?.pluralPrefix(count)} ${name.pluralSuffix(count)} in this pouch.")
+}
+
 }

@@ -1,10 +1,36 @@
 package org.alter.plugins.content.mechanics.bankpin
 
-val INTERFACE_ID = 14
+import org.alter.api.*
+import org.alter.api.cfg.*
+import org.alter.api.dsl.*
+import org.alter.api.ext.*
+import org.alter.game.*
+import org.alter.game.model.*
+import org.alter.game.model.attr.*
+import org.alter.game.model.container.*
+import org.alter.game.model.container.key.*
+import org.alter.game.model.entity.*
+import org.alter.game.model.item.*
+import org.alter.game.model.queue.*
+import org.alter.game.model.shop.*
+import org.alter.game.model.timer.*
+import org.alter.game.plugin.*
 
-onInterfaceOpen(INTERFACE_ID) {
-    open_settings(player)
-}
+class BankPinPlugin(
+    r: PluginRepository,
+    world: World,
+    server: Server
+) : KotlinPlugin(r, world, server) {
+    val INTERFACE_ID = 14
+
+    init {
+        onInterfaceOpen(INTERFACE_ID) {
+            open_settings(player)
+        }
+    }
+    
+
+
 
 fun open_settings(p: Player) {
     p.setComponentHidden(interfaceId = INTERFACE_ID, component = 0, hidden = false)
@@ -20,4 +46,6 @@ fun open_settings(p: Player) {
         component = 14,
         text = "Customers are reminded that they should NEVER tell anyone their Bank PINs or passwords, nor should they ever enter their PINs on any website form.",
     )
+}
+
 }

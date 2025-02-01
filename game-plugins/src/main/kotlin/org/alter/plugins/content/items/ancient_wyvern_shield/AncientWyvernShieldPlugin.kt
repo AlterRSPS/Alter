@@ -1,4 +1,31 @@
-//on_item_equip(Items.ANCIENT_WYVERN_SHIELD) {
+package org.alter.plugins.content.items.ancient_wyvern_shield
+
+import org.alter.api.*
+import org.alter.api.cfg.*
+import org.alter.api.dsl.*
+import org.alter.api.ext.*
+import org.alter.game.*
+import org.alter.game.model.*
+import org.alter.game.model.attr.*
+import org.alter.game.model.container.*
+import org.alter.game.model.container.key.*
+import org.alter.game.model.entity.*
+import org.alter.game.model.item.*
+import org.alter.game.model.queue.*
+import org.alter.game.model.shop.*
+import org.alter.game.model.timer.*
+import org.alter.game.plugin.*
+
+class AncientWyvernShieldPlugin(
+    r: PluginRepository,
+    world: World,
+    server: Server
+) : KotlinPlugin(r, world, server) {
+        
+    init {
+        
+    }
+    //on_item_equip(Items.ANCIENT_WYVERN_SHIELD) {
 //    player.animate(3996)
 //    player.queue {
 //        wait(1)
@@ -43,3 +70,5 @@
 //        }
 //    }
 //}
+
+}

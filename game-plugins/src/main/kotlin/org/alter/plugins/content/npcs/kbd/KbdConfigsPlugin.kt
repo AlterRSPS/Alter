@@ -1,53 +1,76 @@
 package org.alter.plugins.content.npcs.kbd
 
-setMultiCombatRegion(region = 9033)
+import org.alter.api.*
+import org.alter.api.cfg.*
+import org.alter.api.dsl.*
+import org.alter.api.ext.*
+import org.alter.game.*
+import org.alter.game.model.*
+import org.alter.game.model.attr.*
+import org.alter.game.model.container.*
+import org.alter.game.model.container.key.*
+import org.alter.game.model.entity.*
+import org.alter.game.model.item.*
+import org.alter.game.model.queue.*
+import org.alter.game.model.shop.*
+import org.alter.game.model.timer.*
+import org.alter.game.plugin.*
 
-spawnNpc("npc.king_black_dragon", x = 2274, z = 4698, walkRadius = 5)
+class KbdConfigsPlugin(
+    r: PluginRepository,
+    world: World,
+    server: Server
+) : KotlinPlugin(r, world, server) {
+        
+    init {
+        setMultiCombatRegion(region = 9033)
 
-setCombatDef("npc.king_black_dragon") {
-    species {
-        +NpcSpecies.DRACONIC
-        +NpcSpecies.BASIC_DRAGON
-    }
+        spawnNpc("npc.king_black_dragon", x = 2274, z = 4698, walkRadius = 5)
 
-    configs {
-        attackSpeed = 3
-        respawnDelay = 50
-    }
+        setCombatDef("npc.king_black_dragon") {
+            species {
+                +NpcSpecies.DRACONIC
+                +NpcSpecies.BASIC_DRAGON
+            }
 
-    aggro {
-        radius = 16
-        searchDelay = 1
-    }
+            configs {
+                attackSpeed = 3
+                respawnDelay = 50
+            }
 
-    stats {
-        hitpoints = 240
-        attack = 240
-        strength = 240
-        defence = 240
-        magic = 240
-    }
+            aggro {
+                radius = 16
+                searchDelay = 1
+            }
 
-    bonuses {
-        defenceStab = 70
-        defenceSlash = 90
-        defenceCrush = 90
-        defenceMagic = 80
-        defenceRanged = 70
-    }
+            stats {
+                hitpoints = 240
+                attack = 240
+                strength = 240
+                defence = 240
+                magic = 240
+            }
 
-    anims {
-        block = 89
-        death = 92
-    }
+            bonuses {
+                defenceStab = 70
+                defenceSlash = 90
+                defenceCrush = 90
+                defenceMagic = 80
+                defenceRanged = 70
+            }
 
-    //slayerData {
-    // /**
-    //  * @TODO Bug : Currently mobs don't aggro player if he does not have slayer level
-    //  */
-    //    levelRequirement = 50
-    //    xp = 258.0
-    //}
+            anims {
+                block = 89
+                death = 92
+            }
+
+            //slayerData {
+            // /**
+            //  * @TODO Bug : Currently mobs don't aggro player if he does not have slayer level
+            //  */
+            //    levelRequirement = 50
+            //    xp = 258.0
+            //}
 
 //    drops {
 //        position = Tile(x = 3222, z = 3222)
@@ -80,4 +103,6 @@ setCombatDef("npc.king_black_dragon") {
 //            add(itemid = Items.SHARK, min = 4, weight = 4)
 //        }
 //    }
+        }
+    }
 }
