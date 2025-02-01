@@ -47,8 +47,6 @@ json = { group = "org.json", name = "json", version.ref = "json" }
 reflection = {group = "org.reflections", name = "reflections", version = "_"}
 jbcrypt = { group = "org.mindrot", name = "jbcrypt", version.ref = "jbcrypt" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
-kotlin-scripting = {group = "org.jetbrains.kotlin", name = "kotlin-scripting-common", version = "_"}
-kotlin-script-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-script-runtime", version.ref = "kotlin"}
 kotlinx-coroutines = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "_"}
 kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 commons = { group = "commons-io", name = "commons-io", version = "_"}

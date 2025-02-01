@@ -23,7 +23,6 @@ import org.alter.game.model.shop.ShopCurrency
 import org.alter.game.model.shop.StockType
 import org.alter.game.model.timer.TimerKey
 import org.alter.game.service.Service
-import kotlin.script.experimental.annotations.KotlinScript
 
 /**
  * Represents a KotlinScript plugin.
@@ -31,11 +30,6 @@ import kotlin.script.experimental.annotations.KotlinScript
  * @author Tom <rspsmods@gmail.com>
  */
 @Suppress("UNUSED", "Underscore", "ktlint:standard:function-naming")
-@KotlinScript(
-    displayName = "Kotlin Plugin",
-    fileExtension = "plugin.kts",
-    compilationConfiguration = KotlinPluginConfiguration::class,
-)
 abstract class KotlinPlugin(
     private val r: PluginRepository,
     val world: World,
