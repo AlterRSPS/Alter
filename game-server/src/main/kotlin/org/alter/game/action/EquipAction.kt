@@ -153,7 +153,8 @@ object EquipAction {
             plugins.executeEquipSlot(p, equipSlot)
             plugins.executeEquipItem(p, replace.id)
 
-        } else {/*
+        } else {
+            /*
              * A list of equipment slots that should be unequipped when [item] is
              * equipped.
              */
