@@ -10,7 +10,7 @@ import org.alter.game.model.*
 import org.alter.game.model.attr.*
 import org.alter.game.model.bits.INFINITE_VARS_STORAGE
 import org.alter.game.model.bits.InfiniteVarsType
-import org.alter.game.model.collision.raycast
+import org.alter.game.model.collision.rayCast
 import org.alter.game.model.combat.DamageMap
 import org.alter.game.model.move.MovementQueue
 import org.alter.game.model.queue.QueueTask
@@ -564,7 +564,7 @@ abstract class Pawn(val world: World) : Entity() {
             return false
         }
 
-        return this.world.lineValidator.raycast(this.tile, other.tile, projectile)
+        return this.world.lineValidator.rayCast(this.tile, other.tile, projectile)
     }
 
     companion object {

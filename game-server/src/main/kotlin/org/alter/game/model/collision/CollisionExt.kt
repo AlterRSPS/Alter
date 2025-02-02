@@ -18,7 +18,7 @@ const val WALL_DIAGONAL = LocShapeConstants.WALL_DIAGONAL;
  * Projectiles have a higher tolerance for certain objects when the object's
  * metadata explicitly allows them to.
  */
-fun LineValidator.raycast(
+fun LineValidator.rayCast(
     start: Tile,
     target: Tile,
     projectile: Boolean,
