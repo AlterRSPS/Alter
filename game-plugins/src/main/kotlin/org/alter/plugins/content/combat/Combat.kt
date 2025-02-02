@@ -154,7 +154,7 @@ object Combat {
         val start = pawn.tile
         val end = target.tile
 
-        return start.isWithinRadius(end, distance) && world.collision.raycast(start, end, projectile = projectile)
+        return start.isWithinRadius(end, distance) && world.lineValidator.raycast(start, end, projectile = projectile)
     }
 
     suspend fun moveToAttackRange(
@@ -177,7 +177,7 @@ object Combat {
             } else {
                 areBordering(start.x, start.z, srcSize, srcSize, end.x, end.z, dstSize, dstSize)
             }
-        val withinRange = touching && world.collision.raycast(start, end, projectile = projectile)
+        val withinRange = touching && world.lineValidator.raycast(start, end, projectile = projectile)
         return withinRange //|| pawn.walkToInteract(it, target, lineOfSightRange = distance)
     }
 

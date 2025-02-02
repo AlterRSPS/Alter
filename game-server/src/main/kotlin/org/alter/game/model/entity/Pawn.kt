@@ -564,7 +564,7 @@ abstract class Pawn(val world: World) : Entity() {
             return false
         }
 
-        return this.world.collision.raycast(this.tile, other.tile, projectile)
+        return this.world.lineValidator.raycast(this.tile, other.tile, projectile)
     }
 
     companion object {

@@ -44,29 +44,23 @@ fun CollisionFlagMap.isClipped(tile: Tile): Boolean {
 /**
  * Casts a line using Bresenham's Line Algorithm with point A [start] and
  * point B [target] being its two points and makes sure that there's no
- * collision flag that can block movement from and to both points.
+ * collision flag that can block movement from and to both points. This function
+ * was originally CollisionManager#raycast in rsmod1.
  *
  * @param projectile
  * Projectiles have a higher tolerance for certain objects when the object's
  * metadata explicitly allows them to.
  */
-fun CollisionFlagMap.raycast(
+fun LineValidator.raycast(
     start: Tile,
     target: Tile,
     projectile: Boolean,
 ): Boolean {
     check(start.height == target.height) { "Tiles must be on the same height level." }
-
-    var x0 = start.x
-    var y0 = start.z
-    val x1 = target.x
-    val y1 = target.z
-    val height = start.height
-    val validator = LineValidator(this)
     return if (projectile) {
-        validator.hasLineOfSight(height, x0, y0, x1, y1)
+        hasLineOfSight(start.height, start.x, start.z, target.x, target.z)
     } else {
-        validator.hasLineOfWalk(height, x0, y0, x1, y1)
+        hasLineOfWalk(start.height, start.x, start.z, target.x, target.z)
     }
 }
 
