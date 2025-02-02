@@ -18,6 +18,14 @@ object ParamMapper {
         val MAGIC_DAMAGE_BONUS_SALAMANDER = 65
         val MAGIC_DAMAGE_STRENGTH = 299 // Should be divided by 10
         val RANGED_STRENGTH_BONUS = 189
+        val PRIMARY_SKILL = 434
+        val PRIMARY_LEVEL = 436
+        val SECONDARY_SKILL = 435
+        val SECONDARY_LEVEL = 437
+        val TERTIARY_SKILL = 191
+        val TERTIARY_LEVEL = 613
+        val QUATERNARY_SKILL = 579
+        val QUATERNARY_LEVEL = 614
     }
     object npc {
         const val STAB_ATTACK_BONUS = 0
