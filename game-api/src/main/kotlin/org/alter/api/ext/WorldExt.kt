@@ -1,7 +1,7 @@
 package org.alter.api.ext
 
 import org.alter.game.model.World
-import org.alter.game.model.collision.ObjectType
+import org.alter.game.model.collision.WALL_DIAGONAL
 import org.alter.game.model.entity.DynamicObject
 import org.alter.game.model.entity.GameObject
 
@@ -13,7 +13,7 @@ fun World.openDoor(
 ): GameObject {
     val oldRot = obj.rot
     val newRot = Math.abs((oldRot + (if (invertRot) -1 else 1)) and 0x3)
-    val diagonal = obj.type == ObjectType.DIAGONAL_WALL.value
+    val diagonal = obj.type == WALL_DIAGONAL
 
     val newTile =
         when (oldRot) {
@@ -38,7 +38,7 @@ fun World.closeDoor(
 ): GameObject {
     val oldRot = obj.rot
     val newRot = Math.abs((oldRot + (if (invertRot) 1 else -1)) and 0x3)
-    val diagonal = obj.type == ObjectType.DIAGONAL_WALL.value
+    val diagonal = obj.type == WALL_DIAGONAL
 
     val newTile =
         when (oldRot) {

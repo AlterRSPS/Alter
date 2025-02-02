@@ -8,6 +8,7 @@ import org.alter.game.fs.DefinitionSet
 import org.alter.game.model.Direction
 import org.alter.game.model.Tile
 import org.alter.game.model.entity.GameObject
+import org.rsmod.routefinder.loc.LocShapeConstants
 
 class CollisionUpdate private constructor(val type: Type, val flags: Object2ObjectOpenHashMap<Tile, ObjectList<DirectionFlag>>) {
     enum class Type {
@@ -88,21 +89,21 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
                 length = def.sizeX
             }
 
-            if (type == ObjectType.FLOOR_DECORATION.value) {
+            if (type == LocShapeConstants.GROUND_DECOR) {
                 if (def.interactive == 1 && def.solid != 1) {
                     putTile(Tile(x, y, height), impenetrable, *Direction.NESW)
                 }
-            } else if (type >= ObjectType.DIAGONAL_WALL.value && type < ObjectType.FLOOR_DECORATION.value) {
+            } else if (type >= LocShapeConstants.WALL_DIAGONAL && type < LocShapeConstants.GROUND_DECOR) {
                 for (dx in 0 until width) {
                     for (dz in 0 until length) {
                         putTile(Tile(x + dx, y + dz, height), impenetrable, *Direction.NESW)
                     }
                 }
-            } else if (type == ObjectType.LENGTHWISE_WALL.value) {
+            } else if (type == LocShapeConstants.WALL_STRAIGHT) {
                 putWall(tile, impenetrable, Direction.WNES[orientation])
-            } else if (type == ObjectType.TRIANGULAR_CORNER.value || type == ObjectType.RECTANGULAR_CORNER.value) {
+            } else if (type == LocShapeConstants.WALL_DIAGONAL_CORNER || type == LocShapeConstants.WALL_SQUARE_CORNER) {
                 putWall(tile, impenetrable, Direction.WNES_DIAGONAL[orientation])
-            } else if (type == ObjectType.WALL_CORNER.value) {
+            } else if (type == LocShapeConstants.WALL_L) {
                 putLargeCornerWall(tile, impenetrable, Direction.WNES_DIAGONAL[orientation])
             }
         }
@@ -111,10 +112,10 @@ class CollisionUpdate private constructor(val type: Type, val flags: Object2Obje
             def: dev.openrune.cache.filestore.definition.data.ObjectType,
             type: Int,
         ): Boolean {
-            val isSolidFloorDecoration = type == ObjectType.FLOOR_DECORATION.value && def.interactive == 1
-            val isRoof = type > ObjectType.DIAGONAL_INTERACTABLE.value && type < ObjectType.FLOOR_DECORATION.value && def.solid != 1
-            val isWall = (type >= ObjectType.LENGTHWISE_WALL.value && type <= ObjectType.RECTANGULAR_CORNER.value || type == ObjectType.DIAGONAL_WALL.value) && def.solid != 1
-            val isSolidInteractable = (type == ObjectType.DIAGONAL_INTERACTABLE.value || type == ObjectType.INTERACTABLE.value) && def.solid != 1
+            val isSolidFloorDecoration = type == LocShapeConstants.GROUND_DECOR && def.interactive == 1
+            val isRoof = type > LocShapeConstants.CENTREPIECE_DIAGONAL && type < LocShapeConstants.GROUND_DECOR && def.solid != 1
+            val isWall = (type >= LocShapeConstants.WALL_STRAIGHT && type <= LocShapeConstants.WALL_SQUARE_CORNER || type == LocShapeConstants.WALL_DIAGONAL) && def.solid != 1
+            val isSolidInteractable = (type == LocShapeConstants.CENTREPIECE_DIAGONAL || type == LocShapeConstants.CENTREPIECE_STRAIGHT) && def.solid != 1
 
             return isWall || isRoof || isSolidInteractable || isSolidFloorDecoration
         }

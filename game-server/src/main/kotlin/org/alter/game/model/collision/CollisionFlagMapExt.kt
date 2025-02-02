@@ -3,8 +3,10 @@ package org.alter.game.model.collision
 import org.alter.game.model.Tile
 import org.rsmod.routefinder.LineValidator
 import org.rsmod.routefinder.collision.CollisionFlagMap
+import org.rsmod.routefinder.loc.LocShapeConstants
 
 fun CollisionFlagMap.isClipped(tile: Tile): Boolean = get(tile) != 0
+const val WALL_DIAGONAL = LocShapeConstants.WALL_DIAGONAL;
 
 /**
  * Casts a line using Bresenham's Line Algorithm with point A [start] and
