@@ -30,15 +30,15 @@ class NpcMetadataService : Service {
     }
 
     private fun load(definitions: DefinitionSet) {
-        path.toFile().forEachLine { line ->
-            val parts = line.split(',')
-            if (parts.size >= 2) {
-                val id = parts[0].toIntOrNull()
-                val examine = line.substringAfter(',').trim()
-                if (id != null) {
-                    val def = getNpcs().get(id) ?: return@forEachLine
-                    def.examine = examine.replace("\"", "")
-                }
+        val npcs = getNpcs()
+
+        Files.newBufferedReader(path).use { reader ->
+            for (line in reader.lineSequence()) {
+                val parts = line.split(',', limit = 2)
+                val id = parts.getOrNull(0)?.toIntOrNull() ?: continue
+                val examine = parts.getOrNull(1)?.trim()?.removeSurrounding("\"") ?: ""
+
+                npcs[id]?.examine = examine
             }
         }
     }
