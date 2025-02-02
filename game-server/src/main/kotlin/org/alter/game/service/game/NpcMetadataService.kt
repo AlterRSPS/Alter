@@ -34,7 +34,7 @@ class NpcMetadataService : Service {
 
         Files.newBufferedReader(path).use { reader ->
             for (line in reader.lineSequence()) {
-                val parts = line.split(',', limit = 2)
+                val parts = line.split(",", limit = 2)
                 val id = parts.getOrNull(0)?.toIntOrNull() ?: continue
                 val examine = parts.getOrNull(1)?.trim()?.removeSurrounding("\"") ?: ""
 
