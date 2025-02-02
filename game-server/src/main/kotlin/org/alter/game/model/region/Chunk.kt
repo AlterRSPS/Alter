@@ -2,7 +2,6 @@ package org.alter.game.model.region
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import it.unimi.dsi.fastutil.objects.ObjectArraySet
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.rsprot.protocol.api.util.ZonePartialEnclosedCacheBuffer
 import net.rsprot.protocol.common.client.OldSchoolClientType
@@ -10,8 +9,8 @@ import net.rsprot.protocol.game.outgoing.zone.header.UpdateZonePartialEnclosed
 import net.rsprot.protocol.message.ZoneProt
 import org.alter.game.model.*
 import org.alter.game.model.collision.CollisionMatrix
-import org.alter.game.model.collision.addObjectCollision
-import org.alter.game.model.collision.removeObjectCollision
+import org.alter.game.model.collision.addLoc
+import org.alter.game.model.collision.removeLoc
 import org.alter.game.model.entity.*
 import org.alter.game.model.region.update.*
 
@@ -97,7 +96,8 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
          * Objects will affect the collision map.
          */
         if (entity.entityType.isObject) {
-            world.collision.addObjectCollision(entity as GameObject)
+            val obj = entity as GameObject
+            world.collision.addLoc(obj, obj.getDef())
         }
 
         /*
@@ -153,7 +153,8 @@ class Chunk(val coords: ChunkCoords, val heights: Int) {
          * collision map.
          */
         if (entity.entityType.isObject) {
-            world.collision.removeObjectCollision(entity as GameObject)
+            val obj = entity as GameObject
+            world.collision.removeLoc(obj, obj.getDef())
         }
 
         entities[tile]?.remove(entity)
