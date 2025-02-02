@@ -160,7 +160,8 @@ object EquipAction {
              */
             val unequip = arrayListOf(equipSlot)
 
-            if (equipType != -1 && equipType != equipSlot) {/*
+            if (equipType != -1 && equipType != equipSlot) {
+                /*
                  * [org.alter.game.fs.def.ItemDef.equipType] counts as a 'secondary'
                  * equipment slot, which should be unequipped as well.
                  *
