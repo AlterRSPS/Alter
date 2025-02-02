@@ -55,7 +55,7 @@ object MagicCombatStrategy : CombatStrategy {
 
         pawn.animate(spell.castAnimation)
         spell.castGfx?.let { gfx -> pawn.graphic(gfx) }
-        spell.impactGfx?.let { gfx -> target.graphic(Graphic(gfx.id, gfx.height, projectile.lifespan)) }
+        spell.impactGfx?.let { gfx -> target.graphic(gfx.id, gfx.height, projectile.lifespan) }
         if (spell.projectile > 0) {
             world.spawn(projectile)
         }

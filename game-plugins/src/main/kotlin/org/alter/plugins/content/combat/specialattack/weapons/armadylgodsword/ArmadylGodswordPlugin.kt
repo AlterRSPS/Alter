@@ -21,7 +21,7 @@ class ArmadylGodswordPlugin(
 
         SpecialAttacks.register("item.armadyl_godsword", SPECIAL_REQUIREMENT) {
             player.animate(id = 7644)
-            player.graphic(id = 1211)
+            player.graphic(id = "graphics.armadyl_godsword_special")
 
             world.spawn(AreaSound(tile = player.tile, id = 3869, radius = 10, volume = 1))
 
@@ -34,7 +34,7 @@ class ArmadylGodswordPlugin(
 
         SpecialAttacks.register("item.armadyl_godsword_or", SPECIAL_REQUIREMENT) {
             player.animate(id = 7644)
-            player.graphic(id = 1211)
+            player.graphic(id = "graphics.armadyl_godsword_special")
             world.spawn(AreaSound(tile = player.tile, id = 3869, radius = 10, volume = 1))
 
             val maxHit = MeleeCombatFormula.getMaxHit(player, target, specialAttackMultiplier = 1.375)

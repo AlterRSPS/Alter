@@ -20,6 +20,7 @@ import org.alter.game.model.queue.impl.PawnQueueTaskSet
 import org.alter.game.model.timer.*
 import org.alter.game.plugin.Plugin
 import org.alter.game.service.log.LoggerService
+import org.alter.rscm.RSCM
 import org.rsmod.routefinder.RouteCoordinates
 import java.lang.ref.WeakReference
 import java.util.*
@@ -399,6 +400,12 @@ abstract class Pawn(val world: World) : Entity() {
         height: Int = 0,
         delay: Int = 0,
     )
+
+    fun graphic(
+        id: String,
+        height: Int = 0,
+        delay: Int = 0,
+    ) = graphic(RSCM.getRSCM(id), delay, height)
 
     fun applyTint(
         hue: Int = 0,

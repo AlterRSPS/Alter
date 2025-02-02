@@ -80,7 +80,7 @@ class TeleportTabPlugin(
             animate(id = 4069, delay = 16)
             playSound(id = 965, volume = 1, delay = 15)
             it.wait(cycles = 3)
-            graphic(id = 678)
+            graphic(id = "graphics.teletab_suck_in")
             animate(id = 4071)
             it.wait(cycles = 2)
             animate(id = -1)

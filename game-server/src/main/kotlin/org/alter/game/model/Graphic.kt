@@ -1,13 +1,16 @@
 package org.alter.game.model
 
 import org.alter.game.model.entity.Entity
+import org.alter.rscm.RSCM
 
 /**
  * Represents a graphic in the game world.
  *
  * @author Tom <rspsmods@gmail.com>
  */
-data class Graphic(val id: Int, val height: Int, val delay: Int = 0)
+data class Graphic(val id: Int, val height: Int, val delay: Int = 0) {
+    constructor(id: String, height: Int, delay: Int = 0) : this(RSCM.getRSCM(id), height, delay)
+}
 
 /**
  * A [Graphic] with a physical representation in the world.
