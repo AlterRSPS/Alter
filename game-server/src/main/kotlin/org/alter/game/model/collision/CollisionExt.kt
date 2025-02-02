@@ -1,12 +1,16 @@
 package org.alter.game.model.collision
 
 import org.alter.game.model.Tile
+import org.alter.game.model.region.Chunk
 import org.rsmod.routefinder.LineValidator
 import org.rsmod.routefinder.collision.CollisionFlagMap
 import org.rsmod.routefinder.loc.LocShapeConstants
 
 fun CollisionFlagMap.isClipped(tile: Tile): Boolean = get(tile) != 0
 const val WALL_DIAGONAL = LocShapeConstants.WALL_DIAGONAL;
+const val BLOCKED_TILE = 0x1
+const val BRIDGE_TILE = 0x2
+const val ROOF_TILE = 0x4
 
 /**
  * Casts a line using Bresenham's Line Algorithm with point A [start] and
@@ -29,4 +33,22 @@ fun LineValidator.rayCast(
     } else {
         hasLineOfWalk(start.height, start.x, start.z, target.x, target.z)
     }
+}
+
+/**
+ * Extension stub function that will be used for copying clipping data.
+ * @param source The origin chunk
+ * @param dest The destination chunk.
+ */
+fun CollisionFlagMap.copyChunk(source: Chunk, dest: Chunk, height: Int) {
+    // TODO impl this function.
+}
+
+
+/**
+ * Extension stub function that will be used for setting a specific coordinate/height
+ * to either impenetrable or not.
+ */
+fun CollisionFlagMap.block(newChunk: Chunk, chunkH: Int, lx: Int, lz: Int, impenetrable: Boolean) {
+    // TODO impl this function.
 }

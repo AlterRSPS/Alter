@@ -6,8 +6,8 @@ import dev.openrune.cache.filestore.loadTerrain
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.model.Tile
 import org.alter.game.model.World
-import org.alter.game.model.collision.CollisionManager.Companion.BLOCKED_TILE
-import org.alter.game.model.collision.CollisionManager.Companion.BRIDGE_TILE
+import org.alter.game.model.collision.BLOCKED_TILE
+import org.alter.game.model.collision.BRIDGE_TILE
 import org.alter.game.model.entity.StaticObject
 import org.alter.game.model.region.ChunkSet
 import org.alter.game.service.xtea.XteaKeyService

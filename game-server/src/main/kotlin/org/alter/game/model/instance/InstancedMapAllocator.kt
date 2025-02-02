@@ -5,6 +5,7 @@ import org.alter.game.model.Area
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
 import org.alter.game.model.World
+import org.alter.game.model.collision.block
 import org.alter.game.model.entity.DynamicObject
 import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Player
@@ -220,13 +221,13 @@ class InstancedMapAllocator {
                                 val localX = tile.x % 8
                                 val localZ = tile.z % 8
                                 val local = baseTile.transformAndRotate(localX, localZ, chunk.rot)
-                                newChunk.getMatrix(chunkH).block(local.x % 8, local.z % 8, impenetrable = true)
+                                world.collision.block(newChunk, chunkH, local.x % 8, local.z % 8, impenetrable = true)
                             }
                         }
                     } else {
                         for (lx in 0 until Chunk.CHUNK_SIZE) {
                             for (lz in 0 until Chunk.CHUNK_SIZE) {
-                                newChunk.getMatrix(chunkH).block(lx, lz, impenetrable = true)
+                                world.collision.block(newChunk, chunkH, lx, lz, impenetrable = true)
                             }
                         }
                     }
