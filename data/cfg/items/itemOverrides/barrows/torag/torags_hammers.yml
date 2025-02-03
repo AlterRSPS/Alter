@@ -1,0 +1,54 @@
+---
+id: 4747
+name: "Torag's hammers"
+
+equipment:
+  skillReqs:
+    - skill: "attack"
+      level: 70
+    - skill: "strength"
+      level: 70
+
+---
+id: 4958
+name: "Torag's hammers 100"
+
+equipment:
+  skillReqs:
+    - skill: "attack"
+      level: 70
+    - skill: "strength"
+      level: 70
+
+---
+id: 4959
+name: "Torag's hammers 75"
+
+equipment:
+  skillReqs:
+    - skill: "attack"
+      level: 70
+    - skill: "strength"
+      level: 70
+
+---
+id: 4960
+name: "Torag's hammers 50"
+
+equipment:
+  skillReqs:
+    - skill: "attack"
+      level: 70
+    - skill: "strength"
+      level: 70
+
+---
+id: 4961
+name: "Torag's hammers 25"
+
+equipment:
+  skillReqs:
+    - skill: "attack"
+      level: 70
+    - skill: "strength"
+      level: 70

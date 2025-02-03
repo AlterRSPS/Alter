@@ -1,0 +1,53 @@
+---
+id: 25515
+name: "Dharok's platebody"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4720
+name: "Dharok's platebody"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4892
+name: "Dharok's platebody 100"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4893
+name: "Dharok's platebody 75"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4894
+name: "Dharok's platebody 50"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4895
+name: "Dharok's platebody 25"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70

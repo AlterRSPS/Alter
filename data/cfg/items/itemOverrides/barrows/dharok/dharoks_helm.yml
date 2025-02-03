@@ -1,0 +1,53 @@
+---
+id: 23639
+name: "Dharok's helm"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+---
+
+id: 4716
+name: "Dharok's helm"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4880
+name: "Dharok's helm 100"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4881
+name: "Dharok's helm 75"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4882
+name: "Dharok's helm 50"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4883
+name: "Dharok's helm 25"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70

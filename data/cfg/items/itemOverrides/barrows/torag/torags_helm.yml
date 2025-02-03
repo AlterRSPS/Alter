@@ -1,0 +1,44 @@
+---
+id: 4745
+name: "Torag's helm"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4952
+name: "Torag's helm 100"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4953
+name: "Torag's helm 75"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4954
+name: "Torag's helm 50"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4955
+name: "Torag's helm 25"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
