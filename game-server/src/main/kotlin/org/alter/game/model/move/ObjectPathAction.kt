@@ -9,7 +9,6 @@ import org.alter.game.model.Tile
 import org.alter.game.model.attr.INTERACTING_ITEM
 import org.alter.game.model.attr.INTERACTING_OBJ_ATTR
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
-import org.alter.game.model.collision.ObjectType
 import org.alter.game.model.entity.Entity
 import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Pawn
@@ -21,6 +20,7 @@ import org.alter.game.model.timer.STUN_TIMER
 import org.alter.game.plugin.Plugin
 import org.rsmod.routefinder.Route
 import org.rsmod.routefinder.collision.CollisionStrategy
+import org.rsmod.routefinder.loc.LocShapeConstants
 import java.util.*
 
 /**
@@ -112,9 +112,9 @@ object ObjectPathAction {
         var length = def.sizeY
         val clipMask = def.clipMask
 
-        val wall = type == ObjectType.LENGTHWISE_WALL.value || type == ObjectType.DIAGONAL_WALL.value
-        val diagonal = type == ObjectType.DIAGONAL_WALL.value || type == ObjectType.DIAGONAL_INTERACTABLE.value
-        val wallDeco = type == ObjectType.INTERACTABLE_WALL_DECORATION.value || type == ObjectType.INTERACTABLE_WALL.value
+        val wall = type == LocShapeConstants.WALL_STRAIGHT || type == LocShapeConstants.WALL_DIAGONAL
+        val diagonal = type == LocShapeConstants.WALL_DIAGONAL || type == LocShapeConstants.CENTREPIECE_DIAGONAL
+        val wallDeco = type == LocShapeConstants.WALLDECOR_STRAIGHT_NOOFFSET || type == LocShapeConstants.WALLDECOR_STRAIGHT_OFFSET
         val blockDirections = EnumSet.noneOf(Direction::class.java)
 
         if (wallDeco) {
@@ -302,12 +302,12 @@ object ObjectPathAction {
         val type = obj.type
 
         when (type) {
-            ObjectType.LENGTHWISE_WALL.value -> {
+            LocShapeConstants.WALL_STRAIGHT -> {
                 if (!pawn.tile.sameAs(obj.tile)) {
                     pawn.faceTile(obj.tile)
                 }
             }
-            ObjectType.INTERACTABLE_WALL_DECORATION.value, ObjectType.INTERACTABLE_WALL.value -> {
+            LocShapeConstants.WALLDECOR_STRAIGHT_NOOFFSET, LocShapeConstants.WALLDECOR_STRAIGHT_OFFSET -> {
                 val dir =
                     when (rot) {
                         0 -> Direction.WEST

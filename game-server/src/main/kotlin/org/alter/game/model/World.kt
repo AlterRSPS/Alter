@@ -35,6 +35,7 @@ import org.alter.game.plugin.PluginRepository
 import org.alter.game.service.GameService
 import org.alter.game.service.Service
 import org.alter.game.service.xtea.XteaKeyService
+import org.rsmod.routefinder.LineValidator
 import org.rsmod.routefinder.RouteFinding
 import org.rsmod.routefinder.StepValidator
 import org.rsmod.routefinder.collision.CollisionFlagMap
@@ -78,6 +79,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
 
     val collision: CollisionFlagMap = CollisionFlagMap()
 
+    val lineValidator = LineValidator(collision)
     val stepValidator = StepValidator(collision)
     val smartRouteFinder = RouteFinding(collision)
     val dumbRouteFinder = RouteFinding

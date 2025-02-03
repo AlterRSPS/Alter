@@ -7,8 +7,7 @@ import org.alter.game.model.attr.AttributeKey
 import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import org.alter.game.model.attr.LAST_HIT_ATTR
 import org.alter.game.model.attr.LAST_HIT_BY_ATTR
-import org.alter.game.model.collision.raycast
-import org.alter.game.model.collision.raycastTiles
+import org.alter.game.model.collision.rayCast
 import org.alter.game.model.combat.CombatClass
 import org.alter.game.model.entity.AreaSound
 import org.alter.game.model.entity.Npc
@@ -155,7 +154,7 @@ object Combat {
         val start = pawn.tile
         val end = target.tile
 
-        return start.isWithinRadius(end, distance) && world.collision.raycast(start, end, projectile = projectile)
+        return start.isWithinRadius(end, distance) && world.lineValidator.rayCast(start, end, projectile = projectile)
     }
 
     suspend fun moveToAttackRange(
@@ -178,7 +177,7 @@ object Combat {
             } else {
                 areBordering(start.x, start.z, srcSize, srcSize, end.x, end.z, dstSize, dstSize)
             }
-        val withinRange = touching && world.collision.raycast(start, end, projectile = projectile)
+        val withinRange = touching && world.lineValidator.rayCast(start, end, projectile = projectile)
         return withinRange //|| pawn.walkToInteract(it, target, lineOfSightRange = distance)
     }
 
@@ -189,7 +188,7 @@ object Combat {
     ): Int =
         when (type) {
             ProjectileType.MAGIC -> {
-                val fastRoute = raycastTiles(source.tile, target)
+                val fastRoute = source.tile.getChebyshevDistance(target)
                 5 + (fastRoute * 10)
             }
             else -> {

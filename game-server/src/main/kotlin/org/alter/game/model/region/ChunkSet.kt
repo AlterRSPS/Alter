@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.alter.game.model.Tile
 import org.alter.game.model.World
-import org.alter.game.model.collision.CollisionMatrix
+import org.alter.game.model.collision.copyChunk
 
 /**
  * Stores and exposes [Chunk]s.
@@ -13,17 +13,17 @@ import org.alter.game.model.collision.CollisionMatrix
  */
 class ChunkSet(val world: World) {
     /**
-     * Copies the [CollisionMatrix] data from all [Chunk]s that are within
+     * Copies the collision data from all [Chunk]s that are within
      * the specified [radius] in the height level of [height].
      *
      * @param chunkCoords
      * The centre [ChunkCoords].
      *
      * @param height
-     * The height level of which to copy the [CollisionMatrix] data from.
+     * The height level of which to copy the collision data from.
      *
      * @param radius
-     * The radius, in which to copy [CollisionMatrix] data from in relation
+     * The radius, in which to copy collision data from in relation
      * to [chunkCoords], in chunk coordinates.
      */
     fun copyChunksWithinRadius(
@@ -36,8 +36,8 @@ class ChunkSet(val world: World) {
 
         surrounding.forEach { coords ->
             val chunk = get(coords, createIfNeeded = true)!!
-            val copy = Chunk(coords, chunk.heights)
-            copy.setMatrix(height, CollisionMatrix(chunk.getMatrix(height)))
+            val copy = Chunk(coords)
+            world.collision.copyChunk(chunk, copy, height)
             newSet.chunks[coords] = copy
         }
         return newSet
@@ -93,7 +93,7 @@ class ChunkSet(val world: World) {
             return null
         }
         val regionId = coords.toTile().regionId
-        val newChunk = Chunk(coords, Tile.TOTAL_HEIGHT_LEVELS)
+        val newChunk = Chunk(coords)
         newChunk.createEntityContainers()
 
         chunks[coords] = newChunk
