@@ -4,7 +4,6 @@ import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.alter.game.model.Tile
 import org.alter.game.model.World
-import org.alter.game.model.collision.copyChunk
 
 /**
  * Stores and exposes [Chunk]s.
@@ -12,36 +11,6 @@ import org.alter.game.model.collision.copyChunk
  * @author Tom <rspsmods@gmail.com>
  */
 class ChunkSet(val world: World) {
-    /**
-     * Copies the collision data from all [Chunk]s that are within
-     * the specified [radius] in the height level of [height].
-     *
-     * @param chunkCoords
-     * The centre [ChunkCoords].
-     *
-     * @param height
-     * The height level of which to copy the collision data from.
-     *
-     * @param radius
-     * The radius, in which to copy collision data from in relation
-     * to [chunkCoords], in chunk coordinates.
-     */
-    fun copyChunksWithinRadius(
-        chunkCoords: ChunkCoords,
-        height: Int,
-        radius: Int,
-    ): ChunkSet {
-        val newSet = ChunkSet(world)
-        val surrounding = chunkCoords.getSurroundingCoords(radius)
-
-        surrounding.forEach { coords ->
-            val chunk = get(coords, createIfNeeded = true)!!
-            val copy = Chunk(coords)
-            world.collision.copyChunk(chunk, copy, height)
-            newSet.chunks[coords] = copy
-        }
-        return newSet
-    }
 
     private val chunks = Object2ObjectOpenHashMap<ChunkCoords, Chunk>()
 

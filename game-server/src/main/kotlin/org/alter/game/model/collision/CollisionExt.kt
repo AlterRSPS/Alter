@@ -36,16 +36,6 @@ fun LineValidator.rayCast(
 }
 
 /**
- * Extension stub function that will be used for copying clipping data.
- * @param source The origin chunk
- * @param dest The destination chunk.
- */
-fun CollisionFlagMap.copyChunk(source: Chunk, dest: Chunk, height: Int) {
-    // TODO impl this function.
-}
-
-
-/**
  * Extension stub function that will be used for setting a specific coordinate/height
  * to either impenetrable or not.
  */
