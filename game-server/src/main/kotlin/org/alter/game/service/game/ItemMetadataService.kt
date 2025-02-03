@@ -53,13 +53,13 @@ class ItemMetadataService : Service {
              * Loads item examine text from an external CSV file and assigns it to item definitions.
              *
              * The file is expected to be located at `../data/cfg/objs.csv` and should contain item IDs
-             * paired with their corresponding examine text, separated by commas.
+             * paired with their respective examine text, separated by commas.
              *
              * - The first value in each line is treated as the item ID.
              * - The remaining text after the first comma is treated as the examine description.
              * - The examine text is assigned to the corresponding item definition if the ID is valid.
              *
-             * This ensures that item examine information is loaded from an external source at runtime.
+             * This ensures that item examine information gets loaded from an external source at runtime.
              */
             Paths.get("../data/cfg/objs.csv").toFile().forEachLine { line ->
                 val parts = line.split(",")
@@ -85,17 +85,20 @@ class ItemMetadataService : Service {
              */
             CacheManager.getItems().forEach { (_, item) ->
                 val def = getItem(item.id)
+
                 def.weight /= 1000
+                def.equipType = def.appearanceOverride1
+
                 def.attackSpeed = def.getValidatedParam(
                     ParamMapper.item.ATTACK_RATE,
                     7
                 ) // Just in case the Attack Rate would be not configurated in cache.
+
                 if (def.equipSlot == 3) {
                     def.weaponType = WeaponCategory.get(def, def.category)
                 }
-                def.equipType = def.appearanceOverride1
 
-                //def.getValidatedParam(ItemType.Param.getParam(ItemType.Param.SOMETHING))
+
                 def.bonuses =
                     intArrayOf(
                         def.getValidatedParam(ParamMapper.item.STAB_ATTACK_BONUS),
@@ -183,25 +186,27 @@ class ItemMetadataService : Service {
                 if (file.fileName.toString().contains("FileExample.yml")) return@forEach
 
                 val content = file.toFile().readText()
-                val documents = content.split(Regex("(?m)^---\\s*$"))
-
-                documents.filter { it.isNotBlank() }.forEach { document ->
-                    val data = mapper.readValue(document, Metadata::class.java)
-                    load(data)
-                }
+                content.split(Regex("(?m)^---\\s*$"))
+                    .filter { it.isNotBlank() }.forEach { document ->
+                        val data = mapper.readValue(document, Metadata::class.java)
+                        load(data)
+                    }
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
         ms = stopwatch.elapsed(TimeUnit.MILLISECONDS)
     }
 
     fun load(item: Metadata) {
         val def = getItem(item.id)
+
         def.name = item.name
         def.examine = item.examine ?: ""
         def.isTradeable = item.tradeable
         def.weight = item.weight
+
         if (item.equipment != null) {
             val equipment = item.equipment
             val slots = if (equipment.equipSlot != null) getEquipmentSlots(equipment.equipSlot, def.id) else null
@@ -209,9 +214,7 @@ class ItemMetadataService : Service {
             def.attackSpeed = equipment.attackSpeed
 
             if (equipment.weaponType == -1 && slots != null) {
-                if (slots.slot == 3) {
-                    def.weaponType = 17
-                }
+                if (slots.slot == 3) def.weaponType = 17
             } else {
                 def.weaponType = equipment.weaponType
             }
@@ -236,30 +239,32 @@ class ItemMetadataService : Service {
                 def.equipSlot = slots.slot
                 def.equipType = slots.secondary
             }
+
             if (equipment.skillReqs != null) {
                 val reqs = Byte2ByteOpenHashMap()
                 equipment.skillReqs.filter { it.skill != null }.forEach { req ->
                     reqs[getSkillId(req.skill!!)] = req.level!!.toByte()
                 }
+
                 def.skillReqs = reqs
             }
-            def.bonuses =
-                intArrayOf(
-                    equipment.attackStab,
-                    equipment.attackSlash,
-                    equipment.attackCrush,
-                    equipment.attackMagic,
-                    equipment.attackRanged,
-                    equipment.defenceStab,
-                    equipment.defenceSlash,
-                    equipment.defenceCrush,
-                    equipment.defenceMagic,
-                    equipment.defenceRanged,
-                    equipment.meleeStrength,
-                    equipment.rangedStrength,
-                    equipment.magicDamage,
-                    equipment.prayer,
-                )
+
+            def.bonuses = intArrayOf(
+                equipment.attackStab,
+                equipment.attackSlash,
+                equipment.attackCrush,
+                equipment.attackMagic,
+                equipment.attackRanged,
+                equipment.defenceStab,
+                equipment.defenceSlash,
+                equipment.defenceCrush,
+                equipment.defenceMagic,
+                equipment.defenceRanged,
+                equipment.meleeStrength,
+                equipment.rangedStrength,
+                equipment.magicDamage,
+                equipment.prayer,
+            )
         }
     }
 
@@ -281,6 +286,7 @@ class ItemMetadataService : Service {
             "feet" -> equipSlot = 10
             "ring" -> equipSlot = 12
             "ammo" -> equipSlot = 13
+
             "head" -> {
                 equipSlot = 0
                 equipType = 8
@@ -290,10 +296,12 @@ class ItemMetadataService : Service {
                 equipSlot = 0
                 equipType = 11
             }
+
             "2h" -> {
                 equipSlot = 3
                 equipType = 5
             }
+
             "body" -> {
                 equipSlot = 4
                 equipType = 6

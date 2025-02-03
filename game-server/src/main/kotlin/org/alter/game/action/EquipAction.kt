@@ -139,8 +139,13 @@ object EquipAction {
                 return Result.NO_FREE_SPACE
             }
             if (inventorySlot != -1) {
-                val transaction =
-                    p.inventory.remove(item.id, amount = add, assureFullRemoval = false, beginSlot = inventorySlot)
+                val transaction = p.inventory.remove(
+                    item = item.id,
+                    amount = add,
+                    assureFullRemoval = false,
+                    beginSlot = inventorySlot
+                )
+
                 if (transaction.completed == 0) {
                     return Result.INVALID_ITEM
                 }
