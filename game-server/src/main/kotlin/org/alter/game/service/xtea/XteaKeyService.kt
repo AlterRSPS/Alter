@@ -42,6 +42,8 @@ class XteaKeyService : Service, XteaProvider {
                 "Missing xteas.json file at $path. NOTE: You get it in same zip file from which you extracted the cache.",
             )
         }
+
+        loadKeys(world)
     }
 
     fun get(region: Int): IntArray {
@@ -52,7 +54,44 @@ class XteaKeyService : Service, XteaProvider {
         return keys[region]!!
     }
 
+    private fun loadKeys(world: World) {
+        /*
+         * Get the total amount of valid regions and which keys we are missing.
+         */
+        val maxRegions = Short.MAX_VALUE
+        var totalRegions = 0
+        val missingKeys = mutableListOf<Int>()
 
+        val cache = CacheManager.cache
+        for (regionId in 0 until maxRegions) {
+            val x = regionId shr 8
+            val z = regionId and 0xFF
+
+            /*
+             * Check if the region corresponding to the x and z can be
+             * found in our cache.
+             */
+            cache.data(MAPS, "m${x}_$z") ?: continue
+
+            /*
+             * The region was found in the regionIndex.
+             */
+            totalRegions++
+
+            /*
+             * If the XTEA is not found in our xteaService, we know the keys
+             * are missing.
+             */
+            if (get(regionId).contentEquals(EMPTY_KEYS)) {
+                missingKeys.add(regionId)
+            }
+        }
+
+        /*
+         * Set the XTEA service for the [World].
+         */
+        world.xteaKeyService = this
+    }
 
     private fun loadSingleFile(path: Path) {
         val reader = Files.newBufferedReader(path)
