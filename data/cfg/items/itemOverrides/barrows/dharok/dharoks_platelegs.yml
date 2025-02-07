@@ -1,0 +1,53 @@
+---
+id: 23633
+name: "Dharok's platelegs"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4722
+name: "Dharok's platelegs"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4898
+name: "Dharok's platelegs 100"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4899
+name: "Dharok's platelegs 75"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4900
+name: "Dharok's platelegs 50"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4901
+name: "Dharok's platelegs 25"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70

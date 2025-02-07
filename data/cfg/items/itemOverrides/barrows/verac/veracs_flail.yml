@@ -1,0 +1,54 @@
+---
+id: 4755
+name: "Verac's flail"
+
+equipment:
+  skillReqs:
+    - skill: "attack"
+      level: 70
+    - skill: "strength"
+      level: 70
+
+---
+id: 4982
+name: "Verac's flail 100"
+
+equipment:
+  skillReqs:
+    - skill: "attack"
+      level: 70
+    - skill: "strength"
+      level: 70
+
+---
+id: 4983
+name: "Verac's flail 75"
+
+equipment:
+  skillReqs:
+    - skill: "attack"
+      level: 70
+    - skill: "strength"
+      level: 70
+
+---
+id: 4984
+name: "Verac's flail 50"
+
+equipment:
+  skillReqs:
+    - skill: "attack"
+      level: 70
+    - skill: "strength"
+      level: 70
+
+---
+id: 4985
+name: "Verac's flail 25"
+
+equipment:
+  skillReqs:
+    - skill: "attack"
+      level: 70
+    - skill: "strength"
+      level: 70

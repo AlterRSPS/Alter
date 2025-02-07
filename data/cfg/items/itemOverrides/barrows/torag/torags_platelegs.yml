@@ -1,0 +1,44 @@
+---
+id: 4730
+name: "Torag's platelegs"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4970
+name: "Torag's platelegs 100"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4971
+name: "Torag's platelegs 75"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4972
+name: "Torag's platelegs 50"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4973
+name: "Torag's platelegs 25"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
