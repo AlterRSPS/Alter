@@ -1,0 +1,44 @@
+---
+id: 4759
+name: "Verac's plateskirt"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4994
+name: "Verac's plateskirt 100"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4995
+name: "Verac's plateskirt 75"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4996
+name: "Verac's plateskirt 50"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4997
+name: "Verac's plateskirt 25"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70

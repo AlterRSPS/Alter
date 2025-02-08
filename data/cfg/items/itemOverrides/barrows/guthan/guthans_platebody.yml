@@ -1,0 +1,44 @@
+---
+id: 4728
+name: "Guthan's platebody"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4916
+name: "Guthan's platebody 100"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4917
+name: "Guthan's platebody 75"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4918
+name: "Guthan's platebody 50"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+
+---
+id: 4919
+name: "Guthan's platebody 25"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70

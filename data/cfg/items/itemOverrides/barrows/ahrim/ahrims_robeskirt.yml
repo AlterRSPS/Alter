@@ -1,0 +1,65 @@
+---
+id: 20599
+name: "Ahrims's robeskirt"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70
+
+---
+id: 4714
+name: "Ahrims's robeskirt"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70
+
+---
+id: 4874
+name: "Ahrims's robeskirt 100"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70
+
+---
+id: 4875
+name: "Ahrims's robeskirt 75"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70
+
+---
+id: 4876
+name: "Ahrims's robeskirt 50"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70
+
+---
+id: 4877
+name: "Ahrims's robeskirt 25"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70

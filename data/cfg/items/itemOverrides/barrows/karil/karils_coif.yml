@@ -1,0 +1,54 @@
+---
+id: 4732
+name: "Karil's coif"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "ranged"
+      level: 70
+
+---
+id: 4928
+name: "Karil's coif 100"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "ranged"
+      level: 70
+
+---
+id: 4929
+name: "Karil's coif 75"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "ranged"
+      level: 70
+
+---
+id: 4930
+name: "Karil's coif 50"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "ranged"
+      level: 70
+
+---
+id: 4931
+name: "Karil's coif 25"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "ranged"
+      level: 70

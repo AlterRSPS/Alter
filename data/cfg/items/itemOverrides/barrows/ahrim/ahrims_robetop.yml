@@ -1,0 +1,65 @@
+---
+id: 20598
+name: "Ahrims's robetop"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70
+
+---
+id: 4714
+name: "Ahrims's robetop"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70
+
+---
+id: 4868
+name: "Ahrims's robetop 100"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70
+
+---
+id: 4869
+name: "Ahrims's robetop 75"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70
+
+---
+id: 4870
+name: "Ahrims's robetop 50"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70
+
+---
+id: 4871
+name: "Ahrims's robetop 25"
+
+equipment:
+  skillReqs:
+    - skill: "defence"
+      level: 70
+    - skill: "magic"
+      level: 70
