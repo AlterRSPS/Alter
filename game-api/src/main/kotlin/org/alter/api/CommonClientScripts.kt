@@ -24,8 +24,8 @@ enum class CommonClientScripts(identifier : String = "", scriptID : Int = -1) {
     SKILL_MULTI_SETUP("skillmulti_setup"),
     INTRO_MUSIC_RESTORE("league_3_intro_music_restore"),
     GE_OFFER_SET_DESC("ge_offers_setdesc"),
-    LOOTING_BAG_SETUP("wilderness_lootingbag_setup")
-
+    LOOTING_BAG_SETUP("wilderness_lootingbag_setup"),
+    TIME_PLAYED("TimePlayed", 3970)
     ;
 
     val script : ClientScript = ClientScript(identifier, scriptID)
