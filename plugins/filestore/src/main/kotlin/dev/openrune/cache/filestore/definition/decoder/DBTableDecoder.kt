@@ -29,11 +29,10 @@ class DBTableDecoder : DefinitionDecoder<DBTableType>(CONFIGS) {
                     val hasDefault = setting and 0x80 != 0
 
                     val columnTypes = Array(buffer.readUnsignedByte()) {
-                        val test = buffer.readSmart()
                         try {
-                            ScriptVarType.forId((test))!!
+                            ScriptVarType.forId((buffer.readSmart()))!!
                         } catch (e: Exception) {
-                            logger.error(e) { "Unable to decode var type for db table $id : $test" }
+                            logger.error(e) { "Unable to decode var type for db table $id" }
                             throw e
                         }
                     }

@@ -1,11 +1,9 @@
 package dev.openrune.cache.filestore.definition.decoder
 
-import dev.openrune.cache.AREA
 import dev.openrune.cache.CONFIGS
 import dev.openrune.cache.DBROW
 import dev.openrune.cache.filestore.buffer.Reader
 import dev.openrune.cache.filestore.definition.DefinitionDecoder
-import dev.openrune.cache.filestore.definition.data.AreaType
 import dev.openrune.cache.filestore.definition.data.DBRowType
 import dev.openrune.cache.util.ScriptVarType
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
