@@ -24,20 +24,22 @@ class DBRowDecoder : DefinitionDecoder<DBRowType>(CONFIGS) {
                 val numColumns = buffer.readUnsignedByte()
                 val types = arrayOfNulls<Array<ScriptVarType>?>(numColumns)
                 val columnValues = arrayOfNulls<Array<Any?>?>(numColumns)
-                var columnId = buffer.readUnsignedByte()
-                while (columnId != 255) {
+                while (true) {
+                    var columnId = buffer.readUnsignedByte()
+                    if (columnId == 0xFF) break
+
                     val columnTypes = Array(buffer.readUnsignedByte()) {
                         ScriptVarType.forId(buffer.readSmart())!!
                     }
                     types[columnId] = columnTypes
                     columnValues[columnId] = decodeColumnFields(buffer, columnTypes)
-                    columnId = buffer.readUnsignedByte()
                 }
                 columnTypes = types
                 this.columnValues = columnValues
             }
 
             4 -> this.tableId = buffer.readVarInt2()
+            else -> error("Unknown opcode $opcode")
         }
     }
 }

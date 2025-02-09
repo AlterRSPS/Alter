@@ -20,6 +20,8 @@ object CacheManager {
     private val healthBars = mutableMapOf<Int, HealthBarType>()
     private val hitsplats = mutableMapOf<Int, HitSplatType>()
     private val structs = mutableMapOf<Int, StructType>()
+    private val dbtables = mutableMapOf<Int, DBTableType>()
+    private val dbrows = mutableMapOf<Int, DBRowType>()
 
     fun init(cachePath: Path, cacheRevision: Int) {
         init(Cache.load(cachePath, false), cacheRevision)
@@ -39,6 +41,8 @@ object CacheManager {
         healthBars.putAll(HealthBarDecoder().load(cache))
         hitsplats.putAll(HitSplatDecoder().load(cache))
         structs.putAll(StructDecoder().load(cache))
+        dbtables.putAll(DBTableDecoder().load(cache))
+        dbrows.putAll(DBRowDecoder().load(cache))
     }
 
     private inline fun <T> getOrDefault(map: Map<Int, T>, id: Int, default: T, typeName: String): T {
@@ -57,7 +61,8 @@ object CacheManager {
     fun getHealthBar(id: Int) = healthBars[id] ?: throw IllegalStateException("Could not find HealthBar with id: $id")
     fun getHitsplat(id: Int) = hitsplats[id] ?: throw IllegalStateException("Could not find Hitsplat with id: $id")
     fun getStruct(id: Int) = structs[id] ?: throw IllegalStateException("Could not find Struct with id: $id")
-
+    fun getDBTable(id: Int) = dbtables[id] ?: throw IllegalStateException("Could not find DBTable with id: $id")
+    fun getDBRow(id: Int) = dbrows[id] ?: throw IllegalStateException("Could not find DBRow with id: $id")
     fun getNpcOrDefault(id: Int) = getOrDefault(npcs, id, NpcType(), "Npc")
     fun getObjectOrDefault(id: Int) = getOrDefault(objects, id, ObjectType(), "Object")
     fun getItemOrDefault(id: Int) = getOrDefault(items, id, ItemType(), "Item")

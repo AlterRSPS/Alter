@@ -1,12 +1,9 @@
 package dev.openrune.cache.filestore.definition.decoder
 
-import dev.openrune.cache.AREA
 import dev.openrune.cache.CONFIGS
-import dev.openrune.cache.DBROW
 import dev.openrune.cache.DBTABLE
 import dev.openrune.cache.filestore.definition.DefinitionDecoder
 import dev.openrune.cache.filestore.buffer.Reader
-import dev.openrune.cache.filestore.definition.data.DBRowType
 import dev.openrune.cache.filestore.definition.data.DBTableType
 import dev.openrune.cache.util.ScriptVarType
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
@@ -25,12 +22,20 @@ class DBTableDecoder : DefinitionDecoder<DBTableType>(CONFIGS) {
                 val numColumns = buffer.readUnsignedByte()
                 val types = arrayOfNulls<Array<ScriptVarType>>(numColumns)
                 var defaultValues: Array<Array<Any?>?>? = null
-                var setting = buffer.readUnsignedByte()
-                while (setting != 255) {
+                while (true) {
+                    var setting = buffer.readUnsignedByte().toInt()
+                    if (setting == 0xFF) break
                     val columnId = setting and 0x7F
                     val hasDefault = setting and 0x80 != 0
+
                     val columnTypes = Array(buffer.readUnsignedByte()) {
-                        ScriptVarType.forId(buffer.readSmart())!!
+                        val test = buffer.readSmart()
+                        try {
+                            ScriptVarType.forId((test))!!
+                        } catch (e: Exception) {
+                            logger.error(e) { "Unable to decode var type for db table $id : $test" }
+                            throw e
+                        }
                     }
                     types[columnId] = columnTypes
                     if (hasDefault) {
@@ -39,11 +44,11 @@ class DBTableDecoder : DefinitionDecoder<DBTableType>(CONFIGS) {
                         }
                         defaultValues[columnId] = decodeColumnFields(buffer, columnTypes)
                     }
-                    setting = buffer.readUnsignedByte()
                 }
                 this.types = types
                 this.defaultColumnValues = defaultValues
             }
+            else -> error("Unknown opcode: $opcode")
         }
     }
 }
