@@ -10,6 +10,10 @@ object RSCM {
     private var rscmList = mutableMapOf<String, Int>()
     val logger = KotlinLogging.logger {}
     fun getRSCM(entity: Array<String>): List<Int> = entity.map { getRSCM(it) }.toList()
+    fun Int.asRSCM(table: String): String {
+        return rscmList.entries.find { it.value == this && it.key.startsWith("$table.") }?.key
+            ?: throw IllegalStateException("No RSCM entry found for ID $this with prefix '$table'.")
+    }
     fun getRSCM(entity: String) : Int {
         if (rscmList.isEmpty()) {
             throw IllegalStateException("RSCM List is empty.")
@@ -23,7 +27,7 @@ object RSCM {
 
     fun init() {
         initRSCM()
-        logger.info { "Loaded RSCM in ms" }
+        logger.info { "RSCM Loaded" }
     }
 
     fun initRSCM() {
