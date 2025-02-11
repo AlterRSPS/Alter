@@ -18,7 +18,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 
 * ### First of all Download:
 * [Xteas](https://archive.openrs2.org/caches/runescape/2028/keys.json) Save as `xteas.json` inside `/data/` Directory.
-* [2025-01-15-rev228.tar.gz](https://archive.runestats.com/osrs/2025-01-15-rev228.tar.gz) , And make sure you're using correct Java Version.
+* [cache-oldschool-live-en-b228-2025-02-05-11-45-05-openrs2](https://archive.openrs2.org/caches/runescape/2038/disk.zip) , And make sure you're using correct Java Version.
 * Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o)
 
 
@@ -31,7 +31,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Second paste `https://github.com/AlterRSPS/Alter` in URL Field and hit Clone. </br>
   ![tutor2](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tuor2.png)
 * Hit `Clone` and Let the project fully load.
-* Now open the `2025-01-15-rev228.tar.gz` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
+* Now open the `cache-oldschool-live-en-b228-2025-02-05-11-45-05-openrs2` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
   ![tutor6](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor6.png)
 - `Xtea.json` has to be in same folder like: Data /`api.yml`, etc..
 * Now click on `Gradle` button on right side. </br>
