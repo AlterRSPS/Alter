@@ -19,7 +19,7 @@ import org.alter.rscm.RSCM.getRSCM
  * The child id of the chat box in the gameframe interface. This can change
  * with revision.
  */
-const val CHATBOX_CHILD = 565
+const val CHATBOX_CHILD = 566
 
 /**
  * The id for the appearance interface.
@@ -80,12 +80,8 @@ suspend fun QueueTask.options(
     title: String = "Select an Option",
     fullSize: Boolean = true
 ): Int {
-    /**
-     *
-    player.sendTempVarbit(5983, 1)
-    */
-    player.sendTempVarbit(10670, if (fullSize) 1 else 0)
     player.runClientScript(CommonClientScripts.CHATBOX_RESET_BACKGROUND)
+    player.sendTempVarbit(10670, if (fullSize) 1 else 0)
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 219)
     player.runClientScript(CommonClientScripts.CHATBOX_MULTI, title, options.joinToString("|"))
     player.setInterfaceEvents(interfaceId = 219, component = 1, from = 1, to = options.size, setting = 1)
