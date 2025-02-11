@@ -39,12 +39,12 @@ class OpNpcTHandler : MessageHandler<OpNpcT> {
          *
          */
         if (child == 0) {
-            if (!client.world.plugins.executeItemOnNpc(client, npc.id, verify)) {
-                if (client.world.devContext.debugItemActions) {
-                    client.writeMessage("Unhandled item on npc [ $verify on ${npc.id}] ] ")
-                }
-            } else if (!client.world.plugins.executeItemOnNpc(client, verify)) {
-                client.writeMessage("Nothing interesting happens.")
+            if (client.world.plugins.executeItemOnNpc(client, npc.id, verify)
+                || client.world.plugins.executeItemOnNpc(client, verify)) {
+                return
+            }
+            if (client.world.devContext.debugItemActions) {
+                client.writeMessage("Unhandled item on npc [ $verify on ${npc.id}] ] ")
             }
         } else {
             if (!client.world.plugins.executeSpellOnNpc(client, parent, child)) {
