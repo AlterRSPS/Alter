@@ -192,7 +192,7 @@ abstract class KotlinPlugin(
         tile: Tile,
         respawnCycles: Int = GroundItem.DEFAULT_RESPAWN_CYCLES,
     ) {
-        val ground = GroundItem(getRSCM(item), amount, Tile(tile))
+        val ground = GroundItem(getRSCM(item), amount, tile)
         ground.respawnCycles = respawnCycles
         r.itemSpawns.add(ground)
     }
@@ -206,7 +206,7 @@ abstract class KotlinPlugin(
         tile: Tile,
         owner: Player,
     ) {
-        val ground = GroundItem(getRSCM(item), amount, Tile(tile))
+        val ground = GroundItem(getRSCM(item), amount, tile)
         ground.ownerUID = owner.uid
         r.itemSpawns.add(ground)
     }

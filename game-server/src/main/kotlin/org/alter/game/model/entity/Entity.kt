@@ -13,7 +13,7 @@ abstract class Entity {
     /**
      * The current 3D [Tile] that this [Pawn] is standing on in the [World].
      */
-    lateinit var tile: Tile
+    var tile: Tile = DEFAULT_TILE
 
     abstract val entityType: EntityType
 
@@ -23,5 +23,6 @@ abstract class Entity {
         const val MAGIC_STOPS_YOU_FROM_MOVING = "A magical force stops you from moving."
         const val YOURE_STUNNED = "You're stunned!"
         const val TOO_LATE = "Too late - it's gone!"
+        private val DEFAULT_TILE = Tile(-1, -1, -1)
     }
 }

@@ -152,7 +152,7 @@ fun Npc.npcPostSynchronizationTask() {
     val moved = oldTile == null || !oldTile.sameAs(pawn.tile)
 
     if (moved) {
-        pawn.lastTile = Tile(pawn.tile)
+        pawn.lastTile = pawn.tile
     }
     pawn.moved = false
     pawn.steps = null

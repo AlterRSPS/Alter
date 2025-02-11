@@ -56,7 +56,7 @@ class SearchHayPlugin(
             0 -> {
                 val add = p.inventory.add(item = "item.needle")
                 if (add.hasFailed()) {
-                    world.spawn(GroundItem(item = getRSCM("item.needle"), amount = 1, tile = Tile(p.tile), owner = p))
+                    world.spawn(GroundItem(item = getRSCM("item.needle"), amount = 1, tile = p.tile, owner = p))
                 }
                 it.chatPlayer("Wow! A needle!<br>Now what are the chances of finding that?")
             }
