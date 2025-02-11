@@ -17,7 +17,7 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Youtube tutorial: https://www.youtube.com/watch?v=2Tu-NTzMbf0
 
 * ### First of all Download:
-* [Xteas](https://archive.openrs2.org/caches/runescape/2028/keys.json) Save as `xteas.json` inside `/data/` Directory.
+* [Xteas](https://archive.openrs2.org/caches/runescape/2038/keys.json) Save as `xteas.json` inside `/data/` Directory.
 * [cache-oldschool-live-en-b228-2025-02-05-11-45-05-openrs2](https://archive.openrs2.org/caches/runescape/2038/disk.zip) , And make sure you're using correct Java Version.
 * Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o)
 
