@@ -7,15 +7,14 @@ import kotlin.math.abs
 import kotlin.math.max
 
 /**
- * A 3D point in the world.
+ * A 3D point in the world. It wraps an internal bit-packed integer that
+ * holds and represents the [x], [z] and [height] of the tile.
  *
  * @author Tom <rspsmods@gmail.com>
  */
-class Tile {
-    /**
-     * A bit-packed integer that holds and represents the [x], [z] and [height] of the tile.
-     */
-    private val coordinate: Int
+
+@JvmInline
+value class Tile(val coordinate: Int) {
 
     val x: Int get() = coordinate and 0x7FFF
 
@@ -51,15 +50,13 @@ class Tile {
 
     val asTileHashMultiplier: Int get() = (z shr 13) or ((x shr 13) shl 8) or ((height and 0x3) shl 16)
 
-    private constructor(coordinate: Int) {
-        this.coordinate = coordinate
+    init {
         check(height < TOTAL_HEIGHT_LEVELS) { "Tile height level should not exceed maximum height! [height=$height]" }
     }
 
     constructor(x: Int, z: Int, height: Int = 0) : this((x and 0x7FFF) or ((z and 0x7FFF) shl 15) or (height shl 30))
 
     constructor(other: List<Int>) : this(other[0], other[1], other[2])
-    constructor(other: Tile) : this(other.x, other.z, other.height)
 
     fun transform(
         x: Int,
@@ -182,15 +179,6 @@ class Tile {
     ): Boolean = x == this.x && z == this.z
 
     override fun toString(): String = toStringHelper().add("x", x).add("z", z).add("height", height).toString()
-
-    override fun hashCode(): Int = coordinate
-
-    override fun equals(other: Any?): Boolean {
-        if (other is Tile) {
-            return other.coordinate == coordinate
-        }
-        return false
-    }
 
     operator fun component1() = x
 

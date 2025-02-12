@@ -222,7 +222,7 @@ open class Player(world: World) : Pawn(world) {
         movementQueue.clear()
         lock = LockState.DELAY_ACTIONS
 
-        lastTile = Tile(tile)
+        lastTile = tile
         moveTo(movement.finalDestination)
 
         forceMove(movement)
@@ -377,7 +377,7 @@ open class Player(world: World) : Pawn(world) {
         val changedHeight = oldTile?.height != this.tile.height
 
         if (moved) {
-            this.lastTile = Tile(this.tile)
+            this.lastTile = this.tile
         }
         this.moved = false
 
