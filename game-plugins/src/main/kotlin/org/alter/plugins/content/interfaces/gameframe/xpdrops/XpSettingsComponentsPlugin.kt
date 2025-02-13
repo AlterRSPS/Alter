@@ -150,13 +150,13 @@ class XpSettingsComponentsPlugin(
             when (player.getInteractingOption()) {
                 5 -> {
                     player.queue {
-                        inputInt("Set tracker start point: (skill level)") // If more than 99 it's not valid. "Input is not a valid skill level.
+                        inputInt(player, "Set tracker start point: (skill level)") // If more than 99 it's not valid. "Input is not a valid skill level.
                         // Set varp 261 to xp : so if u input level 80 , it needs to convert into XP
                     }
                 } // Set level
                 6 -> {
                     player.queue {
-                        inputInt("Set tracker start point: (XP value)")
+                        inputInt(player, "Set tracker start point: (XP value)")
                     }
                 }
                 9 ->

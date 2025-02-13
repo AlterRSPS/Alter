@@ -12,6 +12,7 @@ import org.alter.game.model.container.*
 import org.alter.game.model.container.key.*
 import org.alter.game.model.entity.*
 import org.alter.game.model.item.*
+import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.*
 import org.alter.game.model.shop.*
 import org.alter.game.model.timer.*
@@ -47,7 +48,7 @@ class ChatBoxFilterPlugin(
                     player.toggleVarbit(26)
                 }
                 2 -> {
-                    player.queue { dialog(this) }
+                    player.queue { dialog(player, this) }
                 }
             }
         }
@@ -96,19 +97,19 @@ class ChatBoxFilterPlugin(
         }
     }
 
-    suspend fun dialog(it: QueueTask) {
+    private suspend fun dialog(player: Player, it: QueueTask) {
         when (
             it.options(
-                "Filter them." /* Filter or unfilter.*/,
+                player, "Filter them." /* Filter or unfilter.*/,
                 "Do not filter them.",
                 title = "Boss kill-counts are not blocked by the spam filter.",
             )
         ) {
             1 -> {
-                it.messageBox("Boss kill-count messages that you receive in future will not be blocked by the spam filter.")
+                it.messageBox(player, "Boss kill-count messages that you receive in future will not be blocked by the spam filter.")
             }
             2 -> {
-                it.messageBox("CBA For now... Later.")
+                it.messageBox(player, "CBA For now... Later.")
             }
         }
     }
