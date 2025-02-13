@@ -14,9 +14,8 @@ import org.alter.game.model.entity.GroundItem
  * @author Tom <rspsmods@gmail.com>
  */
 class ObjAddUpdate(
-    override val type: EntityUpdateType,
     override val entity: GroundItem,
-) : EntityUpdate<GroundItem>(type, entity) {
+) : EntityUpdate<GroundItem>(entity) {
     override fun toMessage(): ZoneProt =
         ObjAdd(
             id = entity.item,
