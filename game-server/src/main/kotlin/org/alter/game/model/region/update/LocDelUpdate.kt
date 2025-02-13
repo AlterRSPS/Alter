@@ -10,8 +10,7 @@ import org.alter.game.model.entity.GameObject
  * @author Tom <rspsmods@gmail.com>
  */
 class LocDelUpdate(
-    override val type: EntityUpdateType,
     override val entity: GameObject,
-) : EntityUpdate<GameObject>(type, entity) {
+) : EntityUpdate<GameObject>(entity) {
     override fun toMessage(): ZoneProt = LocDel((entity.tile.x and 0x7), (entity.tile.z and 0x7), entity.type, entity.rot)
 }
