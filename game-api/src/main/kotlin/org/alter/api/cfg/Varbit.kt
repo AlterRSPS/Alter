@@ -1095,4 +1095,5 @@ object Varbit {
 
 
     const val NEW_STYLE_SKILL_GUIDE_INTERFACE = 15321
+    const val MAKEOVER_INTERFACE_VIEW = 4130
 }
