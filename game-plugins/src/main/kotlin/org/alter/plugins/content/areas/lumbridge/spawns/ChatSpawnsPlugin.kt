@@ -14,13 +14,25 @@ class ChatSpawnsPlugin(
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        // Hans
-        spawnNpc("npc.hans", x = 3221, z = 3219, direction = Direction.EAST)
-
-        spawnNpc("npc.lumbridge_guide", x = 3238, z = 3220, direction = Direction.WEST)
+        // Outside
+        spawnNpc("npc.donie", 3228, 3222, 0, 10, Direction.SOUTH)
         spawnNpc("npc.father_aereck", 3243, 3206, 0, 3)
         spawnNpc("npc.hatius_cosaintus", 3233, 3215, 0, 1)
         spawnNpc("npc.ironman_tutor", 3229, 3228, 0, 1)
+        spawnNpc("npc.lumbridge_guide", 3238, 3220, 0, 0, Direction.WEST)
+
+        // Castle - outside
+        spawnNpc("npc.hans", 3221, 3219, 0, 0, Direction.EAST)
+        spawnNpc("npc.perdu", 3230, 3215, 0, 10, Direction.SOUTH)
+
+        // Castle - inside
+        spawnNpc("npc.banker_2897", 3209, 3222, 2, 0, Direction.SOUTH)
+        spawnNpc("npc.duke_horacio", 3212, 3220, 1, 4, Direction.SOUTH)
+
+        // Stores
+        spawnNpc("npc.bob_10619", 3230, 3203, 0, 2, Direction.EAST)
+        spawnNpc("npc.shop_keeper", 3211, 3246, 0, 3, Direction.EAST)
+        spawnNpc("npc.shop_assistant", 3211, 3247, 0, 3, Direction.EAST)
 
         // Tutors
         spawnNpc("npc.melee_combat_tutor", 3220, 3238, 0, 1)
@@ -28,9 +40,10 @@ class ChatSpawnsPlugin(
         spawnNpc("npc.magic_combat_tutor", 3216, 3238, 0, 1)
         spawnNpc("npc.woodsman_tutor", 3228, 3246, 0, 1)
         spawnNpc("npc.smithing_apprentice", 3228, 3254, 0, 1)
+        spawnNpc("npc.cooking_tutor", 3234, 3196, 0, 1)
+        spawnNpc("npc.prayer_tutor", 3243, 3211, 0, 3)
 
-        spawnNpc("npc.duke_horacio", x = 3212, z = 3220, height = 1, walkRadius = 4, direction = Direction.SOUTH)
-        spawnNpc("npc.count_check", 3238, 3199, 0, 0, Direction.NORTH)
-        spawnNpc("npc.nigel_8391", 3243, 3201, 0, 2, Direction.WEST)
+        spawnNpc("npc.count_check", 3238, 3199, 0, 0, Direction.EAST)
+        spawnNpc("npc.nigel_8391", 3243, 3201, 0, 3, Direction.WEST)
     }
 }

@@ -3,7 +3,6 @@ package org.alter.plugins.content.mechanics.npcwalk
 import org.alter.api.ext.*
 import org.alter.game.*
 import org.alter.game.model.*
-import org.alter.game.model.World.Companion.logger
 import org.alter.game.model.attr.*
 import org.alter.game.model.move.walkTo
 import org.alter.game.model.timer.*
@@ -17,7 +16,7 @@ class NpcRandomWalkPlugin(
 
     init {
         val routeSearchTimer = TimerKey()
-        val routeSearchDelay = 60..75 // TODO: Find a way to override this for certain NPCs?
+        val routeSearchDelay = 15..30 // TODO: Find a way to override this for certain NPCs?
 
         onGlobalNpcSpawn {
             if (npc.walkRadius > 0) {

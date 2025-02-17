@@ -17,10 +17,7 @@ class SpawnPlugin(
     server: Server
 ) : KotlinPlugin(r, world, server) {
     init {
-        //Lumbridge castle
-        spawnNpc(npc = "npc.banker_2897", x = 3209, z = 3222, height = 2, direction = Direction.SOUTH)
-        spawnNpc(npc = "npc.perdu", x = 3230, z = 3215, walkRadius = 10, direction = Direction.SOUTH)
-        spawnNpc(npc = "npc.donie", x = 3228, z = 3222, walkRadius = 10, direction = Direction.SOUTH)
+
         spawnNpc(npc = "npc.man_3106", x = 3206, z = 3219, walkRadius = 20, height = 1, direction = Direction.SOUTH)
         spawnNpc(npc = "npc.man_3106", x = 3216, z = 3219, walkRadius = 20, direction = Direction.EAST)
         spawnNpc(npc = "npc.man_3106", x = 3207, z = 3227, walkRadius = 20, direction = Direction.EAST)
