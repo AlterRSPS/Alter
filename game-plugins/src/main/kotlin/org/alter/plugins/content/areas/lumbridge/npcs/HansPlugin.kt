@@ -2,10 +2,15 @@ package org.alter.plugins.content.areas.lumbridge.npcs
 
 import org.alter.api.ext.*
 import org.alter.game.Server
+import org.alter.game.model.Direction
 import org.alter.game.model.World
 import org.alter.game.model.queue.QueueTask
+import org.alter.game.model.shop.PurchasePolicy
+import org.alter.game.model.shop.ShopItem
 import org.alter.game.plugin.KotlinPlugin
 import org.alter.game.plugin.PluginRepository
+import org.alter.plugins.content.mechanics.shops.CoinCurrency
+import org.alter.rscm.RSCM.getRSCM
 
 
 class HansPlugin(
@@ -23,6 +28,8 @@ class HansPlugin(
     )
 
     init {
+        spawnNpc("npc.hans", 3221, 3219, 0, 0, Direction.EAST)
+
         onNpcOption("npc.hans", option = "talk-to")
         {
             player.queue { dialog() }

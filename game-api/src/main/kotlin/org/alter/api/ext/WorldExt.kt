@@ -4,6 +4,7 @@ import org.alter.game.model.World
 import org.alter.game.model.collision.WALL_DIAGONAL
 import org.alter.game.model.entity.DynamicObject
 import org.alter.game.model.entity.GameObject
+import org.alter.rscm.RSCM.getRSCM
 
 fun World.openDoor(
     obj: GameObject,
@@ -30,6 +31,14 @@ fun World.openDoor(
     return newDoor
 }
 
+fun World.openDoor(
+    obj: GameObject,
+    opened: String,
+    invertRot: Boolean = false,
+    invertTransform: Boolean = false,
+): GameObject = this.openDoor(obj, getRSCM(opened), invertRot, invertTransform)
+
+
 fun World.closeDoor(
     obj: GameObject,
     closed: Int = obj.id - 1,
@@ -54,6 +63,14 @@ fun World.closeDoor(
     spawn(newDoor)
     return newDoor
 }
+
+fun World.closeDoor(
+    obj: GameObject,
+    closed: String,
+    invertRot: Boolean = false,
+    invertTransform: Boolean = false,
+): GameObject = this.closeDoor(obj, getRSCM(closed), invertRot, invertTransform)
+
 //
 // fun World.getSettings() : Settings {
 //    return this.settings as Settings
