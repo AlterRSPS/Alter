@@ -11,7 +11,7 @@ plugins {
 dependencies {
     implementation(project(":game-server"))
     implementation(project(":util"))
-    implementation(rootProject.project.libs.rsprot)
+    implementation(rootProject.project.libs.rsprot.api)
     implementation(rootProject.projects.plugins.filestore)
     implementation(rootProject.projects.plugins.rscm)
 }

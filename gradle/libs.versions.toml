@@ -66,7 +66,9 @@ netty-all = { group = "io.netty", name = "netty-all", version.ref = "nettyAll" }
 
 logback-classic = { group ="ch.qos.logback", name = "logback-classic", version.ref = "logback"}
 openrune-filestore = { group = "dev.openrune", name = "filestore", version.ref = "openrune-filestore"}
-rsprot = { group = "net.rsprot", name = "osrs-228-api", version.ref = "rsprot"}
+rsprot-api = { group = "net.rsprot", name = "osrs-228-api", version.ref = "rsprot"}
+rsprot-shared = { group = "net.rsprot", name = "osrs-228-shared", version.ref = "rsprot"}
+
 routefinder = { group = "org.rsmod", name = "rsmod-routefinder", version.ref = "routefinder"}
 
 mongo-bson = { group = "org.mongodb", name = "bson", version.ref = "mongo"}

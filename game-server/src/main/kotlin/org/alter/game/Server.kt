@@ -23,6 +23,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.text.DecimalFormat
 import java.util.concurrent.TimeUnit
+import net.rsprot.protocol.common.RSProtConstants
 
 /**
  * The [Server] is responsible for starting any and all games.
@@ -114,6 +115,9 @@ class Server {
                 gItemDespawnDelay = gameProperties.getOrDefault("gitem-despawn-delay", GroundItem.DEFAULT_DESPAWN_CYCLES),
                 preloadMaps = gameProperties.getOrDefault("preload-maps", false),
             )
+        check(RSProtConstants.REVISION == gameContext.revision) {
+                "RSProtConstants revision (${RSProtConstants.REVISION}) mismatch GameContext revision (${gameContext.revision})"
+        }
 
         val devContext =
             DevContext(
