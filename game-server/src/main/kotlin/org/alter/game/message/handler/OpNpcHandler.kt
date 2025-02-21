@@ -18,7 +18,10 @@ class OpNpcHandler : MessageHandler<OpNpc> {
         log(client, "Npc option %d: index=%d, movement=%b, npc=%s", message.op, message.index, message.controlKey, npc)
         client.attr[CLIENT_KEY_COMBINATION] = if (message.controlKey) 2 else 0
         if (message.op == 2) {
-            client.attack(npc)
+            client.attr[INTERACTING_NPC_ATTR] = WeakReference(npc)
+            if (!client.world.plugins.executeNpc(client, npc.id, 2)) {
+                client.attack(npc)
+            }
         } else {
             client.attr[INTERACTING_OPT_ATTR] = message.op
             client.attr[INTERACTING_NPC_ATTR] = WeakReference(npc)
