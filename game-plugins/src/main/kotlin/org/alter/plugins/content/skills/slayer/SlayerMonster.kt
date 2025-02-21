@@ -19,7 +19,7 @@ enum class SlayerMonster(
     WALL_BEAST(35, listOf("npc.wall_beast"), null),
     KILLERWATT(37, listOf("npc.killerwatt_469"), null),
     MOSS_GIANT(39, listOf("npc.moss_giant"), null),
-    BASILISK(40, listOf("npc.basilisk_122"), "npc.monstrous_basilisk"),
+    BASILISK(40, listOf("npc.basilisk_417"), "npc.monstrous_basilisk"),
     TERRORDOG(40, listOf("npc.terror_dog_6473"), null),
     FEVER_SPIDER(42, listOf("npc.fever_spider_626"), null),
     INFERNAL_MAGE(45, listOf("npc.infernal_mage_443"), "npc.malevolent_mage"),
