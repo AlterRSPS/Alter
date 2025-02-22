@@ -298,6 +298,7 @@ fun Player.comboItemReplace(
 }
 
 fun Player.produceItemBoxMessage(
+    player: Player,
     vararg itemsToMake: Int,
     title: String = if (itemsToMake.size == 1) "How many do you wish to make?" else "What would you like to make?",
     max: Int = inventory.capacity,
@@ -315,7 +316,7 @@ fun Player.produceItemBoxMessage(
         }
         else -> {
             queue {
-                produceItemBox(*itemsToMake, title = title, maxProducable = max) { _, qty ->
+                produceItemBox(player, *itemsToMake, title = title, maxProducable = max) { _, qty ->
                     player.queue {
                         repeat(qty) {
                             if (growingDelay) wait(Math.min(1 + it, 2)) else wait(1) // insures production tasks are not spammed

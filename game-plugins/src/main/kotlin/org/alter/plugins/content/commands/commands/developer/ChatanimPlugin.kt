@@ -30,7 +30,7 @@ class ChatanimPlugin(
             val npcId = args[1].toInt()
 
             player.queue {
-                chatNpc("Hello World", npcId, animation = key, "hi")
+                chatNpc(player, "Hello World", npcId, animation = key, "hi")
             }
             player.message("$key opened in a dialog", ChatMessageType.ENGINE)
         }

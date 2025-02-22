@@ -118,18 +118,16 @@ data class QueueTask(val ctx: Any, val priority: TaskPriority) : Continuation<Un
      * of [Pawn] and that the height of the [tile] and [Pawn.tile] must be equal,
      * as well as the x and z coordinates.
      */
-    suspend fun waitTile(tile: Tile): Unit =
-        suspendCoroutine {
-            nextStep = SuspendableStep(TileCondition((ctx as Pawn).tile, tile), it)
-        }
+    suspend fun waitTile(tile: Tile): Unit {
+        val src = (ctx as Pawn).tile
+        wait { src.sameAs(tile) }
+    }
+
 
     /**
      * Wait for our [ctx] as [Player] to close the [interfaceId].
      */
-    suspend fun waitInterfaceClose(interfaceId: Int): Unit =
-        suspendCoroutine {
-            nextStep = SuspendableStep(PredicateCondition { !(ctx as Player).interfaces.isVisible(interfaceId) }, it)
-        }
+    suspend fun waitInterfaceClose(interfaceId: Int): Unit = wait { !(ctx as Player).interfaces.isVisible(interfaceId) }
 
     /**
      * Wait for <strong>any</strong> return value to be available before

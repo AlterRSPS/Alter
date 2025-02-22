@@ -113,7 +113,7 @@ class MovementQueue(val pawn: Pawn) {
             if (walkDirection != Direction.NONE &&
                 (pawn.world.canTraverse(tile, walkDirection, pawn))
             ) {
-                tile = Tile(next.tile)
+                tile = next.tile
                 pawn.lastFacingDirection = walkDirection
                 val running =
                     when (next.type) {
@@ -126,7 +126,7 @@ class MovementQueue(val pawn: Pawn) {
                     if (next != null) {
                         runDirection = Direction.between(tile, next.tile)
                         if (pawn.world.canTraverse(tile, runDirection, pawn)) {
-                            tile = Tile(next.tile)
+                            tile = next.tile
                             pawn.lastFacingDirection = runDirection
                         } else {
                             clear()
@@ -140,7 +140,7 @@ class MovementQueue(val pawn: Pawn) {
             }
             if (walkDirection != null && walkDirection != Direction.NONE) {
                 pawn.steps = StepDirection(walkDirection, runDirection)
-                pawn.tile = Tile(tile)
+                pawn.tile = tile
                 if (pawn is Player) {
                     PlayerInfo(pawn).setMoveSpeed(if (pawn.isRunning() && pathSize > 0) MovementType.RUN else MovementType.WALK)
                 }

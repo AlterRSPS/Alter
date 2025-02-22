@@ -9,8 +9,9 @@
  *
  * @author Tom <rspsmods@gmail.com>
  */
- class MapProjAnimUpdate(override val type: EntityUpdateType,
-                        override val entity: Projectile) : EntityUpdate<Projectile>(type, entity) {
+ class MapProjAnimUpdate(
+     override val entity: Projectile
+ ) : EntityUpdate<Projectile>(entity) {
 
     override fun toMessage(): ZoneProt {
         return if (entity.targetPawn != null) {

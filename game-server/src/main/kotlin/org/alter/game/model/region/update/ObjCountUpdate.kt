@@ -10,11 +10,10 @@ import org.alter.game.model.entity.GroundItem
  * @author Tom <rspsmods@gmail.com>
  */
 class ObjCountUpdate(
-    override val type: EntityUpdateType,
     override val entity: GroundItem,
     private val oldAmount: Int,
     private val newAmount: Int,
-) : EntityUpdate<GroundItem>(type, entity) {
+) : EntityUpdate<GroundItem>(entity) {
     override fun toMessage(): ZoneProt =
         ObjCount(
             entity.item,

@@ -48,7 +48,7 @@ class TournamentSuppliesPlugin(
                 }
             if (amount == -1) {
                 player.queue(TaskPriority.WEAK) {
-                    amount = inputInt("How many would you like to withdraw?")
+                    amount = inputInt(player, "How many would you like to withdraw?")
                     if (amount > 0) {
                         if (player.inventory.freeSlotCount < amount && !getItem(itemid).stackable
                         ) {

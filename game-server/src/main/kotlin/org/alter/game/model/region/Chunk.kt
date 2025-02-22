@@ -163,7 +163,7 @@ class Chunk(val coords: ChunkCoords) {
         oldAmount: Int,
         newAmount: Int,
     ) {
-        val update = ObjCountUpdate(EntityUpdateType.UPDATE_GROUND_ITEM, item, oldAmount, newAmount)
+        val update = ObjCountUpdate(item, oldAmount, newAmount)
         sendUpdate(world, update)
 
         if (updates.removeIf { it.entity == item }) {
@@ -216,32 +216,32 @@ class Chunk(val coords: ChunkCoords) {
         when (entity.entityType) {
             EntityType.DYNAMIC_OBJECT, EntityType.STATIC_OBJECT ->
                 if (spawn) {
-                    LocAddChangeUpdate(EntityUpdateType.SPAWN_OBJECT, entity as GameObject)
+                    LocAddChangeUpdate(entity as GameObject)
                 } else {
-                    LocDelUpdate(EntityUpdateType.REMOVE_OBJECT, entity as GameObject)
+                    LocDelUpdate(entity as GameObject)
                 }
 
             EntityType.GROUND_ITEM ->
                 if (spawn) {
-                    ObjAddUpdate(EntityUpdateType.SPAWN_GROUND_ITEM, entity as GroundItem)
+                    ObjAddUpdate(entity as GroundItem)
                 } else {
-                    ObjDelUpdate(EntityUpdateType.REMOVE_GROUND_ITEM, entity as GroundItem)
+                    ObjDelUpdate(entity as GroundItem)
                 }
 
         EntityType.PROJECTILE ->
-            if (spawn) MapProjAnimUpdate(EntityUpdateType.SPAWN_PROJECTILE, entity as Projectile)
+            if (spawn) MapProjAnimUpdate(entity as Projectile)
             else throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
 
             EntityType.AREA_SOUND ->
                 if (spawn) {
-                    SoundAreaUpdate(EntityUpdateType.PLAY_TILE_SOUND, entity as AreaSound)
+                    SoundAreaUpdate(entity as AreaSound)
                 } else {
                     throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
                 }
 
             EntityType.MAP_ANIM ->
                 if (spawn) {
-                    MapAnimUpdate(EntityUpdateType.MAP_ANIM, entity as TileGraphic)
+                    MapAnimUpdate(entity as TileGraphic)
                 } else {
                     throw RuntimeException("${entity.entityType} can only be spawned, not removed!")
                 }
