@@ -8,7 +8,6 @@ import org.alter.api.CommonClientScripts
 import org.alter.api.InterfaceDestination
 import org.alter.api.Skills
 import org.alter.game.model.attr.INTERACTING_NPC_ATTR
-import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
@@ -29,44 +28,22 @@ const val APPEARANCE_INTERFACE_ID = 679
 /**
  * The default action that will occur when interrupting or finishing a dialog.
  */
-private val closeDialog: QueueTask.() -> Unit = {
-    player.closeComponent(parent = 162, child = CHATBOX_CHILD)
-}
+private fun closeDialog(player: Player): QueueTask.() -> Unit =
+    {
+        player.closeComponent(parent = 162, child = CHATBOX_CHILD)
+    }
 
 /**
  * Invoked when input dialog queues are interrupted.
  */
-private val closeInput: QueueTask.() -> Unit = {
-    player.closeInputDialog()
-}
+private fun closeInput(player: Player): QueueTask.() -> Unit = {
+        player.closeInputDialog()
+    }
 
-/**
- * Invoked when the appearance input is interrupted.
- */
-private val closeAppearance: QueueTask.() -> Unit = {
+
+private fun closeAppearance(player: Player): QueueTask.() -> Unit = {
     player.closeInterface(APPEARANCE_INTERFACE_ID)
 }
-
-/**
- * Gets the [QueueTask.ctx] as a [Pawn].
- *
- * If [QueueTask.ctx] is not a [Pawn], a cast exception will be thrown.
- */
-inline val QueueTask.pawn: Pawn get() = ctx as Pawn
-
-/**
- * Gets the [QueueTask.ctx] as a [Player].
- *
- * If [QueueTask.ctx] is not a [Pawn], a cast exception will be thrown.
- */
-inline val QueueTask.player: Player get() = ctx as Player
-
-/**
- * Gets the [QueueTask.ctx] as an [Npc].
- *
- * If [QueueTask.ctx] is not a [Pawn], a cast exception will be thrown.
- */
-inline val QueueTask.npc: Npc get() = ctx as Npc
 
 /**
  * Prompts the player with options.
@@ -76,6 +53,7 @@ inline val QueueTask.npc: Npc get() = ctx as Npc
  */
 // suspend fun QueueTask.options(vararg options: String, title: String = "Select an Option", next: String = "Next Page", back: String = "Back", optionIndex: Int = 0): Int {
 suspend fun QueueTask.options(
+    player: Player,
     vararg options: String,
     title: String = "Select an Option",
     fullSize: Boolean = true
@@ -85,13 +63,14 @@ suspend fun QueueTask.options(
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 219)
     player.runClientScript(CommonClientScripts.CHATBOX_MULTI, title, options.joinToString("|"))
     player.setInterfaceEvents(interfaceId = 219, component = 1, from = 1, to = options.size, setting = 1)
-    terminateAction = closeDialog
+    terminateAction = closeDialog(player)
     waitReturnValue()
     terminateAction!!(this)
     return (requestReturnValue as? ResumePauseButton)?.sub ?: -1
 }
 
 suspend fun QueueTask.itemMessage(
+    player: Player,
     message: String,
     item: Int,
     amountOrZoom: Int = 1,
@@ -106,6 +85,7 @@ suspend fun QueueTask.itemMessage(
 }
 
 suspend fun QueueTask.interfaceOptions(
+    player: Player,
     vararg options: String,
     title: String,
 ): Int {
@@ -113,7 +93,7 @@ suspend fun QueueTask.interfaceOptions(
     player.runClientScript(CommonClientScripts.INTERFACE_MENU, title, options.joinToString("|"))
     player.setInterfaceEvents(interfaceId = 187, component = 3, from = 0, to = options.size, setting = 1)
 
-    terminateAction = closeDialog
+    terminateAction = closeDialog(player)
     waitReturnValue()
     terminateAction!!(this)
 
@@ -126,10 +106,13 @@ suspend fun QueueTask.interfaceOptions(
  * @return
  * The integer input.
  */
-suspend fun QueueTask.inputInt(description: String = "Enter amount"): Int {
+suspend fun QueueTask.inputInt(
+    player: Player,
+    description: String = "Enter amount"
+): Int {
     player.runClientScript(ClientScript("meslayer_mode7"), description)
 
-    terminateAction = closeInput
+    terminateAction = closeInput(player)
     waitReturnValue()
     terminateAction!!(this)
 
@@ -143,10 +126,12 @@ suspend fun QueueTask.inputInt(description: String = "Enter amount"): Int {
  *
  * @return the string input.
  */
-suspend fun QueueTask.inputString(description: String = "Enter text"): String {
+suspend fun QueueTask.inputString(
+    player: Player,
+    description: String = "Enter text"
+): String {
     player.runClientScript(ClientScript("meslayer_mode9"), description)
-
-    terminateAction = closeInput
+    terminateAction = closeInput(player)
     waitReturnValue()
     terminateAction!!(this)
 
@@ -162,10 +147,12 @@ suspend fun QueueTask.inputString(description: String = "Enter text"): String {
  * @return the player with the respective username, null if the player is not
  * online.
  */
-suspend fun QueueTask.inputPlayer(description: String = "Enter name"): Player? {
+suspend fun QueueTask.inputPlayer(
+    player: Player,
+    description: String = "Enter name"
+): Player? {
     player.runClientScript(ClientScript("meslayer_mode8"), description)
-
-    terminateAction = closeInput
+    terminateAction = closeInput(player)
     waitReturnValue()
     terminateAction!!(this)
 
@@ -179,10 +166,13 @@ suspend fun QueueTask.inputPlayer(description: String = "Enter name"): Player? {
  * @return
  * The selected item's id.
  */
-suspend fun QueueTask.searchItemInput(message: String): Int {
+suspend fun QueueTask.searchItemInput(
+    player: Player,
+    message: String
+): Int {
     player.runClientScript(CommonClientScripts.GE_SEARCH_ITEMS, message, 1, -1)
 
-    terminateAction = closeInput
+    terminateAction = closeInput(player)
     waitReturnValue()
 
     return requestReturnValue as? Int ?: -1
@@ -196,16 +186,22 @@ suspend fun QueueTask.searchItemInput(message: String): Int {
  * @return
  * The selected item's id.
  */
-suspend fun QueueTask.searchItemInputT(message: String): Int {
+suspend fun QueueTask.searchItemInputT(
+    player: Player,
+    message: String
+): Int {
     player.runClientScript(CommonClientScripts.GE_SEARCH_ITEMS, message, 0, -1)
 
-    terminateAction = closeInput
+    terminateAction = closeInput(player)
     waitReturnValue()
 
     return requestReturnValue as? Int ?: -1
 }
 
-suspend fun QueueTask.searchItemWithPrevious(message: String): Int {
+suspend fun QueueTask.searchItemWithPrevious(
+    player: Player,
+    message: String
+): Int {
     player.setVarbit(4439, 1)
     player.message("All these Scripts are wrong for searchItemWithPrevious remember to set them")
     player.runClientScript(CommonClientScripts.GE_OFFER_SET_DESC, "", "", 30474256, 30474258)
@@ -214,7 +210,7 @@ suspend fun QueueTask.searchItemWithPrevious(message: String): Int {
     player.runClientScript(ClientScript(id = 4517), 0, 100, 75)
     player.runClientScript(ClientScript(id = 4518), 100, 100)
 
-    terminateAction = closeInput
+    terminateAction = closeInput(player)
     waitReturnValue()
 
     return requestReturnValue as? Int ?: -1
@@ -231,6 +227,7 @@ suspend fun QueueTask.searchItemWithPrevious(message: String): Int {
  * dialog box.
  */
 suspend fun QueueTask.messageBox(
+    player: Player,
     message: String,
     lineSpacing: Int = 31,
     continues: Boolean = false,
@@ -246,7 +243,7 @@ suspend fun QueueTask.messageBox(
     }
     player.setComponentText(interfaceId = 229, component = 2, text = "Click here to continue")
 
-    terminateAction = closeDialog
+    terminateAction = closeDialog(player)
     waitReturnValue()
     terminateAction!!(this)
 }
@@ -269,6 +266,7 @@ suspend fun QueueTask.messageBox(
  * The title of the dialog, if left as null, the npc's name will be used.
  */
 suspend fun QueueTask.chatNpc(
+    player: Player,
     message: String,
     npc: Int = -1,
     animation: Int = 588,
@@ -294,7 +292,7 @@ suspend fun QueueTask.chatNpc(
     player.setInterfaceEvents(interfaceId = 231, component = 4, from = -1, to = -1, setting = 1)
     player.setComponentText(interfaceId = 231, component = 5, text = "Click here to continue")
 
-    terminateAction = closeDialog
+    terminateAction = closeDialog(player)
     waitReturnValue()
     terminateAction!!(this)
 }
@@ -307,6 +305,7 @@ suspend fun QueueTask.chatNpc(
 */
 
 suspend fun QueueTask.chatPlayer(
+    player: Player,
     message: String,
     animation: Int = 588,
     title: String? = null,
@@ -323,7 +322,7 @@ suspend fun QueueTask.chatPlayer(
     player.setInterfaceEvents(interfaceId = 217, component = 3, from = -1, to = -1, setting = 1)
     player.setComponentText(interfaceId = 217, component = 5, text = "Click here to continue")
 
-    terminateAction = closeDialog
+    terminateAction = closeDialog(player)
     waitReturnValue()
     terminateAction!!(this)
 }
@@ -345,6 +344,7 @@ suspend fun QueueTask.chatPlayer(
  * 'Click here to continue'.
  */
 suspend fun QueueTask.itemMessageBox(
+    player: Player,
     message: String,
     item: String,
     amountOrZoom: Int = 1,
@@ -356,12 +356,13 @@ suspend fun QueueTask.itemMessageBox(
     player.setComponentText(interfaceId = 193, component = 2, text = message)
     player.runClientScript(CommonClientScripts.SET_OPTIONS, *options)
 
-    terminateAction = closeDialog
+    terminateAction = closeDialog(player)
     waitReturnValue()
     terminateAction!!(this)
 }
 
 suspend fun QueueTask.doubleItemMessageBox(
+    player: Player,
     message: String,
     item1: Int,
     item2: Int,
@@ -375,12 +376,13 @@ suspend fun QueueTask.doubleItemMessageBox(
     player.setInterfaceEvents(interfaceId = 11, component = 4, range = -1..-1, setting = 1)
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 11)
 
-    terminateAction = closeDialog
+    terminateAction = closeDialog(player)
     waitReturnValue()
     terminateAction!!(this)
 }
 
 suspend fun QueueTask.destroyItem(
+    player: Player,
     title: String = "Are you sure you want to destroy this item?",
     note: String,
     item: Int,
@@ -391,7 +393,7 @@ suspend fun QueueTask.destroyItem(
     player.runClientScript(ClientScript("confirmdestroy_init"), item, amount, 0, title, note)
     player.setInterfaceEvents(interfaceId = 584, component = 0, range = 0..1, setting = 1)
 
-    terminateAction = closeDialog
+    terminateAction = closeDialog(player)
     waitReturnValue()
     terminateAction!!(this)
 
@@ -399,11 +401,12 @@ suspend fun QueueTask.destroyItem(
     return msg?.sub == 1
 }
 
-fun QueueTask.selectAppearance() {
+fun QueueTask.selectAppearance(player: Player) {
     player.openInterface(APPEARANCE_INTERFACE_ID, InterfaceDestination.MAIN_SCREEN)
 }
 
 suspend fun QueueTask.levelUpMessageBox(
+    player: Player,
     skill: Int,
     levelIncrement: Int,
 ) {
@@ -475,7 +478,7 @@ suspend fun QueueTask.levelUpMessageBox(
         player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 193)
     }
 
-    terminateAction = closeDialog
+    terminateAction = closeDialog(player)
     waitReturnValue()
     terminateAction!!(this)
 }
@@ -502,6 +505,7 @@ suspend fun QueueTask.levelUpMessageBox(
  * The id of the option chosen. The id can range from [1] inclusive to [9] inclusive.
  */
 suspend fun QueueTask.produceItemBox(
+    player: Player,
     vararg items: Int,
     title: String = "What would you like to make?",
     maxProducable: Int = player.inventory.capacity,
@@ -524,7 +528,7 @@ suspend fun QueueTask.produceItemBox(
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 270)
     player.runClientScript(CommonClientScripts.SKILL_MULTI_SETUP, 0, "$title${nameArray.joinToString("")}", maxProducable, *itemArray)
 
-    terminateAction = closeDialog
+    terminateAction = closeDialog(player)
     waitReturnValue()
     terminateAction!!(this)
 

@@ -5,6 +5,7 @@ import dev.openrune.cache.CacheManager.itemSize
 import org.alter.api.ext.*
 import org.alter.game.Server
 import org.alter.game.model.World
+import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
 import org.alter.game.model.priv.Privilege
 import org.alter.game.model.queue.QueueTask
@@ -37,7 +38,7 @@ class ItemPlugin(
                 }
             } catch (e: Exception) {
                 player.queue(TaskPriority.STRONG) {
-                    val item = spawn() ?: return@queue
+                    val item = spawn(player) ?: return@queue
                     if (item.amount > 0) {
                         player.message("You have spawned ${item.amount} x ${item.getName()}.")
                     } else {
@@ -48,16 +49,16 @@ class ItemPlugin(
         }
     }
 
-    suspend fun QueueTask.spawn(): Item? {
-        val item = searchItemInput("Select an item to spawn:")
+    suspend fun QueueTask.spawn(player: Player): Item? {
+        val item = searchItemInput(player, "Select an item to spawn:")
         if (item == -1) {
             return null
         }
         val amount =
-            when (options("1", "5", "X", "Max", title = "How many would you like to spawn?")) {
+            when (options(player, "1", "5", "X", "Max", title = "How many would you like to spawn?")) {
                 1 -> 1
                 2 -> 5
-                3 -> inputInt("Enter amount to spawn")
+                3 -> inputInt(player, "Enter amount to spawn")
                 4 -> Int.MAX_VALUE
                 else -> return null
             }

@@ -3,6 +3,7 @@ package org.alter.plugins.content.commands.commands.admin
 import org.alter.api.ext.*
 import org.alter.game.Server
 import org.alter.game.model.World
+import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
 import org.alter.game.model.priv.Privilege
 import org.alter.game.model.queue.QueueTask
@@ -20,7 +21,7 @@ class SpawnItemPlugin(
 
         onCommand("spawn", Privilege.ADMIN_POWER, description = "Spawn items with ui") {
             player.queue(TaskPriority.STRONG) {
-                val item = spawn() ?: return@queue
+                val item = spawn(player) ?: return@queue
                 if (item.amount > 0) {
                     player.message("You have spawned ${item.amount} x ${item.getName()}.")
                 } else {
@@ -31,7 +32,7 @@ class SpawnItemPlugin(
 
         onCommand("spawn2", Privilege.ADMIN_POWER, description = "Spawn untradable items with ui") {
             player.queue(TaskPriority.STRONG) {
-                val item = spawn2() ?: return@queue
+                val item = spawn2(player) ?: return@queue
                 if (item.amount > 0) {
                     player.message("You have spawned ${item.amount} x ${item.getName()}.")
                 } else {
@@ -41,16 +42,16 @@ class SpawnItemPlugin(
         }
     }
 
-    suspend fun QueueTask.spawn2(): Item? {
-        val item = searchItemInputT("Select an item to spawn:")
+    suspend fun QueueTask.spawn2(player: Player): Item? {
+        val item = searchItemInputT(player, "Select an item to spawn:")
         if (item == -1) {
             return null
         }
         val amount =
-            when (options("1", "5", "X", "Max", title = "How many would you like to spawn?")) {
+            when (options(player, "1", "5", "X", "Max", title = "How many would you like to spawn?")) {
                 1 -> 1
                 2 -> 5
-                3 -> inputInt("Enter amount to spawn")
+                3 -> inputInt(player, "Enter amount to spawn")
                 4 -> Int.MAX_VALUE
                 else -> return null
             }
@@ -58,16 +59,16 @@ class SpawnItemPlugin(
         return Item(item, add.completed)
     }
 
-    suspend fun QueueTask.spawn(): Item? {
-        val item = searchItemInput("Select an item to spawn:")
+    suspend fun QueueTask.spawn(player: Player): Item? {
+        val item = searchItemInput(player, "Select an item to spawn:")
         if (item == -1) {
             return null
         }
         val amount =
-            when (options("1", "5", "X", "Max", title = "How many would you like to spawn?")) {
+            when (options(player, "1", "5", "X", "Max", title = "How many would you like to spawn?")) {
                 1 -> 1
                 2 -> 5
-                3 -> inputInt("Enter amount to spawn")
+                3 -> inputInt(player, "Enter amount to spawn")
                 4 -> Int.MAX_VALUE
                 else -> return null
             }
