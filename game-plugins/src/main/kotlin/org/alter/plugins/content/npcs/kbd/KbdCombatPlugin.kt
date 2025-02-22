@@ -1,22 +1,14 @@
 package org.alter.plugins.content.npcs.kbd
 
 import org.alter.api.*
-import org.alter.api.cfg.*
-import org.alter.api.dsl.*
 import org.alter.api.ext.*
 import org.alter.game.*
 import org.alter.game.model.*
-import org.alter.game.model.attr.*
 import org.alter.game.model.combat.AttackStyle
 import org.alter.game.model.combat.CombatClass
 import org.alter.game.model.combat.CombatStyle
-import org.alter.game.model.container.*
-import org.alter.game.model.container.key.*
 import org.alter.game.model.entity.*
-import org.alter.game.model.item.*
 import org.alter.game.model.queue.*
-import org.alter.game.model.shop.*
-import org.alter.game.model.timer.*
 import org.alter.game.plugin.*
 import org.alter.plugins.content.combat.*
 import org.alter.plugins.content.combat.formula.DragonfireFormula
@@ -33,59 +25,57 @@ class KbdCombatPlugin(
     init {
         onNpcCombat("npc.king_black_dragon") {
             npc.queue {
-                combat(this)
+                npc.combat(this)
             }
         }
     }
 
-    suspend fun combat(it: QueueTask) {
-        val npc = it.npc
-        var target = npc.getCombatTarget() ?: return
+    private suspend fun Npc.combat(it: QueueTask) {
+        var target = getCombatTarget() ?: return
 
-        while (npc.canEngageCombat(target)) {
-            npc.facePawn(target)
-            if (npc.moveToAttackRange(it, target, distance = 6, projectile = true) && npc.isAttackDelayReady()) {
-                if (world.chance(1, 4) && npc.canAttackMelee(it, target, moveIfNeeded = false)) {
-                    melee_attack(npc, target)
+        while (canEngageCombat(target)) {
+            facePawn(target)
+            if (moveToAttackRange(it, target, distance = 6, projectile = true) && isAttackDelayReady()) {
+                if (this.world.chance(1, 4) && canAttackMelee(it, target, moveIfNeeded = false)) {
+                    this.meleeAttack(target)
                 } else {
-                    when (world.random(3)) {
-                        0 -> fire_attack(npc, target)
-                        1 -> poison_attack(npc, target)
-                        2 -> freeze_attack(npc, target)
-                        3 -> shock_attack(npc, target)
+                    when (this.world.random(3)) {
+                        0 -> fireAttack(this, target)
+                        1 -> this.poisonAttack(target)
+                        2 -> this.freezeAttack(target)
+                        3 -> this.shockAttack(target)
                     }
                 }
-                npc.postAttackLogic(target)
+                postAttackLogic(target)
             }
             it.wait(1)
-            target = npc.getCombatTarget() ?: break
+            target = getCombatTarget() ?: break
         }
 
-        npc.resetFacePawn()
-        npc.removeCombatTarget()
+        resetFacePawn()
+        removeCombatTarget()
     }
 
-    fun melee_attack(
-        npc: Npc,
+    private fun Npc.meleeAttack(
         target: Pawn,
     ) {
-        if (world.chance(1, 2)) {
+        if (this.world.chance(1, 2)) {
             // Headbutt attack
-            npc.prepareAttack(CombatClass.MELEE, CombatStyle.STAB, AttackStyle.ACCURATE)
-            npc.animate(91)
+            prepareAttack(CombatClass.MELEE, CombatStyle.STAB, AttackStyle.ACCURATE)
+            animate(91)
         } else {
             // Claw attack
-            npc.prepareAttack(CombatClass.MELEE, CombatStyle.SLASH, AttackStyle.AGGRESSIVE)
-            npc.animate(80)
+            prepareAttack(CombatClass.MELEE, CombatStyle.SLASH, AttackStyle.AGGRESSIVE)
+            animate(80)
         }
-        if (MeleeCombatFormula.getAccuracy(npc, target) >= world.randomDouble()) {
-            target.hit(world.random(26), type = HitType.HIT, delay = 1)
+        if (MeleeCombatFormula.getAccuracy(this, target) >= this.world.randomDouble()) {
+            target.hit(this.world.random(26), type = HitType.HIT, delay = 1)
         } else {
             target.hit(damage = 0, type = HitType.BLOCK, delay = 1)
         }
     }
 
-    fun fire_attack(
+    private fun fireAttack(
         npc: Npc,
         target: Pawn,
     ) {
@@ -100,21 +90,20 @@ class KbdCombatPlugin(
         )
     }
 
-    fun poison_attack(
-        npc: Npc,
+    private fun Npc.poisonAttack(
         target: Pawn,
     ) {
-        val projectile = npc.createProjectile(target, gfx = 394, startHeight = 43, endHeight = 31, delay = 51, angle = 15, steepness = 127)
-        npc.prepareAttack(CombatClass.MAGIC, CombatStyle.MAGIC, AttackStyle.ACCURATE)
-        npc.animate(82)
-        world.spawn(projectile)
+        val projectile = createProjectile(target, gfx = 394, startHeight = 43, endHeight = 31, delay = 51, angle = 15, steepness = 127)
+        prepareAttack(CombatClass.MAGIC, CombatStyle.MAGIC, AttackStyle.ACCURATE)
+        animate(82)
+        this.world.spawn(projectile)
         val hit =
-            npc.dealHit(
+            dealHit(
                 target = target,
                 formula = DragonfireFormula(maxHit = 65, minHit = 10),
-                delay = RangedCombatStrategy.getHitDelay(npc.getFrontFacingTile(target), target.getCentreTile()) - 1,
+                delay = RangedCombatStrategy.getHitDelay(getFrontFacingTile(target), target.getCentreTile()) - 1,
             ) {
-                if (it.landed() && world.chance(1, 6)) {
+                if (it.landed() && this.world.chance(1, 6)) {
                     target.poison(initialDamage = 8) {
                         if (target is Player) {
                             target.message("You have been poisoned.")
@@ -127,21 +116,20 @@ class KbdCombatPlugin(
         }
     }
 
-    fun freeze_attack(
-        npc: Npc,
+    private fun Npc.freezeAttack(
         target: Pawn,
     ) {
-        val projectile = npc.createProjectile(target, gfx = 395, startHeight = 43, endHeight = 31, delay = 51, angle = 15, steepness = 127)
-        npc.prepareAttack(CombatClass.MAGIC, CombatStyle.MAGIC, AttackStyle.ACCURATE)
-        npc.animate(83)
-        world.spawn(projectile)
+        val projectile = createProjectile(target, gfx = 395, startHeight = 43, endHeight = 31, delay = 51, angle = 15, steepness = 127)
+        prepareAttack(CombatClass.MAGIC, CombatStyle.MAGIC, AttackStyle.ACCURATE)
+        animate(83)
+        this.world.spawn(projectile)
         val hit =
-            npc.dealHit(
+            dealHit(
                 target = target,
                 formula = DragonfireFormula(maxHit = 65, minHit = 10),
-                delay = RangedCombatStrategy.getHitDelay(npc.getFrontFacingTile(target), target.getCentreTile()) - 1,
+                delay = RangedCombatStrategy.getHitDelay(getFrontFacingTile(target), target.getCentreTile()) - 1,
             ) {
-                if (it.landed() && world.chance(1, 6)) {
+                if (it.landed() && this.world.chance(1, 6)) {
                     target.freeze(cycles = 6) {
                         if (target is Player) {
                             target.message("You have been frozen.")
@@ -154,21 +142,20 @@ class KbdCombatPlugin(
         }
     }
 
-    fun shock_attack(
-        npc: Npc,
+    private fun Npc.shockAttack(
         target: Pawn,
     ) {
-        val projectile = npc.createProjectile(target, gfx = 396, startHeight = 43, endHeight = 31, delay = 51, angle = 15, steepness = 127)
-        npc.prepareAttack(CombatClass.MAGIC, CombatStyle.MAGIC, AttackStyle.ACCURATE)
-        npc.animate(84)
-        world.spawn(projectile)
+        val projectile = createProjectile(target, gfx = 396, startHeight = 43, endHeight = 31, delay = 51, angle = 15, steepness = 127)
+        prepareAttack(CombatClass.MAGIC, CombatStyle.MAGIC, AttackStyle.ACCURATE)
+        animate(84)
+        this.world.spawn(projectile)
         val hit =
-            npc.dealHit(
+            dealHit(
                 target = target,
                 formula = DragonfireFormula(maxHit = 65, minHit = 12),
-                delay = RangedCombatStrategy.getHitDelay(npc.getFrontFacingTile(target), target.getCentreTile()) - 1,
+                delay = RangedCombatStrategy.getHitDelay(getFrontFacingTile(target), target.getCentreTile()) - 1,
             ) {
-                if (it.landed() && world.chance(1, 6)) {
+                if (it.landed() && this.world.chance(1, 6)) {
                     if (target is Player) {
                         arrayOf(Skills.ATTACK, Skills.STRENGTH, Skills.DEFENCE, Skills.MAGIC, Skills.RANGED).forEach { skill ->
                             target.getSkills().alterCurrentLevel(skill, -2)

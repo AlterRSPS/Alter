@@ -106,7 +106,7 @@ class TradingPlugin(
                             2 -> 5
                             3 -> 10
                             4 -> inventory.getItemCount(item.id)
-                            5 -> inputInt("Enter amount:")
+                            5 -> inputInt(player, "Enter amount:")
                             else -> 1
                         }
 
@@ -139,7 +139,7 @@ class TradingPlugin(
                             2 -> 5
                             3 -> 10
                             4 -> container.getItemCount(item.id)
-                            5 -> inputInt("Enter amount:")
+                            5 -> inputInt(player, "Enter amount:")
                             else -> 1
                         }
 

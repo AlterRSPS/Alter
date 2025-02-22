@@ -10,6 +10,7 @@ import org.alter.game.model.attr.COMBAT_TARGET_FOCUS_ATTR
 import org.alter.game.model.attr.FACING_PAWN_ATTR
 import org.alter.game.model.attr.INTERACTING_PLAYER_ATTR
 import org.alter.game.model.entity.Npc
+import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.move.MovementQueue.StepType
 import org.alter.game.model.move.hasMoveDestination
@@ -37,7 +38,7 @@ class CombatPlugin(
             pawn.queue {
                 while (true) {
                     // @TODO Npc can follow player up to 16 tiles from spawn point, some npc will have exceptional range so property for overwrite should be added.
-                    if (!cycle(this)) {
+                    if (!cycle(pawn, this)) {
                         break
                     }
                     wait(1)
@@ -54,8 +55,7 @@ class CombatPlugin(
     /**
      * @TODO Bigger creatures seem to have bugged range + their route finding sucks due to conditions given.
      */
-    suspend fun cycle(queue: QueueTask): Boolean {
-        val pawn = queue.pawn
+    suspend fun cycle(pawn: Pawn, queue: QueueTask): Boolean {
         val target = pawn.getCombatTarget() ?: return false
         val strategy = CombatConfigs.getCombatStrategy(pawn)
         val attackRange = strategy.getAttackRange(pawn)
@@ -141,7 +141,7 @@ class CombatPlugin(
             if (!target.isAlive()) {
                 return false
             }
-            return cycle(queue)
+            return cycle(pawn, queue)
         }
         if (!Combat.canEngage(pawn, target)) {
             Combat.reset(pawn)

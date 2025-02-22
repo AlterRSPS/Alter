@@ -115,7 +115,7 @@ class LadderPlugin(
 
     fun climbladder(player: Player) {
         player.queue {
-            when (options("Climb up the ladder.", "Climb down the ladder")) {
+            when (options(player, "Climb up the ladder.", "Climb down the ladder")) {
                 1 -> climbupladder(player)
                 2 -> climbdownladder(player)
             }
@@ -134,7 +134,7 @@ class LadderPlugin(
 
     fun climbstairs(player: Player) {
         player.queue {
-            when (options("Climb up the stairs.", "Climb down the stairs.")) {
+            when (options(player, "Climb up the stairs.", "Climb down the stairs.")) {
                 1 -> climbupstairs(player)
                 2 -> climbdownstairs(player)
             }

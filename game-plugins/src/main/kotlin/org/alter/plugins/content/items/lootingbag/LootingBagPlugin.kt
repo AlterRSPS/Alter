@@ -91,7 +91,7 @@ class LootingBagPlugin(
                 player.queue {
                     val container = player.containers[CONTAINER_KEY]
                     val destroy =
-                        destroyItem(
+                        destroyItem(player,
                             note = if (container != null && container.hasAny) "If you destroy it, the contents will be lost." else "The bag is empty. Are you sure you want to destroy it?",
                             item = itmID,
                             amount = 1,
@@ -110,7 +110,7 @@ class LootingBagPlugin(
                 1 -> store(player, slot = slot, amount = 1)
                 2 -> store(player, slot = slot, amount = 5)
                 3 -> store(player, slot = slot, amount = Int.MAX_VALUE)
-                4 -> player.queue { store(player, slot = slot, amount = inputInt()) }
+                4 -> player.queue { store(player, slot = slot, amount = inputInt(player)) }
                 5 -> {
                     val container = player.containers.computeIfAbsent(CONTAINER_KEY) { ItemContainer(CONTAINER_KEY) }
                     val item = container[slot] ?: return@onButton
@@ -133,7 +133,7 @@ class LootingBagPlugin(
                 1 -> bank(player, slot = slot, amount = 1)
                 2 -> bank(player, slot = slot, amount = 5)
                 3 -> bank(player, slot = slot, amount = Int.MAX_VALUE)
-                4 -> player.queue { bank(player, slot = slot, amount = inputInt()) }
+                4 -> player.queue { bank(player, slot = slot, amount = inputInt(player)) }
                 10 -> {
                     val item = player.containers[CONTAINER_KEY]?.get(slot) ?: return@onButton
                     world.sendExamine(player, item.id, ExamineEntityType.ITEM)
@@ -266,7 +266,7 @@ class LootingBagPlugin(
 
     fun settings(p: Player) {
         p.queue {
-            when (options("... ask how many to store.", "... always store as many as possible.", title = "When using items on the bag...")) {
+            when (options(p, "... ask how many to store.", "... always store as many as possible.", title = "When using items on the bag...")) {
                 // TODO: impl effect
                 1 -> {
                     p.message("When using items on the bag, you will be asked how many of that item you wish to store in the bag.")

@@ -51,15 +51,15 @@ object Prayers {
     }
 
     suspend fun toggle(
+        p: Player,
         it: QueueTask,
         prayer: Prayer,
     ) {
-        val p = it.player
 
         if (p.isDead() || !p.lock.canUsePrayer()) {
             p.syncVarp(ACTIVE_PRAYERS_VARP)
             return
-        } else if (!checkRequirements(it, prayer)) {
+        } else if (!checkRequirements(p, it, prayer)) {
             return
         } else if (prayer.group == PrayerGroup.OVERHEAD && p.timers.has(DISABLE_OVERHEADS)) {
             p.syncVarp(ACTIVE_PRAYERS_VARP)
@@ -167,7 +167,7 @@ object Prayers {
 
         it.player.queue {
             if (!enabled) {
-                if (checkRequirements(this, prayer)) {
+                if (checkRequirements(player,this, prayer)) {
                     val others =
                         Prayer.values.filter { other ->
                             prayer != other && other.group != null &&
@@ -238,45 +238,45 @@ object Prayers {
     ): Boolean = p.getVarbit(prayer.varbit) != 0
 
     private suspend fun checkRequirements(
+        p: Player,
         it: QueueTask,
         prayer: Prayer,
     ): Boolean {
-        val p = it.player
 
         if (p.getSkills().getBaseLevel(Skills.PRAYER) < prayer.level) {
             p.syncVarp(ACTIVE_PRAYERS_VARP)
-            it.messageBox("You need a <col=000080>Prayer</col> level of ${prayer.level} to use <col=000080>${prayer.named}.")
+            it.messageBox(p, "You need a <col=000080>Prayer</col> level of ${prayer.level} to use <col=000080>${prayer.named}.")
             return false
         }
 
         // TODO(Tom): get correct messages for these unlockable
         if (prayer == Prayer.PRESERVE && p.getVarbit(PRESERVE_UNLOCK_VARBIT) == 0) {
             p.syncVarp(ACTIVE_PRAYERS_VARP)
-            it.messageBox("You have not unlocked this prayer.")
+            it.messageBox(p, "You have not unlocked this prayer.")
             return false
         }
 
         if (prayer == Prayer.CHIVALRY && p.getVarbit(KING_RANSOMS_QUEST_VARBIT) < 8) {
             p.syncVarp(ACTIVE_PRAYERS_VARP)
-            it.messageBox("You have not unlocked this prayer.")
+            it.messageBox(p,"You have not unlocked this prayer.")
             return false
         }
 
         if (prayer == Prayer.PIETY && p.getVarbit(KING_RANSOMS_QUEST_VARBIT) < 8) {
             p.syncVarp(ACTIVE_PRAYERS_VARP)
-            it.messageBox("You have not unlocked this prayer.")
+            it.messageBox(p,"You have not unlocked this prayer.")
             return false
         }
 
         if (prayer == Prayer.RIGOUR && p.getVarbit(RIGOUR_UNLOCK_VARBIT) == 0) {
             p.syncVarp(ACTIVE_PRAYERS_VARP)
-            it.messageBox("You have not unlocked this prayer.")
+            it.messageBox(p,"You have not unlocked this prayer.")
             return false
         }
 
         if (prayer == Prayer.AUGURY && p.getVarbit(AUGURY_UNLOCK_VARBIT) == 0) {
             p.syncVarp(ACTIVE_PRAYERS_VARP)
-            it.messageBox("You have not unlocked this prayer.")
+            it.messageBox(p,"You have not unlocked this prayer.")
             return false
         }
 

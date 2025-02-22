@@ -58,7 +58,7 @@ class SearchHayPlugin(
                 if (add.hasFailed()) {
                     world.spawn(GroundItem(item = getRSCM("item.needle"), amount = 1, tile = p.tile, owner = p))
                 }
-                it.chatPlayer("Wow! A needle!<br>Now what are the chances of finding that?")
+                it.chatPlayer(p, "Wow! A needle!<br>Now what are the chances of finding that?")
             }
             1 -> {
                 p.hit(damage = 1)

@@ -42,7 +42,7 @@ object ObjectPathAction {
                 player.write(SetMapFlag(255, 255))
             }
 
-            val route = walkTo(obj, lineOfSightRange)
+            val route = walkTo(player, obj, lineOfSightRange)
             if (route.success) {
                 if (lineOfSightRange == null || lineOfSightRange > 0) {
                     faceObj(player, obj)
@@ -99,11 +99,10 @@ object ObjectPathAction {
     }
 
     private suspend fun QueueTask.walkTo(
+        pawn: Pawn,
         obj: GameObject,
         lineOfSightRange: Int?,
     ): Route {
-        val pawn = ctx as Pawn
-
         val def = obj.getDef()
         val tile = obj.tile
         val type = obj.type

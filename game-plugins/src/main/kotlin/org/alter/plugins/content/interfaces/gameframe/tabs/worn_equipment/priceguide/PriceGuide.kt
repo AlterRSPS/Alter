@@ -164,11 +164,11 @@ object PriceGuide {
     }
 
     suspend fun remove(
+        p: Player,
         it: QueueTask,
         slot: Int,
         opt: Int,
     ) {
-        val p = it.player
         val container = p.attr[GUIDE_CONTAINER] ?: return
         val item = container[slot] ?: return
 
@@ -178,7 +178,7 @@ object PriceGuide {
                 2 -> 5
                 3 -> 10
                 4 -> container.getItemCount(item.id)
-                5 -> it.inputInt()
+                5 -> it.inputInt(p)
                 10 -> {
                     p.world.sendExamine(p, item.id, ExamineEntityType.ITEM)
                     return
@@ -189,11 +189,11 @@ object PriceGuide {
     }
 
     suspend fun add(
+        p: Player,
         it: QueueTask,
         slot: Int,
         opt: Int,
     ) {
-        val p = it.player
         val container = p.attr[TEMP_INV_CONTAINER] ?: return
         val item = container[slot] ?: return
 
@@ -203,7 +203,7 @@ object PriceGuide {
                 2 -> 5
                 3 -> 10
                 4 -> container.getItemCount(item.id)
-                5 -> it.inputInt()
+                5 -> it.inputInt(p)
                 10 -> {
                     p.world.sendExamine(p, item.id, ExamineEntityType.ITEM)
                     return
