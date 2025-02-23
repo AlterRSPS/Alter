@@ -24,7 +24,7 @@ class BankerPlugin(
         bankers.forEach { banker ->
             onNpcOption(npc = banker, option = "talk-to", lineOfSightDistance = 2) {
                 player.queue {
-                    dialog(this)
+                    dialog(player, this)
                 }
             }
             onNpcOption(npc = banker, option = "bank", lineOfSightDistance = 2) {
@@ -36,27 +36,34 @@ class BankerPlugin(
         }
     }
 
-    suspend fun dialog(it: QueueTask) {
-        it.chatNpc("Good day, how may I help you?")
-        when (options(it)) {
-            1 -> it.player.openBank()
-            2 -> openPin(it.player)
-            3 -> openCollect(it.player)
-            4 -> whatIsThisPlace(it)
+    suspend fun dialog(player: Player, it: QueueTask) {
+        it.chatNpc(player, "Good day, how may I help you?")
+        when (options(player, it)) {
+            1 -> player.openBank()
+            2 -> openPin(player)
+            3 -> openCollect(player)
+            4 -> whatIsThisPlace(player, it)
         }
     }
 
-    suspend fun options(it: QueueTask): Int = it.options(
-        "I'd like to access my bank account, please.",
-        "I'd like to check my PIN settings.",
-        "I'd like to collect items.",
-        "What is this place?",
-    )
+    suspend fun options(player: Player, it: QueueTask): Int =
+        it.options(
+            player,
+            "I'd like to access my bank account, please.",
+            "I'd like to check my PIN settings.",
+            "I'd like to collect items.",
+            "What is this place?",
+        )
 
-    private suspend fun whatIsThisPlace(it: QueueTask) {
-        it.chatNpc("This is a branch of the Bank of Gielinor. We have<br>branches in many towns.", animation = 568)
-        it.chatPlayer("And what do you do?", animation = 554)
+    suspend fun whatIsThisPlace(player: Player, it: QueueTask) {
         it.chatNpc(
+            player,
+            "This is a branch of the Bank of Gielinor. We have<br>branches in many towns.",
+            animation = 568
+        )
+        it.chatPlayer(player, "And what do you do?", animation = 554)
+        it.chatNpc(
+            player,
             "We will look after your items and money for you.<br>Leave your valuables with us if you want to keep them<br>safe.",
             animation = 569,
         )

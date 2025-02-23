@@ -48,7 +48,7 @@ object EmotesTab {
     ) {
         if (emote.varbit != -1 && p.getVarbit(emote.varbit) != emote.requiredVarbitValue) {
             val description = emote.unlockDescription ?: "You have not unlocked this emote yet."
-            p.queue { messageBox(description) }
+            p.queue { messageBox(p, description) }
             return
         }
 

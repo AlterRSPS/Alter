@@ -221,7 +221,7 @@ class BankPlugin(
                 amount = player.inventory.getItemCount(item.id)
             } else if (amount == -1) {
                 player.queue(TaskPriority.WEAK) {
-                    amount = inputInt("How many would you like to bank?")
+                    amount = inputInt(player, "How many would you like to bank?")
                     if (amount > 0) {
                         player.setVarbit(LAST_X_INPUT, amount)
                         deposit(player, item.id, amount)
@@ -310,7 +310,7 @@ class BankPlugin(
 
             if (amount == -1) {
                 player.queue(TaskPriority.WEAK) {
-                    amount = inputInt("How many would you like to withdraw?")
+                    amount = inputInt(player, "How many would you like to withdraw?")
                     if (amount > 0) {
                         player.setVarbit(LAST_X_INPUT, amount)
                         withdraw(player, item.id, amount, slot, placehold)
