@@ -30,12 +30,12 @@ class AlkharidGate(
                         "object.gate_44053" -> handleGate(player, world)
                     }
                 } else {
-                    player.queue { this.dialog() }
+                    player.queue { dialog(player) }
                 }
             }
 
             onObjOption(obj, "open") {
-                player.queue { dialog() }
+                player.queue { dialog(player) }
             }
         }
     }
@@ -64,23 +64,33 @@ class AlkharidGate(
         }
     }
 
-    suspend fun QueueTask.dialog() {
-        chatPlayer("Can I come through this gate?", animation = 588)
-        chatNpc(npc = guard, message = "You must pay a toll of 10 gold coins to pass.", animation = 590)
+    suspend fun QueueTask.dialog(player: Player) {
+        chatPlayer(player, "Can I come through this gate?", animation = 588)
+        chatNpc(
+            player = player,
+            npc = guard,
+            message = "You must pay a toll of 10 gold coins to pass.",
+            animation = 590
+        )
 
-        when (options("No thank you, I'll walk around.", "Who does my money go to?", "Yes, ok.")) {
+        when (options(player, "No thank you, I'll walk around.", "Who does my money go to?", "Yes, ok.")) {
             1 -> {
-                chatPlayer("No thank you, I'll walk around.", animation = 554)
-                chatNpc(npc = guard, message = "Ok suit yourself.", animation = 588)
+                chatPlayer(player, "No thank you, I'll walk around.", animation = 554)
+                chatNpc(player = player, npc = guard, message = "Ok suit yourself.", animation = 588)
             }
 
             2 -> {
-                chatPlayer("Who does my money go to?", animation = 554)
-                chatNpc(npc = guard, message = "The money goes to the city of Al-Kharid.", animation = 590)
+                chatPlayer(player, "Who does my money go to?", animation = 554)
+                chatNpc(
+                    player = player,
+                    npc = guard,
+                    message = "The money goes to the city of Al-Kharid.",
+                    animation = 590
+                )
             }
 
             3 -> {
-                chatPlayer("Yes, ok.", animation = 554)
+                chatPlayer(player, "Yes, ok.", animation = 554)
 
                 /** TODO
                  * make different walking from multi tiles

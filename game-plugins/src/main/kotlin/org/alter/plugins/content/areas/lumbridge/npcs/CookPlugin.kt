@@ -6,6 +6,7 @@ import org.alter.api.ext.player
 import org.alter.game.Server
 import org.alter.game.model.Direction
 import org.alter.game.model.World
+import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.plugin.KotlinPlugin
 import org.alter.game.plugin.PluginRepository
@@ -20,13 +21,13 @@ class CookPlugin (
         spawnNpc("npc.cook_4626", x = 3209, z = 3215, direction = Direction.SOUTH)
 
         onNpcOption("npc.cook_4626", option = "talk-to") {
-            player.queue { dialog() }
+            player.queue { dialog(player) }
         }
     }
 
-    suspend fun QueueTask.dialog() {
-        chatPlayer("Hello there, cook!")
-        chatPlayer("Do you have anything for me?")
-        chatNpc("Sorry, not yet.")
+    suspend fun QueueTask.dialog(player: Player) {
+        chatPlayer(player, "Hello there, cook!")
+        chatPlayer(player, "Do you have anything for me?")
+        chatNpc(player, "Sorry, not yet.")
     }
 }

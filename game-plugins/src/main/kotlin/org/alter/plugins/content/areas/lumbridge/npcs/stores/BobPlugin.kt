@@ -47,7 +47,7 @@ class BobPlugin(
 
         onNpcOption("npc.bob_10619", option = "talk-to")
         {
-            player.queue { dialog() }
+            player.queue { dialog(player) }
         }
 
         onNpcOption("npc.bob_10619", option = "trade")
@@ -58,18 +58,18 @@ class BobPlugin(
 
     fun Player.shop() = this.openShop("Bob's Brilliant Axes.")
 
-    suspend fun QueueTask.dialog() {
-        when (options(*dialogOptions.toTypedArray())) {
+    suspend fun QueueTask.dialog(player: Player) {
+        when (options(player, *dialogOptions.toTypedArray())) {
             1 -> {
-                chatPlayer("Give me a quest!")
-                chatNpc("Get yer own!")
+                chatPlayer(player, "Give me a quest!")
+                chatNpc(player, "Get yer own!")
             }
 
             2 -> player.shop()
 
             3 -> {
-                chatPlayer("Can you repair my items for me?")
-                chatNpc("Of course I'll repair it, though the materials may cost you. Just hand me the item and I'll take a look.")
+                chatPlayer(player, "Can you repair my items for me?")
+                chatNpc(player, "Of course I'll repair it, though the materials may cost you. Just hand me the item and I'll take a look.")
             }
         }
     }

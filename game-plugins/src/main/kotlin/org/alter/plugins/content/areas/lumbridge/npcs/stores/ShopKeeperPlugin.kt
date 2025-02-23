@@ -54,7 +54,7 @@ class ShopKeeperPlugin(
         }
 
         shopkeepers.forEach {
-            onNpcOption(it, option = "talk-to") { player.queue { dialog() } }
+            onNpcOption(it, option = "talk-to") { player.queue { dialog(player) } }
 
             onNpcOption(it, option = "trade") { player.shop() }
         }
@@ -62,12 +62,12 @@ class ShopKeeperPlugin(
 
     fun Player.shop() = this.openShop("Lumbridge General Store")
 
-    suspend fun QueueTask.dialog() {
-        chatNpc("Can I help you at all?")
+    suspend fun QueueTask.dialog(player: Player) {
+        chatNpc(player, "Can I help you at all?")
 
-        when (options(*dialogOptions.toTypedArray())) {
+        when (options(player, *dialogOptions.toTypedArray())) {
             1 -> player.shop()
-            2 -> chatPlayer("No thanks.")
+            2 -> chatPlayer(player, "No thanks.")
         }
     }
 }
