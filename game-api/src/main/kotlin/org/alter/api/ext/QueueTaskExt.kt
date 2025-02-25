@@ -364,14 +364,14 @@ suspend fun QueueTask.itemMessageBox(
 suspend fun QueueTask.doubleItemMessageBox(
     player: Player,
     message: String,
-    item1: Int,
-    item2: Int,
+    item1: String,
+    item2: String,
     amount1: Int = 1,
     amount2: Int = 1,
 ) {
-    player.setComponentItem(interfaceId = 11, component = 1, item = item1, amountOrZoom = amount1)
+    player.setComponentItem(interfaceId = 11, component = 1, item = getRSCM(item1), amountOrZoom = amount1)
     player.setComponentText(interfaceId = 11, component = 2, text = message)
-    player.setComponentItem(interfaceId = 11, component = 3, item = item2, amountOrZoom = amount2)
+    player.setComponentItem(interfaceId = 11, component = 3, item = getRSCM(item2), amountOrZoom = amount2)
     player.setComponentText(interfaceId = 11, component = 4, text = "Click here to continue")
     player.setInterfaceEvents(interfaceId = 11, component = 4, range = -1..-1, setting = 1)
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 11)

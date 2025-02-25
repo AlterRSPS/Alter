@@ -128,13 +128,9 @@ abstract class KotlinPlugin(
         height: Int = 0,
         walkRadius: Int = 0,
         direction: Direction = Direction.SOUTH,
-    ) {
-        val n = Npc(getRSCM(npc), Tile(x, z, height), world)
-        n.respawns = true
-        n.walkRadius = walkRadius
-        n.lastFacingDirection = direction
-        r.npcSpawns.add(n)
-    }
+        active: Boolean = true,
+    ) = spawnNpc(npc, Tile(x, z, height), walkRadius, direction, active)
+
 
     /**
      * Spawn an [Npc] on the given [tile].
@@ -144,14 +140,19 @@ abstract class KotlinPlugin(
         tile: Tile,
         walkRadius: Int = 0,
         direction: Direction = Direction.SOUTH,
+        active: Boolean = true,
     ) {
         val n = Npc(getRSCM(npc), tile, world)
         n.respawns = true
         n.walkRadius = walkRadius
         n.lastFacingDirection = direction
+        n.setActive(active)
         r.npcSpawns.add(n)
     }
-    fun spawnObj(obj: String, tile: Tile, type: Int = 10, rot: Int = 0) = spawnObj(obj, tile.x, tile.z, tile.height, type, rot)
+
+    fun spawnObj(obj: String, tile: Tile, type: Int = 10, rot: Int = 0) =
+        spawnObj(obj, tile.x, tile.z, tile.height, type, rot)
+
     /**
      * Spawn a [DynamicObject] on the given coordinates.
      */
@@ -226,7 +227,9 @@ abstract class KotlinPlugin(
         val def = getItem(getRSCM(item))
         val option = def.interfaceOptions.indexOfFirst { it?.lowercase() == opt }
         check(option != -1) {
-            "Option \"$option\" not found for item $item [options=${def.interfaceOptions.filterNotNull().filter { it.isNotBlank() }}]"
+            "Option \"$option\" not found for item $item [options=${
+                def.interfaceOptions.filterNotNull().filter { it.isNotBlank() }
+            }]"
         }
         r.bindItem(def.id, option + 1, logic)
     }
@@ -246,14 +249,15 @@ abstract class KotlinPlugin(
         val slot = def.equipmentMenu.indexOfFirst { it?.lowercase() == opt }
 
         check(slot != -1) {
-            "Option \"$option\" not found for item equipment $item [options=${def.equipmentMenu.filterNotNull().filter {
-                it.isNotBlank()
-            }}]"
+            "Option \"$option\" not found for item equipment $item [options=${
+                def.equipmentMenu.filterNotNull().filter {
+                    it.isNotBlank()
+                }
+            }]"
         }
 
         r.bindEquipmentOption(rItem, slot + 1, logic)
     }
-
 
 
     /**
@@ -262,12 +266,15 @@ abstract class KotlinPlugin(
      *
      * This method should be used over the option-int variant whenever possible.
      */
-    fun onObjOption(obj: String,
-                    option: String,
-                    lineOfSightDistance: Int = -1,
-                    logic: (Plugin).() -> Unit) {
+    fun onObjOption(
+        obj: String,
+        option: String,
+        lineOfSightDistance: Int = -1,
+        logic: (Plugin).() -> Unit
+    ) {
         onObjOption(getRSCM(obj), option, lineOfSightDistance, logic)
     }
+
     fun onObjOption(
         obj: Int,
         option: String,
@@ -280,14 +287,14 @@ abstract class KotlinPlugin(
 
         check(
             slot != -1,
-        ) { "Option \"$option\" not found for object $obj [options=${def.actions.filterNotNull().filter { it.isNotBlank() }}]" }
+        ) {
+            "Option \"$option\" not found for object $obj [options=${
+                def.actions.filterNotNull().filter { it.isNotBlank() }
+            }]"
+        }
 
         r.bindObject(obj, slot + 1, lineOfSightDistance, logic)
     }
-
-
-
-
 
 
     fun itemHasGroundOption(
@@ -360,7 +367,11 @@ abstract class KotlinPlugin(
 
         check(
             slot != -1,
-        ) { "Option \"$option\" not found for npc $npc [options=${def.actions.filterNotNull().filter { it.isNotBlank() }}]" }
+        ) {
+            "Option \"$option\" not found for npc $npc [options=${
+                def.actions.filterNotNull().filter { it.isNotBlank() }
+            }]"
+        }
 
         r.bindNpc(rNpc, slot + 1, lineOfSightDistance, logic)
     }
@@ -381,7 +392,9 @@ abstract class KotlinPlugin(
         val slot = def.options.indexOfFirst { it?.lowercase() == opt }
 
         check(slot != -1) {
-            "Option \"$option\" not found for ground item $item [options=${def.options.filterNotNull().filter { it.isNotBlank() }}]"
+            "Option \"$option\" not found for ground item $item [options=${
+                def.options.filterNotNull().filter { it.isNotBlank() }
+            }]"
         }
 
         r.bindGroundItem(rItem, slot + 1, logic)
@@ -865,6 +878,7 @@ abstract class KotlinPlugin(
         }
         return times
     }
+
     fun objHasOption1(
         obj: String,
         option: String,
