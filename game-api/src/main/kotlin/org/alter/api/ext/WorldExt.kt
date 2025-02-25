@@ -5,6 +5,7 @@ import org.alter.game.model.collision.WALL_DIAGONAL
 import org.alter.game.model.entity.DynamicObject
 import org.alter.game.model.entity.GameObject
 import org.alter.rscm.RSCM.getRSCM
+import kotlin.math.abs
 
 fun World.openDoor(
     obj: GameObject,
@@ -13,7 +14,7 @@ fun World.openDoor(
     invertTransform: Boolean = false,
 ): GameObject {
     val oldRot = obj.rot
-    val newRot = Math.abs((oldRot + (if (invertRot) -1 else 1)) and 0x3)
+    val newRot = abs((oldRot + (if (invertRot) -1 else 1)) and 0x3)
     val diagonal = obj.type == WALL_DIAGONAL
 
     val newTile =
@@ -46,7 +47,7 @@ fun World.closeDoor(
     invertTransform: Boolean = false,
 ): GameObject {
     val oldRot = obj.rot
-    val newRot = Math.abs((oldRot + (if (invertRot) 1 else -1)) and 0x3)
+    val newRot = abs((oldRot + (if (invertRot) 1 else -1)) and 0x3)
     val diagonal = obj.type == WALL_DIAGONAL
 
     val newTile =
