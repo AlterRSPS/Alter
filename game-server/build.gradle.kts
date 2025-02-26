@@ -31,12 +31,84 @@ dependencies {
         implementation(rootProject.projects.plugins.rscm)
         implementation(rootProject.projects.plugins.tools)
         implementation(lib.routefinder)
+        implementation("net.lingala.zip4j:zip4j:2.11.5")
+        implementation("me.tongfei:progressbar:0.9.5")
     }
 }
 sourceSets {
     named("main") {
         kotlin.srcDirs("src/main/kotlin")
         resources.srcDirs("src/main/resources")
+    }
+}
+
+tasks.register<JavaExec>("downloadCache") {
+    description = "Downloads the OSRS cache and XTEA keys based on revision in game.example.yml"
+    group = "application"
+    workingDir = rootProject.projectDir
+    classpath = sourceSets["main"].runtimeClasspath + project(":plugins:tools").sourceSets["main"].runtimeClasspath
+    mainClass.set("dev.openrune.cache.tools.CacheDownloader")
+    
+    // Set environment variables if needed
+    environment("DOWNLOAD_DIR", "${rootProject.projectDir}/data")
+    environment("CACHE_DIR", "${rootProject.projectDir}/data/cache")
+    
+    // Pass arguments to the downloader if needed
+    args = listOf("--verbose")
+
+    // Ensure stdout and stderr are redirected to the console
+    standardOutput = System.out
+    errorOutput = System.err
+}
+
+tasks.register("downloadOSRSCache") {
+    description = "Downloads the latest OSRS cache and XTEA keys"
+    group = "other"
+    dependsOn("downloadCache")
+    
+    doLast {
+        println("\u001B[32m Cache and XTEA keys have been successfully downloaded! \u001B[0m")
+    }
+}
+
+tasks.register("checkCache") {
+    description = "Checks if the OSRS cache and XTEA keys exist"
+    group = "other"
+    
+    doLast {
+        val cacheList = listOf(
+            "/cache/main_file_cache.dat2",
+            "/cache/main_file_cache.idx0",
+            "/cache/main_file_cache.idx1",
+            "/cache/main_file_cache.idx2",
+            "/cache/main_file_cache.idx3",
+            "/cache/main_file_cache.idx4",
+            "/cache/main_file_cache.idx5",
+            "/cache/main_file_cache.idx7",
+            "/cache/main_file_cache.idx8",
+            "/cache/main_file_cache.idx9",
+            "/cache/main_file_cache.idx10",
+            "/cache/main_file_cache.idx11",
+            "/cache/main_file_cache.idx12",
+            "/cache/main_file_cache.idx13",
+            "/cache/main_file_cache.idx14",
+            "/cache/main_file_cache.idx15",
+            "/cache/main_file_cache.idx17",
+            "/cache/main_file_cache.idx18",
+            "/cache/main_file_cache.idx19",
+            "/cache/main_file_cache.idx20",
+            "/cache/main_file_cache.idx255",
+            "xteas.json",
+        )
+        
+        val missingFiles = cacheList.filter { !File("${rootProject.projectDir}/data/$it").exists() }
+        
+        if (missingFiles.isEmpty()) {
+            println("\u001B[32m All required cache files and XTEA keys are present. \u001B[0m")
+        } else {
+            println("\u001B[33m Missing required files: ${missingFiles.joinToString(", ")} \u001B[0m")
+            println("\u001B[33m Please run the 'downloadOSRSCache' task to download them automatically. \u001B[0m")
+        }
     }
 }
 
