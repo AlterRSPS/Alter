@@ -9,6 +9,7 @@ import org.alter.game.model.bits.InfiniteVarsType
 import org.alter.game.model.entity.Player
 import org.alter.game.model.move.hasMoveDestination
 import org.alter.game.model.timer.TimerKey
+import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
 
@@ -24,6 +25,11 @@ object RunEnergy {
     val STAMINA_BOOST = TimerKey("stamina_boost", tickOffline = false)
 
     const val RUN_ENABLED_VARP = Varp.RUN_MODE_VARP
+    
+    // Graceful set bonus constants
+    private const val GRACEFUL_RESTORE_PER_PIECE = 0.03 // 3% per piece
+    private const val GRACEFUL_FULL_SET_BONUS = 0.10 // 10% additional for full set
+    private const val GRACEFUL_FULL_SET_EXTRA_BONUS = 0.20 // 20% more for full set (total 30%)
 
     fun toggle(p: Player) {
         if (p.runEnergy >= 100.0) {
@@ -38,33 +44,77 @@ object RunEnergy {
         if (p.isRunning() && p.hasMoveDestination()) {
             if (!p.hasStorageBit(INFINITE_VARS_STORAGE, InfiniteVarsType.RUN)) {
                 val weight = max(0.0, p.weight)
-                var decrement = (min(weight, 6400.0) / 10000.0) + 64.0
+                val agilityLevel = p.getSkills().getCurrentLevel(Skills.AGILITY)
+                
+                // OSRS Jan 2025 update:
+                // Drain Rate formula: (60 + (67 * Weight / 64)) * (1 - Agility/300)
+                // This is energy lost per tick
+                var drainPerTick = (60.0 + (67.0 * weight / 64.0)) * (1.0 - agilityLevel / 300.0)
+                
                 if (p.timers.has(STAMINA_BOOST)) {
-                    decrement *= 0.3
+                    drainPerTick *= 0.3
                 }
-                p.runEnergy = max(0.0, (p.runEnergy - decrement))
+                
+                // Apply graceful pieces drain reduction if applicable
+                val gracefulPiecesWorn = countGracefulPiecesWorn(p)
+                if (gracefulPiecesWorn > 0) {
+                    // Apply drain reduction per piece
+                    val reductionFactor = 1.0 - (gracefulPiecesWorn * GRACEFUL_RESTORE_PER_PIECE)
+                    drainPerTick *= reductionFactor
+                    
+                    // Apply full set bonus if applicable
+                    if (gracefulPiecesWorn == 6) {
+                        drainPerTick *= (1.0 - GRACEFUL_FULL_SET_BONUS - GRACEFUL_FULL_SET_EXTRA_BONUS)
+                    }
+                }
+                
+                p.runEnergy = max(0.0, p.runEnergy - drainPerTick)
                 if (p.runEnergy <= 0) {
                     p.varps.setState(RUN_ENABLED_VARP, 0)
                 }
                 p.sendRunEnergy(p.runEnergy.toInt())
             }
         } else if (p.runEnergy < 10000.0 && p.lock.canRestoreRunEnergy()) {
-            var recovery = (800.0 + (p.getSkills().getCurrentLevel(Skills.AGILITY) * 100 / 600.0)) / 10000.0
-            if (isWearingFullGrace(p)) {
-                recovery *= 130
+            val agilityLevel = p.getSkills().getCurrentLevel(Skills.AGILITY)
+            
+            // OSRS Jan 2025 update:
+            // Regeneration formula: (Agility level / 10) + 15
+            // This is energy gained per tick
+            var regenPerTick = floor((agilityLevel / 10.0) + 15.0)
+            
+            // Apply graceful bonuses
+            val gracefulPiecesWorn = countGracefulPiecesWorn(p)
+            if (gracefulPiecesWorn > 0) {
+                // Apply per-piece bonus
+                regenPerTick *= (1.0 + (gracefulPiecesWorn * GRACEFUL_RESTORE_PER_PIECE))
+                
+                // Apply full set bonus if applicable
+                if (gracefulPiecesWorn == 6) {
+                    regenPerTick *= (1.0 + GRACEFUL_FULL_SET_BONUS + GRACEFUL_FULL_SET_EXTRA_BONUS)
+                }
             }
-            p.runEnergy = min(10000.0, (p.runEnergy + 500))
+            
+            // Apply recovery rate (the OSRS scaling is 0-10000 for internal energy)
+            p.runEnergy = min(10000.0, p.runEnergy + regenPerTick)
             p.sendRunEnergy(p.runEnergy.toInt())
         }
     }
 
+    private fun countGracefulPiecesWorn(p: Player): Int {
+        var count = 0
+        
+        if ((p.equipment[EquipmentType.HEAD.id]?.id ?: -1) in GRACEFUL_HOODS) count++
+        if ((p.equipment[EquipmentType.CAPE.id]?.id ?: -1) in GRACEFUL_CAPE) count++
+        if ((p.equipment[EquipmentType.CHEST.id]?.id ?: -1) in GRACEFUL_TOP) count++
+        if ((p.equipment[EquipmentType.LEGS.id]?.id ?: -1) in GRACEFUL_LEGS) count++
+        if ((p.equipment[EquipmentType.GLOVES.id]?.id ?: -1) in GRACEFUL_GLOVES) count++
+        if ((p.equipment[EquipmentType.BOOTS.id]?.id ?: -1) in GRACEFUL_BOOTS) count++
+        
+        return count
+    }
+
     private fun isWearingFullGrace(p: Player): Boolean =
-        (p.equipment[EquipmentType.HEAD.id]?.id ?: -1) in GRACEFUL_HOODS &&
-            (p.equipment[EquipmentType.CAPE.id]?.id ?: -1) in GRACEFUL_CAPE &&
-            (p.equipment[EquipmentType.CHEST.id]?.id ?: -1) in GRACEFUL_TOP &&
-            (p.equipment[EquipmentType.LEGS.id]?.id ?: -1) in GRACEFUL_LEGS &&
-            (p.equipment[EquipmentType.GLOVES.id]?.id ?: -1) in GRACEFUL_GLOVES &&
-            (p.equipment[EquipmentType.BOOTS.id]?.id ?: -1) in GRACEFUL_BOOTS
+        countGracefulPiecesWorn(p) == 6
 
 
     /**
