@@ -17,17 +17,10 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Youtube tutorial: https://www.youtube.com/watch?v=2Tu-NTzMbf0
 
 * ### First of all Download:
-* Make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o)
+* [Xteas](https://archive.openrs2.org/caches/runescape/2038/keys.json) Save as `xteas.json` inside `/data/` Directory.
+* [cache-oldschool-live-en-b228-2025-02-05-11-45-05-openrs2](https://archive.openrs2.org/caches/runescape/2038/disk.zip) , And make sure you're using correct Java Version.
+* Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o)
 
-> [!IMPORTANT]
-> The cache and XTEA keys are **NOT** automatically installed when running the `install` task. You must first download the cache using one of these methods:
-> 1. Run the `downloadOSRSCache` task to automatically download the correct revision cache and XTEA keys
-> 2. Manually download the cache and XTEA keys from OpenRS2 (instructions below)
-
-> [!TIP]
-> To manually download the cache and XTEA files:
-> * Download the [XTEA keys](https://archive.openrs2.org/caches/oldschool/228/keys.json) and save as `xteas.json` inside the `/data/` directory
-> * Download the [cache revision 228](https://archive.openrs2.org/caches/oldschool/228/disk.zip), extract it and place the .dat2 and .idx files in the `/data/cache/` directory
 
 > [!TIP]
 > Side note: Recommended to use `Intellij 2024.3.x+` It seems that it's more stable for Kotlin Script than older versions. 
@@ -38,11 +31,13 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Second paste `https://github.com/AlterRSPS/Alter` in URL Field and hit Clone. </br>
   ![tutor2](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tuor2.png)
 * Hit `Clone` and Let the project fully load.
+* Now open the `cache-oldschool-live-en-b228-2025-02-05-11-45-05-openrs2` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
+  ![tutor6](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor6.png)
+- `Xtea.json` has to be in same folder like: Data /`api.yml`, etc..
 * Now click on `Gradle` button on right side. </br>
   ![tutor4](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Tutor4.png)
-* Expand `Alter` -> `other` and double click `downloadOSRSCache` (This will download revision 228 cache files and XTEA keys)
+* Expand `Alter` -> `other` and double click `install`
   ![tutor5](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Tutori5.png)
-* Wait for the download to complete, then run the `install` task from the same menu
 * And now wait until you get this result in your `Terminal` at the bottom:
   ![tutor7](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor7.png)
 * Now instead of `Install` task do Run `Gradle -> Alter -> game -> Tasks -> Application - Run`
