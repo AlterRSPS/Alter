@@ -31,19 +31,25 @@ object RSCM {
     }
 
     fun initRSCM() {
-        Path.of("../data/cfg/rscm/").toFile().listFiles()?.forEach {
-            val map = it.name.replace(".rscm", "")
-            it.bufferedReader(Charsets.UTF_8).use { buff ->
-                buff.lineSequence().forEach { line ->
-                    val divider = line.split(":")
-                    if (divider.size == 2) {
-                        val key = "$map." + divider[0].trim()
-                        val value = divider[1].trim().toInt()
-                        rscmList[key] = value
-                    } else {
-                        println("$line not enough arguments")
+        Path.of("../data/cfg/rscm/").toFile().listFiles()?.forEach { file ->
+            val map = file.name.removeSuffix(".rscm")
+            file.bufferedReader(Charsets.UTF_8).use { buff ->
+                buff.lineSequence()
+                    .filter { it.isNotBlank() && !it.trimStart().startsWith("#") }
+                    .forEach { line ->
+                        val divider = line.split(":")
+                        if (divider.size == 2) {
+                            val key = "$map.${divider[0].trim()}"
+                            val value = divider[1].trim().toIntOrNull()
+                            if (value != null) {
+                                rscmList[key] = value
+                            } else {
+                                println("${file.name} $line contains an invalid number")
+                            }
+                        } else {
+                            println("${file.name} $line not enough arguments")
+                        }
                     }
-                }
             }
         }
     }
