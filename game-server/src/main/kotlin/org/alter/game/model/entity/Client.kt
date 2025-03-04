@@ -120,7 +120,7 @@ class Client(world: World) : Player(world) {
     override fun toString(): String =
         toStringHelper()
             .add("login_username", loginUsername)
-            .add("username", username)
+            .add("username", displayName)
             .toString()
 
     companion object {
@@ -136,7 +136,7 @@ class Client(world: World) : Player(world) {
             client.clientWidth = block.width
             client.clientHeight = block.height
             client.loginUsername = block.username
-            client.username = block.username
+            client.displayName = block.username
             client.uuid = block.uuid.toString()
             client.currentXteaKeys = block.seed
             return client

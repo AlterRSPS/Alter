@@ -22,7 +22,7 @@ class OpPlayerTHandler : MessageHandler<OpPlayerT> {
             return
         }
 
-        log(client, "Spell on player: player=%s. index=%d, component=[%d:%d]", player.username, message.index, parent, child)
+        log(client, "Spell on player: player=%s. index=%d, component=[%d:%d]", player.displayName, message.index, parent, child)
 
         client.interruptQueues()
         client.resetInteractions()

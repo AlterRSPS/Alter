@@ -266,13 +266,13 @@ object Combat {
                 }
 
                 if (!inPvpArea(target)) {
-                    pawn.message("You can't attack ${target.username} there.")
+                    pawn.message("You can't attack ${target.displayName} there.")
                     return false
                 }
 
                 val combatLvlRange = getValidCombatLvlRange(pawn)
                 if (target.combatLevel !in combatLvlRange) {
-                    pawn.message("You can't attack ${target.username} - your level different is too great.")
+                    pawn.message("You can't attack ${target.displayName} - your level different is too great.")
                     return false
                 }
             }

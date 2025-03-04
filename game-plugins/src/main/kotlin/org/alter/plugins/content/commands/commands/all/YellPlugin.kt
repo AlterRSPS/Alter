@@ -1,19 +1,9 @@
 package org.alter.plugins.content.commands.commands.all
 
 import org.alter.api.*
-import org.alter.api.cfg.*
-import org.alter.api.dsl.*
 import org.alter.api.ext.*
 import org.alter.game.*
 import org.alter.game.model.*
-import org.alter.game.model.attr.*
-import org.alter.game.model.container.*
-import org.alter.game.model.container.key.*
-import org.alter.game.model.entity.*
-import org.alter.game.model.item.*
-import org.alter.game.model.queue.*
-import org.alter.game.model.shop.*
-import org.alter.game.model.timer.*
 import org.alter.game.plugin.*
 
 /**
@@ -64,7 +54,7 @@ class YellPlugin(
             }
 
             val args = player.getCommandArgs()
-            val name = player.username
+            val name = player.displayName
             val text = args[0]
             player.world.players.forEach {
                 it.message("$color[$rank]$name:$text", ChatMessageType.ENGINE)

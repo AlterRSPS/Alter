@@ -110,10 +110,10 @@ class Social {
             if (it == player) {
                 return@forEach
             }
-            if (it.social.ignores.contains(player.username)) {
+            if (it.social.ignores.contains(player.displayName)) {
                 return@forEach
             }
-            if (it.social.friends.contains(player.username)) {
+            if (it.social.friends.contains(player.displayName)) {
                 it.social.pushFriends(it)
             }
         }
@@ -124,7 +124,7 @@ class Social {
         target: Player,
         unpacked: String,
     ) {
-        logger.info { "${player.username} is attempting to message: ${target.username} with message: $unpacked" }
+        logger.info { "${player.displayName} is attempting to message: ${target.displayName} with message: $unpacked" }
 //        target.write(MessagePrivate(
 //            sender = player.username,
 //            worldId = 1,

@@ -12,6 +12,6 @@ class DetectModifiedClientHandler : MessageHandler<DetectModifiedClient> {
         client: Client,
         message: DetectModifiedClient,
     ) {
-        log(client, "Detected modified client for player %s.", client.username)
+        log(client, "Detected modified client for player %s.", client.displayName)
     }
 }

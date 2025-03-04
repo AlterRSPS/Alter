@@ -10,7 +10,7 @@ class DisconnectionHook(var client: Client) : Runnable {
     override fun run() {
         val player = client.world.getPlayerForUid(client.uid) ?: return
         if (!player.getPendingLogout()) {
-            logger.info { "Channel `${client.username}` disconnected " }
+            logger.info { "Channel `${client.displayName}` disconnected " }
             client.world.unregister(player)
             client.channelFlush()
         }

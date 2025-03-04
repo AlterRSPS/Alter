@@ -13,7 +13,7 @@ class MessagePrivateSenderHandler : MessageHandler<MessagePrivate> {
         client: Client,
         message: MessagePrivate,
     ) {
-        logger.info { "Sender: ${client.username} - Target: ${message.name} - Message: ${message.message}" }
+        logger.info { "Sender: ${client.displayName} - Target: ${message.name} - Message: ${message.message}" }
         val target = client.world.getPlayerForName(message.name)
         if (target != null) {
             logger.info { "Attempting to send packet to target" }

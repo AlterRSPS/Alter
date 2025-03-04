@@ -64,7 +64,7 @@ class TradeSession(private val player: Player, private val partner: Player) {
         player.setVarbit(PARTNER_TRADE_MODIFIED_VARBIT, 0)
 
         // Configure the trade text
-        player.setComponentText(TRADE_INTERFACE, 31, "Trading with: ${partner.username}")
+        player.setComponentText(TRADE_INTERFACE, 31, "Trading with: ${partner.displayName}")
 
         // Open the inventory overlay
         player.sendItemContainer(key = PLAYER_INVENTORY_KEY, container = inventory)
@@ -102,7 +102,7 @@ class TradeSession(private val player: Player, private val partner: Player) {
 
         // Send this player's container data to their partner
         partner.sendItemContainerOther(PLAYER_CONTAINER_KEY, container)
-        partner.setComponentText(TRADE_INTERFACE, 9, "${player.username} has ${inventory.freeSlotCount} free inventory slots.")
+        partner.setComponentText(TRADE_INTERFACE, 9, "${player.displayName} has ${inventory.freeSlotCount} free inventory slots.")
 
         // Send the tooltip values
         val values = container.getItemValues()
@@ -125,12 +125,12 @@ class TradeSession(private val player: Player, private val partner: Player) {
         player.setComponentText(
             TRADE_INTERFACE,
             27,
-            valueText.format(partnerPrefix, partner.username, partnerPrefix, partnerValue.decimalFormat(), partnerPrefix),
+            valueText.format(partnerPrefix, partner.displayName, partnerPrefix, partnerValue.decimalFormat(), partnerPrefix),
         )
         partner.setComponentText(
             TRADE_INTERFACE,
             27,
-            valueText.format(playerPrefix, player.username, playerPrefix, containerValue.decimalFormat(), playerPrefix),
+            valueText.format(playerPrefix, player.displayName, playerPrefix, containerValue.decimalFormat(), playerPrefix),
         )
     }
 
@@ -307,7 +307,7 @@ class TradeSession(private val player: Player, private val partner: Player) {
 
         // Send the default component text values
         player.setComponentText(ACCEPT_INTERFACE, 4, "Are you sure you want to make this trade?")
-        player.setComponentText(ACCEPT_INTERFACE, 30, "Trading with:<br>${partner.username}")
+        player.setComponentText(ACCEPT_INTERFACE, 30, "Trading with:<br>${partner.displayName}")
         player.setComponentText(ACCEPT_INTERFACE, 23, "You are about to give:<br>(Value: <col=FFFFFF>${container.getValue()}</col> coins)")
         partner.setComponentText(
             ACCEPT_INTERFACE,
