@@ -203,12 +203,6 @@ object NpcCombatDsl {
              */
             combatBuilder.setSlayerParams(builder.levelRequirement, builder.xp)
         }
-
-        fun drops(init: WeightedTableBuilder.() -> Unit) {
-            val builder = WeightedTableBuilder()
-            builder.combatBuilder = combatBuilder
-            init(builder)
-        }
     }
 
     @CombatDslMarker

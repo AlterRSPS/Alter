@@ -1,7 +1,5 @@
 package org.alter.game.model.combat
 
-import org.alter.game.model.weightedTableBuilder.LootTable
-
 /**
  * Represents the combat definition for an npc.
  *
@@ -40,7 +38,6 @@ data class NpcCombatDef(
     val slayerXp: Double,
     val bonuses: List<Int>,
     val species: Set<Any>,
-    val LootTables: MutableSet<LootTable>?,
     val immunePoison: Boolean,
     val immuneVenom: Boolean,
     val immuneCannons: Boolean,
@@ -88,7 +85,6 @@ data class NpcCombatDef(
                 slayerXp = 0.0,
                 bonuses = emptyList(),
                 species = emptySet(),
-                LootTables = null,
                 immunePoison = false,
                 immuneVenom = false,
                 immuneCannons = false,

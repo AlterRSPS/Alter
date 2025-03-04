@@ -2,7 +2,6 @@ package org.alter.api
 
 import org.alter.api.ext.enumSetOf
 import org.alter.game.model.combat.NpcCombatDef
-import org.alter.game.model.weightedTableBuilder.LootTable
 
 /**
  * @author Cl0udS3c
@@ -117,7 +116,6 @@ class NpcCombatBuilder {
     private var immuneVenom = false
     private var immuneCannons = false
     private var immuneThralls = false
-    var LootTable: MutableSet<LootTable> = mutableSetOf()
 
     fun build(): NpcCombatDef {
         /**
@@ -170,7 +168,6 @@ class NpcCombatBuilder {
             slayerXp = slayerXp,
             bonuses = bonuses.toList(),
             species = speciesSet,
-            LootTables = LootTable,
             immunePoison = immunePoison,
             immuneVenom = immuneVenom,
             immuneCannons = immuneCannons,
