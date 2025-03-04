@@ -1,8 +1,6 @@
 package org.alter.game.model.timer
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import org.alter.game.model.appearance.Appearance
-import org.alter.game.model.appearance.Gender
 import org.bson.Document
 
 /**

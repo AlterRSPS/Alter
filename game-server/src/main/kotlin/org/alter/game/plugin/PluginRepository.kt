@@ -21,10 +21,8 @@ import org.alter.game.model.entity.*
 import org.alter.game.model.shop.Shop
 import org.alter.game.model.timer.TimerKey
 import org.alter.game.service.Service
-import java.net.URLClassLoader
 import java.nio.file.Files
 import java.nio.file.Path
-import java.nio.file.Paths
 
 /**
  * A repository that is responsible for storing and executing plugins, as well
@@ -407,7 +405,6 @@ class PluginRepository(
             add(INVENTORY_KEY)
             add(EQUIPMENT_KEY)
             add(BANK_KEY)
-            add(BOND_POUCH_KEY)
         }
 
     /**

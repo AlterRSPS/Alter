@@ -1,8 +1,8 @@
 package org.alter.plugins.content.interfaces.gameframe.world_map
 
-import org.alter.api.*
-import org.alter.api.cfg.*
-import org.alter.api.dsl.*
+import org.alter.api.InterfaceDestination
+import org.alter.api.cfg.Animation
+import org.alter.api.cfg.Sound
 import org.alter.api.ext.*
 import org.alter.game.*
 import org.alter.game.model.*
@@ -30,11 +30,7 @@ class WorldMapPlugin(
             if (!player.lock.canInterfaceInteract()) {
                 return@onButton
             }
-
             if (!player.isInterfaceVisible(WORLD_MAP_INTERFACE_ID)) {
-                /**
-                 * @TODO All options were now swapped from 2 to 1's
-                 */
                 val opt = player.getInteractingOption()
                 player.sendWorldMapTile()
                 player.playSound(Sound.INTERFACE_SELECT1, 100)
@@ -43,7 +39,6 @@ class WorldMapPlugin(
                     player.openInterface(interfaceId = WORLD_MAP_INTERFACE_ID, dest = InterfaceDestination.WORLD_MAP, fullscreen = false)
                     player.setInterfaceEvents(interfaceId = WORLD_MAP_INTERFACE_ID, component = 21, range = 0..4, setting = InterfaceEvent.ClickOp1)
                 } else {
-                    //  160:53 -> opt 3 for FullScreen
                     player.queue {
                         player.animate(Animation.LOOK_AT_MINIMAP_WHEN_FULLSCREEN)
                         wait(1)
