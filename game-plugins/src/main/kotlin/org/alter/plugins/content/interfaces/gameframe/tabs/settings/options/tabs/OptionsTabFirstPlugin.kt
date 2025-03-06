@@ -1,24 +1,16 @@
 package org.alter.plugins.content.interfaces.gameframe.tabs.settings.options.tabs
 
-import org.alter.api.*
 import org.alter.api.ClientScript
 import org.alter.api.cfg.*
-import org.alter.api.dsl.*
 import org.alter.api.ext.*
 import org.alter.game.*
 import org.alter.game.model.*
 import org.alter.game.model.attr.*
 import org.alter.game.model.attr.DISPLAY_MODE_CHANGE_ATTR
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
-import org.alter.game.model.container.*
-import org.alter.game.model.container.key.*
-import org.alter.game.model.entity.*
 import org.alter.game.model.interf.DisplayMode
-import org.alter.game.model.item.*
-import org.alter.game.model.queue.*
-import org.alter.game.model.shop.*
-import org.alter.game.model.timer.*
 import org.alter.game.plugin.*
+import org.alter.game.type.interfacedsl.InterfaceFlag
 import org.alter.plugins.content.interfaces.options.OptionsTab
 
 class OptionsTabFirstPlugin(
@@ -57,59 +49,59 @@ class OptionsTabFirstPlugin(
         val MASTER_SOUND_VOLUME = AttributeKey<Int>()
 
         onLogin {
-            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 55, 0..21, setting = InterfaceEvent.ClickOp1)
+            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 55, 0..21, setting = InterfaceFlag.ClickOp1)
             player.setInterfaceEvents(
                 interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB,
                 component = DISPLAY_MODE,
                 0..21,
-                setting = InterfaceEvent.ClickOp1,
+                setting = InterfaceFlag.ClickOp1,
             )
             player.setInterfaceEvents(
                 interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB,
                 component = BRIGHTNES_BAR,
                 0..21,
-                setting = InterfaceEvent.ClickOp1,
+                setting = InterfaceFlag.ClickOp1,
             )
-            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 84, 1..3, setting = InterfaceEvent.ClickOp1)
-            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 82, 1..4, setting = InterfaceEvent.ClickOp1)
-            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 81, 1..5, setting = InterfaceEvent.ClickOp1)
-            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 69, 0..21, setting = InterfaceEvent.ClickOp1)
+            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 84, 1..3, setting = InterfaceFlag.ClickOp1)
+            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 82, 1..4, setting = InterfaceFlag.ClickOp1)
+            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 81, 1..5, setting = InterfaceFlag.ClickOp1)
+            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 69, 0..21, setting = InterfaceFlag.ClickOp1)
             player.setInterfaceEvents(
                 interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB,
                 component = SOUND_BAR,
                 0..21,
-                setting = InterfaceEvent.ClickOp1,
+                setting = InterfaceFlag.ClickOp1,
             )
             player.setInterfaceEvents(
                 interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB,
                 component = PLAYER_ATTACK_OPTION,
                 1..5,
-                setting = InterfaceEvent.ClickOp1,
+                setting = InterfaceFlag.ClickOp1,
             )
             player.setInterfaceEvents(
                 interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB,
                 component = NPC_ATTACK_OPTION,
                 1..4,
-                setting = InterfaceEvent.ClickOp1,
+                setting = InterfaceFlag.ClickOp1,
             )
             player.setInterfaceEvents(
                 interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB,
                 component = MUSIC_BAR,
                 0..21,
-                setting = InterfaceEvent.ClickOp1,
+                setting = InterfaceFlag.ClickOp1,
             )
             player.setInterfaceEvents(
                 interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB,
                 component = DISPLAY_MODE,
                 1..3,
-                setting = InterfaceEvent.ClickOp1,
+                setting = InterfaceFlag.ClickOp1,
             )
-            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 90, 0..21, setting = InterfaceEvent.ClickOp1)
+            player.setInterfaceEvents(interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB, component = 90, 0..21, setting = InterfaceFlag.ClickOp1)
             player.setInterfaceEvents(
                 interfaceId = OptionsTab.SETTINGS_INTERFACE_TAB,
                 component = AREA_SOUND_BAR,
                 0..21,
-                setting = InterfaceEvent.ClickOp1,
+                setting = InterfaceFlag.ClickOp1,
             )
         }
 
@@ -240,10 +232,10 @@ class OptionsTabFirstPlugin(
 
         bind_setting(ALL_SETTINGS_BUTTON) {
             player.openInterface(parent = 161, child = 18, interfaceId = 134)
-            player.setInterfaceEvents(interfaceId = 134, component = 23, range = 0..9, setting = InterfaceEvent.ClickOp1)
-            player.setInterfaceEvents(interfaceId = 134, component = 19, range = 0..449, setting = InterfaceEvent.ClickOp1)
-            player.setInterfaceEvents(interfaceId = 134, component = 28, range = 0..41, setting = InterfaceEvent.ClickOp1)
-            player.setInterfaceEvents(interfaceId = 134, component = 21, range = 0..219, setting = InterfaceEvent.ClickOp1)
+            player.setInterfaceEvents(interfaceId = 134, component = 23, range = 0..9, setting = InterfaceFlag.ClickOp1)
+            player.setInterfaceEvents(interfaceId = 134, component = 19, range = 0..449, setting = InterfaceFlag.ClickOp1)
+            player.setInterfaceEvents(interfaceId = 134, component = 28, range = 0..41, setting = InterfaceFlag.ClickOp1)
+            player.setInterfaceEvents(interfaceId = 134, component = 21, range = 0..219, setting = InterfaceFlag.ClickOp1)
         }
     }
 

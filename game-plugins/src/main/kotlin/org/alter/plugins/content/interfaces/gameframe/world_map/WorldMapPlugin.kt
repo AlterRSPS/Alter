@@ -4,17 +4,11 @@ import org.alter.api.InterfaceDestination
 import org.alter.api.cfg.Animation
 import org.alter.api.cfg.Sound
 import org.alter.api.ext.*
-import org.alter.game.*
-import org.alter.game.model.*
-import org.alter.game.model.attr.*
-import org.alter.game.model.container.*
-import org.alter.game.model.container.key.*
-import org.alter.game.model.entity.*
-import org.alter.game.model.item.*
-import org.alter.game.model.queue.*
-import org.alter.game.model.shop.*
-import org.alter.game.model.timer.*
-import org.alter.game.plugin.*
+import org.alter.game.Server
+import org.alter.game.model.World
+import org.alter.game.plugin.KotlinPlugin
+import org.alter.game.plugin.PluginRepository
+import org.alter.game.type.interfacedsl.InterfaceFlag
 import org.alter.plugins.content.interfaces.worldmap.WorldMap.LAST_TILE
 import org.alter.plugins.content.interfaces.worldmap.WorldMap.UPDATE_TIMER
 import org.alter.plugins.content.interfaces.worldmap.WorldMap.WORLD_MAP_INTERFACE_ID
@@ -37,7 +31,7 @@ class WorldMapPlugin(
 
                 if (opt != 1) {
                     player.openInterface(interfaceId = WORLD_MAP_INTERFACE_ID, dest = InterfaceDestination.WORLD_MAP, fullscreen = false)
-                    player.setInterfaceEvents(interfaceId = WORLD_MAP_INTERFACE_ID, component = 21, range = 0..4, setting = InterfaceEvent.ClickOp1)
+                    player.setInterfaceEvents(interfaceId = WORLD_MAP_INTERFACE_ID, component = 21, range = 0..4, setting = InterfaceFlag.ClickOp1)
                 } else {
                     player.queue {
                         player.animate(Animation.LOOK_AT_MINIMAP_WHEN_FULLSCREEN)

@@ -10,6 +10,7 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.Player
 import org.alter.game.plugin.KotlinPlugin
 import org.alter.game.plugin.PluginRepository
+import org.alter.game.type.interfacedsl.InterfaceFlag
 
 /**
  * @author CloudS3c
@@ -56,10 +57,10 @@ class CharacterSummaryPlugin(
                 component = 3,
                 range = 3..7,
                 setting = arrayOf(
-                    InterfaceEvent.ClickOp1,
-                    InterfaceEvent.ClickOp2,
-                    InterfaceEvent.ClickOp3,
-                    InterfaceEvent.ClickOp4
+                    InterfaceFlag.ClickOp1,
+                    InterfaceFlag.ClickOp2,
+                    InterfaceFlag.ClickOp3,
+                    InterfaceFlag.ClickOp4
                 )
             )
         }
@@ -69,11 +70,11 @@ class CharacterSummaryPlugin(
                 component = 7,
                 range = 0..198,
                 setting = arrayOf(
-                    InterfaceEvent.ClickOp1,
-                    InterfaceEvent.ClickOp2,
-                    InterfaceEvent.ClickOp3,
-                    InterfaceEvent.ClickOp4,
-                    InterfaceEvent.ClickOp5
+                    InterfaceFlag.ClickOp1,
+                    InterfaceFlag.ClickOp2,
+                    InterfaceFlag.ClickOp3,
+                    InterfaceFlag.ClickOp4,
+                    InterfaceFlag.ClickOp5
                 )
             )
         }
@@ -83,8 +84,8 @@ class CharacterSummaryPlugin(
                 component = 2,
                 range = 0..11,
                 setting = arrayOf(
-                    InterfaceEvent.ClickOp1,
-                    InterfaceEvent.ClickOp2
+                    InterfaceFlag.ClickOp1,
+                    InterfaceFlag.ClickOp2
                 )
             )
         }

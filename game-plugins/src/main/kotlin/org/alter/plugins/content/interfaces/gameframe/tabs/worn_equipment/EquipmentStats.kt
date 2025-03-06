@@ -4,6 +4,7 @@ import org.alter.api.BonusSlot
 import org.alter.api.ClientScript
 import org.alter.api.ext.*
 import org.alter.game.model.entity.Player
+import org.alter.game.type.interfacedsl.InterfaceFlag
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -35,7 +36,7 @@ object EquipmentStats {
             interfaceId = 85,
             component = 0,
             range = 0..27,
-            setting = arrayOf(InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp10, InterfaceEvent.DRAG_DEPTH1, InterfaceEvent.DragTargetable)
+            setting = arrayOf(InterfaceFlag.ClickOp1, InterfaceFlag.ClickOp10, InterfaceFlag.DRAG_DEPTH1, InterfaceFlag.DragTargetable)
         )
         with(p) {
             setEquipCompText(component = 24, text = bonusTextMap()[0])

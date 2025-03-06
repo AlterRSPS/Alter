@@ -4,19 +4,11 @@ import org.alter.api.*
 import org.alter.api.ClientScript
 import org.alter.api.CommonClientScripts
 import org.alter.api.cfg.*
-import org.alter.api.dsl.*
 import org.alter.api.ext.*
 import org.alter.game.*
 import org.alter.game.model.*
-import org.alter.game.model.attr.*
-import org.alter.game.model.container.*
-import org.alter.game.model.container.key.*
-import org.alter.game.model.entity.*
-import org.alter.game.model.item.*
-import org.alter.game.model.queue.*
-import org.alter.game.model.shop.*
-import org.alter.game.model.timer.*
 import org.alter.game.plugin.*
+import org.alter.game.type.interfacedsl.InterfaceFlag
 import org.alter.plugins.content.interfaces.skillguides.SkillGuide
 
 class SkillGuidesPlugin(
@@ -50,7 +42,7 @@ class SkillGuidesPlugin(
                     player.runClientScript(CommonClientScripts.MAIN_MODAL_OPEN, -1, -3)
                     player.openInterface(interfaceId = NEW_SKILL_GUIDE_INTERFACE, dest = InterfaceDestination.MAIN_SCREEN, isModal = true)
                     player.runClientScript(ClientScript("skill_guide_v2_init"), guide.bit, 0)
-                    player.setInterfaceEvents(interfaceId = 860, component = 7, 0..200, InterfaceEvent.ClickOp1)
+                    player.setInterfaceEvents(interfaceId = 860, component = 7, 0..200, InterfaceFlag.ClickOp1)
                 }
             }
         }

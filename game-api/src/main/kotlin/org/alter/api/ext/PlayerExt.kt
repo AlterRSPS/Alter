@@ -154,7 +154,7 @@ fun Player.setInterfaceEvents(
     interfaceId: Int,
     component: Int,
     range: IntRange,
-    vararg setting: InterfaceEvent,
+    vararg setting: InterfaceFlag,
 ) {
     val list = arrayListOf<Int>()
     setting.forEach {
@@ -168,7 +168,7 @@ fun Player.setInterfaceEvents(
     interfaceId: Int,
     component: Int,
     range: IntRange,
-    setting: InterfaceEvent,
+    setting: InterfaceFlag,
 ) {
     write(IfSetEvents(interfaceId = interfaceId, componentId = component, start = range.first, end = range.last, events = setting.flag))
 }

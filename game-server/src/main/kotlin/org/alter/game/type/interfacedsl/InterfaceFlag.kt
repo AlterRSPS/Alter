@@ -1,6 +1,6 @@
-package org.alter.api.ext
+package org.alter.game.type.interfacedsl
 
-enum class InterfaceEvent(val flag: Int) {
+enum class InterfaceFlag(val flag: Int) {
     /**
      * Enabled the component to be a "pause_button", clicking it sends {@link DialogueReader}.
      */
@@ -134,6 +134,6 @@ enum class InterfaceEvent(val flag: Int) {
     ;
 
     companion object {
-        infix fun from(value: Int): InterfaceEvent? = InterfaceEvent.values().firstOrNull { it.flag == value }
+        infix fun from(value: Int): InterfaceFlag? = InterfaceFlag.values().firstOrNull { it.flag == value }
     }
 }

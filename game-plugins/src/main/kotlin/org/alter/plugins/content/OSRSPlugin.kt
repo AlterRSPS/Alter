@@ -34,15 +34,8 @@ class OSRSPlugin(
         setMenuOpenCheck {
             player.getInterfaceAt(dest = InterfaceDestination.MAIN_SCREEN) != -1
         }
-
-        /**
-         * Execute when a player logs in.
-         */
         onLogin {
             with(player) {
-                /**
-                 * @TODO Inspect, uhh seems that this logic is being repeated, not removing it yet as im unsure rn if it's needed or not
-                 */
                 // Skill-related logic.
                 calculateAndSetCombatLevel()
                 if (getSkills().getBaseLevel(Skills.HITPOINTS) < 10) {
@@ -57,21 +50,21 @@ class OSRSPlugin(
                     range = 0..27,
                     setting =
                         arrayOf(
-                            InterfaceEvent.ClickOp2,
-                            InterfaceEvent.ClickOp3,
-                            InterfaceEvent.ClickOp4,
-                            InterfaceEvent.ClickOp6,
-                            InterfaceEvent.ClickOp7,
-                            InterfaceEvent.ClickOp10,
-                            InterfaceEvent.UseOnGroundItem,
-                            InterfaceEvent.UseOnNpc,
-                            InterfaceEvent.UseOnObject,
-                            InterfaceEvent.UseOnPlayer,
-                            InterfaceEvent.UseOnInventory,
-                            InterfaceEvent.UseOnComponent,
-                            InterfaceEvent.DRAG_DEPTH1,
-                            InterfaceEvent.DragTargetable,
-                            InterfaceEvent.ComponentTargetable,
+                            InterfaceFlag.ClickOp2,
+                            InterfaceFlag.ClickOp3,
+                            InterfaceFlag.ClickOp4,
+                            InterfaceFlag.ClickOp6,
+                            InterfaceFlag.ClickOp7,
+                            InterfaceFlag.ClickOp10,
+                            InterfaceFlag.UseOnGroundItem,
+                            InterfaceFlag.UseOnNpc,
+                            InterfaceFlag.UseOnObject,
+                            InterfaceFlag.UseOnPlayer,
+                            InterfaceFlag.UseOnInventory,
+                            InterfaceFlag.UseOnComponent,
+                            InterfaceFlag.DRAG_DEPTH1,
+                            InterfaceFlag.DragTargetable,
+                            InterfaceFlag.ComponentTargetable,
                         ),
                 )
                 player.openDefaultInterfaces()
@@ -81,20 +74,14 @@ class OSRSPlugin(
                 if (getVarp(Varp.PLAYER_HAS_DISPLAY_NAME) == 0 && displayName.isNotBlank()) {
                     syncVarp(Varp.PLAYER_HAS_DISPLAY_NAME)
                 }
-                // Sync attack priority options.
                 syncVarp(Varp.NPC_ATTACK_PRIORITY_VARP)
                 syncVarp(Varp.PLAYER_ATTACK_PRIORITY_VARP)
-                // Send player interaction options.
                 sendOption("Follow", 3)
                 sendOption("Trade with", 4)
                 sendOption("Report", 5)
-                // Game-related logic.
                 sendRunEnergy(player.runEnergy.toInt())
                 message("Welcome to ${world.gameContext.name}.", ChatMessageType.GAME_MESSAGE)
-                // player.social.pushFriends(player)
-                // player.social.pushIgnores(player)
                 setVarbit(Varbit.ESC_CLOSES_CURRENT_INTERFACE, 1)
-
                 /**
                  * @TODO
                  * As for now these varbit's disable Black bar on right side for Native client,

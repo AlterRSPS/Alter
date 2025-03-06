@@ -3,6 +3,7 @@ package org.alter.plugins.content.interfaces.itemsets
 import org.alter.api.InterfaceDestination
 import org.alter.api.ext.*
 import org.alter.game.model.entity.Player
+import org.alter.game.type.interfacedsl.InterfaceFlag
 
 object ItemSets {
     var ITEMSETS_INTERFACE = 451
@@ -17,13 +18,13 @@ object ItemSets {
             ITEMSETS_INTERFACE,
             component = 2,
             range = 0..109,
-            setting = arrayOf(InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp10),
+            setting = arrayOf(InterfaceFlag.ClickOp1, InterfaceFlag.ClickOp10),
         )
         p.setInterfaceEvents(
             ITEMSETS_INVENTORY,
             component = 0,
             range = 0..27,
-            setting = arrayOf(InterfaceEvent.ClickOp1, InterfaceEvent.ClickOp10),
+            setting = arrayOf(InterfaceFlag.ClickOp1, InterfaceFlag.ClickOp10),
         )
     }
     fun Player.openSets() {

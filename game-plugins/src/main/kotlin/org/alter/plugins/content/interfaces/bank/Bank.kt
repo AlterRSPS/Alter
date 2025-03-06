@@ -1,6 +1,5 @@
 package org.alter.plugins.content.interfaces.bank
 
-import org.alter.api.BonusSlot
 import org.alter.api.ClientScript
 import org.alter.api.InterfaceDestination
 import org.alter.api.ext.*
@@ -8,9 +7,9 @@ import org.alter.game.model.World
 import org.alter.game.model.container.ItemContainer
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
+import org.alter.game.type.interfacedsl.InterfaceFlag
 import org.alter.plugins.content.interfaces.bank.BankTabs.SELECTED_TAB_VARBIT
 import org.alter.plugins.content.interfaces.bank.BankTabs.getTabsItems
-import org.alter.plugins.content.interfaces.equipstats.EquipmentStats
 import org.alter.plugins.content.interfaces.equipstats.EquipmentStats.bonusTextMap
 
 /**
@@ -151,85 +150,85 @@ object Bank {
             interfaceId = INV_INTERFACE_ID,
             component = 3,
             0..27,
-            InterfaceEvent.ClickOp1,
-            InterfaceEvent.ClickOp2,
-            InterfaceEvent.ClickOp3,
-            InterfaceEvent.ClickOp4,
-            InterfaceEvent.ClickOp5,
-            InterfaceEvent.ClickOp6,
-            InterfaceEvent.ClickOp7,
-            InterfaceEvent.ClickOp8,
-            InterfaceEvent.ClickOp9,
-            InterfaceEvent.ClickOp10,
-            InterfaceEvent.DRAG_DEPTH1,
-            InterfaceEvent.DragTargetable,
+            InterfaceFlag.ClickOp1,
+            InterfaceFlag.ClickOp2,
+            InterfaceFlag.ClickOp3,
+            InterfaceFlag.ClickOp4,
+            InterfaceFlag.ClickOp5,
+            InterfaceFlag.ClickOp6,
+            InterfaceFlag.ClickOp7,
+            InterfaceFlag.ClickOp8,
+            InterfaceFlag.ClickOp9,
+            InterfaceFlag.ClickOp10,
+            InterfaceFlag.DRAG_DEPTH1,
+            InterfaceFlag.DragTargetable,
         )
-        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 47, 1..1200, InterfaceEvent.ClickOp1)
+        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 47, 1..1200, InterfaceFlag.ClickOp1)
         p.setInterfaceEvents(
             interfaceId = INV_INTERFACE_ID,
             component = 19,
             0..27,
-            InterfaceEvent.ClickOp1,
-            InterfaceEvent.ClickOp2,
-            InterfaceEvent.ClickOp3,
-            InterfaceEvent.ClickOp4,
-            InterfaceEvent.ClickOp10,
+            InterfaceFlag.ClickOp1,
+            InterfaceFlag.ClickOp2,
+            InterfaceFlag.ClickOp3,
+            InterfaceFlag.ClickOp4,
+            InterfaceFlag.ClickOp10,
         )
         p.setInterfaceEvents(
             interfaceId = BANK_INTERFACE_ID,
             component = 13,
             0..1199,
-            InterfaceEvent.ClickOp1,
-            InterfaceEvent.ClickOp2,
-            InterfaceEvent.ClickOp3,
-            InterfaceEvent.ClickOp4,
-            InterfaceEvent.ClickOp5,
-            InterfaceEvent.ClickOp6,
-            InterfaceEvent.ClickOp7,
-            InterfaceEvent.ClickOp8,
-            InterfaceEvent.ClickOp9,
-            InterfaceEvent.ClickOp10,
-            InterfaceEvent.DRAG_DEPTH2,
-            InterfaceEvent.DragTargetable,
+            InterfaceFlag.ClickOp1,
+            InterfaceFlag.ClickOp2,
+            InterfaceFlag.ClickOp3,
+            InterfaceFlag.ClickOp4,
+            InterfaceFlag.ClickOp5,
+            InterfaceFlag.ClickOp6,
+            InterfaceFlag.ClickOp7,
+            InterfaceFlag.ClickOp8,
+            InterfaceFlag.ClickOp9,
+            InterfaceFlag.ClickOp10,
+            InterfaceFlag.DRAG_DEPTH2,
+            InterfaceFlag.DragTargetable,
         )
-        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, 13, 1218..1227, InterfaceEvent.DragTargetable)
+        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, 13, 1218..1227, InterfaceFlag.DragTargetable)
         p.setInterfaceEvents(
             interfaceId = BANK_INTERFACE_ID,
             11,
             10..10,
-            InterfaceEvent.ClickOp1,
-            InterfaceEvent.ClickOp7,
-            InterfaceEvent.DragTargetable,
+            InterfaceFlag.ClickOp1,
+            InterfaceFlag.ClickOp7,
+            InterfaceFlag.DragTargetable,
         )
         p.setInterfaceEvents(
             interfaceId = BANK_INTERFACE_ID,
             11,
             11..19,
-            InterfaceEvent.ClickOp1,
-            InterfaceEvent.ClickOp6,
-            InterfaceEvent.ClickOp7,
-            InterfaceEvent.DRAG_DEPTH1,
-            InterfaceEvent.DragTargetable,
+            InterfaceFlag.ClickOp1,
+            InterfaceFlag.ClickOp6,
+            InterfaceFlag.ClickOp7,
+            InterfaceFlag.DRAG_DEPTH1,
+            InterfaceFlag.DragTargetable,
         )
         p.setInterfaceEvents(
             interfaceId = INV_INTERFACE_ID,
             4,
             0..27,
-            InterfaceEvent.ClickOp1,
-            InterfaceEvent.ClickOp10,
-            InterfaceEvent.DRAG_DEPTH1,
-            InterfaceEvent.DragTargetable,
+            InterfaceFlag.ClickOp1,
+            InterfaceFlag.ClickOp10,
+            InterfaceFlag.DRAG_DEPTH1,
+            InterfaceFlag.DragTargetable,
         )
-        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 50, 0..3, InterfaceEvent.ClickOp1)
+        p.setInterfaceEvents(interfaceId = BANK_INTERFACE_ID, component = 50, 0..3, InterfaceFlag.ClickOp1)
         p.setInterfaceEvents(
             interfaceId = INV_INTERFACE_ID,
             component = 13,
             0..27,
-            InterfaceEvent.ClickOp1,
-            InterfaceEvent.ClickOp2,
-            InterfaceEvent.ClickOp3,
-            InterfaceEvent.ClickOp4,
-            InterfaceEvent.ClickOp10,
+            InterfaceFlag.ClickOp1,
+            InterfaceFlag.ClickOp2,
+            InterfaceFlag.ClickOp3,
+            InterfaceFlag.ClickOp4,
+            InterfaceFlag.ClickOp10,
         )
         p.setVarbit(BANK_YOUR_LOOT_VARBIT, 0)
     }
