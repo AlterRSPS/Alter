@@ -1,16 +1,19 @@
 package org.alter.game.model.entity
 
+import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.varpSize
 import gg.rsmod.util.toStringHelper
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.rsprot.protocol.api.Session
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcInfo
 import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerAvatar
+import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerAvatarExtendedInfo
 import net.rsprot.protocol.game.outgoing.info.playerinfo.PlayerInfo
 import net.rsprot.protocol.game.outgoing.info.util.BuildArea
 import net.rsprot.protocol.game.outgoing.info.worldentityinfo.WorldEntityInfo
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
 import net.rsprot.protocol.game.outgoing.map.RebuildLogin
+import net.rsprot.protocol.game.outgoing.misc.client.ServerTickEnd
 import net.rsprot.protocol.game.outgoing.misc.client.UpdateRebootTimer
 import net.rsprot.protocol.game.outgoing.misc.player.MessageGame
 import net.rsprot.protocol.game.outgoing.misc.player.UpdateRunWeight
@@ -20,7 +23,7 @@ import net.rsprot.protocol.game.outgoing.varp.VarpLarge
 import net.rsprot.protocol.game.outgoing.varp.VarpSmall
 import net.rsprot.protocol.message.OutgoingGameMessage
 import org.alter.game.model.*
-import org.alter.game.model.appearance.Appearance
+import org.alter.game.model.appearance.newPlayerInfo.Appearance
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
 import org.alter.game.model.attr.LEVEL_UP_INCREMENT
 import org.alter.game.model.attr.LEVEL_UP_OLD_XP
@@ -31,6 +34,7 @@ import org.alter.game.model.interf.InterfaceSet
 import org.alter.game.model.interf.listener.PlayerInterfaceListener
 import org.alter.game.model.item.Item
 import org.alter.game.model.move.MovementQueue
+import org.alter.game.model.move.MovementType
 import org.alter.game.model.move.moveTo
 import org.alter.game.model.priv.Privilege
 import org.alter.game.model.queue.QueueTask
@@ -41,6 +45,8 @@ import org.alter.game.model.timer.FORCE_DISCONNECTION_TIMER
 import org.alter.game.model.varp.VarpSet
 import org.alter.game.rsprot.RsModObjectProvider
 import org.alter.game.service.log.LoggerService
+import org.alter.game.type.bas.BasType
+import org.alter.game.type.interfacedsl.Interface
 import java.util.*
 
 /**
@@ -55,145 +61,65 @@ open class Player(world: World) : Pawn(world) {
      * when the [Player] first registers their account.
      */
     lateinit var uid: PlayerUID
-
-    /**
-     * The name that was used when the player logged into the game.
-     */
-    var username = ""
-
-    /**
-     * @see Privilege
-     */
+    var displayName = ""
     var privilege = Privilege.DEFAULT
-
-    /**
-     * The base region [Coordinate] is the most bottom-left (south-west) tile where
-     * the last known region for this player begins.
-     */
     var lastKnownRegionBase: Coordinate? = null
-
-    /**
-     * A flag that indicates whether the [login] method has been executed.
-     * This is currently used so that we don't send player updates when the player
-     * hasn't been fully initialized. We can test later to see if this is even
-     * necessary.
-     */
     var initiated = false
-
-    /**
-     * The index that was assigned to a [Player] when they are first registered to the
-     * [World]. This is needed to remove local players from the synchronization task
-     * as once that logic is reached, the local player would have an index of [-1].
-     */
     var lastIndex = -1
-
-    /**
-     * A flag which indicates the player is attempting to log out. There can be
-     * certain circumstances where the player should not be unregistered from
-     * the world.
-     *
-     * For example: when the player is in combat.
-     */
     @Volatile private var pendingLogout = false
-
+    var appearance: Appearance = Appearance()
     fun getPendingLogout() = pendingLogout
-
-    /**
-     * A flag which indicates that our [FORCE_DISCONNECTION_TIMER] must be set
-     * when [pendingLogout] logic is handled.
-     */
     @Volatile private var setDisconnectionTimer = false
-
-    val bonds = ItemContainer(BOND_POUCH_KEY)
-
     val inventory = ItemContainer(INVENTORY_KEY)
-
     val equipment = ItemContainer(EQUIPMENT_KEY)
-
     val bank = ItemContainer(BANK_KEY)
 
-    /**
-     * A map that contains all the [ItemContainer]s a player can have.
-     */
+    var activeInterface = mutableListOf<Interface>()
+    val interfaces by lazy { InterfaceSet(PlayerInterfaceListener(this, world.plugins)) }
+
+
+
     val containers =
         HashMap<ContainerKey, ItemContainer>().apply {
-            put(BOND_POUCH_KEY, bonds)
             put(INVENTORY_KEY, inventory)
             put(EQUIPMENT_KEY, equipment)
             put(BANK_KEY, bank)
         }
-
-    val interfaces by lazy { InterfaceSet(PlayerInterfaceListener(this, world.plugins)) }
-
     val varps = VarpSet(maxVarps = varpSize())
-
     private val skillSet = SkillSet(maxSkills = world.gameContext.skillCount)
-
-    /**
-     * The options that can be executed on this player
-     */
     val options = Array<String?>(10) { null }
-
     /**
-     * Flag that indicates whether to refresh the shop the player currently
-     * has open.
+     * TODO Why is this within Player class and not Shop itself?
      */
     var shopDirty = false
-
-    /**
-     * Some areas have a 'large' viewport. Which means the player's client is
-     * able to render more entities in a larger radius than normal.
-     */
     private var largeViewport = false
-
-    var appearance = Appearance.DEFAULT_MALE
-
     var weight = 0.0
-
-    var skullIcon = -1
-
+    var skullIcon: Int? by appearance::skullIcon
+    var overheadIcon: Int? by appearance::overheadIcon
     var runEnergy = 10000.00 // 100.0
-
-    /**
-     * The current combat level. This must be set externally by a login plugin
-     * that is used on whatever revision you want.
-     */
-    var combatLevel = 3
-
+    val combatLevel: Int by appearance::combatLevel
+    var bas: BasType? by appearance::bas
     var gameMode = 0
-
     var xpRate = 1.0
-
-    /**
-     * The last cycle that this client has received the MAP_BUILD_COMPLETE
-     * message. This value is set to [World.currentCycle].
-     *
-     * @see [org.alter.game.message.handler.MapBuildCompleteHandler]
-     */
     var lastMapBuildTime = 0
+    val avatar: PlayerAvatar get() = playerInfo.avatar
+    private val playerExtendedInfo: PlayerAvatarExtendedInfo
+        get() = playerInfo.avatar.extendedInfo
 
     fun getSkills(): SkillSet = skillSet
-
     override val entityType: EntityType = EntityType.PLAYER
-
     /**
      * Checks if the player is running. We assume that the varp with id of
      * [173] is the running state varp.
      */
     override fun isRunning(): Boolean = varps[173].state != 0 || movementQueue.peekLastStep()?.type == MovementQueue.StepType.FORCED_RUN
-
     override fun getSize(): Int = 1
-
     override fun getCurrentHp(): Int = getSkills().getCurrentLevel(3)
-
     override fun getMaxHp(): Int = getSkills().getBaseLevel(3)
-
     override fun setCurrentHp(level: Int) {
         getSkills().setCurrentLevel(3, level)
     }
-
-    val avatar: PlayerAvatar get() = playerInfo.avatar
-
+    // @TODO Pending Spot Anim array and execute on Cycle ->
     override fun graphic(
         id: Int,
         height: Int,
@@ -287,8 +213,6 @@ open class Player(world: World) : Pawn(world) {
             val items = inventory.rawItems
             write(
                 UpdateInvFull(
-//                    interfaceId = 149,
-//                    componentId = 0,
                     inventoryId = 93,
                     capacity = items.size,
                     provider = RsModObjectProvider(items),
@@ -305,8 +229,16 @@ open class Player(world: World) : Pawn(world) {
             equipment.dirty = false
             calculateWeight = true
             calculateBonuses = true
-            org.alter.game.info.PlayerInfo(this).syncAppearance()
+            syncAppearance()
         }
+
+        // @TODO
+
+
+        //if (renderAnimationSet = CacheManager.getItem(weapon.id).renderAnimations) {
+        //
+        //}
+
 
         if (bank.dirty) {
             val items = bank.rawItems
@@ -405,6 +337,7 @@ open class Player(world: World) : Pawn(world) {
             }
         }
         previouslySetAnim = -1
+        write(ServerTickEnd)
         /*
          * Flush the channel at the end.
          */
@@ -446,7 +379,7 @@ open class Player(world: World) : Pawn(world) {
         if (world.rebootTimer != -1) {
             write(UpdateRebootTimer(world.rebootTimer))
         }
-        org.alter.game.info.PlayerInfo(this).syncAppearance()
+        syncAppearance()
         initiated = true
         world.plugins.executeLogin(this)
         social.updateStatus(this)
@@ -524,6 +457,112 @@ open class Player(world: World) : Pawn(world) {
         }
     }
 
+    fun syncAppearance() {
+        if (!appearance.rebuild) {
+            return
+        }
+        val info = playerExtendedInfo
+        val colours = appearance.coloursSnapshot()
+        for (i in colours.indices) {
+            info.setColour(i, colours[i].toInt())
+        }
+        val identKit = appearance.identKitSnapshot()
+        for (i in identKit.indices) {
+            info.setIdentKit(i, identKit[i].toInt())
+        }
+        info.setName(displayName)
+        info.setOverheadIcon(overheadIcon ?: -1)
+        info.setSkullIcon(skullIcon ?: -1)
+        info.setCombatLevel(combatLevel)
+        info.setBodyType(appearance.bodyType)
+        info.setPronoun(appearance.pronoun)
+        info.setHidden(appearance.softHidden)
+        info.setNameExtras(
+            beforeName = appearance.namePrefix ?: "",
+            afterName = appearance.nameSuffix ?: "",
+            afterCombatLevel = appearance.combatLvlSuffix ?: "",
+        )
+        /**
+         * TODO Assign default
+         */
+        val bas = this.appearance.bas ?: BasType(
+            name = "bas.default_player",
+            walkAnim = 819,
+            runAnim = 824,
+            readyAnim = 808,
+            turnAnim = 823,
+            walkAnimBack = 820,
+            walkAnimLeft = 821,
+            walkAnimRight = 822,
+            accurateAnim = 422,
+            accurateSound = 2_566,
+            aggressiveAnim = 423,
+            aggressiveSound = 2_566,
+            controlledAnim = -1,
+            controlledSound = -1,
+            defensiveAnim = 422,
+            defensiveSound = 2_566,
+            blockAnim = 424
+        )
+        info.setBaseAnimationSet(
+            readyAnim = bas.readyAnim,
+            turnAnim = bas.turnAnim,
+            walkAnim = bas.walkAnim,
+            walkAnimBack = bas.walkAnimBack,
+            walkAnimLeft = bas.walkAnimLeft,
+            walkAnimRight = bas.walkAnimRight,
+            runAnim = bas.runAnim,
+        )
+        for (i in 0 until 12) {
+            val obj = equipment[i]
+            if (obj == null) {
+                info.setWornObj(i, -1, -1, -1)
+            } else {
+                val config = CacheManager.getItem(obj.id)
+                info.setWornObj(i, obj.id, config.appearanceOverride1, config.appearanceOverride2)
+            }
+        }
+    }
+
+    fun setSequence(id: Int, delay: Int) {
+        playerExtendedInfo.setSequence(id, delay)
+    }
+
+    fun tinting(hue: Int = 0,
+                saturation: Int = 0,
+                luminance: Int = 0,
+                opacity: Int = 0,
+                delay: Int = 0,
+                duration: Int = 0) {
+        playerExtendedInfo.setTinting(hue, saturation, luminance, opacity, delay, duration)
+    }
+
+    fun setSay(message:String) {
+        playerExtendedInfo.setSay(message)
+    }
+    fun setFaceCoord(
+        face: Tile,
+        width: Int = 1,
+        length: Int = 1,
+    ) {
+        val srcX = tile.x * 64
+        val srcZ = tile.z * 64
+        val dstX = face.x * 64
+        val dstZ = face.z * 64
+        var degreesX = (srcX - dstX).toDouble()
+        var degreesZ = (srcZ - dstZ).toDouble()
+        degreesX += (Math.floor(width / 2.0)) * 32
+        degreesZ += (Math.floor(length / 2.0)) * 32
+        playerExtendedInfo.setFaceAngle((Math.atan2(degreesX, degreesZ) * 325.949).toInt() and 0x7ff)
+    }
+    fun facePawn(index: Int) {
+        playerExtendedInfo.setFacePathingEntity(index)
+    }
+    fun setMoveSpeed(movementType: MovementType) {
+        playerExtendedInfo.setMoveSpeed(movementType.value)
+    }
+
+
     /**
      * @see largeViewport
      */
@@ -600,11 +639,33 @@ open class Player(world: World) : Pawn(world) {
         write(SynthSound(id = id, loops = volume, delay = delay))
     }
 
+
+
+
     override fun toString(): String =
         toStringHelper()
-            .add("name", username)
+            .add("name", displayName)
             .add("pid", index)
             .toString()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     companion object {
         /**

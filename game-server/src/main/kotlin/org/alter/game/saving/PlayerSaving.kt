@@ -76,15 +76,14 @@ object PlayerSaving {
             client.loginUsername = document.getString("loginUsername")
             client.passwordHash = document.getString("passwordHash")
             val previousXteas = document.getList("previousXteas", Any::class.java).map { it as Int }.toIntArray()
-
             val authentication = validateAuthentication(previousXteas, client, block)
             if (authentication != PlayerLoadResult.LOAD_ACCOUNT) {
                 return authentication
             }
 
-            client.username = PlayerDetails.getDisplayName(client.loginUsername)?.currentDisplayName?: client.loginUsername
+            client.displayName = PlayerDetails.getDisplayName(client.loginUsername)?.currentDisplayName?: client.loginUsername
 
-            client.uid = PlayerUID(client.username)
+            client.uid = PlayerUID(client.displayName)
 
             if (!loadAttributes(client, document.get("attributes", Document::class.java))) {
                 return PlayerLoadResult.MALFORMED

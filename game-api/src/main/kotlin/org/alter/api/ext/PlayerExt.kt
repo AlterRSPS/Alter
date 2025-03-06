@@ -31,9 +31,10 @@ import org.alter.game.model.interf.DisplayMode
 import org.alter.game.model.item.Item
 import org.alter.rscm.RSCM.getRSCM
 import org.alter.game.model.timer.SKULL_ICON_DURATION_TIMER
+import org.alter.game.model.timer.TimerKey
 import org.alter.game.rsprot.RsModIndexedObjectProvider
 import org.alter.game.rsprot.RsModObjectProvider
-import org.alter.rscm.RSCM
+import org.alter.game.type.interfacedsl.InterfaceFlag
 import kotlin.math.floor
 
 /**
@@ -55,7 +56,7 @@ fun Player.openShop(shop: String) {
         setInterfaceEvents(interfaceId = 300, component = 16, range = 0..s.items.size, setting = 1086)
         setInterfaceEvents(interfaceId = 301, component = 0, range = 0 until inventory.capacity, setting = 1086)
     } else {
-        World.logger.warn { "Player \"$username\" is unable to open shop \"$shop\" as it does not exist." }
+        World.logger.warn { "Player \"$displayName\" is unable to open shop \"$shop\" as it does not exist." }
     }
 }
 
@@ -70,7 +71,7 @@ fun Player.openShop(shopId: Int) {
         setInterfaceEvents(interfaceId = 300, component = 16, range = 0..s.items.size, setting = 1086)
         setInterfaceEvents(interfaceId = 301, component = 0, range = 0 until inventory.capacity, setting = 1086)
     } else {
-        World.logger.warn { "Player \"$username\" is unable to open shop \"$shopId\" as it does not exist." }
+        World.logger.warn { "Player \"$displayName\" is unable to open shop \"$shopId\" as it does not exist." }
     }
 }
 
@@ -808,7 +809,7 @@ fun Player.skull(
     setSkullIcon(icon)
     timers[SKULL_ICON_DURATION_TIMER] = durationCycles
 }
-
+// @TODO UPDATE2
 fun Player.hasSkullIcon(icon: SkullIcon): Boolean = skullIcon == icon.id
 
 fun Player.isClientResizable(): Boolean =
@@ -868,8 +869,7 @@ fun Player.calculateAndSetCombatLevel(): Boolean {
             else -> mage
         }
 
-    combatLevel = floor(0.25 * (defence + hitpoints + floor((prayer * 0.50))) + 0.325 * style).toInt()
-
+    this.appearance.combatLevel = floor(0.25 * (defence + hitpoints + floor((prayer * 0.50))) + 0.325 * style).toInt()
     val changed = combatLevel != old
 
     runClientScript(CommonClientScripts.COMABT_LEVEL_SUMMARY, 46661634, 46661635, combatLevel)
@@ -898,4 +898,10 @@ fun Player.getMagicDamageBonus(): Int = equipmentBonuses[12]
 
 fun Player.getPrayerBonus(): Int = equipmentBonuses[13]
 
-fun Player.format_bonus_with_sign(value: Int): String = if (value < 0) value.toString() else "+$value"
+/**
+ * Timer key that would be destroyed when player moves
+ * @TODO
+ */
+fun Player.softTimer(timerKey: TimerKey) {
+
+}

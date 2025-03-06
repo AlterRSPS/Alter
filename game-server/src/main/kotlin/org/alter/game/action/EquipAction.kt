@@ -1,7 +1,6 @@
 package org.alter.game.action
 
 import dev.openrune.cache.CacheManager.getItem
-import org.alter.game.info.PlayerInfo
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
 
@@ -154,7 +153,7 @@ object EquipAction {
                 p.equipment[equipSlot] = Item(replace.id, add + replace.amount)
             }
 
-            PlayerInfo(p).syncAppearance()
+            p.syncAppearance()
             plugins.executeEquipSlot(p, equipSlot)
             plugins.executeEquipItem(p, replace.id)
 
@@ -251,7 +250,7 @@ object EquipAction {
                 }
 
                 p.equipment[equipSlot] = newEquippedItem
-                PlayerInfo(p).syncAppearance()
+                p.syncAppearance()
                 plugins.executeEquipSlot(p, equipSlot)
                 plugins.executeEquipItem(p, newEquippedItem.id)
             }
@@ -281,7 +280,7 @@ object EquipAction {
             p.equipment[equipmentSlot] = leftover
         }
 
-        PlayerInfo(p).syncAppearance()
+        p.syncAppearance()
         onItemUnequip(p, item.id, equipmentSlot)
 
         return Result.SUCCESS

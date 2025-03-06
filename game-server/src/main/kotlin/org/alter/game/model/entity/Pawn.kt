@@ -5,7 +5,6 @@ import org.alter.game.action.NpcDeathAction
 import org.alter.game.action.PlayerDeathAction
 import org.alter.game.event.Event
 import org.alter.game.info.NpcInfo
-import org.alter.game.info.PlayerInfo
 import org.alter.game.model.*
 import org.alter.game.model.attr.*
 import org.alter.game.model.bits.INFINITE_VARS_STORAGE
@@ -171,7 +170,7 @@ abstract class Pawn(val world: World) : Entity() {
     fun setTransmogId(transmogId: Int) {
         this.transmogId = transmogId
         if (entityType.isPlayer) {
-            PlayerInfo(this as Player).syncAppearance()
+            (this as Player).syncAppearance()
         }
     }
 
@@ -389,7 +388,7 @@ abstract class Pawn(val world: World) : Entity() {
         if (entityType.isNpc) {
             NpcInfo(this as Npc).setSequence(id, startDelay)
         } else if (entityType.isPlayer) {
-            PlayerInfo(this as Player).setSequence(id, startDelay)
+            (this as Player).setSequence(id, startDelay)
         }
     }
 
@@ -418,7 +417,7 @@ abstract class Pawn(val world: World) : Entity() {
                 weight = opacity,
             )
         } else if (entityType.isPlayer) {
-            PlayerInfo(this as Player).tinting(
+            (this as Player).tinting(
                 hue,
                 saturation,
                 luminance,
@@ -449,7 +448,7 @@ abstract class Pawn(val world: World) : Entity() {
         if (entityType.isNpc) {
             NpcInfo(this as Npc).setSay(message)
         } else if (entityType.isPlayer) {
-            PlayerInfo(this as Player).setSay(message)
+            (this as Player).setSay(message)
         }
     }
 
@@ -464,7 +463,7 @@ abstract class Pawn(val world: World) : Entity() {
         instant: Boolean = false,
     ) {
         if (entityType.isPlayer) {
-            PlayerInfo(this as Player).setFaceCoord(face, width, length)
+            (this as Player).setFaceCoord(face, width, length)
         } else if (entityType.isNpc) {
             NpcInfo(this as Npc).setFaceCoord(face.x, face.z, instant)
         }
@@ -475,7 +474,7 @@ abstract class Pawn(val world: World) : Entity() {
         if (entityType.isNpc) {
             NpcInfo(this as Npc).setFacePathingEntity(index)
         } else if (entityType.isPlayer) {
-            PlayerInfo(this as Player).facePawn(index)
+            (this as Player).facePawn(index)
         }
 
         attr[FACING_PAWN_ATTR] = WeakReference(pawn)
@@ -485,7 +484,7 @@ abstract class Pawn(val world: World) : Entity() {
         if (entityType.isNpc) {
             NpcInfo(this as Npc).setFacePathingEntity(-1)
         } else if (entityType.isPlayer) {
-            PlayerInfo(this as Player).facePawn(-1)
+            (this as Player).facePawn(-1)
         }
 
         attr.remove(FACING_PAWN_ATTR)
