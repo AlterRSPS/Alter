@@ -26,7 +26,7 @@ enum class WeaponType(val id: Int) {
     THROWN(id = 19),
     WHIP(id = 20),
     STAFF_HALBERD(id = 21),
-    TRIDENT(id = 23),
+    POWERED_STAFF(id = 23),
     BLUDGEON(id = 26),
     BULWARK(id = 27),
 }

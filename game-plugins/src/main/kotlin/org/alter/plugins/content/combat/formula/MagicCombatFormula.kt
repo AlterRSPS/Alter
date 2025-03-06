@@ -249,7 +249,7 @@ object MagicCombatFormula : CombatFormula {
     private fun getEffectiveAttackLevel(player: Player): Double {
         var effectiveLevel = Math.floor(player.getSkills().getCurrentLevel(Skills.MAGIC) * getPrayerAttackMultiplier(player))
 
-        if (player.hasWeaponType(WeaponType.TRIDENT)) {
+        if (player.hasWeaponType(WeaponType.POWERED_STAFF)) {
             effectiveLevel +=
                 when (CombatConfigs.getAttackStyle(player)) {
                     AttackStyle.ACCURATE -> 3.0

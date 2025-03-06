@@ -216,7 +216,7 @@ object CombatConfigs {
                         else -> AttackStyle.NONE
                     }
 
-                pawn.hasWeaponType(WeaponType.TRIDENT) ->
+                pawn.hasWeaponType(WeaponType.POWERED_STAFF) ->
                     when (style) {
                         0, 1 -> AttackStyle.ACCURATE
                         3 -> AttackStyle.LONG_RANGE
@@ -392,7 +392,7 @@ object CombatConfigs {
                         else -> CombatStyle.CRUSH
                     }
 
-                pawn.hasWeaponType(WeaponType.TRIDENT) -> CombatStyle.MAGIC
+                pawn.hasWeaponType(WeaponType.POWERED_STAFF) -> CombatStyle.MAGIC
 
                 pawn.hasWeaponType(WeaponType.BLUDGEON) -> CombatStyle.CRUSH
 
@@ -462,7 +462,7 @@ object CombatConfigs {
                 }
             }
 
-            player.hasWeaponType(WeaponType.TRIDENT) -> {
+            player.hasWeaponType(WeaponType.POWERED_STAFF) -> {
                 when (style) {
                     3 -> XpMode.SHARED
                     else -> XpMode.MAGIC
