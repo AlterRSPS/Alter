@@ -24,7 +24,7 @@ csv = "0.7.3"
 logback = "1.4.11"
 ktlint = "12.1.0"
 openrune-filestore = "1.3.6"
-rsprot = "1.0.0-ALPHA-20250126"
+rsprot = "1.0.0-ALPHA-20250610"
 routefinder = "6.0.0"
 
 [libraries]
@@ -66,7 +66,7 @@ netty-all = { group = "io.netty", name = "netty-all", version.ref = "nettyAll" }
 
 logback-classic = { group ="ch.qos.logback", name = "logback-classic", version.ref = "logback"}
 openrune-filestore = { group = "dev.openrune", name = "filestore", version.ref = "openrune-filestore"}
-rsprot = { group = "net.rsprot", name = "osrs-228-api", version.ref = "rsprot"}
+rsprot = { group = "net.rsprot", name = "osrs-231-api", version.ref = "rsprot"}
 routefinder = { group = "org.rsmod", name = "rsmod-routefinder", version.ref = "routefinder"}
 
 mongo-bson = { group = "org.mongodb", name = "bson", version.ref = "mongo"}
