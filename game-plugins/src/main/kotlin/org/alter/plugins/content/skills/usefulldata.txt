@@ -31,5 +31,16 @@ Notes:
 - Stun duration usually ranges between 4–6 seconds.
 
 Stall IDs:
+Market Stalls
+Empty stall: 634
 Veg stalls: 4706, 4708
-Bakerystall:
+Bakersstall: 11730, 51937
+Tea stall: 635, 6574
+Silk stall: 11729, 51933
+Wine Stall: 14011
+Seed Stall: 7053
+Fur Stall: 4278, 11732, 51934
+Fish Stall: 4277, 4705, 4707, 31712
+Silver stall: 11734
+Spice stall: 11733, 51936
+Gem stall: 11731, 51935
