@@ -29,3 +29,7 @@ Notes:
 - Some NPCs have a damage range (e.g., 1–3).
 - Loot details are summarized; see the OSRS Wiki for full lists.
 - Stun duration usually ranges between 4–6 seconds.
+
+Stall IDs:
+Veg stalls: 4706, 4708
+Bakerystall:
