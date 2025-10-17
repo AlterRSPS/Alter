@@ -59,7 +59,7 @@ class PickpocketPlugin(
             val success = player.world.randomDouble() <= successChance
 
             if (success) {
-                onSuccess(player, entry, npcName)
+                onSuccess(player, npc, entry, npcName)
             } else {
                 onFailure(player, npc, entry, npcName)
             }
@@ -74,7 +74,9 @@ class PickpocketPlugin(
         return (entry.baseSuccess + bonus).coerceIn(0.05, 0.95)
     }
 
-    private fun onSuccess(player: Player, entry: PickpocketEntry, npcName: String) {
+    private fun onSuccess(player: Player, npc: Npc, entry: PickpocketEntry, npcName: String) {
+        npc.resetFacePawn()
+
         player.addXp(Skills.THIEVING, entry.experience)
 
         val loot = rollLoot(entry, player.world)
@@ -100,6 +102,8 @@ class PickpocketPlugin(
 
         if (entry.stun.ticks > 0) {
             npc.facePawn(player)
+        } else {
+            npc.resetFacePawn()
         }
 
         val damageRange = entry.stun.damage
