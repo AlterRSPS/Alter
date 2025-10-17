@@ -40,7 +40,7 @@ class TeleportsPlugin(
             player.moveTo(Tile(x = 2461, z = 3443, height = 0))
         }
         onCommand("thieving", description = "Teleports you to the test thieving") {
-            player.moveTo(Tile(x = 2600, z = 4726, height = 0))
+            player.moveTo(Tile(x = 2591, z = 4731, height = 0))
         }
     }
 }
