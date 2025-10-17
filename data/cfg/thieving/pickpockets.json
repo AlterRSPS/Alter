@@ -40,10 +40,7 @@
     "npcs": [
       "npc.farmer_3114",
       "npc.farmer_3243",
-      "npc.farmer_3244",
-      "npc.farmer_3245",
-      "npc.farmer_3250",
-      "npc.farmer_3251"
+      "npc.farmer_3244"
     ],
     "level": 10,
     "experience": 14.5,
@@ -73,10 +70,7 @@
   },
   {
     "npcs": [
-      "npc.ham_member",
-      "npc.ham_member_2541",
-      "npc.ham_member_2542",
-      "npc.ham_member_2543"
+      "npc.ham_member"
     ],
     "level": 15,
     "experience": 18.5,
@@ -112,9 +106,7 @@
   },
   {
     "npcs": [
-      "npc.ham_member_4327",
-      "npc.ham_member_4513",
-      "npc.ham_member_4514"
+      "npc.ham_member_2541"
     ],
     "level": 20,
     "experience": 22.5,
@@ -180,8 +172,7 @@
   },
   {
     "npcs": [
-      "npc.rogue_526",
-      "npc.rogue_6603"
+      "npc.rogue_526"
     ],
     "level": 32,
     "experience": 35.5,
@@ -292,10 +283,7 @@
       "npc.guard_397",
       "npc.guard_398",
       "npc.guard_399",
-      "npc.guard_400",
-      "npc.guard_995",
-      "npc.guard_998",
-      "npc.guard_999"
+      "npc.guard_400"
     ],
     "level": 40,
     "experience": 46.8,
@@ -319,7 +307,6 @@
   },
   {
     "npcs": [
-      "npc.menaphite_thug_3549",
       "npc.menaphite_thug_3550"
     ],
     "level": 65,
@@ -351,9 +338,7 @@
   {
     "npcs": [
       "npc.knight_of_ardougne",
-      "npc.knight_of_ardougne_3300",
-      "npc.knight_of_ardougne_8799",
-      "npc.knight_of_ardougne_8800"
+      "npc.knight_of_ardougne_3300"
     ],
     "level": 55,
     "experience": 84.3,
@@ -383,7 +368,6 @@
   },
   {
     "npcs": [
-      "npc.paladin_1144",
       "npc.paladin_3293",
       "npc.paladin_3294"
     ],
@@ -409,40 +393,6 @@
         "item": "item.chaos_rune",
         "min": 1,
         "max": 2,
-        "weight": 20.00
-      }
-    ]
-  },
-  {
-    "npcs": [
-      "npc.gnome_guard",
-      "npc.gnome_waiter",
-      "npc.gnome_baller",
-      "npc.gnome_baller_3144",
-      "npc.gnome_baller_3145"
-    ],
-    "level": 75,
-    "experience": 198.5,
-    "baseSuccess": 0.28,
-    "successBonusPerLevel": 0.006,
-    "stun": {
-      "ticks": 9,
-      "damage": {
-        "min": 1,
-        "max": 2
-      }
-    },
-    "loot": [
-      {
-        "item": "item.coins_995",
-        "min": 120,
-        "max": 300,
-        "weight": 80.00
-      },
-      {
-        "item": "item.fire_orb",
-        "min": 1,
-        "max": 1,
         "weight": 20.00
       }
     ]
@@ -478,75 +428,6 @@
       },
       {
         "item": "item.ruby",
-        "min": 1,
-        "max": 1,
-        "weight": 20.00
-      }
-    ]
-  },
-  {
-    "npcs": [
-      "npc.elf_warrior",
-      "npc.elf_warrior_5294"
-    ],
-    "level": 85,
-    "experience": 353.0,
-    "baseSuccess": 0.24,
-    "successBonusPerLevel": 0.005,
-    "stun": {
-      "ticks": 10,
-      "damage": {
-        "min": 3,
-        "max": 5
-      }
-    },
-    "loot": [
-      {
-        "item": "item.coins_995",
-        "min": 220,
-        "max": 350,
-        "weight": 60.00
-      },
-      {
-        "item": "item.death_rune",
-        "min": 2,
-        "max": 4,
-        "weight": 20.00
-      },
-      {
-        "item": "item.diamond",
-        "min": 1,
-        "max": 1,
-        "weight": 20.00
-      }
-    ]
-  },
-  {
-    "npcs": [
-      "npc.tzhaarhur_2161",
-      "npc.tzhaarhur_2162",
-      "npc.tzhaarhur_2163"
-    ],
-    "level": 90,
-    "experience": 103.5,
-    "baseSuccess": 0.22,
-    "successBonusPerLevel": 0.005,
-    "stun": {
-      "ticks": 9,
-      "damage": {
-        "min": 2,
-        "max": 4
-      }
-    },
-    "loot": [
-      {
-        "item": "item.tokkul",
-        "min": 15,
-        "max": 35,
-        "weight": 80.00
-      },
-      {
-        "item": "item.uncut_emerald",
         "min": 1,
         "max": 1,
         "weight": 20.00
