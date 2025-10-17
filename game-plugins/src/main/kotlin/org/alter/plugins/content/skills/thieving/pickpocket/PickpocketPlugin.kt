@@ -50,7 +50,6 @@ class PickpocketPlugin(
         }
 
         player.facePawn(npc)
-        npc.facePawn(player)
         player.lock()
         try {
             player.animate(Animation.THIEVING_PICKPOCKET)
@@ -98,6 +97,10 @@ class PickpocketPlugin(
     private fun onFailure(player: Player, npc: Npc, entry: PickpocketEntry, npcName: String) {
         player.message("You fail to pick the ${npcName}'s pocket.")
         npc.forceChat("Hands off!")
+
+        if (entry.stun.ticks > 0) {
+            npc.facePawn(player)
+        }
 
         val damageRange = entry.stun.damage
         val damage =
