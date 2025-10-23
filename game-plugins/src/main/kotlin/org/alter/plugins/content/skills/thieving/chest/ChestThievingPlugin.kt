@@ -126,6 +126,12 @@ class ChestThievingPlugin(
             return
         }
 
+        val level = player.getSkills().getCurrentLevel(Skills.THIEVING)
+        if (level < entry.level) {
+            player.message("You need a Thieving level of ${entry.level} to search this $chestName for traps.")
+            return
+        }
+
         player.faceTile(obj.tile)
         player.lock()
         try {
