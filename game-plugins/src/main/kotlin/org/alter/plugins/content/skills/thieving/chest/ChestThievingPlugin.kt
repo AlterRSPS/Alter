@@ -72,14 +72,14 @@ class ChestThievingPlugin(
             return
         }
 
-        if (entry.trap?.enabled == true && !isTrapDisarmed(obj)) {
-            triggerTrap(player, obj, entry)
-            player.message("You fail to open the $chestName while the trap is active.")
+        if (level < entry.level) {
+            player.message("You need a Thieving level of ${entry.level} to loot this $chestName.")
             return
         }
 
-        if (level < entry.level) {
-            player.message("You need a Thieving level of ${entry.level} to loot this $chestName.")
+        if (entry.trap?.enabled == true && !isTrapDisarmed(obj)) {
+            triggerTrap(player, obj, entry)
+            player.message("You fail to open the $chestName while the trap is active.")
             return
         }
 
@@ -108,7 +108,14 @@ class ChestThievingPlugin(
     }
 
     private suspend fun searchForTraps(task: QueueTask, player: Player, obj: GameObject, entry: ChestEntry) {
+
         val chestName = obj.getDef().name?.lowercase()?.let { if (it.startsWith("the ")) it.drop(4) else it } ?: "chest"
+
+        val level = player.getSkills().getCurrentLevel(Skills.THIEVING)
+        if (level < entry.level) {
+            player.message("You need a Thieving level of ${entry.level} to search this $chestName for traps.")
+            return
+        }
 
         if (!obj.isSpawned(world)) {
             player.message("There's nothing left in this $chestName right now.")
@@ -126,11 +133,6 @@ class ChestThievingPlugin(
             return
         }
 
-        val level = player.getSkills().getCurrentLevel(Skills.THIEVING)
-        if (level < entry.level) {
-            player.message("You need a Thieving level of ${entry.level} to search this $chestName for traps.")
-            return
-        }
 
         player.faceTile(obj.tile)
         player.lock()
