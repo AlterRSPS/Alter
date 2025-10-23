@@ -41,5 +41,13 @@ class SpawnPlugin(
         spawnObj(obj = "object.silver_stall_11734", x = 2596, z = 4733, rot = 3)
         spawnObj(obj = "object.spice_stall_11733", x = 2596, z = 4731, rot = 3)
         spawnObj(obj = "object.gem_stall_11731", x = 2596, z = 4729, rot = 3)
+
+        spawnObj(obj = "object.chest_11735", x = 2596, z = 4724, rot = 3)
+        spawnObj(obj = "object.chest_11736", x = 2596, z = 4722, rot = 3)
+        spawnObj(obj = "object.chest_11737", x = 2596, z = 4720, rot = 3)
+        spawnObj(obj = "object.chest_11738", x = 2596, z = 4718, rot = 3)
+        spawnObj(obj = "object.chest_11739", x = 2596, z = 4716, rot = 3)
+        spawnObj(obj = "object.chest_11740", x = 2596, z = 4714, rot = 3)
+        spawnObj(obj = "object.chest_11741", x = 2596, z = 4712, rot = 3)
     }
 }
