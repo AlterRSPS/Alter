@@ -5,7 +5,7 @@
       "object.veg_stall_4708",
       "object.veg_stall_54781"
     ],
-    "emptyObject": "object.empty_stall",
+    "emptyObject": "object.market_stall",
     "respawnTicks": 14,
     "level": 2,
     "experience": 10.0,
@@ -24,7 +24,7 @@
       "object.bakers_stall_51559",
       "object.bakers_stall_51937"
     ],
-    "emptyObject": "object.empty_stall",
+    "emptyObject": "object.market_stall",
     "respawnTicks": 14,
     "level": 5,
     "experience": 16.0,
@@ -40,7 +40,7 @@
       "object.tea_stall_6574",
       "object.tea_stall_20350"
     ],
-    "emptyObject": "object.empty_stall",
+    "emptyObject": "object.market_stall",
     "respawnTicks": 14,
     "level": 5,
     "experience": 16.0,
@@ -58,10 +58,22 @@
       "object.silk_stall_41755",
       "object.silk_stall_51933"
     ],
-    "emptyObject": "object.empty_stall",
+    "emptyObject": "object.market_stall",
     "respawnTicks": 16,
     "level": 20,
     "experience": 24.0,
+    "loot": [
+      { "item": "item.silk" }
+    ]
+  },
+  {
+    "objects": [
+      "object.market_stall_14011"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 16,
+    "level": 22,
+    "experience": 27.0,
     "loot": [
       { "item": "item.silk" }
     ]
@@ -72,25 +84,25 @@
       "object.seed_stall_7053",
       "object.seed_stall_33639"
     ],
-    "emptyObject": "object.empty_stall",
+    "emptyObject": "object.market_stall",
     "respawnTicks": 16,
     "level": 27,
     "experience": 10.0,
     "loot": [
-      { "item": "item.potato_seed", "weight": 20.0 },
-      { "item": "item.onion_seed", "weight": 18.0 },
-      { "item": "item.cabbage_seed", "weight": 15.0 },
-      { "item": "item.tomato_seed", "weight": 12.0 },
-      { "item": "item.sweetcorn_seed", "weight": 10.0 },
-      { "item": "item.strawberry_seed", "weight": 8.0 },
-      { "item": "item.watermelon_seed", "weight": 6.0 },
-      { "item": "item.snape_grass_seed", "weight": 5.0 },
-      { "item": "item.guam_seed", "weight": 4.0 },
-      { "item": "item.marrentill_seed", "weight": 3.0 },
-      { "item": "item.harralander_seed", "weight": 3.0 },
-      { "item": "item.jute_seed", "weight": 3.0 },
-      { "item": "item.apple_tree_seed", "weight": 1.5 },
-      { "item": "item.banana_tree_seed", "weight": 1.5 }
+      { "item": "item.potato_seed", "weight": 20.0, "min": 1, "max":  1},
+      { "item": "item.onion_seed", "weight": 18.0, "min": 1, "max": 1},
+      { "item": "item.cabbage_seed", "weight": 15.0, "min": 1, "max": 1},
+      { "item": "item.tomato_seed", "weight": 12.0, "min": 1, "max": 1},
+      { "item": "item.sweetcorn_seed", "weight": 10.0, "min": 1, "max": 1},
+      { "item": "item.strawberry_seed", "weight": 8.0, "min": 1, "max": 1},
+      { "item": "item.watermelon_seed", "weight": 6.0, "min": 1, "max": 1},
+      { "item": "item.snape_grass_seed", "weight": 5.0, "min": 1, "max": 1},
+      { "item": "item.guam_seed", "weight": 4.0, "min": 1, "max": 1},
+      { "item": "item.marrentill_seed", "weight": 3.0, "min": 1, "max": 1},
+      { "item": "item.harralander_seed", "weight": 3.0, "min": 1, "max": 1},
+      { "item": "item.jute_seed", "weight": 3.0, "min": 1, "max": 1},
+      { "item": "item.apple_tree_seed", "weight": 1.5, "min": 1, "max": 1},
+      { "item": "item.banana_tree_seed", "weight": 1.5, "min": 1, "max": 1}
     ]
   },
   {
@@ -103,7 +115,7 @@
       "object.fur_stall_37405",
       "object.fur_stall_51934"
     ],
-    "emptyObject": "object.empty_stall",
+    "emptyObject": "object.market_stall",
     "respawnTicks": 18,
     "level": 35,
     "experience": 36.0,
@@ -121,7 +133,7 @@
       "object.fish_stall_31712",
       "object.fish_stall_37404"
     ],
-    "emptyObject": "object.empty_stall",
+    "emptyObject": "object.market_stall",
     "respawnTicks": 18,
     "level": 42,
     "experience": 42.0,
@@ -140,7 +152,7 @@
       "object.silver_stall_36570",
       "object.silver_stall_41757"
     ],
-    "emptyObject": "object.empty_stall",
+    "emptyObject": "object.market_stall",
     "respawnTicks": 20,
     "level": 50,
     "experience": 54.0,
@@ -157,7 +169,7 @@
       "object.spice_stall_36572",
       "object.spice_stall_51936"
     ],
-    "emptyObject": "object.empty_stall",
+    "emptyObject": "object.market_stall",
     "respawnTicks": 22,
     "level": 65,
     "experience": 81.0,
@@ -177,7 +189,7 @@
       "object.gem_stall_51935",
       "object.gem_stall_54780"
     ],
-    "emptyObject": "object.empty_stall",
+    "emptyObject": "object.market_stall",
     "respawnTicks": 24,
     "level": 75,
     "experience": 160.0,

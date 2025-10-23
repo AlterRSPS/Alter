@@ -87,16 +87,6 @@ class StallThievingPlugin(
         val loot = rollLoot(entry, player.world)
         val amount = if (loot.min == loot.max) loot.min else player.world.random(loot.min..loot.max)
         val transaction = player.inventory.add(item = loot.item, amount = amount)
-        if (transaction.hasFailed()) {
-            player.world.spawn(
-                GroundItem(
-                    item = getRSCM(loot.item),
-                    amount = amount,
-                    tile = player.tile,
-                    owner = player,
-                ),
-            )
-        }
 
         player.message("You steal from the $stallName.")
     }
