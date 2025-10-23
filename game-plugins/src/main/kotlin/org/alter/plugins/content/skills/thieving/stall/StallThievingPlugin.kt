@@ -1,6 +1,7 @@
 package org.alter.plugins.content.skills.thieving.stall
 
 import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getObject
 import org.alter.api.Skills
 import org.alter.api.cfg.Animation
 import org.alter.api.ext.*
@@ -27,14 +28,16 @@ class StallThievingPlugin(
         onWorldInit {
             val service = world.getService(StallThievingService::class.java) ?: return@onWorldInit
             service.entries.forEach { entry ->
-                entry.objects.forEach { objId ->
-                    onObjOption(obj = objId, option = "steal-from") {
-                        val obj = player.getInteractingGameObj()
-                        player.queue { stealFromStall(this, player, obj, entry) }
-                    }
-                    onObjOption(obj = objId, option = "steal from") {
-                        val obj = player.getInteractingGameObj()
-                        player.queue { stealFromStall(this, player, obj, entry) }
+                entry.objectIds.forEach { objId ->
+                    val stealOptions =
+                        getObject(objId).actions.filterNotNull().filter {
+                            it.equals("steal-from", ignoreCase = true) || it.equals("steal from", ignoreCase = true)
+                        }
+                    stealOptions.forEach { option ->
+                        onObjOption(obj = objId, option = option) {
+                            val obj = player.getInteractingGameObj()
+                            player.queue { stealFromStall(this, player, obj, entry) }
+                        }
                     }
                 }
             }
