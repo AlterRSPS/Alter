@@ -1,0 +1,204 @@
+[
+  {
+    "objects": [
+      "object.veg_stall",
+      "object.veg_stall_4708",
+      "object.veg_stall_54781"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 14,
+    "level": 2,
+    "experience": 10.0,
+    "loot": [
+      { "item": "item.potato", "weight": 30.0 },
+      { "item": "item.onion", "weight": 25.0 },
+      { "item": "item.cabbage", "weight": 25.0 },
+      { "item": "item.tomato", "weight": 15.0 },
+      { "item": "item.garlic", "weight": 5.0 }
+    ]
+  },
+  {
+    "objects": [
+      "object.bakers_stall",
+      "object.bakers_stall_11730",
+      "object.bakers_stall_51559",
+      "object.bakers_stall_51937"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 14,
+    "level": 5,
+    "experience": 16.0,
+    "loot": [
+      { "item": "item.cake", "weight": 35.0 },
+      { "item": "item.bread", "weight": 35.0 },
+      { "item": "item.chocolate_slice", "weight": 30.0 }
+    ]
+  },
+  {
+    "objects": [
+      "object.tea_stall",
+      "object.tea_stall_6574",
+      "object.tea_stall_20350"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 14,
+    "level": 5,
+    "experience": 16.0,
+    "loot": [
+      { "item": "item.cup_of_tea" }
+    ]
+  },
+  {
+    "objects": [
+      "object.silk_stall",
+      "object.silk_stall_6568",
+      "object.silk_stall_11729",
+      "object.silk_stall_20344",
+      "object.silk_stall_36569",
+      "object.silk_stall_41755",
+      "object.silk_stall_51933"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 16,
+    "level": 20,
+    "experience": 24.0,
+    "loot": [
+      { "item": "item.silk" }
+    ]
+  },
+  {
+    "objects": [
+      "object.market_stall_14011"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 16,
+    "level": 22,
+    "experience": 27.0,
+    "loot": [
+      { "item": "item.silk" }
+    ]
+  },
+  {
+    "objects": [
+      "object.seed_stall",
+      "object.seed_stall_7053",
+      "object.seed_stall_33639"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 16,
+    "level": 27,
+    "experience": 10.0,
+    "loot": [
+      { "item": "item.potato_seed", "weight": 20.0, "min": 1, "max":  1},
+      { "item": "item.onion_seed", "weight": 18.0, "min": 1, "max": 1},
+      { "item": "item.cabbage_seed", "weight": 15.0, "min": 1, "max": 1},
+      { "item": "item.tomato_seed", "weight": 12.0, "min": 1, "max": 1},
+      { "item": "item.sweetcorn_seed", "weight": 10.0, "min": 1, "max": 1},
+      { "item": "item.strawberry_seed", "weight": 8.0, "min": 1, "max": 1},
+      { "item": "item.watermelon_seed", "weight": 6.0, "min": 1, "max": 1},
+      { "item": "item.snape_grass_seed", "weight": 5.0, "min": 1, "max": 1},
+      { "item": "item.guam_seed", "weight": 4.0, "min": 1, "max": 1},
+      { "item": "item.marrentill_seed", "weight": 3.0, "min": 1, "max": 1},
+      { "item": "item.harralander_seed", "weight": 3.0, "min": 1, "max": 1},
+      { "item": "item.jute_seed", "weight": 3.0, "min": 1, "max": 1},
+      { "item": "item.apple_tree_seed", "weight": 1.5, "min": 1, "max": 1},
+      { "item": "item.banana_tree_seed", "weight": 1.5, "min": 1, "max": 1}
+    ]
+  },
+  {
+    "objects": [
+      "object.fur_stall",
+      "object.fur_stall_4278",
+      "object.fur_stall_6571",
+      "object.fur_stall_11732",
+      "object.fur_stall_20347",
+      "object.fur_stall_37405",
+      "object.fur_stall_51934"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 18,
+    "level": 35,
+    "experience": 36.0,
+    "loot": [
+      { "item": "item.fur", "weight": 40.0 },
+      { "item": "item.bear_fur", "weight": 35.0 },
+      { "item": "item.grey_wolf_fur", "weight": 25.0 }
+    ]
+  },
+  {
+    "objects": [
+      "object.fish_stall",
+      "object.fish_stall_4705",
+      "object.fish_stall_4707",
+      "object.fish_stall_31712",
+      "object.fish_stall_37404"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 18,
+    "level": 42,
+    "experience": 42.0,
+    "loot": [
+      { "item": "item.raw_trout", "weight": 30.0 },
+      { "item": "item.raw_salmon", "weight": 30.0 },
+      { "item": "item.raw_tuna", "weight": 25.0 },
+      { "item": "item.raw_lobster", "weight": 15.0 }
+    ]
+  },
+  {
+    "objects": [
+      "object.silver_stall",
+      "object.silver_stall_6164",
+      "object.silver_stall_11734",
+      "object.silver_stall_36570",
+      "object.silver_stall_41757"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 20,
+    "level": 50,
+    "experience": 54.0,
+    "loot": [
+      { "item": "item.silver_ore", "weight": 75.0 },
+      { "item": "item.silver_bar", "weight": 25.0 }
+    ]
+  },
+  {
+    "objects": [
+      "object.spice_stall",
+      "object.spice_stall_6572",
+      "object.spice_stall_11733",
+      "object.spice_stall_36572",
+      "object.spice_stall_51936"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 22,
+    "level": 65,
+    "experience": 81.0,
+    "loot": [
+      { "item": "item.spice", "min": 1, "max": 2 }
+    ]
+  },
+  {
+    "objects": [
+      "object.gem_stall",
+      "object.gem_stall_6162",
+      "object.gem_stall_6570",
+      "object.gem_stall_11731",
+      "object.gem_stall_20346",
+      "object.gem_stall_36571",
+      "object.gem_stall_41756",
+      "object.gem_stall_51935",
+      "object.gem_stall_54780"
+    ],
+    "emptyObject": "object.market_stall",
+    "respawnTicks": 24,
+    "level": 75,
+    "experience": 160.0,
+    "loot": [
+      { "item": "item.uncut_sapphire", "weight": 40.0 },
+      { "item": "item.uncut_emerald", "weight": 30.0 },
+      { "item": "item.uncut_ruby", "weight": 20.0 },
+      { "item": "item.uncut_diamond", "weight": 9.0 },
+      { "item": "item.uncut_dragonstone", "weight": 1.0 }
+    ]
+  }
+]
