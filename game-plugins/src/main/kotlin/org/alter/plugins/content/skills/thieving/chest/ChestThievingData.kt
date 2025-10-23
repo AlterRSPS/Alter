@@ -10,6 +10,7 @@ data class ChestEntry(
     val level: Int,
     val experience: Double,
     val loot: List<ChestLoot>,
+    val trap: ChestTrap? = null,
 ) {
     @Transient
     var objectIds: IntArray = intArrayOf()
@@ -24,6 +25,13 @@ data class ChestEntry(
         require(level >= 1) { "Chest level requirement must be >= 1." }
         require(experience >= 0.0) { "Chest experience cannot be negative." }
         require(loot.isNotEmpty()) { "Chest entry must define at least one loot drop." }
+        trap?.let { trapCfg ->
+            if (trapCfg.enabled) {
+                require(trapCfg.dismantleChance in 0..100) { "Trap dismantle chance must be between 0 and 100." }
+                require(trapCfg.minDamage >= 0) { "Trap minimum damage cannot be negative." }
+                require(trapCfg.maxDamage >= trapCfg.minDamage) { "Trap maximum damage cannot be less than minimum." }
+            }
+        }
     }
 }
 
@@ -38,3 +46,10 @@ data class ChestLoot(
         require(max >= min) { "Loot maximum cannot be less than minimum." }
     }
 }
+
+data class ChestTrap(
+    val enabled: Boolean = false,
+    val dismantleChance: Int = 0,
+    val minDamage: Int = 0,
+    val maxDamage: Int = minDamage,
+)

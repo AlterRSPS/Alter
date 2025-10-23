@@ -9,7 +9,13 @@
     "experience": 7.5,
     "loot": [
       { "item": "item.coins_995", "min": 10, "max": 10 }
-    ]
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 70,
+      "minDamage": 1,
+      "maxDamage": 3
+    }
   },
   {
     "objects": [
@@ -21,7 +27,13 @@
     "experience": 25.0,
     "loot": [
       { "item": "item.nature_rune", "min": 3, "max": 3 }
-    ]
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 60,
+      "minDamage": 2,
+      "maxDamage": 4
+    }
   },
   {
     "objects": [
@@ -33,7 +45,13 @@
     "experience": 125.0,
     "loot": [
       { "item": "item.coins_995", "min": 50, "max": 50 }
-    ]
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 55,
+      "minDamage": 3,
+      "maxDamage": 5
+    }
   },
   {
     "objects": [
@@ -45,7 +63,13 @@
     "experience": 150.0,
     "loot": [
       { "item": "item.steel_arrowtips", "min": 10, "max": 10 }
-    ]
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 55,
+      "minDamage": 3,
+      "maxDamage": 6
+    }
   },
   {
     "objects": [
@@ -57,7 +81,13 @@
     "experience": 250.0,
     "loot": [
       { "item": "item.blood_rune", "min": 2, "max": 2 }
-    ]
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 45,
+      "minDamage": 4,
+      "maxDamage": 8
+    }
   },
   {
     "objects": [
@@ -69,7 +99,13 @@
     "experience": 500.0,
     "loot": [
       { "item": "item.coins_995", "min": 500, "max": 500 }
-    ]
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 40,
+      "minDamage": 4,
+      "maxDamage": 10
+    }
   },
   {
     "objects": [
@@ -81,6 +117,12 @@
     "experience": 500.0,
     "loot": [
       { "item": "item.blood_rune", "min": 4, "max": 4 }
-    ]
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 35,
+      "minDamage": 5,
+      "maxDamage": 10
+    }
   }
 ]
