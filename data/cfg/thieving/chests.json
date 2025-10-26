@@ -1,0 +1,128 @@
+[
+  {
+    "objects": [
+      "object.chest_11735"
+    ],
+    "openObject": "object.null_11743",
+    "respawnTicks": 12,
+    "level": 13,
+    "experience": 7.5,
+    "loot": [
+      { "item": "item.coins_995", "min": 10, "max": 10 }
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 70,
+      "minDamage": 1,
+      "maxDamage": 3
+    }
+  },
+  {
+    "objects": [
+      "object.chest_11736"
+    ],
+    "openObject": "object.null_11743",
+    "respawnTicks": 12,
+    "level": 28,
+    "experience": 25.0,
+    "loot": [
+      { "item": "item.nature_rune", "min": 3, "max": 3 }
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 60,
+      "minDamage": 2,
+      "maxDamage": 4
+    }
+  },
+  {
+    "objects": [
+      "object.chest_11737"
+    ],
+    "openObject": "object.null_11743",
+    "respawnTicks": 16,
+    "level": 43,
+    "experience": 125.0,
+    "loot": [
+      { "item": "item.coins_995", "min": 50, "max": 50 }
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 55,
+      "minDamage": 3,
+      "maxDamage": 5
+    }
+  },
+  {
+    "objects": [
+      "object.chest_11738"
+    ],
+    "openObject": "object.null_11743",
+    "respawnTicks": 16,
+    "level": 47,
+    "experience": 150.0,
+    "loot": [
+      { "item": "item.steel_arrowtips", "min": 10, "max": 10 }
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 55,
+      "minDamage": 3,
+      "maxDamage": 6
+    }
+  },
+  {
+    "objects": [
+      "object.chest_11739"
+    ],
+    "openObject": "object.null_11743",
+    "respawnTicks": 20,
+    "level": 59,
+    "experience": 250.0,
+    "loot": [
+      { "item": "item.blood_rune", "min": 2, "max": 2 }
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 45,
+      "minDamage": 4,
+      "maxDamage": 8
+    }
+  },
+  {
+    "objects": [
+      "object.chest_11740"
+    ],
+    "openObject": "object.null_11743",
+    "respawnTicks": 24,
+    "level": 72,
+    "experience": 500.0,
+    "loot": [
+      { "item": "item.coins_995", "min": 500, "max": 500 }
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 40,
+      "minDamage": 4,
+      "maxDamage": 10
+    }
+  },
+  {
+    "objects": [
+      "object.chest_11741"
+    ],
+    "openObject": "object.null_11743",
+    "respawnTicks": 24,
+    "level": 84,
+    "experience": 500.0,
+    "loot": [
+      { "item": "item.blood_rune", "min": 4, "max": 4 }
+    ],
+    "trap": {
+      "enabled": true,
+      "dismantleChance": 35,
+      "minDamage": 5,
+      "maxDamage": 10
+    }
+  }
+]

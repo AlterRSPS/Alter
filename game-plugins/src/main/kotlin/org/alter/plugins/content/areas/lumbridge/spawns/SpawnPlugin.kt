@@ -75,5 +75,7 @@ class SpawnPlugin(
         spawnItem(item = "item.pot", amount = 1, x = 3209, z = 3214)
         spawnItem(item = "item.bowl", amount = 1, x = 3208, z = 3214)
         spawnItem(item = "item.jug", amount = 1, x = 3211, z = 3212)
+
+        spawnObj(obj = "object.altar_409", x = 3222, z = 3215, rot = 6)
     }
 }

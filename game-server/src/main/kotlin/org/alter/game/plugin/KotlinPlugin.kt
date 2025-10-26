@@ -154,6 +154,17 @@ abstract class KotlinPlugin(
         spawnObj(obj, tile.x, tile.z, tile.height, type, rot)
 
     /**
+     * Spawn a [DynamicObject] on the given [tile], using a [Direction] to determine rotation.
+     */
+    fun spawnObject(
+        obj: String,
+        tile: Tile,
+        type: Int = 10,
+        direction: Direction = Direction.SOUTH,
+    ) =
+        spawnObject(obj, tile.x, tile.z, tile.height, type, direction)
+
+    /**
      * Spawn a [DynamicObject] on the given coordinates.
      */
     fun spawnObj(
@@ -167,6 +178,30 @@ abstract class KotlinPlugin(
         val o = DynamicObject(getRSCM(obj), type, rot, Tile(x, z, height))
         r.objSpawns.add(o)
     }
+
+    /**
+     * Spawn a [DynamicObject] on the given coordinates using [direction] for rotation.
+     */
+    fun spawnObject(
+        obj: String,
+        x: Int,
+        z: Int,
+        height: Int = 0,
+        type: Int = 10,
+        direction: Direction = Direction.SOUTH,
+    ) {
+        val rotation = direction.toObjectRotation()
+        spawnObj(obj, x, z, height, type, rotation)
+    }
+
+    private fun Direction.toObjectRotation(): Int =
+        when (this) {
+            Direction.WEST -> 0
+            Direction.NORTH -> 1
+            Direction.EAST -> 2
+            Direction.SOUTH -> 3
+            else -> throw IllegalArgumentException("Objects can only face cardinal directions. [direction=$this]")
+        }
 
     /**
      * Spawn a [GroundItem] on the given coordinates.

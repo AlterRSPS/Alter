@@ -1,0 +1,437 @@
+[
+  {
+    "npcs": [
+      "npc.man_3106",
+      "npc.man_3107",
+      "npc.man_3108",
+      "npc.man_3109",
+      "npc.woman_3111",
+      "npc.woman_3112",
+      "npc.woman_3113",
+      "npc.woman_3015"
+    ],
+    "level": 1,
+    "experience": 8.0,
+    "baseSuccess": 0.55,
+    "successBonusPerLevel": 0.015,
+    "stun": {
+      "ticks": 7,
+      "damage": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 3,
+        "max": 12,
+        "weight": 75.00
+      },
+      {
+        "item": "item.bronze_bolts",
+        "min": 1,
+        "max": 2,
+        "weight": 25.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.farmer_3114",
+      "npc.farmer_3243",
+      "npc.farmer_3244"
+    ],
+    "level": 10,
+    "experience": 14.5,
+    "baseSuccess": 0.52,
+    "successBonusPerLevel": 0.012,
+    "stun": {
+      "ticks": 7,
+      "damage": {
+        "min": 1,
+        "max": 2
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 9,
+        "max": 30,
+        "weight": 75.00
+      },
+      {
+        "item": "item.potato_seed",
+        "min": 1,
+        "max": 1,
+        "weight": 25.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.ham_member"
+    ],
+    "level": 15,
+    "experience": 18.5,
+    "baseSuccess": 0.48,
+    "successBonusPerLevel": 0.01,
+    "stun": {
+      "ticks": 6,
+      "damage": {
+        "min": 1,
+        "max": 3
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 20,
+        "max": 40,
+        "weight": 60.00
+      },
+      {
+        "item": "item.buttons",
+        "min": 1,
+        "max": 1,
+        "weight": 20.00
+      },
+      {
+        "item": "item.rusty_sword",
+        "min": 1,
+        "max": 1,
+        "weight": 20.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.ham_member_2541"
+    ],
+    "level": 20,
+    "experience": 22.5,
+    "baseSuccess": 0.46,
+    "successBonusPerLevel": 0.009,
+    "stun": {
+      "ticks": 6,
+      "damage": {
+        "min": 1,
+        "max": 3
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 25,
+        "max": 45,
+        "weight": 60.00
+      },
+      {
+        "item": "item.iron_knife",
+        "min": 1,
+        "max": 1,
+        "weight": 20.00
+      },
+      {
+        "item": "item.leather_gloves",
+        "min": 1,
+        "max": 1,
+        "weight": 20.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.al_kharid_warrior"
+    ],
+    "level": 25,
+    "experience": 26.0,
+    "baseSuccess": 0.45,
+    "successBonusPerLevel": 0.009,
+    "stun": {
+      "ticks": 7,
+      "damage": {
+        "min": 1,
+        "max": 2
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 18,
+        "max": 35,
+        "weight": 80.00
+      },
+      {
+        "item": "item.bronze_dagger",
+        "min": 1,
+        "max": 1,
+        "weight": 20.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.rogue_526"
+    ],
+    "level": 32,
+    "experience": 35.5,
+    "baseSuccess": 0.42,
+    "successBonusPerLevel": 0.009,
+    "stun": {
+      "ticks": 7,
+      "damage": {
+        "min": 1,
+        "max": 2
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 25,
+        "max": 50,
+        "weight": 75.00
+      },
+      {
+        "item": "item.lockpick",
+        "min": 1,
+        "max": 1,
+        "weight": 25.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.cave_goblin_2268",
+      "npc.cave_goblin_2269",
+      "npc.cave_goblin_2270",
+      "npc.cave_goblin_2271",
+      "npc.cave_goblin_2272",
+      "npc.cave_goblin_2273",
+      "npc.cave_goblin_2274",
+      "npc.cave_goblin_2275",
+      "npc.cave_goblin_2276",
+      "npc.cave_goblin_2277"
+    ],
+    "level": 36,
+    "experience": 40.0,
+    "baseSuccess": 0.43,
+    "successBonusPerLevel": 0.008,
+    "stun": {
+      "ticks": 7,
+      "damage": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 12,
+        "max": 48,
+        "weight": 75.00
+      },
+      {
+        "item": "item.iron_ore",
+        "min": 1,
+        "max": 2,
+        "weight": 25.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.master_farmer_5730",
+      "npc.master_farmer_5731",
+      "npc.master_farmer_11940",
+      "npc.master_farmer_11941"
+    ],
+    "level": 38,
+    "experience": 43.0,
+    "baseSuccess": 0.35,
+    "successBonusPerLevel": 0.008,
+    "stun": {
+      "ticks": 8,
+      "damage": {
+        "min": 1,
+        "max": 3
+      }
+    },
+    "loot": [
+      {
+        "item": "item.potato_seed",
+        "min": 1,
+        "max": 1,
+        "weight": 50.00
+      },
+      {
+        "item": "item.strawberry_seed",
+        "min": 1,
+        "max": 1,
+        "weight": 25.00
+      },
+      {
+        "item": "item.ranarr_seed",
+        "min": 1,
+        "max": 1,
+        "weight": 25.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.guard_397",
+      "npc.guard_398",
+      "npc.guard_399",
+      "npc.guard_400"
+    ],
+    "level": 40,
+    "experience": 46.8,
+    "baseSuccess": 0.38,
+    "successBonusPerLevel": 0.008,
+    "stun": {
+      "ticks": 8,
+      "damage": {
+        "min": 1,
+        "max": 2
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 30,
+        "max": 60,
+        "weight": 100.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.menaphite_thug_3550"
+    ],
+    "level": 65,
+    "experience": 137.5,
+    "baseSuccess": 0.32,
+    "successBonusPerLevel": 0.007,
+    "stun": {
+      "ticks": 8,
+      "damage": {
+        "min": 2,
+        "max": 5
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 40,
+        "max": 80,
+        "weight": 80.00
+      },
+      {
+        "item": "item.earth_rune",
+        "min": 4,
+        "max": 8,
+        "weight": 20.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.knight_of_ardougne",
+      "npc.knight_of_ardougne_3300"
+    ],
+    "level": 55,
+    "experience": 84.3,
+    "baseSuccess": 0.34,
+    "successBonusPerLevel": 0.007,
+    "stun": {
+      "ticks": 9,
+      "damage": {
+        "min": 2,
+        "max": 4
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 50,
+        "max": 90,
+        "weight": 80.00
+      },
+      {
+        "item": "item.law_rune",
+        "min": 1,
+        "max": 2,
+        "weight": 20.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.paladin_3293",
+      "npc.paladin_3294"
+    ],
+    "level": 70,
+    "experience": 151.75,
+    "baseSuccess": 0.3,
+    "successBonusPerLevel": 0.006,
+    "stun": {
+      "ticks": 9,
+      "damage": {
+        "min": 2,
+        "max": 3
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 80,
+        "max": 160,
+        "weight": 80.00
+      },
+      {
+        "item": "item.chaos_rune",
+        "min": 1,
+        "max": 2,
+        "weight": 20.00
+      }
+    ]
+  },
+  {
+    "npcs": [
+      "npc.hero_3295",
+      "npc.hero_11934"
+    ],
+    "level": 80,
+    "experience": 275.0,
+    "baseSuccess": 0.26,
+    "successBonusPerLevel": 0.0055,
+    "stun": {
+      "ticks": 10,
+      "damage": {
+        "min": 3,
+        "max": 4
+      }
+    },
+    "loot": [
+      {
+        "item": "item.coins_995",
+        "min": 200,
+        "max": 300,
+        "weight": 60.00
+      },
+      {
+        "item": "item.blood_rune",
+        "min": 2,
+        "max": 3,
+        "weight": 20.00
+      },
+      {
+        "item": "item.ruby",
+        "min": 1,
+        "max": 1,
+        "weight": 20.00
+      }
+    ]
+  }
+]

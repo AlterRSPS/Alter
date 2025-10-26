@@ -1,0 +1,46 @@
+OSRS Thieving Pickpocket NPCs
+
+| NPC | Thieving Lvl | XP | Possible Rewards / Loot | Stun Time (s) | Max Stun Damage (hp) |
+|---|---|---|---|---|---|
+| Man / Woman | 1 | 8 | ~3 coins | 5 | 1 |
+| Farmer | 10 | 14.5 | 9 coins, 1 potato seed | 5 | 1 |
+| Female H.A.M. member | 15 | 18.5 | Buttons, rusty sword, etc. | 4 | 1–3 |
+| Male H.A.M. member | 20 | 22.5 | Similar loot as female H.A.M. | 4 | 1–3 |
+| Warrior woman / Al‑Kharid warrior | 25 | 26 | ~18 coins | 5 | 2 |
+| Rogue | 32 | 35.5 | 25 / 40 coins, lockpick, etc. | 5 | 2 |
+| Cave goblin | 36 | 40 | Coins, iron ore, etc. | 5 | 1 |
+| Master Farmer | 38 | 43 | Various seeds, including rare ones | 5 | 3 |
+| Guard | 40 | 46.8 | ~30 coins | 5 | 2 |
+| Fremennik Citizen | 45 | 65 | ~40 coins | 5 | 2 |
+| Bearded Pollnivnian Bandit | 45 | 65 | ~40 coins | 5 | 5 |
+| Desert Bandit | 53 | 79.5 | ~30 coins, antipoison, lockpick | 5 | 3 |
+| Knight of Ardougne | 55 | 84.3 | ~50 coins | 5 | 3 |
+| Pollnivnian Bandit | 55 | 84.3 | ~50 coins | 5 | 5 |
+| Yanille Watchman | 65 | 137.5 | ~60 coins + 1 bread | 5 | 3 |
+| Menaphite Thug | 65 | 137.5 | ~60 coins | 5 | 5 |
+| Paladin | 70 | 151.75 | ~80 coins + chaos runes | 5 | 3 |
+| Gnome | 75 | 198.5 | ~300 coins, ore, fire orb, etc. | 5 | 1 |
+| Hero | 80 | 275 | ~200–300 coins, runes, gems, etc. | 6 | 4 |
+| Elf | 85 | 353 | Coins, runes, gems, etc. | 6 | 5 |
+| TzHaar‑Hur | 90 | 103.5 | Tokkul, uncut gems | 5 | 4 |
+
+Notes:
+- Stun damage is the hit you take upon a failed pickpocket attempt.
+- Some NPCs have a damage range (e.g., 1–3).
+- Loot details are summarized; see the OSRS Wiki for full lists.
+- Stun duration usually ranges between 4–6 seconds.
+
+Stall IDs:
+Market Stalls
+Empty stall: 634
+Veg stalls: 4706, 4708
+Bakersstall: 11730, 51937
+Tea stall: 635, 6574
+Silk stall: 11729, 51933
+Wine Stall: 14011
+Seed Stall: 7053
+Fur Stall: 4278, 11732, 51934
+Fish Stall: 4277, 4705, 4707, 31712
+Silver stall: 11734
+Spice stall: 11733, 51936
+Gem stall: 11731, 51935
