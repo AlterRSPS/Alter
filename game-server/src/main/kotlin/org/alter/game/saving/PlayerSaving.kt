@@ -99,7 +99,7 @@ object PlayerSaving {
 
     private fun validateAuthentication(previousXteas : IntArray, client: Client, block: LoginBlock<*>): PlayerLoadResult {
         when (val auth = block.authentication) {
-            is AuthenticationType.PasswordAuthentication<*> -> {
+            is AuthenticationType.PasswordAuthentication -> {
                 if (!BCrypt.checkpw(auth.password.asString(), client.passwordHash)) {
                     return PlayerLoadResult.INVALID_CREDENTIALS
                 }
@@ -132,8 +132,8 @@ object PlayerSaving {
         client.attr.put(NEW_ACCOUNT_ATTR, true)
         client.attr.put(APPEARANCE_SET_ATTR, false)
 
-        if (block.authentication is AuthenticationType.PasswordAuthentication<*>) {
-            val passwordAuth = block.authentication as AuthenticationType.PasswordAuthentication<*>
+        if (block.authentication is AuthenticationType.PasswordAuthentication) {
+            val passwordAuth = block.authentication as AuthenticationType.PasswordAuthentication
             client.passwordHash = BCrypt.hashpw(passwordAuth.password.asString(), BCrypt.gensalt(16))
         }
         client.tile = client.world.gameContext.home

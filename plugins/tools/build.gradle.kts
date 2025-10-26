@@ -7,7 +7,7 @@ dependencies {
     implementation("me.tongfei:progressbar:0.9.2")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("commons-io:commons-io:2.15.1")
-    implementation("com.displee:rs-cache-library:7.1.0")
+    implementation("com.displee:rs-cache-library:7.3.0")
     implementation("com.akuleshov7:ktoml-core:0.5.1")
     implementation("com.akuleshov7:ktoml-file:0.5.1")
 }

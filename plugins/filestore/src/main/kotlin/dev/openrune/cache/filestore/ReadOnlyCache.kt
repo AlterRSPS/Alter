@@ -10,7 +10,7 @@ import java.io.RandomAccessFile
 /**
  * [Cache] which efficiently stores information about its indexes, archives and files.
  */
-abstract class ReadOnlyCache(indexCount: Int) : dev.openrune.cache.filestore.Cache {
+abstract class ReadOnlyCache(indexCount: Int) : Cache {
     val indices: IntArray = IntArray(indexCount) { it }
     val archives: Array<IntArray?> = arrayOfNulls(indexCount)
     val fileCounts: Array<IntArray?> = arrayOfNulls(indexCount)
@@ -144,10 +144,22 @@ abstract class ReadOnlyCache(indexCount: Int) : dev.openrune.cache.filestore.Cac
                 hashes[reader.readInt()] = archiveId
             }
         }
+        reader.skip(archiveCount * 4) // Crc
+        if (flags and 0x8 != 0) {
+            for (i in 0 until archiveCount) {
+                reader.readInt()
+            }
+        }
         if (flags and WHIRLPOOL_FLAG != 0) {
             reader.skip(archiveCount * WHIRLPOOL_SIZE)
         }
-        reader.skip(archiveCount * 8) // Crc & revisions
+        if (flags and 0x4 != 0) {
+            for (i in 0 until archiveCount) {
+                reader.readInt()
+                reader.readInt()
+            }
+        }
+        reader.skip(archiveCount * 4) // Revision
         val archiveSizes = IntArray(highest + 1)
         for (i in 0 until archiveCount) {
             val id = archiveIds[i]

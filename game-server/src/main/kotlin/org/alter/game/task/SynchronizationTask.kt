@@ -6,7 +6,7 @@ import net.rsprot.protocol.game.outgoing.info.util.BuildArea
 import net.rsprot.protocol.game.outgoing.map.RebuildNormal
 import net.rsprot.protocol.game.outgoing.map.RebuildRegion
 import net.rsprot.protocol.game.outgoing.map.util.RebuildRegionZone
-import net.rsprot.protocol.game.outgoing.worldentity.SetActiveWorld
+import net.rsprot.protocol.game.outgoing.worldentity.SetActiveWorldV2
 import org.alter.game.model.Coordinate
 import org.alter.game.model.Tile
 import org.alter.game.model.World
@@ -61,7 +61,7 @@ class SequentialSynchronizationTask : GameTask {
              * not have one.
              */
             if (it.entityType.isHumanControlled && it.initiated) {
-                it.write(SetActiveWorld(SetActiveWorld.RootWorldType(it.tile.height)))
+                it.write(SetActiveWorldV2(SetActiveWorldV2.RootWorldType(it.tile.height)))
                 it.write(it.playerInfo.toPacket()) // try-catch it, this _can_ throw exceptions during .toPacket()
                 it.write(
                     SetNpcUpdateOrigin(

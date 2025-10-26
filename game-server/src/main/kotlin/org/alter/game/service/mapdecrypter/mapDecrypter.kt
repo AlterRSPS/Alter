@@ -18,7 +18,7 @@ class decryptMap : Service {
             val backupXteaLocation = xteaLocation.resolveSibling("xteas.json.backup")
 
             val cacheTool = CacheTool(
-                Builder(type = TaskType.BUILD, revision = 228).apply {
+                Builder(type = TaskType.BUILD, revision = 231).apply {
                     extraTasks = arrayOf(
                         RemoveXteas(xteaLocation = xteaLocation.toFile())
                     )
